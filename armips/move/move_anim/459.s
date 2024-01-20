@@ -46,6 +46,7 @@ a010_459:
     addparticle 0, 1, 4
     addparticle 0, 2, 4
     callfunction 36, 5, 4, 0, 1, 8, 264, "NaN", "NaN", "NaN", "NaN", "NaN"
+    callfunction 36, 5, 4, 0, 1, 8, 272, "NaN", "NaN", "NaN", "NaN", "NaN"
     waitparticle
     unloadparticle 0
     wait 20

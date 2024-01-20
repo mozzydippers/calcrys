@@ -17,7 +17,7 @@
 .endmacro
 
 .macro learnset,move,level
-.if move <= MOVE_FLYING_PRESS
+.if move <= MOVE_PSYBLADE
     .word (level << 16 | move)
 .endif
 .endmacro

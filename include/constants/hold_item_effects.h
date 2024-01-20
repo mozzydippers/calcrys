@@ -172,4 +172,6 @@
 #define HOLD_EFFECT_EVIOLITE        163                           // Eviolite
 #define HOLD_EFFECT_PREVENT_CONTACT_EFFECTS 164                   // Protective Pads
 
+#define HOLD_EFFECT_ASSAULT_VEST 200
+
 #endif

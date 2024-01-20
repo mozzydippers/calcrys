@@ -10,8 +10,20 @@ _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
        // Trainer 11
+    trainertextentry  11, TEXT_LAST_MON_CRITICAL, "Now's my chance!\n"
+    trainertextentry  11, TEXT_LAST_MON_SENT_OUT, "Let's get the ball rolling!\n"
+    trainertextentry  11, TEXT_DEFEATED_IN_BATTLE, "Ough... That was a tough one.\n"
+    trainertextentry  11, TEXT_PLAYER_LOSES, "That was a battle I'll never forget!\n"
        // Trainer 19
+    trainertextentry  19, TEXT_LAST_MON_CRITICAL, "Now's my chance!\n"
+    trainertextentry  19, TEXT_LAST_MON_SENT_OUT, "Let's get the ball rolling!\n"
+    trainertextentry  19, TEXT_DEFEATED_IN_BATTLE, "Ough... That was a tough one.\n"
+    trainertextentry  19, TEXT_PLAYER_LOSES, "That was a battle I'll never forget!\n"
        // Trainer 40
+    trainertextentry  40, TEXT_LAST_MON_CRITICAL, "Oh! That means...\n"
+    trainertextentry  40, TEXT_LAST_MON_SENT_OUT, "Amphy, are you ready?\n"
+    trainertextentry  40, TEXT_DEFEATED_IN_BATTLE, "I hope you do as well in your next battle.\n"
+    trainertextentry  40, TEXT_PLAYER_LOSES, "It's working.\n"
        // Trainer 63
        // Trainer 87
        // Trainer 88
@@ -236,41 +248,49 @@ _014C: // Trainer 20
     trainertextentry  20, TEXT_LAST_MON_CRITICAL, "The wind is finally with us!\n"
     trainertextentry  20, TEXT_LAST_MON_SENT_OUT, "We can still fly!\n"
     trainertextentry  20, TEXT_DEFEATED_IN_BATTLE, "I understand...\nI’ll bow out gracefully.\n"
+    trainertextentry  20, TEXT_PLAYER_LOSES, "Now you know the real power of bird\nPokémon!\n"
 
 _0158: // Trainer 21
     trainertextentry  21, TEXT_LAST_MON_CRITICAL, "Even though it’s my last Pokémon,\nBug Pokémon are tough!\n"
     trainertextentry  21, TEXT_LAST_MON_SENT_OUT, "Hang in there! Just a little more!\n"
     trainertextentry  21, TEXT_DEFEATED_IN_BATTLE, "Aw, that’s the end of it...\n"
+    trainertextentry  21, TEXT_PLAYER_LOSES, "See? Aren't bug Pokémon tough?\n"
 
 _0164: // Trainer 30
     trainertextentry  30, TEXT_LAST_MON_CRITICAL, "H-hey! Just one left?\nBut... I ain’t losin’, you hear?\n"
     trainertextentry  30, TEXT_LAST_MON_SENT_OUT, "Poor me!\n"
     trainertextentry  30, TEXT_DEFEATED_IN_BATTLE, "Ugh...\n"
+    trainertextentry  30, TEXT_PLAYER_LOSES, "I wonder if there's anyone anywhere\nwho's tougher than me?\n"
 
 _0170: // Trainer 31
     trainertextentry  31, TEXT_LAST_MON_CRITICAL, "No, it’s not over yet--not yet!\nI still believe we can do it!\n"
     trainertextentry  31, TEXT_LAST_MON_SENT_OUT, "We’ve got more discipline than\nanyone else!\n"
     trainertextentry  31, TEXT_DEFEATED_IN_BATTLE, "How is this possible...\n"
+    trainertextentry  31, TEXT_PLAYER_LOSES, "How unfortunate.\nBut it's not enough.\n"
 
 _017C: // Trainer 33
     trainertextentry  33, TEXT_LAST_MON_CRITICAL, "Properly tempered steel won’t be made\nrusty by things like this!\n"
     trainertextentry  33, TEXT_LAST_MON_SENT_OUT, "Steel will hang on to the very last!\n"
     trainertextentry  33, TEXT_DEFEATED_IN_BATTLE, "Well done...\n"
+    trainertextentry  33, TEXT_PLAYER_LOSES, "Thank you so much.\n"
 
 _0188: // Trainer 34
     trainertextentry  34, TEXT_LAST_MON_CRITICAL, "We haven’t lost yet!\n"
     trainertextentry  34, TEXT_LAST_MON_SENT_OUT, "No... Not...yet...\n"
     trainertextentry  34, TEXT_DEFEATED_IN_BATTLE, "We...lost...\n"
+    trainertextentry  34, TEXT_DEFEATED_IN_BATTLE, "That's it! I win!\nI enjoyed that!\n"
 
 _0194: // Trainer 32
     trainertextentry  32, TEXT_LAST_MON_CRITICAL, "Humph... You are quite the Trainer.\n"
     trainertextentry  32, TEXT_LAST_MON_SENT_OUT, "Willow is my middle name.\nWillow is flexible and not easily broken.\fI’m not giving up yet.\n"
     trainertextentry  32, TEXT_DEFEATED_IN_BATTLE, "Hmm. Seems as if my luck has run out.\n"
+    trainertextentry  32, TEXT_PLAYER_LOSES, "Think about your mistakes.\n"
 
 _01A0: // Trainer 35
     trainertextentry  35, TEXT_LAST_MON_CRITICAL, "One Pokémon left?\nThis is where the real battle begins!\n"
     trainertextentry  35, TEXT_LAST_MON_SENT_OUT, "You’re kidding, right?\nI’m supposed to win! I already decided!\n"
     trainertextentry  35, TEXT_DEFEATED_IN_BATTLE, "I lost? ...\rI don’t believe it.\nThere must be some mistake...\n"
+    trainertextentry  35, TEXT_PLAYER_LOSES, "You disappoint me.\nIt's futile for you to try for the top\rat your skill level.\n"
 
 _01AC: // Trainer 712
     trainertextentry 712, TEXT_LAST_MON_CRITICAL, "The wind is finally with us!\n"
@@ -364,8 +384,8 @@ _0280: // Trainer 5
 
 _028C: // Trainer 70
     trainertextentry  70, TEXT_NOTICE_IN_OVERWORLD, "Give it your best shot, or I’ll take\nyou down!\r"
-    trainertextentry  70, TEXT_DEFEATED_IN_BATTLE, "No!\nOh, MEOWTH, I’m so sorry!\n"
-    trainertextentry  70, TEXT_DEFEATED_IN_OVERWORLD, "I taught MEOWTH moves for taking\non any type...\n"
+    trainertextentry  70, TEXT_DEFEATED_IN_BATTLE, "No!\nOh, PERSIAN, I’m so sorry!\n"
+    trainertextentry  70, TEXT_DEFEATED_IN_OVERWORLD, "I taught PERSIAN moves for taking\non any type...\n"
 
 _0298: // Trainer 46
     trainertextentry  46, TEXT_NOTICE_IN_OVERWORLD, "I shall win!\r"
@@ -471,11 +491,13 @@ _0388: // Trainer 418
     trainertextentry 418, TEXT_LAST_MON_CRITICAL, "Fight as hard as you can ’til you faint!\n"
     trainertextentry 418, TEXT_LAST_MON_SENT_OUT, "We’re standing firm!\n"
     trainertextentry 418, TEXT_DEFEATED_IN_BATTLE, "Why?!\n...How could we lose?\n"
+    trainertextentry 418, TEXT_PLAYER_LOSES, "Now do you understand?!?\nThat's the real power of the Elite Four!\n"
 
 _0394: // Trainer 246
     trainertextentry 246, TEXT_LAST_MON_CRITICAL, "This is far from being backed into\na corner!\n"
     trainertextentry 246, TEXT_LAST_MON_SENT_OUT, "You’re no ordinary Trainer to have\ngotten this far.\n"
     trainertextentry 246, TEXT_DEFEATED_IN_BATTLE, "Well, aren’t you good.\nI like that in a Trainer.\n"
+    trainertextentry 246, TEXT_PLAYER_LOSES, "That's about what I expected.\n"
 
 _03A0: // Trainer 244
     trainertextentry 244, TEXT_LAST_MON_CRITICAL, "All right!\nI thought this would never happen!\n"
@@ -1921,6 +1943,7 @@ _1150: // Trainer 478
     trainertextentry 478, TEXT_LAST_MON_SENT_OUT, "Wh... Wha... Why are you so strong?!\n"
     trainertextentry 478, TEXT_DEFEATED_IN_BATTLE, "Aaaieeeee!\nThis can’t be happening!\rI fought hard, but I still lost...\n"
     trainertextentry 478, TEXT_DEFEATED_IN_OVERWORLD, "What a waste...\nnot to use your strength to do\fbad things!\rFeh... People like you will never in a\nmillion years understand our brilliance!\rIt’s too bad... I’ve really come to\nrespect your strength.\n"
+    trainertextentry 478, TEXT_PLAYER_LOSES, "Have you considered giving up?\n"
 
 _1164: // Trainer 485
     trainertextentry 485, TEXT_LAST_MON_CRITICAL, "We can’t have you getting in the way\nbefore news of our resurgence\freaches Giovanni!\n"
@@ -1996,6 +2019,7 @@ _120C: // Trainer 486
     trainertextentry 486, TEXT_LAST_MON_CRITICAL, "It doesn’t matter where we go, there’s\nalways someone who doesn’t agree\fwith us...\n"
     trainertextentry 486, TEXT_LAST_MON_SENT_OUT, "Are you serious? Did you come here\nthinking you could mess with our plans?\n"
     trainertextentry 486, TEXT_DEFEATED_IN_BATTLE, "Grr...\nFor a kid to be this good...\fI didn’t see it coming.\n"
+    trainertextentry 486, TEXT_PLAYER_LOSES, "Don't interfere with our business.\n"
 
 _1218: // Trainer 12
     trainertextentry  12, TEXT_NOTICE_IN_OVERWORLD, "Quit taking SlowpokeTails?\rIf we listened to you, Team Rocket’s\nrep would be ruined!\r"

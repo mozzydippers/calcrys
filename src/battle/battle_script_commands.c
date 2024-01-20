@@ -2492,15 +2492,21 @@ BOOL btl_scr_cmd_EC_updateterrainoverlay(void *bw UNUSED, struct BattleStruct *s
 
     switch (sp->current_move_index) {
         case MOVE_GRASSY_TERRAIN:
+        case 20:
             sp->terrainOverlay.type = GRASSY_TERRAIN;
             break;
         case MOVE_MISTY_TERRAIN:
+        case 21:
             sp->terrainOverlay.type = MISTY_TERRAIN;
             break;
         case MOVE_ELECTRIC_TERRAIN:
+        case 22:
+        case 24:
             sp->terrainOverlay.type = ELECTRIC_TERRAIN;
             break;
         case MOVE_PSYCHIC_TERRAIN:
+        case 23:
+        case 25:
             sp->terrainOverlay.type = PSYCHIC_TERRAIN;
             break;
         default:

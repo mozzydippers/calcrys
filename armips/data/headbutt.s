@@ -2081,14 +2081,14 @@ headbuttheader  94,   0,   0
 headbuttheader  95,   0,   0
 .close
 
-headbuttheader  96,  22,   5
+headbuttheader  96,  22,   5 // national park
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 10, 12
-    headbuttencounter SPECIES_PINECO, 10, 12
-    headbuttencounter SPECIES_PINECO, 10, 12
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 12
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 12
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 12
+    headbuttencounter SPECIES_APPLIN, 30, 33
+    headbuttencounter SPECIES_APPLIN, 30, 33
+    headbuttencounter SPECIES_FLAPPLE, 32, 36
+    headbuttencounter SPECIES_APPLETUN, 32, 36
+    headbuttencounter SPECIES_FLAPPLE, 32, 36
+    headbuttencounter SPECIES_APPLETUN, 32, 36
     headbuttencounter SPECIES_HOOTHOOT, 13, 15
     headbuttencounter SPECIES_SPINARAK, 13, 15
     headbuttencounter SPECIES_SPINARAK, 13, 15
@@ -2193,20 +2193,20 @@ headbuttheader 115,   0,   0
 headbuttheader 116,   0,   0
 .close
 
-headbuttheader 117,  56,   0
+headbuttheader 117,  56,   0 // ilex forest
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 3, 5
-    headbuttencounter SPECIES_CATERPIE, 3, 5
-    headbuttencounter SPECIES_CATERPIE, 3, 5
-    headbuttencounter SPECIES_HOOTHOOT, 3, 5
-    headbuttencounter SPECIES_METAPOD, 3, 5
-    headbuttencounter SPECIES_METAPOD, 3, 5
-    headbuttencounter SPECIES_HOOTHOOT, 6, 8
-    headbuttencounter SPECIES_PINECO, 6, 8
-    headbuttencounter SPECIES_PINECO, 6, 8
-    headbuttencounter SPECIES_NOCTOWL, 6, 8
-    headbuttencounter SPECIES_BUTTERFREE, 6, 8
-    headbuttencounter SPECIES_BUTTERFREE, 6, 8
+    headbuttencounter SPECIES_GOLBAT, 23, 26
+    headbuttencounter SPECIES_PANSAGE, 23, 26
+    headbuttencounter SPECIES_PANSEAR, 23, 26
+    headbuttencounter SPECIES_PANPOUR, 23, 26
+    headbuttencounter SPECIES_GOLBAT, 23, 26
+    headbuttencounter SPECIES_GOLBAT, 23, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_MANKEY, 25, 26
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0

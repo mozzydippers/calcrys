@@ -591,6 +591,9 @@ typedef enum EvoMethod
     EVO_HURT_IN_BATTLE_AMOUNT,
     //EVO_DARK_SCROLL,  // implemented through a forme-change-esque cut scene
     //EVO_WATER_SCROLL, // implemented through a forme-change-esque cut scene
+    EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY,
+    EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY,
+    EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY,
 } EvoMethod;
 
 typedef enum {

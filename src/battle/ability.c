@@ -98,6 +98,7 @@ const u16 BulletproofMoveList[] =
     MOVE_SLUDGE_BOMB,
     MOVE_WEATHER_BALL,
     MOVE_ZAP_CANNON,
+    MOVE_FLASH_CANNON,
 };
 
 const u16 PowderMoveList[] = {
@@ -239,6 +240,16 @@ int MoveCheckDamageNegatingAbilities(struct BattleStruct *sp, int attacker, int 
         }
     }
 
+    // handle earth eater
+    if (MoldBreakerAbilityCheck(sp, attacker, defender, ABILITY_EARTH_EATER) == TRUE)
+    {
+        if ((movetype == TYPE_GROUND) && (attacker != defender))
+        {
+            sp->hp_calc_work = BattleDamageDivide(sp->battlemon[defender].maxhp, 4);
+            scriptnum = SUB_SEQ_ABILITY_HP_RESTORE;
+        }
+    }
+
     // Handle Psychic Terrain
     // Block any natural priority move or a move made priority by an ability, if the terrain is Psychic Terrain
     // Courtesy of Dray (https://github.com/Drayano60)
@@ -359,18 +370,21 @@ int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         case WEATHER_SYS_RAIN:
                         case WEATHER_SYS_HEAVY_RAIN:
                         case WEATHER_SYS_THUNDER:
+                        case 15:
                             scriptnum = SUB_SEQ_OVERWORLD_RAIN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             newBS.weather = WEATHER_RAIN_PERMANENT;
                             break;
                         case WEATHER_SYS_SNOW:
                         case WEATHER_SYS_SNOWSTORM:
+                        case 17:
                         //case WEATHER_SYS_BLIZZARD:
                             scriptnum = SUB_SEQ_OVERWORLD_HAIL;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             newBS.weather = WEATHER_HAIL_PERMANENT;
                             break;
                         case WEATHER_SYS_SANDSTORM:
+                        case 16:
                             scriptnum = SUB_SEQ_OVERWORLD_SANDSTORM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             newBS.weather = WEATHER_SANDSTORM_PERMANENT;
@@ -382,14 +396,23 @@ int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             newBS.weather = FIELD_STATUS_FOG;
                             break;
                         case WEATHER_SYS_HIGH_SUN:
+                        case 14:
                             scriptnum = SUB_SEQ_OVERWORLD_SUN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             newBS.weather = WEATHER_SUNNY_PERMANENT;
                             break;
                         case WEATHER_SYS_TRICK_ROOM:
+                        case 18:
+                        case 24:
+                        case 25:
                             scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            newBS.weather = 0;
+                            newBS.weather = FIELD_STATUS_TRICK_ROOM;
+                            break;
+                        case 19:
+                            scriptnum = SUB_SEQ_APPLY_GRAVITY;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            newBS.weather = FIELD_STATUS_GRAVITY;
                             break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT)

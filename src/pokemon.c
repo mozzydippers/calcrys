@@ -480,12 +480,12 @@ void LONG_CALL SetBoxMonAbility(struct BoxPokemon *boxmon) // actually takes box
     pid = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
     form = GetBoxMonData(boxmon, MON_DATA_FORM, NULL);
 
-    if (CheckScriptFlag(HIDDEN_ABILITIES_FLAG) == 1)
+if (gf_rand() % 33 == 0)
     {
         SET_BOX_MON_HIDDEN_ABILITY_BIT(boxmon)
         has_hidden_ability = 1;
         // need to clear this script flag because this function is used for in-battle form change ability resets as well, which shouldn't happen normally
-        ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+        // ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
     }
     else
     {
@@ -1026,6 +1026,16 @@ void LONG_CALL UpdatePassiveForms(struct PartyPokemon *pp)
         case SPECIES_PYROAR:
             form = (gf_rand() % 8 != 0); // 1/8 male
             break;
+        case SPECIES_FLABEBE:
+        case SPECIES_FLOETTE:
+        case SPECIES_FLORGES:
+            form = gf_rand() % 5;
+            break;
+        // Allow any size to show up
+        case SPECIES_PUMPKABOO:
+        case SPECIES_GOURGEIST:
+            form = gf_rand() % 4;
+            break;
         default:
             shouldUpdate = FALSE;
     }
@@ -1379,40 +1389,40 @@ u16 LONG_CALL GetMonEvolution(struct Party *party, struct PartyPokemon *pokemon,
                     *method_ret = EVO_LEVEL_FEMALE;
                 }
                 break;
-            case EVO_CORONET: // magnetic field at route 43+kanto power plant
-                {
-                    u32 location = gFieldSysPtr->location->mapId;
-
-                    if (location == 45 || location == 18)
-                    {
-                        GET_TARGET_AND_SET_FORM;
-                        *method_ret = EVO_CORONET;
-                    }
-                }
-                break;
-            case EVO_ETERNA: // mossy rock at ilex+viridian forests
-                {
-                    u32 location = gFieldSysPtr->location->mapId;
-
-                    if (location == 117 || location == 147)
-                    {
-                        GET_TARGET_AND_SET_FORM;
-                        *method_ret = EVO_ETERNA;
-                    }
-                }
-                break;
-            case EVO_ROUTE217: // icy rock at ice path+seafoam islands
-                {
-                    u32 location = gFieldSysPtr->location->mapId;
-
-                    if (location == 239 || location == 456)
-                    {
-                        GET_TARGET_AND_SET_FORM;
-                        *method_ret = EVO_ROUTE217;
-                    }
-                }
-                break;
-
+        //    case EVO_CORONET: // magnetic field at route 43+kanto power plant
+        //        {
+        //            u32 location = gFieldSysPtr->location->mapId;
+        //    
+        //            if (location == 45 || location == 18)
+        //            {
+        //                GET_TARGET_AND_SET_FORM;
+        //                *method_ret = EVO_CORONET;
+        //            }
+        //        }
+        //        break;
+        //    case EVO_ETERNA: // mossy rock at ilex+viridian forests
+        //        {
+        //            u32 location = gFieldSysPtr->location->mapId;
+        //    
+        //            if (location == 117 || location == 147)
+        //            {
+        //                GET_TARGET_AND_SET_FORM;
+        //                *method_ret = EVO_ETERNA;
+        //            }
+        //        }
+        //        break;
+        //    case EVO_ROUTE217: // icy rock at ice path+seafoam islands
+        //        {
+        //            u32 location = gFieldSysPtr->location->mapId;
+        //    
+        //            if (location == 239 || location == 456)
+        //            {
+        //                GET_TARGET_AND_SET_FORM;
+        //                *method_ret = EVO_ROUTE217;
+        //            }
+        //        }
+        //        break;
+            
             case EVO_LEVEL_DAY:
                 if (IsNighttime() == 0 && evoTable[i].param <= level) {
                     GET_TARGET_AND_SET_FORM;
@@ -1425,17 +1435,17 @@ u16 LONG_CALL GetMonEvolution(struct Party *party, struct PartyPokemon *pokemon,
                     *method_ret = EVO_LEVEL_NIGHT;
                 }
                 break;
-            case EVO_LEVEL_DUSK:
-                {
-                    struct RTCTime time;
-                    GF_RTC_CopyTime(&time);
-
-                    if (time.hour == 17 && evoTable[i].param <= level) {
-                        GET_TARGET_AND_SET_FORM;
-                        *method_ret = EVO_LEVEL_DUSK;
-                    }
-                }
-                break;
+        //    case EVO_LEVEL_DUSK:
+        //        {
+        //            struct RTCTime time;
+        //            GF_RTC_CopyTime(&time);
+        //
+        //            if (time.hour == 17 && evoTable[i].param <= level) {
+        //                GET_TARGET_AND_SET_FORM;
+        //                *method_ret = EVO_LEVEL_DUSK;
+        //            }
+        //        }
+        //        break;
             case EVO_LEVEL_RAIN:
                 if (evoTable[i].param <= level)
                 {
@@ -1538,37 +1548,81 @@ u16 LONG_CALL GetMonEvolution(struct Party *party, struct PartyPokemon *pokemon,
                     }
                 }
                 break;
+            case EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY:
+                if (evoTable[i].param <= level && party != NULL)
+                {
+                    for (int k = 0; k < 6; k++)
+                    {
+                        if (!CheckIfMonsAreEqual(pokemon, PokeParty_GetMemberPointer(party, k)) // make sure that pancham doesn't satisfy its own requirement
+                         && (GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_1, NULL) == TYPE_ROCK || GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_2, NULL) == TYPE_ROCK)) // if either type is dark then set evolution
+                        {
+                            GET_TARGET_AND_SET_FORM;
+                            *method_ret = EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY;
+                            break;
+                        }
+                    }
+                }
+                break;
+            case EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY:
+                if (evoTable[i].param <= level && party != NULL)
+                {
+                    for (int k = 0; k < 6; k++)
+                    {
+                        if (!CheckIfMonsAreEqual(pokemon, PokeParty_GetMemberPointer(party, k)) // make sure that pancham doesn't satisfy its own requirement
+                         && (GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_1, NULL) == TYPE_PSYCHIC || GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_2, NULL) == TYPE_PSYCHIC)) // if either type is dark then set evolution
+                        {
+                            GET_TARGET_AND_SET_FORM;
+                            *method_ret = EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY;
+                            break;
+                        }
+                    }
+                }
+            case EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY:
+                if (evoTable[i].param <= level && party != NULL)
+                {
+                    for (int k = 0; k < 6; k++)
+                    {
+                        if (!CheckIfMonsAreEqual(pokemon, PokeParty_GetMemberPointer(party, k)) // make sure that pancham doesn't satisfy its own requirement
+                         && (GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_1, NULL) == TYPE_STEEL || GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_2, NULL) == TYPE_STEEL)) // if either type is dark then set evolution
+                        {
+                            GET_TARGET_AND_SET_FORM;
+                            *method_ret = EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY;
+                            break;
+                        }
+                    }
+                }
+                break;
             }
             if (target != SPECIES_NONE) {
                 break;
             }
         }
         break;
-    case EVOCTX_TRADE:
-        for (i = 0; i < MAX_EVOS_PER_POKE; i++) {
-            switch (evoTable[i].method) {
-            case EVO_TRADE:
-                GET_TARGET_AND_SET_FORM;
-                *method_ret = EVO_TRADE;
-                break;
-            case EVO_TRADE_ITEM:
-                if (heldItem == evoTable[i].param) {
-                    GET_TARGET_AND_SET_FORM;
-                    *method_ret = EVO_TRADE_ITEM;
-                }
-                break;
+    //case EVOCTX_TRADE:
+    //    for (i = 0; i < MAX_EVOS_PER_POKE; i++) {
+    //        switch (evoTable[i].method) {
+    //        case EVO_TRADE:
+    //            GET_TARGET_AND_SET_FORM;
+    //            *method_ret = EVO_TRADE;
+    //            break;
+    //        case EVO_TRADE_ITEM:
+    //            if (heldItem == evoTable[i].param) {
+    //                GET_TARGET_AND_SET_FORM;
+    //                *method_ret = EVO_TRADE_ITEM;
+    //            }
+    //            break;
             //case EVO_TRADE_SPECIFIC_MON: // need to figure out how to deduce tradedSpecies
             //    if (tradedSpecies == evoTable[i].param) {
             //        GET_TARGET_AND_SET_FORM;
             //        *method_ret = EVO_TRADE_SPECIFIC_MON;
             //    }
             //    break;
-            }
-            if (target != SPECIES_NONE) {
-                break;
-            }
-        }
-        break;
+    //        }
+    //        if (target != SPECIES_NONE) {
+    //            break;
+    //        }
+    //    }
+    //    break;
     case EVOCTX_ITEM_CHECK:
     case EVOCTX_ITEM_USE:
         for (i = 0; i < MAX_EVOS_PER_POKE; i++) {
@@ -1728,11 +1782,11 @@ BOOL LONG_CALL GiveMon(int heapId, void *saveData, int species, int level, int f
 
     RecalcPartyPokemonStats(pokemon); // recalculate stats
 
-    if (CheckScriptFlag(HIDDEN_ABILITIES_FLAG) == 1)
+    if (gf_rand() % 33 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(pokemon)
         // need to clear this script flag because this function is used for in-battle form change ability resets as well, which shouldn't happen normally
-        ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+        // ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
     }
 
     if (ability != 0) {
@@ -1793,10 +1847,10 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
         UpdatePassiveForms(encounterPartyPokemon);
     }
 
-    if (CheckScriptFlag(HIDDEN_ABILITIES_FLAG) == 1)
+    if (gf_rand() % 33 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(encounterPartyPokemon)
-        ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+        //ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
         ResetPartyPokemonAbility(encounterPartyPokemon);
     }
 
@@ -2427,7 +2481,7 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
  */
 void set_starter_hidden_ability(struct Party *party UNUSED, struct PartyPokemon *pp)
 {
-    if (CheckScriptFlag(HIDDEN_ABILITIES_STARTERS_FLAG) == 1)
+    if (gf_rand() % 33 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(pp)
         SetBoxMonAbility((void *)&pp->box);
@@ -2481,11 +2535,11 @@ BOOL ScrCmd_GiveEgg(SCRIPTCONTEXT *ctx)
         ClearMonMoves(pokemon);
         InitBoxMonMoveset(&pokemon->box);
 
-        if (CheckScriptFlag(HIDDEN_ABILITIES_FLAG) == 1) // add HA capability
+        if (gf_rand() % 33 == 0) // add HA capability
         {
             SET_MON_HIDDEN_ABILITY_BIT(pokemon)
             ResetPartyPokemonAbility(pokemon);
-            ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+            // ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
         }
 
         PokeParty_Add(party, pokemon);
@@ -2543,11 +2597,11 @@ BOOL ScrCmd_GiveTogepiEgg(SCRIPTCONTEXT *ctx) {
     pp = GetMonData(togepi, MON_DATA_MOVE1MAXPP + i, 0);
     SetMonData(togepi, MON_DATA_MOVE1PP + i, &pp);
 
-    if (CheckScriptFlag(HIDDEN_ABILITIES_FLAG) == 1) // add HA capability
-    {
+    if (gf_rand() % 33 == 0) // add HA capability
+    {       
         SET_MON_HIDDEN_ABILITY_BIT(togepi)
         ResetPartyPokemonAbility(togepi);
-        ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+        //ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
     }
 
 

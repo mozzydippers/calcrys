@@ -101,9 +101,12 @@ EVO_TRADE_SPECIFIC_MON           equ 33
 EVO_LEVEL_NATURE_AMPED           equ 34
 EVO_LEVEL_NATURE_LOW_KEY         equ 35
 EVO_AMOUNT_OF_CRITICAL_HITS      equ 36
-EVO_HURT_IN_BATTLE_AMOUNT        equ 37
+EVO_HURT_IN_BATTLE_AMOUNT        equ 37 
 //EVO_DARK_SCROLL  // implemented through an item use forme-change-esque cut scene
 //EVO_WATER_SCROLL // implemented through an item use forme-change-esque cut scene
+EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY equ 40
+EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY equ 41
+EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY equ 42
 
 // shadow size constants
 

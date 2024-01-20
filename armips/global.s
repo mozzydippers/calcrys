@@ -17,6 +17,10 @@
 .include "armips/asm/overworlds.s" // code for overworlds, specifically repointing gOWTagToFileNum and making dimorphism a byte instead of a halfword.
 .include "armips/asm/y9.s" // add new overlay entries to the y9 table
 
+.include "armips/asm/custom/encounter_rates.s"
+.include "armips/asm/custom/smashable_rock_items.s"
+.include "armips/asm/custom/title_screen_cry.s"
+
 .if REUSABLE_TMS == 1
 .include "armips/asm/tm.s" // make tms infinite
 .include "armips/asm/forget_hm.s" // allows hm to be forgotten

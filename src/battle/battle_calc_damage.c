@@ -104,6 +104,7 @@ static const u16 IronFistMovesTable[] = {
     MOVE_SURGING_STRIKES,
     MOVE_THUNDER_PUNCH,
     MOVE_WICKED_BLOW,
+    MOVE_LUNGE,
 };
 
 static const u16 StrongJawMovesTable[] = {
@@ -127,6 +128,39 @@ static const u16 MegaLauncherMovesTable[] = {
         MOVE_ORIGIN_PULSE,
         MOVE_TERRAIN_PULSE,
         MOVE_WATER_PULSE,
+        MOVE_HEAL_PULSE,		
+        MOVE_ORIGIN_PULSE,
+        MOVE_TERRAIN_PULSE,
+        MOVE_ACID_SPRAY,
+        MOVE_BULLET_SEED,
+        MOVE_OCTAZOOKA,
+        MOVE_FIRE_BLAST,
+        MOVE_AEROBLAST,
+        MOVE_FOCUS_BLAST,
+        MOVE_TECHNO_BLAST,
+        MOVE_MUD_SHOT,
+        MOVE_GUNK_SHOT,
+        MOVE_SEARING_SHOT,
+        MOVE_SHADOW_BALL,
+        MOVE_WEATHER_BALL,
+        MOVE_ELECTRO_BALL,
+        MOVE_ENERGY_BALL,
+        MOVE_ICE_BALL,
+        MOVE_MIST_BALL,
+        MOVE_SEED_BOMB,
+        MOVE_EGG_BOMB,
+        MOVE_MAGNET_BOMB,
+        MOVE_MUD_BOMB,
+        MOVE_SLUDGE_BOMB,
+        MOVE_ICE_BEAM,
+        MOVE_HYPER_BEAM,
+        MOVE_AURORA_BEAM,
+        MOVE_CHARGE_BEAM,
+        MOVE_SOLAR_BEAM,
+        MOVE_SIGNAL_BEAM,
+        MOVE_BUBBLE_BEAM,
+        MOVE_FLASH_CANNON,
+        MOVE_ZAP_CANNON,
 };
 
 static const u16 SharpnessMovesTable[] = {
@@ -156,6 +190,41 @@ static const u16 SharpnessMovesTable[] = {
         MOVE_X_SCISSOR,
 };
 
+static const u16 SoundProofMovesList[] = {
+        MOVE_BOOMBURST,
+        MOVE_BUG_BUZZ,
+        MOVE_CHATTER,
+        MOVE_CLANGING_SCALES,
+        MOVE_CLANGOROUS_SOUL,
+        MOVE_CLANGOROUS_SOULBLAZE,
+        MOVE_CONFIDE,
+        MOVE_DISARMING_VOICE,
+        MOVE_ECHOED_VOICE,
+        MOVE_EERIE_SPELL,
+        MOVE_GRASS_WHISTLE,
+        MOVE_GROWL,
+        MOVE_HEAL_BELL,
+        MOVE_HOWL,
+        MOVE_HYPER_VOICE,
+        MOVE_METAL_SOUND,
+        MOVE_NOBLE_ROAR,
+        MOVE_OVERDRIVE,
+        MOVE_PARTING_SHOT,
+        MOVE_PERISH_SONG,
+        MOVE_RELIC_SONG,
+        MOVE_ROAR,
+        MOVE_ROUND,
+        MOVE_SCREECH,
+        //MOVE_SHADOW_PANIC,
+        MOVE_SING,
+        MOVE_SNARL,
+        MOVE_SNORE,
+        MOVE_SPARKLING_ARIA,
+        MOVE_SUPERSONIC,
+        MOVE_TORCH_SONG,
+        MOVE_UPROAR
+};
+
 const u8 StatBoostModifiers[][2] = {
          // numerator, denominator
         {          10,          40 },
@@ -172,6 +241,41 @@ const u8 StatBoostModifiers[][2] = {
         {          35,          10 },
         {          40,          10 },
 };
+
+BOOL isKnockOffBonusDamageItem(struct BattleStruct *sp)
+{
+    u16 defender_species = sp->battlemon[sp->defence_client].species;
+    u16 defender_item = sp->battlemon[sp->defence_client].item;
+
+    // No bonus damage if no item.
+    if (!defender_item) {
+        return FALSE;
+    }
+
+    // No bonus damage if item is a Mega Stone or Primal Reversion item.
+    // This isn't strictly correct, it should only be if the Pokémon can USE the Mega Stone/Orb. But that'd be a lot of code.
+    if (IS_ITEM_MEGA_STONE(defender_item) || defender_item == ITEM_RED_ORB || defender_item == ITEM_BLUE_ORB) {
+        return FALSE;
+    }
+    
+    // No bonus damage if the target is Arceus holding a Plate.
+    if
+    (
+        (defender_species == SPECIES_ARCEUS) &&
+        ((defender_item >= ITEM_FLAME_PLATE && defender_item <= ITEM_IRON_PLATE) || (defender_item == ITEM_PIXIE_PLATE))
+    )
+    {
+        return FALSE;
+    }
+
+    // No bonus damage if the target is Giratina holding a Griseous Orb.
+    if (defender_species == SPECIES_GIRATINA && defender_item == ITEM_GRISEOUS_ORB) {
+        return FALSE;
+    }
+
+    // Any other item should qualify for the bonus damage and then be knocked off.
+    return TRUE;
+}
 
 int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
                    u32 field_cond, u16 pow, u8 type UNUSED, u8 attacker, u8 defender, u8 critical)
@@ -207,6 +311,24 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     defstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_DEF, NULL) - 6;
     spatkstate = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_STATE_SPATK, NULL) - 6;
     spdefstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_SPDEF, NULL) - 6;
+
+    // For Psyshock, the enemy's physical defense stat is the baseline when calculating
+    if (moveno == MOVE_PSYSHOCK) {
+        sp_defense = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_DEF, NULL);
+        spdefstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_DEF, NULL) - 6;
+    }
+
+    // For Foul Play, the enemy's physical attack stat is the baseline when calculating
+    if (moveno == MOVE_FOUL_PLAY) {
+        attack = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_ATK, NULL);
+        atkstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_ATK, NULL) - 6;
+    }
+
+    // For Body Press, the user's defense stat is the baseline when calculating
+    if (moveno == MOVE_BODY_PRESS) {
+        attack = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_DEF, NULL);
+        atkstate = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_STATE_DEF, NULL) - 6;
+    }
 
     level = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_LEVEL, NULL);
 
@@ -248,6 +370,70 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     // get the type
     movetype = GetAdjustedMoveType(sp, attacker, moveno);
     movepower = movepower * sp->damage_value / 10;
+
+    // Handle moves that double in power if the target has a status condition.
+    if (moveno == MOVE_INFERNAL_PARADE || moveno == MOVE_HEX) 
+    {
+        if (DefendingMon.condition > 0) 
+        {
+            movepower = movepower * 2;
+        }
+    }
+
+    // Handle moves that double in power if the target is poisoned.
+    if (moveno == MOVE_VENOSHOCK || moveno == MOVE_BARB_BARRAGE) 
+    {
+        if (DefendingMon.condition & STATUS_POISON_ANY) 
+        {
+            movepower = movepower * 2;
+        }
+    }
+
+    // Handle Acrobatics's double damage effect if the attacker has no item.
+    if (moveno == MOVE_ACROBATICS) 
+    {
+        if (sp->battlemon[sp->attack_client].item == 0) 
+        {
+            movepower = movepower * 2;
+        }
+    }
+
+    // Handle Knock Off's boosted damage effect if the target item is valid for it.
+    if (moveno == MOVE_KNOCK_OFF && isKnockOffBonusDamageItem(sp)) 
+    {
+        movepower = movepower * 15 / 10;
+    }
+
+    // Handle Facade's boosted damage effect if the user is poisoned, paralyzed or burned.
+    if (moveno == MOVE_FACADE) 
+    {
+        if (AttackingMon.condition & (STATUS_FLAG_POISONED | STATUS_FLAG_BADLY_POISONED | STATUS_FLAG_PARALYZED | STATUS_FLAG_BURNED)) 
+        {
+            movepower = movepower * 2;
+        }
+    }
+
+    if (moveno == MOVE_FISHIOUS_REND || moveno == MOVE_BOLT_BEAK) 
+    {
+        if
+        (
+            // This checks if the user has not already acted this turn (I think?)
+            // Stole it from TryMeFirst in the decomp
+            (sp->client_act_work[defender][0] != 40)
+
+            // This lets it double damage on targets that just switched in
+            // Don't particularly understand it but Speed Boost uses this too so it doesn't boost on initial switch-in
+            || (sp->battlemon[defender].moveeffect.fakeOutCount == (sp->total_turn + 1)) 
+        )
+        {
+            movepower * 2;
+        }
+    }
+
+    if ((moveno == MOVE_HYDRO_STEAM) && (field_cond & WEATHER_SUNNY_ANY))
+    {
+        movepower = movepower * 4;
+    }
 
     // handle charge
     if ((sp->battlemon[attacker].effect_of_moves & MOVE_EFFECT_FLAG_CHARGE) && (movetype == TYPE_ELECTRIC))
@@ -303,18 +489,18 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     }
 
     // handle punk rock TODO uncomment
-//    if (AttackingMon.ability == ABILITY_PUNK_ROCK)
-//    {
-//        for(i = 0; i < NELEMS(SoundproofMoveList); i++)
-//        {
-//            if(moveno == SoundproofMoveList[i])
-//            {
-//                movepower = movepower * 130 / 100;
-//                break;
-//            }
-//        }
-//    }
-
+    if (AttackingMon.ability == ABILITY_PUNK_ROCK)
+    {
+        for(i = 0; i < NELEMS(SoundProofMovesList); i++)
+        {
+            if(moveno == SoundProofMovesList[i])
+            {
+                movepower = movepower * 130 / 100;
+                break;
+            }
+        }
+    }
+    
 
     // type boosting held items
     for (i = 0; i < NELEMS(HeldItemPowerUpTable); i++)
@@ -361,10 +547,27 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         defense *= 2;
 
     // handle eviolite
-   // if ((DefendingMon.item_held_effect == HOLD_EFFECT_EVIOLITE)
-   //     defense *= 2;
-   //     sp_defense *= 2;
+    if (DefendingMon.item_held_effect == HOLD_EFFECT_EVIOLITE) {
+        u16 speciesWithForm;
+        speciesWithForm = PokeOtherFormMonsNoGet(sp->battlemon[defender].species, sp->battlemon[defender].form_no);
 
+        struct Evolution *evoTable;
+        evoTable = sys_AllocMemory(0, MAX_EVOS_PER_POKE * sizeof(struct Evolution));
+        ArchiveDataLoad(evoTable, 34, speciesWithForm); // 34 is evo narc
+
+        // If a Pokémon has any evolutions, there should be a non EVO_NONE entry at the top
+        // A more thorough check would be to check all methods, but would take longer
+        // This should yield the same result if things are written correctly
+        if (evoTable[0].method != EVO_NONE) {
+            defense = defense * 150 / 100;
+            sp_defense = sp_defense * 150 / 100;
+        }
+    }
+
+    // handle assault vest
+    if (DefendingMon.item_held_effect == HOLD_EFFECT_ASSAULT_VEST) {
+        sp_defense = sp_defense * 150 / 100;
+    }
     // handle thick club
     if ((AttackingMon.item_held_effect == HOLD_EFFECT_THICK_CLUB)
      && ((AttackingMon.species == SPECIES_CUBONE)
@@ -616,6 +819,16 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 120 / 100;
     }
 
+    // handle liquid voice - 20% boost if a normal type move is used (and it changes types to normal too)
+    for (i = 0; i < NELEMS(SoundProofMovesList); i++)
+    {
+        if ((AttackingMon.ability == ABILITY_LIQUID_VOICE) && (SoundProofMovesList[i] == moveno)) 
+        {
+            movepower = movepower * 120 / 100;
+            break;
+        }
+    }
+
     // handle heatproof/dry skin
     if ((movetype == TYPE_FIRE) && (MoldBreakerAbilityCheck(sp, attacker, defender, ABILITY_HEATPROOF) == TRUE))
     {
@@ -679,7 +892,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         spatkstate = 0;
     }
 
-    if (AttackingMon.ability == ABILITY_UNAWARE)
+    if (AttackingMon.ability == ABILITY_UNAWARE || moveno == MOVE_SACRED_SWORD)
     {
         defstate = 0;
         spdefstate = 0;
@@ -698,18 +911,18 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 125 / 100;
     }
 
-    if ((AttackingMon.ability == ABILITY_RIVALRY) &&
-        (AttackingMon.sex != DefendingMon.sex) && (AttackingMon.sex != POKEMON_GENDER_UNKNOWN) && (DefendingMon.sex != POKEMON_GENDER_UNKNOWN))
-    {
-        movepower = movepower * 75 / 100;
-    }
+    //if ((AttackingMon.ability == ABILITY_RIVALRY) &&
+    //    (AttackingMon.sex != DefendingMon.sex) && (AttackingMon.sex != POKEMON_GENDER_UNKNOWN) && (DefendingMon.sex != POKEMON_GENDER_UNKNOWN))
+    //{
+    //    movepower = movepower * 75 / 100;
+    //}
 
     // handle iron fist
     for (i = 0; i < NELEMS(IronFistMovesTable); i++)
     {
         if ((IronFistMovesTable[i] == moveno) && (AttackingMon.ability == ABILITY_IRON_FIST))
         {
-            movepower = movepower * 12 / 10;
+            movepower = movepower * 130 / 100;
             break;
         }
     }
@@ -774,16 +987,18 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
             attack = attack * 15 / 10;
         }
         if ((field_cond & WEATHER_SUNNY_ANY) &&
-            (AttackingMon.ability != ABILITY_MOLD_BREAKER) &&
-            (CheckSideAbility(bw, sp, CHECK_ABILITY_SAME_SIDE_HP, defender, ABILITY_FLOWER_GIFT)))
+            (CheckSideAbility(bw, sp, CHECK_ABILITY_SAME_SIDE_HP, attacker, ABILITY_FLOWER_GIFT)))
         {
-            sp_defense = sp_defense * 15 / 10;
+            sp_attack = sp_attack * 15 / 10;
         }
     }
 
-    //// halve the defense if using selfdestruct/explosion
-    //if (sp->moveTbl[moveno].effect == MOVE_EFFECT_HALVE_DEFENSE)
-    //    defense = defense / 2;
+    // halve the defense if using selfdestruct/explosion
+    if (sp->moveTbl[moveno].effect == MOVE_EFFECT_HALVE_DEFENSE)
+    {
+        defense = defense / 2;
+        sp_defense = sp_defense / 2;
+    }
 
     // handle physical moves
     if (movesplit == SPLIT_PHYSICAL)
@@ -944,7 +1159,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
             }
         }
 
-        if ((field_cond & (FIELD_STATUS_FOG | WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY)) && (moveno == MOVE_SOLAR_BEAM)) // solar beam nerf
+        if ((field_cond & (FIELD_STATUS_FOG | WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY)) && (moveno == MOVE_SOLAR_BEAM || moveno == MOVE_SOLAR_BLADE))
         {
             damage /= 2;
         }
@@ -994,17 +1209,17 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     }
 
     // handle punk rock TODO uncomment
-//    if (DefendingMon.ability == ABILITY_PUNK_ROCK)
-//    {
-//        for(i = 0; i < NELEMS(SoundproofMoveList); i++)
-//        {
-//            if(moveno == SoundproofMoveList[i])
-//            {
-//                damage /= 2;
-//                break;
-//            }
-//        }
-//    }
+    if (DefendingMon.ability == ABILITY_PUNK_ROCK)
+    {
+        for(i = 0; i < NELEMS(SoundProofMovesList); i++)
+        {
+            if(moveno == SoundProofMovesList[i])
+            {
+                damage /= 2;
+                break;
+            }
+        }
+    }
 
     // Handle field effects
     if (sp->terrainOverlay.numberOfTurnsLeft > 0) {
@@ -1025,16 +1240,28 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
                 damage = damage * 130 / 100;
                 break;
             }
+            if (IsClientGrounded(sp, defender) && moveno == MOVE_RISING_VOLTAGE) {
+                movepower = movepower * 2;
+                break;
+            }
             break;
         case MISTY_TERRAIN:
             if (IsClientGrounded(sp, defender) && movetype == TYPE_DRAGON) {
                 damage /= 2;
                 break;
             }
+            if (IsClientGrounded(sp, attacker) && moveno == MOVE_MISTY_EXPLOSION) {
+                movepower = movepower * 15 / 10;
+                break;
+            }
             break;
         case PSYCHIC_TERRAIN:
             if (IsClientGrounded(sp, attacker) && movetype == TYPE_PSYCHIC) {
                 damage = damage * 130 / 100;
+                break;
+            }
+            if (IsClientGrounded(sp, attacker) && moveno == MOVE_EXPANDING_FORCE) {
+                movepower = movepower * 15 / 10;
                 break;
             }
             break;
