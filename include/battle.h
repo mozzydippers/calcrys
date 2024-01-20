@@ -691,7 +691,9 @@ struct __attribute__((packed)) BattlePokemon
                u32 imposter_flag : 1;        /**< imposter has activated */
                u32 critical_hits : 2;        /**< tracks the amount of critical hits the pokémon has landed while in battle so far */
                u32 air_ballon_flag : 1;      /**< the held air balloon has printed its message */
-               u32 : 11; // need to add to ClearBattleMonFlags when added to here as well
+
+               u32 camomons_flag : 1;
+               u32 : 10; // need to add to ClearBattleMonFlags when added to here as well
     /* 0x2c */ u8 pp[4];                     /**< move pp left */
     /* 0x30 */ u8 pp_count[4];               /**< move max pp */
     /* 0x34 */ u8 level;                     /**< current level */
@@ -1044,7 +1046,6 @@ struct __attribute__((packed)) BattleStruct
                TerrainOverlay terrainOverlay;
                u8 printed_field_message;
 };
-
 
 struct BattleSystem {
     // u32 *unk0;

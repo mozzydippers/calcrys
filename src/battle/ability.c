@@ -267,6 +267,8 @@ int MoveCheckDamageNegatingAbilities(struct BattleStruct *sp, int attacker, int 
 enum
 {
     SWITCH_IN_CHECK_WEATHER = 0,
+    SWITCH_IN_CHECK_ROOM,
+    SWITCH_IN_CHECK_RULESET,
     SWITCH_IN_CHECK_PRIMAL_REVERSION,
     SWITCH_IN_CHECK_TRACE,
     SWITCH_IN_CHECK_WEATHER_ABILITY,
@@ -357,6 +359,9 @@ int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
 
     client_set_max = BattleWorkClientSetMaxGet(bw);
 
+    u16 overworldRoomVariable;
+    u16 overworldRulesetVariable;
+
     // 022531A8
     do
     {
@@ -419,6 +424,43 @@ int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     {
                         sp->weather_check_flag = 1;
                     }
+                }
+                sp->switch_in_check_seq_no++;
+                break;
+            case SWITCH_IN_CHECK_ROOM:
+                overworldRoomVariable = GetScriptVar(OVERWORLD_ROOM_VARIABLE);
+
+                switch (overworldRoomVariable) {
+                    case WEATHER_SYS_TRICK_ROOM:
+                        if (!(sp->field_condition & FIELD_STATUS_TRICK_ROOM)) {
+                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            newBS.weather = 0;
+                            break;
+                        }
+
+                    default:
+                        break;
+                }
+
+                sp->switch_in_check_seq_no++;
+                break;
+            case SWITCH_IN_CHECK_RULESET:
+                overworldRulesetVariable = GetScriptVar(OVERWORLD_RULESET_VARIABLE);
+                switch (overworldRulesetVariable) {
+                    case RULESET_CAMOMONS:
+                        for (i = 0; i < client_set_max; i++) {
+                            client_no = sp->turn_order[i];
+                            if ((sp->battlemon[client_no].camomons_flag == 0) && sp->battlemon[client_no].hp != 0) {
+                                struct BattlePokemon currentMon = sp->battlemon[client_no];
+                                sp->battlemon[client_no].type1 = sp->moveTbl[currentMon.move[0]].type;
+                                sp->battlemon[client_no].type2 = currentMon.move[1] != 0 ? sp->moveTbl[currentMon.move[1]].type : sp->moveTbl[currentMon.move[0]].type;
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
                 sp->switch_in_check_seq_no++;
                 break;

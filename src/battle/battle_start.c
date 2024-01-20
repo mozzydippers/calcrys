@@ -9,6 +9,7 @@
 #include "../../include/constants/item.h"
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
+#include "../../include/constants/weather_numbers.h"
 
 /********************************************************************************************************************/
 /********************************************************************************************************************/
@@ -399,7 +400,7 @@ void ServerWazaBefore(void *bw, struct BattleStruct *sp)
             sp->wb_seq_no++;
             FALLTHROUGH;
         case SEQ_PROTEAN_CHECK:
-            if (sp->battlemon[sp->attack_client].ability == ABILITY_PROTEAN
+            if ((sp->battlemon[sp->attack_client].ability == ABILITY_PROTEAN || GetScriptVar(OVERWORLD_RULESET_VARIABLE) == RULESET_PROTEAN_PALACE)
                 && (sp->battlemon[sp->attack_client].type1 != sp->moveTbl[sp->current_move_index].type  // if either type is not the move's type
                     || sp->battlemon[sp->attack_client].type2 != sp->moveTbl[sp->current_move_index].type)
                 && sp->moveTbl[sp->current_move_index].power != 0) // the move has to have power in order for it to change the type

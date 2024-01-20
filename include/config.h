@@ -79,4 +79,8 @@
 // uncomment the line out to get this functionality
 #define DISABLE_END_OF_TURN_WEATHER_MESSAGE
 
+#define OVERWORLD_ROOM_VARIABLE 0x4200
+
+#define OVERWORLD_RULESET_VARIABLE 0x4690
+
 #endif
