@@ -22,6 +22,7 @@
 .include "armips/asm/custom/title_screen_cry.s"
 
 .if REUSABLE_TMS == 1
+
 .include "armips/asm/tm.s" // make tms infinite
 .include "armips/asm/forget_hm.s" // allows hm to be forgotten
 
@@ -30,6 +31,12 @@
 .if FAIRY_TYPE_IMPLEMENTED == 1
 
 .include "armips/asm/fairy.s" // repoints all the move table defines within the structure
+
+.endif
+
+.ifdef APPLY_ANTIPIRACY
+
+.include "armips/asm/antipiracy.s" // install antipiracy into the rom
 
 .endif
 
