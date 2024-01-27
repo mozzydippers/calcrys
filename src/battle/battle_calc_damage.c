@@ -301,17 +301,6 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     struct sDamageCalc AttackingMon;
     struct sDamageCalc DefendingMon;
 
-    // Handle Body Press
-    switch (moveno) {
-        case MOVE_BODY_PRESS:
-            attack = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_DEF, NULL);
-            break;
-
-        default:
-            attack = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_ATK, NULL);
-            break;
-    }
-
     defense = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_DEF, NULL);
     sp_attack = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_SPATK, NULL);
     sp_defense = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_SPDEF, NULL);
@@ -331,24 +320,11 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     spatkstate = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_STATE_SPATK, NULL) - 6;
     spdefstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_SPDEF, NULL) - 6;
 
-    // For Psyshock, the enemy's physical defense stat is the baseline when calculating
-    if (moveno == MOVE_PSYSHOCK) {
-        sp_defense = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_DEF, NULL);
-        spdefstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_DEF, NULL) - 6;
-    }
-
     // For Foul Play, the enemy's physical attack stat is the baseline when calculating
     if (moveno == MOVE_FOUL_PLAY) {
         attack = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_ATK, NULL);
         atkstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_ATK, NULL) - 6;
     }
-
-    // For Body Press, the user's defense stat is the baseline when calculating
-    if (moveno == MOVE_BODY_PRESS) {
-        attack = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_DEF, NULL);
-        atkstate = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_STATE_DEF, NULL) - 6;
-    }
-
     level = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_LEVEL, NULL);
 
     AttackingMon.species = BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_SPECIES, NULL);
@@ -447,11 +423,6 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         {
             movepower * 2;
         }
-    }
-
-    if ((moveno == MOVE_HYDRO_STEAM) && (field_cond & WEATHER_SUNNY_ANY))
-    {
-        movepower = movepower * 4;
     }
 
     // handle charge

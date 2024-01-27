@@ -408,8 +408,8 @@ int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_TRICK_ROOM:
                         case 18:
-                        case 24:
-                        case 25:
+                        case 24: // ET + TR
+                        case 25: // PT + TR
                             scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             newBS.weather = FIELD_STATUS_TRICK_ROOM;

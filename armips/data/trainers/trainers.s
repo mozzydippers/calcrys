@@ -1816,6 +1816,21 @@ trainerdata 33, "Jasmine"
         ivs 255
         abilityslot 15
         level 55
+        pokemon SPECIES_MELMETAL
+        item ITEM_LIFE_ORB
+        move MOVE_DOUBLE_IRON_BASH
+        move MOVE_EARTHQUAKE
+        move MOVE_ICE_PUNCH
+        move MOVE_THUNDER_PUNCH
+        setivs 31, 31, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
+        setevs 0, 0, 0, 0, 0, 0
+        nature NATURE_BRAVE
+        ballseal 0
+
+        // mon 2
+        ivs 255
+        abilityslot 15
+        level 55
         pokemon SPECIES_BRONZONG
         item ITEM_LEFTOVERS
         move MOVE_HEAVY_SLAM
@@ -1827,7 +1842,7 @@ trainerdata 33, "Jasmine"
         nature NATURE_RELAXED
         ballseal 0
 
-        // mon 2
+        // mon 3
         ivs 255
         abilityslot 32
         level 55
@@ -1840,21 +1855,6 @@ trainerdata 33, "Jasmine"
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_QUIET
-        ballseal 0
-
-        // mon 3
-        ivs 255
-        abilityslot 15
-        level 55
-        pokemon SPECIES_MELMETAL
-        item ITEM_METAL_COAT
-        move MOVE_DOUBLE_IRON_BASH
-        move MOVE_EARTHQUAKE
-        move MOVE_ICE_PUNCH
-        move MOVE_THUNDER_PUNCH
-        setivs 31, 31, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
-        setevs 0, 0, 0, 0, 0, 0
-        nature NATURE_BRAVE
         ballseal 0
 
         // mon 4
@@ -19259,7 +19259,7 @@ trainerdata 494, "Georgina"
         ivs 255
         abilityslot 32
         level 45
-        monwithform SPECIES_BASCULEGION, 1
+        monwithform SPECIES_BASCULEGION, 3
         item ITEM_LEFTOVERS
         move MOVE_SURF
         move MOVE_SHADOW_BALL
@@ -25549,19 +25549,6 @@ trainerdata 675, "Lance"
     endentry
 
     party 675
-        // mon 0
-        ivs 255
-        abilityslot 15
-        level 60
-        monwithform SPECIES_TERAPAGOS, 1
-        item ITEM_LEFTOVERS
-        move MOVE_TERA_BLAST
-        move MOVE_EARTH_POWER
-        move MOVE_POWER_GEM
-        move MOVE_WEATHER_BALL
-        nature NATURE_MODEST
-        ballseal 0
-
         // mon 1
         ivs 255
         abilityslot 32
@@ -25586,6 +25573,19 @@ trainerdata 675, "Lance"
         move MOVE_ENERGY_BALL
         move MOVE_RECOVER
         nature NATURE_BOLD
+        ballseal 0
+
+        // mon 0
+        ivs 255
+        abilityslot 15
+        level 60
+        monwithform SPECIES_TERAPAGOS, 1
+        item ITEM_LEFTOVERS
+        move MOVE_TERA_BLAST
+        move MOVE_EARTH_POWER
+        move MOVE_POWER_GEM
+        move MOVE_WEATHER_BALL
+        nature NATURE_MODEST
         ballseal 0
 
         // mon 0

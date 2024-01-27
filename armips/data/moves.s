@@ -2680,9 +2680,9 @@ movedata MOVE_SKETCH, "Sketch"
     movedescription MOVE_SKETCH, "It enables the user\nto permanently learn\nthe move last used by\nthe foe. Once used,\nSketch disappears."
 
 movedata MOVE_TRIPLE_KICK, "Triple Kick"
-    battleeffect 104
+    battleeffect 298
     pss SPLIT_PHYSICAL
-    basepower 30
+    basepower 20
     type TYPE_FIGHTING
     accuracy 100
     pp 10
