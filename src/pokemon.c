@@ -39,7 +39,7 @@ BOOL LONG_CALL GetOtherFormPic(MON_PIC *picdata, u16 mons_no, u8 dir, u8 col, u8
 
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -105,7 +105,7 @@ int LONG_CALL PokeOtherFormMonsNoGet(int mons_no, int form_no)
     default:;
         if (form_no != 0)
         {
-            struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+            struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
             ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
             for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -134,7 +134,7 @@ u16 LONG_CALL GetSpeciesBasedOnForm(int mons_no, int form_no)
 {
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
         {
@@ -159,7 +159,7 @@ u16 LONG_CALL GetOriginalSpeciesBasedOnAdjustedForm(u32 mons_no)
 {
     if (mons_no > MAX_MON_NUM)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -254,7 +254,7 @@ u32 LONG_CALL PokeIconIndexGetByMonsNumber(u32 mons, u32 egg, u32 form_no)
 
         // pat is now treated as the return value.  is initially set as the mons+7, but is adjusted as necessary below
 
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         pat = (7 + mons);
@@ -299,7 +299,7 @@ u16 LONG_CALL PokeIconCgxPatternGet(struct BoxPokemon *ppp)
         return GetBoxMonData(ppp, MON_DATA_FORM, NULL);
 
     default:;
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -383,7 +383,7 @@ u32 LONG_CALL PokeIconPalNumGet(u32 mons, u32 form, u32 isegg)
         } else {
             if (form != 0)
             {
-                struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+                struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
                 ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
                 for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -423,7 +423,7 @@ u32 LONG_CALL GetMonIconPalette(u32 mons, u32 form, u32 isegg)
  */
 u16 LONG_CALL GetPokemonOwNum(u16 species)
 {
-    u16 *sSpeciesToOWGfx = sys_AllocMemory(0, sizeof(u16) * (MAX_MON_NUM+1));
+    u16 *sSpeciesToOWGfx = sys_AllocMemory(3, sizeof(u16) * (MAX_MON_NUM+1));
     u16 ret;
 
     ArchiveDataLoad(sSpeciesToOWGfx, ARC_CODE_ADDONS, CODE_ADDON_BASE_OW_PER_MON);
@@ -444,7 +444,7 @@ u16 LONG_CALL GetMonHiddenAbility(u16 species, u32 form)
 {
 #ifdef HIDDEN_ABILITIES
     u16 ability = 0;
-    u16* hiddenAbilityTable = sys_AllocMemory(0, sizeof(u16) * MAX_SPECIES_INCLUDING_FORMS);
+    u16* hiddenAbilityTable = sys_AllocMemory(3, sizeof(u16) * MAX_SPECIES_INCLUDING_FORMS);
 
     species = PokeOtherFormMonsNoGet(species, form);
     ArchiveDataLoad(hiddenAbilityTable, ARC_CODE_ADDONS, CODE_ADDON_HIDDEN_ABILITY_LIST);
@@ -539,7 +539,7 @@ if (gf_rand() % 33 == 0)
  */
 u32 LONG_CALL GetSpeciesBaseExp(u32 species, u32 form)
 {
-    u16 *baseExpTable = sys_AllocMemory(0, sizeof(u16) * MAX_SPECIES_INCLUDING_FORMS);
+    u16 *baseExpTable = sys_AllocMemory(3, sizeof(u16) * MAX_SPECIES_INCLUDING_FORMS);
     u16 baseExp;
 
     species = PokeOtherFormMonsNoGet(species, form); // for whatever reason alternate formes can have different base experiences
@@ -1129,7 +1129,7 @@ u8 LONG_CALL LoadEggMoves(struct PartyPokemon *pokemon, u16 *dest)
     u16 species;
     u16 i;
 
-    kowaza_list = sys_AllocMemory(0, NUM_EGG_MOVES_TOTAL*2);
+    kowaza_list = sys_AllocMemory(3, NUM_EGG_MOVES_TOTAL*2);
     ArchiveDataLoad(kowaza_list, ARC_EGG_MOVES, 0);
 
     n = 0;
@@ -1263,7 +1263,7 @@ u16 LONG_CALL GetMonEvolution(struct Party *party, struct PartyPokemon *pokemon,
 
     species = PokeOtherFormMonsNoGet(species, form); // factor in form into species to cover shit like galarian corsola + cap pikachu that can't evolve
 
-    evoTable = sys_AllocMemory(0, MAX_EVOS_PER_POKE * sizeof(struct Evolution));
+    evoTable = sys_AllocMemory(3, MAX_EVOS_PER_POKE * sizeof(struct Evolution));
     ArchiveDataLoad(evoTable, ARC_EVOLUTIONS, species);
 
     switch (context) {
@@ -1717,7 +1717,7 @@ u16 LONG_CALL get_mon_ow_tag(u16 species, u32 form, u32 isFemale)
 
     ret = get_ow_data_file_num(species) + adjustment;
 
-    u8 *form_table = sys_AllocMemory(0, MAX_MON_NUM);
+    u8 *form_table = sys_AllocMemory(3, MAX_MON_NUM);
     ArchiveDataLoad(form_table, ARC_CODE_ADDONS, CODE_ADDON_NUM_OF_OW_FORMS_PER_MON);
 
     if (species == SPECIES_PIKACHU) // pikachu forms take gender adjustment into account and are looser with restrictions
@@ -1997,7 +1997,7 @@ bool8 LONG_CALL RevertFormChange(struct PartyPokemon *pp, u16 species, u8 form_n
 
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(0, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(3, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -2956,4 +2956,40 @@ u8 LONG_CALL GetBoxMonNatureCountMints(struct BoxPokemon *boxMon)
         personality %= 25;
 
     return personality;
+}
+
+/**
+ *  @brief grab the encounter slot that should be forced when static/magnet pull proc
+ *         needed to fix the crash caused by static and magnet pull
+ *
+ *  @param inData WildEncounterWork array to parse through for matching type
+ *  @param inListNum amount of entries in inData
+ *  @param type type to check for
+ *  @param outNo encounter slot that is forced
+ */
+BOOL SetFixedWildEncounter(const WildEncounterWork *inData, const u8 inListNum, const u8 type, u8 * outNo)
+{
+    u8 same_type[12];
+    u32 cnt, i, type1, type2;
+    for (i = 0; i < 12; i++)
+    {
+        same_type[i] = 0;
+    }
+    cnt = 0;
+    for (i = 0; i < inListNum; i++)
+    {
+        u16 newSpecies = PokeOtherFormMonsNoGet(inData[i].species, inData[i].form);
+        type1 = PokePersonalParaGet(newSpecies, PERSONAL_TYPE_1);
+        type2 = PokePersonalParaGet(newSpecies, PERSONAL_TYPE_2);
+        if ((type1 == type) || (type2 == type))
+        {
+            same_type[cnt++] = i;
+        }
+    }
+    if (cnt == 0 || cnt == inListNum)
+    {
+        return FALSE;
+    }
+    *outNo = same_type[gf_rand() % cnt];
+    return TRUE;
 }
