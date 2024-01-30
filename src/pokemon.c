@@ -15,6 +15,7 @@
 #include "../include/constants/moves.h"
 #include "../include/constants/species.h"
 #include "../include/constants/weather_numbers.h"
+#include "../include/pokemon_storage_system.h"
 
 
 #define NELEMS_POKEFORMDATATBL 285
@@ -2610,6 +2611,29 @@ BOOL ScrCmd_GiveTogepiEgg(SCRIPTCONTEXT *ctx) {
     sys_FreeMemoryEz(togepi);
 
     SaveMisc_SetTogepiPersonalityGender(Sav2_Misc_get(fsys->savedata), GetMonData(togepi, MON_DATA_PERSONALITY, 0), GetMonData(togepi, MON_DATA_GENDER, 0));
+
+    return FALSE;
+}
+
+/**
+ *  changing the primo script to give out all the wallpapers
+ *  thank u adastra <3
+ */
+#define NUM_BONUS_WALLPAPERS (8)
+BOOL ScrCmd_PrimoPasswordCheck1( SCRIPTCONTEXT* ctx ) {
+    FieldSystem *fsys = ctx->fsys;
+    PCStorage* pcStorage = SaveArray_PCStorage_Get( fsys->savedata );
+    u16 *p_ret = ScriptGetVarPointer(ctx);
+    u16 a = ScriptGetVar(ctx);
+    u16 b = ScriptGetVar(ctx);
+    u16 c = ScriptGetVar(ctx);
+    u16 d = ScriptGetVar(ctx);
+
+    for ( int w = 0; w < NUM_BONUS_WALLPAPERS; w++ ) {
+        if (!PCStorage_IsBonusWallpaperUnlocked(pcStorage, w)) {
+            PCStorage_UnlockBonusWallpaper(pcStorage, w);
+        }
+    }
 
     return FALSE;
 }

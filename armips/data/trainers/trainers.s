@@ -19524,6 +19524,19 @@ trainerdata 499, "Grunt"
 
         // mon 0
         ivs 255
+        abilityslot 2
+        level 60
+        monwithform SPECIES_INDEEDEE, 1
+        item ITEM_EJECT_BUTTON
+        move MOVE_PSYCHIC
+        move MOVE_MYSTICAL_FIRE
+        move MOVE_FAKE_OUT
+        move MOVE_BATON_PASS
+        nature NATURE_BOLD
+        ballseal 0
+
+        // mon 0
+        ivs 255
         abilityslot 32
         level 60
         pokemon SPECIES_DUGTRIO
@@ -19552,23 +19565,10 @@ trainerdata 499, "Grunt"
         ivs 255
         abilityslot 2
         level 60
-        monwithform SPECIES_INDEEDEE, 1
-        item ITEM_EJECT_BUTTON
-        move MOVE_PSYCHIC
-        move MOVE_MYSTICAL_FIRE
-        move MOVE_FAKE_OUT
-        move MOVE_BATON_PASS
-        nature NATURE_BOLD
-        ballseal 0
-
-        // mon 0
-        ivs 255
-        abilityslot 2
-        level 60
         pokemon SPECIES_GALLADE
         item ITEM_GALLADITE
-        move MOVE_PSYBLADE
         move MOVE_SACRED_SWORD
+        move MOVE_PSYCHO_CUT
         move MOVE_SOLAR_BLADE
         move MOVE_BITTER_BLADE
         nature NATURE_JOLLY

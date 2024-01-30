@@ -1,7 +1,7 @@
 .nds
 .thumb
 
-// Aurora Crystal specific change
+// humbly ROBBED from Drayano c[:
 // Changes items obtainable from Rock Smash
 // Each table is 8 slots with chances of 25/20/10/10/10/10/10/5 %.
 

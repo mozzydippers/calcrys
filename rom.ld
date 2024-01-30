@@ -574,3 +574,5 @@ hhhhhhhhhhh = 0x| 1;
 hhhhhhhhhhh = 0x| 1;
 hhhhhhhhhhh = 0x| 1;
 hhhhhhhhhhh = 0x| 1;
+
+SaveArray_PCStorage_Get = 0x020270D8 | 1;

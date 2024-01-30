@@ -1,8 +1,7 @@
 .nds
 .thumb
 
-// Aurora Crystal specific changes
-// Adjust encounter rates
+// humbly ROBBED from Drayano c[:
 
 // These work by generating a number 0-99, then doing a load of >= checks
 // The last one is == 99 so this has to be changed

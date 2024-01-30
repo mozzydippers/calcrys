@@ -55,6 +55,9 @@ movedata MOVE_KARATE_CHOP, "Karate Chop"
     terminatedata
     movedescription MOVE_KARATE_CHOP, "The foe is attacked\nwith a sharp chop.\nIt has a high\ncritical-hit ratio.\n"
 
+// BP : 15 > 30
+// ACC : 85 > 100
+// EFF : 1-5 HIT > 2 HIT
 movedata MOVE_DOUBLE_SLAP, "Double Slap"
     battleeffect 44
     pss SPLIT_PHYSICAL
@@ -71,6 +74,8 @@ movedata MOVE_DOUBLE_SLAP, "Double Slap"
     terminatedata
     movedescription MOVE_DOUBLE_SLAP, "The foe is slapped\nrepeatedly, back\nand forth, two to\nfive times in a row.\n"
 
+// BP : 18 > 20
+// ACC : 85 > 100
 movedata MOVE_COMET_PUNCH, "Comet Punch"
     battleeffect 29
     pss SPLIT_PHYSICAL
@@ -87,6 +92,10 @@ movedata MOVE_COMET_PUNCH, "Comet Punch"
     terminatedata
     movedescription MOVE_COMET_PUNCH, "The foe is hit with\na flurry of punches\nthat strike two to\nfive times in a row.\n"
 
+// BP : 80 > 90
+// TYPE : NORMAL > FIGHTING
+// ACC : 85 > 100
+// EFF : NONE > TRI ATTACK 
 movedata MOVE_MEGA_PUNCH, "Mega Punch"
     battleeffect 36
     pss SPLIT_PHYSICAL
@@ -215,6 +224,7 @@ movedata MOVE_GUILLOTINE, "Guillotine"
     terminatedata
     movedescription MOVE_GUILLOTINE, "A vicious, tearing\nattack with pincers.\nThe foe will faint\ninstantly if this\nattack hits."
 
+// EFF : 2 TURN > 1 TURN
 movedata MOVE_RAZOR_WIND, "Razor Wind"
     battleeffect 43
     pss SPLIT_SPECIAL
@@ -231,6 +241,7 @@ movedata MOVE_RAZOR_WIND, "Razor Wind"
     terminatedata
     movedescription MOVE_RAZOR_WIND, "A two-turn attack.\nBlades of wind hit the\nfoe on the second\nturn. It has a high\ncritical-hit ratio."
 
+// PP : 30 > 20 (GEN 6+)
 movedata MOVE_SWORDS_DANCE, "Swords Dance"
     battleeffect 50
     pss SPLIT_STATUS
@@ -247,6 +258,7 @@ movedata MOVE_SWORDS_DANCE, "Swords Dance"
     terminatedata
     movedescription MOVE_SWORDS_DANCE, "A frenetic dance to\nuplift the fighting\nspirit. It sharply\nraises the user’s\nAttack stat."
 
+// ACC : 95 > 100
 movedata MOVE_CUT, "Cut"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -311,6 +323,7 @@ movedata MOVE_WHIRLWIND, "Whirlwind"
     terminatedata
     movedescription MOVE_WHIRLWIND, "The foe is blown away,\nto be replaced by\nanother Pokémon\nin its party. In the\nwild, the battle ends."
 
+// ACC : 95 > 100
 movedata MOVE_FLY, "Fly"
     battleeffect 155
     pss SPLIT_PHYSICAL
@@ -327,6 +340,7 @@ movedata MOVE_FLY, "Fly"
     terminatedata
     movedescription MOVE_FLY, "The user soars, then\nstrikes on the second\nturn. It can also be\nused for flying to\nany familiar town."
 
+// ACC : 75 > 100
 movedata MOVE_BIND, "Bind"
     battleeffect 42
     pss SPLIT_PHYSICAL
@@ -343,6 +357,7 @@ movedata MOVE_BIND, "Bind"
     terminatedata
     movedescription MOVE_BIND, "A long body or\ntentacles are used\nto bind and squeeze\nthe foe for two to\nfive turns."
 
+// ACC : 75 > 100
 movedata MOVE_SLAM, "Slam"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -359,6 +374,8 @@ movedata MOVE_SLAM, "Slam"
     terminatedata
     movedescription MOVE_SLAM, "The foe is slammed\nwith a long tail,\nvines, etc., to inflict\ndamage.\n"
 
+// BP : 35 > 45 (GEN 6+)
+// PP : 15 > 25 (GEN 6+)
 movedata MOVE_VINE_WHIP, "Vine Whip"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -407,6 +424,9 @@ movedata MOVE_DOUBLE_KICK, "Double Kick"
     terminatedata
     movedescription MOVE_DOUBLE_KICK, "The foe is quickly\nkicked twice in\nsuccession using both\nfeet.\n"
 
+// BP : 120 > 100
+// ACC : 75 > 100
+// EFF : NONE > HIGH JUMP KICK
 movedata MOVE_MEGA_KICK, "Mega Kick"
     battleeffect 45
     pss SPLIT_PHYSICAL
@@ -423,6 +443,8 @@ movedata MOVE_MEGA_KICK, "Mega Kick"
     terminatedata
     movedescription MOVE_MEGA_KICK, "The foe is attacked\nby a kick launched\nwith muscle-packed\npower.\n"
 
+// BP : 85 > 100 (GEN 5+)
+// PP : 25 > 10 (GEN 5+)
 movedata MOVE_JUMP_KICK, "Jump Kick"
     battleeffect 45
     pss SPLIT_PHYSICAL
@@ -439,6 +461,7 @@ movedata MOVE_JUMP_KICK, "Jump Kick"
     terminatedata
     movedescription MOVE_JUMP_KICK, "The user jumps up\nhigh, then strikes\nwith a kick. If the\nkick misses, the\nuser hurts itself."
 
+// ACC : 85 > 100
 movedata MOVE_ROLLING_KICK, "Rolling Kick"
     battleeffect 31
     pss SPLIT_PHYSICAL
@@ -455,6 +478,7 @@ movedata MOVE_ROLLING_KICK, "Rolling Kick"
     terminatedata
     movedescription MOVE_ROLLING_KICK, "The user lashes \nout with a quick,\nspinning kick. It\nmay also make the\ntarget flinch."
 
+// PP : 15 > 5
 movedata MOVE_SAND_ATTACK, "Sand-Attack"
     battleeffect 23
     pss SPLIT_STATUS
@@ -503,6 +527,7 @@ movedata MOVE_HORN_ATTACK, "Horn Attack"
     terminatedata
     movedescription MOVE_HORN_ATTACK, "The foe is jabbed\nwith a sharply\npointed horn to\ninflict damage.\n"
 
+// ACC : 85 > 100
 movedata MOVE_FURY_ATTACK, "Fury Attack"
     battleeffect 29
     pss SPLIT_PHYSICAL
@@ -535,6 +560,8 @@ movedata MOVE_HORN_DRILL, "Horn Drill"
     terminatedata
     movedescription MOVE_HORN_DRILL, "The foe is stabbed\nwith a horn rotating\nlike a drill.\nThe foe instantly\nfaints if it hits."
 
+// BP : 35 > 40 (GEN 7+)
+// ACC : 95 > 100 (GEN 5+)
 movedata MOVE_TACKLE, "Tackle"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -583,6 +610,7 @@ movedata MOVE_WRAP, "Wrap"
     terminatedata
     movedescription MOVE_WRAP, "A long body or vines\nare used to wrap and\nsqueeze the foe for\ntwo to five turns.\n"
 
+// ACC : 85 > 100
 movedata MOVE_TAKE_DOWN, "Take Down"
     battleeffect 48
     pss SPLIT_PHYSICAL
@@ -599,6 +627,8 @@ movedata MOVE_TAKE_DOWN, "Take Down"
     terminatedata
     movedescription MOVE_TAKE_DOWN, "A reckless, full-body\ncharge attack for\nslamming into the foe.\nIt also damages the\nuser a little."
 
+// BP : 90 > 120 (GEN 5+)
+// PP : 20 > 10 (GEN 5+)
 movedata MOVE_THRASH, "Thrash"
     battleeffect 27
     pss SPLIT_PHYSICAL
@@ -631,6 +661,7 @@ movedata MOVE_DOUBLE_EDGE, "Double-Edge"
     terminatedata
     movedescription MOVE_DOUBLE_EDGE, "A reckless, life-\nrisking tackle.\nIt also damages the\nuser by a fairly large\namount, however."
 
+// PP : 30 > 10
 movedata MOVE_TAIL_WHIP, "Tail Whip"
     battleeffect 19
     pss SPLIT_STATUS
@@ -647,6 +678,7 @@ movedata MOVE_TAIL_WHIP, "Tail Whip"
     terminatedata
     movedescription MOVE_TAIL_WHIP, "The user wags its tail\ncutely, making the\nfoe less wary.\nThe target’s Defense\nstat is lowered."
 
+// BP : 15 > 30 (PLA)
 movedata MOVE_POISON_STING, "Poison Sting"
     battleeffect 2
     pss SPLIT_PHYSICAL
@@ -663,6 +695,7 @@ movedata MOVE_POISON_STING, "Poison Sting"
     terminatedata
     movedescription MOVE_POISON_STING, "The foe is stabbed\nwith a poisonous\nbarb of some sort.\nIt may also poison\nthe target."
 
+// BP : 25 > 30
 movedata MOVE_TWINEEDLE, "Twineedle"
     battleeffect 77
     pss SPLIT_PHYSICAL
@@ -670,7 +703,7 @@ movedata MOVE_TWINEEDLE, "Twineedle"
     type TYPE_BUG
     accuracy 100
     pp 20
-    effectchance 25
+    effectchance 20
     target MOVE_TARGET_SELECTED
     priority 0
     flags FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT
@@ -679,6 +712,8 @@ movedata MOVE_TWINEEDLE, "Twineedle"
     terminatedata
     movedescription MOVE_TWINEEDLE, "The foe is stabbed\ntwice by a pair of\nstingers.\nIt may also poison\nthe target."
 
+// BP : 14 > 25 (GEN 6+)
+// ACC : 85 > 100
 movedata MOVE_PIN_MISSILE, "Pin Missile"
     battleeffect 29
     pss SPLIT_PHYSICAL
@@ -695,6 +730,7 @@ movedata MOVE_PIN_MISSILE, "Pin Missile"
     terminatedata
     movedescription MOVE_PIN_MISSILE, "Sharp pins are shot\nat the foe in rapid\nsuccession.\nThey hit two to five\ntimes in a row."
 
+// PP : 20 > 10
 movedata MOVE_LEER, "Leer"
     battleeffect 19
     pss SPLIT_STATUS
@@ -791,7 +827,8 @@ movedata MOVE_SUPERSONIC, "Supersonic"
     terminatedata
     movedescription MOVE_SUPERSONIC, "The user generates\nodd sound waves from\nits body.\nIt may confuse the\ntarget."
 
-movedata MOVE_SONIC_BOOM, "SonicBoom"
+// ACC : 90 > 100
+movedata MOVE_SONIC_BOOM, "Sonic Boom"
     battleeffect 130
     pss SPLIT_SPECIAL
     basepower 1
@@ -1735,7 +1772,7 @@ movedata MOVE_MINIMIZE, "Minimize"
     terminatedata
     movedescription MOVE_MINIMIZE, "The user compresses\nits body to make\nitself look smaller.\nThe user’s evasion\nstat is boosted."
 
-movedata MOVE_SMOKESCREEN, "SmokeScreen"
+movedata MOVE_SMOKESCREEN, "Smokescreen"
     battleeffect 23
     pss SPLIT_STATUS
     basepower 0
@@ -5095,6 +5132,8 @@ movedata MOVE_ROCK_TOMB, "Rock Tomb"
     terminatedata
     movedescription MOVE_ROCK_TOMB, "Boulders are hurled\nat the foe. It also\nlowers the foe’s\nSpeed by preventing\nits movement."
 
+// PP : 5 > 15 (PLA)
+// TARGET : SINGLE > DUAL
 movedata MOVE_SILVER_WIND, "Silver Wind"
     battleeffect 140
     pss SPLIT_SPECIAL
@@ -5399,6 +5438,7 @@ movedata MOVE_HOWL, "Howl"
     terminatedata
     movedescription MOVE_HOWL, "The user howls loudly\nto raise its spirit,\nboosting its Attack\nstat.\n"
 
+// EFF : 0 > 43 | INCREASED CRIT (PLA)
 movedata MOVE_DRAGON_CLAW, "Dragon Claw"
     battleeffect 43
     pss SPLIT_PHYSICAL
@@ -5671,6 +5711,7 @@ movedata MOVE_DOOM_DESIRE, "Doom Desire"
     terminatedata
     movedescription MOVE_DOOM_DESIRE, "Two turns after this\nmove is used, the\nuser blasts the foe\nwith a concentrated\nbundle of light."
 
+// EFF : 204 > 0 | DROPS SPA > NONE 
 movedata MOVE_PSYCHO_BOOST, "Psycho Boost"
     battleeffect 0
     pss SPLIT_SPECIAL
@@ -6007,6 +6048,7 @@ movedata MOVE_FLING, "Fling"
     terminatedata
     movedescription MOVE_FLING, "The user flings its\nheld item at the foe\nto attack. Its power\nand effects depend\non the item."
 
+// ACC : 90 > 100 (GEN 6+)
 movedata MOVE_PSYCHO_SHIFT, "Psycho Shift"
     battleeffect 234
     pss SPLIT_STATUS
@@ -6423,6 +6465,7 @@ movedata MOVE_NIGHT_SLASH, "Night Slash"
     terminatedata
     movedescription MOVE_NIGHT_SLASH, "The user slashes the\nfoe the instant an\nopportunity arises.\nIt has a high\ncritical-hit ratio."
 
+// ACC : 90 > 100
 movedata MOVE_AQUA_TAIL, "Aqua Tail"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -6455,6 +6498,7 @@ movedata MOVE_SEED_BOMB, "Seed Bomb"
     terminatedata
     movedescription MOVE_SEED_BOMB, "The user slams a\nbarrage of hard-\nshelled seeds\ndown on the foe\nfrom above."
 
+// ACC : 95 > 100 
 movedata MOVE_AIR_SLASH, "Air Slash"
     battleeffect 31
     pss SPLIT_SPECIAL
@@ -6471,6 +6515,7 @@ movedata MOVE_AIR_SLASH, "Air Slash"
     terminatedata
     movedescription MOVE_AIR_SLASH, "The user attacks with\na blade of air that\nslices even the sky.\nIt may also make the\ntarget flinch."
 
+// EFF : 0 > 43 | INCREASED CRIT (PLA)
 movedata MOVE_X_SCISSOR, "X-Scissor"
     battleeffect 43
     pss SPLIT_PHYSICAL
@@ -6503,6 +6548,7 @@ movedata MOVE_BUG_BUZZ, "Bug Buzz"
     terminatedata
     movedescription MOVE_BUG_BUZZ, "The user vibrates its\nwings to generate a\ndamaging sound wave.\nIt may also lower the\nfoe’s Sp. Def stat."
 
+// EFF : 0 > 17 | NONE > NEVER MISS (PLA)
 movedata MOVE_DRAGON_PULSE, "Dragon Pulse"
     battleeffect 17
     pss SPLIT_SPECIAL
@@ -6551,6 +6597,8 @@ movedata MOVE_POWER_GEM, "Power Gem"
     terminatedata
     movedescription MOVE_POWER_GEM, "The user attacks with\na ray of light that\nsparkles as if it were\nmade of gemstones.\n"
 
+// BP : 60 > 75 (GEN 5+)
+// ACC : 5 > 10 (GEN 5+)
 movedata MOVE_DRAIN_PUNCH, "Drain Punch"
     battleeffect 3
     pss SPLIT_PHYSICAL
@@ -6599,6 +6647,7 @@ movedata MOVE_FOCUS_BLAST, "Focus Blast"
     terminatedata
     movedescription MOVE_FOCUS_BLAST, "The user heightens\nits mental focus and\nunleashes its power.\nIt may also lower the\ntarget’s Sp. Def."
 
+// BP : 80 > 90 (GEN 5+)
 movedata MOVE_ENERGY_BALL, "Energy Ball"
     battleeffect 72
     pss SPLIT_SPECIAL
@@ -6663,6 +6712,7 @@ movedata MOVE_SWITCHEROO, "Switcheroo"
     terminatedata
     movedescription MOVE_SWITCHEROO, "The user trades held\nitems with the foe\nfaster than the eye\ncan follow.\n"
 
+// ACC : 90 > 100
 movedata MOVE_GIGA_IMPACT, "Giga Impact"
     battleeffect 80
     pss SPLIT_PHYSICAL
@@ -6759,6 +6809,7 @@ movedata MOVE_SHADOW_CLAW, "Shadow Claw"
     terminatedata
     movedescription MOVE_SHADOW_CLAW, "The user slashes with\na sharp claw made\nfrom shadows.\nIt has a high\ncritical-hit ratio."
 
+// ACC : 95 > 100
 movedata MOVE_THUNDER_FANG, "Thunder Fang"
     battleeffect 275
     pss SPLIT_PHYSICAL
@@ -6775,6 +6826,7 @@ movedata MOVE_THUNDER_FANG, "Thunder Fang"
     terminatedata
     movedescription MOVE_THUNDER_FANG, "The user bites with\nelectrified fangs.\nIt may also make the\nfoe flinch or become\nparalyzed."
 
+// ACC : 95 > 100
 movedata MOVE_ICE_FANG, "Ice Fang"
     battleeffect 274
     pss SPLIT_PHYSICAL
@@ -6791,6 +6843,7 @@ movedata MOVE_ICE_FANG, "Ice Fang"
     terminatedata
     movedescription MOVE_ICE_FANG, "The user bites with\ncold-infused fangs.\nIt may also make the\nfoe flinch or freeze.\n"
 
+// ACC : 95 > 100
 movedata MOVE_FIRE_FANG, "Fire Fang"
     battleeffect 273
     pss SPLIT_PHYSICAL
@@ -6823,6 +6876,7 @@ movedata MOVE_SHADOW_SNEAK, "Shadow Sneak"
     terminatedata
     movedescription MOVE_SHADOW_SNEAK, "The user extends its\nshadow and attacks\nthe foe from behind.\nThis move always goes\nfirst."
 
+// ACC : 85 : 100
 movedata MOVE_MUD_BOMB, "Mud Bomb"
     battleeffect 73
     pss SPLIT_SPECIAL
@@ -6855,6 +6909,7 @@ movedata MOVE_PSYCHO_CUT, "Psycho Cut"
     terminatedata
     movedescription MOVE_PSYCHO_CUT, "The user tears at\nthe foe with blades\nformed by psychic\npower. It has a high\ncritical-hit ratio."
 
+// ACC : 90 > 100
 movedata MOVE_ZEN_HEADBUTT, "Zen Headbutt"
     battleeffect 31
     pss SPLIT_PHYSICAL
@@ -6999,6 +7054,8 @@ movedata MOVE_LAVA_PLUME, "Lava Plume"
     terminatedata
     movedescription MOVE_LAVA_PLUME, "An inferno of scarlet\nflames washes over\nall Pokémon in battle.\nIt may also inflict\nburns."
 
+// BP : 140 > 130 (GEN 6+)
+// ACC : 90 > 100
 movedata MOVE_LEAF_STORM, "Leaf Storm"
     battleeffect 204
     pss SPLIT_SPECIAL
@@ -7031,6 +7088,7 @@ movedata MOVE_POWER_WHIP, "Power Whip"
     terminatedata
     movedescription MOVE_POWER_WHIP, "The user violently\nwhirls its vines or\ntentacles to harshly\nlash the foe.\n"
 
+// ACC : 90 > 100
 movedata MOVE_ROCK_WRECKER, "Rock Wrecker"
     battleeffect 80
     pss SPLIT_PHYSICAL
@@ -7047,10 +7105,11 @@ movedata MOVE_ROCK_WRECKER, "Rock Wrecker"
     terminatedata
     movedescription MOVE_ROCK_WRECKER, "The user launches a\nhuge boulder at the\nfoe to attack.\nIt must rest on the\nnext turn, however."
 
+// BP : 70 > 85 (PLA STRONG)
 movedata MOVE_CROSS_POISON, "Cross Poison"
     battleeffect 209
     pss SPLIT_PHYSICAL
-    basepower 70
+    basepower 85
     type TYPE_POISON
     accuracy 100
     pp 20
@@ -7319,6 +7378,7 @@ movedata MOVE_HEAL_ORDER, "Heal Order"
     terminatedata
     movedescription MOVE_HEAL_ORDER, "The user calls out\nits underlings to heal\nit. The user regains\nup to half of its\nmax HP."
 
+// ACC : 80 > 100
 movedata MOVE_HEAD_SMASH, "Head Smash"
     battleeffect 269
     pss SPLIT_PHYSICAL
@@ -7335,6 +7395,7 @@ movedata MOVE_HEAD_SMASH, "Head Smash"
     terminatedata
     movedescription MOVE_HEAD_SMASH, "The user delivers a\nlife-endangering\nattack at full power.\nThe user also takes\nterrible damage."
 
+// ACC : 90 > 100
 movedata MOVE_DOUBLE_HIT, "Double Hit"
     battleeffect 44
     pss SPLIT_PHYSICAL
@@ -7415,6 +7476,7 @@ movedata MOVE_CRUSH_GRIP, "Crush Grip"
     terminatedata
     movedescription MOVE_CRUSH_GRIP, "The foe is crushed\nwith great force.\nThe attack is more\npowerful the more HP\nthe foe has left."
 
+// ACC : 85 > 100
 movedata MOVE_MAGMA_STORM, "Magma Storm"
     battleeffect 42
     pss SPLIT_SPECIAL
@@ -7431,6 +7493,7 @@ movedata MOVE_MAGMA_STORM, "Magma Storm"
     terminatedata
     movedescription MOVE_MAGMA_STORM, "The foe becomes\ntrapped within a\nmaelstrom of fire\nthat rages for two\nto five turns."
 
+// ACC : 80 / 50 > 90 (PLA)
 movedata MOVE_DARK_VOID, "Dark Void"
     battleeffect 1
     pss SPLIT_STATUS
@@ -7447,6 +7510,8 @@ movedata MOVE_DARK_VOID, "Dark Void"
     terminatedata
     movedescription MOVE_DARK_VOID, "The foe is dragged\ninto a world of total\ndarkness that puts it\nto sleep.\n"
 
+// ACC : 85 > 100
+// EFF : 40% > 50%
 movedata MOVE_SEED_FLARE, "Seed Flare"
     battleeffect 271
     pss SPLIT_SPECIAL
@@ -7463,6 +7528,8 @@ movedata MOVE_SEED_FLARE, "Seed Flare"
     terminatedata
     movedescription MOVE_SEED_FLARE, "The user generates\na shock wave from\nwithin its body.\nIt may also lower the\ntarget’s Sp. Def."
 
+// PP : 5 > 15 (PLA)
+// TARGET : SINGLE > DUAL
 movedata MOVE_OMINOUS_WIND, "Ominous Wind"
     battleeffect 140
     pss SPLIT_SPECIAL
@@ -7479,6 +7546,7 @@ movedata MOVE_OMINOUS_WIND, "Ominous Wind"
     terminatedata
     movedescription MOVE_OMINOUS_WIND, "The user creates a\ngust of repulsive\nwind. It may also\nraise all the user’s\nstats at once."
 
+// EFF : 272 > 0 | 2 TURN > 1 TURN (PLA)
 movedata MOVE_SHADOW_FORCE, "Shadow Force"
     battleeffect 0
     pss SPLIT_PHYSICAL
@@ -9046,6 +9114,7 @@ movedata MOVE_MAT_BLOCK, "Mat Block"
     contesttype CONTEST_COOL
     terminatedata
 
+// ACC : 90 > 100
 movedata MOVE_BELCH, "Belch"
     battleeffect 0
     pss SPLIT_SPECIAL
@@ -9361,12 +9430,13 @@ movedata MOVE_ELECTRIFY, "Electrify"
     contesttype CONTEST_COOL
     terminatedata
 
+// ACC : 90 > 100
 movedata MOVE_PLAY_ROUGH, "Play Rough"
     battleeffect 68
     pss SPLIT_PHYSICAL
     basepower 90
     type (FAIRY_TYPE_IMPLEMENTED) ? TYPE_FAIRY : TYPE_NORMAL
-    accuracy 100
+    accuracy 100 
     pp 10
     effectchance 10
     target MOVE_TARGET_SELECTED
@@ -9376,15 +9446,17 @@ movedata MOVE_PLAY_ROUGH, "Play Rough"
     contesttype CONTEST_COOL
     terminatedata
 
+// BP : 40 > 60
+// TARGET : SINGLE > DUAL
 movedata MOVE_FAIRY_WIND, "Fairy Wind"
     battleeffect 0
     pss SPLIT_SPECIAL
-    basepower 40
+    basepower 60 
     type (FAIRY_TYPE_IMPLEMENTED) ? TYPE_FAIRY : TYPE_NORMAL
     accuracy 100
     pp 30
     effectchance 0
-    target MOVE_TARGET_SELECTED
+    target MOVE_TARGET_BOTH
     priority 0
     flags FLAG_KEEP_HP_BAR | FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
     appeal 0x00
@@ -9451,6 +9523,7 @@ movedata MOVE_KINGS_SHIELD, "King’s Shield"
     contesttype CONTEST_COOL
     terminatedata
 
+// PP : 30 > 10
 movedata MOVE_PLAY_NICE, "Play Nice"
     battleeffect 18
     pss SPLIT_STATUS

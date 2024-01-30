@@ -1,7 +1,7 @@
 .nds
 .thumb
 
-// Aurora Crystal specific change
+// humbly ROBBED from Drayano c[:
 // Changes the cry when you start the game from Ho-oh to Suicune
 // This file is still compressed but luckily the byte we need is exposed
 
