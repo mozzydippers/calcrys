@@ -693,7 +693,7 @@ struct __attribute__((packed)) BattlePokemon
                u32 air_ballon_flag : 1;      /**< the held air balloon has printed its message */
                u32 potentially_affected_by_psychic_terrain_move_used_flag : 1;
                u32 camomons_flag : 1;
-               u32 : 10; // need to add to ClearBattleMonFlags when added to here as well
+               u32 : 9; // need to add to ClearBattleMonFlags when added to here as well
     /* 0x2c */ u8 pp[4];                     /**< move pp left */
     /* 0x30 */ u8 pp_count[4];               /**< move max pp */
     /* 0x34 */ u8 level;                     /**< current level */

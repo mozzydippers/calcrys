@@ -21,6 +21,8 @@
 .include "armips/asm/custom/smashable_rock_items.s"
 .include "armips/asm/custom/title_screen_cry.s"
 
+.include "armips/data/starters.s" // data definitions for which species to use for the starter Pokemon
+
 .if REUSABLE_TMS == 1
 
 .include "armips/asm/tm.s" // make tms infinite
