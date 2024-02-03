@@ -8220,7 +8220,7 @@ movedata MOVE_HEAL_PULSE, "Heal Pulse"
     movedescription MOVE_HEAL_PULSE, "The user emits a\nhealing pulse that\nrestores a target’s\nHP by up to half."
 
 movedata MOVE_HEX, "Hex"
-    battleeffect 287
+    battleeffect 0
     pss SPLIT_SPECIAL
     basepower 65
     type TYPE_GHOST
