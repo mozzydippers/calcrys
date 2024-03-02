@@ -83,11 +83,5 @@ sdat/*
 tools/swav2swar.exe
 
 *:Zone.Identifier
-/test.ml8
-/test.ml7
-/test.ml6
-/test.ml5
-/test.ml4
-/test.ml3
-/test.ml2
-/test.ml1
+
+*.ml*
