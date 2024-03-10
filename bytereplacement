@@ -403,6 +403,9 @@ arm9 02074128 F8 B5 82 B0 00 90 00 20
 # SetFixedWildEncounter_hook setup
 0002 022480C0 60 B4 C0 46
 
+# expand allowed terrain platforms
+0012 02265FEE FF
+
 # Oak Shtuuff, credit to adastra
 0053 08001870 2C 23 2D 22 2E 21
 0053 080018FE 02 28 05 D0 01 28 07 D0 00 28
