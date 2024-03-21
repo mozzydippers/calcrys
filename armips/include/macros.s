@@ -17,7 +17,7 @@
 .endmacro
 
 .macro learnset,move,level
-.if move <= MOVE_PSYBLADE
+.if move <= MOVE_MALIGNANT_CHAIN
     .word (level << 16 | move)
 .endif
 .endmacro

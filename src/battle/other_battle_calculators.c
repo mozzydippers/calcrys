@@ -315,7 +315,7 @@ BOOL CalcAccuracy(void *bw, struct BattleStruct *sp, int attacker, int defender,
         stat_stage_acc = 0;
     }
 
-    if (GetBattlerAbility(sp, attacker) == ABILITY_UNAWARE)
+    if (GetBattlerAbility(sp, attacker) == ABILITY_UNAWARE || GetBattlerAbility(sp, attacker) == ABILITY_MINDS_EYE)
     {
         stat_stage_evasion = 0;
     }
@@ -1239,7 +1239,7 @@ int ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int move_no, i
         {
             if (TypeEffectivenessTable[i][0] == 0xfe) // handle foresight
             {
-                if ((sp->battlemon[defence_client].condition2 & STATUS2_FORESIGHT) || (GetBattlerAbility(sp, attack_client) == ABILITY_SCRAPPY))
+                if ((sp->battlemon[defence_client].condition2 & STATUS2_FORESIGHT) || (GetBattlerAbility(sp, attack_client) == ABILITY_SCRAPPY || GetBattlerAbility(sp, attack_client) == ABILITY_MINDS_EYE))
                 {
                     break;
                 }

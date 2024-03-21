@@ -242,41 +242,6 @@ const u8 StatBoostModifiers[][2] = {
         {          40,          10 },
 };
 
-BOOL isKnockOffBonusDamageItem(struct BattleStruct *sp)
-{
-    u16 defender_species = sp->battlemon[sp->defence_client].species;
-    u16 defender_item = sp->battlemon[sp->defence_client].item;
-
-    // No bonus damage if no item.
-    if (!defender_item) {
-        return FALSE;
-    }
-
-    // No bonus damage if item is a Mega Stone or Primal Reversion item.
-    // This isn't strictly correct, it should only be if the Pokémon can USE the Mega Stone/Orb. But that'd be a lot of code.
-    if (IS_ITEM_MEGA_STONE(defender_item) || defender_item == ITEM_RED_ORB || defender_item == ITEM_BLUE_ORB) {
-        return FALSE;
-    }
-    
-    // No bonus damage if the target is Arceus holding a Plate.
-    if
-    (
-        (defender_species == SPECIES_ARCEUS) &&
-        ((defender_item >= ITEM_FLAME_PLATE && defender_item <= ITEM_IRON_PLATE) || (defender_item == ITEM_PIXIE_PLATE))
-    )
-    {
-        return FALSE;
-    }
-
-    // No bonus damage if the target is Giratina holding a Griseous Orb.
-    if (defender_species == SPECIES_GIRATINA && defender_item == ITEM_GRISEOUS_ORB) {
-        return FALSE;
-    }
-
-    // Any other item should qualify for the bonus damage and then be knocked off.
-    return TRUE;
-}
-
 int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
                    u32 field_cond, u16 pow, u8 type UNUSED, u8 attacker, u8 defender, u8 critical)
 {
@@ -395,12 +360,6 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         }
     }
 
-    // Handle Knock Off's boosted damage effect if the target item is valid for it.
-    if (moveno == MOVE_KNOCK_OFF && isKnockOffBonusDamageItem(sp)) 
-    {
-        movepower = movepower * 15 / 10;
-    }
-
     // Handle Facade's boosted damage effect if the user is poisoned, paralyzed or burned.
     if (moveno == MOVE_FACADE) 
     {
@@ -410,16 +369,12 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         }
     }
 
+    // Handle Fishous Rend & Bolt Beak
     if (moveno == MOVE_FISHIOUS_REND || moveno == MOVE_BOLT_BEAK) 
     {
-        if
+        if 
         (
-            // This checks if the user has not already acted this turn (I think?)
-            // Stole it from TryMeFirst in the decomp
-            (sp->client_act_work[defender][0] != 40)
-
-            // This lets it double damage on targets that just switched in
-            // Don't particularly understand it but Speed Boost uses this too so it doesn't boost on initial switch-in
+            (IsMovingAfterClient(sp, defender) == TRUE) 
             || (sp->battlemon[defender].moveeffect.fakeOutCount == (sp->total_turn + 1)) 
         )
         {
@@ -557,9 +512,9 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     }
 
     // handle assault vest
-    if (DefendingMon.item_held_effect == HOLD_EFFECT_ASSAULT_VEST) {
+    if (DefendingMon.item_held_effect == HOLD_EFFECT_ASSAULT_VEST)
         sp_defense = sp_defense * 150 / 100;
-    }
+
     // handle thick club
     if ((AttackingMon.item_held_effect == HOLD_EFFECT_THICK_CLUB)
      && ((AttackingMon.species == SPECIES_CUBONE)
@@ -992,7 +947,9 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     // halve the defense if using selfdestruct/explosion
     if (sp->moveTbl[moveno].effect == MOVE_EFFECT_HALVE_DEFENSE)
         defense = defense / 2;
-        sp_defense = sp_defense /2;
+
+    if (sp->moveTbl[moveno].effect == MOVE_EFFECT_HALVE_DEFENSE)
+        sp_defense = sp_defense / 2;
 
     damage = equivalentAttack * movepower;
     damage *= (level * 2 / 5 + 2);

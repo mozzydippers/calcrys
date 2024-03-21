@@ -1011,6 +1011,9 @@ void LONG_CALL UpdatePassiveForms(struct PartyPokemon *pp)
 
     switch (species)
     {
+        case SPECIES_DUNSPARCE:
+            form = (gf_rand() % 100 != 0); // 1/100 three seg
+            break;
         case SPECIES_DEERLING:
         case SPECIES_SAWSBUCK:
             form = GrabCurrentSeason(); // update to the current season

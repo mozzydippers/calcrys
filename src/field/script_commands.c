@@ -151,3 +151,65 @@ BOOL ScrCmd_PrimoPasswordCheck1( SCRIPTCONTEXT* ctx ) {
 
     return FALSE;
 }
+
+/** 
+ * changing the tm check to if u CAN learn it rather than know it
+ * ty blurose <3
+ */
+
+ struct HMMoveToTMId
+{
+    u16 move;
+    u8 tmId;
+};
+
+struct HMMoveToTMId moveToTMIdTable[] =
+{
+    {MOVE_CUT, 93},
+    {MOVE_FLY, 94},
+    {MOVE_SURF, 95},
+    {MOVE_STRENGTH, 96},
+    {MOVE_WHIRLPOOL, 97},
+    {MOVE_ROCK_SMASH, 98},
+    {MOVE_WATERFALL, 99},
+    {MOVE_ROCK_CLIMB, 100},
+};
+
+BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
+    FieldSystem *fsys = ctx->fsys;
+    u16 *slot = ScriptGetVarPointer(ctx);
+    u16 move = ScriptGetVar(ctx);
+    u8 i;
+
+    struct Party *party = SaveData_GetPlayerPartyPtr(fsys->savedata);
+    u8 partyCount = party->count;
+    for (i = 0, *slot = 6; i < partyCount; i++) 
+    {
+        struct PartyPokemon *mon = PokeParty_GetMemberPointer(party, i);
+        if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) 
+        {
+            continue;
+        }
+        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move || GetMonData(mon, MON_DATA_MOVE2, NULL) == move ||
+            GetMonData(mon, MON_DATA_MOVE3, NULL) == move || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) 
+        {
+            *slot = i;
+            break;
+        }
+        u8 tmId = 0;
+        *slot = 6;
+        for (int j = 0; j < NELEMS(moveToTMIdTable); j++)
+        {
+            if (moveToTMIdTable[j].move == move)
+            {
+                tmId = moveToTMIdTable[j].tmId;
+            }
+        }
+        if (GetMonTMHMCompat(mon, tmId))
+        {
+            *slot = i;
+            break;
+        }
+    }
+    return FALSE;
+}

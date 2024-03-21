@@ -1535,11 +1535,11 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_GOLDEEN, 10, 10
-encounter SPECIES_GOLDEEN, 10, 10
+encounter SPECIES_GOLDEEN, 20, 20
+encounter SPECIES_GOLDEEN, 20, 20
+encounter SPECIES_GOLDEEN, 20, 20
+encounter SPECIES_GOLDEEN, 20, 20
+encounter SPECIES_GOLDEEN, 20, 20
 
 // good rod encounters
 encounter SPECIES_MAGIKARP, 20, 20
@@ -1639,11 +1639,11 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_MAGIKARP, 18, 24
-encounter SPECIES_MAGIKARP, 18, 24
-encounter SPECIES_MAGIKARP, 18, 24
-encounter SPECIES_KRABBY, 18, 24
-encounter SPECIES_KRABBY, 18, 24
+encounter SPECIES_KRABBY, 20, 20
+encounter SPECIES_KRABBY, 20, 20
+encounter SPECIES_KRABBY, 20, 20
+encounter SPECIES_KRABBY, 20, 20
+encounter SPECIES_KRABBY, 20, 20
 
 // good rod encounters
 encounter SPECIES_MAGIKARP, 20, 20
@@ -1991,49 +1991,49 @@ rocksmashrate 0
 oldrodrate 25
 goodrodrate 50
 superrodrate 75
-walklevels 21, 23, 21, 23, 19, 19, 21, 21, 23, 23, 23, 23
+walklevels 50, 50, 51, 51, 52, 52, 53, 53, 54, 54, 55, 55
 
 // morning encounter slots
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 
 // day encounter slots
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 
 // night encounter slots
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
-pokemon SPECIES_ZUBAT
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_GOLBAT
+monwithform SPECIES_SLOWPOKE, 2
 pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
+pokemon SPECIES_SLOWPOKE
+monwithform SPECIES_SLOWPOKE, 2
 
 // hoenn encounter slots
 pokemon SPECIES_ABSOL
@@ -2055,11 +2055,11 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_GOLDEEN, 10, 10
-encounter SPECIES_GOLDEEN, 10, 10
+encounter SPECIES_SLOWPOKE, 20, 20
+encounter SPECIES_SHELLDER, 20, 20
+encounter SPECIES_SHELLDER, 20, 20
+encounter SPECIES_SHELLDER, 20, 20
+encounter SPECIES_SHELLDER, 20, 20
 
 // good rod encounters
 encounter SPECIES_MAGIKARP, 20, 20

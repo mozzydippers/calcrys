@@ -583,3 +583,5 @@ LoadLevelUpLearnset_HandleAlternateForm = 0x02071FC8 | 1;
 TryAppendMonMove = 0x0207137C | 1;
 
 SaveArray_PCStorage_Get = 0x020270D8 | 1;
+
+GetMonTMHMCompat = 0x0207224C | 1;

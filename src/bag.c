@@ -213,7 +213,15 @@ ITEM_SLOT *Bag_GetItemSlotForRemove(BAG_DATA *bag, u16 itemId, u16 quantity, int
 
 BOOL Bag_TakeItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id) {
     ITEM_SLOT *slot = Bag_GetItemSlotForRemove(bag, itemId, quantity, heap_id);
-    if (slot == NULL || (itemId == ITEM_LINKING_CORD || itemId == ITEM_SOOTHE_BELL || itemId == ITEM_ESCAPE_ROPE || itemId == ITEM_SACRED_ASH)) {
+    if (slot == NULL || (itemId == ITEM_ESCAPE_ROPE) || (itemId == ITEM_SACRED_ASH) 
+            || (itemId == ITEM_SOOTHE_BELL) || (itemId == ITEM_LINKING_CORD) 
+            || (itemId == ITEM_KINGS_ROCK) || (itemId == ITEM_METAL_COAT) || (itemId == ITEM_DRAGON_SCALE)
+            || (itemId == ITEM_UP_GRADE) || (itemId == ITEM_DUBIOUS_DISC)
+            || (itemId == ITEM_DEEP_SEA_TOOTH) || (itemId == ITEM_DEEP_SEA_SCALE)
+            || (itemId == ITEM_PROTECTOR) || (itemId == ITEM_ELECTIRIZER) || (itemId == ITEM_MAGMARIZER) || (itemId == ITEM_REAPER_CLOTH) 
+            || (itemId == ITEM_SACHET) || (itemId == ITEM_WHIPPED_DREAM)
+            || (itemId == ITEM_GALARICA_CUFF) || (itemId == ITEM_GALARICA_WREATH) 
+            || (itemId == ITEM_SCROLL_OF_DARKNESS) || (itemId == ITEM_SCROLL_OF_WATERS)) {
         return FALSE;
     }
     slot->quantity -= quantity;

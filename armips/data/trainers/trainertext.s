@@ -87,6 +87,9 @@ _0000: // Trainer 0
        // Trainer 476
        // Trainer 477
        // Trainer 495
+    trainertextentry 495, TEXT_LAST_MON_SENT_OUT, "...Humph!\nYou’re doing OK for someone weak.\n"
+    trainertextentry 495, TEXT_DEFEATED_IN_BATTLE, "...Humph!\nAre you happy you won?\n"
+    trainertextentry 495, TEXT_PLAYER_LOSES, "...Humph!\nThat was a waste of time.\n"
        // Trainer 504
        // Trainer 506
        // Trainer 508
@@ -118,9 +121,6 @@ _0000: // Trainer 0
        // Trainer 709
        // Trainer 710
        // Trainer 711
-    trainertextentry 495, TEXT_LAST_MON_SENT_OUT, "...Humph!\nYou’re doing OK for someone weak.\n"
-    trainertextentry 495, TEXT_DEFEATED_IN_BATTLE, "...Humph!\nAre you happy you won?\n"
-    trainertextentry 495, TEXT_PLAYER_LOSES, "...Humph!\nThat was a waste of time.\n"
 
 _000C: // Trainer 496
     trainertextentry 496, TEXT_LAST_MON_SENT_OUT, "...Humph!\nYou’re doing OK for someone weak.\n"
@@ -1645,6 +1645,7 @@ _0E84: // Trainer 164
 
 _0E88: // Trainer 601
     trainertextentry 601, TEXT_DEFEATED_IN_BATTLE, "Looks like I lost...\n"
+    trainertextentry 601, TEXT_PLAYER_LOSES, "Next time, think before you interrupt a\ndancer in his prime!\n"
 
 _0E8C: // Trainer 109
     trainertextentry 109, TEXT_NOTICE_IN_OVERWORLD, "If a Trainer spots another Trainer,\nhe or she has to make a challenge.\fThat is our destiny.\r"
@@ -1943,7 +1944,6 @@ _1150: // Trainer 478
     trainertextentry 478, TEXT_LAST_MON_SENT_OUT, "Wh... Wha... Why are you so strong?!\n"
     trainertextentry 478, TEXT_DEFEATED_IN_BATTLE, "Aaaieeeee!\nThis can’t be happening!\rI fought hard, but I still lost...\n"
     trainertextentry 478, TEXT_DEFEATED_IN_OVERWORLD, "What a waste...\nnot to use your strength to do\fbad things!\rFeh... People like you will never in a\nmillion years understand our brilliance!\rIt’s too bad... I’ve really come to\nrespect your strength.\n"
-    trainertextentry 478, TEXT_PLAYER_LOSES, "Have you considered giving up?\n"
 
 _1164: // Trainer 485
     trainertextentry 485, TEXT_LAST_MON_CRITICAL, "We can’t have you getting in the way\nbefore news of our resurgence\freaches Giovanni!\n"
@@ -2103,6 +2103,7 @@ _12D0: // Trainer 479
     trainertextentry 479, TEXT_LAST_MON_CRITICAL, "Argh! I’m getting nervous!\n"
     trainertextentry 479, TEXT_LAST_MON_SENT_OUT, "Eeek!\n"
     trainertextentry 479, TEXT_DEFEATED_IN_BATTLE, "Tch, you really are strong.\rIt’s too bad. If you were to join Team\nRocket, you could become an Executive.\n"
+    trainertextentry 479, TEXT_PLAYER_LOSES, "Have you considered giving up?\n"
 
 _12DC: // Trainer 218
     trainertextentry 218, TEXT_NOTICE_IN_OVERWORLD, "The door won’t open?\rWell, duh. It has to have a password\nthat only Team Rocket knows.\r"

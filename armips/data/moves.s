@@ -4557,7 +4557,7 @@ movedata MOVE_YAWN, "Yawn"
     movedescription MOVE_YAWN, "The user lets loose a\nhuge yawn that lulls\nthe foe into falling\nasleep on the next\nturn."
 
 movedata MOVE_KNOCK_OFF, "Knock Off"
-    battleeffect 0
+    battleeffect 188
     pss SPLIT_PHYSICAL
     basepower 65
     type TYPE_DARK
@@ -8478,7 +8478,7 @@ movedata MOVE_VOLT_SWITCH, "Volt Switch"
 movedata MOVE_STRUGGLE_BUG, "Struggle Bug"
     battleeffect 71
     pss SPLIT_SPECIAL
-    basepower 60
+    basepower 50
     type TYPE_BUG
     accuracy 100
     pp 20
@@ -8672,7 +8672,7 @@ movedata MOVE_RAZOR_SHELL, "Razor Shell"
     pss SPLIT_PHYSICAL
     basepower 75
     type TYPE_WATER
-    accuracy 95
+    accuracy 100
     pp 10
     effectchance 50
     target MOVE_TARGET_SELECTED
@@ -9666,7 +9666,7 @@ movedata MOVE_MYSTICAL_FIRE, "Mystical Fire"
     movedescription MOVE_MYSTICAL_FIRE, "---"
 
 movedata MOVE_SPIKY_SHIELD, "Spiky Shield"
-    battleeffect 0
+    battleeffect 111
     pss SPLIT_STATUS
     basepower 0
     type TYPE_GRASS
@@ -11441,7 +11441,7 @@ movedata MOVE_PSYCHIC_FANGS, "Psychic Fangs"
     terminatedata
     movedescription MOVE_PSYCHIC_FANGS, "---"
 
-movedata MOVE_STOMPING_TANTRUM, "Stomping Tantrum"
+movedata MOVE_STOMPING_TANTRUM, "StompingTantrum"
     battleeffect 0
     pss SPLIT_PHYSICAL
     basepower 75
@@ -13063,7 +13063,7 @@ movedata MOVE_LASH_OUT, "Lash Out"
     basepower 75
     type TYPE_DARK
     accuracy 100
-    pp 5
+    pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
     priority 0

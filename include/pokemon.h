@@ -1761,7 +1761,7 @@ u32 LONG_CALL GenerateShinyPIDKeepSubstructuresIntact(u32 otId, u32 pid);
  */
 u32 LONG_CALL GetMoveData(u16 id, u32 field);
 
-
+BOOL LONG_CALL GetMonTMHMCompat(struct PartyPokemon *mon, u8 tmhm);
 
 
 #endif

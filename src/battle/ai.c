@@ -64,7 +64,7 @@ void AITypeCalc(struct BattleStruct *sp, u32 move, u32 type, int atkAbility, int
         {
             if (TypeEffectivenessTable[i][0] == 0xfe)
             {
-                if (atkAbility == ABILITY_SCRAPPY)
+                if ((atkAbility == ABILITY_SCRAPPY) || (atkAbility == ABILITY_MINDS_EYE))
                 {
                     break;
                 }

@@ -4214,7 +4214,7 @@ mondata SPECIES_SLOWKING, "Slowking"
 
 mondata SPECIES_MISDREAVUS, "Misdreavus"
     basestats 60, 60, 60, 85, 85, 85
-    types TYPE_GHOST, TYPE_FAIRY
+    types TYPE_GHOST, TYPE_GHOST
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
@@ -8770,7 +8770,7 @@ mondata SPECIES_VESPIQUEN, "Vespiquen"
 
 
 mondata SPECIES_PACHIRISU, "Pachirisu"
-    basestats 60, 65, 90, 95, 65, 115
+    basestats 80, 45, 80, 95, 45, 100
     types TYPE_ELECTRIC, TYPE_ELECTRIC
     catchrate 200
     baseexp 0 // defined in baseexp.s
@@ -8781,7 +8781,7 @@ mondata SPECIES_PACHIRISU, "Pachirisu"
     basefriendship 100
     growthrate GROWTH_MEDIUM_FAST
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FAIRY
-    abilities ABILITY_RUN_AWAY, ABILITY_PICKUP
+    abilities ABILITY_VOLT_ABSORB, ABILITY_PICKUP
     runchance 0
     colorflip BODY_COLOR_WHITE, 0
     mondexentry SPECIES_PACHIRISU, "It’s one of the kinds of Pokémon \nwith electric cheek pouches.\nIt shoots charges from its tail."
@@ -9022,8 +9022,8 @@ mondata SPECIES_LOPUNNY, "Lopunny"
 
 
 mondata SPECIES_MISMAGIUS, "Mismagius"
-    basestats 60, 60, 60, 120, 120, 120
-    types TYPE_GHOST, TYPE_FAIRY
+    basestats 60, 60, 60, 105, 105, 105
+    types TYPE_GHOST, TYPE_PSYCHIC
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
@@ -15333,7 +15333,7 @@ mondata SPECIES_HONEDGE, "Honedge"
     basefriendship 50
     growthrate GROWTH_MEDIUM_FAST
     egggroups EGG_GROUP_MINERAL, EGG_GROUP_MINERAL
-    abilities ABILITY_NO_GUARD, ABILITY_NONE
+    abilities ABILITY_SHARPNESS, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
     mondexentry SPECIES_HONEDGE, "It is born when a departed spirit\ninhabits a sword. It attaches to people\nand drinks their life force."
@@ -15354,7 +15354,7 @@ mondata SPECIES_DOUBLADE, "Doublade"
     basefriendship 50
     growthrate GROWTH_MEDIUM_FAST
     egggroups EGG_GROUP_MINERAL, EGG_GROUP_MINERAL
-    abilities ABILITY_NO_GUARD, ABILITY_NONE
+    abilities ABILITY_SHARPNESS, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
     mondexentry SPECIES_DOUBLADE, "The complex attack patterns of its two\nswords are unstoppable, even for an\naccomplished opponent."
@@ -17307,7 +17307,7 @@ mondata SPECIES_SILVALLY, "Silvally"
     basefriendship 0
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_RKS_SYSTEM, ABILITY_NONE
+    abilities ABILITY_PROTEAN, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
     mondexentry SPECIES_SILVALLY, "It destroyed its own control mask. It\nhas become capable of changing type by\nequipping special memories."

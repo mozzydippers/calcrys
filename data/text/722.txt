@@ -184,8 +184,6 @@ Normal-type moves become\nFairy-type and powered up.
 Contact with it lowers the\nattacker’s Speed stat.
 Normal-type moves become\nFlying-type and power up.
 Parent and child\neach attacks.
-Powers up each\nPokémon’s Dark-type moves.
-Powers up each\nPokémon’s Fairy-type moves.
 The effects of “Aura”\nAbilities are reversed.
 Changes the weather\nto nullify Fire-type moves.
 Changes the weather\nto nullify Water-type moves.
@@ -195,10 +193,7 @@ Cowardly switches out if\nits HP becomes half or less.
 Switches out if\nits HP becomes half or less.
 Sharply ups Defense when\nhit by a Water-type move.
 Its attacks are critical hits\nwhen it is poisoned.
-Its shell breaks if its\nHP becomes half or less.
-Deals doubles damage to\na target’s replacement.
 Weakens incoming Fire-type\nmoves and prevents burns.
-Powers up\nSteel-type moves.
 Ups Sp. Atk if a hit\nmakes its HP half or less.
 Boosts the Pokémon’s\nSpeed stat in a hailstorm.
 Uses moves without\nmaking contact with the target.
@@ -221,34 +216,20 @@ Makes foes unable to\nuse priority attacks.
 Boosts Sp. Atk each\ntime a Pokémon faints.
 Contact with it lowers\nthe attacker’s Speed.
 Copies the Ability of\na defeated ally.
-Copies the Ability of\na defeated ally.
 Boosts its best stat\neach time it deals a KO.
 Its type matches\nthe memory disc it holds.
-Turns the ground\ninto Electric Terrain.
-Turns the ground\ninto Psychic Terrain.
-Turns the ground\ninto Misty Terrain.
-Turns the ground\ninto Grassy Terrain.
 Prevents other Pokémon\nfrom lowering its stats.
 Resists damage while\nits HP is full.
 Reduces damage from\nsuper-effective attacks.
 Powers up moves that\nare super-effective.
-Boosts Attack when\nentering a battle.
-Boosts Defense when\nentering a battle.
-It changes type to that\nof the move it’s about to use.
-Retrieves the first\nthrown Poké Ball if it failed.
 Scatters Speed-lowering\ncotton fluff when hit.
 This Pokémon’s\nmoves cannot be redirected.
 Bounces back\nstat-lowering effects.
-Catches prey via Surf or Dive\nand spits it out when hit.
 This Pokémon’s moves\ncannot be redirected.
 Boosts Speed drastically\nif hit by a Fire or Water move.
 Powers up own sound moves.\nResists other sound moves.
-Creates a sandstorm\nwhen hit by an attack.
 Halves the damage\ntaken from special moves.
 Ripens Berries and\ndoubles their effect.
-Blocks a physical hit, but\nthe ice head breaks.
-Just being next to\nthe Pokémon powers up moves.
-Changes type depending\non the terrain.
 On entering battle, clears\neffects of Reflect, etc.
 Powers up ally Pokémon’s\nSteel-type moves.
 Both Pokémon faint 3 turns\nafter taking a contact hit.
@@ -256,44 +237,19 @@ Swaps Abilities with\ncontact-making Pokémon.
 Boosts Attack, but allows\nonly one move to be used.
 Nullifies the effects of\nall other Abilities.
 Protects the Pokémon and\nits allies from poisoning.
-Changes between Full Belly\nand Hangry Mode each turn.
 Enables the Pokémon to\nmove first occasionally.
 The Pokémon’s contact\nmoves ignore protections.
 Removes all allies’ stat\nchanges on joining battle.
-Powers up\nElectric-type moves.
-Powers up\nDragon-type moves.
-When knocking out a\ntarget, raises Attack.
-When knocking out a\ntarget, raises Sp. Atk.
-Combines Unnerve\nand Chilling Neigh.
-Combines Unnerve\nand Grim Neigh.
-Contact with this Pokémon\nspreads this Ability.
-Turns the ground into\nGrassy Terrain if attacked.
-Ups Attack if hit\nby Fire moves. Prevents burns.
-Ups stats if a hit\nmakes its HP half or less.
-Prevents status problems.\nWeakens Ghost moves.
-Raises Defense if hit\nby a Fire-type move.
 Raises Attack if hit\nby a wind-based move.
-Ups Attack if intimidated.\nStops forced switching.
-Powers up\nRock-type moves.
 Becomes charged if hit\nby a wind-based move.
-Becomes Hero Form upon\nswitching out.
-Enters the mouth of\nan ally Dondozo.
-Becomes charged when\nhit by an attack.
-Boosts its best stat\nin harsh sunlight.
 Boosts its best stat\nin Electric Terrain.
-This Pokémon is immune\nto all status moves.
-Lowers the Sp. Atk\nstat of other Pokémon.
-Lowers the Defense\nstat of other Pokémon.
-Lowers the Attack\nstat of other Pokémon.
-Lowers the Sp. Def\nstat of other Pokémon.
-Makes the weather sunny.\nUps Attack in sun.
-Makes Electric Terrain.\nUps Sp. Atk on Electric Terrain.
-If foe raises a stat,\nboosts the stat itself.
 After eating a Berry,\nit’s eaten again next turn.
 Powers up\nslicing moves.
 Ups Attack and Sp. Atk\nif allies were defeated.
-Copies an ally’s stat\nchanges when sent out.
-Scatters poison spikes\nif hit by physical moves.
 Makes foes unable to\nuse priority attacks.
 Restores HP if hit by a\nGround-type move.
-Status moves go last\nbut ignore abilities.
+Upon entry, restores\nan allies HP.
+Ignores accuracy and evasion.\nCan hit Ghost-types.
+Lowers evasiveness of\nPokémon upon first entry.
+On entry, absorbs energy\nand transforms.
+All damaging moves will\nbe resisted at full HP.

@@ -416,6 +416,7 @@ arm9 PCStorage_GetBoxModifiedFlags 02074114 1
 arm9 sub_02074128 02074128 1
 
 arm9 ScrCmd_PrimoPasswordCheck1 0204560C 1
+arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 2
 
 #endif
 # EXPAND_PC_BOXES
