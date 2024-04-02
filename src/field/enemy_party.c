@@ -45,6 +45,49 @@ void randomize(int arr[], int n) {
 extern u32 gLastPokemonLevelForMoneyCalc;
 
 /**
+ *  @brief Generate the scaled level to use for a Pokemon based on player party
+ *
+ *  @param bp battle param
+ */
+u16 GetScaledLevel(struct BATTLE_PARAM *bp)
+{
+    u16 newLevel;
+    int i;
+    // Examples
+
+    // Get highest level in player party
+    u16 highestLevel = 0;
+    for (i = 0; i < bp->poke_party[0]->count; i++) {
+        u16 currLevel = GetMonData(&(bp->poke_party[0]->members[i]), MON_DATA_LEVEL, NULL);
+        if (currLevel > highestLevel) {
+            highestLevel = currLevel;
+        }
+    }
+    newLevel = highestLevel;
+
+    // Get lowest level in player party
+    u16 lowestLevel = 100;
+    for (i = 0; i < bp->poke_party[0]->count; i++) {
+        u16 currLevel = GetMonData(&(bp->poke_party[0]->members[i]), MON_DATA_LEVEL, NULL);
+        if (currLevel < lowestLevel) {
+            lowestLevel = currLevel;
+        }
+    }
+    newLevel = lowestLevel;
+
+    // Get avergae level of player party
+    u16 totalLevel = 0;
+    for (i = 0; i < bp->poke_party[0]->count; i++) {
+        u16 currLevel = GetMonData(&(bp->poke_party[0]->members[i]), MON_DATA_LEVEL, NULL);
+        totalLevel += currLevel;
+    }
+    newLevel = (int)(totalLevel/bp->poke_party[0]->count);
+
+    return newLevel;
+
+}
+
+/**
  *  @brief create the trainer Party from the trainer data file and trainer party file
  *
  *  @param bp battle param
