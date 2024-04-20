@@ -238,6 +238,85 @@ const u16 ParentalBondSingleStrikeMovesList[] = {
     MOVE_PRESENT,
 };
 
+const u16 ZMoveList[] = {
+    MOVE_BREAKNECK_BLITZ_PHYSICAL,
+    MOVE_BREAKNECK_BLITZ_SPECIAL,
+    MOVE_ALL_OUT_PUMMELING_PHYSICAL,
+    MOVE_ALL_OUT_PUMMELING_SPECIAL,
+    MOVE_SUPERSONIC_SKYSTRIKE_PHYSICAL,
+    MOVE_SUPERSONIC_SKYSTRIKE_SPECIAL,
+    MOVE_ACID_DOWNPOUR_PHYSICAL,
+    MOVE_ACID_DOWNPOUR_SPECIAL,
+    MOVE_TECTONIC_RAGE_PHYSICAL,
+    MOVE_TECTONIC_RAGE_SPECIAL,
+    MOVE_CONTINENTAL_CRUSH_PHYSICAL,
+    MOVE_CONTINENTAL_CRUSH_SPECIAL,
+    MOVE_SAVAGE_SPIN_OUT_PHYSICAL,
+    MOVE_SAVAGE_SPIN_OUT_SPECIAL,
+    MOVE_NEVER_ENDING_NIGHTMARE_PHYSICAL,
+    MOVE_NEVER_ENDING_NIGHTMARE_SPECIAL,
+    MOVE_CORKSCREW_CRASH_PHYSICAL,
+    MOVE_CORKSCREW_CRASH_SPECIAL,
+    MOVE_INFERNO_OVERDRIVE_PHYSICAL,
+    MOVE_INFERNO_OVERDRIVE_SPECIAL,
+    MOVE_HYDRO_VORTEX_PHYSICAL,
+    MOVE_HYDRO_VORTEX_SPECIAL,
+    MOVE_BLOOM_DOOM_PHYSICAL,
+    MOVE_BLOOM_DOOM_SPECIAL,
+    MOVE_GIGAVOLT_HAVOC_PHYSICAL,
+    MOVE_GIGAVOLT_HAVOC_SPECIAL,
+    MOVE_SHATTERED_PSYCHE_PHYSICAL,
+    MOVE_SHATTERED_PSYCHE_SPECIAL,
+    MOVE_SUBZERO_SLAMMER_PHYSICAL,
+    MOVE_SUBZERO_SLAMMER_SPECIAL,
+    MOVE_DEVASTATING_DRAKE_PHYSICAL,
+    MOVE_DEVASTATING_DRAKE_SPECIAL,
+    MOVE_BLACK_HOLE_ECLIPSE_PHYSICAL,
+    MOVE_BLACK_HOLE_ECLIPSE_SPECIAL,
+    MOVE_TWINKLE_TACKLE_PHYSICAL,
+    MOVE_TWINKLE_TACKLE_SPECIAL,
+    MOVE_CATASTROPIKA,
+    MOVE_10_000_000_VOLT_THUNDERBOLT,
+    MOVE_STOKED_SPARKSURFER,
+    MOVE_EXTREME_EVOBOOST,
+    MOVE_PULVERIZING_PANCAKE,
+    MOVE_GENESIS_SUPERNOVA,
+    MOVE_SINISTER_ARROW_RAID,
+    MOVE_MALICIOUS_MOONSAULT,
+    MOVE_OCEANIC_OPERETTA,
+    MOVE_SPLINTERED_STORMSHARDS,
+    MOVE_LETS_SNUGGLE_FOREVER,
+    MOVE_CLANGOROUS_SOULBLAZE,
+    MOVE_GUARDIAN_OF_ALOLA,
+    MOVE_SEARING_SUNRAZE_SMASH,
+    MOVE_MENACING_MOONRAZE_MAELSTROM,
+    MOVE_LIGHT_THAT_BURNS_THE_SKY,
+    MOVE_SOUL_STEALING_7_STAR_STRIKE,
+};
+
+const u16 MaxMoveList[] = {
+    MOVE_MAX_GUARD,
+    MOVE_DYNAMAX_CANNON,
+    MOVE_MAX_FLARE,
+    MOVE_MAX_FLUTTERBY,
+    MOVE_MAX_LIGHTNING,
+    MOVE_MAX_STRIKE,
+    MOVE_MAX_KNUCKLE,
+    MOVE_MAX_PHANTASM,
+    MOVE_MAX_HAILSTORM,
+    MOVE_MAX_OOZE,
+    MOVE_MAX_GEYSER,
+    MOVE_MAX_AIRSTREAM,
+    MOVE_MAX_STARFALL,
+    MOVE_MAX_WYRMWIND,
+    MOVE_MAX_MINDSTORM,
+    MOVE_MAX_ROCKFALL,
+    MOVE_MAX_QUAKE,
+    MOVE_MAX_DARKNESS,
+    MOVE_MAX_OVERGROWTH,
+    MOVE_MAX_STEELSPIKE,
+};
+
 // set sp->waza_status_flag |= MOVE_STATUS_FLAG_MISS if a miss
 BOOL CalcAccuracy(void *bw, struct BattleStruct *sp, int attacker, int defender, int move_no)
 {
@@ -481,7 +560,7 @@ const u8 DecreaseSpeedHoldEffects[] =
 };
 
 // return 0 if client1 moves first, 1 if client2 moves first, 2 if random roll between the two.
-u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int flag)
+u8 LONG_CALL CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int flag)
 {
     u8 ret = 0;
     u32 speed1, speed2;
@@ -512,6 +591,30 @@ u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int fl
     if ((sp->battlemon[client1].hp) && (sp->battlemon[client2].hp == 0))
     {
         return 0;
+    }
+
+    // Potential After You or Quash present
+    if (sp->oneTurnFlag[client1].force_execution_order_flag != sp->oneTurnFlag[client2].force_execution_order_flag) {
+        switch (sp->oneTurnFlag[client1].force_execution_order_flag) {
+            case EXECUTION_ORDER_AFTER_YOU:
+                return 0;
+                break;
+            case EXECUTION_ORDER_QUASH:
+                return 1;
+                break;
+            default:
+                break;
+        }
+        switch (sp->oneTurnFlag[client2].force_execution_order_flag) {
+            case EXECUTION_ORDER_AFTER_YOU:
+                return 1;
+                break;
+            case EXECUTION_ORDER_QUASH:
+                return 0;
+                break;
+            default:
+                break;
+        }
     }
 
     ability1 = GetBattlerAbility(sp, client1);
@@ -579,6 +682,16 @@ u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int fl
             speed1 /= 2;
             break;
         }
+    }
+
+    if ((ability1 == ABILITY_SURGE_SURFER) && (sp->terrainOverlay.type == ELECTRIC_TERRAIN && sp->terrainOverlay.numberOfTurnsLeft > 0))
+    {
+        speed1 *= 2;
+    }
+
+    if ((ability2 == ABILITY_SURGE_SURFER) && (sp->terrainOverlay.type == ELECTRIC_TERRAIN && sp->terrainOverlay.numberOfTurnsLeft > 0))
+    {
+        speed2 *= 2;
     }
 
     if (hold_effect1 == HOLD_EFFECT_CHOICE_SPEED)
@@ -823,6 +936,17 @@ u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int fl
         }
     }
 
+    if (sp->field_condition & FIELD_STATUS_TRICK_ROOM) {
+        speed1 = (10000 - speed1) % 8192;
+        speed2 = (10000 - speed2) % 8192;
+    }
+
+    if (flag & CALCSPEED_FLAG_NO_PRIORITY)
+    {
+        priority1 = 0;
+        priority2 = 0;
+    }
+
     if (priority1 == priority2)
     {
         if ((quick_claw1) && (quick_claw2)) // both mons quick claws activates/items that put them first
@@ -882,17 +1006,6 @@ u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int fl
         {
             ret = 0;
         }
-        else if (sp->field_condition & FIELD_STATUS_TRICK_ROOM)
-        {
-            if (speed1 > speed2)
-            {
-                ret = 1;
-            }
-            if ((speed1 == speed2) && (BattleRand(bw) & 1))
-            {
-                ret = 2;
-            }
-        }
         else
         {
             if (speed1 < speed2)
@@ -913,14 +1026,106 @@ u8 CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int client2, int fl
     return ret;
 }
 
+/**
+ *  @brief Sorts clients' execution order factoring in who has already performed their action
+ *  @param bw battle work structure; void * because we haven't defined the battle work structure. Apparently we have but we don't use it here so
+ *  @param sp global battle structure
+ */
+void DynamicSortClientExecutionOrder(void *bw, struct BattleStruct *sp) {
+    int maxBattlers;
+    int i, j;
+    int temp1, temp2;
+    int currentAttackerId = sp->agi_cnt;
+
+    maxBattlers = BattleWorkClientSetMaxGet(bw);
+
+    // for (i = 0; i < maxBattlers; i++) {
+    //     if (sp->attack_client == sp->client_agi_work[i]) {
+    //         currentAttackerId = i;
+    //     }
+    // }
+
+    // u8 buf[64];
+    // sprintf(buf, "Current attacker: %d\n", sp->attack_client);
+    // debugsyscall(buf);
+    // sprintf(buf, "\tBefore turn_order: ");
+    // debugsyscall(buf);
+
+    // for (i = 0; i < maxBattlers; i++) {
+    //     sprintf(buf, "%d ", sp->client_agi_work[i]);
+    //     debugsyscall(buf);
+    // }
+
+    // sprintf(buf, "\n\n");
+    // debugsyscall(buf);
+
+    for (i = currentAttackerId + 1; i < maxBattlers - 1; i++) {
+        // sprintf(buf, "i: %d\n", i);
+        // debugsyscall(buf);
+        for (j = i + 1; j < maxBattlers; j++) {
+            // sprintf(buf, "j: %d\n", j);
+            // debugsyscall(buf);
+            temp1 = sp->client_agi_work[i];
+            temp2 = sp->client_agi_work[j];
+
+            u32 command1 = sp->client_act_work[temp1][3];
+            u32 command2 = sp->client_act_work[temp2][3];
+
+            // sprintf(buf, "temp1: %d\ntemp2: %d\n", temp1, temp2);
+            // debugsyscall(buf);
+
+            u8 flag;
+
+            if (command1 == command2) {
+                if (command1 == SELECT_FIGHT_COMMAND) {
+                    flag = 0;
+                } else {
+                    flag = 1;
+                }
+                // sprintf(buf, "Comparing client %d and %d\n", temp1, temp2);
+                // debugsyscall(buf);
+                if (CalcSpeed(bw, sp, temp1, temp2, flag)) {
+                    // sprintf(buf, "Swapping %d and %d\n", temp1, temp2);
+                    // debugsyscall(buf);
+                    sp->client_agi_work[i] = temp2;
+                    sp->client_agi_work[j] = temp1;
+                }
+            }
+        }
+    }
+
+    // also sort turn_order, i.e. weather application + turn end things
+    for (i = 0; i < maxBattlers - 1; i++) {
+        for (j = i + 1; j < maxBattlers; j++) {
+            temp1 = sp->turn_order[i];
+            temp2 = sp->turn_order[j];
+
+            if (CalcSpeed(bw, sp, temp1, temp2, CALCSPEED_FLAG_NO_PRIORITY)) {
+                sp->turn_order[i] = temp2;
+                sp->turn_order[j] = temp1;
+            }
+        }
+    }
+
+    // sprintf(buf, "\tAfter turn_order: ");
+    // debugsyscall(buf);
+
+    // for (i = 0; i < maxBattlers; i++) {
+    //     sprintf(buf, "%d ", sp->client_agi_work[i]);
+    //     debugsyscall(buf);
+    // }
+
+    // sprintf(buf, "\n\n");
+    // debugsyscall(buf);
+}
 
 const u8 CriticalRateTable[] =
 {
-    16,
-    8,
-    4,
-    3,
-    2,
+     24,
+     8,
+     2,
+     1,
+     1
 };
 
 // calculates the critical hit multiplier
@@ -979,7 +1184,7 @@ int CalcCritical(void *bw, struct BattleStruct *sp, int attacker, int defender, 
         sp->battlemon[attacker].critical_hits++;
         if (sp->battlemon[attacker].critical_hits == 3)
         {
-            SET_MON_CRITICAL_HIT_EVOLUTION_BIT(PokeParty_GetMemberPointer(BattleWorkPokePartyGet(bw, attacker), sp->sel_mons_no[attacker]));
+            SET_MON_CRITICAL_HIT_EVOLUTION_BIT(Party_GetMonByIndex(BattleWorkPokePartyGet(bw, attacker), sp->sel_mons_no[attacker]));
         }
     }
 
@@ -1168,7 +1373,7 @@ u16 gf_p_rand(const u16 denominator)
  *  @param flag move status flags to mess around with
  *  @return modified damage
  */
-int ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int move_no, int move_type, int attack_client, int defence_client, int damage, u32 *flag)
+int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int move_no, int move_type, int attack_client, int defence_client, int damage, u32 *flag)
 {
     int i;
     int modifier;
@@ -1511,7 +1716,7 @@ BOOL BattleTryRun(void *bw, struct BattleStruct *ctx, int battlerId) {
  *  @param attacker client to check
  *  @return TRUE if the move has positive priority after adjustments
  */
-BOOL adjustedMoveHasPositivePriority(struct BattleStruct *sp, int attacker) {
+BOOL LONG_CALL adjustedMoveHasPositivePriority(struct BattleStruct *sp, int attacker) {
     BOOL isTriageMove = FALSE;
 
     for (u16 i = 0; i < NELEMS(TriageMovesList); i++) {
@@ -1559,7 +1764,7 @@ BOOL adjustedMoveHasPositivePriority(struct BattleStruct *sp, int attacker) {
  *  @param defender defender client
  *  @return TRUE if the move should NOT be exempted from priority blocking effects
  */
-BOOL CurrentMoveShouldNotBeExemptedFromPriorityBlocking(struct BattleStruct *sp, int attacker, int defender) {
+BOOL LONG_CALL CurrentMoveShouldNotBeExemptedFromPriorityBlocking(struct BattleStruct *sp, int attacker, int defender) {
     // Courtesy of The Pokeemerald Expansion (https://github.com/rh-hideout/pokeemerald-expansion/blob/selfhost-test/test/battle/terrain/psychic.c)
 
     struct BattleMove currentMove = sp->moveTbl[sp->current_move_index];
@@ -1606,7 +1811,7 @@ BOOL CurrentMoveShouldNotBeExemptedFromPriorityBlocking(struct BattleStruct *sp,
  *  @param heldItem held item
  *  @return TRUE if seed should activate
  */
-BOOL TerrainSeedShouldActivate(struct BattleStruct *sp, u16 heldItem) {
+BOOL LONG_CALL TerrainSeedShouldActivate(struct BattleStruct *sp, u16 heldItem) {
     switch (heldItem) {
         case ITEM_ELECTRIC_SEED:
             if (sp->terrainOverlay.type == ELECTRIC_TERRAIN && sp->terrainOverlay.numberOfTurnsLeft > 0) {
@@ -1639,7 +1844,7 @@ BOOL TerrainSeedShouldActivate(struct BattleStruct *sp, u16 heldItem) {
  * @param moveIndex move index
  * @return TRUE if it is a multi hit move
 */
-BOOL IsMultiHitMove(u32 moveIndex) {
+BOOL LONG_CALL IsMultiHitMove(u32 moveIndex) {
     for (u16 i = 0; i < NELEMS(MultiHitMovesList); i++) {
         if (moveIndex == MultiHitMovesList[i]) {
             return TRUE;
@@ -1653,7 +1858,7 @@ BOOL IsMultiHitMove(u32 moveIndex) {
  * @param moveIndex move index
  * @return TRUE if it is a banned move
 */
-BOOL IsBannedParentalBondMove(u32 moveIndex) {
+BOOL LONG_CALL IsBannedParentalBondMove(u32 moveIndex) {
     u8 output = FALSE;
     for (u16 i = 0; i < NELEMS(ParentalBondSingleStrikeMovesList); i++) {
         if (moveIndex == ParentalBondSingleStrikeMovesList[i]) {
@@ -1671,7 +1876,7 @@ BOOL IsBannedParentalBondMove(u32 moveIndex) {
  * @param moveIndex move index
  * @return TRUE if it is a banned move
  */
-BOOL IsBannedSpreadMoveForParentalBond(void *bw, struct BattleStruct *sp, u32 moveIndex) {
+BOOL LONG_CALL IsBannedSpreadMoveForParentalBond(void *bw, struct BattleStruct *sp, u32 moveIndex) {
     //no need to check moves if it is a single battle
     if ((BattleTypeGet(bw) & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI)) == 0) {
         return FALSE;
@@ -1709,7 +1914,7 @@ BOOL IsBannedSpreadMoveForParentalBond(void *bw, struct BattleStruct *sp, u32 mo
  * @param checkTempMove if move will be changed via Metronome, Assist, etc
  * @return TRUE if it is a valid move
  */
-BOOL IsValidParentalBondMove(void *bw, struct BattleStruct *sp, BOOL checkTempMove) {
+BOOL LONG_CALL IsValidParentalBondMove(void *bw, struct BattleStruct *sp, BOOL checkTempMove) {
     u32 moveIndex = checkTempMove ? (u32)sp->waza_work : sp->current_move_index;
 
     return (GetBattlerAbility(sp, sp->attack_client) == ABILITY_PARENTAL_BOND &&
@@ -1737,7 +1942,7 @@ BOOL IsValidParentalBondMove(void *bw, struct BattleStruct *sp, BOOL checkTempMo
  * @param equivalentAttack attack number used for calculation
  * @param equivalentDefense defense number used for calculation
  */
-void getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attackerAttack, u16 defenderDefense, u16 attackerSpecialAttack, u16 defenderSpecialDefense, s8 attackerAttackstate, s8 defenderDefenseState, s8 attackerSpecialAttackState, s8 defenderSpecialDefenseState, u8 *movesplit, u8 attacker, u8 defender UNUSED, u8 critical, int moveno, u16 *equivalentAttack, u16 *equivalentDefense) {
+void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attackerAttack, u16 defenderDefense, u16 attackerSpecialAttack, u16 defenderSpecialDefense, s8 attackerAttackstate, s8 defenderDefenseState, s8 attackerSpecialAttackState, s8 defenderSpecialDefenseState, u8 *movesplit, u8 attacker, u8 defender UNUSED, u8 critical, int moveno, u16 *equivalentAttack, u16 *equivalentDefense) {
     u16 rawPhysicalAttack;
     u16 rawSpecialAttack;
     u16 rawPhysicalDefense;
@@ -1815,6 +2020,65 @@ void getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attackerAttack, 
             break;
 
         default:
+            break;
+    }
+}
+
+
+/**
+ * @brief Check if the current move is a Z-Move
+ * @param moveIndex move index
+ * @return `TRUE` if it is a Z-Move
+*/
+BOOL LONG_CALL MoveIsZMove(u32 moveIndex) {
+    u8 output = FALSE;
+    for (u16 i = 0; i < NELEMS(ZMoveList); i++) {
+        if (moveIndex == ZMoveList[i]) {
+            output = TRUE;
+            break;
+        }
+    }
+    return output;
+}
+
+/**
+ * @brief Check if the current move is a Max Move
+ * @param moveIndex move index
+ * @return `TRUE` if it is a Max Move
+*/
+BOOL LONG_CALL MoveIsMaxMove(u32 moveIndex) {
+    u8 output = FALSE;
+    for (u16 i = 0; i < NELEMS(MaxMoveList); i++) {
+        if (moveIndex == MaxMoveList[i]) {
+            output = TRUE;
+            break;
+        }
+    }
+    return output;
+}
+
+/**
+ * Check if move is affected by Normalize varients
+ * @param moveno move number
+ * @return `TRUE`if move is affected by Normalize varients, `FALSE` otherwise
+*/
+BOOL LONG_CALL MoveIsAffectedByNormalizeVariants(int moveno) {
+    if (MoveIsZMove(moveno) || MoveIsMaxMove(moveno)) {
+        return FALSE;
+    }
+
+    switch (moveno) {
+        case MOVE_HIDDEN_POWER:
+        case MOVE_WEATHER_BALL:
+        case MOVE_NATURAL_GIFT:
+        case MOVE_JUDGMENT:
+        case MOVE_TECHNO_BLAST:
+        case MOVE_MULTI_ATTACK:
+        case MOVE_TERRAIN_PULSE:
+            return FALSE;
+            break;
+        default:
+            return TRUE;
             break;
     }
 }
