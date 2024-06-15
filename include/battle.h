@@ -173,6 +173,7 @@
 
 #define BATTLE_TYPE_NO_EXPERIENCE (BATTLE_TYPE_WIRELESS | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_POKE_PARK)
 
+
 /**
  *  @brief flags for effect_of_moves
  *  defines for BattleStruct's effect_of_moves field
@@ -271,7 +272,7 @@
 #define STATUS2_SUBSTITUTE (0x01000000)
 #define STATUS2_MEAN_LOOK (0x04000000)
 #define STATUS2_NIGHTMARE (0x08000000)
-#define STATUS2_CURSE (0x1000000)
+#define STATUS2_CURSE (0x10000000)
 #define STATUS2_FORESIGHT (0x20000000)
 #define STATUS2_DEFENCE_CURL (0x40000000)
 #define STATUS2_TORMENT (0x80000000)
@@ -318,13 +319,13 @@
  */
 #define WEATHER_RAIN                        (0x00000001)                                                                    // 0000 0000 0000 0000 0001
 #define WEATHER_RAIN_PERMANENT              (0x00000002)                                                                    // 0000 0000 0000 0000 0010
-#define WEATHER_RAIN_ANY                    (WEATHER_RAIN | WEATHER_RAIN_PERMANENT | WEATHER_HEAVY_RAIN)          // 0010 0000 0000 0000 0000 0000 0011
+#define WEATHER_RAIN_ANY                    (WEATHER_RAIN | WEATHER_RAIN_PERMANENT | WEATHER_HEAVY_RAIN)                    // 0010 0000 0000 0000 0000 0000 0011
 #define WEATHER_SANDSTORM                   (0x00000004)                                                                    // 0000 0000 0000 0000 0100
 #define WEATHER_SANDSTORM_PERMANENT         (0x00000008)                                                                    // 0000 0000 0000 0000 1000
 #define WEATHER_SANDSTORM_ANY               (WEATHER_SANDSTORM | WEATHER_SANDSTORM_PERMANENT)                               // 0000 0000 0000 0000 1100
 #define WEATHER_SUNNY                       (0x00000010)                                                                    // 0000 0000 0000 0001 0000
 #define WEATHER_SUNNY_PERMANENT             (0x00000020)                                                                    // 0000 0000 0000 0010 0000
-#define WEATHER_SUNNY_ANY         (WEATHER_SUNNY | WEATHER_SUNNY_PERMANENT | WEATHER_EXTREMELY_HARSH_SUNLIGHT)    // 0001 0000 0000 0000 0000 0011 0000
+#define WEATHER_SUNNY_ANY                   (WEATHER_SUNNY | WEATHER_SUNNY_PERMANENT | WEATHER_EXTREMELY_HARSH_SUNLIGHT)    // 0001 0000 0000 0000 0000 0011 0000
 #define WEATHER_HAIL                        (0x00000040)                                                                    // 0000 0000 0000 0100 0000
 #define WEATHER_HAIL_PERMANENT              (0x00000080)                                                                    // 0000 0000 0000 1000 0000
 #define WEATHER_HAIL_ANY                    (WEATHER_HAIL | WEATHER_HAIL_PERMANENT)                                         // 0000 0000 0000 1100 0000
@@ -777,8 +778,7 @@ struct __attribute__((packed)) BattlePokemon
                u32 parental_bond_flag : 2;
                u32 parental_bond_is_active : 1;
                u32 ability_activated_flag : 1;
-               u32 protean_flag : 1;
-               u32 : 5; // need to add to ClearBattleMonFlags when added to here as well
+               u32 : 6; // need to add to ClearBattleMonFlags when added to here as well
     /* 0x2c */ u8 pp[4];                     /**< move pp left */
     /* 0x30 */ u8 pp_count[4];               /**< move max pp */
     /* 0x34 */ u8 level;                     /**< current level */
@@ -1103,7 +1103,7 @@ struct PACKED BattleStruct
     /*0x217F*/ u8 beat_up_count;
 
     /*0x2180*/ u32 loop_flag;
-    /*0x2184*/ u32 waza_out_check_on_off;
+    /*0x2184*/ u32 waza_out_check_on_off; // multiHitCheckFlags
     /*0x2188*/ u32 loop_hit_check;
 
     /*0x218C*/ u32 condition2_off_req[CLIENT_MAX];
@@ -1411,7 +1411,6 @@ struct PACKED newBattleStruct
     CATS_ACT_PTR MegaButton;
     CATS_ACT_PTR WeatherOAM;
     SysTask *weatherUpdateTask;
-    u32 weather;
 
 #ifdef RESTORE_ITEMS_AT_BATTLE_END
     u16 itemsToRestore[6]; // items that each mon was holding at the beginning of the battle
@@ -2827,7 +2826,42 @@ void LONG_CALL UnlockBattlerOutOfCurrentMove(struct BattleSystem *bsys, struct B
  *
  *  @param sp global battle structure
  *  @param moveNo move index to check against a list of move effects that are charge moves
+ *  @return TRUE/FALSE
  */
 BOOL LONG_CALL CheckMoveIsChargeMove(struct BattleStruct *sp, int moveNo);
+
+// Possibly BattleController_AnyExpPayout
+BOOL LONG_CALL ov12_0224DD18(struct BattleStruct *ctx, ControllerCommand a1, ControllerCommand a2);
+
+// Possibly BattleController_CheckBattleOver
+BOOL LONG_CALL ov12_0224D7EC(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+// Possibly BattleController_ToggleSemiInvulnMons
+BOOL LONG_CALL ov12_0224E130(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+// Possibly BattleController_ClearFlags
+void LONG_CALL ov12_0224DC0C(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+void LONG_CALL SortExecutionOrderBySpeed(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+void LONG_CALL SortMonsBySpeed(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+BOOL LONG_CALL ov12_0224B398(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+BOOL LONG_CALL ov12_02250BBC(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+BOOL LONG_CALL BattleSystem_CheckMoveHit(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerIdAttacker, int battlerIdTarget, int move);
+
+BOOL LONG_CALL ov12_0224B498(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+BOOL LONG_CALL ov12_0224BC2C(struct BattleSystem *bsys, struct BattleStruct *ctx);
+
+/**
+ *  @brief checks if the given move should be weakened or not (only prints message)
+ *  @param bw battle work structure
+ *  @param sp global battle structure
+ *  @return TRUE/FALSE
+ */
+BOOL CheckStrongWindsWeaken(struct BattleSystem *bw, struct BattleStruct *sp);
 
 #endif // BATTLE_H
