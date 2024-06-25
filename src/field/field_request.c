@@ -27,6 +27,7 @@ void ClearOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req)
     req->DebugKeyPush = 0;
 
     req->OpenPCCheck  = 0; // new:  check if pc should be opened
+    req->OpenRelearnerCheck = 0; // new
 
     req->Site = 0xFF;
     req->PushSite = 0xFF;
@@ -40,9 +41,14 @@ void ClearOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req)
  */
 void SetOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, u16 trg)
 {
+    if (trg & PAD_BUTTON_L) 
+    {
+        req->OpenRelearnerCheck = TRUE;
+    }
+
     if (trg & PAD_BUTTON_R) 
     {
-        req->OpenPCCheck = TRUE;
+       req->OpenPCCheck = TRUE;
     }
 }
 
@@ -53,8 +59,21 @@ void SetOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, u16 trg)
  */
 void CheckOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, FieldSystem *fsys)
 {
-    // Don't allow the PC at all if flag 142 hasn't been set
-    if (req->OpenPCCheck && CheckScriptFlag(142)) 
+    // Don't allow the relearner at all if flag 2167 hasn't been set
+    if (req->OpenRelearnerCheck && CheckScriptFlag(2167)) 
+    {
+        if (CheckScriptFlag(2170)) 
+        {
+            EventSet_Script(fsys, 2074, NULL); // set up script 2074 if flag 2170 is set, disallowing use of the Move Relearner
+        } 
+        else 
+        {
+            EventSet_Script(fsys, 2073, NULL); // set up script 2073
+        }
+    }
+
+    // Don't allow the PC at all if flag 398 hasn't been set
+    if (req->OpenPCCheck && CheckScriptFlag(398)) 
     {
         if (CheckScriptFlag(397)) 
         {
@@ -66,5 +85,3 @@ void CheckOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, FieldSystem *fsys)
             EventSet_Script(fsys, 2075, NULL); // set up script 2075
         }
     }
-}
-
