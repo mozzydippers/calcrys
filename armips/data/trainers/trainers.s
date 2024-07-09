@@ -19860,10 +19860,10 @@ trainerdata 499, "Grunt"
         level 60
         pokemon SPECIES_HELIOLISK
         item ITEM_LIFE_ORB
-        move MOVE_OVERDRIVE
         move MOVE_HYPER_VOICE
-        move MOVE_GRASS_KNOT
+        move MOVE_ELECTROWEB
         move MOVE_WEATHER_BALL
+        move MOVE_GRASS_KNOT
         nature NATURE_TIMID
         ballseal 0
 

@@ -660,7 +660,6 @@ GetNaturalGiftType = 0x022558A4 | 1;
 BattleContext_CheckMoveImprisoned = 0x02252C74 | 1;
 BattleContext_CheckMoveUnuseableInGravity = 0x02252DC4 | 1;
 BattleContext_CheckMoveHealBlocked = 0x02252DF8 | 1;
-ov12_0224BC2C = 0x0224BC2C | 1;
 
 SaveArray_PCStorage_Get = 0x020270D8 | 1;
 
