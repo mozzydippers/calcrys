@@ -382,11 +382,11 @@ u16 GetMonEvolutionInternal(struct Party *party, struct PartyPokemon *pokemon, u
                 {
                     for (int k = 0; k < 6; k++)
                     {
-                        if (!CheckIfMonsAreEqual(pokemon, PokeParty_GetMemberPointer(party, k)) // make sure that pancham doesn't satisfy its own requirement
-                         && (GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_1, NULL) == TYPE_DARK || GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_2, NULL) == TYPE_DARK)) // if either type is dark then set evolution
+                        if (!CheckIfMonsAreEqual(pokemon, Party_GetMonByIndex(party, k)) // make sure that pancham doesn't satisfy its own requirement
+                         && (GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_1, NULL) == TYPE_DARK || GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_2, NULL) == TYPE_DARK)) // if either type is dark then set evolution
                         {
                             GET_TARGET_AND_SET_FORM;
-                            *method_ret = EVO_LEVEL_DARK_TYPE_MON_IN_PARTY;
+                            *method_ret = EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY;
                             break;
                         }
                     }
@@ -397,11 +397,11 @@ u16 GetMonEvolutionInternal(struct Party *party, struct PartyPokemon *pokemon, u
                 {
                     for (int k = 0; k < 6; k++)
                     {
-                        if (!CheckIfMonsAreEqual(pokemon, PokeParty_GetMemberPointer(party, k)) // make sure that pancham doesn't satisfy its own requirement
-                         && (GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_1, NULL) == TYPE_DARK || GetMonData(PokeParty_GetMemberPointer(party, k), MON_DATA_TYPE_2, NULL) == TYPE_DARK)) // if either type is dark then set evolution
+                        if (!CheckIfMonsAreEqual(pokemon, Party_GetMonByIndex(party, k)) // make sure that pancham doesn't satisfy its own requirement
+                         && (GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_1, NULL) == TYPE_STEEL || GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_2, NULL) == TYPE_STEEL)) // if either type is dark then set evolution
                         {
                             GET_TARGET_AND_SET_FORM;
-                            *method_ret = EVO_LEVEL_DARK_TYPE_MON_IN_PARTY;
+                            *method_ret = EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY;
                             break;
                         }
                     }

@@ -213,7 +213,7 @@ ITEM_SLOT *Bag_GetItemSlotForRemove(BAG_DATA *bag, u16 itemId, u16 quantity, int
 
 BOOL Bag_TakeItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id) {
     ITEM_SLOT *slot = Bag_GetItemSlotForRemove(bag, itemId, quantity, heap_id);
-    if (slot == NULL || (itemId == ITEM_ESCAPE_ROPE) || (itemId == ITEM_SACRED_ASH) 
+    if ((slot == NULL) || (itemId == ITEM_ESCAPE_ROPE) || (itemId == ITEM_SACRED_ASH) 
             || (itemId == ITEM_SOOTHE_BELL) || (itemId == ITEM_LINKING_CORD) 
             || (itemId == ITEM_KINGS_ROCK) || (itemId == ITEM_METAL_COAT) || (itemId == ITEM_DRAGON_SCALE)
             || (itemId == ITEM_UP_GRADE) || (itemId == ITEM_DUBIOUS_DISC)

@@ -381,10 +381,10 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     if ((AttackingMon.ability == ABILITY_HUGE_POWER) || (AttackingMon.ability == ABILITY_PURE_POWER))
         attack = attack * 2;
 
-    // handle slow start
+    /*// handle slow start
     if ((AttackingMon.ability == ABILITY_SLOW_START)
      && ((BattleWorkMonDataGet(bw, sp, 3, 0) - BattlePokemonParamGet(sp, attacker, BATTLE_MON_DATA_SLOW_START_COUNTER, NULL)) < 5))
-        attack /= 2;
+        attack /= 2;*/
 
     // handle defeatist
     if ((AttackingMon.ability == ABILITY_DEFEATIST) && (AttackingMon.hp <= AttackingMon.maxhp / 2))
@@ -393,7 +393,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         sp_attack /= 2;
     }
 
-    //handle analytic
+    // handle analytic
     if (AttackingMon.ability == ABILITY_ANALYTIC)
     {
         for (i = 0; i < 4; i++)
@@ -416,13 +416,11 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 130 / 100;
     }
 
-//    // handle punk rock TODO uncomment
-//    if (AttackingMon.ability == ABILITY_PUNK_ROCK && IsMoveSoundBased(sp->current_move_index))
-//    {
-//        movepower = movepower * 130 / 100;
-//        break;
-//    }
-
+    // handle punk rock TODO uncomment
+    if (AttackingMon.ability == ABILITY_PUNK_ROCK && IsMoveSoundBased(sp->current_move_index))
+    {
+        movepower = movepower * 130 / 100;
+    }
 
     // type boosting held items
     {
@@ -483,7 +481,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     }
 
     // handle assault vest
-    if (DefendingMon.item_held_effect == HOLD_EFFECT_SP_DEFENSE_UP_NO_STATUS_MOVES)
+    if (DefendingMon.item_held_effect == HOLD_EFFECT_SPDEF_BOOST_NO_STATUS_MOVES)
         sp_defense = sp_defense * (100 + AttackingMon.item_power) / 100;
 
     // handle thick club
@@ -701,7 +699,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 150 / 100;
     }
 
-    // if dark aura is present but not aura break
+/*    // if dark aura is present but not aura break
     if ((movetype == TYPE_DARK) && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_DARK_AURA) != 0)
       && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AURA_BREAK) == 0))
         movepower = movepower * 133 / 100;
@@ -721,7 +719,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     else if ((movetype == TYPE_FAIRY) && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_FAIRY_AURA) != 0)
       && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AURA_BREAK) != 0))
         movepower = movepower * 100 / 133;
-#endif
+#endif */
 
     // handle steely spirit for the ally
     if (movetype == TYPE_STEEL && GetBattlerAbility(sp, BATTLER_ALLY(attacker)) == ABILITY_STEELY_SPIRIT)
@@ -778,10 +776,10 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
             movepower = movepower * 120 / 100;
         }
 
-        // handle liquid voice - 20% boost if a normal type move is used (and it changes types to normal too)
+        // handle liquid voice - 20% boost if a sound move is used
         for (i = 0; i < NELEMS(SoundProofMovesList); i++)
         {
-            if ((AttackingMon.ability == ABILITY_LIQUID_VOICE) && (SoundProofMovesList[i] == moveno)) 
+            if ((AttackingMon.ability == ABILITY_LIQUID_VOICE) && IsMoveSoundBased(sp->current_move_index))
             {
                 movepower = movepower * 120 / 100;
                 break;
@@ -871,11 +869,11 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 125 / 100;
     }
 
-    // if ((AttackingMon.ability == ABILITY_RIVALRY) &&
-    //    (AttackingMon.sex != DefendingMon.sex) && (AttackingMon.sex != POKEMON_GENDER_UNKNOWN) && (DefendingMon.sex != POKEMON_GENDER_UNKNOWN))
-    // {
-    //     movepower = movepower * 75 / 100;
-    // }
+    /*if ((AttackingMon.ability == ABILITY_RIVALRY) &&
+       (AttackingMon.sex != DefendingMon.sex) && (AttackingMon.sex != POKEMON_GENDER_UNKNOWN) && (DefendingMon.sex != POKEMON_GENDER_UNKNOWN))
+    {
+        movepower = movepower * 75 / 100;
+    } */
 
     // handle iron fist
     if ((AttackingMon.ability == ABILITY_IRON_FIST) && IsElementInArray(IronFistMovesTable, (u16 *)&moveno, NELEMS(IronFistMovesTable), sizeof(IronFistMovesTable[0])))
@@ -912,6 +910,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
       && (DefendingMon.ability != ABILITY_VESSEL_OF_RUIN))
         sp_attack = sp_attack * 75 / 100;
 
+    /*
     if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_SWORD_OF_RUIN)) 
       && (DefendingMon.ability != ABILITY_SWORD_OF_RUIN))
         defense = defense * 75 / 100;
@@ -922,7 +921,8 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     
     if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_BEADS_OF_RUIN)) 
       && (DefendingMon.ability != ABILITY_BEADS_OF_RUIN))
-        sp_defense = sp_defense * 75 / 100;
+        sp_defense = sp_defense * 75 / 100; 
+    */
 
     // Handle field effects interacting with their moves
     if (sp->terrainOverlay.numberOfTurnsLeft > 0) {
@@ -982,7 +982,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     u16 equivalentDefense;
     getEquivalentAttackAndDefense(sp, attack, defense, sp_attack, sp_defense, atkstate, defstate, spatkstate, spdefstate, &movesplit, attacker, defender, critical, moveno, &equivalentAttack, &equivalentDefense);
 
-    //// halve the defense if using selfdestruct/explosion
+    // halve the defense if using selfdestruct/explosion
     if (sp->moveTbl[moveno].effect == MOVE_EFFECT_HALVE_DEFENSE)
     {
         defense = defense / 2;
@@ -1142,14 +1142,13 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     if (DefendingMon.ability == ABILITY_PUNK_ROCK && IsMoveSoundBased(moveno))
     {
         damage /= 2;
-        break;
     }
 
-    // handle purifying salt
+    /*// handle purifying salt
     if ((DefendingMon.ability == ABILITY_PURIFYING_SALT) && (movetype == TYPE_GHOST))
     {
         damage /= 2;
-    }
+    } */
       
     // Handle field effects
     if (sp->terrainOverlay.numberOfTurnsLeft > 0) {
@@ -1159,35 +1158,20 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
             if (IsClientGrounded(sp, attacker) && movetype == TYPE_GRASS) {
                 damage = damage * 130 / 100;
             }
-            if (moveno == MOVE_EARTHQUAKE || moveno == MOVE_MAGNITUDE || moveno == MOVE_BULLDOZE) {
-                damage /= 2;
-            }
             break;
         case ELECTRIC_TERRAIN:
             if (IsClientGrounded(sp, attacker) && movetype == TYPE_ELECTRIC) {
                 damage = damage * 130 / 100;
-            }
-            if (IsClientGrounded(sp, defender) && moveno == MOVE_RISING_VOLTAGE) {
-                movepower = movepower * 2;
-                break;
             }
             break;
         case MISTY_TERRAIN:
             if (IsClientGrounded(sp, defender) && movetype == TYPE_DRAGON) {
                 damage /= 2;
             }
-            if (IsClientGrounded(sp, attacker) && moveno == MOVE_MISTY_EXPLOSION) {
-                movepower = movepower * 15 / 10;
-                break;
-            }
             break;
         case PSYCHIC_TERRAIN:
             if (IsClientGrounded(sp, attacker) && movetype == TYPE_PSYCHIC) {
                 damage = damage * 130 / 100;
-            }
-            if (IsClientGrounded(sp, attacker) && moveno == MOVE_EXPANDING_FORCE) {
-                movepower = movepower * 15 / 10;
-                break;
             }
             break;
         default:

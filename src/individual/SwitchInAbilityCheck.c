@@ -52,16 +52,19 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         case WEATHER_SYS_RAIN:
                         case WEATHER_SYS_HEAVY_RAIN:
                         case WEATHER_SYS_THUNDER:
+                        case 15:
                             scriptnum = SUB_SEQ_OVERWORLD_RAIN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_SNOW:
                         case WEATHER_SYS_SNOWSTORM:
-                            // case WEATHER_SYS_BLIZZARD:
+                        // case WEATHER_SYS_BLIZZARD:
+                        case 17:
                             scriptnum = SUB_SEQ_OVERWORLD_HAIL;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_SANDSTORM:
+                        case 16:
                             scriptnum = SUB_SEQ_OVERWORLD_SANDSTORM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
@@ -71,12 +74,39 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_HIGH_SUN:
+                        case 14:
                             scriptnum = SUB_SEQ_OVERWORLD_SUN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_TRICK_ROOM:
+                        case 18:
                             scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case 19:
+                            sp->current_move_index = MOVE_GRAVITY;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_APPLY_GRAVITY;
+                            break;
+                        case 20:
+                            sp->current_move_index = MOVE_GRASSY_TERRAIN;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            break;
+                        case 21:
+                            sp->current_move_index = MOVE_MISTY_TERRAIN;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            break;
+                        case 22:
+                            sp->current_move_index = MOVE_ELECTRIC_TERRAIN;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            break;
+                        case 23:
+                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
@@ -138,7 +168,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Weather Ability
-                    {
+                    /* {
                         if (!(CanUndergoPrimalReversion(sp, client_no)) && (sp->battlemon[client_no].appear_check_flag == 0) && (sp->battlemon[client_no].hp)) {
                             switch (GetBattlerAbility(sp, client_no)) {
                                 case ABILITY_DRIZZLE:
@@ -189,14 +219,14 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         scriptnum = SUB_SEQ_DELTA_STREAM;
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
-                                    break;
-                            }
+                                    break; 
+                            } 
                         }
                         if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                             sp->client_work = client_no;
                             break;
                         }
-                    }
+                    } */
 
                     // Intimidate
                     {
@@ -448,26 +478,26 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Dark Aura
-                    {
-                        if ((sp->battlemon[client_no].dark_aura_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_DARK_AURA)) {
-                            sp->battlemon[client_no].dark_aura_flag = 1;
-                            sp->client_work = client_no;
-                            scriptnum = SUB_SEQ_HANDLE_DARK_AURA_MESSAGE;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            break;
-                        }
-                    }
+                    //{
+                    //    if ((sp->battlemon[client_no].dark_aura_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_DARK_AURA)) {
+                    //        sp->battlemon[client_no].dark_aura_flag = 1;
+                    //        sp->client_work = client_no;
+                    //        scriptnum = SUB_SEQ_HANDLE_DARK_AURA_MESSAGE;
+                    //        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                    //        break;
+                    //    }
+                    //}
 
                     // Fairy Aura
-                    {
-                        if ((sp->battlemon[client_no].fairy_aura_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_FAIRY_AURA)) {
-                            sp->battlemon[client_no].fairy_aura_flag = 1;
-                            sp->client_work = client_no;
-                            scriptnum = SUB_SEQ_HANDLE_FAIRY_AURA_MESSAGE;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            break;
-                        }
-                    }
+                    //{
+                    //    if ((sp->battlemon[client_no].fairy_aura_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_FAIRY_AURA)) {
+                    //        sp->battlemon[client_no].fairy_aura_flag = 1;
+                    //        sp->client_work = client_no;
+                    //        scriptnum = SUB_SEQ_HANDLE_FAIRY_AURA_MESSAGE;
+                    //        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                    //        break;
+                    //    }
+                    //}
 
                     // Aura Break
                     {
@@ -570,7 +600,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Surge Abilities
-                    {
+                    /*{
                         if (sp->battlemon[client_no].ability_activated_flag == 0 &&
                             (sp->battlemon[client_no].hp)) {
                             switch (GetBattlerAbility(sp, client_no)) {
@@ -590,11 +620,11 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                     sp->current_move_index = MOVE_PSYCHIC_TERRAIN;  // force move anim to play
                                     ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     break;
-
+                    
                                 default:
                                     break;
                             }
-
+                    
                             if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                                 sp->battlemon[client_no].ability_activated_flag = 1;
                                 sp->attack_client = client_no; // this should allow for the seeds to affect the terrain
@@ -602,7 +632,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                 break;
                             }
                         }
-                    }
+                    }*/
 
                     // Terrain Seeds
                     {
@@ -1424,47 +1454,46 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                 }
             }
                 break;
-            case SWITCH_IN_CHECK_SURGE_ABILITY: {
-                for (i = 0; i < client_set_max; i++) {
-                    client_no = sp->turnOrder[i];
-                    if (sp->battlemon[client_no].ability_activated_flag == 0 &&
-                        (sp->battlemon[client_no].hp)) {
-                        switch (GetBattlerAbility(sp, client_no)) {
-                            case ABILITY_GRASSY_SURGE:
-                                sp->current_move_index = MOVE_GRASSY_TERRAIN;  // force move anim to play
-                                ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                break;
-                            case ABILITY_MISTY_SURGE:
-                                sp->current_move_index = MOVE_MISTY_TERRAIN;  // force move anim to play
-                                ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                break;
-                            case ABILITY_ELECTRIC_SURGE:
-                                sp->current_move_index = MOVE_ELECTRIC_TERRAIN;  // force move anim to play
-                                ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                break;
-                            case ABILITY_PSYCHIC_SURGE:
-                                sp->current_move_index = MOVE_PSYCHIC_TERRAIN;  // force move anim to play
-                                ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                        if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
-                            sp->battlemon[client_no].ability_activated_flag = 1;
-                            sp->attack_client = client_no;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
-                            break;
-                        }
-                    }
-                }
-                if (i == (s32)client_set_max) {
-                    sp->switch_in_check_seq_no++;
-                }
-            }
-                break;
-            case SWITCH_IN_CHECK_TERRAIN_SEED:{;
+            //case SWITCH_IN_CHECK_SURGE_ABILITY:
+            //    for (i = 0; i < client_set_max; i++) {
+            //        client_no = sp->turn_order[i];
+            //        if (sp->battlemon[client_no].ability_activated_flag == 0 &&
+            //            (sp->battlemon[client_no].hp)) {
+            //            switch (GetBattlerAbility(sp, client_no)) {
+            //                case ABILITY_GRASSY_SURGE:
+            //                    sp->current_move_index = MOVE_GRASSY_TERRAIN;  // force move anim to play
+            //                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+            //                    break;
+            //                case ABILITY_MISTY_SURGE:
+            //                    sp->current_move_index = MOVE_MISTY_TERRAIN;  // force move anim to play
+            //                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+            //                    break;
+            //                case ABILITY_ELECTRIC_SURGE:
+            //                    sp->current_move_index = MOVE_ELECTRIC_TERRAIN;  // force move anim to play
+            //                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+            //                    break;
+            //                case ABILITY_PSYCHIC_SURGE:
+            //                    sp->current_move_index = MOVE_PSYCHIC_TERRAIN;  // force move anim to play
+            //                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+            //                    break;
+            //
+            //                 default:
+            //                     break;
+            //              }
+            //
+            //            if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
+            //                sp->battlemon[client_no].ability_activated_flag = 1;
+            //                sp->attack_client = client_no;
+            //                scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    if (i == (s32)client_set_max) {
+            //        sp->switch_in_check_seq_no++;
+            //    }
+            //    break;
+            case SWITCH_IN_CHECK_TERRAIN_SEED:;
                 u16 heldItem;
                 for (i = 0; i < client_set_max; i++) {
                     client_no = sp->turnOrder[i];

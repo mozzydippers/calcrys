@@ -425,7 +425,7 @@ arm9 PCStorage_GetBoxModifiedFlags 02074114 1
 arm9 sub_02074128 02074128 1
 
 arm9 ScrCmd_PrimoPasswordCheck1 0204560C 1
-arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 2
+arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
 
 #endif
 # EXPAND_PC_BOXES
@@ -464,3 +464,10 @@ arm9 GF_AssertFail 0202551C 0
 
 # fix trainer ai being able to switch illegally when binded
 0010 ai_switch_ban_for_bind_hook 022203B4 2
+
+# pc anywhere
+0001 ClearOverworldRequestFlags 021E6880 1
+# hook from where y button is checked
+0001 SetOverworldRequestFlags_hook 021E6982 0
+# hook from near beginning of function
+0001 CheckOverworldRequestFlags_hook 021E6AF6 3

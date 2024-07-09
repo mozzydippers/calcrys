@@ -17,6 +17,52 @@
 // then values 50 - 99 activate last slot
 .byte 50
 
+// Surfing Encounters
+// Change rates to 40/20/20/10/10
+
+.org 0x02247734
+
+// 40%
+.byte 40
+.skip 9
+
+// 20%
+.byte 60
+.skip 7
+.byte 60
+.skip 3
+
+// 20%
+.byte 80
+.skip 7
+.byte 80
+.skip 3
+
+// 10%
+// then values 90 - 99 activate last slot
+.byte 90
+
+// Old Rod Encounters
+// Change rates to 20/20/20/20/20
+
+.org 0x02247778
+
+// 20%
+.byte 20
+.skip 7
+
+// 20%
+.byte 40
+.skip 7
+
+// 20%
+.byte 60
+.skip 7
+
+// 20%
+// then values 90 - 99 activate last slot
+.byte 80
+
 // Headbutt encounters
 // Change rates to 20/20/20/20/10/10
 

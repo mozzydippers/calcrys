@@ -417,6 +417,9 @@ arm9 02074128 F8 B5 82 B0 00 90 00 20
 # Fix Hidden Power to 60 BP (change +30 instruction to =60)
 0012 022424DC 3C 20
 
+# fast text on start
+arm9 0202ACB8 81 43 02 20 08 43
+
 # Oak Shtuuff, credit to adastra
 0053 08001870 2C 23 2D 22 2E 21
 0053 080018FE 02 28 05 D0 01 28 07 D0 00 28
@@ -424,3 +427,10 @@ arm9 02074128 F8 B5 82 B0 00 90 00 20
 
 # Badge Checks, strength into gym 6
 arm9 020681D4 C0 F7 3C FE 05 21
+
+# script weather
+arm9 020436C2 70 BD 38 B5 04 1C
+arm9 020436CC C0 68 F8 F7
+arm9 020436D4 0C 21
+arm9 020436DA 28 1C F8 F7 52 F9 80 34 01 1C 20 68 40 68 C0 68
+arm9 02043720 01 20 38 BD

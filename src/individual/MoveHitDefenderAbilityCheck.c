@@ -205,7 +205,7 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
                 ret = TRUE;
             }
             break;
-        //handle rattled
+        // handle rattled
         case ABILITY_RATTLED:
             if ((sp->battlemon[sp->defence_client].hp)
                 && (sp->battlemon[sp->defence_client].states[STAT_SPEED] < 12)
@@ -297,7 +297,7 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
             }
             break;
         case ABILITY_MUMMY:
-        case ABILITY_LINGERING_AROMA:
+        // case ABILITY_LINGERING_AROMA:
             if (((sp->waza_status_flag & WAZA_STATUS_FLAG_NO_OUT) == 0)
                 && ((sp->server_status_flag & SERVER_STATUS_FLAG_x20) == 0)
                 && ((sp->server_status_flag2 & SERVER_STATUS_FLAG2_U_TURN) == 0)
@@ -467,21 +467,21 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
                 ret = TRUE;
             }
             break;
-        case ABILITY_ICE_FACE:
-            if ((sp->battlemon[sp->defence_client].species == SPECIES_EISCUE)
-             && (sp->battlemon[sp->defence_client].hp)
-             && (sp->battlemon[sp->defence_client].form_no == 0)
-             && ((sp->waza_status_flag & MOVE_STATUS_FLAG_MISS) == 0) // if move was successful
-             && (sp->moveTbl[sp->current_move_index].power != 0)
-             && (GetMoveSplit(sp, sp->current_move_index) == SPLIT_PHYSICAL)
-            )
-            {
-                BattleFormChange(sp->defence_client, 1, bw, sp, TRUE);
-                sp->client_work = sp->defence_client;
-                sp->battlemon[sp->defence_client].form_no = 1;
-                seq_no[0] = SUB_SEQ_HANDLE_DISGUISE_ICE_FACE;
-                ret = TRUE;
-            }
+        // case ABILITY_ICE_FACE:
+        //     if ((sp->battlemon[sp->defence_client].species == SPECIES_EISCUE)
+        //      && (sp->battlemon[sp->defence_client].hp)
+        //      && (sp->battlemon[sp->defence_client].form_no == 0)
+        //      && ((sp->waza_status_flag & MOVE_STATUS_FLAG_MISS) == 0) // if move was successful
+        //      && (sp->moveTbl[sp->current_move_index].power != 0)
+        //      && (GetMoveSplit(sp, sp->current_move_index) == SPLIT_PHYSICAL)
+        //     )
+        //     {
+        //         BattleFormChange(sp->defence_client, 1, bw, sp, TRUE);
+        //         sp->client_work = sp->defence_client;
+        //         sp->battlemon[sp->defence_client].form_no = 1;
+        //         seq_no[0] = SUB_SEQ_HANDLE_DISGUISE_ICE_FACE;
+        //         ret = TRUE;
+        //     }
         case ABILITY_THERMAL_EXCHANGE:
             if ((sp->battlemon[sp->defence_client].hp)
                 && (sp->battlemon[sp->defence_client].states[STAT_ATTACK] < 12)
@@ -532,17 +532,17 @@ BOOL MummyAbilityCheck(struct BattleStruct *sp)
         case ABILITY_SCHOOLING:
         case ABILITY_BATTLE_BOND:
         case ABILITY_POWER_CONSTRUCT:
-        case ABILITY_SHIELDS_DOWN:
+        // case ABILITY_SHIELDS_DOWN:
         case ABILITY_RKS_SYSTEM:
         case ABILITY_DISGUISE:
         case ABILITY_COMATOSE:
         case ABILITY_MUMMY:
-        case ABILITY_AS_ONE_GLASTRIER:
-        case ABILITY_AS_ONE_SPECTRIER:
+        // case ABILITY_AS_ONE_GLASTRIER:
+        // case ABILITY_AS_ONE_SPECTRIER:
         // seems to be based on Lingering Aroma from Bulbapedia
-        case ABILITY_ZERO_TO_HERO:
-        case ABILITY_COMMANDER:
-        case ABILITY_LINGERING_AROMA:
+        // case ABILITY_ZERO_TO_HERO:
+        // case ABILITY_COMMANDER:
+        // case ABILITY_LINGERING_AROMA:
             return FALSE;
         default:
             return TRUE;

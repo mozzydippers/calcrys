@@ -57,7 +57,7 @@ mondata SPECIES_BULBASAUR, "Bulbasaur"
 
 
 mondata SPECIES_IVYSAUR, "Ivysaur"
-    basestats 60, 62, 63, 60, 80, 80
+    basestats 65, 65, 65, 65, 80, 80
     types TYPE_GRASS, TYPE_POISON
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -78,7 +78,7 @@ mondata SPECIES_IVYSAUR, "Ivysaur"
 
 
 mondata SPECIES_VENUSAUR, "Venusaur"
-    basestats 80, 85, 90, 80, 100, 100
+    basestats 85, 85, 85, 80, 100, 100
     types TYPE_GRASS, TYPE_POISON
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -1002,7 +1002,7 @@ mondata SPECIES_PARAS, "Paras"
 
 
 mondata SPECIES_PARASECT, "Parasect"
-    basestats 60, 130, 90, 30, 60, 90
+    basestats 60, 95, 80, 30, 60, 80
     types TYPE_BUG, TYPE_GHOST
     catchrate 75
     baseexp 0 // defined in baseexp.s
@@ -2682,7 +2682,7 @@ mondata SPECIES_MAGMAR, "Magmar"
 
 
 mondata SPECIES_PINSIR, "Pinsir"
-    basestats 65, 125, 100, 85, 55, 70
+    basestats 80, 125, 100, 85, 40, 70
     types TYPE_BUG, TYPE_BUG
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -3050,7 +3050,7 @@ mondata SPECIES_ARTICUNO, "Articuno"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_ICE_BODY
+    abilities ABILITY_PRESSURE, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
     mondexentry SPECIES_ARTICUNO, "The magnificent, seemingly translucent\nwings of this legendary bird Pokémon\nare said to be made of ice."
@@ -3071,7 +3071,7 @@ mondata SPECIES_ZAPDOS, "Zapdos"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_STATIC
+    abilities ABILITY_PRESSURE, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_ZAPDOS, "This legendary bird Pokémon\ncauses savage thunderstorms by\nflapping its glittering wings."
@@ -3092,7 +3092,7 @@ mondata SPECIES_MOLTRES, "Moltres"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_FLAME_BODY
+    abilities ABILITY_PRESSURE, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_MOLTRES, "This legendary Pokémon scatters\nembers with every flap of its wings.\nIt is a thrilling sight to behold."
@@ -3218,7 +3218,7 @@ mondata SPECIES_CHIKORITA, "Chikorita"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_MONSTER, EGG_GROUP_GRASS
-    abilities ABILITY_OVERGROW, ABILITY_LEAF_GUARD
+    abilities ABILITY_OVERGROW, ABILITY_FLOWER_VEIL
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
     mondexentry SPECIES_CHIKORITA, "A sweet aroma gently wafts from\nthe leaf on its head. It is docile\nand loves to soak up sunrays."
@@ -3228,7 +3228,7 @@ mondata SPECIES_CHIKORITA, "Chikorita"
 
 
 mondata SPECIES_BAYLEEF, "Bayleef"
-    basestats 60, 65, 80, 55, 65, 80
+    basestats 65, 65, 80, 65, 65, 80
     types TYPE_GRASS, TYPE_GRASS
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -3239,7 +3239,7 @@ mondata SPECIES_BAYLEEF, "Bayleef"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_MONSTER, EGG_GROUP_GRASS
-    abilities ABILITY_OVERGROW, ABILITY_LEAF_GUARD
+    abilities ABILITY_OVERGROW, ABILITY_FLOWER_VEIL
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
     mondexentry SPECIES_BAYLEEF, "The scent of spices comes from\naround its neck. Somehow,\nsniffing it makes you want to fight."
@@ -3260,7 +3260,7 @@ mondata SPECIES_MEGANIUM, "Meganium"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_MONSTER, EGG_GROUP_GRASS
-    abilities ABILITY_OVERGROW, ABILITY_LEAF_GUARD
+    abilities ABILITY_OVERGROW, ABILITY_FLOWER_VEIL
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
     mondexentry SPECIES_MEGANIUM, "The aroma that rises from its\npetals contains a substance that\ncalms aggressive feelings."
@@ -5118,7 +5118,7 @@ mondata SPECIES_BLISSEY, "Blissey"
 
 
 mondata SPECIES_RAIKOU, "Raikou"
-    basestats 90, 65, 85, 115, 145, 100
+    basestats 90, 75, 85, 115, 115, 100
     types TYPE_ELECTRIC, TYPE_ELECTRIC
     catchrate 3
     baseexp 0 // defined in baseexp.s
@@ -5129,7 +5129,7 @@ mondata SPECIES_RAIKOU, "Raikou"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_LIGHTNING_ROD
+    abilities ABILITY_PRESSURE, ABILITY_INNER_FOCUS
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_RAIKOU, "The rain clouds it carries let it\nfire thunderbolts at will. They say\nthat it descended with lightning."
@@ -5139,7 +5139,7 @@ mondata SPECIES_RAIKOU, "Raikou"
 
 
 mondata SPECIES_ENTEI, "Entei"
-    basestats 115, 145, 90, 100, 65, 85
+    basestats 115, 115, 85, 100, 75, 85
     types TYPE_FIRE, TYPE_FIRE
     catchrate 3
     baseexp 0 // defined in baseexp.s
@@ -5150,7 +5150,7 @@ mondata SPECIES_ENTEI, "Entei"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_FLASH_FIRE
+    abilities ABILITY_PRESSURE, ABILITY_INNER_FOCUS
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
     mondexentry SPECIES_ENTEI, "Volcanoes erupt when it barks.\nUnable to contain its sheer power,\nit races headlong around the land."
@@ -5160,7 +5160,7 @@ mondata SPECIES_ENTEI, "Entei"
 
 
 mondata SPECIES_SUICUNE, "Suicune"
-    basestats 130, 65, 115, 85, 90, 115
+    basestats 100, 75, 115, 85, 90, 115
     types TYPE_WATER, TYPE_WATER
     catchrate 3
     baseexp 0 // defined in baseexp.s
@@ -5171,7 +5171,7 @@ mondata SPECIES_SUICUNE, "Suicune"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
-    abilities ABILITY_PRESSURE, ABILITY_WATER_ABSORB
+    abilities ABILITY_PRESSURE, ABILITY_INNER_FOCUS
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
     mondexentry SPECIES_SUICUNE, "Said to be the embodiment of\nnorth winds, it can instantly\npurify filthy, murky water."
@@ -5980,7 +5980,7 @@ mondata SPECIES_SURSKIT, "Surskit"
 
 mondata SPECIES_MASQUERAIN, "Masquerain"
     basestats 70, 60, 62, 80, 100, 82
-    types TYPE_BUG, TYPE_WATER
+    types TYPE_BUG, TYPE_FLYING
     catchrate 75
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
@@ -20039,7 +20039,7 @@ mondata SPECIES_SNEASLER, "Sneasler"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_PRESSURE, ABILITY_UNBURDEN
+    abilities ABILITY_UNBURDEN, ABILITY_PRESSURE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
     mondexentry SPECIES_SNEASLER, "Because of Sneasler's virulent poison and daunting physical\nprowess, no other species could hope to best it on the frozen\nhighlands. Preferring solitude, this species does not form packs."
@@ -22771,7 +22771,7 @@ mondata SPECIES_MEGA_KANGASKHAN, "-----"
     colorflip 0, 0
 
 mondata SPECIES_MEGA_PINSIR, "-----"
-    basestats 65, 155, 120, 105, 65, 90
+    basestats 80, 155, 120, 115, 40, 90
     types TYPE_BUG, TYPE_FLYING
     catchrate 45
     baseexp 200

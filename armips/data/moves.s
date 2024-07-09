@@ -1582,8 +1582,9 @@ movedata MOVE_HYPNOSIS, "Hypnosis"
     terminatedata
     movedescription MOVE_HYPNOSIS, "The user employs\nhypnotic suggestion\nto make the target\nfall into a deep\nsleep."
 
+// EFF : ATK UP > ATK & SPEED UP
 movedata MOVE_MEDITATE, "Meditate"
-    battleeffect MOVE_EFFECT_ATK_SPD_UP
+    battleeffect MOVE_EFFECT_ATK_SPEED_UP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_PSYCHIC
@@ -1806,8 +1807,9 @@ movedata MOVE_CONFUSE_RAY, "Confuse Ray"
     terminatedata
     movedescription MOVE_CONFUSE_RAY, "The foe is exposed\nto a sinister ray\nthat triggers\nconfusion.\n"
 
+// EFF : DEF UP > DEF & SP DEF UP
 movedata MOVE_WITHDRAW, "Withdraw"
-    battleeffect MOVE_EFFECT_DEF_SPD_UP
+    battleeffect MOVE_EFFECT_DEF_SP_DEF_UP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_WATER
@@ -3086,14 +3088,15 @@ movedata MOVE_MUD_SLAP, "Mud-Slap"
     terminatedata
     movedescription MOVE_MUD_SLAP, "The user hurls mud in\nthe foe’s face to\ninflict damage and\nlower its accuracy.\n"
 
+// ACC : 85 > 100
 movedata MOVE_OCTAZOOKA, "Octazooka"
-    battleeffect MOVE_EFFECT_HIGH_CRITICAL
+    battleeffect MOVE_EFFECT_ACC_DOWN
     pss SPLIT_SPECIAL
-    basepower 110
+    basepower 65
     type TYPE_WATER
     accuracy 100
     pp 10
-    effectchance 0
+    effectchance 50
     target MOVE_TARGET_SELECTED
     priority 0
     flags FLAG_MIRROR_MOVE | FLAG_PROTECT
@@ -3182,10 +3185,11 @@ movedata MOVE_PERISH_SONG, "Perish Song"
     terminatedata
     movedescription MOVE_PERISH_SONG, "Any Pokémon that\nhears this song\nfaints in three turns,\nunless it switches\nout of battle."
 
+// ACC : 95 > 100
 movedata MOVE_ICY_WIND, "Icy Wind"
     battleeffect MOVE_EFFECT_LOWER_SPEED_HIT
     pss SPLIT_SPECIAL
-    basepower 60
+    basepower 55
     type TYPE_ICE
     accuracy 100
     pp 15
@@ -8557,12 +8561,13 @@ movedata MOVE_WORK_UP, "Work Up"
     terminatedata
     movedescription MOVE_WORK_UP, "The user rouses\nitself to raise\nits Attack and\nSp. Atk stats."
 
+// ACC : 95 > 100
 movedata MOVE_ELECTROWEB, "Electroweb"
     battleeffect MOVE_EFFECT_LOWER_SPEED_HIT
     pss SPLIT_SPECIAL
     basepower 55
     type TYPE_ELECTRIC
-    accuracy 95
+    accuracy 100
     pp 15
     effectchance 100
     target MOVE_TARGET_BOTH
@@ -8781,12 +8786,13 @@ movedata MOVE_PSYSTRIKE, "Psystrike"
     terminatedata
     movedescription MOVE_PSYSTRIKE, "An odd psychic wave\nattacks the target.\nThis attack does\nphysical damage."
 
+// ACC : 85 > 100
 movedata MOVE_TAIL_SLAP, "Tail Slap"
     battleeffect MOVE_EFFECT_MULTI_HIT
     pss SPLIT_PHYSICAL
     basepower 25
     type TYPE_NORMAL
-    accuracy 85
+    accuracy 100
     pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
@@ -8829,12 +8835,13 @@ movedata MOVE_HEAD_CHARGE, "Head Charge"
     terminatedata
     movedescription MOVE_HEAD_CHARGE, "The user charges its\nhead into its foe,\nusing its guard hair.\nIt slightly damages\nthe user."
 
+// ACC : 85 > 100
 movedata MOVE_GEAR_GRIND, "Gear Grind"
     battleeffect MOVE_EFFECT_HIT_TWICE
     pss SPLIT_PHYSICAL
     basepower 50
     type TYPE_STEEL
-    accuracy 85
+    accuracy 100
     pp 15
     effectchance 0
     target MOVE_TARGET_SELECTED
@@ -8909,12 +8916,13 @@ movedata MOVE_SECRET_SWORD, "Secret Sword"
     terminatedata
     movedescription MOVE_SECRET_SWORD, "The user cuts with\nits long horn. The\nodd power in the\nhorn does physical\ndamage to the foe."
 
+// ACC : 95 > 100 
 movedata MOVE_GLACIATE, "Glaciate"
     battleeffect MOVE_EFFECT_LOWER_SPEED_HIT
     pss SPLIT_SPECIAL
     basepower 65
     type TYPE_ICE
-    accuracy 95
+    accuracy 100
     pp 10
     effectchance 100
     target MOVE_TARGET_BOTH
@@ -9005,10 +9013,11 @@ movedata MOVE_ICE_BURN, "Ice Burn"
     terminatedata
     movedescription MOVE_ICE_BURN, "A two-turn attack\nthat surrounds the\nfoe with ultracold,\nfreezing wind. It\nmay burn the foe."
 
+// ACC : 95 > 100 
 movedata MOVE_SNARL, "Snarl"
     battleeffect MOVE_EFFECT_LOWER_SP_ATK_HIT
     pss SPLIT_SPECIAL
-    basepower 60
+    basepower 55
     type TYPE_DARK
     accuracy 100
     pp 15
@@ -9038,7 +9047,7 @@ movedata MOVE_ICICLE_CRASH, "Icicle Crash"
     movedescription MOVE_ICICLE_CRASH, "Icicles are dropped\non the foe. It may\nalso make the foe\nflinch."
 
 movedata MOVE_V_CREATE, "V-create"
-    battleeffect MOVE_EFFECT_ATK_DEF_SPEED_DOWN_HIT
+    battleeffect MOVE_EFFECT_DEF_SP_DEF_SPEED_DOWN_HIT
     pss SPLIT_PHYSICAL
     basepower 180
     type TYPE_FIRE
@@ -12052,7 +12061,7 @@ movedata MOVE_DYNAMAX_CANNON, "Dynamax Cannon"
     movedescription MOVE_DYNAMAX_CANNON, "---"
 
 movedata MOVE_SNIPE_SHOT, "Snipe Shot"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_HIGH_CRITICAL
     pss SPLIT_SPECIAL
     basepower 80
     type TYPE_WATER

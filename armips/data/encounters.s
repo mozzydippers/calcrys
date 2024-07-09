@@ -80,25 +80,25 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_TENTACOOL, 10, 10
-encounter SPECIES_TENTACOOL, 10, 10
+encounter SPECIES_TENTACOOL, 20, 20
+encounter SPECIES_TENTACOOL, 20, 20
+encounter SPECIES_TENTACOOL, 20, 20
+encounter SPECIES_TENTACOOL, 20, 20
+encounter SPECIES_TENTACOOL, 20, 20
 
 // good rod encounters
-encounter SPECIES_MAGIKARP, 20, 20
-encounter SPECIES_TENTACOOL, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
-encounter SPECIES_SHELLDER, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
-
-// super rod encounters
+encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_TENTACOOL, 40, 40
 encounter SPECIES_CHINCHOU, 40, 40
 encounter SPECIES_SHELLDER, 40, 40
-encounter SPECIES_TENTACRUEL, 40, 40
-encounter SPECIES_LANTURN, 40, 40
-encounter SPECIES_TENTACRUEL, 40, 40
+encounter SPECIES_CHINCHOU, 40, 40
+
+// super rod encounters
+encounter SPECIES_CHINCHOU, 80, 80
+encounter SPECIES_SHELLDER, 80, 80
+encounter SPECIES_TENTACRUEL, 80, 80
+encounter SPECIES_LANTURN, 80, 80
+encounter SPECIES_TENTACRUEL, 80, 80
 
 // swarm grass
 pokemon SPECIES_NONE
@@ -1789,10 +1789,10 @@ walklevels 22, 22, 23, 23, 23, 23, 23, 23, 24, 24, 24, 25
 // morning encounter slots
 pokemon SPECIES_CLODSIRE
 pokemon SPECIES_PSYDUCK
-pokemon SPECIES_QUAGSIRE
+pokemon SPECIES_SURSKIT
+pokemon SPECIES_DEWPIDER
 pokemon SPECIES_DUCKLETT
 pokemon SPECIES_TYMPOLE
-pokemon SPECIES_SURSKIT
 pokemon SPECIES_SHELMET
 pokemon SPECIES_SHELMET
 pokemon SPECIES_CROAGUNK
@@ -1803,10 +1803,10 @@ pokemon SPECIES_GOOMY
 // day encounter slots
 pokemon SPECIES_CLODSIRE
 pokemon SPECIES_PSYDUCK
-pokemon SPECIES_QUAGSIRE
+pokemon SPECIES_SURSKIT
+pokemon SPECIES_DEWPIDER
 pokemon SPECIES_DUCKLETT
 pokemon SPECIES_TYMPOLE
-pokemon SPECIES_SURSKIT
 pokemon SPECIES_SHELMET
 pokemon SPECIES_SHELMET
 pokemon SPECIES_CROAGUNK
@@ -1817,10 +1817,10 @@ pokemon SPECIES_GOOMY
 // night encounter slots
 pokemon SPECIES_CLODSIRE
 pokemon SPECIES_PSYDUCK
-pokemon SPECIES_QUAGSIRE
+pokemon SPECIES_SURSKIT
+pokemon SPECIES_DEWPIDER
 pokemon SPECIES_DUCKLETT
 pokemon SPECIES_TYMPOLE
-pokemon SPECIES_SURSKIT
 pokemon SPECIES_SHELMET
 pokemon SPECIES_SHELMET
 pokemon SPECIES_CROAGUNK
@@ -2889,7 +2889,7 @@ encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
 encounter SPECIES_BASCULIN, 20, 20
-encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_BASCULIN, 20, 20
 encounter SPECIES_DUSKULL, 20, 20
 encounter SPECIES_DUSKULL, 20, 20
 encounter SPECIES_DUSKULL, 20, 20
@@ -6101,36 +6101,36 @@ pokemon SPECIES_NONE
 pokemon SPECIES_NONE
 
 // surf encounters
-encounter SPECIES_MAGIKARP, 10, 20
-encounter SPECIES_MAGIKARP, 5, 15
-encounter SPECIES_GYARADOS, 10, 20
-encounter SPECIES_GYARADOS, 10, 20
-encounter SPECIES_GYARADOS, 10, 20
+encounter SPECIES_MAGIKARP, 60, 60
+encounter SPECIES_MAGIKARP, 60, 60
+encounter SPECIES_MAGIKARP, 60, 60
+encounter SPECIES_MAGIKARP, 60, 60
+encounter SPECIES_GYARADOS, 60, 60
 
 // rock smash encounters
 encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
-encounter SPECIES_MAGIKARP, 10, 10
+encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_MAGIKARP, 20, 20
 
 // good rod encounters
-encounter SPECIES_MAGIKARP, 20, 20
-encounter SPECIES_MAGIKARP, 20, 20
-encounter SPECIES_MAGIKARP, 20, 20
-encounter SPECIES_GYARADOS, 20, 20
-encounter SPECIES_MAGIKARP, 20, 20
+encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_MAGIKARP, 40, 40
 
 // super rod encounters
-encounter SPECIES_MAGIKARP, 40, 40
-encounter SPECIES_GYARADOS, 40, 40
-encounter SPECIES_MAGIKARP, 40, 40
-encounter SPECIES_MAGIKARP, 40, 40
-encounter SPECIES_MAGIKARP, 40, 40
+encounter SPECIES_MAGIKARP, 80, 80
+encounter SPECIES_MAGIKARP, 80, 80
+encounter SPECIES_MAGIKARP, 80, 80
+encounter SPECIES_MAGIKARP, 80, 80
+encounter SPECIES_MAGIKARP, 80, 80
 
 // swarm grass
 pokemon SPECIES_NONE

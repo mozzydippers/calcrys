@@ -450,7 +450,7 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
                 SetMonData(mons[i],MON_DATA_NICKNAME, nickname);
             }
         }
-        TrainerMonHandleFrustration(mons[i]);
+        TrainerMonHandleFrustration(mons[i]); 
     }
 
     for (i = 0; i < pokecount; i++)

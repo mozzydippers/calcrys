@@ -134,18 +134,20 @@ BOOL ScrCmd_GiveTogepiEgg(SCRIPTCONTEXT *ctx) {
  *  thank u adastra <3
  */
 #define NUM_BONUS_WALLPAPERS (8)
-BOOL ScrCmd_PrimoPasswordCheck1( SCRIPTCONTEXT* ctx ) {
+BOOL ScrCmd_PrimoPasswordCheck1(SCRIPTCONTEXT* ctx) {
     FieldSystem *fsys = ctx->fsys;
-    PCStorage* pcStorage = SaveArray_PCStorage_Get( fsys->savedata );
+    PCStorage* pcStorage = SaveArray_PCStorage_Get(fsys->savedata);
     u16 *p_ret = ScriptGetVarPointer(ctx);
     u16 a = ScriptGetVar(ctx);
     u16 b = ScriptGetVar(ctx);
     u16 c = ScriptGetVar(ctx);
     u16 d = ScriptGetVar(ctx);
 
-    for ( int w = 0; w < NUM_BONUS_WALLPAPERS; w++ ) {
-        if (!PCStorage_IsBonusWallpaperUnlocked(pcStorage, w)) {
-            PCStorage_UnlockBonusWallpaper(pcStorage, w);
+    for (int w = 0; w < NUM_BONUS_WALLPAPERS; w++) 
+    {
+        if (!PCStorage_IsBonusWallpaperUnlocked(pcStorage, w)) 
+        {
+            (PCStorage_UnlockBonusWallpaper(pcStorage, w));
         }
     }
 
@@ -185,7 +187,7 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
     u8 partyCount = party->count;
     for (i = 0, *slot = 6; i < partyCount; i++) 
     {
-        struct PartyPokemon *mon = PokeParty_GetMemberPointer(party, i);
+        struct PartyPokemon *mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fsys->savedata), i);
         if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) 
         {
             continue;
