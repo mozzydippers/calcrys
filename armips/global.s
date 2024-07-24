@@ -20,7 +20,10 @@
 .include "armips/asm/y9.s" // add new overlay entries to the y9 table
 .include "armips/asm/swarms.s" // modify swarms
 
+// custom
 .include "armips/asm/custom/encounter_rates.s"
+.include "armips/asm/custom/mart_items.s"
+.include "armips/asm/custom/remove_obedience_check.s"
 .include "armips/asm/custom/smashable_rock_items.s"
 .include "armips/asm/custom/title_screen_cry.s"
 

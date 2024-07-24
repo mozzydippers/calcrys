@@ -12080,7 +12080,7 @@ movedata MOVE_JAW_LOCK, "Jaw Lock"
     battleeffect MOVE_EFFECT_HIT
     pss SPLIT_PHYSICAL
     basepower 80
-    type TYPE_DARK
+    type TYPE_ROCK
     accuracy 100
     pp 10
     effectchance 0

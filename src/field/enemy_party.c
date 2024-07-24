@@ -509,7 +509,7 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
         UpdatePassiveForms(encounterPartyPokemon);
     }
 
-    if (gf_rand() % 33 == 0)
+    if (gf_rand() % 3 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(encounterPartyPokemon)
     //    ClearScriptFlag(HIDDEN_ABILITIES_FLAG);

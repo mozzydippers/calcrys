@@ -50,7 +50,7 @@ BOOL ScrCmd_GiveEgg(SCRIPTCONTEXT *ctx)
         ClearMonMoves(pokemon);
         InitBoxMonMoveset(&pokemon->box);
 
-        if (gf_rand() % 33 == 0) // add HA capability
+        if (gf_rand() % 3 == 0) // add HA capability
         {
             SET_MON_HIDDEN_ABILITY_BIT(pokemon)
             ResetPartyPokemonAbility(pokemon);
@@ -112,7 +112,7 @@ BOOL ScrCmd_GiveTogepiEgg(SCRIPTCONTEXT *ctx) {
     pp = GetMonData(togepi, MON_DATA_MOVE1MAXPP + i, 0);
     SetMonData(togepi, MON_DATA_MOVE1PP + i, &pp);
 
-    if (gf_rand() % 33 == 0) // add HA capability
+    if (gf_rand() % 3 == 0) // add HA capability
     {
         SET_MON_HIDDEN_ABILITY_BIT(togepi)
         ResetPartyPokemonAbility(togepi);

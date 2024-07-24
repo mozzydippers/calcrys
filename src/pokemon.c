@@ -481,7 +481,7 @@ void LONG_CALL SetBoxMonAbility(struct BoxPokemon *boxmon) // actually takes box
     pid = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
     form = GetBoxMonData(boxmon, MON_DATA_FORM, NULL);
 
-if (gf_rand() % 33 == 0)
+if (gf_rand() % 3 == 0)
     {
         SET_BOX_MON_HIDDEN_ABILITY_BIT(boxmon)
         has_hidden_ability = 1;
@@ -1035,6 +1035,10 @@ void LONG_CALL UpdatePassiveForms(struct PartyPokemon *pp)
         case SPECIES_MAUSHOLD:
             form = (gf_rand() % 100 != 0); // 1/100 three seg / family of three
             break;
+        case SPECIES_SHELLOS:
+        case SPECIES_GASTRODON:
+            form = gf_rand() % 2; // allow both to show up
+            break;
         case SPECIES_FLABEBE:
         case SPECIES_FLOETTE:
         case SPECIES_FLORGES:
@@ -1397,7 +1401,7 @@ BOOL LONG_CALL GiveMon(int heapId, void *saveData, int species, int level, int f
 
     RecalcPartyPokemonStats(pokemon); // recalculate stats
 
-    if (gf_rand() % 33 == 0)
+    if (gf_rand() % 3 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(pokemon)
         // need to clear this script flag because this function is used for in-battle form change ability resets as well, which shouldn't happen normally
@@ -1590,7 +1594,7 @@ u32 gLastPokemonLevelForMoneyCalc;
  */
 void set_starter_hidden_ability(struct Party *party UNUSED, struct PartyPokemon *pp)
 {
-    if (gf_rand() % 33 == 0)
+    if (gf_rand() % 3 == 0)
     {
         SET_MON_HIDDEN_ABILITY_BIT(pp)
         SetBoxMonAbility((void *)&pp->box);

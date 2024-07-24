@@ -247,7 +247,7 @@ Ups Attack and Sp. Atk\nif allies were defeated.
 Makes foes unable to\nuse priority attacks.
 Restores HP if hit by a\nGround-type move.
 Upon entry, restores\nan allies HP.
-Ignores accuracy and evasion.\nCan hit Ghost-types.
+Ignores accuracy changes\nand Ghost type immunities.
 Lowers evasiveness of\nPokémon upon first entry.
 On entry, absorbs energy\nand transforms.
 All damaging moves will\nbe resisted at full HP.
