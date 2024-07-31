@@ -565,9 +565,9 @@
 .equ F_PRIORITIZE_STATUS_MOVES, (1 << 3)
 .equ F_RISKY_ATTACKS, (1 << 4)
 .equ F_PRIORITIZE_DAMAGE, (1 << 5)
-.equ F_MULTI_BATTLE_PARTNER, (1 << 6)
+.equ F_MULTI_BATTLE_PARTNER, (1 << 6) // baton pass
 .equ F_DOUBLE_BATTLE, (1 << 7)
-.equ F_PRIORITIZE_HEALING, (1 << 8)
+.equ F_PRIORITIZE_HEALING, (1 << 8) // check hp
 .equ F_USE_WEATHER, (1 << 9)
 .equ F_HARRASSMENT, (1 << 10)
 .equ F_ROAMING_MON, (1 << 11)

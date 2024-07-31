@@ -468,7 +468,7 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
                 ret = TRUE;
             }
             break;
-        /* case ABILITY_ICE_FACE:
+        case ABILITY_ICE_FACE:
              if ((sp->battlemon[sp->defence_client].species == SPECIES_EISCUE)
               && (sp->battlemon[sp->defence_client].hp)
               && (sp->battlemon[sp->defence_client].form_no == 0)
@@ -483,7 +483,7 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
                  seq_no[0] = SUB_SEQ_HANDLE_DISGUISE_ICE_FACE;
                  ret = TRUE;
              }
-             break;*/
+             break;
         case ABILITY_THERMAL_EXCHANGE:
             if ((sp->battlemon[sp->defence_client].hp)
                 && (sp->battlemon[sp->defence_client].states[STAT_ATTACK] < 12)

@@ -234,6 +234,7 @@ Enables the Pokémon to\nmove first occasionally.
 The Pokémon’s contact\nmoves ignore protections.
 Removes all allies’ stat\nchanges on joining battle.
 Ups Attack if hit\nby Fire moves. Prevents burns.
+Raises Defense if hit\nby a Fire-type move.
 Raises Attack if hit\nby a wind-based move.
 Becomes charged if hit\nby a wind-based move.
 Becomes Hero Form upon\nswitching out.
@@ -249,5 +250,4 @@ Restores HP if hit by a\nGround-type move.
 Upon entry, restores\nan allies HP.
 Ignores accuracy changes\nand Ghost type immunities.
 Lowers evasiveness of\nPokémon upon first entry.
-On entry, absorbs energy\nand transforms.
-All damaging moves will\nbe resisted at full HP.
+Pokémon poisoned by Pecharunt\nwill also become confused.

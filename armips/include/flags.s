@@ -171,8 +171,8 @@ FLAG_GOT_TM11_FROM_RADIO_TOWER_WOMAN                       equ  0x8F
 FLAG_UNK_090                                               equ  0x90
 FLAG_GOT_BRIGHTPOWDER_FROM_MARY                            equ  0x91
 FLAG_UNK_092                                               equ  0x92
-FLAG_UNK_093                                               equ  0x93
-FLAG_UNK_094                                               equ  0x94
+FLAG_UNK_093                                               equ  0x93 // 147 obtained rainbow wing 
+FLAG_UNK_094                                               equ  0x94 // 148 obtained silver wing 
 FLAG_GOT_EEVEE_FROM_BILL                                   equ  0x95
 FLAG_UNK_096                                               equ  0x96
 FLAG_UNK_097                                               equ  0x97
@@ -283,13 +283,13 @@ FLAG_GOT_SCRATCH_CARD_INFO                                 equ  0xFF
 FLAG_UNK_100                                               equ 0x100
 FLAG_UNK_101                                               equ 0x101
 FLAG_UNK_102                                               equ 0x102
-FLAG_UNK_103                                               equ 0x103
-FLAG_UNK_104                                               equ 0x104
-FLAG_UNK_105                                               equ 0x105
-FLAG_UNK_106                                               equ 0x106
-FLAG_UNK_107                                               equ 0x107
-FLAG_UNK_108                                               equ 0x108
-FLAG_UNK_109                                               equ 0x109
+FLAG_UNK_103                                               equ 0x103 // given clear bell, 259
+FLAG_UNK_104                                               equ 0x104 // given tidal bell, 260
+FLAG_UNK_105                                               equ 0x105 // 261 set after being let into bell tower 
+FLAG_UNK_106                                               equ 0x106 // 262 set after being let into whirl islands 
+FLAG_UNK_107                                               equ 0x107 // 263
+FLAG_UNK_108                                               equ 0x108 // 264
+FLAG_UNK_109                                               equ 0x109 // 265
 FLAG_UNK_10A                                               equ 0x10A
 FLAG_UNK_10B                                               equ 0x10B
 FLAG_GOT_TYROGUE_FROM_KARATE_KING                          equ 0x10C
@@ -302,8 +302,8 @@ FLAG_UNK_112                                               equ 0x112
 FLAG_UNK_113                                               equ 0x113
 FLAG_UNK_114                                               equ 0x114
 FLAG_UNK_115                                               equ 0x115
-FLAG_CAUGHT_HO_OH                                          equ 0x116
-FLAG_CAUGHT_LUGIA                                          equ 0x117
+FLAG_CAUGHT_HO_OH                                          equ 0x116 // 278
+FLAG_CAUGHT_LUGIA                                          equ 0x117 // 279 set post lugia ?
 FLAG_RESTORED_POWER                                        equ 0x118
 FLAG_UNK_119                                               equ 0x119
 FLAG_GOT_EVERSTONE_FROM_ELM                                equ 0x11A
@@ -606,10 +606,10 @@ FLAG_HIDE_GOLDENROD_BILL                                  equ 0x23E
 FLAG_HIDE_ECRUTEAK_RIVAL                                  equ 0x23F
 FLAG_HIDE_DANCE_STUDIO_LITTLE_GIRL                        equ 0x240
 FLAG_UNK_241                                              equ 0x241
-FLAG_HIDE_BELL_TOWER_HO_OH                                equ 0x242
-FLAG_HIDE_WHIRL_ISLAND_LUGIA                              equ 0x243
-FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS                  equ 0x244
-FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS               equ 0x245
+FLAG_HIDE_BELL_TOWER_HO_OH                                equ 0x242 // 578
+FLAG_HIDE_WHIRL_ISLAND_LUGIA                              equ 0x243 // 579
+FLAG_HIDE_BELL_TOWER_SUMMIT_KIMONO_GIRLS                  equ 0x244 // 580
+FLAG_HIDE_WHIRL_ISLANDS_BOTTOM_KIMONO_GIRLS               equ 0x245 // 581
 FLAG_HIDE_ELMS_LAB_AIDE                                   equ 0x246
 FLAG_UNK_247                                              equ 0x247
 FLAG_HIDE_ECRUTEAK_OLD_MAN                                equ 0x248

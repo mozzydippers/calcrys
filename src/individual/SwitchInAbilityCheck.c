@@ -108,6 +108,19 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
+                        case 24: // needs elec terrain
+                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case 25: // needs psych terrain
+                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case 26:
+                            sp->current_move_index = MOVE_TAILWIND;  // force move anim to play
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_APPLY_TAILWIND;
+                            break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                         sp->weather_check_flag = 1;

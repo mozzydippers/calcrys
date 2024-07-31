@@ -2871,7 +2871,7 @@ mondata SPECIES_JOLTEON, "Jolteon"
 
 
 mondata SPECIES_FLAREON, "Flareon"
-    basestats 65, 130, 95, 110, 60, 65
+    basestats 65, 130, 95, 65, 60, 110
     types TYPE_FIRE, TYPE_FIRE
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -21959,7 +21959,7 @@ mondata SPECIES_IRON_MOTH, "Iron Moth"
     mondexweight SPECIES_IRON_MOTH, "79.4 lbs."
 
 
-mondata SPECIES_IRON_THORNS, "Iron Thorn"
+mondata SPECIES_IRON_THORNS, "IronThorns"
     basestats 100, 134, 110, 72, 70, 84
     types TYPE_ROCK, TYPE_ELECTRIC
     catchrate 30
@@ -25265,7 +25265,7 @@ mondata SPECIES_FLOETTE_WHITE_FLOWER, "-----"
 
 mondata SPECIES_FLOETTE_ETERNAL_FLOWER, "-----"
     basestats 75, 65, 68, 112, 154, 78
-    types TYPE_FAIRY, TYPE_DARK
+    types TYPE_FAIRY, TYPE_FAIRY
     catchrate 120
     baseexp 243
     evyields 0, 0, 0, 0, 0, 0

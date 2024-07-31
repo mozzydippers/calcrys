@@ -12797,7 +12797,7 @@ movedata MOVE_STRANGE_STEAM, "Strange Steam"
     movedescription MOVE_STRANGE_STEAM, "---"
 
 movedata MOVE_LIFE_DEW, "Life Dew"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_RESTORE_HALF_HP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_WATER

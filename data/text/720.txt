@@ -11,8 +11,8 @@ Volt Absorb
 Water Absorb
 Oblivious
 Cloud Nine
-CompoundEyes
-Insomnia 
+Compound Eyes
+Insomnia
 Color Change
 Immunity
 Flash Fire
@@ -23,7 +23,7 @@ Intimidate
 Shadow Tag
 Rough Skin
 Wonder Guard
-Levitate 
+Levitate
 Effect Spore
 Synchronize
 Clear Body
@@ -209,7 +209,7 @@ Tangling Hair
 Receiver
 Power Of Alchemy
 Beast Boost
-Rks System
+RKS System
 Prism Armor
 Neuroforce
 Libero
@@ -234,6 +234,7 @@ Quick Draw
 Unseen Fist
 Curious Medicine
 Thermal Exchange
+Well-Baked Body
 Wind Rider
 Wind Power
 Zero To Hero
@@ -247,7 +248,6 @@ Supreme Overlord
 Armor Tail
 Earth Eater
 Hospitality
-Mindâ€™s Eye
+Mind’s Eye
 Supersweet Syrup
-Tera Shell
 Poison Puppeteer

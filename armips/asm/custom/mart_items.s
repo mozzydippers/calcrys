@@ -24,7 +24,7 @@ EIGHT_BADGES equ 6
 .halfword ONE_BADGE
 
 .halfword ITEM_ULTRA_BALL
-.halfword THREE_BADGES
+.halfword FIVE_BADGES
 
 .halfword ITEM_POTION
 .halfword ZERO_BADGES
@@ -33,7 +33,7 @@ EIGHT_BADGES equ 6
 .halfword ONE_BADGE
 
 .halfword ITEM_HYPER_POTION
-.halfword THREE_BADGES
+.halfword FIVE_BADGES
 
 .halfword ITEM_MAX_POTION
 .halfword SEVEN_BADGES
@@ -41,26 +41,26 @@ EIGHT_BADGES equ 6
 .halfword ITEM_FULL_RESTORE
 .halfword EIGHT_BADGES
 
-.halfword ITEM_ETHER
-.halfword ZERO_BADGES
-
-.halfword ITEM_MAX_ETHER
-.halfword THREE_BADGES
-
-.halfword ITEM_ELIXIR
-.halfword FIVE_BADGES
-
-.halfword ITEM_MAX_ELIXIR
-.halfword SEVEN_BADGES
-
 .halfword ITEM_REVIVE
 .halfword THREE_BADGES
 
-.halfword ITEM_MAX_REVIVE
-.halfword EIGHT_BADGES
+.halfword ITEM_ANTIDOTE
+.halfword ZERO_BADGES
+
+.halfword ITEM_PARALYZE_HEAL
+.halfword ZERO_BADGES
+
+.halfword ITEM_AWAKENING
+.halfword ZERO_BADGES
+
+.halfword ITEM_BURN_HEAL
+.halfword ZERO_BADGES
+
+.halfword ITEM_ICE_HEAL
+.halfword ZERO_BADGES
 
 .halfword ITEM_FULL_HEAL
-.halfword ZERO_BADGES
+.halfword SEVEN_BADGES
 
 .halfword ITEM_REPEL
 .halfword ZERO_BADGES
@@ -109,189 +109,199 @@ const u16 *_0210FA3C[] = {
 };
 */
 
+/* Cherrygrove City 2nd Clerk */
 /* const u16 _020FBA54[] = {ITEM_AIR_MAIL, ITEM_HEAL_BALL, 0xFFFF}; */
-/* Cherrygrove City 2nd Clerk -> Violet City 2nd Clerk */
-.org 0x020FBA54
-.halfword ITEM_HEAL_BALL
-.halfword ITEM_NET_BALL
-.halfword 0xFFFF
 
+/* */
 /* const u16 _020FBA5A[] = {ITEM_AIR_MAIL, ITEM_QUICK_BALL, 0xFFFF}; */
 
+/* Ecruteak City 2nd Clerk */
 /* const u16 _020FBA60[] = {ITEM_AIR_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
-/* Ecruteak City 2nd Clerk -> Safari Zone Top Stall */
 
-.org 0x020FBA60
-.halfword ITEM_BLACK_BELT
-.halfword ITEM_EXPERT_BELT
-.halfword ITEM_FOCUS_SASH
-.halfword 0xFFFF
-
+/* */
 /* const u16 _020FBA68[] = {ITEM_AIR_MAIL, ITEM_TUNNEL_MAIL, ITEM_BLOOM_MAIL, 0xFFFF}; */
+
+/* */
 /* const u16 _020FBA70[] = {ITEM_AIR_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
 
+/* Violet City 2nd Clerk */
 /* const u16 _020FBA78[] = {ITEM_TUNNEL_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
-/* Violet City -> Goldenrod Flower Shop */
-.org 0x020FBA78
-.halfword ITEM_POWER_HERB
-.halfword ITEM_MENTAL_HERB
-.halfword ITEM_WHITE_HERB
+
+/* Blackthorn City 2nd Clerk */
+/* const u16 _020FBA80[] = {ITEM_AIR_MAIL, ITEM_NET_BALL, ITEM_DUSK_BALL, 0xFFFF}; */
+
+/* Olivine City 2nd Clerk */
+/* const u16 _020FBA88[] = {ITEM_HEART_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
+
+/* Fushia City 2nd Clerk */
+/* const u16 _020FBA90[] = {ITEM_STEEL_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
+
+/* Lavender Town 2nd Clerk */
+/* const u16 _020FBA98[] = {ITEM_SNOW_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
+
+/* */
+/* const u16 _020FBAA0[] = {ITEM_STEEL_MAIL, ITEM_NEST_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
+
+/* */
+/* const u16 _020FBAA8[] = {ITEM_STEEL_MAIL, ITEM_NET_BALL, ITEM_HEAL_BALL, 0xFFFF}; */
+
+/* */
+/* const u16 _020FBAB0[] = {ITEM_BLOOM_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
+
+/* Mahogany Town Shop Rockets */
+/* const u16 _020FBAB8[] = {ITEM_TINY_MUSHROOM, ITEM_POKE_BALL, ITEM_POTION, 0xFFFF}; */
+.org 0x020FBAB8
+.halfword ITEM_TINY_MUSHROOM
+.halfword ITEM_POKE_BALL
+.halfword ITEM_POTION
 .halfword 0xFFFF
 
-/* const u16 _020FBA80[] = {ITEM_AIR_MAIL, ITEM_NET_BALL, ITEM_DUSK_BALL, 0xFFFF}; */
-/* const u16 _020FBA88[] = {ITEM_HEART_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
-/* const u16 _020FBA90[] = {ITEM_STEEL_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
-/* const u16 _020FBA98[] = {ITEM_SNOW_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
-/* const u16 _020FBAA0[] = {ITEM_STEEL_MAIL, ITEM_NEST_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
-/* const u16 _020FBAA8[] = {ITEM_STEEL_MAIL, ITEM_NET_BALL, ITEM_HEAL_BALL, 0xFFFF}; */
-/* const u16 _020FBAB0[] = {ITEM_BLOOM_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
-/* const u16 _020FBAB8[] = {ITEM_TINYMUSHROOM, ITEM_POKE_BALL, ITEM_POTION, 0xFFFF}; */
+/* Safari Zone Gate Southwest Stall */
 /* const u16 _020FBAC0[] = {ITEM_AIR_MAIL, ITEM_NEST_BALL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
+.org 0x020FBAC0
+.halfword ITEM_SHINY_STONE
+.halfword ITEM_DUSK_STONE
+.halfword ITEM_DAWN_STONE
+.halfword ITEM_ICE_STONE
+.halfword 0xFFFF
+
+/* Goldenrod Tunnel Herb Shop */
 /* const u16 _020FBACA[] = {ITEM_HEAL_POWDER, ITEM_ENERGYPOWDER, ITEM_ENERGY_ROOT, ITEM_REVIVAL_HERB, 0xFFFF}; */
+
+/* */
 /* const u16 _020FBAD4[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL, ITEM_REVIVE, 0xFFFF}; */
+
+/* Safari Zone Gate Southeast Stall ? */
 /* const u16 _020FBAFA[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
+.org 0x020FBAFA
+.halfword ITEM_ELECTIRIZER
+.halfword ITEM_MAGMARIZER
+.halfword ITEM_PROTECTOR
+.halfword ITEM_REAPER_CLOTH
+.halfword ITEM_AUSPICIOUS_ARMOR
+.halfword ITEM_MALICIOUS_ARMOR
+.halfword 0xFFFF
 
+/* Goldenrod Dept Store 4F & Celadon Dept Store 5F */
 /* const u16 _020FBB08[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
-
 .org 0x020FBB08
-/* Celadon Dept Store 5F -> Goldenrod/Celadon Dept Store 2F (reduced inventory) */
+.halfword ITEM_FIRE_STONE
+.halfword ITEM_WATER_STONE
+.halfword ITEM_THUNDER_STONE
+.halfword ITEM_LEAF_STONE
+.halfword ITEM_MOON_STONE
+.halfword ITEM_SUN_STONE
+.halfword 0xFFFF
+
+/* Mt. Moon Square Shop */
+/* const u16 _020FBB16[] = {ITEM_POKE_DOLL, ITEM_FRESH_WATER, ITEM_SODA_POP, ITEM_LEMONADE, ITEM_REPEL, ITEM_HEART_MAIL, 0xFFFF}; */
+.org 0x020FBB16
+.halfword ITEM_POKE_DOLL
+.halfword ITEM_FRESH_WATER
+.halfword ITEM_SODA_POP
+.halfword ITEM_LEMONADE
+.halfword ITEM_REPEL
+.halfword ITEM_HEART_MAIL
+.halfword 0xFFFF
+
+/* Indigo Plateau */
+/* const u16 _020FBB84[] = {ITEM_ULTRA_BALL, ITEM_MAX_REPEL, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_FULL_RESTORE, ITEM_REVIVE, ITEM_FULL_HEAL, 0xFFFF}; */
+.org 0x020FBB84
+.halfword ITEM_ULTRA_BALL
+.halfword ITEM_MAX_REPEL
+.halfword ITEM_FULL_RESTORE
+.halfword ITEM_MAX_REVIVE
+.halfword ITEM_FULL_HEAL
+.halfword ITEM_ABILITY_CAPSULE
+.halfword ITEM_ABILITY_PATCH
+.halfword 0xFFFF
+
+/* Goldenrod Dept Store 3F */ 
+/* const u16 _020FBBB4[] = {ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SPECIAL, ITEM_X_SP_DEF, 0xFFFF}; */
+.org 0x020FBBB4
+.halfword ITEM_UP_GRADE
+.halfword ITEM_DEEP_SEA_SCALE
+.halfword ITEM_DEEP_SEA_TOOTH
+.halfword ITEM_SWEET_APPLE
+.halfword ITEM_TART_APPLE
+.halfword ITEM_SYRUPY_APPLE
+.halfword ITEM_SACHET
+.halfword ITEM_WHIPPED_DREAM
+.halfword 0xFFFF
+
+/* Celadon Dept Store 5F */
+/* const u16 _020FBBC6[] = {ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SPECIAL, ITEM_X_SP_DEF, 0xFFFF}; */
+
+/* Mahogany Shop Post Rockets */
+/* const u16 _020FBBD8[] = {ITEM_GREAT_BALL, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL, ITEM_SUPER_REPEL, ITEM_REVIVE, ITEM_AIR_MAIL, 0xFFFF}; */
+.org 0x020FBBD8
+.halfword ITEM_GREAT_BALL
+.halfword ITEM_SUPER_POTION
+.halfword ITEM_HYPER_POTION
+.halfword ITEM_ANTIDOTE
+.halfword ITEM_PARALYZE_HEAL
+.halfword ITEM_SUPER_REPEL
+.halfword ITEM_REVIVE
+.halfword ITEM_AIR_MAIL
+.halfword 0xFFFF
+
+/* Goldenrod Dept Store 1st Clerk 2F */
+/* const u16 _020FBBEA[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL, ITEM_BURN_HEAL, ITEM_ICE_HEAL, ITEM_AWAKENING, ITEM_FULL_HEAL, 0xFFFF}; */
+.org 0x020FBBEA
 .halfword ITEM_POTION
 .halfword ITEM_SUPER_POTION
 .halfword ITEM_HYPER_POTION
 .halfword ITEM_MAX_POTION
 .halfword ITEM_REVIVE
+.halfword ITEM_ANTIDOTE
+.halfword ITEM_PARALYZE_HEAL
+.halfword ITEM_BURN_HEAL
+.halfword ITEM_ICE_HEAL
+.halfword ITEM_AWAKENING
 .halfword ITEM_FULL_HEAL
 .halfword 0xFFFF
 
-/* const u16 _020FBB16[] = {ITEM_POKE_DOLL, ITEM_FRESH_WATER, ITEM_SODA_POP, ITEM_LEMONADE, ITEM_REPEL, ITEM_HEART_MAIL, 0xFFFF}; */
-/* const u16 _020FBB84[] = {ITEM_ULTRA_BALL, ITEM_MAX_REPEL, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_FULL_RESTORE, ITEM_REVIVE, ITEM_FULL_HEAL, 0xFFFF}; */
+/* Celadon Dept Store 2F *\
+/* const u16 _020FBC02[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL, ITEM_BURN_HEAL, ITEM_ICE_HEAL, ITEM_AWAKENING, ITEM_FULL_HEAL, 0xFFFF}; */
 
-/* const u16 _020FBBB4[] = {ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC_, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SPECIAL, ITEM_X_SP__DEF, 0xFFFF}; */
-/* const u16 _020FBBC6[] = {ITEM_X_SPEED, ITEM_X_ATTACK, ITEM_X_DEFENSE, ITEM_GUARD_SPEC_, ITEM_DIRE_HIT, ITEM_X_ACCURACY, ITEM_X_SPECIAL, ITEM_X_SP__DEF, 0xFFFF}; */
-
-.org 0x020FBBB4
-/* This spills over into _020FBBC6 */
-/* Goldenrod Dept Store 3F & Celadon Dept Store 5F -> Chansey Supply 1 */ 
-.halfword ITEM_HP_UP
-.halfword ITEM_PROTEIN
-.halfword ITEM_IRON
-.halfword ITEM_CALCIUM
-.halfword ITEM_ZINC
-.halfword ITEM_CARBOS
-.halfword ITEM_POWER_WEIGHT
-.halfword ITEM_POWER_BRACER
-.halfword ITEM_POWER_BELT
-
-.halfword ITEM_POWER_LENS
-.halfword ITEM_POWER_BAND
-.halfword ITEM_POWER_ANKLET
-.halfword ITEM_EXP_SHARE
-.halfword ITEM_MACHO_BRACE
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
-
-/* const u16 _020FBBD8[] = {ITEM_GREAT_BALL, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_ANTIDOTE, ITEM_PARLYZ_HEAL, ITEM_SUPER_REPEL, ITEM_REVIVE, ITEM_AIR_MAIL, 0xFFFF}; */
-
-.org 0x020FBBD8
-/* Mahogany Shop -> Goldenrod/Celadon Dept Store */
-.halfword ITEM_X_SPEED
-.halfword ITEM_X_ATTACK
-.halfword ITEM_X_DEFENSE
-.halfword ITEM_GUARD_SPEC
-.halfword ITEM_DIRE_HIT
-.halfword ITEM_X_ACCURACY
-.halfword ITEM_X_SPECIAL
-.halfword ITEM_X_SP_DEF
-.halfword 0xFFFF
-
-/* const u16 _020FBBEA[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_ANTIDOTE, ITEM_PARLYZ_HEAL, ITEM_BURN_HEAL, ITEM_ICE_HEAL, ITEM_AWAKENING, ITEM_FULL_HEAL, 0xFFFF}; */
-/* const u16 _020FBC02[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_ANTIDOTE, ITEM_PARLYZ_HEAL, ITEM_BURN_HEAL, ITEM_ICE_HEAL, ITEM_AWAKENING, ITEM_FULL_HEAL, 0xFFFF}; */
-
-.org 0x020FBBEA
-/* This spills over into _020FBC02 */
-/* Goldenrod Dept Store 2F & Celadon Dept Store 2F -> Chansey Supply 2 */
-.halfword ITEM_PP_UP
-.halfword ITEM_ABILITY_CAPSULE
-.halfword ITEM_LONELY_MINT
-.halfword ITEM_ADAMANT_MINT
-.halfword ITEM_NAUGHTY_MINT
-.halfword ITEM_BRAVE_MINT
-.halfword ITEM_BOLD_MINT
-.halfword ITEM_IMPISH_MINT
-.halfword ITEM_LAX_MINT
-.halfword ITEM_RELAXED_MINT
-.halfword ITEM_MODEST_MINT
-.halfword ITEM_MILD_MINT
-
-.halfword ITEM_RASH_MINT
-.halfword ITEM_QUIET_MINT
-.halfword ITEM_CALM_MINT
-.halfword ITEM_GENTLE_MINT
-.halfword ITEM_CAREFUL_MINT
-.halfword ITEM_SASSY_MINT
-.halfword ITEM_TIMID_MINT
-.halfword ITEM_HASTY_MINT
-.halfword ITEM_JOLLY_MINT
-.halfword ITEM_NAIVE_MINT
-.halfword ITEM_SERIOUS_MINT
-.halfword 0xFFFF
-
+/* Goldenrod Dept Store 2nd Clerk 2F */
 /* const u16 _020FBC1A[] = {ITEM_POKE_BALL, ITEM_GREAT_BALL, ITEM_ULTRA_BALL, ITEM_ESCAPE_ROPE, ITEM_POKE_DOLL, ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL, ITEM_GRASS_MAIL, ITEM_FLAME_MAIL, ITEM_BUBBLE_MAIL, ITEM_SPACE_MAIL, 0xFFFF}; */
+.org 0x020FBC1A
+.halfword ITEM_POKE_BALL
+.halfword ITEM_GREAT_BALL
+.halfword ITEM_ULTRA_BALL
+.halfword ITEM_ABILITY_CAPSULE
+.halfword ITEM_POKE_DOLL
+.halfword ITEM_REPEL
+.halfword ITEM_SUPER_REPEL
+.halfword ITEM_MAX_REPEL
+.halfword ITEM_GRASS_MAIL
+.halfword ITEM_FLAME_MAIL
+.halfword ITEM_BUBBLE_MAIL
+.halfword ITEM_SPACE_MAIL
+.halfword 0xFFFF
 
+/* Goldenrod Dept Store 5F */
 /* const u16 _020FBC34[] = {ITEM_TM70, ITEM_TM17, ITEM_TM54, ITEM_TM83, ITEM_TM16, ITEM_TM33, ITEM_TM22, ITEM_TM52, ITEM_TM38, ITEM_TM25, ITEM_TM14, ITEM_TM15, 0xFFFF}; */
-
 .org 0x020FBC34
-/* Goldenrod Dept Store 5F -> Goldenrod Dept Store 5F still (also Celadon 3F) */
-.halfword ITEM_SUN_STONE
-.halfword ITEM_MOON_STONE
-.halfword ITEM_FIRE_STONE
-.halfword ITEM_THUNDER_STONE
-.halfword ITEM_WATER_STONE
-.halfword ITEM_LEAF_STONE
-.halfword ITEM_ICE_STONE
-.halfword ITEM_EVERSTONE
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
+.halfword ITEM_TM14
+.halfword ITEM_TM15
+.halfword ITEM_TM16
+.halfword ITEM_TM17
+.halfword ITEM_TM22
+.halfword ITEM_TM25
+.halfword ITEM_TM33
+.halfword ITEM_TM38
+.halfword ITEM_TM52
+.halfword ITEM_TM54
+.halfword ITEM_TM70
+.halfword ITEM_TM83
 .halfword 0xFFFF
 
+/* Celadon Dept Store 2F */
 /* const u16 _020FBC4E[] = {ITEM_POKE_BALL, ITEM_GREAT_BALL, ITEM_ULTRA_BALL, ITEM_ESCAPE_ROPE, ITEM_POKE_DOLL, ITEM_REPEL, ITEM_SUPER_REPEL, ITEM_MAX_REPEL, ITEM_GRASS_MAIL, ITEM_FLAME_MAIL, ITEM_BUBBLE_MAIL, ITEM_SPACE_MAIL, 0xFFFF}; */
 
-.org 0x020FBC4E
-/* Celadon Dept Store 2F -> Safari Zone Gate */
-.halfword ITEM_FULL_INCENSE
-.halfword ITEM_LAX_INCENSE
-.halfword ITEM_LUCK_INCENSE
-.halfword ITEM_ODD_INCENSE
-.halfword ITEM_PURE_INCENSE
-.halfword ITEM_ROCK_INCENSE
-.halfword ITEM_ROSE_INCENSE
-.halfword ITEM_SEA_INCENSE
-.halfword ITEM_WAVE_INCENSE
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
-.halfword 0xFFFF
-
+/* Celadon Dept Store 3F */
 /* const u16 _020FBC68[] = {ITEM_TM21, ITEM_TM27, ITEM_TM87, ITEM_TM78, ITEM_TM12, ITEM_TM41, ITEM_TM20, ITEM_TM28, ITEM_TM76, ITEM_TM55, ITEM_TM72, ITEM_TM79, 0xFFFF}; */
-
-.org 0x020FBC68
-/* Celadon Dept Store 3F -> Safari Zone Gate */
-.halfword ITEM_SHINY_STONE
-.halfword ITEM_DUSK_STONE
-.halfword ITEM_DAWN_STONE
-.halfword ITEM_OVAL_STONE
-.halfword ITEM_KINGS_ROCK
-.halfword ITEM_LINKING_CORD
-.halfword ITEM_RAZOR_CLAW
-.halfword ITEM_RAZOR_FANG
-.halfword ITEM_PRISM_SCALE
-.halfword ITEM_SACHET
-.halfword ITEM_UP_GRADE
-.halfword ITEM_WHIPPED_DREAM
-.halfword 0xFFFF
 
 .close
