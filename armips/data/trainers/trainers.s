@@ -10271,7 +10271,7 @@ trainerdata 247, "Koga"
         ivs 255
         abilityslot 15
         level 75
-        monwithform SPECIES_SLOWBRO, 1
+        monwithform SPECIES_SLOWBRO, 2
         item ITEM_ASSAULT_VEST
         move MOVE_SHELL_SIDE_ARM
         move MOVE_PSYCHIC
@@ -17156,7 +17156,7 @@ trainerdata 418, "Bruno"
 
         // mon 3
         ivs 255
-        abilityslot 32
+        abilityslot 15
         level 75
         monwithform SPECIES_LILLIGANT, 1
         item ITEM_FOCUS_SASH
