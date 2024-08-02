@@ -59,29 +59,29 @@ void SetOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, u16 trg)
  */
 void CheckOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, FieldSystem *fsys)
 {
-    // Don't allow the relearner at all if flag 2167 hasn't been set
-    if (req->OpenRelearnerCheck && CheckScriptFlag(2167)) 
+    // Don't allow the relearner at all if flag 2567 hasn't been set
+    if (req->OpenRelearnerCheck && CheckScriptFlag(2566)) 
     {
-        if (CheckScriptFlag(2170)) 
+        if (CheckScriptFlag(2567)) 
         {
-            EventSet_Script(fsys, 2074, NULL); // set up script 2074 if flag 2170 is set, disallowing use of the Move Relearner
+            EventSet_Script(fsys, 2510, NULL); // set up script
         } 
         else 
         {
-            EventSet_Script(fsys, 2073, NULL); // set up script 2073
+            EventSet_Script(fsys, 2509, NULL); // set up script
         }
     }
-
-    // Don't allow the PC at all if flag 398 hasn't been set
-    if (req->OpenPCCheck && CheckScriptFlag(398)) 
+    // Don't allow the PC at all if flag 2565 hasn't been set
+    if (req->OpenPCCheck && CheckScriptFlag(2564)) 
     {
-        if (CheckScriptFlag(397)) 
+        if (CheckScriptFlag(2565)) 
         {
-            EventSet_Script(fsys, 2072, NULL); // set up script 2072 to show a cannot use PC message if flag 397 is set
+            EventSet_Script(fsys, 2073, NULL); // set up script
         } 
         else 
-        {
+        { 
             SetScriptFlag(399); // some random flag that should be set by script 2010 (file 3 script 10)
-            EventSet_Script(fsys, 2075, NULL); // set up script 2075
-        }
+            EventSet_Script(fsys, 2010, NULL); // set up script
+        } 
     }
+}

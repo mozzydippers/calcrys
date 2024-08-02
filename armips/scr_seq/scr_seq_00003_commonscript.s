@@ -87,6 +87,7 @@ scrdef scr_seq_0003_069
 scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072
+scrdef scr_seq_0003_073
 scrdef_end
 
 scr_seq_0003_002:
@@ -1719,7 +1720,7 @@ scr_seq_0003_064:
     closemsg
     releaseall
     end
-
+    
 scr_seq_0003_072:
     playfanfare SEQ_SE_DP_SELECT
 	lockall 
@@ -1742,6 +1743,14 @@ scr_seq_0003_072:
 	releaseall 
     end 
 
-
+scr_seq_0003_073:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    buffer_players_name 0
+    npc_msg 37
+    wait_button
+    closemsg
+    releaseall
+    end
 
 .close
