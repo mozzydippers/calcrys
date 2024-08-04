@@ -661,6 +661,8 @@ BattleContext_CheckMoveImprisoned = 0x02252C74 | 1;
 BattleContext_CheckMoveUnuseableInGravity = 0x02252DC4 | 1;
 BattleContext_CheckMoveHealBlocked = 0x02252DF8 | 1;
 
+CanUseItemOnPokemon = 0x0208FD9C | 1;
+
 SaveArray_PCStorage_Get = 0x020270D8 | 1;
 
 GetMonTMHMCompat = 0x0207224C | 1;
