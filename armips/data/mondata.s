@@ -839,7 +839,7 @@ mondata SPECIES_JIGGLYPUFF, "Jigglypuff"
     catchrate 170
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
-    items ITEM_NONE, ITEM_NONE
+    items ITEM_NONE, ITEM_MOON_STONE
     genderratio 190
     eggcycles 10
     basefriendship 50

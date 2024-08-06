@@ -1888,7 +1888,7 @@ rocksmashrate 0
 oldrodrate 25
 goodrodrate 50
 superrodrate 75
-walklevels 22, 22, 23, 23, 24, 24, 25, 25, 22, 22, 23, 23
+walklevels 22, 22, 22, 22, 23, 23, 24, 24, 25, 25, 23, 23
 
 // morning encounter slots
 pokemon SPECIES_SLOWPOKE
@@ -1899,8 +1899,8 @@ pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_WOOBAT
-pokemon SPECIES_NOIBAT
+pokemon SPECIES_SLOWPOKE
+pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_WOOBAT
 pokemon SPECIES_NOIBAT
 
@@ -1913,8 +1913,8 @@ pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_WOOBAT
-pokemon SPECIES_NOIBAT
+pokemon SPECIES_SLOWPOKE
+pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_WOOBAT
 pokemon SPECIES_NOIBAT
 
@@ -1927,8 +1927,8 @@ pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_SLOWPOKE
-pokemon SPECIES_WOOBAT
-pokemon SPECIES_NOIBAT
+pokemon SPECIES_SLOWPOKE
+pokemon SPECIES_SLOWPOKE
 pokemon SPECIES_WOOBAT
 pokemon SPECIES_NOIBAT
 
@@ -1953,8 +1953,8 @@ encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
 encounter SPECIES_SLOWPOKE, 20, 20
-encounter SPECIES_SHELLDER, 20, 20
-encounter SPECIES_SHELLDER, 20, 20
+encounter SPECIES_SLOWPOKE, 20, 20
+encounter SPECIES_SLOWPOKE, 20, 20
 encounter SPECIES_SHELLDER, 20, 20
 encounter SPECIES_SHELLDER, 20, 20
 
@@ -4240,11 +4240,11 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // old rod encounters
-encounter SPECIES_CHINCHOU, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
-encounter SPECIES_CHINCHOU, 20, 20
+encounter SPECIES_LANTURN, 45, 48
+encounter SPECIES_LANTURN, 45, 48
+encounter SPECIES_LANTURN, 45, 48
+encounter SPECIES_EELEKTRIK, 45, 48
+encounter SPECIES_EELEKTRIK, 45, 48
 
 // good rod encounters
 encounter SPECIES_LANTURN, 40, 40
@@ -8708,8 +8708,8 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // rock smash encounters
-encounter SPECIES_KRABBY, 20, 26
-encounter SPECIES_KINGLER, 28, 31
+encounter SPECIES_CRADILY, 40, 45
+encounter SPECIES_ARMALDO, 40, 45
 
 // old rod encounters
 encounter SPECIES_NONE, 0, 0

@@ -1833,7 +1833,7 @@ trainerdata 32, "Pryce"
     endparty
 
 trainerdata 33, "Jasmine"
-    trainermontype TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_IV_EV_SET
+    trainermontype TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
     trainerclass CLASS_LEADER_2
     nummons 6
     item ITEM_NONE
@@ -1858,6 +1858,7 @@ trainerdata 33, "Jasmine"
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_QUIET
+        additionalflags 0
         ballseal 0
 
         // mon 1
@@ -1873,6 +1874,7 @@ trainerdata 33, "Jasmine"
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_QUIET
+        additionalflags 0
         ballseal 0
 
         // mon 2
@@ -1888,6 +1890,7 @@ trainerdata 33, "Jasmine"
         setivs 31, 31, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_RELAXED
+        additionalflags 0
         ballseal 0
 
         // mon 3
@@ -1903,6 +1906,7 @@ trainerdata 33, "Jasmine"
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_QUIET
+        additionalflags 0
         ballseal 0
 
         // mon 4
@@ -1918,6 +1922,7 @@ trainerdata 33, "Jasmine"
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_RELAXED
+        additionalflags 0
         ballseal 0
 
         // mon 5
@@ -1933,6 +1938,8 @@ trainerdata 33, "Jasmine"
         setivs 31, 31, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_BRAVE
+        additionalflags TRAINER_DATA_EXTRA_TYPE_NICKNAME
+        nickname _R, _u_, _s_, _t_, _y_, _endstr, 0, 0, 0, 0, 0
         ballseal 0
     endparty
 
@@ -7275,7 +7282,7 @@ trainerdata 164, "Miki"
         ballseal 0
     endparty
 
-trainerdata 165, "Mickey"
+trainerdata 165, "Jester"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_F
     nummons 1
@@ -7296,7 +7303,7 @@ trainerdata 165, "Mickey"
         ballseal 0
     endparty
 
-trainerdata 166, "Mickey"
+trainerdata 166, "Mannequin"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_F
     nummons 1
@@ -7317,7 +7324,7 @@ trainerdata 166, "Mickey"
         ballseal 0
     endparty
 
-trainerdata 167, "Mickey"
+trainerdata 167, "Tomiz"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_F
     nummons 1
@@ -7338,7 +7345,7 @@ trainerdata 167, "Mickey"
         ballseal 0
     endparty
 
-trainerdata 168, "Mickey"
+trainerdata 168, "Penny"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_M
     nummons 3
@@ -7373,7 +7380,7 @@ trainerdata 168, "Mickey"
         ballseal 0
     endparty
 
-trainerdata 169, "Mickey"
+trainerdata 169, "Sundzy"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_M
     nummons 2
@@ -7401,7 +7408,7 @@ trainerdata 169, "Mickey"
         ballseal 0
     endparty
 
-trainerdata 170, "Mickey"
+trainerdata 170, "Katina"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass CLASS_SWIMMER_M
     nummons 3

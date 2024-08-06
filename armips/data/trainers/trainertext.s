@@ -47,13 +47,45 @@ _0000: // Trainer 0
     trainertextentry 105, TEXT_DEFEATED_IN_BATTLE, "Hmm... Well done.\n"
     trainertextentry 105, TEXT_PLAYER_LOSES, "Forgive me.\nIt happened to hit the weak spot..\n"
        // Trainer 138
+
        // Trainer 141
+
        // Trainer 165
+    trainertextentry 165, TEXT_NOTICE_IN_OVERWORLD, "Hey!\rYou look like a competent\nbattler, it's been a while since I had\fa good challenge.\rHows'about we go a couple rounds?\r"
+    trainertextentry 165, TEXT_LAST_MON_SENT_OUT, "HAHAHA-HAHAHAA!\rI LOVE HOW BATTLING MAKES MY BLOOD\nRACE, EVEN WHEN BACKED AGAINST THE\fWALL!\n"
+    trainertextentry 165, TEXT_DEFEATED_IN_BATTLE, "Wow alright alright,\nyou aint too shabby!" 
+    trainertextentry 165, TEXT_DEFEATED_IN_OVERWORLD, "You know I'm a little surprised I lost,\nbut that just goes to show how good you\fare.\rI knew from lookin' at ya that you knew\nwhat you were doin'.\rFair warning though?\rI doubt I'm the strongest trainer here,\nso keep your wits about you.\rI look forward to seeing what else\nyou have in store.\r"
+    trainertextentry 165, TEXT_PLAYER_LOSES, "HAHAAA-AHEM! Sorry!\nGot a little into it there! Good match!\rSwing a little harder next time though!\n"
        // Trainer 166
+    trainertextentry 166, TEXT_NOTICE_IN_OVERWORLD, "Hey, I need to get a hang of team\ncomposition more, so let me see how\fyours handles.\r"
+    trainertextentry 166, TEXT_LAST_MON_SENT_OUT, "Oh, your team works together well.\nI'll keep it noted.\n"
+    trainertextentry 166, TEXT_DEFEATED_IN_BATTLE, "I think I get it now,\nwe need to be more focused.\n"
+    trainertextentry 166, TEXT_DEFEATED_IN_OVERWORLD, "At least everyone here gets along with\neach other no problem,\fit's really incredible."
+    trainertextentry 166, TEXT_PLAYER_LOSES, "Well, at least my team ain't half bad,\nthat's nice.\n"
        // Trainer 167
+    trainertextentry 167, TEXT_NOTICE_IN_OVERWORLD, "Seems a powerful opponent has stumbled\nacross my gaze, allow me to battle you\f to test our true wits and strengths.\r"
+    trainertextentry 167, TEXT_LAST_MON_SENT_OUT, "This is unbelieveable! You have managed\nto run through my strongest pokemon..\rPlease allow me to push forth my\nfinal stand."
+    trainertextentry 167, TEXT_DEFEATED_IN_BATTLE, "In all my battles I have never\nwithstood a battle quite like this.\rI can only hope to watch as spectator\nin the journey you are pursuing.\n"
+    trainertextentry 167, TEXT_DEFEATED_IN_OVERWORLD, "Maybe I could even document your story\nso far...\rBut that may overstep boundaries.\rNonetheless I am glad to be watching\nfrom the sidelines.\r"
+    trainertextentry 167, TEXT_PLAYER_LOSES, "I am wishing you hope and joys on your\njourney to become the best there is.\rAs I watch I hope you fight with the\nsame passion you did within our battle.\n"
        // Trainer 168
+    trainertextentry 168, TEXT_NOTICE_IN_OVERWORLD, "Salutations! Do you wanna be my friend? Then let’s battle!\r"
+    trainertextentry 168, TEXT_LAST_MON_SENT_OUT, "I will not falter!\nLet’s give it the best we got!\n"
+    trainertextentry 168, TEXT_DEFEATED_IN_BATTLE, "Well darn!\nI guess that’s my defeat.\n" 
+    trainertextentry 168, TEXT_DEFEATED_IN_OVERWORLD, "That was an amazing battle! I hope to\nbattle you again someday, friend!\r"
+    trainertextentry 168, TEXT_PLAYER_LOSES, "Next time come back combat ready!\n"
        // Trainer 169
+    trainertextentry 168, TEXT_NOTICE_IN_OVERWORLD, "Hey... are you a tourist?\r"
+    trainertextentry 168, TEXT_LAST_MON_SENT_OUT, "You've GYATT to be kidding..\n"
+    trainertextentry 168, TEXT_DEFEATED_IN_BATTLE, "That wasn't TOO easy..\n" 
+    trainertextentry 168, TEXT_DEFEATED_IN_OVERWORLD, "Mazel Tov..\r"
+    trainertextentry 168, TEXT_PLAYER_LOSES, "It's TOO easy!\n"
        // Trainer 170
+    trainertextentry 170, TEXT_NOTICE_IN_OVERWORLD, "You’re a real tryhard for having made\nit this far.\rLet’s see if I can be an annoyance to\nyou before the Elite 4.\r"
+    trainertextentry 170, TEXT_LAST_MON_SENT_OUT, "Now I want to make a drawing out of\nthis battle...\n"
+    trainertextentry 170, TEXT_DEFEATED_IN_BATTLE, "I would have won if I had\nhealing items…\n" 
+    trainertextentry 170, TEXT_DEFEATED_IN_OVERWORLD, "I really love Scizor but I really hate\nKleavor.\rA friend told me that I should make an\neffort and give Kleavor a chance but I\fdon’t know if I want to.\r"
+    trainertextentry 170, TEXT_PLAYER_LOSES, "No big deal, it’s only the entire\nVictory Road to walk through all over\fagain.\n"
        // Trainer 171
        // Trainer 174
        // Trainer 175
