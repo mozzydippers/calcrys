@@ -4577,7 +4577,7 @@ mondata SPECIES_URSARING, "Ursaring"
     catchrate 60
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
-    items ITEM_NONE, ITEM_NONE
+    items ITEM_NONE, ITEM_PEAT_BLOCK
     genderratio 127
     eggcycles 20
     basefriendship 70
@@ -21960,7 +21960,7 @@ mondata SPECIES_IRON_MOTH, "Iron Moth"
 
 
 mondata SPECIES_IRON_THORNS, "IronThorns"
-    basestats 100, 134, 110, 72, 70, 84
+    basestats 100, 70, 84, 72, 134, 110
     types TYPE_ROCK, TYPE_ELECTRIC
     catchrate 30
     baseexp 0 // defined in baseexp.s
