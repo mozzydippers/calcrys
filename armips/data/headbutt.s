@@ -2084,18 +2084,18 @@ headbuttheader  95,   0,   0
 
 headbuttheader  96,  22,   5 // national park
     // normal slots
-    headbuttencounter SPECIES_APPLIN, 30, 33
-    headbuttencounter SPECIES_APPLIN, 30, 33
-    headbuttencounter SPECIES_FLAPPLE, 32, 36
-    headbuttencounter SPECIES_APPLETUN, 32, 36
-    headbuttencounter SPECIES_FLAPPLE, 32, 36
-    headbuttencounter SPECIES_APPLETUN, 32, 36
-    headbuttencounter SPECIES_HOOTHOOT, 13, 15
-    headbuttencounter SPECIES_SPINARAK, 13, 15
-    headbuttencounter SPECIES_SPINARAK, 13, 15
-    headbuttencounter SPECIES_EXEGGCUTE, 13, 15
-    headbuttencounter SPECIES_EXEGGCUTE, 13, 15
-    headbuttencounter SPECIES_EXEGGCUTE, 13, 15
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_BURMY, 30, 33
+    headbuttencounter SPECIES_PINECO, 32, 35
+    headbuttencounter SPECIES_PINECO, 32, 35
+    headbuttencounter SPECIES_PINECO, 32, 35
+    headbuttencounter SPECIES_APPLIN, 30, 35
+    headbuttencounter SPECIES_APPLIN, 30, 35
+    headbuttencounter SPECIES_APPLIN, 30, 35
     // special slots
     headbuttencounter SPECIES_EXEGGCUTE, 18, 20
     headbuttencounter SPECIES_EXEGGCUTE, 18, 20
@@ -2196,16 +2196,16 @@ headbuttheader 116,   0,   0
 
 headbuttheader 117,  56,   0 // ilex forest
     // normal slots
-    headbuttencounter SPECIES_GOLBAT, 23, 26
-    headbuttencounter SPECIES_PANSAGE, 23, 26
-    headbuttencounter SPECIES_PANSEAR, 23, 26
-    headbuttencounter SPECIES_PANPOUR, 23, 26
-    headbuttencounter SPECIES_GOLBAT, 23, 26
-    headbuttencounter SPECIES_GOLBAT, 23, 26
-    headbuttencounter SPECIES_MANKEY, 25, 26
-    headbuttencounter SPECIES_MANKEY, 25, 26
-    headbuttencounter SPECIES_MANKEY, 25, 26
-    headbuttencounter SPECIES_MANKEY, 25, 26
+    headbuttencounter SPECIES_TAROUNTULA, 23, 25
+    headbuttencounter SPECIES_PANSAGE, 23, 25
+    headbuttencounter SPECIES_PANSEAR, 23, 25
+    headbuttencounter SPECIES_PANPOUR, 23, 25
+    headbuttencounter SPECIES_TAROUNTULA, 23, 25
+    headbuttencounter SPECIES_TAROUNTULA, 23, 25
+    headbuttencounter SPECIES_TAROUNTULA, 23, 25
+    headbuttencounter SPECIES_TAROUNTULA, 23, 25
+    headbuttencounter SPECIES_AIPOM, 23, 25
+    headbuttencounter SPECIES_AIPOM, 23, 25
     headbuttencounter SPECIES_MANKEY, 25, 26
     headbuttencounter SPECIES_MANKEY, 25, 26
     // special slots

@@ -114,10 +114,11 @@ movedata MOVE_MEGA_PUNCH, "Mega Punch"
     terminatedata
     movedescription MOVE_MEGA_PUNCH, "The foe is slugged\nby a punch thrown\nwith muscle-packed\npower.\n"
 
+// BP : 40 > 60
 movedata MOVE_PAY_DAY, "Pay Day"
     battleeffect MOVE_EFFECT_INCREASE_PRIZE_MONEY
     pss SPLIT_PHYSICAL
-    basepower 40
+    basepower 60
     type TYPE_NORMAL
     accuracy 100
     pp 20
@@ -3639,7 +3640,7 @@ movedata MOVE_MEGAHORN, "Megahorn"
     pss SPLIT_PHYSICAL
     basepower 120
     type TYPE_BUG
-    accuracy 100
+    accuracy 85
     pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
@@ -7083,7 +7084,7 @@ movedata MOVE_POWER_WHIP, "Power Whip"
     pss SPLIT_PHYSICAL
     basepower 120
     type TYPE_GRASS
-    accuracy 100
+    accuracy 85
     pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
@@ -7181,7 +7182,7 @@ movedata MOVE_STONE_EDGE, "Stone Edge"
     pss SPLIT_PHYSICAL
     basepower 100
     type TYPE_ROCK
-    accuracy 100
+    accuracy 80
     pp 5
     effectchance 0
     target MOVE_TARGET_SELECTED

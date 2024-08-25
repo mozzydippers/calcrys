@@ -171,26 +171,26 @@ const u16 *_0210FA3C[] = {
 /* */
 /* const u16 _020FBAD4[] = {ITEM_POTION, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL, ITEM_REVIVE, 0xFFFF}; */
 
-/* Safari Zone Gate Southeast Stall ? */
+/* Goldenrod Dept Store 4F & Celadon Dept Store 5F */
 /* const u16 _020FBAFA[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
 .org 0x020FBAFA
-.halfword ITEM_ELECTIRIZER
-.halfword ITEM_MAGMARIZER
-.halfword ITEM_PROTECTOR
-.halfword ITEM_REAPER_CLOTH
-.halfword ITEM_AUSPICIOUS_ARMOR
-.halfword ITEM_MALICIOUS_ARMOR
-.halfword 0xFFFF
-
-/* Goldenrod Dept Store 4F & Celadon Dept Store 5F */
-/* const u16 _020FBB08[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
-.org 0x020FBB08
 .halfword ITEM_FIRE_STONE
 .halfword ITEM_WATER_STONE
 .halfword ITEM_THUNDER_STONE
 .halfword ITEM_LEAF_STONE
 .halfword ITEM_MOON_STONE
 .halfword ITEM_SUN_STONE
+.halfword 0xFFFF
+
+/* Safari Zone Gate Southeast Stall */
+/* const u16 _020FBB08[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
+.org 0x020FBB08
+.halfword ITEM_ELECTIRIZER
+.halfword ITEM_MAGMARIZER
+.halfword ITEM_PROTECTOR
+.halfword ITEM_REAPER_CLOTH
+.halfword ITEM_BLACK_AUGURITE
+.halfword ITEM_METAL_ALLOY
 .halfword 0xFFFF
 
 /* Mt. Moon Square Shop */
@@ -286,15 +286,15 @@ const u16 *_0210FA3C[] = {
 .org 0x020FBC34
 .halfword ITEM_TM14
 .halfword ITEM_TM15
-.halfword ITEM_TM16
-.halfword ITEM_TM17
+.halfword ITEM_TM20
 .halfword ITEM_TM22
 .halfword ITEM_TM25
-.halfword ITEM_TM33
 .halfword ITEM_TM38
 .halfword ITEM_TM52
 .halfword ITEM_TM54
+.halfword ITEM_TM68
 .halfword ITEM_TM70
+.halfword ITEM_TM71
 .halfword ITEM_TM83
 .halfword 0xFFFF
 
