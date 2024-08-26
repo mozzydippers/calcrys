@@ -181,7 +181,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Weather Ability
-                    /* {
+                    {
                         if (!(CanUndergoPrimalReversion(sp, client_no)) && (sp->battlemon[client_no].appear_check_flag == 0) && (sp->battlemon[client_no].hp)) {
                             switch (GetBattlerAbility(sp, client_no)) {
                                 case ABILITY_DRIZZLE:
@@ -212,7 +212,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
                                     break;
-                                case ABILITY_DESOLATE_LAND:
+                            /*  case ABILITY_DESOLATE_LAND:
                                     sp->battlemon[client_no].appear_check_flag = 1;
                                     if ((sp->field_condition & WEATHER_EXTREMELY_HARSH_SUNLIGHT) == 0) {
                                         scriptnum = SUB_SEQ_DESOLATE_LAND;
@@ -232,14 +232,14 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         scriptnum = SUB_SEQ_DELTA_STREAM;
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
-                                    break; 
+                                    break; */
                             } 
                         }
                         if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                             sp->client_work = client_no;
                             break;
                         }
-                    } */
+                    }
 
                     // Intimidate
                     {

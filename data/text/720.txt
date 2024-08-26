@@ -1,5 +1,6 @@
  -
 Stench
+Drizzle
 Speed Boost
 Battle Armor
 Sturdy
@@ -42,6 +43,7 @@ Water Veil
 Magnet Pull
 Soundproof
 Rain Dish
+Sand Stream
 Pressure
 Thick Fat
 Early Bird
@@ -66,11 +68,13 @@ Blaze
 Torrent
 Swarm
 Rock Head
+Drought
 Arena Trap
 Vital Spirit
 White Smoke
 Pure Power
 Shell Armor
+Air Lock
 Tangled Feet
 Motor Drive
 Rivalry
@@ -106,13 +110,16 @@ Forewarn
 Unaware
 Tinted Lens
 Filter
+Slow Start
 Scrappy
 Storm Drain
 Ice Body
 Solid Rock
+Snow Warning
 Honey Gather
 Frisk
 Reckless
+Multitype
 Flower Gift
 Bad Dreams
 Pickpocket
@@ -168,7 +175,6 @@ Sweet Veil
 Stance Change
 Gale Wings
 Mega Launcher
-Grass Pelt
 Symbiosis
 Tough Claws
 Pixilate
@@ -176,8 +182,6 @@ Gooey
 Aerilate
 Parental Bond
 Aura Break
-Primordial Sea
-Delta Stream
 Stamina
 Wimp Out
 Emergency Exit
@@ -191,7 +195,6 @@ Long Reach
 Liquid Voice
 Triage
 Galvanize
-Surge Surfer
 Schooling
 Disguise
 Battle Bond
@@ -234,14 +237,12 @@ Quick Draw
 Unseen Fist
 Curious Medicine
 Thermal Exchange
+Anger Shell
 Well-Baked Body
 Wind Rider
 Wind Power
-Zero To Hero
 Protosynthesis
 Quark Drive
-Good As Gold
-Vessel Of Ruin
 Cud Chew
 Sharpness
 Supreme Overlord
