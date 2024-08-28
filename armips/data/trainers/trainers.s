@@ -308,14 +308,14 @@ trainerdata 7, "Irwin"
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
-    aiflags F_PRIORITIZE_SUPER_EFFECTIVE | 0
+    aiflags F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS | 0
     battletype SINGLE_BATTLE
     endentry
 
     party 7
         // mon 0
         ivs 255
-        abilityslot 2
+        abilityslot 32
         level 37
         pokemon SPECIES_MAGNEMITE
         item ITEM_EVIOLITE
@@ -1134,7 +1134,7 @@ trainerdata 21, "Bugsy"
 trainerdata 22, "Carrie"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass CLASS_LASS
-    nummons 3
+    nummons 4
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -1159,14 +1159,14 @@ trainerdata 22, "Carrie"
 
         // mon 1
         ivs 255
-        abilityslot 15
+        abilityslot 32
         level 35
-        pokemon SPECIES_BEWEAR
-        item ITEM_CLEAR_AMULET
-        move MOVE_RETURN
-        move MOVE_DRAIN_PUNCH
-        move MOVE_BRUTAL_SWING
-        move MOVE_BULK_UP
+        pokemon SPECIES_LINOONE
+        item ITEM_IAPAPA_BERRY
+        move MOVE_EXTREME_SPEED
+        move MOVE_STOMPING_TANTRUM
+        move MOVE_SEED_BOMB
+        move MOVE_BELLY_DRUM
         nature NATURE_ADAMANT
         ballseal 0
 
@@ -1180,6 +1180,19 @@ trainerdata 22, "Carrie"
         move MOVE_SHADOW_BALL
         move MOVE_WISH
         move MOVE_THUNDER_WAVE
+        nature NATURE_BOLD
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 15
+        level 35
+        pokemon SPECIES_LICKILICKY
+        item ITEM_SALAC_BERRY
+        move MOVE_THRASH
+        move MOVE_ZEN_HEADBUTT
+        move MOVE_ICE_PUNCH
+        move MOVE_REST
         nature NATURE_BOLD
         ballseal 0
     endparty
@@ -1613,7 +1626,7 @@ trainerdata 30, "Whitney"
         level 36
         pokemon SPECIES_LOPUNNY
         item ITEM_LUM_BERRY
-        move MOVE_FACADE
+        move MOVE_RETURN
         move MOVE_DRAIN_PUNCH
         move MOVE_FAKE_OUT
         move MOVE_U_TURN
@@ -1635,6 +1648,34 @@ trainerdata 30, "Whitney"
         additionalflags 0
         ballseal 0
 
+        // mon 2
+        ivs 255
+        abilityslot 32
+        level 36
+        pokemon SPECIES_FARIGIRAF
+        item ITEM_SITRUS_BERRY
+        move MOVE_HYPER_VOICE
+        move MOVE_TWIN_BEAM
+        move MOVE_THUNDERBOLT
+        move MOVE_AGILITY
+        nature NATURE_TIMID
+        additionalflags 0
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 15
+        level 36
+        pokemon SPECIES_DRAMPA
+        item ITEM_LEFTOVERS
+        move MOVE_HYPER_VOICE
+        move MOVE_FLAMETHROWER
+        move MOVE_ROOST
+        move MOVE_CALM_MIND
+        nature NATURE_BOLD
+        additionalflags 0
+        ballseal 0
+
         // mon 4
         ivs 255
         abilityslot 15
@@ -1648,34 +1689,6 @@ trainerdata 30, "Whitney"
         nature NATURE_LONELY
         additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
         status 16
-        ballseal 0
-
-        // mon 2
-        ivs 255
-        abilityslot 15
-        level 36
-        pokemon SPECIES_HELIOLISK
-        item ITEM_AIR_BALLOON
-        move MOVE_THUNDERBOLT
-        move MOVE_HYPER_VOICE
-        move MOVE_SURF
-        move MOVE_VOLT_SWITCH
-        nature NATURE_TIMID
-        additionalflags 0
-        ballseal 0
-
-        // mon 3
-        ivs 255
-        abilityslot 32
-        level 36
-        pokemon SPECIES_DRAMPA
-        item ITEM_LEFTOVERS
-        move MOVE_HYPER_VOICE
-        move MOVE_FLAMETHROWER
-        move MOVE_ROOST
-        move MOVE_CALM_MIND
-        nature NATURE_BOLD
-        additionalflags 0
         ballseal 0
 
         // mon 5
@@ -3778,12 +3791,12 @@ trainerdata 71, "Cathy"
         ivs 255
         abilityslot 15
         level 35
-        pokemon SPECIES_FARIGIRAF
-        item ITEM_CHESTO_BERRY
-        move MOVE_TWIN_BEAM
-        move MOVE_HYPER_VOICE
-        move MOVE_NASTY_PLOT
-        move MOVE_REST
+        pokemon SPECIES_BEWEAR
+        item ITEM_CLEAR_AMULET
+        move MOVE_RETURN
+        move MOVE_DRAIN_PUNCH
+        move MOVE_BRUTAL_SWING
+        move MOVE_BULK_UP
         nature NATURE_ADAMANT
         ballseal 0
 
@@ -3906,7 +3919,7 @@ trainerdata 74, "Ivan"
     party 74
         // mon 0
         ivs 255
-        abilityslot 15
+        abilityslot 32
         level 37
         pokemon SPECIES_GRAVELER
         move MOVE_ROCK_SLIDE
@@ -4076,7 +4089,7 @@ trainerdata 76, "Brooke"
         ivs 255
         abilityslot 15
         level 38
-        monwithform SPECIES_PIKACHU, 1
+        monwithform SPECIES_PIKACHU, 15
         item ITEM_LIGHT_BALL
         move MOVE_PIKA_PAPOW
         move MOVE_SPLISHY_SPLASH
@@ -16301,7 +16314,7 @@ trainerdata 388, "Walt"
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
-    aiflags F_PRIORITIZE_SUPER_EFFECTIVE | 0
+    aiflags F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS | 0
     battletype SINGLE_BATTLE
     endentry
 
@@ -27179,7 +27192,7 @@ trainerdata 678, "Joy"
     endparty
 
 trainerdata 679, "Callie"
-    trainermontype TRAINER_DATA_TYPE_MOVES
+    trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass CLASS_BEAUTY
     nummons 2
     item ITEM_NONE
@@ -27192,32 +27205,49 @@ trainerdata 679, "Callie"
 
     party 679
         // mon 0
-        ivs 0
-        abilityslot 15
-        level 16
-        pokemon SPECIES_CLEFABLE
-        move MOVE_GROWL
+        ivs 255
+        abilityslot 32
+        level 42
+        pokemon SPECIES_WIGGLYTUFF
+        item ITEM_METRONOME
+        move MOVE_DAZZLING_GLEAM
+        move MOVE_ECHOED_VOICE
         move MOVE_ENCORE
-        move MOVE_DOUBLE_SLAP
         move MOVE_METRONOME
+        nature NATURE_MODEST
         ballseal 0
 
         // mon 1
-        ivs 0
-        abilityslot 15
-        level 16
-        pokemon SPECIES_WIGGLYTUFF
-        move MOVE_SING
-        move MOVE_DEFENSE_CURL
-        move MOVE_POUND
-        move MOVE_DISABLE
+        ivs 255
+        abilityslot 2
+        level 42
+        pokemon SPECIES_AROMATISSE
+        item ITEM_SITRUS_BERRY
+        move MOVE_MOONBLAST
+        move MOVE_FLASH_CANNON
+        move MOVE_THUNDERBOLT
+        move MOVE_METRONOME
+        nature NATURE_MODEST
         ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 32
+        level 42
+        pokemon SPECIES_CLEFABLE
+        item ITEM_LIFE_ORB
+        move MOVE_DRAINING_KISS
+        move MOVE_PSYCHIC
+        move MOVE_FOLLOW_ME
+        move MOVE_METRONOME
+        nature NATURE_MODEST
+        ballseal 0      
     endparty
 
 trainerdata 680, "Kassandra"
-    trainermontype TRAINER_DATA_TYPE_MOVES
+    trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass CLASS_BEAUTY
-    nummons 2
+    nummons 3
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -27228,25 +27258,42 @@ trainerdata 680, "Kassandra"
 
     party 680
         // mon 0
-        ivs 0
-        abilityslot 15
-        level 16
-        pokemon SPECIES_WIGGLYTUFF
-        move MOVE_SING
-        move MOVE_DEFENSE_CURL
-        move MOVE_POUND
-        move MOVE_DISABLE
+        ivs 255
+        abilityslot 32
+        level 42
+        pokemon SPECIES_CLEFABLE
+        item ITEM_LIFE_ORB
+        move MOVE_DRAINING_KISS
+        move MOVE_PSYCHIC
+        move MOVE_FOLLOW_ME
+        move MOVE_METRONOME
+        nature NATURE_MODEST
         ballseal 0
 
         // mon 1
-        ivs 0
-        abilityslot 15
-        level 16
-        pokemon SPECIES_CLEFABLE
-        move MOVE_GROWL
-        move MOVE_ENCORE
-        move MOVE_DOUBLE_SLAP
+        ivs 255
+        abilityslot 2
+        level 42
+        pokemon SPECIES_SLURPUFF
+        item ITEM_SITRUS_BERRY
+        move MOVE_PLAY_ROUGH
+        move MOVE_DRAIN_PUNCH
+        move MOVE_YAWN
         move MOVE_METRONOME
+        nature NATURE_ADAMANT
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 32
+        level 42
+        pokemon SPECIES_WIGGLYTUFF
+        item ITEM_METRONOME
+        move MOVE_DAZZLING_GLEAM
+        move MOVE_ECHOED_VOICE
+        move MOVE_ENCORE
+        move MOVE_METRONOME
+        nature NATURE_MODEST
         ballseal 0
     endparty
 

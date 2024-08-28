@@ -10813,12 +10813,13 @@ movedata MOVE_FLORAL_HEALING, "Floral Healing"
     terminatedata
     movedescription MOVE_FLORAL_HEALING, "---"
 
+// ACC : 95 > 100
 movedata MOVE_HIGH_HORSEPOWER, "High Horsepower"
     battleeffect MOVE_EFFECT_HIT
     pss SPLIT_PHYSICAL
     basepower 95
     type TYPE_GROUND
-    accuracy 95
+    accuracy 100
     pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
