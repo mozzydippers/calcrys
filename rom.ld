@@ -663,6 +663,8 @@ BattleContext_CheckMoveHealBlocked = 0x02252DF8 | 1;
 
 CanUseItemOnPokemon = 0x0208FD9C | 1;
 
+BagApp_GetSaveRoamers = 0x021F992C | 1;
+
 SaveArray_PCStorage_Get = 0x020270D8 | 1;
 
 GetMonTMHMCompat = 0x0207224C | 1;

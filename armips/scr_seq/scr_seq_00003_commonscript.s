@@ -86,8 +86,9 @@ scrdef scr_seq_0003_068
 scrdef scr_seq_0003_069
 scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
-scrdef scr_seq_0003_072
+scrdef scr_seq_0003_072_repels
 scrdef scr_seq_0003_073
+scrdef scr_seq_0003_074
 scrdef_end
 
 scr_seq_0003_002:
@@ -1302,6 +1303,24 @@ scr_seq_0003_022:
     releaseall
     end
 
+scr_seq_0003_072_repels:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    npc_msg 118
+    yesno VAR_SPECIAL_RESULT
+    compare VAR_SPECIAL_RESULT, 1
+    goto_if_eq scr_seq_0003_072_end
+    QueueNewRepel
+    PlayFanfare SEQ_SE_DP_CARD2
+    buffer_players_name 0
+    buffer_item_name 1, VAR_SPECIAL_RESULT
+    npc_msg 119
+    wait_button_or_walk_away
+scr_seq_0003_072_end:
+    closemsg
+    releaseall
+    end
+
 scr_seq_0003_023:
     play_se SEQ_SE_DP_SELECT
     lockall
@@ -1721,7 +1740,7 @@ scr_seq_0003_064:
     releaseall
     end
     
-scr_seq_0003_072:
+scr_seq_0003_073:
     playfanfare SEQ_SE_DP_SELECT
 	lockall 
 	fade_screen 6, 1, 0, RGB_BLACK
@@ -1743,7 +1762,7 @@ scr_seq_0003_072:
 	releaseall 
     end 
 
-scr_seq_0003_073:
+scr_seq_0003_074:
     play_se SEQ_SE_DP_SELECT
     lockall
     buffer_players_name 0
