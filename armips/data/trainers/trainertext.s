@@ -93,8 +93,23 @@ _0000: // Trainer 0
     trainertextentry 171, TEXT_LAST_MON_SENT_OUT, "Alright then! We'll give it our all,\nyou best do the same!\n"
     trainertextentry 171, TEXT_PLAYER_LOSES, "Not a bad match there! Ya gave it your\nall and ya had me on the ropes at some\fpoints, but ya didn't quite get it.\rBetter luck next time!\n"
        // Trainer 174
+    trainertextentry 174, TEXT_NOTICE_IN_OVERWORLD, "C'mere boy, oooohh I'm gon' LEARN you a\nthing or two...\r"
+    trainertextentry 174, TEXT_DEFEATED_IN_BATTLE, "This cannot BE!\n"
+    trainertextentry 174, TEXT_DEFEATED_IN_OVERWORLD, "We gon find you boy...\r"
+    trainertextentry 174, TEXT_LAST_MON_SENT_OUT, "N-now...\nLet's be civil here...\n"
+    trainertextentry 174, TEXT_PLAYER_LOSES, "Maybe next time, uhhh...\nTry?\n"
        // Trainer 175
+    trainertextentry 175, TEXT_NOTICE_IN_OVERWORLD, "Hey, what's up?\nHuh? Battle?\fAlright, I'm down!\r"
+    trainertextentry 175, TEXT_DEFEATED_IN_BATTLE, "Man, I've got to step up my game...\n"
+    trainertextentry 175, TEXT_DEFEATED_IN_OVERWORLD, "Nice moves, stranger!\nYou have some pretty powerful Pokémon.\rMaybe we'll unite again someday."
+    trainertextentry 175, TEXT_LAST_MON_SENT_OUT, "Don't think you've got me yet!\n"
+    trainertextentry 175, TEXT_PLAYER_LOSES, "Yeah! Let's go!\n"
        // Trainer 176
+    trainertextentry 176, TEXT_NOTICE_IN_OVERWORLD, "Victory Road is home to only the\npinnacle of Pokémon trainers.\nIf you expect an easy win, you'll find\fyourself sorely mistaken!\r"
+    trainertextentry 176, TEXT_DEFEATED_IN_BATTLE, "Maybe you've got what it takes...\nI guess we'll see, won't we?\n"
+    trainertextentry 176, TEXT_DEFEATED_IN_OVERWORLD, "You know, the person that said winning\nisn't everything, never won anything.\r"
+    trainertextentry 176, TEXT_LAST_MON_SENT_OUT, "The harder the conflict, the more\nglorious the triumph!\n"
+    trainertextentry 176, TEXT_PLAYER_LOSES, "If you can't even beat me, how do you\nexpect to beat the Pokémon league?\n"
        // Trainer 177
        // Trainer 180
        // Trainer 194
@@ -338,7 +353,7 @@ _0188: // Trainer 34
     trainertextentry  34, TEXT_LAST_MON_CRITICAL, "We haven’t lost yet!\n"
     trainertextentry  34, TEXT_LAST_MON_SENT_OUT, "No... Not...yet...\n"
     trainertextentry  34, TEXT_DEFEATED_IN_BATTLE, "We...lost...\n"
-    trainertextentry  34, TEXT_DEFEATED_IN_BATTLE, "What?\rWell then, I may as well go home and\ntake a nap...\n"
+    trainertextentry  34, TEXT_PLAYER_LOSES, "What?\rWell then, I may as well go home and\ntake a nap...\n"
 
 _0194: // Trainer 32
     trainertextentry  32, TEXT_LAST_MON_CRITICAL, "Humph... You are quite the Trainer.\n"
@@ -565,6 +580,7 @@ _03A0: // Trainer 244
     trainertextentry 244, TEXT_LAST_MON_CRITICAL, "All right!\nI thought this would never happen!\n"
     trainertextentry 244, TEXT_LAST_MON_SENT_OUT, "I never give up, no matter what.\nYou must be the same?\n"
     trainertextentry 244, TEXT_DEFEATED_IN_BATTLE, "...It’s over.\rBut it’s an odd feeling. I’m not angry\nthat I lost. In fact, I feel happy.\rHappy that I witnessed the rise\nof a great new Champion!\n"
+    trainertextentry 244, TEXT_PLAYER_LOSES, "It's not that you are weak.\nDon't let it bother you.\n"
 
 _03AC: // Trainer 702
     trainertextentry 702, TEXT_LAST_MON_CRITICAL, "We Psychics don’t give up even when\nwe’re down to the last Pokémon.\rThat’s what makes us so formidable!\n"
@@ -1707,7 +1723,7 @@ _0E84: // Trainer 164
 
 _0E88: // Trainer 601
     trainertextentry 601, TEXT_DEFEATED_IN_BATTLE, "Looks like I lost...\n"
-    trainertextentry 601, TEXT_PLAYER_LOSES, "Next time, think before you interrupt a\ndancer in his prime!\n"
+    trainertextentry 601, TEXT_PLAYER_LOSES, "You should think twice before you\ninterrupt a dancer in his prime!\n"
 
 _0E8C: // Trainer 109
     trainertextentry 109, TEXT_NOTICE_IN_OVERWORLD, "If a Trainer spots another Trainer,\nhe or she has to make a challenge.\fThat is our destiny.\r"
@@ -2126,6 +2142,7 @@ _1270: // Trainer 215
     trainertextentry 215, TEXT_NOTICE_IN_OVERWORLD, "Jasmine is this city’s Gym Leader.\nI intend to bring her back with me.\rNobody better get in my way!\r"
     trainertextentry 215, TEXT_DEFEATED_IN_BATTLE, "Aaack! My Pokémon!\n"
     trainertextentry 215, TEXT_DEFEATED_IN_OVERWORLD, "Right. Anybody would be worried if his or\nher own Pokémon were hurt.\n"
+    trainertextentry 215, TEXT_PLAYER_LOSES, "You couldn't get Jasmine to come back\nif you tried! Just stay out of the way.\n"
 
 _127C: // Trainer 211
     trainertextentry 211, TEXT_NOTICE_IN_OVERWORLD, "Men of the sea are always spoiling for a\ngood fight!\r"
@@ -2147,6 +2164,7 @@ _12A4: // Trainer 214
     trainertextentry 214, TEXT_NOTICE_IN_OVERWORLD, "I wanted to battle Jasmine, but she’s\nnot up to it now. So how about you?\r"
     trainertextentry 214, TEXT_DEFEATED_IN_BATTLE, "Whoa, whoa. You’re overwhelming!\n"
     trainertextentry 214, TEXT_DEFEATED_IN_OVERWORLD, "Being a Gym Leader isn’t just about\nbeing strong. A Leader also needs to\fbe compassionate.\n"
+    trainertextentry 214, TEXT_PLAYER_LOSES, "If you wanna beat a gym leader,\nyou gotta come prepared!"
 
 _12B0: // Trainer 470
     trainertextentry 470, TEXT_NOTICE_IN_OVERWORLD, "This was once a ninja hideout.\rThere are traps to confound intruders\nlike you.\r"

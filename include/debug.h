@@ -4,7 +4,7 @@
 // DEBUG_ADJUSTED_ACCURACY is used to debug the adjusted accuracy for testing abilities that affect accuracy.
 // this is used in combination with a lua script to dynamically display the adjusted accuracy.
 // uncomment the define to have the information written to 0x23DF000
-//#define DEBUG_ADJUSTED_ACCURACY
+#define DEBUG_ADJUSTED_ACCURACY
 
 // DEBUG_ADJUSTED_DAMAGE is used to debug the adjusted damage for testing abilities that affect damage output.
 //#define DEBUG_ADJUSTED_DAMAGE

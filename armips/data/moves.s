@@ -13086,12 +13086,13 @@ movedata MOVE_LASH_OUT, "Lash Out"
     terminatedata
     movedescription MOVE_LASH_OUT, "---"
 
+// ACC : 90 > 100
 movedata MOVE_POLTERGEIST, "Poltergeist"
     battleeffect MOVE_EFFECT_HIT
     pss SPLIT_PHYSICAL
     basepower 110
     type TYPE_GHOST
-    accuracy 90
+    accuracy 100
     pp 5
     effectchance 0
     target MOVE_TARGET_SELECTED

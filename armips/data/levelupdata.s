@@ -12930,42 +12930,35 @@ levelup SPECIES_REUNICLUS
 
 levelup SPECIES_DUCKLETT
     learnset MOVE_WATER_GUN, 1
-    learnset MOVE_WATER_SPORT, 3
-    learnset MOVE_DEFOG, 6
-    learnset MOVE_WING_ATTACK, 9
-    learnset MOVE_WATER_PULSE, 13
-    learnset MOVE_AERIAL_ACE, 15
-    learnset MOVE_BUBBLE_BEAM, 19
-    learnset MOVE_FEATHER_DANCE, 21
-    learnset MOVE_AQUA_RING, 24
-    learnset MOVE_AIR_SLASH, 27
-    learnset MOVE_ROOST, 30
-    learnset MOVE_RAIN_DANCE, 34
-    learnset MOVE_TAILWIND, 37
-    learnset MOVE_BRAVE_BIRD, 41
-    learnset MOVE_HURRICANE, 46
+    learnset MOVE_WATER_SPORT, 4
+    learnset MOVE_DEFOG, 8
+    learnset MOVE_WING_ATTACK, 12
+    learnset MOVE_WATER_PULSE, 16
+    learnset MOVE_AERIAL_ACE, 20
+    learnset MOVE_BUBBLE_BEAM, 24
+    learnset MOVE_FEATHER_DANCE, 28
+    learnset MOVE_AQUA_RING, 32
+    learnset MOVE_AIR_SLASH, 36
+    learnset MOVE_ROOST, 40
+    learnset MOVE_BRAVE_BIRD, 44
+    learnset MOVE_HURRICANE, 48
     terminatelearnset
 
 
 levelup SPECIES_SWANNA
     learnset MOVE_WATER_GUN, 1
-    learnset MOVE_WATER_SPORT, 1
-    learnset MOVE_DEFOG, 1
-    learnset MOVE_WING_ATTACK, 1
-    learnset MOVE_WATER_SPORT, 3
-    learnset MOVE_DEFOG, 6
-    learnset MOVE_WING_ATTACK, 9
-    learnset MOVE_WATER_PULSE, 13
-    learnset MOVE_AERIAL_ACE, 15
-    learnset MOVE_BUBBLE_BEAM, 19
-    learnset MOVE_FEATHER_DANCE, 21
-    learnset MOVE_AQUA_RING, 24
-    learnset MOVE_AIR_SLASH, 27
-    learnset MOVE_ROOST, 30
-    learnset MOVE_RAIN_DANCE, 34
-    learnset MOVE_TAILWIND, 40
-    learnset MOVE_BRAVE_BIRD, 47
-    learnset MOVE_HURRICANE, 55
+    learnset MOVE_WATER_SPORT, 4
+    learnset MOVE_DEFOG, 8
+    learnset MOVE_WING_ATTACK, 12
+    learnset MOVE_WATER_PULSE, 16
+    learnset MOVE_AERIAL_ACE, 20
+    learnset MOVE_BUBBLE_BEAM, 24
+    learnset MOVE_FEATHER_DANCE, 28
+    learnset MOVE_AQUA_RING, 32
+    learnset MOVE_AIR_SLASH, 38
+    learnset MOVE_ROOST, 44
+    learnset MOVE_BRAVE_BIRD, 50
+    learnset MOVE_HURRICANE, 56
     terminatelearnset
 
 

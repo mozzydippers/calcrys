@@ -3273,7 +3273,7 @@ const ITEMDATA __data[] =
     .naturalGiftType = 31,
     .prevent_toss = FALSE,
     .selectable = FALSE,
-    .fieldPocket = POCKET_KEY_ITEMS,
+    .fieldPocket = POCKET_MEDICINE,
     .battlePocket = BATTLE_POCKET_NONE,
     .fieldUseFunc = 1,
     .battleUseFunc = 0,
@@ -40573,7 +40573,7 @@ const ITEMDATA __data[] =
 
 [ITEM_LINKING_CORD - NUM_UNKNOWN_SLOTS_EXPLORER_KIT] =
 {
-    .price = 8000,
+    .price = 0,
     .holdEffect = 0,
     .holdEffectParam = 0,
     .pluckEffect = 0,
@@ -40582,7 +40582,7 @@ const ITEMDATA __data[] =
     .naturalGiftPower = 0,
     .naturalGiftType = 31,
     .prevent_toss = TRUE,
-    .selectable = TRUE,
+    .selectable = FALSE,
     .fieldPocket = POCKET_KEY_ITEMS,
     .battlePocket = BATTLE_POCKET_NONE,
     .fieldUseFunc = 20,
