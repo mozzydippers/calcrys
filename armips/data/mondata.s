@@ -16787,7 +16787,7 @@ mondata SPECIES_TOXAPEX, "Toxapex"
     abilities ABILITY_MERCILESS, ABILITY_LIMBER
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_TOXAPEX, "It crawls along the ocean floor on its\n12 legs. It leaves a trail of Corsola\nbits scattered in its wake."
+    mondexentry SPECIES_TOXAPEX, "Toxapex crawls along the ocean floor\non its 12 legs. It leaves a trail of\nCorsola bits scattered in its wake."
     mondexclassification SPECIES_TOXAPEX, "Brutal Star Pokémon"
     mondexheight SPECIES_TOXAPEX, "2’04”"
     mondexweight SPECIES_TOXAPEX, "32.0 lbs."

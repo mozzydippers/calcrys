@@ -2131,7 +2131,7 @@ trainerdata 34, "Chuck"
         abilityslot 32
         level 50
         pokemon SPECIES_HERACROSS
-        item ITEM_EXPERT_BELT
+        item ITEM_CLEAR_AMULET
         move MOVE_MEGAHORN
         move MOVE_CLOSE_COMBAT
         move MOVE_FACADE
@@ -7477,9 +7477,9 @@ trainerdata 158, "Kiyo"
     endparty
 
 trainerdata 159, "Lung"
-    trainermontype TRAINER_DATA_TYPE_NOTHING
+    trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
     trainerclass CLASS_BLACK_BELT
-    nummons 3
+    nummons 5
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -7490,24 +7490,75 @@ trainerdata 159, "Lung"
 
     party 159
         // mon 0
-        ivs 40
-        abilityslot 15
-        level 23
+        ivs 255
+        abilityslot 32
+        level 50
         pokemon SPECIES_MANKEY
+        item ITEM_CLEAR_AMULET
+        move MOVE_DRAIN_PUNCH
+        move MOVE_ROCK_SLIDE
+        move MOVE_SWORDS_DANCE
+        move MOVE_BATON_PASS
+        nature NATURE_JOLLY
+        additionalflags 0
         ballseal 0
 
         // mon 1
-        ivs 40
-        abilityslot 32
-        level 23
-        pokemon SPECIES_MANKEY
+        ivs 255
+        abilityslot 15
+        level 50
+        pokemon SPECIES_MACHAMP
+        item ITEM_BLACK_BELT
+        move MOVE_DRAIN_PUNCH
+        move MOVE_FACADE
+        move MOVE_KNOCK_OFF
+        move MOVE_MACH_PUNCH
+        nature NATURE_ADAMANT
+        additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
+        status 16
         ballseal 0
 
         // mon 2
-        ivs 40
-        abilityslot 32
-        level 25
+        ivs 255
+        abilityslot 2
+        level 50
         pokemon SPECIES_PRIMEAPE
+        item ITEM_EVIOLITE
+        move MOVE_DRAIN_PUNCH
+        move MOVE_RAGE_FIST
+        move MOVE_TEMPER_FLARE
+        move MOVE_EARTHQUAKE
+        nature NATURE_JOLLY
+        additionalflags 0
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 15
+        level 50
+        pokemon SPECIES_CONKELDURR
+        item ITEM_BLACK_BELT
+        move MOVE_DRAIN_PUNCH
+        move MOVE_FACADE
+        move MOVE_KNOCK_OFF
+        move MOVE_MACH_PUNCH
+        nature NATURE_ADAMANT
+        additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
+        status 16
+        ballseal 0
+
+        // mon 4
+        ivs 255
+        abilityslot 32
+        level 50
+        pokemon SPECIES_HITMONTOP
+        item ITEM_CLEAR_AMULET
+        move MOVE_TRIPLE_KICK
+        move MOVE_TRIPLE_AXEL
+        move MOVE_PURSUIT
+        move MOVE_MACH_PUNCH
+        nature NATURE_ADAMANT
+        additionalflags 0
         ballseal 0
     endparty
 
@@ -21428,10 +21479,10 @@ trainerdata 498, "Eusine"
         abilityslot 15
         level 50
         pokemon SPECIES_SILVALLY
-        item ITEM_EXPERT_BELT
-        move MOVE_MULTI_ATTACK
+        item ITEM_SILK_SCARF
         move MOVE_THUNDERBOLT
-        move MOVE_SHADOW_BALL
+        move MOVE_ICE_BEAM
+        move MOVE_EXPLOSION
         move MOVE_PARTING_SHOT
         nature NATURE_HASTY
         ballseal 0
