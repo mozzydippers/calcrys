@@ -80,47 +80,50 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_TRICK_ROOM:
                         case 18:
-                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
+                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            /* scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM; 
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT; */
                             break;
                         case 19:
-                            sp->current_move_index = MOVE_GRAVITY;  // force move anim to play
+                            scriptnum = SUB_SEQ_OVERWORLD_GRAVITY;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_APPLY_GRAVITY;
                             break;
                         case 20:
-                            sp->current_move_index = MOVE_GRASSY_TERRAIN;  // force move anim to play
+                            sp->current_move_index = MOVE_GRASSY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 21:
-                            sp->current_move_index = MOVE_MISTY_TERRAIN;  // force move anim to play
+                            sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 22:
-                            sp->current_move_index = MOVE_ELECTRIC_TERRAIN;  // force move anim to play
+                            sp->current_move_index = MOVE_ELECTRIC_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 23:
-                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN;  // force move anim to play
+                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
-                        case 24: // needs elec terrain
-                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
+                        case 24:
+                            sp->current_move_index = MOVE_ELECTRIC_TERRAIN;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM;
+                            break;
+                        case 25:
+                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM;
+                            break;
+                        case 26:
+                            scriptnum = SUB_SEQ_OVERWORLD_TAILWIND;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
-                        case 25: // needs psych terrain
-                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            break;
-                        /* case 26:
-                            sp->current_move_index = MOVE_TAILWIND;  // force move anim to play
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_APPLY_TAILWIND;
-                            break; */
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                         sp->weather_check_flag = 1;
