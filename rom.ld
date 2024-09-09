@@ -665,8 +665,10 @@ CanUseItemOnPokemon = 0x0208FD9C | 1;
 
 BagApp_GetSaveRoamers = 0x021F992C | 1;
 
+/* primo script */
 SaveArray_PCStorage_Get = 0x020270D8 | 1;
 
+/* tms as long as they can learn it */
 GetMonTMHMCompat = 0x0207224C | 1;
 
 /* Adding things to make multi level candy work */

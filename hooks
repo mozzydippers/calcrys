@@ -425,6 +425,7 @@ arm9 PCStorage_ResetBoxModifiedFlags 02074108 1
 arm9 PCStorage_GetBoxModifiedFlags 02074114 1
 arm9 sub_02074128 02074128 1
 
+# mojo customs
 arm9 ScrCmd_PrimoPasswordCheck1 0204560C 1
 arm9 ScrCmd_GetPartySlotWithMove 0204D3CC 1
 
@@ -491,6 +492,9 @@ arm9 form_evo_hook_2 0207641C 0
 0002 PlayerStepEvent_RepelCounterDecrement 0224BAE4 2
 0015 BagApp_GetRepelStepCountAddr 021F993C 3
 #endif
+
+# trick room
+0012 BattleControllerPlayer_UpdateFieldConditionExtra 0224A70C 2
 
 # pc anywhere
 0001 ClearOverworldRequestFlags 021E6880 1
