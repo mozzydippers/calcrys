@@ -10781,12 +10781,13 @@ movedata MOVE_SPARKLING_ARIA, "Sparkling Aria"
     terminatedata
     movedescription MOVE_SPARKLING_ARIA, "---"
 
+// ACC : 90 > 100
 movedata MOVE_ICE_HAMMER, "Ice Hammer"
     battleeffect MOVE_EFFECT_SPEED_DOWN_HIT
     pss SPLIT_PHYSICAL
     basepower 100
     type TYPE_ICE
-    accuracy 90
+    accuracy 100
     pp 10
     effectchance 100
     target MOVE_TARGET_SELECTED

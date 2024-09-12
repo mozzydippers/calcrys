@@ -1346,20 +1346,20 @@ headbuttheader  47,   3,   0
     treecoords 657, 331, 657, 330, -1, -1, -1, -1, -1, -1, -1, -1
 .close
 
-headbuttheader  48,  10,   0
+headbuttheader  48,  10,   0   // route 46
     // normal slots
-    headbuttencounter SPECIES_SPEAROW, 2, 3
-    headbuttencounter SPECIES_HERACROSS, 2, 3
-    headbuttencounter SPECIES_HERACROSS, 2, 3
-    headbuttencounter SPECIES_AIPOM, 2, 3
-    headbuttencounter SPECIES_AIPOM, 2, 3
-    headbuttencounter SPECIES_AIPOM, 2, 3
-    headbuttencounter SPECIES_SPEAROW, 4, 5
-    headbuttencounter SPECIES_SPEAROW, 4, 5
-    headbuttencounter SPECIES_SPEAROW, 4, 5
-    headbuttencounter SPECIES_AIPOM, 4, 5
-    headbuttencounter SPECIES_AIPOM, 4, 5
-    headbuttencounter SPECIES_AIPOM, 4, 5
+    headbuttencounter SPECIES_SPEAROW, 5, 6
+    headbuttencounter SPECIES_SPEAROW, 5, 6
+    headbuttencounter SPECIES_SPEAROW, 5, 6
+    headbuttencounter SPECIES_SPEAROW, 5, 6
+    headbuttencounter SPECIES_AIPOM, 5, 6
+    headbuttencounter SPECIES_AIPOM, 5, 6
+    headbuttencounter SPECIES_COMBEE, 6, 7
+    headbuttencounter SPECIES_COMBEE, 6, 7
+    headbuttencounter SPECIES_COMBEE, 6, 7
+    headbuttencounter SPECIES_COMBEE, 6, 7
+    headbuttencounter SPECIES_TEDDIURSA, 6, 7
+    headbuttencounter SPECIES_TEDDIURSA, 6, 7
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0

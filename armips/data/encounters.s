@@ -1019,7 +1019,7 @@ encounter SPECIES_OMANYTE, 15, 15
 encounter SPECIES_CARVANHA, 18, 22
 encounter SPECIES_CARVANHA, 18, 22
 encounter SPECIES_CARVANHA, 18, 22
-encounter SPECIES_CARVANHA, 18, 22
+encounterwithform SPECIES_QWILFISH, 1, 22, 26
 encounterwithform SPECIES_QWILFISH, 1, 22, 26
 
 // good rod encounters
@@ -1642,7 +1642,7 @@ encounter SPECIES_NONE, 0, 0
 // old rod encounters
 encounter SPECIES_KRABBY, 20, 22
 encounter SPECIES_KRABBY, 20, 22
-encounter SPECIES_KRABBY, 20, 22
+encounter SPECIES_CORSOLA, 20, 22
 encounter SPECIES_CORSOLA, 20, 22
 encounter SPECIES_CORSOLA, 20, 22
 
@@ -1954,7 +1954,7 @@ encounter SPECIES_NONE, 0, 0
 // old rod encounters
 encounter SPECIES_SLOWPOKE, 20, 20
 encounter SPECIES_SLOWPOKE, 20, 20
-encounter SPECIES_SLOWPOKE, 20, 20
+encounter SPECIES_SHELLDER, 20, 20
 encounter SPECIES_SHELLDER, 20, 20
 encounter SPECIES_SHELLDER, 20, 20
 
@@ -2266,7 +2266,7 @@ encounter SPECIES_NONE, 0, 0
 // old rod encounters
 encounter SPECIES_GOLDEEN, 30, 32
 encounter SPECIES_GOLDEEN, 30, 32
-encounter SPECIES_GOLDEEN, 30, 32
+encounter SPECIES_FLOATZEL, 30, 32
 encounter SPECIES_FLOATZEL, 30, 32
 encounter SPECIES_FLOATZEL, 30, 32
 
@@ -2890,7 +2890,7 @@ encounter SPECIES_NONE, 0, 0
 // old rod encounters
 encounterwithform SPECIES_BASCULIN, 2, 40, 42
 encounterwithform SPECIES_BASCULIN, 2, 40, 42
-encounterwithform SPECIES_BASCULIN, 2, 40, 42
+encounter SPECIES_DUSKULL, 40, 42
 encounter SPECIES_DUSKULL, 40, 42
 encounter SPECIES_DUSKULL, 40, 42
 
@@ -4240,7 +4240,7 @@ encounter SPECIES_NONE, 0, 0
 // old rod encounters
 encounter SPECIES_EELEKTRIK, 45, 48
 encounter SPECIES_EELEKTRIK, 45, 48
-encounter SPECIES_EELEKTRIK, 45, 48
+encounter SPECIES_LANTURN, 45, 48
 encounter SPECIES_LANTURN, 45, 48
 encounter SPECIES_LANTURN, 45, 48
 
@@ -5384,9 +5384,9 @@ encounter SPECIES_BARBARACLE, 49, 50
 // old rod encounters
 encounter SPECIES_STARMIE, 49, 50
 encounter SPECIES_STARMIE, 49, 50
-encounter SPECIES_STARMIE, 49, 50
 encounter SPECIES_CORSOLA, 49, 50
 encounter SPECIES_CORSOLA, 49, 50
+encounter SPECIES_TOXAPEX, 49, 50
 
 // good rod encounters
 encounter SPECIES_MAGIKARP, 20, 20

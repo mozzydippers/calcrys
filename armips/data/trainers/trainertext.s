@@ -20,10 +20,8 @@ _0000: // Trainer 0
     trainertextentry  19, TEXT_LAST_MON_SENT_OUT, "Let's get the ball rolling!\n"
     trainertextentry  19, TEXT_PLAYER_LOSES, "That was a battle I'll never forget!\n"
        // Trainer 40
-    trainertextentry  40, TEXT_DEFEATED_IN_BATTLE, "I hope you do as well in your next battle.\n"
-    trainertextentry  40, TEXT_LAST_MON_CRITICAL, "Oh! That means...\n"
     trainertextentry  40, TEXT_LAST_MON_SENT_OUT, "Amphy, are you ready?\n"
-    trainertextentry  40, TEXT_PLAYER_LOSES, "It's working.\n"
+    trainertextentry  40, TEXT_PLAYER_LOSES, "It's working...\n"
        // Trainer 63
     trainertextentry  63, TEXT_DEFEATED_IN_BATTLE, "Haha! I expected nothing less!\n"
     trainertextentry  63, TEXT_LAST_MON_CRITICAL, "I'm not gonna let you beat me twice!\n"
@@ -35,6 +33,7 @@ _0000: // Trainer 0
     trainertextentry  87, TEXT_LAST_MON_SENT_OUT, "Really cornered me now, huh?\n"
     trainertextentry  87, TEXT_PLAYER_LOSES, "Better luck next time!\n"
        // Trainer 88
+    trainertextentry  88, TEXT_PLAYER_LOSES, "Hmph.\nThe nerve to ask for the medicine for\nmy poor, poor Ursaring...\n"
        // Trainer 105
     trainertextentry 105, TEXT_DEFEATED_IN_BATTLE, "This defeat is meaningless.\nTeam Rocket will never fall!\n"
     trainertextentry 105, TEXT_LAST_MON_CRITICAL, "Underestimate a man like me and you'll\nbe in a world of pain.\n"
@@ -111,6 +110,12 @@ _0000: // Trainer 0
     trainertextentry 176, TEXT_LAST_MON_SENT_OUT, "The harder the conflict, the more\nglorious the triumph!\n"
     trainertextentry 176, TEXT_PLAYER_LOSES, "If you can't even beat me, how do you\nexpect to beat the Pokémon league?\n"
        // Trainer 177
+    trainertextentry 177, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, "Gonna beat me? Better make it count.\rBetter make it hurt.\nBetter kill all my 'mons in one shot.\n"
+    trainertextentry 177, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, "AEGISLASH: Ae-gi-SLASH!\n"
+    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_BATTLE_1, "Unfortunate doesn't begin to describe my\n"
+    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "(She's just rambling\non about RNG...)\n"
+    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "(Aegislash congratulates you on the\nwin!)"
+    trainertextentry 177, TEXT_PLAYER_LOSES, "This is Calamitous Crystal bitch!\nTake your sensitive ass back to UGH!\n"
        // Trainer 180
        // Trainer 194
        // Trainer 207
@@ -501,6 +506,7 @@ _02EC: // Trainer 159
     trainertextentry 159, TEXT_NOTICE_IN_OVERWORLD, "My raging fists will shatter your\nPokémon!\r"
     trainertextentry 159, TEXT_DEFEATED_IN_BATTLE, "I got shattered!\n"
     trainertextentry 159, TEXT_DEFEATED_IN_OVERWORLD, "My Pokémon lost...\nMy...my pride is shattered...\n"
+    trainertextentry 159, TEXT_PLAYER_LOSES, "If you ever get too big for your boots,\nI'll be here to break you down!"
 
 _02F8: // Trainer 480
     trainertextentry 480, TEXT_NOTICE_IN_OVERWORLD, "To get to Pryce, our Gym Leader,\nyou need to think before you skate.\r"
@@ -2728,6 +2734,7 @@ _1800: // Trainer 729
     trainertextentry 729, TEXT_DOUBLE_DEFEATED_IN_BATTLE_2, "Eda: You’re really something...\n"
     trainertextentry 729, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "Eda: You should really find a wonderful\npartner, too.\n"
     trainertextentry 729, TEXT_DOUBLE_ONLY_1_POKEMON_2, "Eda: Uh-oh. You’ve only got\none Pokémon?\n"
+    trainertextentry 729, TEXT_PLAYER_LOSES, "Duff: You should know...\nEda: That true love triumphs above all!"
 
 _1820: // Trainer 730
     trainertextentry 730, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, "Thom: One plus one is two. But the two\nof us together is much stronger!\r"

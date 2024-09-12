@@ -80,11 +80,8 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_TRICK_ROOM:
                         case 18:
-                            sp->current_move_index = MOVE_PSYCHIC_TERRAIN; // force move anim to play
+                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM; 
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
-                            /* scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM; 
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT; */
                             break;
                         case 19:
                             scriptnum = SUB_SEQ_OVERWORLD_GRAVITY;
