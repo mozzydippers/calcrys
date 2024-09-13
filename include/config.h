@@ -99,6 +99,14 @@
 // modern generations have this value at 160, older ones at 220.  still max out at 255
 #define FRIENDSHIP_EVOLUTION_THRESHOLD 160
 
+// IMPLEMENT_SCALING defines whether or not dynamic level scaling of wild pokemon and enemy trainers is implemented, and provides a variable to allow for user selection of different implementations (WIP)
+// Need to add script to ask/set variable
+// 0 = Do Not Scale; 1 = Scale Up Wild and Trainer pokemon to AVERAGE level of player party; 2 = Scale Up Wild and Trainer pokemon to HIGHEST level in player party; 3 = Scale Up Wild and Trainer pokemon to LOWEST level in player party
+// Trainers will only scale up, if levels in trainers.s are higher they will remain the same.
+// uncommenting IMPLEMENT_SCALING enables dynamic scaling.  Undefining SCALING_TYPE_VARIABLE will just cause compilation errors
+#define IMPLEMENT_SCALING
+#define SCALING_TYPE_VARIABLE 0x406A
+
 // RESTORE_ITEMS_AT_BATTLE_END will restore held items that are single-use at the end of battle
 // comment out the line below to keep vanilla behavior
 #define RESTORE_ITEMS_AT_BATTLE_END
