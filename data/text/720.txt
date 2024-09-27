@@ -172,7 +172,7 @@ Competitive
 Strong Jaw
 Refrigerate
 Sweet Veil
-Stance Change
+StanceChange
 Gale Wings
 Mega Launcher
 Symbiosis
@@ -184,8 +184,8 @@ Parental Bond
 Aura Break
 Stamina
 Wimp Out
-Emergency Exit
-Water Compaction
+EmergencyExit
+WaterCompaction
 Merciless
 Water Bubble
 Steelworker
@@ -249,6 +249,6 @@ Supreme Overlord
 Armor Tail
 Earth Eater
 Hospitality
-Mind’s Eye
+Mindâ€™s Eye
 Supersweet Syrup
 Poison Puppeteer
