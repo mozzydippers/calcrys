@@ -5942,15 +5942,15 @@ rocksmashrate 0
 oldrodrate 25
 goodrodrate 50
 superrodrate 75
-walklevels 15, 15, 15, 15, 17, 17, 15, 15, 16, 17, 16, 17
+walklevels 57, 58, 57, 58, 58, 58, 15, 15, 16, 17, 16, 17
 
 // morning encounter slots
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_PIDGEOTTO
-pokemon SPECIES_PIDGEOTTO
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_PERRSERKER
+pokemon SPECIES_VENOMOTH
 pokemon SPECIES_MAREEP
 pokemon SPECIES_MAREEP
 pokemon SPECIES_VENONAT
@@ -5959,32 +5959,32 @@ pokemon SPECIES_VENONAT
 pokemon SPECIES_PIDGEOTTO
 
 // day encounter slots
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_PIDGEOTTO
-pokemon SPECIES_PIDGEOTTO
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_PERRSERKER
+pokemon SPECIES_VENOMOTH
 pokemon SPECIES_MAREEP
 pokemon SPECIES_MAREEP
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_FLAAFFY
+pokemon SPECIES_VENONAT
+pokemon SPECIES_PIDGEOTTO
+pokemon SPECIES_VENONAT
+pokemon SPECIES_PIDGEOTTO
 
 // night encounter slots
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_FLAAFFY
-pokemon SPECIES_GIRAFARIG
-pokemon SPECIES_NOCTOWL
-pokemon SPECIES_NOCTOWL
-pokemon SPECIES_VENONAT
-pokemon SPECIES_VENONAT
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARIGIRAF
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_FARFETCHD
+pokemon SPECIES_PERRSERKER
+pokemon SPECIES_VENOMOTH
+pokemon SPECIES_MAREEP
 pokemon SPECIES_MAREEP
 pokemon SPECIES_VENONAT
-pokemon SPECIES_MAREEP
+pokemon SPECIES_PIDGEOTTO
 pokemon SPECIES_VENONAT
+pokemon SPECIES_PIDGEOTTO
 
 // hoenn encounter slots
 pokemon SPECIES_WHISMUR
@@ -8646,49 +8646,49 @@ rocksmashrate 30
 oldrodrate 0
 goodrodrate 0
 superrodrate 0
-walklevels 50, 50, 50, 50, 51, 51, 51, 51, 51, 51, 52, 52
+walklevels 50, 51, 50, 51, 50, 50, 51, 51, 51, 52, 52, 51
 
 // morning encounter slots
 monwithform SPECIES_GOLEM, 1
+monwithform SPECIES_GOLEM, 1
+pokemon SPECIES_NOIVERN
 pokemon SPECIES_NOIVERN
 pokemon SPECIES_CONKELDURR
 pokemon SPECIES_MACHAMP
 pokemon SPECIES_KINGLER
 pokemon SPECIES_CRAWDAUNT
-pokemon SPECIES_QUAGSIRE
-pokemon SPECIES_CLODSIRE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
+pokemon SPECIES_GRAPPLOCT
+pokemon SPECIES_WIMPOD
 
 // day encounter slots
 monwithform SPECIES_GOLEM, 1
+monwithform SPECIES_GOLEM, 1
+pokemon SPECIES_NOIVERN
 pokemon SPECIES_NOIVERN
 pokemon SPECIES_CONKELDURR
 pokemon SPECIES_MACHAMP
 pokemon SPECIES_KINGLER
 pokemon SPECIES_CRAWDAUNT
-pokemon SPECIES_QUAGSIRE
-pokemon SPECIES_CLODSIRE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
+pokemon SPECIES_GRAPPLOCT
+pokemon SPECIES_WIMPOD
 
 // night encounter slots
 monwithform SPECIES_GOLEM, 1
+monwithform SPECIES_GOLEM, 1
+pokemon SPECIES_NOIVERN
 pokemon SPECIES_NOIVERN
 pokemon SPECIES_CONKELDURR
 pokemon SPECIES_MACHAMP
 pokemon SPECIES_KINGLER
 pokemon SPECIES_CRAWDAUNT
-pokemon SPECIES_QUAGSIRE
-pokemon SPECIES_CLODSIRE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
 pokemon SPECIES_STEELIX
-pokemon SPECIES_GOLISOPOD
+pokemon SPECIES_GRAPPLOCT
+pokemon SPECIES_WIMPOD
 
 // hoenn encounter slots
 pokemon SPECIES_ABSOL
@@ -8706,8 +8706,8 @@ encounter SPECIES_NONE, 0, 0
 encounter SPECIES_NONE, 0, 0
 
 // rock smash encounters
-encounter SPECIES_CRADILY, 40, 45
-encounter SPECIES_ARMALDO, 40, 45
+encounter SPECIES_CRADILY, 50, 52
+encounter SPECIES_ARMALDO, 50, 52
 
 // old rod encounters
 encounter SPECIES_NONE, 0, 0

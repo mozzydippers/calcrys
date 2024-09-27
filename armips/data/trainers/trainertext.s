@@ -352,7 +352,7 @@ _017C: // Trainer 33
     trainertextentry  33, TEXT_LAST_MON_CRITICAL, "Properly tempered steel won’t be made\nrusty by things like this!\n"
     trainertextentry  33, TEXT_LAST_MON_SENT_OUT, "Steel will hang on to the very last!\n"
     trainertextentry  33, TEXT_DEFEATED_IN_BATTLE, "Well done...\n"
-    trainertextentry  33, TEXT_PLAYER_LOSES, "I'm glad... I won...\n"
+    trainertextentry  33, TEXT_PLAYER_LOSES, "Umm... Thank you for the battle...\nI never expected to win...\n"
 
 _0188: // Trainer 34
     trainertextentry  34, TEXT_LAST_MON_CRITICAL, "We haven’t lost yet!\n"
@@ -1613,7 +1613,7 @@ _0D68: // Trainer 131
 
 _0D78: // Trainer 132
     trainertextentry 132, TEXT_NOTICE_IN_OVERWORLD, "Would you get this?\rSome red-haired kid made fun of my\nprecious Pokémon!\rHumph! My Pokémon’s great!\r"
-    trainertextentry 132, TEXT_DEFEATED_IN_BATTLE, "My NIDOKING was outstanding!\n"
+    trainertextentry 132, TEXT_DEFEATED_IN_BATTLE, "My BANETTE was outstanding!\n"
     trainertextentry 132, TEXT_DEFEATED_IN_OVERWORLD, "It’s OK for people to like different\ntypes of Pokémon.\rPokémon isn’t just about having the\nmost powerful one.\n"
 
 _0D84: // Trainer 402
@@ -1956,36 +1956,43 @@ _10A0: // Trainer 178
 
 _10B0: // Trainer 185
     trainertextentry 185, TEXT_DEFEATED_IN_BATTLE, "Y-you’re strong...\n"
+    trainertextentry 185, TEXT_PLAYER_LOSES, "You're not strong enough to be a Rocket!\nGahh! What was I thinking!?\n"
 
 _10B4: // Trainer 186
     trainertextentry 186, TEXT_NOTICE_IN_OVERWORLD, "Three years ago, Team Rocket was\nforced to disband.\rBut we’re making a comeback here!\r"
     trainertextentry 186, TEXT_DEFEATED_IN_BATTLE, "Gwah! Don’t get cute!\n"
     trainertextentry 186, TEXT_DEFEATED_IN_OVERWORLD, "We won’t let you ruin our plans for\nour comeback!\n"
+    trainertextentry 186, TEXT_PLAYER_LOSES, "You shouldn't try to be a hero, kid.\nEspecially not with a team like yours.\n"
 
 _10C0: // Trainer 187
     trainertextentry 187, TEXT_NOTICE_IN_OVERWORLD, "We’re Team Rocket!\nWe like to cause trouble!\rOoh! Are you scared?\r"
     trainertextentry 187, TEXT_DEFEATED_IN_BATTLE, "You think you’re a hero?\n"
     trainertextentry 187, TEXT_DEFEATED_IN_OVERWORLD, "We’re not always evil. We just do\nwhatever we like.\n"
+    trainertextentry 187, TEXT_PLAYER_LOSES, "That's it! Scamper off now!\nThis tower is property of Team Rocket!\n"
 
 _10CC: // Trainer 188
     trainertextentry 188, TEXT_NOTICE_IN_OVERWORLD, "Hey, hey! Keep out of our way!\r"
     trainertextentry 188, TEXT_DEFEATED_IN_BATTLE, "Arggh. I give up.\n"
     trainertextentry 188, TEXT_DEFEATED_IN_OVERWORLD, "Our Executives are trying to take this\nplace over. They have some big plan.\fI wonder what it is.\n"
+    trainertextentry 188, TEXT_PLAYER_LOSES, "Huh. I expected more...\n"
 
 _10D8: // Trainer 198
     trainertextentry 198, TEXT_NOTICE_IN_OVERWORLD, "Ha ha ha!\fHow boring. It was far too easy to take\nover this place!\rCome on, keep me amused!\r"
     trainertextentry 198, TEXT_DEFEATED_IN_BATTLE, "Wh-who are you?\n"
     trainertextentry 198, TEXT_DEFEATED_IN_OVERWORLD, "You beat me, and I won’t forget it!\n"
+    trainertextentry 198, TEXT_PLAYER_LOSES, "Hahaha! I can't say that wasn't funny...\nJust stay out of the way, kid.\n"
 
 _10E4: // Trainer 471
     trainertextentry 471, TEXT_NOTICE_IN_OVERWORLD, "An unknown child wandering here?\nWho are you?\r"
     trainertextentry 471, TEXT_DEFEATED_IN_BATTLE, "Tch! I took you too lightly!\n"
     trainertextentry 471, TEXT_DEFEATED_IN_OVERWORLD, "Bwahahaha...\rI can transmit as strong a signal as\nI need from here.\n"
+    trainertextentry 471, TEXT_PLAYER_LOSES, "Bwahahahaha!\nRun on back home now!\n"
 
 _10F0: // Trainer 189
     trainertextentry 189, TEXT_NOTICE_IN_OVERWORLD, "I’ve been given strict orders.\rI’m to crush anyone who challenges\nTeam Rocket!\r"
     trainertextentry 189, TEXT_DEFEATED_IN_BATTLE, "!!!\n"
     trainertextentry 189, TEXT_DEFEATED_IN_OVERWORLD, "I failed in my duties...\nI’ll be docked pay for this...\n"
+    trainertextentry 189, TEXT_PLAYER_LOSES, "Crushed the opposition.\nNow to report back to Archer...\n"
 
 _10FC: // Trainer 190
     trainertextentry 190, TEXT_NOTICE_IN_OVERWORLD, "It feels great ordering Pokémon to\ncommit crimes.\r"
@@ -2216,6 +2223,7 @@ _1304: // Trainer 488
     trainertextentry 488, TEXT_LAST_MON_CRITICAL, "Hey, you’re good!\n"
     trainertextentry 488, TEXT_LAST_MON_SENT_OUT, "Wow, strong!\n"
     trainertextentry 488, TEXT_DEFEATED_IN_BATTLE, "I...I couldn’t do a thing...\nGiovanni, please forgive me...\n"
+    trainertextentry 488, TEXT_PLAYER_LOSES, "Hate to break it to ya, but this is as\nfar as you go.\n"
 
 _1310: // Trainer 468
     trainertextentry 468, TEXT_NOTICE_IN_OVERWORLD, "I used to work for Silph, but now I run\nresearch for Team Rocket.\rA meddlesome child like you needs to be\npunished.\r"

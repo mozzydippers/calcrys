@@ -384,9 +384,14 @@
 #define SUB_SEQ_HEAL_TARGET_BURN                      (374)
 
 /* calcrys custom */
-#define SUB_SEQ_OVERWORLD_GRAVITY                     (375)
+#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (375)
 #define SUB_SEQ_OVERWORLD_TAILWIND                    (376)
 #define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (377)
+#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (378)
+#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (379)
+#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (380)
+#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (381)
+#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (382)
 
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c

@@ -7,12 +7,12 @@ _000:
     End 
 
 _006:
-    CompareMonDataToValue OPCODE_NEQ, BATTLER_CATEGORY_SWITCHED_MON, BMON_DATA_ABILITY, ABILITY_DESOLATE_LAND, _050
-    // The harsh sunlight faded.
-    PrintMessage 1444, TAG_NONE
+    CompareMonDataToValue OPCODE_NEQ, BATTLER_CATEGORY_SWITCHED_MON, BMON_DATA_ABILITY, ABILITY_SAND_STREAM, _050
+    // The sandstorm subsided.
+    PrintMessage 806, TAG_NONE
     Wait 
     WaitButtonABTime 30
-    GoTo _046
+    GoTo _046 
 
 _020:
     CompareMonDataToValue OPCODE_NEQ, BATTLER_CATEGORY_SWITCHED_MON, BMON_DATA_ABILITY, ABILITY_PRIMORDIAL_SEA, _050

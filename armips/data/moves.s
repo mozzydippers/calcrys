@@ -5526,6 +5526,10 @@ movedata MOVE_MUD_SHOT, "Mud Shot"
     terminatedata
     movedescription MOVE_MUD_SHOT, "The user attacks by\nhurling a blob of mud\nat the foe.\nIt also reduces the\ntarget’s Speed."
 
+// BP : 50 > 120
+// ACC : 100 > 75
+// PP : 25 > 15
+// EFFECT CHANCE : 10 > 30
 movedata MOVE_POISON_TAIL, "Poison Tail"
     battleeffect MOVE_EFFECT_HIGH_CRITICAL_POISON_HIT
     pss SPLIT_PHYSICAL
@@ -10686,7 +10690,7 @@ movedata MOVE_CATASTROPIKA, "Catastropika"
     movedescription MOVE_CATASTROPIKA, "---"
 
 movedata MOVE_SHORE_UP, "Shore Up"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_RESTORE_HALF_HP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_GROUND
@@ -12944,7 +12948,7 @@ movedata MOVE_SCALE_SHOT, "Scale Shot"
     movedescription MOVE_SCALE_SHOT, "---"
 
 movedata MOVE_METEOR_BEAM, "Meteor Beam"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_CHARGE_TURN_SUN_SKIPS
     pss SPLIT_SPECIAL
     basepower 120
     type TYPE_ROCK
@@ -13184,13 +13188,15 @@ movedata MOVE_DUAL_WINGBEAT, "Dual Wingbeat"
     terminatedata
     movedescription MOVE_DUAL_WINGBEAT, "---"
 
+// BP : 70 > 80
+// PP : 10 > 15
 movedata MOVE_SCORCHING_SANDS, "Scorching Sands"
     battleeffect MOVE_EFFECT_BURN_HIT
     pss SPLIT_SPECIAL
-    basepower 70
+    basepower 80
     type TYPE_GROUND
     accuracy 100
-    pp 10
+    pp 15
     effectchance 30
     target MOVE_TARGET_SELECTED
     priority 0
@@ -13520,15 +13526,17 @@ movedata MOVE_CHLOROBLAST, "Chloroblast"
     terminatedata
     movedescription MOVE_CHLOROBLAST, "---"
 
+// ACC : 85 > 100
+// TARGET : SINGLE > BOTH
 movedata MOVE_MOUNTAIN_GALE, "Mountain Gale"
     battleeffect MOVE_EFFECT_FLINCH_HIT
     pss SPLIT_PHYSICAL
     basepower 100
     type TYPE_ICE
-    accuracy 85
+    accuracy 100
     pp 10
     effectchance 30
-    target MOVE_TARGET_SELECTED
+    target MOVE_TARGET_BOTH
     priority 0
     flags FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
     appeal 0x00

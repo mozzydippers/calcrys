@@ -1811,7 +1811,7 @@ mondata SPECIES_DODRIO, "Dodrio"
     basefriendship 70
     growthrate GROWTH_MEDIUM_FAST
     egggroups EGG_GROUP_FLYING, EGG_GROUP_FLYING
-    abilities ABILITY_RUN_AWAY, ABILITY_TANGLED_FEET
+    abilities ABILITY_RUN_AWAY, ABILITY_EARLY_BIRD
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
     mondexentry SPECIES_DODRIO, "It collects data and plans three times\nas wisely, but it may think too much\nand fall into a state of immobility."
@@ -22942,7 +22942,7 @@ mondata SPECIES_MEGA_TYRANITAR, "-----"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_MONSTER, EGG_GROUP_MONSTER
-    abilities ABILITY_SOLID_ROCK, ABILITY_SOLID_ROCK
+    abilities ABILITY_SAND_STREAM, ABILITY_SAND_STREAM
     runchance 0
     colorflip 0, 0
 
@@ -23172,7 +23172,7 @@ mondata SPECIES_MEGA_ABSOL, "-----"
 
 mondata SPECIES_MEGA_GLALIE, "-----"
     basestats 80, 120, 80, 100, 120, 80
-    types TYPE_ICE, TYPE_DARK
+    types TYPE_ICE, TYPE_ROCK
     catchrate 75
     baseexp 187
     evyields 0, 0, 0, 0, 0, 0

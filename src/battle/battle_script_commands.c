@@ -2733,22 +2733,28 @@ BOOL btl_scr_cmd_F9_canclearprimalweather(void *bw, struct BattleStruct *sp) {
 
     client_set_max = BattleWorkClientSetMaxGet(bw);
 
-    u32 currentPrimalWeather = sp->field_condition & (WEATHER_EXTREMELY_HARSH_SUNLIGHT | WEATHER_HEAVY_RAIN | WEATHER_STRONG_WINDS);
+/*    u32 currentPrimalWeather = sp->field_condition & (WEATHER_EXTREMELY_HARSH_SUNLIGHT | WEATHER_HEAVY_RAIN | WEATHER_STRONG_WINDS); */
+    u32 currentPrimalWeather = sp->field_condition & (WEATHER_SANDSTORM_PERMANENT | WEATHER_HEAVY_RAIN | WEATHER_STRONG_WINDS);
 
     if (currentPrimalWeather) {
         for (i = 0; i < client_set_max; i++) {
             client_no = sp->turnOrder[i];
             switch (currentPrimalWeather) {
-                case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
-                    if (GetBattlerAbility(sp, client_no) == ABILITY_DESOLATE_LAND && sp->battlemon[client_no].hp != 0) {
+                case WEATHER_SANDSTORM_ANY:
+                    if (GetBattlerAbility(sp, client_no) == ABILITY_SAND_STREAM && sp->battlemon[client_no].hp != 0) {
                         count++;
                     }
                     break;
+                /* case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
+                    if (GetBattlerAbility(sp, client_no) == ABILITY_DESOLATE_LAND && sp->battlemon[client_no].hp != 0) {
+                        count++;
+                    }
+                    break; */
                 case WEATHER_HEAVY_RAIN:
                     if (GetBattlerAbility(sp, client_no) == ABILITY_PRIMORDIAL_SEA && sp->battlemon[client_no].hp != 0) {
                         count++;
                     }
-                    break;
+                    break; 
                 case WEATHER_STRONG_WINDS:
                     if (GetBattlerAbility(sp, client_no) == ABILITY_DELTA_STREAM && sp->battlemon[client_no].hp != 0) {
                         count++;
@@ -2770,12 +2776,18 @@ BOOL btl_scr_cmd_F9_canclearprimalweather(void *bw, struct BattleStruct *sp) {
         return FALSE;
     } else {
         switch (currentPrimalWeather) {
-            case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
+            case WEATHER_SANDSTORM_PERMANENT:
                 // sprintf(buf, "WEATHER_EXTREMELY_HARSH_SUNLIGHT\n");
                 // debugsyscall(buf);
                 IncrementBattleScriptPtr(sp, sunAddress);
                 return FALSE;
                 break;
+            /* case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
+                // sprintf(buf, "WEATHER_EXTREMELY_HARSH_SUNLIGHT\n");
+                // debugsyscall(buf);
+                IncrementBattleScriptPtr(sp, sunAddress);
+                return FALSE;
+                break; */
             case WEATHER_HEAVY_RAIN:
                 // sprintf(buf, "WEATHER_HEAVY_RAIN\n");
                 // debugsyscall(buf);
@@ -2877,9 +2889,9 @@ BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp) {
                 sp->move_type = TYPE_ICE;
             }
             // In Pokémon XD: Gale of Darkness, when used during a shadowy aura, Weather Ball's power doubles to 100, and the move becomes a typeless physical move
-            if (sp->field_condition & WEATHER_SHADOWY_AURA_ANY) {
+            /* if (sp->field_condition & WEATHER_SHADOWY_AURA_ANY) {
                 sp->move_type = TYPE_TYPELESS;
-            }
+            } */
 
         } else {
             sp->damage_power = sp->moveTbl[sp->current_move_index].power;

@@ -2028,13 +2028,51 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
         *equivalentDefense = rawSpecialDefense;
     }
 
+    u8 movetype;
+    movetype = GetAdjustedMoveType(sp, sp->attack_client, sp->current_move_index); // new normalize checks
+
+    if (sp->field_condition & WEATHER_SHADOWY_AURA_ANY)
+    {
+        switch (movetype)
+        {
+            case TYPE_NORMAL:
+            case TYPE_FIGHTING:
+            case TYPE_FLYING:
+            case TYPE_POISON:
+            case TYPE_GROUND:
+            case TYPE_ROCK:
+            case TYPE_BUG:
+            case TYPE_GHOST:
+            case TYPE_STEEL:
+                *movesplit = SPLIT_PHYSICAL;
+                *equivalentAttack = rawPhysicalAttack;
+                *equivalentDefense = rawPhysicalDefense;
+                break;
+            case TYPE_FIRE:
+            case TYPE_WATER:
+            case TYPE_GRASS:
+            case TYPE_ELECTRIC:
+            case TYPE_PSYCHIC:
+            case TYPE_ICE:
+            case TYPE_DRAGON:
+            case TYPE_DARK:
+            case TYPE_FAIRY:
+                *movesplit = SPLIT_SPECIAL;
+                *equivalentAttack = rawSpecialAttack;
+                *equivalentDefense = rawPhysicalDefense;
+            break;
+        }
+    }
+
     switch (moveno) {
         case MOVE_PSYSHOCK:
         case MOVE_PSYSTRIKE:
         case MOVE_SECRET_SWORD:
             *equivalentDefense = rawPhysicalDefense;
             break;
+        case MOVE_PHOTON_GEYSER:
         case MOVE_PRISMATIC_LASER:
+        case MOVE_SHELL_SIDE_ARM:
             if (tempPhysicalAttack > tempSpecialAttack) {
                 *movesplit = SPLIT_PHYSICAL;
                 *equivalentAttack = rawPhysicalAttack;
@@ -3033,9 +3071,9 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
                     if (ctx->field_condition & FIELD_STATUS_FOG) {
                         type = TYPE_NORMAL;
                     }
-                    if (ctx->field_condition & WEATHER_SHADOWY_AURA_ANY) {
+                    /* if (ctx->field_condition & WEATHER_SHADOWY_AURA_ANY) {
                         type = TYPE_TYPELESS;
-                    }
+                    } */
                 }
             }
             break;
