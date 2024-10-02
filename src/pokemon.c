@@ -51,7 +51,7 @@ BOOL LONG_CALL GetOtherFormPic(MON_PIC *picdata, u16 mons_no, u8 dir, u8 col, u8
 
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -131,7 +131,7 @@ int LONG_CALL PokeOtherFormMonsNoGet(int mons_no, int form_no)
     default:;
         if (form_no != 0)
         {
-            struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+            struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
             ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
             for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -160,7 +160,7 @@ u16 LONG_CALL GetSpeciesBasedOnForm(int mons_no, int form_no)
 {
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
         {
@@ -185,7 +185,7 @@ u16 LONG_CALL GetOriginalSpeciesBasedOnAdjustedForm(u32 mons_no)
 {
     if (mons_no > MAX_MON_NUM)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -210,7 +210,7 @@ u16 LONG_CALL GetOriginalSpeciesBasedOnAdjustedForm(u32 mons_no)
 u16 LONG_CALL GetFormBasedOnAdjustedForm(u32 mons_no)
 {
     if (mons_no > MAX_MON_NUM) {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (u32 i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -307,7 +307,7 @@ u32 LONG_CALL PokeIconIndexGetByMonsNumber(u32 mons, u32 egg, u32 form_no)
 
         // pat is now treated as the return value.  is initially set as the mons+7, but is adjusted as necessary below
 
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         pat = (7 + mons);
@@ -352,7 +352,7 @@ u16 LONG_CALL PokeIconCgxPatternGet(struct BoxPokemon *ppp)
         return GetBoxMonData(ppp, MON_DATA_FORM, NULL);
 
     default:;
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -436,7 +436,7 @@ u32 LONG_CALL PokeIconPalNumGet(u32 mons, u32 form, u32 isegg)
         } else {
             if (form != 0)
             {
-                struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+                struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
                 ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
                 for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -1882,7 +1882,7 @@ bool8 LONG_CALL RevertFormChange(struct PartyPokemon *pp, u16 species, u8 form_n
 
     if (form_no != 0)
     {
-        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_MAIN_HEAP, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
+        struct FormData *PokeFormDataTbl = sys_AllocMemory(HEAPID_DEFAULT, NELEMS_POKEFORMDATATBL * sizeof(struct FormData));
         ArchiveDataLoad(PokeFormDataTbl, ARC_CODE_ADDONS, CODE_ADDON_FORM_DATA);
 
         for (i = 0; i < NELEMS_POKEFORMDATATBL; i++)
@@ -2447,7 +2447,7 @@ u32 MonTryLearnMoveOnLevelUp(struct PartyPokemon *mon, int * last_i, u16 * sp0)
         isMonEvolving = TRUE;
     }
     u32 ret = 0;
-    u32 *levelUpLearnset = sys_AllocMemory(HEAPID_MAIN_HEAP, LEARNSET_TOTAL_MOVES * sizeof(u32));
+    u32 *levelUpLearnset = sys_AllocMemory(HEAPID_DEFAULT, LEARNSET_TOTAL_MOVES * sizeof(u32));
     u32 species = (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 form = GetMonData(mon, MON_DATA_FORM, NULL);
     u32 level = (u8)GetMonData(mon, MON_DATA_LEVEL, NULL);
