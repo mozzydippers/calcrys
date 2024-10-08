@@ -147,7 +147,7 @@ const u16 ParentalBondSingleStrikeMovesList[] = {
     MOVE_BOUNCE,
     MOVE_DIG,
     MOVE_DIVE,
-    // MOVE_ELECTRO_SHOT, // Not implemented yet
+    MOVE_ELECTRO_SHOT,
     MOVE_FLY,
     MOVE_FREEZE_SHOCK,
     MOVE_GEOMANCY,

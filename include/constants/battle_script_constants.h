@@ -297,7 +297,7 @@
 #define SUB_SEQ_FULL_RESTORE                    (289)
 #define SUB_SEQ_PLUCK_CHECK                     (290)
 #define SUB_SEQ_WAIT_FOR_UNPLAYED_ANIMATION     (291) // null subscript; doesn't disable animations; just waits for animation
-#define SUB_SEQ_ITEM_POWER_HERB_VANISH          (292)
+#define SUB_SEQ_ITEM_POWER_HERB_SKULL_BASH      (292)
 #define SUB_SEQ_SHAYMIN_FORM_CHECK              (293)
 #define SUB_SEQ_OVERWORLD_SUN                   (294)
 #define SUB_SEQ_OVERWORLD_TRICK_ROOM            (295)
@@ -387,16 +387,18 @@
 #define SUB_SEQ_GIVE_TARGET_SIMPLE                    (377)
 #define SUB_SEQ_ABSORB_AND_DEF_UP_2_STAGE             (378)
 #define SUB_SEQ_CANNOT_USE_MOVE                       (379)
+#define SUB_SEQ_POWER_HERB_METEOR_BEAM                (380)
+#define SUB_SEQ_SP_ATK_UP_RAIN_SKIP                   (381)
 
 /* calcrys custom */
-#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (380)
-#define SUB_SEQ_OVERWORLD_TAILWIND                    (381)
-#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (382)
-#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (383)
-#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (384)
-#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (385)
-#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (386)
-#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (387)
+#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (382)
+#define SUB_SEQ_OVERWORLD_TAILWIND                    (383)
+#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (384)
+#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (385)
+#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (386)
+#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (387)
+#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (388)
+#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (389)
 
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
