@@ -9631,7 +9631,7 @@ movedata MOVE_STEAM_ERUPTION, "Steam Eruption"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_STEAM_ERUPTION, "---"
+    movedescription MOVE_STEAM_ERUPTION, "The user immerses the\ntarget in superheated\nsteam.\nThis may also leave\nthe target with a burn."
 
 movedata MOVE_HYPERSPACE_HOLE, "Hyperspace Hole"
     battleeffect MOVE_EFFECT_REMOVE_PROTECT
@@ -9643,7 +9643,7 @@ movedata MOVE_HYPERSPACE_HOLE, "Hyperspace Hole"
     effectchance 0
     target MOVE_TARGET_SELECTED
     priority 0
-    flags FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
+    flags FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
@@ -9871,7 +9871,7 @@ movedata MOVE_HOLD_HANDS, "Hold Hands"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_HOLD_HANDS, "---"
+    movedescription MOVE_HOLD_HANDS, "The user and an ally\nhold hands.\nThis makes them very\nhappy."
 
 movedata MOVE_BABY_DOLL_EYES, "Baby-Doll Eyes"
     battleeffect MOVE_EFFECT_ATK_DOWN
@@ -9935,7 +9935,7 @@ movedata MOVE_INFESTATION, "Infestation"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_INFESTATION, "---"
+    movedescription MOVE_INFESTATION, "The target is infested\nand attacked for four\nto five turns.\nThe target can't flee\nduring this time."
 
 movedata MOVE_POWER_UP_PUNCH, "Power-Up Punch"
     battleeffect MOVE_EFFECT_RAISE_ATTACK_HIT
@@ -10031,7 +10031,7 @@ movedata MOVE_LIGHT_OF_RUIN, "Light of Ruin"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_LIGHT_OF_RUIN, "---"
+    movedescription MOVE_LIGHT_OF_RUIN, "Drawing power from the\nEternal Flower, the user\nfires a powerful beam of\nlight. This also damages\nthe user terribly."
 
 movedata MOVE_ORIGIN_PULSE, "Origin Pulse"
     battleeffect MOVE_EFFECT_HIT
@@ -10047,7 +10047,7 @@ movedata MOVE_ORIGIN_PULSE, "Origin Pulse"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_ORIGIN_PULSE, "---"
+    movedescription MOVE_ORIGIN_PULSE, "The user attacks\nopposing Pokémon with\ncountless beams of\nlight that glow a deep\nand brilliant blue."
 
 movedatalongname MOVE_PRECIPICE_BLADES, "PrecipiceBlades", "Precipice Blades"
     battleeffect MOVE_EFFECT_HIT
@@ -10091,7 +10091,7 @@ movedata MOVE_HYPERSPACE_FURY, "Hyperspace Fury"
     effectchance 100
     target MOVE_TARGET_SELECTED
     priority 0
-    flags  FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
+    flags FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
@@ -12548,7 +12548,7 @@ movedata MOVE_MAX_STEELSPIKE, "Max Steelspike"
     movedescription MOVE_MAX_STEELSPIKE, "---"
 
 movedata MOVE_CLANGOROUS_SOUL, "Clangorous Soul"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_DRAGON
@@ -12561,7 +12561,7 @@ movedata MOVE_CLANGOROUS_SOUL, "Clangorous Soul"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_CLANGOROUS_SOUL, "---"
+    movedescription MOVE_CLANGOROUS_SOUL, "The user boosts all\nits stats by using\nsome of its own HP."
 
 movedata MOVE_BODY_PRESS, "Body Press"
     battleeffect MOVE_EFFECT_HIT
@@ -13093,7 +13093,7 @@ movedata MOVE_LASH_OUT, "Lash Out"
 
 // ACC : 90 > 100
 movedata MOVE_POLTERGEIST, "Poltergeist"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_POLTERGEIST
     pss SPLIT_PHYSICAL
     basepower 110
     type TYPE_GHOST
@@ -13106,7 +13106,7 @@ movedata MOVE_POLTERGEIST, "Poltergeist"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_POLTERGEIST, "---"
+    movedescription MOVE_POLTERGEIST, "The user attacks by\ncontrolling the\ntarget's item. This\nmove fails if the foe\nisn't holding an item."
 
 movedata MOVE_CORROSIVE_GAS, "Corrosive Gas"
     battleeffect MOVE_EFFECT_HIT

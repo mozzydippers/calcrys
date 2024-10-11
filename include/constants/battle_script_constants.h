@@ -391,16 +391,18 @@
 #define SUB_SEQ_SP_ATK_UP_RAIN_SKIP                   (381)
 #define SUB_SEQ_USER_DEF_DOWN_HIT                     (382)
 #define SUB_SEQ_ATK_DEF_SPEED_UP                      (383)
+#define SUB_SEQ_HYPERSPACE_FURY                       (384)
+#define SUB_SEQ_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP     (385)
 
 /* calcrys custom */
-#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (384)
-#define SUB_SEQ_OVERWORLD_TAILWIND                    (385)
-#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (386)
-#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (387)
-#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (388)
-#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (389)
-#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (390)
-#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (391)
+#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (500)
+#define SUB_SEQ_OVERWORLD_TAILWIND                    (501)
+#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (502)
+#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (503)
+#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (504)
+#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (505)
+#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (506)
+#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (507)
 
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
@@ -571,7 +573,8 @@
 #define ADD_STATUS_EFF_SIMPLE_BEAM                     (163)
 #define ADD_STATUS_EFF_USER_DEF_DOWN_HIT               (164)
 #define ADD_STATUS_EFF_ATK_DEF_SPEED_UP                (165)
-
+#define ADD_STATUS_EFF_HYPERSPACE_FURY                 (166)
+#define ADD_STATUS_EFF_CLANGOROUS_SOUL                 (167)
 
 
 // additional effect constants
