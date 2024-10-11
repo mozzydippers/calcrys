@@ -343,7 +343,7 @@ A howling blizzard is summoned to\nstrike the foe. It may also freeze\nthe targe
 The foe is attacked with a powerful\nbeam. The user must rest on the next\nturn to regain its energy.
 A wondrous wall of light is put up to\nsuppress damage from special attacks\nfor five turns.
 It enables the user to evade all\nattacks. Its chance of failing rises\nif it is used in succession.
-The user summons a heavy rain that\nfalls for five turns, powering up\nWater-type moves.
+The user slams into the target using a\nfull-force blast of water. This may\nalso lower the target's Defense stat.
 A nutrient-draining attack. The user’s\nHP is restored by half the damage\ntaken by the target.
 The user creates a protective field\nthat prevents status problems like\npoison, paralysis, burn, and sleep.
 A full-power attack that grows more\npowerful the less the user likes its\nTrainer.
@@ -353,7 +353,7 @@ A strong electric blast is loosed at\nthe foe. It may also leave the foe\nparaly
 A wicked thunderbolt is dropped on the\nfoe to inflict damage. It may also\nleave the target paralyzed.
 The user sets off an earthquake\nthat hits all the Pokémon in the\nbattle.
 A full-power attack that grows more\npowerful the more the user likes its\nTrainer.
-The user burrows, then attacks on the\nsecond turn. It can also be used to\nexit dungeons.
+The user crashes into its target while\nrotating its body like a drill.\nCritical hits land more easily.
 The foe is hit by a strong telekinetic\nforce. It may also reduce the foe’s\nSp. Def stat.
 The user hurls a shadowy blob at the\nfoe. It may also lower the foe’s\nSp. Def stat.
 The user attacks with tough fists,\netc. It can also break any barrier\nsuch as Light Screen and Reflect.

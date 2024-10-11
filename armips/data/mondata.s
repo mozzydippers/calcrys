@@ -2696,7 +2696,7 @@ mondata SPECIES_PINSIR, "Pinsir"
     abilities ABILITY_HYPER_CUTTER, ABILITY_MOLD_BREAKER
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
-    mondexentry SPECIES_PINSIR, "With its pincer horns, it digs burrows\nto sleep in at night. In the morning,\ndamp soil clings to its body."
+    mondexentry SPECIES_PINSIR, "When the temperature drops at night,\nit sleeps on treetops or among roots\nwhere it is well hidden."
     mondexclassification SPECIES_PINSIR, "Stag Beetle Pokémon"
     mondexheight SPECIES_PINSIR, "4’11”"
     mondexweight SPECIES_PINSIR, "121.3 lbs."
@@ -3281,7 +3281,7 @@ mondata SPECIES_CYNDAQUIL, "Cyndaquil"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_BLAZE, ABILITY_FLAME_BODY
+    abilities ABILITY_BLAZE, ABILITY_FLASH_FIRE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_CYNDAQUIL, "The fire that spouts from its back\nburns hottest when it is angry. The\nflaring flames intimidate foes."
@@ -3302,7 +3302,7 @@ mondata SPECIES_QUILAVA, "Quilava"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_BLAZE, ABILITY_FLAME_BODY
+    abilities ABILITY_BLAZE, ABILITY_FLASH_FIRE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_QUILAVA, "Before battle, it turns its back on\nits opponent to demonstrate how\nferociously its fire blazes."
@@ -3323,7 +3323,7 @@ mondata SPECIES_TYPHLOSION, "Typhlosion"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_BLAZE, ABILITY_FLAME_BODY
+    abilities ABILITY_BLAZE, ABILITY_FLASH_FIRE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
     mondexentry SPECIES_TYPHLOSION, "When heat from its body causes the air\naround it to shimmer, this is a sign\nthat it is ready to battle."
@@ -4523,7 +4523,7 @@ mondata SPECIES_HERACROSS, "Heracross"
     abilities ABILITY_SWARM, ABILITY_GUTS
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_HERACROSS, "With its Herculean powers, it can\neasily throw around an object that is\n100 times its own weight."
+    mondexentry SPECIES_HERACROSS, "With its herculean powers, it can\neasily throw around an object that is\n100 times its own weight."
     mondexclassification SPECIES_HERACROSS, "Single Horn Pokémon"
     mondexheight SPECIES_HERACROSS, "4’11”"
     mondexweight SPECIES_HERACROSS, "119.0 lbs."
@@ -4859,7 +4859,7 @@ mondata SPECIES_KINGDRA, "Kingdra"
     abilities ABILITY_SWIFT_SWIM, ABILITY_SNIPER
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_KINGDRA, "It stores energy by sleeping at\nunderwater depths at which no other\nlife-forms can survive."
+    mondexentry SPECIES_KINGDRA, "This Pokémon is said to sleep at the\nbottom of the sea, deeper than any other\nlife-form can descend, building its energy."
     mondexclassification SPECIES_KINGDRA, "Dragon Pokémon"
     mondexheight SPECIES_KINGDRA, "5’11”"
     mondexweight SPECIES_KINGDRA, "335.1 lbs."
@@ -5762,7 +5762,7 @@ mondata SPECIES_SEEDOT, "Seedot"
     abilities ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
-    mondexentry SPECIES_SEEDOT, "It attaches itself to a tree branch\nusing the top of its head. Strong\nwinds can sometimes make it fall."
+    mondexentry SPECIES_SEEDOT, "If it remains still, it becomes impossible\nto distinguish from real nuts.\nIt delights in surprising foraging Pidgey."
     mondexclassification SPECIES_SEEDOT, "Acorn Pokémon"
     mondexheight SPECIES_SEEDOT, "1’08”"
     mondexweight SPECIES_SEEDOT, "8.8 lbs."
@@ -7379,7 +7379,7 @@ mondata SPECIES_MILOTIC, "Milotic"
     abilities ABILITY_MARVEL_SCALE, ABILITY_COMPETITIVE
     runchance 0
     colorflip BODY_COLOR_PINK, 0
-    mondexentry SPECIES_MILOTIC, "It’s said that a glimpse of a\nMILOTIC and its beauty will calm any\nhostile emotions you’re feeling."
+    mondexentry SPECIES_MILOTIC, "It lives at the bottom of clear lakes.\nIn times of war, it shows itself, which\rsoothes people's minds and hearts."
     mondexclassification SPECIES_MILOTIC, "Tender Pokémon"
     mondexheight SPECIES_MILOTIC, "20’04”"
     mondexweight SPECIES_MILOTIC, "357.1 lbs."
@@ -8016,7 +8016,7 @@ mondata SPECIES_LATIAS, "Latias"
 
 
 mondata SPECIES_LATIOS, "Latios"
-    basestats 80, 90, 80, 110, 130, 110
+    basestats 80, 80, 90, 110, 130, 110
     types TYPE_DRAGON, TYPE_PSYCHIC
     catchrate 3
     baseexp 0 // defined in baseexp.s
@@ -8268,7 +8268,7 @@ mondata SPECIES_INFERNAPE, "Infernape"
 
 
 mondata SPECIES_PIPLUP, "Piplup"
-    basestats 53, 51, 53, 40, 67, 56
+    basestats 54, 51, 58, 40, 61, 56
     types TYPE_WATER, TYPE_WATER
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -8279,7 +8279,7 @@ mondata SPECIES_PIPLUP, "Piplup"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_WATER_1, EGG_GROUP_FIELD
-    abilities ABILITY_TORRENT, ABILITY_COMPETITIVE
+    abilities ABILITY_TORRENT, ABILITY_SLUSH_RUSH
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
     mondexentry SPECIES_PIPLUP, "It doesn’t like to be taken care\nof. It’s difficult to bond with since\nit won’t listen to its Trainer."
@@ -8289,7 +8289,7 @@ mondata SPECIES_PIPLUP, "Piplup"
 
 
 mondata SPECIES_PRINPLUP, "Prinplup"
-    basestats 64, 66, 68, 50, 81, 76
+    basestats 64, 66, 73, 50, 86, 81
     types TYPE_WATER, TYPE_WATER
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -8300,7 +8300,7 @@ mondata SPECIES_PRINPLUP, "Prinplup"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_WATER_1, EGG_GROUP_FIELD
-    abilities ABILITY_TORRENT, ABILITY_COMPETITIVE
+    abilities ABILITY_TORRENT, ABILITY_SLUSH_RUSH
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
     mondexentry SPECIES_PRINPLUP, "It lives a solitary life. Its wings\ndeliver wicked blows that can\nsnap even the thickest of trees."
@@ -8310,7 +8310,7 @@ mondata SPECIES_PRINPLUP, "Prinplup"
 
 
 mondata SPECIES_EMPOLEON, "Empoleon"
-    basestats 84, 86, 88, 65, 111, 101
+    basestats 84, 86, 88, 60, 111, 106
     types TYPE_WATER, TYPE_STEEL
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -8321,7 +8321,7 @@ mondata SPECIES_EMPOLEON, "Empoleon"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_WATER_1, EGG_GROUP_FIELD
-    abilities ABILITY_TORRENT, ABILITY_COMPETITIVE
+    abilities ABILITY_TORRENT, ABILITY_SLUSH_RUSH
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
     mondexentry SPECIES_EMPOLEON, "It avoids unnecessary disputes,\nbut it will decimate anything that\nthreatens its pride."
@@ -9626,7 +9626,7 @@ mondata SPECIES_LUMINEON, "Lumineon"
     abilities ABILITY_SWIFT_SWIM, ABILITY_STORM_DRAIN
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_LUMINEON, "LUMINEON swimming in the darkness\nof the deep sea look like stars shining\nin the night sky."
+    mondexentry SPECIES_LUMINEON, "Deep down at the bottom of the ocean,\nprey is scarce. Lumineon get into\nfierce disputes with Lanturn over food."
     mondexclassification SPECIES_LUMINEON, "Neon Pokémon"
     mondexheight SPECIES_LUMINEON, "3’11”"
     mondexweight SPECIES_LUMINEON, "52.9 lbs."
@@ -15800,7 +15800,7 @@ mondata SPECIES_HAWLUCHA, "Hawlucha"
     abilities ABILITY_LIMBER, ABILITY_UNBURDEN
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
-    mondexentry SPECIES_HAWLUCHA, "Although its body is small, its\nproficient fighting skills enable it to\nkeep up with big bruisers."
+    mondexentry SPECIES_HAWLUCHA, "Hawlucha live quietly without flocking\ntogether. They fight constantly with\ntheir natural enemies: noisy Primeape."
     mondexclassification SPECIES_HAWLUCHA, "Wrestling Pokémon"
     mondexheight SPECIES_HAWLUCHA, "2’07”"
     mondexweight SPECIES_HAWLUCHA, "47.4 lbs."
@@ -15842,7 +15842,7 @@ mondata SPECIES_CARBINK, "Carbink"
     abilities ABILITY_CLEAR_BODY, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
-    mondexentry SPECIES_CARBINK, "Born from temperatures and pressures\ndeep underground, it fires beams from\nthe stone in its head."
+    mondexentry SPECIES_CARBINK, "Some say that deep beneath the surface\nof the world, a pack of Carbink live with\ntheir queen in a kingdom of jewels."
     mondexclassification SPECIES_CARBINK, "Jewel Pokémon"
     mondexheight SPECIES_CARBINK, "1’00”"
     mondexweight SPECIES_CARBINK, "12.6 lbs."
@@ -22654,7 +22654,7 @@ mondata SPECIES_MEGA_CHARIZARD_Y, "-----"
     basefriendship 50
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_MONSTER, EGG_GROUP_DRAGON
-    abilities ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER
+    abilities ABILITY_DROUGHT, ABILITY_DROUGHT
     runchance 0
     colorflip 0, 0
 
@@ -23155,7 +23155,7 @@ mondata SPECIES_MEGA_BANETTE, "-----"
     colorflip 0, 0
 
 mondata SPECIES_MEGA_ABSOL, "-----"
-    basestats 65, 160, 60, 125, 120, 60
+    basestats 65, 160, 70, 125, 75, 70
     types TYPE_DARK, TYPE_FAIRY
     catchrate 30
     baseexp 174
@@ -26494,7 +26494,7 @@ mondata SPECIES_TYPHLOSION_HISUIAN, "-----"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_BLAZE, ABILITY_NONE
+    abilities ABILITY_BLAZE, ABILITY_FLASH_FIRE
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
 

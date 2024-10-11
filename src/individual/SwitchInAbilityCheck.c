@@ -239,6 +239,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                     break;
                                 case ABILITY_WATER_VEIL:
                                     sp->battlemon[client_no].appear_check_flag = 1; {
+                                        sp->client_work = client_no;
                                         scriptnum = SUB_SEQ_WATER_VEIL_AQUA_RING;
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }

@@ -239,10 +239,13 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
 		level = buf[offset] | (buf[offset+1] << 8);
         gLastPokemonLevelForMoneyCalc = level; // ends up being the last level at the end of the loop that we use for the money calc loop default case
         offset += 2;
-		if ((DoScaling == 1) && avgLevel >= level) {
-			level = avgLevel;
+        if ((DoScaling == 1) && highLevel >= level) { // always highest level on trainers
+			level = highLevel;
 		}
-		if ((DoScaling == 2) && highLevel >= level) {
+		/* if ((DoScaling == 1) && avgLevel >= level) {
+			level = avgLevel;
+		} */
+        if ((DoScaling == 2) && highLevel >= level) { // always highest level on trainers
 			level = highLevel;
 		}
 		if ((DoScaling == 3) && lowLevel >= level) {

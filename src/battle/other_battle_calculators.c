@@ -2231,6 +2231,7 @@ BOOL LONG_CALL CanUndergoPrimalReversion(struct BattleStruct *sp, u8 client_no) 
     return FALSE;
 }
 
+/*
 typedef enum scc_work 
 {
     UFCE_STATE_FUTURE_SIGHT,
@@ -2343,7 +2344,7 @@ void BattleControllerPlayer_UpdateFieldConditionExtra(struct BattleSystem *bsys,
     ctx->scc_seq_no = 0;
     ctx->scc_work  = 0;
     ctx->server_seq_no = CONTROLLER_COMMAND_TURN_END;
-}
+} */
 
 /**
  * Platinum version as reference

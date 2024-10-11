@@ -1464,8 +1464,12 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                 debugsyscall(buf);
 #endif
 
-                if (sp->field_condition & FIELD_STATUS_TRICK_ROOM) {
-                    sp->field_condition -= 1 << FIELD_CONDITION_TRICK_ROOM_SHIFT;
+                if (sp->field_condition & FIELD_STATUS_TRICK_ROOM) 
+                {
+                    if ((sp->field_condition & FIELD_STATUS_TRICK_ROOM) != 458752)
+                    {
+                        sp->field_condition -= 1 << FIELD_CONDITION_TRICK_ROOM_SHIFT;
+                    }
                     if (!(sp->field_condition & FIELD_STATUS_TRICK_ROOM)) {
                         LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, 251);
                         sp->next_server_seq_no = sp->server_seq_no;
@@ -1482,9 +1486,11 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                 sprintf(buf, "In ENDTURN_GRAVITY_DISSIPATING\n");
                 debugsyscall(buf);
                 #endif
-
                 if (sp->field_condition & FIELD_STATUS_GRAVITY) {
-                    sp->field_condition -= (1 << 12);
+                    if ((sp->field_condition & FIELD_STATUS_GRAVITY) != 28672)
+                    {
+                        sp->field_condition -= (1 << 12);
+                    }
                     if ((sp->field_condition & FIELD_STATUS_GRAVITY) == 0) {
                         LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, SUB_SEQ_GRAVITY_END);
                         sp->next_server_seq_no = sp->server_seq_no;

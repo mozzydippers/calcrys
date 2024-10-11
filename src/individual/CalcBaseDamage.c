@@ -255,8 +255,8 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
 
         // For Foul Play, the enemy's physical attack stat is the baseline when calculating
         case MOVE_FOUL_PLAY:
-            attack = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_ATK, NULL);
-            atkstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_ATK, NULL) - 6;
+                attack = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_ATK, NULL);
+                atkstate = BattlePokemonParamGet(sp, defender, BATTLE_MON_DATA_STATE_ATK, NULL) - 6;
             break;
 
         default:
@@ -441,13 +441,25 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     if (AttackingMon.item_held_effect == HOLD_EFFECT_CHOICE_SPATK)
         sp_attack = sp_attack * 150 / 100;
 
-    // handle soul dew - gen 7 changes it to just boost movepower if the type is dragon or psychic, no more defense boost
-    if ((AttackingMon.item_held_effect == HOLD_EFFECT_LATI_SPECIAL)
+
+    // handle soul dew - gen 4
+    if ((AttackingMon.item_held_effect == HOLD_EFFECT_LATI_SPECIAL) &&
+        ((battle_type & BATTLE_TYPE_BATTLE_TOWER) == 0) &&
+        ((AttackingMon.species == SPECIES_LATIOS) || (AttackingMon.species == SPECIES_LATIAS)))
+        sp_attack = sp_attack * 150 / 100;
+
+    if ((DefendingMon.item_held_effect == HOLD_EFFECT_LATI_SPECIAL) &&
+        ((battle_type & BATTLE_TYPE_BATTLE_TOWER) == 0) &&
+        ((DefendingMon.species == SPECIES_LATIOS) || (DefendingMon.species == SPECIES_LATIAS)))
+        sp_defense = sp_defense * 150 / 100;
+
+    /* // handle soul dew - gen 7 changes it to just boost movepower if the type is dragon or psychic, no more defense boost
+     if ((AttackingMon.item_held_effect == HOLD_EFFECT_LATI_SPECIAL)
      && ((AttackingMon.species == SPECIES_LATIOS) || (AttackingMon.species == SPECIES_LATIAS))
      && (movetype == TYPE_DRAGON || movetype == TYPE_PSYCHIC))
     {
         movepower = movepower * 120 / 100; // 4915/4096
-    }
+    } */
 
     // handle deep sea tooth
     if ((AttackingMon.item_held_effect == HOLD_EFFECT_CLAMPERL_SPATK) && (AttackingMon.species == SPECIES_CLAMPERL))
@@ -1123,6 +1135,9 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
                 break;
             case TYPE_WATER:
                 // If the current weather is Sunny Day and the user is not holding Utility Umbrella, this move's damage is multiplied by 1.5 instead of halved for being Water type.
+                if (moveno == MOVE_STEAM_ERUPTION && item != ITEM_UTILITY_UMBRELLA) {
+                    damage = damage * 10 / 10;
+                }
                 if (moveno == MOVE_HYDRO_STEAM && item != ITEM_UTILITY_UMBRELLA) {
                     damage = damage * 15 / 10;
                 } else {
