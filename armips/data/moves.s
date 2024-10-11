@@ -8809,7 +8809,7 @@ movedata MOVE_TAIL_SLAP, "Tail Slap"
     movedescription MOVE_TAIL_SLAP, "The use attacks by\nhitting the target\nwith its hard tail.\nIt hits two to five\ntimes in a row."
 
 movedata MOVE_HURRICANE, "Hurricane"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_HURRICANE
     pss SPLIT_SPECIAL
     basepower 110
     type TYPE_FLYING
@@ -8822,7 +8822,7 @@ movedata MOVE_HURRICANE, "Hurricane"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_HURRICANE, "The foe is caught\nin a fierce wind.\nIt may also confuse\nthe foe."
+    movedescription MOVE_HURRICANE, "The user attacks by\nwrapping its opponent\nin a fierce wind.\nThis may also confuse\nthe target."
 
 movedata MOVE_HEAD_CHARGE, "Head Charge"
     battleeffect MOVE_EFFECT_RECOIL_THIRD
@@ -10082,7 +10082,7 @@ movedata MOVE_DRAGON_ASCENT, "Dragon Ascent"
     movedescription MOVE_DRAGON_ASCENT, "---"
 
 movedata MOVE_HYPERSPACE_FURY, "Hyperspace Fury"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_USER_DEF_DOWN_HIT_REMOVE_PROTECT
     pss SPLIT_PHYSICAL
     basepower 100
     type TYPE_DARK
@@ -11204,7 +11204,7 @@ movedata MOVE_BEAK_BLAST, "Beak Blast"
     movedescription MOVE_BEAK_BLAST, "---"
 
 movedata MOVE_CLANGING_SCALES, "Clanging Scales"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_USER_DEF_DOWN_HIT
     pss SPLIT_SPECIAL
     basepower 110
     type TYPE_DRAGON
@@ -13545,7 +13545,7 @@ movedata MOVE_MOUNTAIN_GALE, "Mountain Gale"
     movedescription MOVE_MOUNTAIN_GALE, "---"
 
 movedata MOVE_VICTORY_DANCE, "Victory Dance"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_ATK_DEF_SPEED_UP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_FIGHTING
@@ -13558,7 +13558,7 @@ movedata MOVE_VICTORY_DANCE, "Victory Dance"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_VICTORY_DANCE, "---"
+    movedescription MOVE_VICTORY_DANCE, "The user performs an\nintense dance to usher\nin victory, boosting\nits Attack, Defense,\nand Speed stats."
 
 movedata MOVE_HEADLONG_RUSH, "Headlong Rush"
     battleeffect MOVE_EFFECT_USER_DEF_SP_DEF_DOWN_HIT
