@@ -292,10 +292,10 @@ const u16 *_0210FA3C[] = {
 .halfword ITEM_TM38
 .halfword ITEM_TM52
 .halfword ITEM_TM54
-.halfword ITEM_TM68
 .halfword ITEM_TM70
-.halfword ITEM_TM71
 .halfword ITEM_TM83
+.halfword 0xFFFF
+.halfword 0xFFFF
 .halfword 0xFFFF
 
 /* Celadon Dept Store 2F */

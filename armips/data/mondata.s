@@ -9675,7 +9675,7 @@ mondata SPECIES_SNOVER, "Snover"
 
 
 mondata SPECIES_ABOMASNOW, "Abomasnow"
-    basestats 90, 92, 75, 60, 92, 85
+    basestats 90, 102, 85, 60, 102, 95
     types TYPE_GRASS, TYPE_ICE
     catchrate 60
     baseexp 0 // defined in baseexp.s
@@ -23315,7 +23315,7 @@ mondata SPECIES_MEGA_LUCARIO, "-----"
     colorflip 0, 0
 
 mondata SPECIES_MEGA_ABOMASNOW, "-----"
-    basestats 90, 92, 105, 60, 132, 115
+    basestats 90, 132, 105, 60, 132, 115
     types TYPE_GRASS, TYPE_ICE
     catchrate 60
     baseexp 214

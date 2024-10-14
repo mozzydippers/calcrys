@@ -10,7 +10,6 @@ _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
        // Trainer 210
-       // Trainer 221
        // Trainer 225
        // Trainer 226
        // Trainer 229
@@ -1094,6 +1093,7 @@ _0990: // Trainer 36
     trainertextentry  36, TEXT_NOTICE_IN_OVERWORLD, "Since you’ve come this far, you must be\ngood. I’m going to give this battle\feverything I’ve got!\r"
     trainertextentry  36, TEXT_DEFEATED_IN_BATTLE, "No! I don’t believe this!\n"
     trainertextentry  36, TEXT_DEFEATED_IN_OVERWORLD, "I’ve defeated eight Gym Leaders, so I\nwas feeling confident.\rI’ll have to try harder next time.\n"
+    trainertextentry  36, TEXT_PLAYER_LOSES, "You've come so far...\nYet you lost to me?\rHuh!\nI really am that good!\n"
 
 _099C: // Trainer 113
     trainertextentry 113, TEXT_NOTICE_IN_OVERWORLD, "I lost to a redheaded Trainer. He was\nreally strong, but...it was as if he\fabsolutely had to win at any cost.\fI felt sorry for his Pokémon.\r"
@@ -3282,7 +3282,9 @@ _1B48: // Trainer 208
     trainertextentry 208, TEXT_PLAYER_LOSES, "Dancers don’t need wings to fly!\n"    
 .close
 
-
+_1B4C: // Trainer 221
+    trainertextentry 221, TEXT_NOTICE_IN_OVERWORLD, "one man stands alone between johto & ensuing calamity... that man is me! Ace Trainer Louis!\r"
+    trainertextentry 221, TEXT_DEFEATED_IN_BATTLE, "alas. i have failed... \r"
 
 .create "build/trainer_text_offsets/1_0", 0
 
@@ -3507,7 +3509,7 @@ _1B48: // Trainer 208
 /* Trainer 218 */ .halfword _12DC
 /* Trainer 219 */ .halfword _12E8
 /* Trainer 220 */ .halfword _12F4
-/* Trainer 221 */ .halfword _0000
+/* Trainer 221 */ .halfword _1B4C
 /* Trainer 222 */ .halfword _1328
 /* Trainer 223 */ .halfword _12C8
 /* Trainer 224 */ .halfword _12CC

@@ -12852,7 +12852,7 @@ movedata MOVE_FALSE_SURRENDER, "False Surrender"
     movedescription MOVE_FALSE_SURRENDER, "---"
 
 movedata MOVE_METEOR_ASSAULT, "Meteor Assault"
-    battleeffect MOVE_EFFECT_RECHARGE_AFTER
+    battleeffect MOVE_EFFECT_HIT
     pss SPLIT_PHYSICAL
     basepower 150
     type TYPE_FIGHTING
@@ -12865,7 +12865,7 @@ movedata MOVE_METEOR_ASSAULT, "Meteor Assault"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_METEOR_ASSAULT, "---"
+    movedescription MOVE_METEOR_ASSAULT, "The user attacks\nwildly with its thick\nleek.\nThis move can't be\nused twice in a row."
 
 movedata MOVE_ETERNABEAM, "Eternabeam"
     battleeffect MOVE_EFFECT_RECHARGE_AFTER

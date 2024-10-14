@@ -448,7 +448,7 @@ BOOL CalcAccuracy(void *bw, struct BattleStruct *sp, int attacker, int defender,
     accuracy *= sAccStatChanges[temp].numerator;
     accuracy /= sAccStatChanges[temp].denominator;
 
-    if (atk_ability == ABILITY_COMPOUND_EYES)
+    if ((atk_ability == ABILITY_COMPOUND_EYES) || (atk_ability == ABILITY_ILLUMINATE))
     {
         accuracy = accuracy * 130 / 100;
     }
@@ -3064,7 +3064,9 @@ u32 LONG_CALL StruggleCheck(struct BattleSystem *bsys, struct BattleStruct *ctx,
         if (struggleCheckFlags & STRUGGLE_CHECK_GIGATON_HAMMER) {
             // Encore allows Gigaton Hammer to be used twice in a row, but on subsequent turns of the Encore the user will be forced to Struggle.
             if (!(ctx->battlemon[battlerId].moveeffect.encoredMove && ctx->battlemon[battlerId].moveeffect.encoredTurns == 3)) {
-                if (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_GIGATON_HAMMER) {
+                if ((ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_GIGATON_HAMMER)
+                 || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_BLOOD_MOON)
+                 || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_METEOR_ASSAULT)) {
                     nonSelectableMoves |= No2Bit(movePos);
                 }
             }
