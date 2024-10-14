@@ -3280,11 +3280,11 @@ _1B48: // Trainer 208
     trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "When you dance, your purpose is not to\nget to a certain place on the floor.\fIt’s to enjoy each step along the way.\r"
     trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "Nobody cares if you can’t dance well.\nJust get up and dance.\r"
     trainertextentry 208, TEXT_PLAYER_LOSES, "Dancers don’t need wings to fly!\n"    
-.close
 
 _1B4C: // Trainer 221
     trainertextentry 221, TEXT_NOTICE_IN_OVERWORLD, "one man stands alone between johto & ensuing calamity... that man is me! Ace Trainer Louis!\r"
     trainertextentry 221, TEXT_DEFEATED_IN_BATTLE, "alas. i have failed... \r"
+.close
 
 .create "build/trainer_text_offsets/1_0", 0
 
