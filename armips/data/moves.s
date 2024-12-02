@@ -9166,7 +9166,7 @@ movedata MOVE_ROTOTILLER, "Rototiller"
     movedescription MOVE_ROTOTILLER, "---"
 
 movedata MOVE_STICKY_WEB, "Sticky Web"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_STICKY_WEB
     pss SPLIT_STATUS
     basepower 0
     type TYPE_BUG
@@ -9179,7 +9179,7 @@ movedata MOVE_STICKY_WEB, "Sticky Web"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_STICKY_WEB, "---"
+    movedescription MOVE_STICKY_WEB, "The user weaves a web\naround the foe.\nIt lowers the foes\nSpeed upon switching\nin."
 
 movedata MOVE_FELL_STINGER, "Fell Stinger"
     battleeffect MOVE_EFFECT_HIT
@@ -12902,7 +12902,7 @@ movedata MOVE_STEEL_BEAM, "Steel Beam"
 movedata MOVE_EXPANDING_FORCE, "Expanding Force"
     battleeffect MOVE_EFFECT_HIT // damage portion handled in CalcBaseDamage.c
     pss SPLIT_SPECIAL
-    basepower 80 
+    basepower 80
     type TYPE_PSYCHIC
     accuracy 100
     pp 10
@@ -12982,7 +12982,7 @@ movedata MOVE_SHELL_SIDE_ARM, "Shell Side Arm"
 movedata MOVE_MISTY_EXPLOSION, "Misty Explosion"
     battleeffect MOVE_EFFECT_HALVE_DEFENSE // damage portion handled in CalcBaseDamage.c
     pss SPLIT_SPECIAL
-    basepower 100 
+    basepower 100
     type (FAIRY_TYPE_IMPLEMENTED) ? TYPE_FAIRY : TYPE_NORMAL
     accuracy 100
     pp 5
@@ -14639,7 +14639,7 @@ movedata MOVE_ELECTRO_SHOT, "Electro Shot"
     type TYPE_ELECTRIC
     accuracy 100
     pp 10
-    effectchance 0
+    effectchance 100
     target MOVE_TARGET_SELECTED
     priority 0
     flags FLAG_KEEP_HP_BAR | FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
