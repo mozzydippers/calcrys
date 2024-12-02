@@ -4962,11 +4962,12 @@ movedata MOVE_CRUSH_CLAW, "Crush Claw"
     contesttype CONTEST_COOL
     terminatedata
     movedescription MOVE_CRUSH_CLAW, "The user slashes the\nfoe with hard and\nsharp claws.\nIt may also lower the\ntarget’s Defense."
-
+    
+// eff : MOVE_EFFECT_RECHARGE_AFTER > MOVE_EFFECT_HIT (GIGATON HAMMER CLONE)
 movedata MOVE_BLAST_BURN, "Blast Burn"
-    battleeffect MOVE_EFFECT_RECHARGE_AFTER
+    battleeffect MOVE_EFFECT_HIT
     pss SPLIT_SPECIAL
-    basepower 150
+    basepower 140
     type TYPE_FIRE
     accuracy 100
     pp 5
@@ -4979,10 +4980,11 @@ movedata MOVE_BLAST_BURN, "Blast Burn"
     terminatedata
     movedescription MOVE_BLAST_BURN, "The foe is razed by\na fiery explosion.\nThe user must rest\non the next turn,\nhowever."
 
+// eff : MOVE_EFFECT_RECHARGE_AFTER > MOVE_EFFECT_HIT (GIGATON HAMMER CLONE)
 movedata MOVE_HYDRO_CANNON, "Hydro Cannon"
-    battleeffect MOVE_EFFECT_RECHARGE_AFTER
+    battleeffect MOVE_EFFECT_HIT
     pss SPLIT_SPECIAL
-    basepower 150
+    basepower 140
     type TYPE_WATER
     accuracy 100
     pp 5
@@ -5462,10 +5464,11 @@ movedata MOVE_DRAGON_CLAW, "Dragon Claw"
     terminatedata
     movedescription MOVE_DRAGON_CLAW, "The user slashes the\nfoe with huge, sharp\nclaws.\n\n"
 
+// eff : MOVE_EFFECT_RECHARGE_AFTER > MOVE_EFFECT_HIT (GIGATON HAMMER CLONE)
 movedata MOVE_FRENZY_PLANT, "Frenzy Plant"
-    battleeffect MOVE_EFFECT_RECHARGE_AFTER
+    battleeffect MOVE_EFFECT_HIT
     pss SPLIT_SPECIAL
-    basepower 150
+    basepower 140
     type TYPE_GRASS
     accuracy 100
     pp 5
@@ -12964,13 +12967,13 @@ movedata MOVE_METEOR_BEAM, "Meteor Beam"
     movedescription MOVE_METEOR_BEAM, "The user gathers\nenergy from space to\nraise its Sp. Atk on\nthe first turn, then\nattacks on the next."
 
 movedata MOVE_SHELL_SIDE_ARM, "Shell Side Arm"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_POISON_HIT
     pss SPLIT_SPECIAL
     basepower 90
     type TYPE_POISON
     accuracy 100
     pp 10
-    effectchance 20
+    effectchance 30
     target MOVE_TARGET_SELECTED
     priority 0
     flags FLAG_KEEP_HP_BAR | FLAG_PROTECT | FLAG_MIRROR_MOVE | FLAG_KINGS_ROCK
@@ -13372,7 +13375,7 @@ movedata MOVE_EERIE_SPELL, "Eerie Spell"
     basepower 90
     type TYPE_PSYCHIC
     accuracy 100
-    pp 5
+    pp 10
     effectchance 0
     target MOVE_TARGET_SELECTED
     priority 0

@@ -15,7 +15,6 @@
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
 #include "../../include/constants/weather_numbers.h"
-#include "../../include/pokemon_storage_system.h"
 
 /**
  *  @brief script command to give an egg adapted to set the hidden ability
@@ -126,91 +125,6 @@ BOOL ScrCmd_GiveTogepiEgg(SCRIPTCONTEXT *ctx) {
 
     SaveMisc_SetTogepiPersonalityGender(Sav2_Misc_get(fsys->savedata), GetMonData(togepi, MON_DATA_PERSONALITY, 0), GetMonData(togepi, MON_DATA_GENDER, 0));
 
-    return FALSE;
-}
-
-/**
- *  changing the primo script to give out all the wallpapers
- *  thank u adastra <3
- */
-#define NUM_BONUS_WALLPAPERS (8)
-BOOL ScrCmd_PrimoPasswordCheck1( SCRIPTCONTEXT* ctx ) {
-    FieldSystem *fsys = ctx->fsys;
-    PCStorage* pcStorage = SaveArray_PCStorage_Get( fsys->savedata );
-    u16 *p_ret = ScriptGetVarPointer(ctx);
-    u16 a = ScriptGetVar(ctx);
-    u16 b = ScriptGetVar(ctx);
-    u16 c = ScriptGetVar(ctx);
-    u16 d = ScriptGetVar(ctx);
-
-    for ( int w = 0; w < NUM_BONUS_WALLPAPERS; w++ ) {
-        if (!PCStorage_IsBonusWallpaperUnlocked(pcStorage, w)) {
-            PCStorage_UnlockBonusWallpaper(pcStorage, w);
-        }
-    }
-
-    return FALSE;
-}
-
-/** 
- * changing the tm check to if u CAN learn it rather than know it
- * ty blurose <3
- */
-
- struct HMMoveToTMId
-{
-    u16 move;
-    u8 tmId;
-};
-
-struct HMMoveToTMId moveToTMIdTable[] =
-{
-    {MOVE_CUT, 93},
-    {MOVE_FLY, 94},
-    {MOVE_SURF, 95},
-    {MOVE_STRENGTH, 96},
-    {MOVE_WHIRLPOOL, 97},
-    {MOVE_ROCK_SMASH, 98},
-    {MOVE_WATERFALL, 99},
-    {MOVE_ROCK_CLIMB, 100},
-};
-
-BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
-    FieldSystem *fsys = ctx->fsys;
-    u16 *slot = ScriptGetVarPointer(ctx);
-    u16 move = ScriptGetVar(ctx);
-    u8 i;
-
-    struct Party *party = SaveData_GetPlayerPartyPtr(fsys->savedata);
-    u8 partyCount = party->count;
-    for (i = 0, *slot = 6; i < partyCount; i++) 
-    {
-        struct PartyPokemon *mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fsys->savedata), i);
-        if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) 
-        {
-            continue;
-        }
-        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move || GetMonData(mon, MON_DATA_MOVE2, NULL) == move ||
-            GetMonData(mon, MON_DATA_MOVE3, NULL) == move || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) 
-        {
-            *slot = i;
-            break;
-        }
-        u8 tmId = 0;
-        *slot = 6;
-        for (int j = 0; j < NELEMS(moveToTMIdTable); j++)
-        {
-            if (moveToTMIdTable[j].move == move)
-            {
-                tmId = moveToTMIdTable[j].tmId;
-            }
-        }
-        if (GetMonTMHMCompat(mon, tmId))
-        {
-            *slot = i;
-            break;
-        }
-    }
     return FALSE;
 }
 
@@ -403,3 +317,196 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx) {
     }
     return FALSE;
 }
+
+// calcrys custom
+
+/** 
+ * changing the tm check to if u CAN learn it rather than know it
+ * ty blurose <3
+ */
+
+ struct HMMoveToTMId
+{
+    u16 move;
+    u8 tmId;
+};
+
+struct HMMoveToTMId moveToTMIdTable[] =
+{
+    {MOVE_CUT, 93},
+    {MOVE_FLY, 94},
+    {MOVE_SURF, 95},
+    {MOVE_STRENGTH, 96},
+    {MOVE_WHIRLPOOL, 97},
+    {MOVE_ROCK_SMASH, 98},
+    {MOVE_WATERFALL, 99},
+    {MOVE_ROCK_CLIMB, 100},
+};
+
+BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
+    FieldSystem *fsys = ctx->fsys;
+    u16 *slot = ScriptGetVarPointer(ctx);
+    u16 move = ScriptGetVar(ctx);
+    u8 i;
+
+    struct Party *party = SaveData_GetPlayerPartyPtr(fsys->savedata);
+    u8 partyCount = party->count;
+    for (i = 0, *slot = 6; i < partyCount; i++) 
+    {
+        struct PartyPokemon *mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fsys->savedata), i);
+        if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) 
+        {
+            continue;
+        }
+        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move || GetMonData(mon, MON_DATA_MOVE2, NULL) == move ||
+            GetMonData(mon, MON_DATA_MOVE3, NULL) == move || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) 
+        {
+            *slot = i;
+            break;
+        }
+        u8 tmId = 0;
+        *slot = 6;
+        for (int j = 0; j < NELEMS(moveToTMIdTable); j++)
+        {
+            if (moveToTMIdTable[j].move == move)
+            {
+                tmId = moveToTMIdTable[j].tmId;
+            }
+        }
+        if (GetMonTMHMCompat(mon, tmId))
+        {
+            *slot = i;
+            break;
+        }
+    }
+    return FALSE;
+}
+
+/**
+ * hooking spiky eared pichu to change the item
+ *
+ */
+
+static const u16 sSpikyEarPichuMoveset[4] = {
+    MOVE_HELPING_HAND,
+    MOVE_VOLT_TACKLE,
+    MOVE_SWAGGER,
+    MOVE_PAIN_SPLIT,
+};
+
+BOOL ScrCmd_GiveSpikyEarPichu(SCRIPTCONTEXT *ctx) {
+    s32 i;
+    struct Party *party;
+    struct PartyPokemon *pokemon;
+    FieldSystem *fsys = ctx->fsys;
+    void *profile;
+    u32 sp1C;
+    BOOL result;
+    u32 location = gFieldSysPtr->location->mapId;
+    u32 pp;
+
+    /* u32 trId = PlayerProfile_GetTrainerID(profile);
+    u32 unkA = ChangePersonalityToNatureGenderAndAbility(trId, 0xac, NATURE_NAUGHTY, 1, 0, 0); */
+    u32 unkB = sub_02017FE4(1, location);
+
+    profile = Sav2_PlayerData_GetProfileAddr(fsys->savedata);
+    party = SaveData_GetPlayerPartyPtr(fsys->savedata);
+
+    pokemon = AllocMonZeroed(11);
+    ZeroMonData(pokemon);
+    PokeParaSet(pokemon, SPECIES_PICHU, 30, 32, 1, 0, 1, 0); // CreateMon
+    sub_020720FC(pokemon, profile, ITEM_POKE_BALL, unkB, 0x18, 11);
+
+    sp1C = ITEM_LIGHT_BALL;
+    SetMonData(pokemon, MON_DATA_HELD_ITEM, &sp1C);
+
+    int forme = 1;
+    SetMonData(pokemon, MON_DATA_FORM, &forme);
+
+    if (party->count >= 6) {
+        return FALSE;
+    }
+
+    /* for (i = 0; i < 4; i++) {
+        SetMonData(pokemon, MON_DATA_MOVE1 + i, &sSpikyEarPichuMoveset[i]);
+        pp = GetMonData(pokemon, MON_DATA_MOVE1MAXPP + i, 0);
+        SetMonData(pokemon, MON_DATA_MOVE1PP + i, &pp);
+    } */
+
+    RecalcPartyPokemonStats(pokemon); // recalculate stats
+
+    if (gf_rand() % 3 == 0)
+    {
+        SET_MON_HIDDEN_ABILITY_BIT(pokemon)
+        // need to clear this script flag because this function is used for in-battle form change ability resets as well, which shouldn't happen normally
+        // ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+    }
+
+    /* if (ability != 0) {
+        SetMonData(pokemon, MON_DATA_ABILITY, &ability);
+    } else {
+        ResetPartyPokemonAbility(pokemon); // with the flag set, the hidden ability should be set
+    } */
+
+    result = PokeParty_Add(party, pokemon);
+    if (result) {
+        UpdatePokedexWithReceivedSpecies(fsys->savedata, pokemon);
+    }
+    sys_FreeMemoryEz(pokemon);
+
+    return result;
+}
+
+/** BOOL ScrCmd_GiveSpikyEarPichu(SCRIPTCONTEXT *ctx) {
+    s32 i;
+    u8 form;
+    u8 maxPP;
+    u16 heldItem;
+    struct PartyPokemon *pokemon;
+    struct Party *party;
+    FieldSystem *fsys = ctx->fsys;
+    void *profile;
+    u32 location = gFieldSysPtr->location->mapId;
+
+    profile = Sav2_PlayerData_GetProfileAddr(fsys->savedata);
+    party = SaveData_GetPlayerPartyPtr(fsys->savedata);
+
+    pokemon = AllocMonZeroed(11);
+    ZeroMonData(pokemon);
+    u32 trId = PlayerProfile_GetTrainerID(profile);
+    u32 unkA = ChangePersonalityToNatureGenderAndAbility(trId, 0xac, NATURE_NAUGHTY, 1, 0, 0);
+    u32 unkB = sub_02017FE4(1, location);
+    PokeParaSet(pokemon, SPECIES_PICHU, 30, 32, TRUE, 0, 1, 0);
+    sub_020720FC(pokemon, profile, ITEM_POKE_BALL, unkB, 0x18, 11);
+
+    heldItem = ITEM_LIGHT_BALL;
+    SetMonData(pokemon, MON_DATA_HELD_ITEM, &heldItem);
+
+    form = 1;
+    SetMonData(pokemon, MON_DATA_FORM, &form);
+
+    if (party->count >= 6) {
+        return FALSE;
+    }
+
+    for (i = 0; i < 4; i++) {
+        SetMonData(pokemon, MON_DATA_MOVE1 + i, &sSpikyEarPichuMoveset[i]);
+        maxPP = GetMonData(pokemon, MON_DATA_MOVE1MAXPP + i, 0);
+        SetMonData(pokemon, MON_DATA_MOVE1PP + i, &maxPP);
+    }
+
+    if (gf_rand() % 3 == 0) // add HA capability
+    {
+        SET_MON_HIDDEN_ABILITY_BIT(pokemon)
+        ResetPartyPokemonAbility(pokemon);
+    //    ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
+    }
+
+    PokeParty_Add(party, pokemon);
+
+    UpdatePokedexWithReceivedSpecies(fsys->savedata, pokemon);
+
+    sys_FreeMemoryEz(pokemon);
+
+    return FALSE;
+} */

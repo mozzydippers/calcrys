@@ -2097,8 +2097,11 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
             *equivalentDefense = rawPhysicalDefense;
             break;
         case MOVE_PHOTON_GEYSER:
-        case MOVE_PRISMATIC_LASER:
         case MOVE_SHELL_SIDE_ARM:
+        // custom
+        case MOVE_BLAST_BURN:
+        case MOVE_HYDRO_CANNON:
+        case MOVE_FRENZY_PLANT:
             if (tempPhysicalAttack > tempSpecialAttack) {
                 *movesplit = SPLIT_PHYSICAL;
                 *equivalentAttack = rawPhysicalAttack;
@@ -2259,6 +2262,9 @@ BOOL LONG_CALL CanUndergoPrimalReversion(struct BattleStruct *sp, u8 client_no) 
 }
 
 /*
+
+// this big bitch of code was formerly used for tr; got absorbed into the new turn order handling
+
 typedef enum scc_work 
 {
     UFCE_STATE_FUTURE_SIGHT,
@@ -2680,11 +2686,43 @@ BOOL LONG_CALL IsContactBeingMade(struct BattleSystem *bw UNUSED, struct BattleS
     return FALSE;
 }
 
+/** 
+ * calcrys custom 
+ * used to transform stance change deoxys into def before attacks
+ * 
+ *
+ */
+BOOL CheckDeoxysStanceChange(struct BattleSystem *bw, struct BattleStruct *sp) {
+    int i = 0;
+
+
+    if (sp->battlemon[sp->defence_client].ability == ABILITY_STANCE_CHANGE && sp->battlemon[sp->defence_client].species == SPECIES_DEOXYS)
+    {
+        sp->client_work = sp->attack_client;
+        if (sp->moveTbl[sp->current_move_index].power >= 0)
+        {
+            sp->client_work = sp->defence_client;
+            if (sp->battlemon[sp->defence_client].form_no == 0 || sp->battlemon[sp->defence_client].form_no == 1)
+            {
+                sp->battlemon[sp->client_work].form_no = 2;
+                BattleFormChange(sp->client_work, sp->battlemon[sp->client_work].form_no, bw, sp, 0);
+                LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+                sp->next_server_seq_no = sp->server_seq_no;
+                sp->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                return TRUE;
+            }
+        }
+    i++;
+    }
+    return FALSE;
+}
+
 enum {
     TRY_MOVE_START = 0,
 
     TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
     TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES,
+    TRY_MOVE_STATE_DEOXYS_STANCE_CHANGE,
     TRY_MOVE_STATE_CHECK_MOVE_HITS,
     TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
     TRY_MOVE_STATE_CHECK_TYPE_CHART,
@@ -2714,6 +2752,12 @@ void LONG_CALL ov12_0224C4D8(struct BattleSystem *bsys, struct BattleStruct *ctx
     case TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES:
         ctx->woc_seq_no++;
         if (ov12_02250BBC(bsys, ctx) == TRUE) {
+            return;
+        }
+        //fallthrough
+    case TRY_MOVE_STATE_DEOXYS_STANCE_CHANGE:
+        ctx->woc_seq_no++;
+        if (CheckDeoxysStanceChange(bsys, ctx)) {
             return;
         }
         //fallthrough
@@ -3144,6 +3188,9 @@ u32 LONG_CALL StruggleCheck(struct BattleSystem *bsys, struct BattleStruct *ctx,
             if (!(ctx->battlemon[battlerId].moveeffect.encoredMove && ctx->battlemon[battlerId].moveeffect.encoredTurns == 3)) {
                 if ((ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_GIGATON_HAMMER)
                  || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_BLOOD_MOON)
+                 || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_BLAST_BURN)
+                 || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_HYDRO_CANNON)
+                 || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_FRENZY_PLANT)
                  || (ctx->waza_no_old[battlerId] == ctx->battlemon[battlerId].move[movePos] && ctx->waza_no_old[battlerId] == MOVE_METEOR_ASSAULT)) {
                     nonSelectableMoves |= No2Bit(movePos);
                 }

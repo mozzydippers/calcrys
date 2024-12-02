@@ -90,37 +90,23 @@ static const u16 StrongJawMovesTable[] = {
 };
 
 static const u16 MegaLauncherMovesTable[] = {
+        // aura
         MOVE_AURA_SPHERE,
+        // pulse
         MOVE_DARK_PULSE,
         MOVE_DRAGON_PULSE,
         MOVE_HEAL_PULSE,
         MOVE_ORIGIN_PULSE,
         MOVE_TERRAIN_PULSE,
         MOVE_WATER_PULSE,
-        MOVE_HEAL_PULSE,		
-        MOVE_ORIGIN_PULSE,
-        MOVE_TERRAIN_PULSE,
-        MOVE_ACID_SPRAY,
-        MOVE_BULLET_SEED,
+        // octazooka
         MOVE_OCTAZOOKA,
-        MOVE_FIRE_BLAST,
-        MOVE_AEROBLAST,
-        MOVE_FOCUS_BLAST,
-        MOVE_TECHNO_BLAST,
+        // shot
         MOVE_MUD_SHOT,
         MOVE_GUNK_SHOT,
         MOVE_SEARING_SHOT,
-        MOVE_SHADOW_BALL,
-        MOVE_WEATHER_BALL,
-        MOVE_ELECTRO_BALL,
-        MOVE_ENERGY_BALL,
-        MOVE_ICE_BALL,
-        MOVE_MIST_BALL,
-        MOVE_SEED_BOMB,
-        MOVE_EGG_BOMB,
-        MOVE_MAGNET_BOMB,
-        MOVE_MUD_BOMB,
-        MOVE_SLUDGE_BOMB,
+        MOVE_SNIPE_SHOT,
+        // beam
         MOVE_ICE_BEAM,
         MOVE_HYPER_BEAM,
         MOVE_AURORA_BEAM,
@@ -128,8 +114,12 @@ static const u16 MegaLauncherMovesTable[] = {
         MOVE_SOLAR_BEAM,
         MOVE_SIGNAL_BEAM,
         MOVE_BUBBLE_BEAM,
+        // cannon
         MOVE_FLASH_CANNON,
         MOVE_ZAP_CANNON,
+        MOVE_ARMOR_CANNON,
+        // bullet seed
+        MOVE_BULLET_SEED,
 };
 
 static const u16 SharpnessMovesTable[] = {
@@ -331,13 +321,9 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     // Handle Fishous Rend & Bolt Beak
     if (moveno == MOVE_FISHIOUS_REND || moveno == MOVE_BOLT_BEAK) 
     {
-        if 
-        (
-            (IsMovingAfterClient(sp, defender) == TRUE) 
-            || (sp->battlemon[defender].moveeffect.fakeOutCount == (sp->total_turn + 1)) 
-        )
+        if ((IsMovingAfterClient(sp, defender) == TRUE) || (sp->battlemon[defender].moveeffect.fakeOutCount == (sp->total_turn + 1)))
         {
-            movepower * 2;
+            movepower = movepower * 2;
         }
     }
 

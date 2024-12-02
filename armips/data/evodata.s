@@ -9508,9 +9508,9 @@ evodata SPECIES_CRABOMINABLE
 terminateevodata
 
 evodata SPECIES_ORICORIO
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
+    evolutionwithform EVO_STONE, ITEM_YELLOW_NECTAR, SPECIES_ORICORIO, 1
+    evolutionwithform EVO_STONE, ITEM_PINK_NECTAR, SPECIES_ORICORIO, 2
+    evolutionwithform EVO_STONE, ITEM_PURPLE_NECTAR, SPECIES_ORICORIO, 3
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -15177,9 +15177,9 @@ evodata SPECIES_HOOPA_UNBOUND
 terminateevodata
 
 evodata SPECIES_ORICORIO_POM_POM
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
+    evolution EVO_STONE, ITEM_RED_NECTAR, SPECIES_ORICORIO
+    evolutionwithform EVO_STONE, ITEM_PINK_NECTAR, SPECIES_ORICORIO, 2
+    evolutionwithform EVO_STONE, ITEM_PURPLE_NECTAR, SPECIES_ORICORIO, 3
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -15189,9 +15189,9 @@ evodata SPECIES_ORICORIO_POM_POM
 terminateevodata
 
 evodata SPECIES_ORICORIO_PAU
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
+    evolution EVO_STONE, ITEM_RED_NECTAR, SPECIES_ORICORIO
+    evolutionwithform EVO_STONE, ITEM_YELLOW_NECTAR, SPECIES_ORICORIO, 1
+    evolutionwithform EVO_STONE, ITEM_PURPLE_NECTAR, SPECIES_ORICORIO, 3
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -15201,9 +15201,9 @@ evodata SPECIES_ORICORIO_PAU
 terminateevodata
 
 evodata SPECIES_ORICORIO_SENSU
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
-    evolution EVO_NONE, 0, SPECIES_NONE
+    evolution EVO_STONE, ITEM_RED_NECTAR, SPECIES_ORICORIO
+    evolutionwithform EVO_STONE, ITEM_YELLOW_NECTAR, SPECIES_ORICORIO, 1
+    evolutionwithform EVO_STONE, ITEM_PINK_NECTAR, SPECIES_ORICORIO, 2
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE

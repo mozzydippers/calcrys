@@ -118,11 +118,9 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             scriptnum = SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM;
                             break;
                         case 26:
-                            /* scriptnum = SUB_SEQ_OVERWORLD_TAILWIND;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT; */
-                            sp->current_move_index = MOVE_TAILWIND;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             sp->tailwindCount[1] = 255;
+                            scriptnum = SUB_SEQ_OVERWORLD_TAILWIND;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 27:
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
@@ -244,7 +242,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
                                     break;
-                            /*  case ABILITY_DESOLATE_LAND:
+                                /* case ABILITY_DESOLATE_LAND:
                                     sp->battlemon[client_no].appear_check_flag = 1;
                                     if ((sp->field_condition & WEATHER_EXTREMELY_HARSH_SUNLIGHT) == 0) {
                                         scriptnum = SUB_SEQ_DESOLATE_LAND;

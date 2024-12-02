@@ -440,13 +440,13 @@ _0370: // Trainer 245
     trainertextentry 245, TEXT_LAST_MON_SENT_OUT, "We Psychics don’t give up even when\nwe’re down to the last Pokémon.\rThat’s what makes us so formidable!\n"
     trainertextentry 245, TEXT_LAST_MON_CRITICAL, "Until we hit zero, our power is limitless.\nI’m not giving up yet!\n"
     trainertextentry 245, TEXT_DEFEATED_IN_BATTLE, "I... I can’t...believe it...\n"
-    trainertextentry 245, TEXT_PLAYER_LOSES, "That was close.\nI wonder what it is that you lack.\n"
+    trainertextentry 245, TEXT_PLAYER_LOSES, "Pause for applause.\n"
 
 _037C: // Trainer 247
     trainertextentry 247, TEXT_LAST_MON_SENT_OUT, "One Pokémon left?\rHa ha ha! I’ve been counting on this\none from the very beginning!\n"
     trainertextentry 247, TEXT_LAST_MON_CRITICAL, "Ooooof...\n"
     trainertextentry 247, TEXT_DEFEATED_IN_BATTLE, "Ah!\nYou have proven your worth!\n"
-    trainertextentry 247, TEXT_PLAYER_LOSES, "Have you learned to fear the techniques\nof the ninja?\n"
+    trainertextentry 247, TEXT_PLAYER_LOSES, "Have you learned to fear\nthe techniques of the ninja?\n"
 
 _0388: // Trainer 418
     trainertextentry 418, TEXT_LAST_MON_SENT_OUT, "Fight as hard as you can ’til you faint!\n"
@@ -458,13 +458,13 @@ _0394: // Trainer 246
     trainertextentry 246, TEXT_LAST_MON_SENT_OUT, "This is far from being backed into\na corner!\n"
     trainertextentry 246, TEXT_LAST_MON_CRITICAL, "You’re no ordinary Trainer to have\ngotten this far.\n"
     trainertextentry 246, TEXT_DEFEATED_IN_BATTLE, "Well, aren’t you good.\nI like that in a Trainer.\n"
-    trainertextentry 246, TEXT_PLAYER_LOSES, "Well, that was relatively entertaining.\n"
+    trainertextentry 246, TEXT_PLAYER_LOSES, "That's about what I expected.\n"
 
 _03A0: // Trainer 244
     trainertextentry 244, TEXT_LAST_MON_SENT_OUT, "All right!\nI thought this would never happen!\n"
     trainertextentry 244, TEXT_LAST_MON_CRITICAL, "I never give up, no matter what.\nYou must be the same?\n"
     trainertextentry 244, TEXT_DEFEATED_IN_BATTLE, "...It’s over.\rBut it’s an odd feeling. I’m not angry\nthat I lost. In fact, I feel happy.\rHappy that I witnessed the rise\nof a great new Champion!\n"
-    trainertextentry 244, TEXT_PLAYER_LOSES, "It's not that you are weak.\nDon't let it bother you.\n"
+    trainertextentry 244, TEXT_PLAYER_LOSES, "Our strong and upstanding hearts make\nus stronger!\rVictory is ours!\n"
 
 _03AC: // Trainer 702
     trainertextentry 702, TEXT_LAST_MON_SENT_OUT, "We Psychics don’t give up even when\nwe’re down to the last Pokémon.\rThat’s what makes us so formidable!\n"
@@ -495,41 +495,49 @@ _03E8: // Trainer 261
     trainertextentry 261, TEXT_LAST_MON_SENT_OUT, "Heh heh heh... You’re unprepared\nfor this. We’ll knock you down!\n"
     trainertextentry 261, TEXT_LAST_MON_CRITICAL, "Perhaps I’m the one who was\nunprepared?\n"
     trainertextentry 261, TEXT_DEFEATED_IN_BATTLE, "This is the real power of Johto...\n"
+    trainertextentry 261, TEXT_PLAYER_LOSES, "You're tough, I'll give you that.\nBut there's always someone better.\rYou have to be more dedicated!\rSmell ya later!\n"
 
 _03F4: // Trainer 253
     trainertextentry 253, TEXT_LAST_MON_SENT_OUT, "Ah ha ha! It itches! It itches!\n"
     trainertextentry 253, TEXT_LAST_MON_CRITICAL, "Ow ow ow ow ow...\n"
     trainertextentry 253, TEXT_DEFEATED_IN_BATTLE, "Looks like you’re the stronger one...\n"
+    trainertextentry 253, TEXT_PLAYER_LOSES, "The best offense is a good defense!\nThat's my way of doing things!\n"
 
 _0400: // Trainer 254
     trainertextentry 254, TEXT_LAST_MON_SENT_OUT, "Hmm... You’re pretty good...\n"
     trainertextentry 254, TEXT_LAST_MON_CRITICAL, "Looks like you’re not just someone who\ngets in the way...\n"
     trainertextentry 254, TEXT_DEFEATED_IN_BATTLE, "Looks like this is it...\n"
+    trainertextentry 254, TEXT_PLAYER_LOSES, "Misty's number one! Ha, HA!\n"
 
 _040C: // Trainer 255
     trainertextentry 255, TEXT_LAST_MON_SENT_OUT, "It’s not over yet. It’s just beginning!\n"
     trainertextentry 255, TEXT_LAST_MON_CRITICAL, "Oh, last one! Never give up!\n"
     trainertextentry 255, TEXT_DEFEATED_IN_BATTLE, "My electric trick...\n"
+    trainertextentry 255, TEXT_PLAYER_LOSES, "Surrender?\nI don't know the meaning of the word!\n"
 
 _0418: // Trainer 256
     trainertextentry 256, TEXT_LAST_MON_SENT_OUT, "Don’t go easy on me.\nGive me everything you’ve got!\n"
     trainertextentry 256, TEXT_LAST_MON_CRITICAL, "Wow, that’s a bit harsh!\n"
     trainertextentry 256, TEXT_DEFEATED_IN_BATTLE, "Looks like I underestimated you...\n"
+    trainertextentry 256, TEXT_PLAYER_LOSES, "I thank you for your demonstration.\n"
 
 _0424: // Trainer 257
     trainertextentry 257, TEXT_LAST_MON_SENT_OUT, "You’ve got a great battle technique!\n"
     trainertextentry 257, TEXT_LAST_MON_CRITICAL, "Not good. Seriously not good.\n"
     trainertextentry 257, TEXT_DEFEATED_IN_BATTLE, "...!!!\nSo... So strong!\n"
+    trainertextentry 257, TEXT_PLAYER_LOSES, "I'm Janine!\nRemember this name!\n"
 
 _0430: // Trainer 258
     trainertextentry 258, TEXT_LAST_MON_SENT_OUT, "What will happen after this?\nI already know.\n"
     trainertextentry 258, TEXT_LAST_MON_CRITICAL, "Was the future I saw...wrong?\n"
     trainertextentry 258, TEXT_DEFEATED_IN_BATTLE, "I get it...\n"
+    trainertextentry 258, TEXT_PLAYER_LOSES, "There is no need to be saddened\nby your loss...\rThis turned out exactly as I had\npredicted.\n"
 
 _043C: // Trainer 259
     trainertextentry 259, TEXT_LAST_MON_SENT_OUT, "I’ll show you the spirit of this\ncave Gym!\n"
     trainertextentry 259, TEXT_LAST_MON_CRITICAL, "We can still do it!\n"
     trainertextentry 259, TEXT_DEFEATED_IN_BATTLE, "My spirit has not been defeated!\n"
+    trainertextentry 259, TEXT_PLAYER_LOSES, "Come on, you!\nBe more passionate!\fFeel the burn!\n"
 
 _0448: // Trainer 727
     trainertextentry 727, TEXT_LAST_MON_SENT_OUT, "Heh heh heh... You’re unprepared\nfor this. We’ll knock you down!\n"
@@ -1081,7 +1089,7 @@ _0968: // Trainer 366
 _0974: // Trainer 28
     trainertextentry  28, TEXT_NOTICE_IN_OVERWORLD, "I’m making my final preparations for the\nPokémon League.\r"
     trainertextentry  28, TEXT_DEFEATED_IN_BATTLE, "I blew it!\n"
-    trainertextentry  28, TEXT_DEFEATED_IN_OVERWORLD, "It’s going to be tough to win at the\nLeague. I need to do some more\rtraining. I hear that the League’s Elite\nFour are tougher than Gym Leaders.\n"
+    trainertextentry  28, TEXT_DEFEATED_IN_OVERWORLD, "It’s going to be tough to win at the\nLeague. I need to do some more\ftraining.\rI hear that the League’s Elite\nFour are tougher than Gym Leaders.\n"
 
 _0980: // Trainer 102
     trainertextentry 102, TEXT_NOTICE_IN_OVERWORLD, "By experiencing tough battles, you\ngain power.\r"
@@ -1133,11 +1141,13 @@ _09EC: // Trainer 114
     trainertextentry 114, TEXT_DEFEATED_IN_BATTLE, "Oh! You’re much too strong!\n"
     trainertextentry 114, TEXT_DEFEATED_IN_OVERWORLD, "If you’re that energetic, you can\ndefinitely make it to the\fPokémon League!\n"
     trainertextentry 114, TEXT_REMATCH_IN_OVERWORLD, "You said you came from New Bark Town,\nright? I’ll watch and see how far\fyou’ll go!\r"
+    trainertextentry 114, TEXT_PLAYER_LOSES, "You're not too far from home...\nGo and take a rest!\n"
 
 _09FC: // Trainer 115
     trainertextentry 115, TEXT_NOTICE_IN_OVERWORLD, "It’s rare to see anyone come here.\nAre you training on your own?\r"
     trainertextentry 115, TEXT_DEFEATED_IN_BATTLE, "Oh! You’re really strong!\n"
     trainertextentry 115, TEXT_DEFEATED_IN_OVERWORLD, "I’m checking out pre- and\npost-evolution Pokémon. Evolution\freally does make Pokémon stronger.\rBut evolved forms also learn moves\nlater on.\n"
+    trainertextentry 115, TEXT_PLAYER_LOSES, "I guess only some Pokémon get stronger\nafter evolution...\n"
 
 _0A08: // Trainer 412
     trainertextentry 412, TEXT_NOTICE_IN_OVERWORLD, "Don’t say a thing! Let me guess what\nyou’re thinking. Mmmmmmm...\rI got it! You’re on the Pokémon\nLeague challenge!\r"
@@ -2209,7 +2219,7 @@ _13E0: // Trainer 500
     trainertextentry 500, TEXT_NOTICE_IN_OVERWORLD, "You! How dare you enter uninvited!\r"
     trainertextentry 500, TEXT_DEFEATED_IN_BATTLE, "S-strong!\n"
     trainertextentry 500, TEXT_DEFEATED_IN_OVERWORLD, "The Shrine ahead is home to the Master\nof our Dragon Tamer clan.\rYou’re not allowed to just go in!\n"
-    trainertextentry 500, TEXT_PLAYER_LOSES, "You're not worthy to step foot in the\nDragon's Den!\rGet out! Immediately!\n" 
+    trainertextentry 500, TEXT_PLAYER_LOSES, "You're not worthy to step foot in the\nDragon's Den!\rGet out! Immediately!\n"
 
 _13EC: // Trainer 501
     trainertextentry 501, TEXT_NOTICE_IN_OVERWORLD, "You shouldn’t be in here!\r"
@@ -3180,7 +3190,7 @@ _1B00: // Trainer 166
     trainertextentry 166, TEXT_PLAYER_LOSES, "Well, at least my team ain't half bad,\nthat's nice.\n"
 
 _1B04: // Trainer 167
-    trainertextentry 167, TEXT_NOTICE_IN_OVERWORLD, "Seems a powerful opponent has stumbled\nacross my gaze, allow me to battle you\f to test our true wits and strengths.\r"
+    trainertextentry 167, TEXT_NOTICE_IN_OVERWORLD, "Seems a powerful opponent has stumbled\nacross my gaze, allow me to battle you\fto test our true wits and strengths.\r"
     trainertextentry 167, TEXT_DEFEATED_IN_BATTLE, "In all my battles I have never\nwithstood a battle quite like this.\rI can only hope to watch as spectator\nin the journey you are pursuing.\n"
     trainertextentry 167, TEXT_DEFEATED_IN_OVERWORLD, "Maybe I could even document your story\nso far...\rBut that may overstep boundaries.\rNonetheless I am glad to be watching\nfrom the sidelines.\r"
     trainertextentry 167, TEXT_LAST_MON_SENT_OUT, "This is unbelieveable! You have managed\nto run through my strongest pokemon..\rPlease allow me to push forth my\nfinal stand."
@@ -3222,14 +3232,14 @@ _1B18: // Trainer 174
     trainertextentry 174, TEXT_PLAYER_LOSES, "Maybe next time, uhhh...\nTry?\n"
 
 _1B1C: // Trainer 175
-    trainertextentry 175, TEXT_NOTICE_IN_OVERWORLD, "Hey, what's up?\nHuh? Battle?\fAlright, I'm down!\r"
+    trainertextentry 175, TEXT_NOTICE_IN_OVERWORLD, "Hey, what's up?\rHuh? Battle?\rAlright, I'm down!\r"
     trainertextentry 175, TEXT_DEFEATED_IN_BATTLE, "Man, I've got to step up my game...\n"
     trainertextentry 175, TEXT_DEFEATED_IN_OVERWORLD, "Nice moves, stranger!\nYou have some pretty powerful Pokémon.\rMaybe we'll unite again someday."
     trainertextentry 175, TEXT_LAST_MON_SENT_OUT, "Don't think you've got me yet!\n"
     trainertextentry 175, TEXT_PLAYER_LOSES, "Yeah! Let's go!\n"
 
 _1B20: // Trainer 176
-    trainertextentry 176, TEXT_NOTICE_IN_OVERWORLD, "Victory Road is home to only the\npinnacle of Pokémon trainers.\nIf you expect an easy win, you'll find\fyourself sorely mistaken!\r"
+    trainertextentry 176, TEXT_NOTICE_IN_OVERWORLD, "Victory Road is home to only the\npinnacle of Pokémon trainers.\rIf you expect an easy win, you'll find\nyourself sorely mistaken!\r"
     trainertextentry 176, TEXT_DEFEATED_IN_BATTLE, "Maybe you've got what it takes...\nI guess we'll see, won't we?\n"
     trainertextentry 176, TEXT_DEFEATED_IN_OVERWORLD, "You know, the person that said winning\nisn't everything, never won anything.\r"
     trainertextentry 176, TEXT_LAST_MON_SENT_OUT, "The harder the conflict, the more\nglorious the triumph!\n"
@@ -3237,10 +3247,12 @@ _1B20: // Trainer 176
 
 _1B24: // Trainer 177
     trainertextentry 177, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, "Gonna beat me? Better make it count.\rBetter make it hurt.\nBetter kill all my 'mons in one shot.\r"
-    trainertextentry 177, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, "AEGISLASH: Ae-gi-SLASH!\r"
     trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_BATTLE_1, "Unfortunate doesn't begin to describe my\n"
-    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "(She's just rambling\non about RNG...)\r"
-    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "(Aegislash congratulates you on the\nwin!)\r"
+    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "(She's just rambling\non about RNG...)\n"
+    trainertextentry 177, TEXT_DOUBLE_ONLY_1_POKEMON_1, "\n"
+    trainertextentry 177, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, "AEGISLASH: Ae-gi-SLASH!\r"
+    trainertextentry 177, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "(Aegislash congratulates you on the\nwin!)\n"
+    trainertextentry 177, TEXT_DOUBLE_ONLY_1_POKEMON_2, "\n"
     trainertextentry 177, TEXT_PLAYER_LOSES, "This is Calamitous Crystal bitch!\nTake your sensitive ass back to UGH!\n"
 
 _1B28: // Trainer 531
@@ -3266,24 +3278,30 @@ _1B3C: // Trainer 106
 _1B40: // Trainer 194
     trainertextentry 194, TEXT_NOTICE_IN_OVERWORLD, "You know, in a battle, there’s 50 50\nchance one of us will win!\r"
     trainertextentry 194, TEXT_DEFEATED_IN_BATTLE, "Guess it’s over.\n"
-    trainertextentry 194, TEXT_DEFEATED_IN_OVERWORLD, "Lucky...\r"
+    trainertextentry 194, TEXT_DEFEATED_IN_OVERWORLD, "Lucky...\n"
     trainertextentry 194, TEXT_PLAYER_LOSES, "Huh, normally I would lose...\nCome back next time!\n"
 
 _1B44: // Trainer 207
     trainertextentry 207, TEXT_NOTICE_IN_OVERWORLD, "j\r"
-    trainertextentry 207, TEXT_DEFEATED_IN_BATTLE, "j\r"
+    trainertextentry 207, TEXT_DEFEATED_IN_BATTLE, "j\n"
+    trainertextentry 207, TEXT_DEFEATED_IN_OVERWORLD, "j\n"
+    trainertextentry 207, TEXT_PLAYER_LOSES, "j\n"
 
 _1B48: // Trainer 208
     trainertextentry 208, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, "1! Step!\r"
+    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_BATTLE_1, "Dance first, think later.\n"
+    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "When you dance, your purpose is not to\nget to a certain place on the floor.\fIt’s to enjoy each step along the way.\n"
+    trainertextentry 208, TEXT_DOUBLE_ONLY_1_POKEMON_1, "It takes two to tango...\n"
     trainertextentry 208, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, "2! Step!\r"
-    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_BATTLE_1, "Dance first, think later.\nIt’s the natural order.\n"
-    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, "When you dance, your purpose is not to\nget to a certain place on the floor.\fIt’s to enjoy each step along the way.\r"
-    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "Nobody cares if you can’t dance well.\nJust get up and dance.\r"
-    trainertextentry 208, TEXT_PLAYER_LOSES, "Dancers don’t need wings to fly!\n"    
+    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_BATTLE_2, "It’s the natural order.\n"
+    trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "Nobody cares if you can’t dance well.\nJust get up and dance.\n"
+    trainertextentry 208, TEXT_DOUBLE_ONLY_1_POKEMON_2, "Need both feet on the ground to dance..\n"
+    trainertextentry 208, TEXT_PLAYER_LOSES, "Dancers don’t need wings to fly!\n"
 
 _1B4C: // Trainer 221
-    trainertextentry 221, TEXT_NOTICE_IN_OVERWORLD, "one man stands alone between johto & ensuing calamity... that man is me! Ace Trainer Louis!\r"
+    trainertextentry 221, TEXT_NOTICE_IN_OVERWORLD, "One man stands alone between Johto\nand ensuing calamity.\rThat man is I!\nAce Trainer Louis!\r"
     trainertextentry 221, TEXT_DEFEATED_IN_BATTLE, "alas. i have failed... \r"
+    trainertextentry 221, TEXT_DEFEATED_IN_OVERWORLD, "alas. i have failed... \r"
 .close
 
 .create "build/trainer_text_offsets/1_0", 0

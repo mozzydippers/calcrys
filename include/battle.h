@@ -2989,4 +2989,12 @@ int LONG_CALL ov12_022506D4(struct BattleSystem *bsys, struct BattleStruct *ctx,
 
 void LONG_CALL ov12_02250A18(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, u16 a3);
 
+/**
+ * probably the only calcrys custom thing to go here
+ * handles deoxys changing into def form before attacks w/ stance change
+ *
+ */
+
+BOOL CheckDeoxysStanceChange(struct BattleSystem *bw, struct BattleStruct *sp);
+
 #endif // BATTLE_H
