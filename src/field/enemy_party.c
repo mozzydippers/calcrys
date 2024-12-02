@@ -68,18 +68,17 @@ u16 GetAvgLevel(struct BATTLE_PARAM *bp)
 	s32 playerCount = bp->poke_party[0]->count;
 	u16 avgLevel;
 	u16 totalLevel = 0;
-	for (i = 0; i < playerCount; i++) {
-		pp = Party_GetMonByIndex(party, i);
-		u16 currLevel = GetMonData(pp, MON_DATA_LEVEL, NULL);
-		totalLevel += currLevel;
+	 for (i = 0; i < playerCount; i++) {
+	 	pp = Party_GetMonByIndex(party, i);
+	 	u16 currLevel = GetMonData(pp, MON_DATA_LEVEL, NULL);
+	 	totalLevel += currLevel;
 	}
 	avgLevel = (int)(totalLevel / playerCount);
 	 
 	return avgLevel;
-	
  }
  
- /**
+/**
  @brief Generate the scaled level to use for a Pokemon based on highest level in player party
  *		-ALL CREDIT TO Mixone-FinallyHere FOR THIS-
  *  @param bp battle param
@@ -105,7 +104,7 @@ u16 GetHighLevel(struct BATTLE_PARAM *bp)
 	 return highLevel;
  }
  
- /**
+/**
  @brief Generate the scaled level to use for a Pokemon based on lowest level in player party
  *		-ALL CREDIT TO Mixone-FinallyHere FOR THIS-
  *  @param bp battle param
@@ -241,10 +240,8 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         offset += 2;
         if ((DoScaling == 1) && highLevel >= level) { // always highest level on trainers
 			level = highLevel;
+            // level = avgLevel; // standard is usually avg but i just put it at highest
 		}
-		/* if ((DoScaling == 1) && avgLevel >= level) {
-			level = avgLevel;
-		} */
         if ((DoScaling == 2) && highLevel >= level) { // always highest level on trainers
 			level = highLevel;
 		}

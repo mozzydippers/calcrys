@@ -9,8 +9,8 @@ struct TrainerMoney
 
 struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer class ID, 2 bytes for modifier; 516 bytes in total in vanilla
 {
-    { .class = TRAINERCLASS_PKMN_TRAINER_ETHAN, .multiplier = 0 },
-    { .class = TRAINERCLASS_PKMN_TRAINER_LYRA, .multiplier = 0 },
+    { .class = TRAINERCLASS_PKMN_TRAINER_ETHAN, .multiplier = 16 }, // 0 -> 16
+    { .class = TRAINERCLASS_PKMN_TRAINER_LYRA, .multiplier = 16 }, // 0 -> 16
     { .class = TRAINERCLASS_YOUNGSTER, .multiplier = 4 },
     { .class = TRAINERCLASS_LASS, .multiplier = 4 },
     { .class = TRAINERCLASS_CAMPER, .multiplier = 4 },
@@ -39,7 +39,7 @@ struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer
     { .class = TRAINERCLASS_VETERAN, .multiplier = 20 },
     { .class = TRAINERCLASS_NINJA_BOY, .multiplier = 2 },
     { .class = TRAINERCLASS_DRAGON_TAMER, .multiplier = 8 },
-    { .class = TRAINERCLASS_BIRD_KEEPER_GS, .multiplier = 8 },
+    { .class = TRAINERCLASS_BIRD_KEEPER, .multiplier = 8 },
     { .class = TRAINERCLASS_JUGGLER, .multiplier = 8 },
     { .class = TRAINERCLASS_RICH_BOY, .multiplier = 40 },
     { .class = TRAINERCLASS_LADY, .multiplier = 40 },
@@ -78,6 +78,7 @@ struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer
     { .class = TRAINERCLASS_LEADER_FALKNER, .multiplier = 30 },
     { .class = TRAINERCLASS_LEADER_BUGSY, .multiplier = 30 },
     { .class = TRAINERCLASS_POKE_MANIAC, .multiplier = 16 },
+    { .class = TRAINERCLASS_BIRD_KEEPER_GS, .multiplier = 8 },
     { .class = TRAINERCLASS_LEADER_WHITNEY, .multiplier = 30 },
     { .class = TRAINERCLASS_LEADER_MORTY, .multiplier = 30 },
     { .class = TRAINERCLASS_RANCHER, .multiplier = 10 },
@@ -137,5 +138,4 @@ struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer
     { .class = TRAINERCLASS_PKMN_TRAINER_DAWN_DP, .multiplier = 0 },
     { .class = TRAINERCLASS_PKMN_TRAINER_LUCAS_PT, .multiplier = 0 },
     { .class = TRAINERCLASS_PKMN_TRAINER_DAWN_PT, .multiplier = 0 },
-    { .class = TRAINERCLASS_BIRD_KEEPER, .multiplier = 8 },
 };

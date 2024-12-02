@@ -1374,6 +1374,9 @@
 #define SEQ_SE_GS_XBUTTON_SYUKUSHOU          2377
 #define SEQ_SE_END                           2378
 
+// calcrys custom 
+#define SEQ_GS_VS_GIOVANNI                   2379
+
 //Sounds marked BANK, WAVE, PLAYER, GROUP not ported over from pokeheartgold/include/constants/sndseq.h
 
 enum {

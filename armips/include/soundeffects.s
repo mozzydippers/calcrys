@@ -1370,6 +1370,7 @@ SEQ_SE_GS_GEARSEALGRAB             equ 2375
 SEQ_SE_GS_GEARSEALHAMERU           equ 2376
 SEQ_SE_GS_XBUTTON_SYUKUSHOU        equ 2377
 SEQ_SE_END                         equ 2378
+SEQ_GS_VS_GIOVANNI                 equ 2379
 
 BANK_PV001                          equ   1
 BANK_PV002                          equ   2

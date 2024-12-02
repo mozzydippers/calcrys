@@ -447,7 +447,7 @@ trainerdata 10, "Amy & Mimi"
 
 trainerdata 11, "Ethan"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | 0
-    trainerclass TRAINERCLASS_PKMN_TRAINER_0
+    trainerclass TRAINERCLASS_PKMN_TRAINER_ETHAN
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -605,7 +605,7 @@ trainerdata 12, "Grunt" // SW 3
 
 trainerdata 13, "Grunt" // SW 2
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_TEAM_ROCKET_1
+    trainerclass TRAINERCLASS_TEAM_ROCKET_F
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -856,7 +856,7 @@ trainerdata 18, "Justin"
 
 trainerdata 19, "Lyra"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | 0
-    trainerclass TRAINERCLASS_PKMN_TRAINER_1
+    trainerclass TRAINERCLASS_PKMN_TRAINER_LYRA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -948,7 +948,7 @@ trainerdata 19, "Lyra"
 
 trainerdata 20, "Falkner"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_LEADER_M
+    trainerclass TRAINERCLASS_LEADER_FALKNER
     nummons 0x80 | 6
     item ITEM_NONE
     item ITEM_NONE
@@ -1046,7 +1046,7 @@ trainerdata 20, "Falkner"
 
 trainerdata 21, "Bugsy"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_LEADER_F
+    trainerclass TRAINERCLASS_LEADER_BUGSY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -1539,7 +1539,7 @@ trainerdata 27, "Liz"
 
 trainerdata 28, "Jake"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -1586,7 +1586,7 @@ trainerdata 28, "Jake"
 
 trainerdata 29, "Rod"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -1648,7 +1648,7 @@ trainerdata 29, "Rod"
 
 trainerdata 30, "Whitney"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_LEADER
+    trainerclass TRAINERCLASS_LEADER_WHITNEY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -1754,7 +1754,7 @@ trainerdata 30, "Whitney"
 
 trainerdata 31, "Morty"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_LEADER_0
+    trainerclass TRAINERCLASS_LEADER_MORTY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -1852,7 +1852,7 @@ trainerdata 31, "Morty"
 
 trainerdata 32, "Pryce"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS |  TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_LEADER_1
+    trainerclass TRAINERCLASS_LEADER_PRYCE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -1950,7 +1950,7 @@ trainerdata 32, "Pryce"
 
 trainerdata 33, "Jasmine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_LEADER_2
+    trainerclass TRAINERCLASS_LEADER_JASMINE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -2067,7 +2067,7 @@ trainerdata 33, "Jasmine"
 
 trainerdata 34, "Chuck"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_LEADER_3
+    trainerclass TRAINERCLASS_LEADER_CHUCK
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -2184,7 +2184,7 @@ trainerdata 34, "Chuck"
 
 trainerdata 35, "Clair"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_LEADER_4
+    trainerclass TRAINERCLASS_LEADER_CLAIR
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -2276,7 +2276,7 @@ trainerdata 35, "Clair"
 
 trainerdata 36, "Joyce"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -2503,7 +2503,7 @@ trainerdata 39, "Eugene"
 
 trainerdata 40, "Jasmine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_LEADER_2
+    trainerclass TRAINERCLASS_LEADER_JASMINE
     nummons 1
     item ITEM_NONE
     item ITEM_NONE
@@ -2862,7 +2862,7 @@ trainerdata 49, "Albert"
 
 trainerdata 50, "Abe"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -3477,7 +3477,7 @@ trainerdata 62, "Samuel"
 
 trainerdata 63, "Ethan"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_PKMN_TRAINER_0
+    trainerclass TRAINERCLASS_PKMN_TRAINER_ETHAN
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -4066,7 +4066,7 @@ trainerdata 72, "Bryan"
 
 trainerdata 73, "Theo"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -4690,7 +4690,7 @@ trainerdata 86, "Randall"
 
 trainerdata 87, "Lyra"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_PKMN_TRAINER_1
+    trainerclass TRAINERCLASS_PKMN_TRAINER_LYRA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -5344,7 +5344,7 @@ trainerdata 101, "Grunt" // SW 1
 
 trainerdata 102, "Gaven"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -5436,7 +5436,7 @@ trainerdata 102, "Gaven"
 
 trainerdata 103, "Blake"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -5528,7 +5528,7 @@ trainerdata 103, "Blake"
 
 trainerdata 104, "Brian"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 1
     item ITEM_NONE
     item ITEM_NONE
@@ -5778,7 +5778,7 @@ trainerdata 107, "Draco"
 
 trainerdata 108, "Ryan"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -5814,7 +5814,7 @@ trainerdata 108, "Ryan"
 
 trainerdata 109, "Alton"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -5849,7 +5849,7 @@ trainerdata 109, "Alton"
 
 trainerdata 110, "Paulo"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -5941,7 +5941,7 @@ trainerdata 110, "Paulo"
 
 trainerdata 111, "Mike"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -6033,7 +6033,7 @@ trainerdata 111, "Mike"
 
 trainerdata 112, "Cody"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 0x80 | 6 
     item ITEM_NONE
     item ITEM_NONE
@@ -6125,7 +6125,7 @@ trainerdata 112, "Cody"
 
 trainerdata 113, "Jamie"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -6217,7 +6217,7 @@ trainerdata 113, "Jamie"
 
 trainerdata 114, "Reena"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -6309,7 +6309,7 @@ trainerdata 114, "Reena"
 
 trainerdata 115, "Megan"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -6408,7 +6408,7 @@ trainerdata 115, "Megan"
 
 trainerdata 116, "Lois"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -6444,7 +6444,7 @@ trainerdata 116, "Lois"
 
 trainerdata 117, "Lola"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -6523,7 +6523,7 @@ trainerdata 117, "Lola"
 
 trainerdata 118, "Kate"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -6589,7 +6589,7 @@ trainerdata 118, "Kate"
 
 trainerdata 119, "Fran"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -6668,7 +6668,7 @@ trainerdata 119, "Fran"
 
 trainerdata 120, "Irene"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -6734,7 +6734,7 @@ trainerdata 120, "Irene"
 
 trainerdata 121, "Kelly"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -7533,7 +7533,7 @@ trainerdata 137, "Vance"
 
 trainerdata 138, "Ethan"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_PKMN_TRAINER_0
+    trainerclass TRAINERCLASS_PKMN_TRAINER_ETHAN
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -7674,7 +7674,7 @@ trainerdata 140, "Doug"
 
 trainerdata 141, "Lyra"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_PKMN_TRAINER_1
+    trainerclass TRAINERCLASS_PKMN_TRAINER_LYRA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -9194,7 +9194,7 @@ trainerdata 169, "Sundzy"
 
 trainerdata 170, "Katina"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_ACE_TRAINER_F_1
+    trainerclass TRAINERCLASS_ACE_TRAINER_F
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -9683,7 +9683,7 @@ trainerdata 175, "XVoid"
 
 trainerdata 176, "Kit"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -9943,7 +9943,7 @@ trainerdata 179, "Kipp"
 
 trainerdata 180, "Ethan" // giovanni multi
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_PKMN_TRAINER_0
+    trainerclass TRAINERCLASS_PKMN_TRAINER_ETHAN
     nummons 1
     item ITEM_NONE
     item ITEM_NONE
@@ -11214,7 +11214,7 @@ trainerdata 197, "Grunt" // GTW 3
 
 trainerdata 198, "Grunt" // GRT2F 1
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_TEAM_ROCKET_1
+    trainerclass TRAINERCLASS_TEAM_ROCKET_F
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -11314,7 +11314,7 @@ trainerdata 198, "Grunt" // GRT2F 1
 
 trainerdata 199, "Grunt" // GTB2F 6
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_TEAM_ROCKET_1
+    trainerclass TRAINERCLASS_TEAM_ROCKET_F
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -11560,7 +11560,7 @@ trainerdata 204, "Leonard"
 
 trainerdata 205, "Nick"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -11607,7 +11607,7 @@ trainerdata 205, "Nick"
 
 trainerdata 206, "Gwen"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -12295,7 +12295,7 @@ trainerdata 216, "Grunt"
 
 trainerdata 217, "Denis"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -12585,7 +12585,7 @@ trainerdata 220, "Grunt" // TRHQB2F 1
 
 trainerdata 221, "Louis"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -13416,7 +13416,7 @@ trainerdata 235, "Noland"
 
 trainerdata 236, "Shaye"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -13463,7 +13463,7 @@ trainerdata 236, "Shaye"
 
 trainerdata 237, "Carol"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -13796,7 +13796,7 @@ trainerdata 244, "Lance"
 
 trainerdata 245, "Will"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ELITE_FOUR_0
+    trainerclass TRAINERCLASS_ELITE_FOUR_WILL
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -13906,7 +13906,7 @@ trainerdata 245, "Will"
 
 trainerdata 246, "Karen"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ELITE_FOUR_1
+    trainerclass TRAINERCLASS_ELITE_FOUR_KAREN
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -14004,7 +14004,7 @@ trainerdata 246, "Karen"
 
 trainerdata 247, "Koga"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ELITE_FOUR_2
+    trainerclass TRAINERCLASS_ELITE_FOUR_KOGA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -14361,7 +14361,7 @@ trainerdata 252, "Harold"
 
 trainerdata 253, "Brock"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_5
+    trainerclass TRAINERCLASS_LEADER_BROCK
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -14435,7 +14435,7 @@ trainerdata 253, "Brock"
 
 trainerdata 254, "Misty"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_6
+    trainerclass TRAINERCLASS_LEADER_MISTY
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -14497,7 +14497,7 @@ trainerdata 254, "Misty"
 
 trainerdata 255, "Lt. Surge"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_7
+    trainerclass TRAINERCLASS_LEADER_LT_SURGE
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -14571,7 +14571,7 @@ trainerdata 255, "Lt. Surge"
 
 trainerdata 256, "Erika"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_8
+    trainerclass TRAINERCLASS_LEADER_ERIKA
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -14633,7 +14633,7 @@ trainerdata 256, "Erika"
 
 trainerdata 257, "Janine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_9
+    trainerclass TRAINERCLASS_LEADER_JANINE
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -14707,7 +14707,7 @@ trainerdata 257, "Janine"
 
 trainerdata 258, "Sabrina"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_10
+    trainerclass TRAINERCLASS_LEADER_SABRINA
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -14757,7 +14757,7 @@ trainerdata 258, "Sabrina"
 
 trainerdata 259, "Blaine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_11
+    trainerclass TRAINERCLASS_LEADER_BLAINE
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -14807,7 +14807,7 @@ trainerdata 259, "Blaine"
 
 trainerdata 260, "Red"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_9
+    trainerclass TRAINERCLASS_PKMN_TRAINER_RED
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -14893,7 +14893,7 @@ trainerdata 260, "Red"
 
 trainerdata 261, "Blue"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_12
+    trainerclass TRAINERCLASS_LEADER_BLUE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -19116,7 +19116,7 @@ trainerdata 360, "Arnie"
 
 trainerdata 361, "Kevin"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -19163,7 +19163,7 @@ trainerdata 361, "Kevin"
 
 trainerdata 362, "Quinn"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -19199,7 +19199,7 @@ trainerdata 362, "Quinn"
 
 trainerdata 363, "Emma"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 1
     item ITEM_NONE
     item ITEM_NONE
@@ -19829,7 +19829,7 @@ trainerdata 382, "Hillary"
 
 trainerdata 383, "Peter"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -20380,7 +20380,7 @@ trainerdata 393, "Teru"
 
 trainerdata 394, "Mickey"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -20823,7 +20823,7 @@ trainerdata 403, "Spencer"
 
 trainerdata 404, "Grunt" // TRHQB3F PASSWORD R
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_TEAM_ROCKET_1
+    trainerclass TRAINERCLASS_TEAM_ROCKET_F
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -20972,7 +20972,7 @@ trainerdata 406, "Zach"
 
 trainerdata 407, "Allen"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -21008,7 +21008,7 @@ trainerdata 407, "Allen"
 
 trainerdata 408, "Cybil"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -21270,7 +21270,7 @@ trainerdata 413, "Scott"
 
 trainerdata 414, "Jose"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_BIRD_KEEPER_1
+    trainerclass TRAINERCLASS_BIRD_KEEPER_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -21445,7 +21445,7 @@ trainerdata 416, "Jo & Zoe"
 
 trainerdata 417, "Jenn"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 4
     item ITEM_NONE
     item ITEM_NONE
@@ -21516,7 +21516,7 @@ trainerdata 417, "Jenn"
 
 trainerdata 418, "Bruno"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_BALL | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ELITE_FOUR_3
+    trainerclass TRAINERCLASS_ELITE_FOUR_BRUNO
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -22313,7 +22313,7 @@ trainerdata 443, "Mickey"
 
 trainerdata 444, "Reena"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -22348,7 +22348,7 @@ trainerdata 444, "Reena"
 
 trainerdata 445, "Reena"
     trainermontype TRAINER_DATA_TYPE_NOTHING
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -22709,7 +22709,7 @@ trainerdata 455, "Irwin"
 
 trainerdata 456, "Gaven"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -22756,7 +22756,7 @@ trainerdata 456, "Gaven"
 
 trainerdata 457, "Gaven"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -22803,7 +22803,7 @@ trainerdata 457, "Gaven"
 
 trainerdata 458, "Jamie"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -22839,7 +22839,7 @@ trainerdata 458, "Jamie"
 
 trainerdata 459, "Jamie"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -23162,7 +23162,7 @@ trainerdata 467, "Tiffany"
 
 trainerdata 468, "Ross"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_SCIENTIST_1
+    trainerclass TRAINERCLASS_SCIENTIST_GS
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -23241,7 +23241,7 @@ trainerdata 468, "Ross"
 
 trainerdata 469, "Mitch"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_SCIENTIST_1
+    trainerclass TRAINERCLASS_SCIENTIST_GS
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -23320,7 +23320,7 @@ trainerdata 469, "Mitch"
 
 trainerdata 470, "Gregg"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_SCIENTIST_1
+    trainerclass TRAINERCLASS_SCIENTIST_GS
     nummons 0x80 | 6
     item ITEM_NONE
     item ITEM_NONE
@@ -23412,7 +23412,7 @@ trainerdata 470, "Gregg"
 
 trainerdata 471, "Garett" // GRT3F 2
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_SCIENTIST_1
+    trainerclass TRAINERCLASS_SCIENTIST_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -23504,7 +23504,7 @@ trainerdata 471, "Garett" // GRT3F 2
 
 trainerdata 472, "Trenton" // GRT4F 2
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_SCIENTIST_1
+    trainerclass TRAINERCLASS_SCIENTIST_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -23740,7 +23740,7 @@ trainerdata 477, "Mickey"
 
 trainerdata 478, "Ariana"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_EXECUTIVE
+    trainerclass TRAINERCLASS_EXECUTIVE_ARIANA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -23832,7 +23832,7 @@ trainerdata 478, "Ariana"
 
 trainerdata 479, "Ariana"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_EXECUTIVE
+    trainerclass TRAINERCLASS_EXECUTIVE_ARIANA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -24332,7 +24332,7 @@ trainerdata 484, "Gerardo"
 
 trainerdata 485, "Archer"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET 
-    trainerclass TRAINERCLASS_EXECUTIVE_0
+    trainerclass TRAINERCLASS_EXECUTIVE_ARCHER
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -24424,7 +24424,7 @@ trainerdata 485, "Archer"
 
 trainerdata 486, "Proton"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_EXECUTIVE_1
+    trainerclass TRAINERCLASS_EXECUTIVE_PROTON
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -24524,7 +24524,7 @@ trainerdata 486, "Proton"
 
 trainerdata 487, "Petrel"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_EXECUTIVE_2
+    trainerclass TRAINERCLASS_EXECUTIVE_PETREL
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -24628,7 +24628,7 @@ trainerdata 487, "Petrel"
 
 trainerdata 488, "Petrel"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_EXECUTIVE_2
+    trainerclass TRAINERCLASS_EXECUTIVE_PETREL
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -25359,7 +25359,7 @@ trainerdata 499, "Grunt"
 
 trainerdata 500, "Kobe"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -25451,7 +25451,7 @@ trainerdata 500, "Kobe"
 
 trainerdata 501, "Piper"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -27209,7 +27209,7 @@ trainerdata 544, "Miki"
 
 trainerdata 545, "French"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 2
     item ITEM_DIRE_HIT
     item ITEM_NONE
@@ -28931,7 +28931,7 @@ trainerdata 603, "Erin"
 
 trainerdata 604, "Gaven"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -29048,7 +29048,7 @@ trainerdata 606, "Parry"
 
 trainerdata 607, "Reena"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
@@ -29130,7 +29130,7 @@ trainerdata 608, "Wilton"
 
 trainerdata 609, "Jamie"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -31073,7 +31073,7 @@ trainerdata 666, "Kyler"
 
 trainerdata 667, "Cheryl"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_2
+    trainerclass TRAINERCLASS_PKMN_TRAINER_CHERYL
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -31147,7 +31147,7 @@ trainerdata 667, "Cheryl"
 
 trainerdata 668, "Marley"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_4
+    trainerclass TRAINERCLASS_PKMN_TRAINER_MARLEY
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -31221,7 +31221,7 @@ trainerdata 668, "Marley"
 
 trainerdata 669, "Mira"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_6
+    trainerclass TRAINERCLASS_PKMN_TRAINER_MIRA
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -31295,7 +31295,7 @@ trainerdata 669, "Mira"
 
 trainerdata 670, "Riley"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_3
+    trainerclass TRAINERCLASS_PKMN_TRAINER_RILEY
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -31369,7 +31369,7 @@ trainerdata 670, "Riley"
 
 trainerdata 671, "Buck"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_PKMN_TRAINER_5
+    trainerclass TRAINERCLASS_PKMN_TRAINER_BUCK
     nummons 5
     item ITEM_NONE
     item ITEM_NONE
@@ -31510,7 +31510,7 @@ trainerdata 674, "Alfred"
 
 trainerdata 675, "Lance"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_PKMN_TRAINER_10
+    trainerclass TRAINERCLASS_PKMN_TRAINER_LANCE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -31794,7 +31794,7 @@ trainerdata 680, "Kassandra"
 
 trainerdata 681, "Arabella"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -31830,7 +31830,7 @@ trainerdata 681, "Arabella"
 
 trainerdata 682, "Bonita"
     trainermontype TRAINER_DATA_TYPE_MOVES
-    trainerclass TRAINERCLASS_ACE_TRAINER_M
+    trainerclass TRAINERCLASS_ACE_TRAINER_M_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -31866,7 +31866,7 @@ trainerdata 682, "Bonita"
 
 trainerdata 683, "Salma"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ACE_TRAINER_F
+    trainerclass TRAINERCLASS_ACE_TRAINER_F_GS
     nummons 2
     item ITEM_NONE
     item ITEM_NONE
@@ -32496,7 +32496,7 @@ trainerdata 701, "Lance"
 
 trainerdata 702, "Will"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ELITE_FOUR_0
+    trainerclass TRAINERCLASS_ELITE_FOUR_WILL
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -32582,7 +32582,7 @@ trainerdata 702, "Will"
 
 trainerdata 703, "Koga"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ELITE_FOUR_2
+    trainerclass TRAINERCLASS_ELITE_FOUR_KOGA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -32668,7 +32668,7 @@ trainerdata 703, "Koga"
 
 trainerdata 704, "Bruno"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ELITE_FOUR_3
+    trainerclass TRAINERCLASS_ELITE_FOUR_BRUNO
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -32754,7 +32754,7 @@ trainerdata 704, "Bruno"
 
 trainerdata 705, "Karen"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_ELITE_FOUR_1
+    trainerclass TRAINERCLASS_ELITE_FOUR_KAREN
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -32840,7 +32840,7 @@ trainerdata 705, "Karen"
 
 trainerdata 706, "Proton"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
-    trainerclass TRAINERCLASS_EXECUTIVE_1
+    trainerclass TRAINERCLASS_EXECUTIVE_PROTON
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33037,7 +33037,7 @@ trainerdata 711, "Darach"
 
 trainerdata 712, "Falkner"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_M
+    trainerclass TRAINERCLASS_LEADER_FALKNER
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33123,7 +33123,7 @@ trainerdata 712, "Falkner"
 
 trainerdata 713, "Bugsy"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_F
+    trainerclass TRAINERCLASS_LEADER_BUGSY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33209,7 +33209,7 @@ trainerdata 713, "Bugsy"
 
 trainerdata 714, "Whitney"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER
+    trainerclass TRAINERCLASS_LEADER_WHITNEY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33295,7 +33295,7 @@ trainerdata 714, "Whitney"
 
 trainerdata 715, "Morty"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_0
+    trainerclass TRAINERCLASS_LEADER_MORTY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33381,7 +33381,7 @@ trainerdata 715, "Morty"
 
 trainerdata 716, "Pryce"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_1
+    trainerclass TRAINERCLASS_LEADER_PRYCE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33467,7 +33467,7 @@ trainerdata 716, "Pryce"
 
 trainerdata 717, "Jasmine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_2
+    trainerclass TRAINERCLASS_LEADER_JASMINE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33553,7 +33553,7 @@ trainerdata 717, "Jasmine"
 
 trainerdata 718, "Chuck"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_3
+    trainerclass TRAINERCLASS_LEADER_CHUCK
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33639,7 +33639,7 @@ trainerdata 718, "Chuck"
 
 trainerdata 719, "Clair"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_4
+    trainerclass TRAINERCLASS_LEADER_CLAIR
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33725,7 +33725,7 @@ trainerdata 719, "Clair"
 
 trainerdata 720, "Brock"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_5
+    trainerclass TRAINERCLASS_LEADER_BROCK
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33811,7 +33811,7 @@ trainerdata 720, "Brock"
 
 trainerdata 721, "Misty"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_6
+    trainerclass TRAINERCLASS_LEADER_MISTY
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33897,7 +33897,7 @@ trainerdata 721, "Misty"
 
 trainerdata 722, "Lt. Surge"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_7
+    trainerclass TRAINERCLASS_LEADER_LT_SURGE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -33983,7 +33983,7 @@ trainerdata 722, "Lt. Surge"
 
 trainerdata 723, "Erika"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_8
+    trainerclass TRAINERCLASS_LEADER_ERIKA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -34069,7 +34069,7 @@ trainerdata 723, "Erika"
 
 trainerdata 724, "Janine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_9
+    trainerclass TRAINERCLASS_LEADER_JANINE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -34155,7 +34155,7 @@ trainerdata 724, "Janine"
 
 trainerdata 725, "Sabrina"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_10
+    trainerclass TRAINERCLASS_LEADER_SABRINA
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -34241,7 +34241,7 @@ trainerdata 725, "Sabrina"
 
 trainerdata 726, "Blaine"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_11
+    trainerclass TRAINERCLASS_LEADER_BLAINE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -34327,7 +34327,7 @@ trainerdata 726, "Blaine"
 
 trainerdata 727, "Blue"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_12
+    trainerclass TRAINERCLASS_LEADER_BLUE
     nummons 6
     item ITEM_NONE
     item ITEM_NONE
@@ -34775,7 +34775,7 @@ trainerdata 733, "Lance"
 
 trainerdata 734, "Clair"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS
-    trainerclass TRAINERCLASS_LEADER_4
+    trainerclass TRAINERCLASS_LEADER_CLAIR
     nummons 3
     item ITEM_NONE
     item ITEM_NONE
