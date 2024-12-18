@@ -130,5 +130,6 @@
 #define CLASS_PKMN_TRAINER_12   126
 #define CLASS_PKMN_TRAINER_13   127
 #define CLASS_PKMN_TRAINER_14   128
+#define CLASS_SNAIL   129
 
 #endif

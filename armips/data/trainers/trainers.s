@@ -5631,7 +5631,7 @@ trainerdata 105, "Giovanni"
 	    move MOVE_FIRE_BLAST
 	    move MOVE_VOLT_SWITCH
         ball ITEM_MASTER_BALL
-	    nature NATURE_MODEST
+	    nature NATURE_TIMID
         ballseal 0
 
         // mon 5
@@ -9475,7 +9475,7 @@ trainerdata 173, "Brent"
 
 trainerdata 174, "Snail"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
-    trainerclass TRAINERCLASS_BIKER
+    trainerclass TRAINERCLASS_SNAIL
     nummons 6
     item ITEM_NONE
     item ITEM_NONE

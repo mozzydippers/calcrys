@@ -527,6 +527,8 @@
 .equ TRAINERCLASS_PKMN_TRAINER_DAWN_DP,   126
 .equ TRAINERCLASS_PKMN_TRAINER_LUCAS_PT,  127
 .equ TRAINERCLASS_PKMN_TRAINER_DAWN_PT,   128
+// calcrys custom
+.equ TRAINERCLASS_SNAIL,                  129
 
 // trainer data flags
 

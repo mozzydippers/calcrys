@@ -138,4 +138,6 @@ struct TrainerMoney PrizeMoney[] = // 0x34C04 in Overlay 12; 2 bytes for trainer
     { .class = TRAINERCLASS_PKMN_TRAINER_DAWN_DP, .multiplier = 0 },
     { .class = TRAINERCLASS_PKMN_TRAINER_LUCAS_PT, .multiplier = 0 },
     { .class = TRAINERCLASS_PKMN_TRAINER_DAWN_PT, .multiplier = 0 },
+    // calcrys custom
+    { .class = TRAINERCLASS_SNAIL, .multiplier = 0 },
 };
