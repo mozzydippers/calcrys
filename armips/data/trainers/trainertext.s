@@ -197,6 +197,8 @@ _0134: // Trainer 491
     trainertextentry 491, TEXT_PLAYER_LOSES, "...\rWhew...\nWith my partners,\fI’m going to be the Champion!\n"
 
 _0144: // Trainer 498
+    trainertextentry 498, TEXT_LAST_MON_SENT_OUT, "I won't stop running if it's for my\ndream, even if I'm all alone!\n"
+    trainertextentry 498, TEXT_LAST_MON_CRITICAL, "I won't lose!\n"
     trainertextentry 498, TEXT_DEFEATED_IN_BATTLE, "I hate to admit it, but you win.\n"
     trainertextentry 498, TEXT_PLAYER_LOSES, "All right!\nSUICUNE, were you watching us?\n"
 
@@ -289,14 +291,16 @@ _0200: // Trainer 719
     trainertextentry 719, TEXT_DEFEATED_IN_BATTLE, "I lost? ...\rI don’t believe it.\nThere must be some mistake...\n"
 
 _020C: // Trainer 29
-    trainertextentry  29, TEXT_NOTICE_IN_OVERWORLD, "Ho ho!\rYou some kind of big shot? We’ll see\fwhat happens if you get pushed around\nup here. Think you’ll stagger and fall?\rPeople here are training night and\nday to become bird Pokémon masters.\rBring it on!\r"
+    trainertextentry  29, TEXT_NOTICE_IN_OVERWORLD, "Ho ho!\nYou some kind of big shot? We’ll see\fwhat happens if you get pushed around\nup here. Think you’ll stagger and fall?\rPeople here are training night and\nday to become bird Pokémon masters.\rBring it on!\r"
     trainertextentry  29, TEXT_DEFEATED_IN_BATTLE, "Gaaah!\n"
     trainertextentry  29, TEXT_DEFEATED_IN_OVERWORLD, "Falkner’s skills are for real!\rDon’t get cocky!"
+    trainertextentry  29, TEXT_PLAYER_LOSES, "I'm going to become the greatest bird\nkeeper of all!\n"
 
 _0218: // Trainer 50
     trainertextentry  50, TEXT_NOTICE_IN_OVERWORLD, "I can’t believe how ridiculously high\nthis is! But from up here, you can tell\fwhat it feels like to be a bird Pokémon!\rLet me see if you’re good enough to\nface Falkner!\r"
     trainertextentry  50, TEXT_DEFEATED_IN_BATTLE, "This can’t be true!\n"
     trainertextentry  50, TEXT_DEFEATED_IN_OVERWORLD, "Even though you’re a rookie Trainer,\nyou’re not bothered by these heights\fat all... You’re really something!\n"
+    trainertextentry  50, TEXT_PLAYER_LOSES, "Even all the way up here, you're still\nmiles away from beating Falkner!\n"
 
 _0224: // Trainer 10
     trainertextentry  10, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, "Amy: Hey, are you challenging the\nLeader? No way!\r"
@@ -1147,7 +1151,7 @@ _09FC: // Trainer 115
     trainertextentry 115, TEXT_NOTICE_IN_OVERWORLD, "It’s rare to see anyone come here.\nAre you training on your own?\r"
     trainertextentry 115, TEXT_DEFEATED_IN_BATTLE, "Oh! You’re really strong!\n"
     trainertextentry 115, TEXT_DEFEATED_IN_OVERWORLD, "I’m checking out pre- and\npost-evolution Pokémon. Evolution\freally does make Pokémon stronger.\rBut evolved forms also learn moves\nlater on.\n"
-    trainertextentry 115, TEXT_PLAYER_LOSES, "I guess only some Pokémon get stronger\nafter evolution...\n"
+    trainertextentry 115, TEXT_PLAYER_LOSES, "I guess not all Pokémon get stronger\nafter evolution...\n"
 
 _0A08: // Trainer 412
     trainertextentry 412, TEXT_NOTICE_IN_OVERWORLD, "Don’t say a thing! Let me guess what\nyou’re thinking. Mmmmmmm...\rI got it! You’re on the Pokémon\nLeague challenge!\r"
@@ -1159,6 +1163,7 @@ _0A14: // Trainer 8
     trainertextentry   8, TEXT_DEFEATED_IN_BATTLE, "Oh...\nI’m out of Pokémon that can fight.\n"
     trainertextentry   8, TEXT_DEFEATED_IN_OVERWORLD, "I knew it--if you don’t have many\nPokémon, battles are harder!\fI need to catch more Pokémon!\n"
     trainertextentry   8, TEXT_REMATCH_IN_OVERWORLD, "I’ve been waiting!\nLet’s battle now!\r"
+    trainertextentry   8, TEXT_PLAYER_LOSES, "Guess I was right!\nYou're just as weak as you look!\n"
 
 _0A24: // Trainer 47
     trainertextentry  47, TEXT_NOTICE_IN_OVERWORLD, "You’re a Pokémon Trainer, right?\nThen you have to battle!\r"
@@ -1810,6 +1815,7 @@ _1050: // Trainer 290
     trainertextentry 290, TEXT_NOTICE_IN_OVERWORLD, "So good of you to come here!\rSprout Tower is a place of training.\nPeople and Pokémon test their bonds\fto build a bright future together.\fI am the final test.\rAllow me to check the ties between\nyou and your Pokémon!"
     trainertextentry 290, TEXT_DEFEATED_IN_BATTLE, "Ah, excellent!\n"
     trainertextentry 290, TEXT_DEFEATED_IN_OVERWORLD, "You and your Pokémon should have no\nproblem using this move.\rTake this Flash TM.\n"
+    trainertextentry 290, TEXT_PLAYER_LOSES, "You still have much to learn...\n"
 
 _105C: // Trainer 281
     trainertextentry 281, TEXT_NOTICE_IN_OVERWORLD, "I’m practicing my fire breathing in the\nBurned Tower! Don’t try this at home!\r"
@@ -3225,9 +3231,9 @@ _1B14: // Trainer 171
     trainertextentry 171, TEXT_PLAYER_LOSES, "Not a bad match there! Ya gave it your\nall and ya had me on the ropes at some\fpoints, but ya didn't quite get it.\rBetter luck next time!\n"
 
 _1B18: // Trainer 174
-    trainertextentry 174, TEXT_NOTICE_IN_OVERWORLD, "C'mere boy, oooohh I'm gon' LEARN you a\nthing or two...\r"
+    trainertextentry 174, TEXT_NOTICE_IN_OVERWORLD, "C'mere boy, oooohh I'm gon' LEARN\nyou a thing or two...\r"
     trainertextentry 174, TEXT_DEFEATED_IN_BATTLE, "This cannot BE!\n"
-    trainertextentry 174, TEXT_DEFEATED_IN_OVERWORLD, "We gon find you boy...\r"
+    trainertextentry 174, TEXT_DEFEATED_IN_OVERWORLD, "We gon find you boy..."
     trainertextentry 174, TEXT_LAST_MON_SENT_OUT, "N-now...\nLet's be civil here...\n"
     trainertextentry 174, TEXT_PLAYER_LOSES, "Maybe next time, uhhh...\nTry?\n"
 
@@ -3241,7 +3247,7 @@ _1B1C: // Trainer 175
 _1B20: // Trainer 176
     trainertextentry 176, TEXT_NOTICE_IN_OVERWORLD, "Victory Road is home to only the\npinnacle of Pokémon trainers.\rIf you expect an easy win, you'll find\nyourself sorely mistaken!\r"
     trainertextentry 176, TEXT_DEFEATED_IN_BATTLE, "Maybe you've got what it takes...\nI guess we'll see, won't we?\n"
-    trainertextentry 176, TEXT_DEFEATED_IN_OVERWORLD, "You know, the person that said winning\nisn't everything, never won anything.\r"
+    trainertextentry 176, TEXT_DEFEATED_IN_OVERWORLD, "You know, the person that said winning\nisn't everything, never won anything."
     trainertextentry 176, TEXT_LAST_MON_SENT_OUT, "The harder the conflict, the more\nglorious the triumph!\n"
     trainertextentry 176, TEXT_PLAYER_LOSES, "If you can't even beat me, how do you\nexpect to beat the Pokémon league?\n"
 
@@ -3295,7 +3301,7 @@ _1B48: // Trainer 208
     trainertextentry 208, TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, "2! Step!\r"
     trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_BATTLE_2, "It’s the natural order.\n"
     trainertextentry 208, TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, "Nobody cares if you can’t dance well.\nJust get up and dance.\n"
-    trainertextentry 208, TEXT_DOUBLE_ONLY_1_POKEMON_2, "Need both feet on the ground to dance..\n"
+    trainertextentry 208, TEXT_DOUBLE_ONLY_1_POKEMON_2, "Need two feet on the ground to dance..\n"
     trainertextentry 208, TEXT_PLAYER_LOSES, "Dancers don’t need wings to fly!\n"
 
 _1B4C: // Trainer 221

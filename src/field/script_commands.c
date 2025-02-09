@@ -334,7 +334,7 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx) {
 struct HMMoveToTMId moveToTMIdTable[] =
 {
     {MOVE_CUT, 93},
-    {MOVE_FLY, 94},
+//    {MOVE_FLY, 94},
     {MOVE_SURF, 95},
     {MOVE_STRENGTH, 96},
     {MOVE_WHIRLPOOL, 97},
@@ -351,29 +351,32 @@ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
 
     struct Party *party = SaveData_GetPlayerPartyPtr(fsys->savedata);
     u8 partyCount = party->count;
-    for (i = 0, *slot = 6; i < partyCount; i++) 
+
+    for (i = 0, *slot = 0; i < partyCount; i++) 
     {
         struct PartyPokemon *mon = Party_GetMonByIndex(SaveData_GetPlayerPartyPtr(fsys->savedata), i);
         if (GetMonData(mon, MON_DATA_IS_EGG, NULL)) 
         {
             continue;
         }
-        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move || GetMonData(mon, MON_DATA_MOVE2, NULL) == move ||
-            GetMonData(mon, MON_DATA_MOVE3, NULL) == move || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) 
-        {
-            *slot = i;
-            break;
-        }
+
         u8 tmId = 0;
-        *slot = 6;
+        *slot = 0;
         for (int j = 0; j < NELEMS(moveToTMIdTable); j++)
         {
             if (moveToTMIdTable[j].move == move)
             {
                 tmId = moveToTMIdTable[j].tmId;
+                if (GetMonTMHMCompat(mon, tmId))
+                {
+                    *slot = i;
+                    break;
+                } 
             }
         }
-        if (GetMonTMHMCompat(mon, tmId))
+        
+        if (GetMonData(mon, MON_DATA_MOVE1, NULL) == move || GetMonData(mon, MON_DATA_MOVE2, NULL) == move ||
+            GetMonData(mon, MON_DATA_MOVE3, NULL) == move || GetMonData(mon, MON_DATA_MOVE4, NULL) == move) 
         {
             *slot = i;
             break;

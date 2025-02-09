@@ -435,7 +435,7 @@ mondata SPECIES_RATTATA, "Rattata"
 
 
 mondata SPECIES_RATICATE, "Raticate"
-    basestats 55, 81, 60, 97, 50, 70
+    basestats 55, 91, 60, 97, 40, 70
     types TYPE_NORMAL, TYPE_NORMAL
     catchrate 127
     baseexp 0 // defined in baseexp.s
@@ -1289,7 +1289,7 @@ mondata SPECIES_POLIWAG, "Poliwag"
     abilities ABILITY_WATER_ABSORB, ABILITY_DAMP
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_POLIWAG, "The swirl on its belly is its\ninsides showing through the skin.\nIt appears more clearly after Poliwag eats."
+    mondexentry SPECIES_POLIWAG, "The swirl on its belly is its insides\nshowing through the skin.\nIt looks clearer after it eats."
     mondexclassification SPECIES_POLIWAG, "Tadpole Pokémon"
     mondexheight SPECIES_POLIWAG, "2’00”"
     mondexweight SPECIES_POLIWAG, "27.3 lbs."
@@ -3788,7 +3788,7 @@ mondata SPECIES_MAREEP, "Mareep"
     abilities ABILITY_STATIC, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_WHITE, 0
-    mondexentry SPECIES_MAREEP, "It stores lots of air in its soft fur,\nallowing it to stay cool in\nsummer and warm in winter."
+    mondexentry SPECIES_MAREEP, "It stores lots of air in its soft fur,\nallowing it to stay cool in summer\nand warm in winter."
     mondexclassification SPECIES_MAREEP, "Wool Pokémon"
     mondexheight SPECIES_MAREEP, "2’00”"
     mondexweight SPECIES_MAREEP, "17.2 lbs."
@@ -16661,7 +16661,7 @@ mondata SPECIES_CUTIEFLY, "Cutiefly"
     abilities ABILITY_HONEY_GATHER, ABILITY_SHIELD_DUST
     runchance 0
     colorflip BODY_COLOR_YELLOW, 0
-    mondexentry SPECIES_CUTIEFLY, "Myriads of Cutiefly flutter above the\nheads of people who have auras\nresembling those of flowers."
+    mondexentry SPECIES_CUTIEFLY, "Nectar and pollen are its favorite fare.\nIn fields of flowers, it gets into\nskirmishes with Butterfree over food."
     mondexclassification SPECIES_CUTIEFLY, "Bee Fly Pokémon"
     mondexheight SPECIES_CUTIEFLY, "0’04”"
     mondexweight SPECIES_CUTIEFLY, "0.4 lbs."

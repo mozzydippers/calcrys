@@ -57,9 +57,9 @@ movedata MOVE_KARATE_CHOP, "Karate Chop"
     terminatedata
     movedescription MOVE_KARATE_CHOP, "The foe is attacked\nwith a sharp chop.\nIt has a high\ncritical-hit ratio.\n"
 
+// EFF : 1-5 HIT > 2 HIT
 // BP : 15 > 30
 // ACC : 85 > 100
-// EFF : 1-5 HIT > 2 HIT
 movedata MOVE_DOUBLE_SLAP, "Double Slap"
     battleeffect MOVE_EFFECT_HIT_TWICE
     pss SPLIT_PHYSICAL
@@ -94,10 +94,10 @@ movedata MOVE_COMET_PUNCH, "Comet Punch"
     terminatedata
     movedescription MOVE_COMET_PUNCH, "The foe is hit with\na flurry of punches\nthat strike two to\nfive times in a row.\n"
 
+// EFF : NONE > TRI ATTACK 
 // BP : 80 > 90
 // TYPE : NORMAL > FIGHTING
 // ACC : 85 > 100
-// EFF : NONE > TRI ATTACK 
 movedata MOVE_MEGA_PUNCH, "Mega Punch"
     battleeffect MOVE_EFFECT_RANDOM_PRIMARY_STATUS_HIT
     pss SPLIT_PHYSICAL
@@ -242,7 +242,7 @@ movedata MOVE_RAZOR_WIND, "Razor Wind"
     appeal 0x06
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_RAZOR_WIND, "A two-turn attack.\nBlades of wind hit the\nfoe on the second\nturn. It has a high\ncritical-hit ratio."
+    movedescription MOVE_RAZOR_WIND, "The user attacks the\nfoe with blades of\nwind.\nCritical hits land\nmore easily."
 
 // PP : 30 > 20 (GEN 6+)
 movedata MOVE_SWORDS_DANCE, "Swords Dance"
@@ -4260,7 +4260,7 @@ movedata MOVE_MEMENTO, "Memento"
     movedescription MOVE_MEMENTO, "The user faints upon\nusing this move.\nIn return, it sharply\nlowers the target’s\nAttack and Sp. Atk."
 
 movedata MOVE_FACADE, "Facade"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_DOUBLE_POWER_WHEN_STATUSED
     pss SPLIT_PHYSICAL
     basepower 70
     type TYPE_NORMAL
@@ -4883,10 +4883,12 @@ movedata MOVE_ICE_BALL, "Ice Ball"
     terminatedata
     movedescription MOVE_ICE_BALL, "The user continually\nrolls into the foe\nover five turns. It\nbecomes stronger\neach time it hits."
 
+// EFF : MOVE_EFFECT_FLINCH_HIT > MOVE_EFFECT_SET_SPIKES_HIT
+// BP : 60 > 90
 movedata MOVE_NEEDLE_ARM, "Needle Arm"
     battleeffect MOVE_EFFECT_FLINCH_HIT
     pss SPLIT_PHYSICAL
-    basepower 100
+    basepower 90
     type TYPE_GRASS
     accuracy 100
     pp 15
@@ -5447,7 +5449,7 @@ movedata MOVE_HOWL, "Howl"
     terminatedata
     movedescription MOVE_HOWL, "The user howls loudly\nto raise its spirit,\nboosting its Attack\nstat.\n"
 
-// EFF : 0 > 43 | INCREASED CRIT (PLA)
+// EFF : MOVE_EFFECT_HIT > MOVE_EFFECT_HIGH_CRITICAL (PLA)
 movedata MOVE_DRAGON_CLAW, "Dragon Claw"
     battleeffect MOVE_EFFECT_HIGH_CRITICAL
     pss SPLIT_PHYSICAL
@@ -5462,7 +5464,7 @@ movedata MOVE_DRAGON_CLAW, "Dragon Claw"
     appeal 0x11
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_DRAGON_CLAW, "The user slashes the\nfoe with huge, sharp\nclaws.\n\n"
+    movedescription MOVE_DRAGON_CLAW, "The user slashes the\nfoe with huge, sharp\nclaws.\nCritical hits land\nmore easily."
 
 // eff : MOVE_EFFECT_RECHARGE_AFTER > MOVE_EFFECT_HIT (GIGATON HAMMER CLONE)
 movedata MOVE_FRENZY_PLANT, "Frenzy Plant"
@@ -6529,7 +6531,7 @@ movedata MOVE_AIR_SLASH, "Air Slash"
     terminatedata
     movedescription MOVE_AIR_SLASH, "The user attacks with\na blade of air that\nslices even the sky.\nIt may also make the\ntarget flinch."
 
-// EFF : 0 > 43 | INCREASED CRIT (PLA)
+// EFF : MOVE_EFFECT_HIT > MOVE_EFFECT_HIGH_CRITICAL (PLA)
 movedata MOVE_X_SCISSOR, "X-Scissor"
     battleeffect MOVE_EFFECT_HIGH_CRITICAL
     pss SPLIT_PHYSICAL
@@ -7722,7 +7724,7 @@ movedata MOVE_PSYSHOCK, "Psyshock"
     movedescription MOVE_PSYSHOCK, "An odd psychic wave\nattacks the target.\nThis attack does\nphysical damage."
 
 movedata MOVE_VENOSHOCK, "Venoshock"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_DOUBLE_POWER_ON_POISONED
     pss SPLIT_SPECIAL
     basepower 65
     type TYPE_POISON
@@ -8234,7 +8236,7 @@ movedata MOVE_HEAL_PULSE, "Heal Pulse"
     movedescription MOVE_HEAL_PULSE, "The user emits a\nhealing pulse that\nrestores a target’s\nHP by up to half."
 
 movedata MOVE_HEX, "Hex"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_DOUBLE_DAMAGE_ON_STATUS
     pss SPLIT_SPECIAL
     basepower 65
     type TYPE_GHOST
@@ -8330,7 +8332,7 @@ movedata MOVE_QUASH, "Quash"
     movedescription MOVE_QUASH, "The user suppresses\nthe target and makes\nits move go last."
 
 movedata MOVE_ACROBATICS, "Acrobatics"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_DOUBLE_POWER_WITHOUT_ITEM
     pss SPLIT_PHYSICAL
     basepower 55
     type TYPE_FLYING
@@ -13580,7 +13582,7 @@ movedata MOVE_HEADLONG_RUSH, "Headlong Rush"
     movedescription MOVE_HEADLONG_RUSH, "The user smashes into\nthe target in a\nfull-body tackle. This\nalso lowers the user’s\nDefense and Sp. Def."
 
 movedata MOVE_BARB_BARRAGE, "Barb Barrage"
-    battleeffect MOVE_EFFECT_POISON_HIT
+    battleeffect MOVE_EFFECT_POISON_HIT_DOUBLE_POWER_ON_POISONED
     pss SPLIT_PHYSICAL
     basepower 60
     type TYPE_POISON
@@ -13660,7 +13662,7 @@ movedata MOVE_TRIPLE_ARROWS, "Triple Arrows"
     movedescription MOVE_TRIPLE_ARROWS, "---"
 
 movedata MOVE_INFERNAL_PARADE, "Infernal Parade"
-    battleeffect MOVE_EFFECT_BURN_HIT
+    battleeffect MOVE_EFFECT_BURN_HIT_DOUBLE_POWER_ON_STATUS
     pss SPLIT_SPECIAL
     basepower 60
     type TYPE_GHOST

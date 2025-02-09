@@ -282,42 +282,6 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     movetype = GetAdjustedMoveType(sp, attacker, moveno);
     movepower = movepower * sp->damage_value / 10;
 
-    // Handle moves that double in power if the target has a status condition.
-    if (moveno == MOVE_INFERNAL_PARADE || moveno == MOVE_HEX) 
-    {
-        if (DefendingMon.condition > 0) 
-        {
-            movepower = movepower * 2;
-        }
-    }
-
-    // Handle moves that double in power if the target is poisoned.
-    if (moveno == MOVE_VENOSHOCK || moveno == MOVE_BARB_BARRAGE) 
-    {
-        if (DefendingMon.condition & STATUS_POISON_ANY) 
-        {
-            movepower = movepower * 2;
-        }
-    }
-
-    // Handle Acrobatics's double damage effect if the attacker has no item.
-    if (moveno == MOVE_ACROBATICS) 
-    {
-        if (sp->battlemon[sp->attack_client].item == 0) 
-        {
-            movepower = movepower * 2;
-        }
-    }
-
-    // Handle Facade's boosted damage effect if the user is poisoned, paralyzed or burned.
-    if (moveno == MOVE_FACADE) 
-    {
-        if (AttackingMon.condition & (STATUS_FLAG_POISONED | STATUS_FLAG_BADLY_POISONED | STATUS_FLAG_PARALYZED | STATUS_FLAG_BURNED)) 
-        {
-            movepower = movepower * 2;
-        }
-    }
-
     // Handle Fishous Rend & Bolt Beak
     if (moveno == MOVE_FISHIOUS_REND || moveno == MOVE_BOLT_BEAK) 
     {
@@ -574,10 +538,20 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         attack = attack * 150 / 100;
     }
 
+    if ((AttackingMon.ability == ABILITY_TOXIC_BOOST) && ((AttackingMon.condition & STATUS_FLAG_BADLY_POISONED) || (AttackingMon.condition & STATUS_FLAG_POISONED)) && (movetype == TYPE_POISON))
+    {
+        movepower = movepower * 150 / 100;
+    }
+
     // handle flare boost
     if ((AttackingMon.ability == ABILITY_FLARE_BOOST) && ((AttackingMon.condition & STATUS_FLAG_BURNED)))
     {
         sp_attack = sp_attack * 150 / 100;
+    }
+
+    if ((AttackingMon.ability == ABILITY_FLARE_BOOST) && ((AttackingMon.condition & STATUS_FLAG_BURNED)) && (movetype == TYPE_FIRE))
+    {
+        movepower = movepower * 150 / 100;
     }
 
     // handle tough claws

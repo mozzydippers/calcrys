@@ -737,18 +737,18 @@ headbuttheader  32,  15,   0   // Route 28
 
 headbuttheader  33,  35,   0   // Route 29
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 2, 3
-    headbuttencounter SPECIES_PINECO, 2, 3
-    headbuttencounter SPECIES_PINECO, 2, 3
-    headbuttencounter SPECIES_EXEGGCUTE, 2, 3
-    headbuttencounter SPECIES_EXEGGCUTE, 2, 3
-    headbuttencounter SPECIES_EXEGGCUTE, 2, 3
-    headbuttencounter SPECIES_HOOTHOOT, 4, 5
-    headbuttencounter SPECIES_SPINARAK, 4, 5
-    headbuttencounter SPECIES_SPINARAK, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_AIPOM, 5, 6
+    headbuttencounter SPECIES_AIPOM, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_LEDYBA, 5, 6
+    headbuttencounter SPECIES_SPINARAK, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
+    headbuttencounter SPECIES_HOOTHOOT, 5, 6
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -1053,18 +1053,18 @@ headbuttheader  39,  14,   0   // Route 35
 
 headbuttheader  40,  26,   0   // Route 36
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 4, 5
-    headbuttencounter SPECIES_PINECO, 4, 5
-    headbuttencounter SPECIES_PINECO, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
-    headbuttencounter SPECIES_EXEGGCUTE, 4, 5
-    headbuttencounter SPECIES_HOOTHOOT, 6, 7
-    headbuttencounter SPECIES_SPINARAK, 6, 7
-    headbuttencounter SPECIES_SPINARAK, 6, 7
-    headbuttencounter SPECIES_EXEGGCUTE, 6, 7
-    headbuttencounter SPECIES_EXEGGCUTE, 6, 7
-    headbuttencounter SPECIES_EXEGGCUTE, 6, 7
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
+    headbuttencounter SPECIES_APPLIN, 13, 15
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -1212,12 +1212,12 @@ headbuttheader  44,  10,   0   // Route 42
     headbuttencounter SPECIES_PRIMEAPE, 40, 42
     headbuttencounter SPECIES_PRIMEAPE, 40, 42
     headbuttencounter SPECIES_PRIMEAPE, 40, 42
-    headbuttencounter SPECIES_ORANGURU, 40, 42
-    headbuttencounter SPECIES_PASSIMIAN, 40, 42
-    headbuttencounter SPECIES_ORANGURU, 40, 42
-    headbuttencounter SPECIES_PASSIMIAN, 40, 42
-    headbuttencounter SPECIES_ORANGURU, 40, 42
-    headbuttencounter SPECIES_PASSIMIAN, 40, 42
+    headbuttencounter SPECIES_VIKAVOLT, 41, 42
+    headbuttencounter SPECIES_VIKAVOLT, 41, 42
+    headbuttencounter SPECIES_PINSIR, 40, 42
+    headbuttencounter SPECIES_HERACROSS, 40, 42
+    headbuttencounter SPECIES_PINSIR, 40, 42
+    headbuttencounter SPECIES_HERACROSS, 40, 42
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -1323,7 +1323,7 @@ headbuttheader  47,   3,   0   // Route 45
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 67
     headbuttencounter SPECIES_RIBOMBEE, 66, 67
-    headbuttencounter SPECIES_URSARING, 68, 69
+    headbuttencounter SPECIES_RIBOMBEE, 66, 67
     headbuttencounter SPECIES_URSARING, 68, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
@@ -1971,12 +1971,12 @@ headbuttheader  88,  22,   0   // Lake of Rage
     headbuttencounter SPECIES_SEEDOT, 55, 58
     headbuttencounter SPECIES_PIDGEOT, 58, 60
     headbuttencounter SPECIES_PIDGEOT, 58, 60
-    headbuttencounter SPECIES_HOOTHOOT, 17, 19
-    headbuttencounter SPECIES_VENONAT, 17, 19
-    headbuttencounter SPECIES_HOOTHOOT, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
+    headbuttencounter SPECIES_VENOMOTH, 58, 60
+    headbuttencounter SPECIES_VENOMOTH, 58, 60
+    headbuttencounter SPECIES_EXEGGCUTE, 55, 58
+    headbuttencounter SPECIES_SEEDOT, 55, 58
+    headbuttencounter SPECIES_VENOMOTH, 58, 60
+    headbuttencounter SPECIES_EXEGGCUTE, 55, 58
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -2197,15 +2197,15 @@ headbuttheader 117,  56,   0   // Ilex Forest
     headbuttencounter SPECIES_PINECO, 23, 25
     headbuttencounter SPECIES_PINECO, 23, 25
     headbuttencounter SPECIES_AIPOM, 23, 25
+    headbuttencounter SPECIES_FOMANTIS, 23, 25
     headbuttencounter SPECIES_AIPOM, 23, 25
     headbuttencounter SPECIES_KECLEON, 25, 26
-    headbuttencounter SPECIES_KECLEON, 25, 26
-    headbuttencounter SPECIES_PINECO, 23, 25
+    headbuttencounter SPECIES_VENONAT, 23, 25
     headbuttencounter SPECIES_PANSAGE, 23, 25
     headbuttencounter SPECIES_PANSEAR, 23, 25
     headbuttencounter SPECIES_PANPOUR, 23, 25
-    headbuttencounter SPECIES_PINECO, 23, 25
-    headbuttencounter SPECIES_PINECO, 23, 25
+    headbuttencounter SPECIES_VENONAT, 23, 25
+    headbuttencounterwithform SPECIES_VOLTORB, 1, 23, 25
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -2550,18 +2550,18 @@ headbuttheader 173,   0,   0   // Safari Zone Gate (Inside)
 
 headbuttheader 174,  17,   0   // Safari Zone Gate (Outside)
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 14, 16
-    headbuttencounter SPECIES_PINECO, 14, 16
-    headbuttencounter SPECIES_PINECO, 14, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 14, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 14, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 14, 16
-    headbuttencounter SPECIES_HOOTHOOT, 17, 19
-    headbuttencounter SPECIES_SPINARAK, 17, 19
-    headbuttencounter SPECIES_SPINARAK, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 19
+    headbuttencounter SPECIES_CRABRAWLER, 50, 52
+    headbuttencounter SPECIES_CRABRAWLER, 50, 52
+    headbuttencounter SPECIES_CRABRAWLER, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_MUNCHLAX, 50, 52
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0

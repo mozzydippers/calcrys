@@ -250,6 +250,7 @@ enum
     SEQ_DEFENCE_CHANGE_CHECK,
     SEQ_PROTEAN_CHECK,
     SEQ_STANCE_CHANGE_CHECK,
+    SEQ_DEOXYS_STANCE_CHANGE,
     SEQ_PARENTAL_BOND_CHECK,
 };
 
@@ -475,6 +476,27 @@ void ServerWazaBefore(void *bw, struct BattleStruct *sp)
                     BattleFormChange(sp->client_work, sp->battlemon[sp->client_work].form_no, bw, sp, 0);
                     LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
                     runMyScriptInstead = 1;
+                }
+            }
+            else
+            {
+                sp->wb_seq_no++;
+            }
+            FALLTHROUGH;
+        case SEQ_DEOXYS_STANCE_CHANGE:
+            if (sp->battlemon[sp->defence_client].ability == ABILITY_STANCE_CHANGE && sp->battlemon[sp->defence_client].species == SPECIES_DEOXYS)
+            {
+            sp->client_work = sp->attack_client;
+            if (sp->moveTbl[sp->current_move_index].power >= 0)
+                {
+                    sp->client_work = sp->defence_client;
+                    if (sp->battlemon[sp->defence_client].form_no == 0 || sp->battlemon[sp->defence_client].form_no == 1)
+                    {
+                        sp->battlemon[sp->client_work].form_no = 2;
+                        BattleFormChange(sp->client_work, sp->battlemon[sp->client_work].form_no, bw, sp, 0);
+                        LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+                        runMyScriptInstead = 1;
+                    }
                 }
             }
             else

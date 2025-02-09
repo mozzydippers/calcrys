@@ -2686,43 +2686,11 @@ BOOL LONG_CALL IsContactBeingMade(struct BattleSystem *bw UNUSED, struct BattleS
     return FALSE;
 }
 
-/** 
- * calcrys custom 
- * used to transform stance change deoxys into def before attacks
- * 
- *
- */
-BOOL CheckDeoxysStanceChange(struct BattleSystem *bw, struct BattleStruct *sp) {
-    int i = 0;
-
-
-    if (sp->battlemon[sp->defence_client].ability == ABILITY_STANCE_CHANGE && sp->battlemon[sp->defence_client].species == SPECIES_DEOXYS)
-    {
-        sp->client_work = sp->attack_client;
-        if (sp->moveTbl[sp->current_move_index].power >= 0)
-        {
-            sp->client_work = sp->defence_client;
-            if (sp->battlemon[sp->defence_client].form_no == 0 || sp->battlemon[sp->defence_client].form_no == 1)
-            {
-                sp->battlemon[sp->client_work].form_no = 2;
-                BattleFormChange(sp->client_work, sp->battlemon[sp->client_work].form_no, bw, sp, 0);
-                LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
-                sp->next_server_seq_no = sp->server_seq_no;
-                sp->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
-                return TRUE;
-            }
-        }
-    i++;
-    }
-    return FALSE;
-}
-
 enum {
     TRY_MOVE_START = 0,
 
     TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
     TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES,
-    TRY_MOVE_STATE_DEOXYS_STANCE_CHANGE,
     TRY_MOVE_STATE_CHECK_MOVE_HITS,
     TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
     TRY_MOVE_STATE_CHECK_TYPE_CHART,
@@ -2752,12 +2720,6 @@ void LONG_CALL ov12_0224C4D8(struct BattleSystem *bsys, struct BattleStruct *ctx
     case TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES:
         ctx->woc_seq_no++;
         if (ov12_02250BBC(bsys, ctx) == TRUE) {
-            return;
-        }
-        //fallthrough
-    case TRY_MOVE_STATE_DEOXYS_STANCE_CHANGE:
-        ctx->woc_seq_no++;
-        if (CheckDeoxysStanceChange(bsys, ctx)) {
             return;
         }
         //fallthrough
@@ -3091,6 +3053,10 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
                         type = TYPE_NORMAL;
                         break;
                 }
+            }
+            if (species == SPECIES_GRANBULL) {
+                type = TYPE_FIGHTING;
+                break;
             } else {
                 type = TYPE_NORMAL;
             }
