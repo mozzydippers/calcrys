@@ -1374,7 +1374,7 @@ void BattleController_CheckConfusion(struct BattleSystem *bsys, struct BattleStr
 }
 
 void BattleController_CheckParalysis(struct BattleSystem *bsys, struct BattleStruct *ctx) {
-    if (ctx->battlemon[ctx->attack_client].condition & STATUS_PARALYSIS) {
+    if (ctx->battlemon[ctx->attack_client].condition & STATUS_PARALYSIS && ctx->battlemon[ctx->attack_client].ability != ABILITY_QUICK_FEET) {
         if (BattleRand(bsys) % 4 == 0) {
             ctx->moveOutCheck[ctx->attack_client].stoppedFromParalysis = TRUE;
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FULLY_PARALYZED);

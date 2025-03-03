@@ -10878,7 +10878,7 @@ trainerdata 189, "Grunt" // GRT3F 1
         move MOVE_JAW_LOCK
         nature NATURE_JOLLY
         additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
-        status 8
+        status 64
         ballseal 0
 
         // mon 0
@@ -16666,7 +16666,7 @@ trainerdata 278, "Kenji"
         ballseal 0
     endparty
 
-trainerdata 279, "Joey"
+trainerdata 279, "Joey" // REMATCH 1
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
     trainerclass TRAINERCLASS_YOUNGSTER
     nummons 1
@@ -16697,10 +16697,10 @@ trainerdata 279, "Joey"
         ballseal 0
     endparty
 
-trainerdata 280, "Joey"
-    trainermontype TRAINER_DATA_TYPE_MOVES
+trainerdata 280, "Joey" // REMATCH 2
+    trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
     trainerclass TRAINERCLASS_YOUNGSTER
-    nummons 1
+    nummons 6
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -16711,14 +16711,20 @@ trainerdata 280, "Joey"
 
     party 280
         // mon 0
-        ivs 0
-        abilityslot 15
-        level 40
+        ivs 255
+        abilityslot 32
+        level 66
         pokemon SPECIES_RATICATE
-        move MOVE_SUPER_FANG
+        item ITEM_SILK_SCARF
+        move MOVE_FACADE
+        move MOVE_THROAT_CHOP
+        move MOVE_FLAME_WHEEL
         move MOVE_QUICK_ATTACK
-        move MOVE_HYPER_FANG
-        move MOVE_SCARY_FACE
+        setivs 31, 31, 31, 31, 31, 31 // hp, atk, def, spd, spatk, spdef
+        setevs 252, 252, 252, 252, 0, 252 
+        nature NATURE_ADAMANT
+        additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
+        status 16
         ballseal 0
     endparty
 
@@ -21689,9 +21695,9 @@ trainerdata 409, "Brandon"
     endparty
 
 trainerdata 410, "Harry"
-    trainermontype TRAINER_DATA_TYPE_MOVES
+    trainermontype TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass TRAINERCLASS_SAILOR
-    nummons 1
+    nummons 4
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -21702,14 +21708,55 @@ trainerdata 410, "Harry"
 
     party 410
         // mon 0
-        ivs 0
+        ivs 255
         abilityslot 32
-        level 20
-        pokemon SPECIES_WOOPER
-        move MOVE_WATER_GUN
-        move MOVE_MUD_BOMB
-        move MOVE_SLAM
-        move MOVE_MUD_SHOT
+        level 42
+        pokemon SPECIES_LAPRAS
+        item ITEM_THROAT_SPRAY
+        move MOVE_SPARKLING_ARIA
+        move MOVE_ICE_BEAM
+        move MOVE_PSYCHIC_NOISE
+        move MOVE_FREEZE_DRY
+        nature NATURE_MODEST
+        ballseal 0
+
+        // mon 1
+        ivs 255
+        abilityslot 2
+        level 42
+        pokemon SPECIES_BARBARACLE
+        item ITEM_WHITE_HERB
+        move MOVE_ROCK_SLIDE
+        move MOVE_LIQUIDATION
+        move MOVE_DRAGON_CLAW
+        move MOVE_SHELL_SMASH
+        nature NATURE_JOLLY
+        ballseal 0
+
+        // mon 2
+        ivs 255
+        abilityslot 2
+        level 42
+        pokemon SPECIES_VELUZA
+        item ITEM_SITRUS_BERRY
+        move MOVE_AQUA_CUTTER
+        move MOVE_PSYCHO_CUT
+        move MOVE_NIGHT_SLASH
+        move MOVE_FILLET_AWAY
+        nature NATURE_ADAMANT
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 32
+        level 42
+        pokemon SPECIES_QUAGSIRE
+        item ITEM_
+        move MOVE_LIQUIDATION
+        move MOVE_EARTHQUAKE
+        move MOVE_CURSE
+        move MOVE_RECOVER
+        nature NATURE_ADAMANT
         ballseal 0
     endparty
 
@@ -26427,7 +26474,7 @@ trainerdata 509, "Huey"
         ballseal 0
     endparty
 
-trainerdata 510, "Joey"
+trainerdata 510, "Joey" // REMATCH 3
     trainermontype TRAINER_DATA_TYPE_MOVES
     trainerclass TRAINERCLASS_YOUNGSTER
     nummons 1
