@@ -612,9 +612,6 @@ BOOL BattleScriptCommandHandler(void *bw, struct BattleStruct *sp)
 {
     BOOL ret;
     u32 command;
-#ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
-    u8 buf[64];
-#endif //DEBUG_BATTLE_SCRIPT_COMMANDS
 
     gBattleSystem = bw; // constantly update bw even tho it really only need be done once
 
@@ -625,25 +622,11 @@ BOOL BattleScriptCommandHandler(void *bw, struct BattleStruct *sp)
         if (cmdAddress != (u32)&sp->SkillSeqWork[sp->skill_seq_no])
         {
             cmdAddress = (u32)&sp->SkillSeqWork[sp->skill_seq_no];
-            sprintf(buf, "[BattleScriptCommandHandler] %s - 0x%02X\n", BattleScrCmdNames[command], command);
-            debugsyscall(buf);
+            debug_printf("[BattleScriptCommandHandler] %s - 0x%02X\n", BattleScrCmdNames[command], command);
             if (command == 0xE0 || command == 0x24)
             {
-                debugsyscall("\n");
+                debug_printf("\n");
                 cmdAddress = 0;
-            }
-            if (command == 0xE) // wait message soft lock?
-            {
-                sp->SkillSeqWork[0] = 0;
-            }
-        }
-        if (command == 0xE) // wait message soft lock?
-        {
-            if (sp->SkillSeqWork[0]++ > 300) // timeout clear queue
-            {
-        //        debugsyscall("[BattleScriptCommandHandler] TIMEOUT: Force Command Increment\n");
-        //        sp->skill_seq_no++;
-        //        sp->SkillSeqWork[0] = 0;
             }
         }
 #endif //DEBUG_BATTLE_SCRIPT_COMMANDS
@@ -1181,8 +1164,15 @@ BOOL btl_scr_cmd_24_jumptocurmoveeffectscript(void *bw UNUSED, struct BattleStru
                 sp->battlemon[sp->attack_client].sheer_force_flag = 0;
                 break;
         }
+        // moves boosted by sheer force that still maintain their effect
         if ((sp->current_move_index == MOVE_SPARKLING_ARIA) 
-         || (sp->current_move_index == MOVE_ELECTRO_SHOT)) {
+        // || (sp->current_move_index == MOVE_GENESIS_SUPERNOVA) // doesnt have an eff atm but still on the table
+         || (sp->current_move_index == MOVE_SPIRIT_SHACKLE) 
+         || (sp->current_move_index == MOVE_ANCHOR_SHOT) 
+        // || (sp->current_move_index == MOVE_EERIE_SPELL) // same as genesis supernova
+         || (sp->current_move_index == MOVE_CEASELESS_EDGE) 
+         || (sp->current_move_index == MOVE_STONE_AXE) 
+         || (sp->current_move_index == MOVE_ELECTRO_SHOT)) { // according to bulbapedia but only on the electro shot page ? 
             sp->battlemon[sp->attack_client].sheer_force_flag = 1;
         }
     }

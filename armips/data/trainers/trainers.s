@@ -21751,7 +21751,7 @@ trainerdata 410, "Harry"
         abilityslot 32
         level 42
         pokemon SPECIES_QUAGSIRE
-        item ITEM_
+        item ITEM_LEFTOVERS
         move MOVE_LIQUIDATION
         move MOVE_EARTHQUAKE
         move MOVE_CURSE

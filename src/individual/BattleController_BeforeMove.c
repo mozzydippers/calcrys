@@ -1196,7 +1196,7 @@ void BattleController_CheckSleepOrFrozen(struct BattleSystem *bsys, struct Battl
 
     if (ctx->battlemon[ctx->attack_client].condition & STATUS_FREEZE) {
         if (BattleRand(bsys) % 5 != 0) {
-            if (effect != MOVE_EFFECT_THAW_AND_BURN_HIT && effect != MOVE_EFFECT_RECOIL_BURN_HIT) {
+            if (effect != MOVE_EFFECT_THAW_AND_BURN_HIT && effect != MOVE_EFFECT_RECOIL_BURN_HIT && effect != MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT) {
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FROZEN);
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
                 ctx->next_server_seq_no = CONTROLLER_COMMAND_39;
@@ -1639,7 +1639,7 @@ void BattleController_CheckThawOut(struct BattleSystem *bsys UNUSED, struct Batt
     int effect = ctx->moveTbl[ctx->current_move_index].effect;
 
     if (ctx->battlemon[ctx->attack_client].condition & STATUS_FREEZE) {
-        if (effect == MOVE_EFFECT_THAW_AND_BURN_HIT || effect == MOVE_EFFECT_RECOIL_BURN_HIT) {
+        if (effect == MOVE_EFFECT_THAW_AND_BURN_HIT || effect == MOVE_EFFECT_RECOIL_BURN_HIT || effect == MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT) {
             ctx->battlerIdTemp = ctx->attack_client;
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_THAW_OUT);
             ctx->next_server_seq_no = ctx->server_seq_no;
@@ -1987,22 +1987,7 @@ BOOL BattleController_CheckChargeMoves(struct BattleSystem *bsys UNUSED, struct 
                 needToRunScript = TRUE;
                 break;
             case MOVE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
-                switch (ctx->current_move_index)
-                {
-                case MOVE_SKY_ATTACK:
-                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_SKY_ATTACK_CHARGE_TURN);
-                    break;
-                case MOVE_FREEZE_SHOCK:
-                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FREEZE_SHOCK_CHARGE_TURN);
-                    break;
-                case MOVE_ICE_BURN:
-                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ICE_BURN_CHARGE_TURN);
-                    break;
-                
-                default:
-                    break;
-                }
-                
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_SKY_ATTACK_CHARGE_TURN);
                 needToRunScript = TRUE;
                 break;
             case MOVE_EFFECT_CHARGE_TURN_DEF_UP:
@@ -2051,16 +2036,24 @@ BOOL BattleController_CheckChargeMoves(struct BattleSystem *bsys UNUSED, struct 
                     if ((ctx->field_condition & WEATHER_RAIN_ANY)) {
                         needToRunScript = FALSE;
                     } else {
-                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ELETRO_SHOT_CHARGE_TURN);
+                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ELECTRO_SHOT_CHARGE_TURN);
                         needToRunScript = TRUE;
                     }
                 } else {
-                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ELETRO_SHOT_CHARGE_TURN);
+                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ELECTRO_SHOT_CHARGE_TURN);
                     needToRunScript = TRUE;
                 }
                 break;
             case MOVE_EFFECT_CHARGE_TURN_SP_ATK_UP:
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_METEOR_BEAM_CHARGE_TURN);
+                needToRunScript = TRUE;
+                break;
+            case MOVE_EFFECT_CHARGE_TURN_BURN_HIT:
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_ICE_BURN_CHARGE_TURN);
+                needToRunScript = TRUE;
+                break;
+            case MOVE_EFFECT_CHARGE_TURN_PARALYZE_HIT:
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FREEZE_SHOCK_CHARGE_TURN);
                 needToRunScript = TRUE;
                 break;
             // case MOVE_EFFECT_SKY_DROP:
