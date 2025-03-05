@@ -20,7 +20,6 @@
 int MoveCheckDamageNegatingAbilities(struct BattleStruct *sp, int attacker, int defender);
 //int SwitchInAbilityCheck(void *bw, struct BattleStruct *sp);
 //BOOL AreAnyStatsNotAtValue(struct BattleStruct *sp, int client, int value, BOOL excludeAccuracyEvasion);
-BOOL MummyAbilityCheck(struct BattleStruct *sp);
 BOOL CanPickpocketStealClientItem(struct BattleStruct *sp, int client_no);
 //u8 BeastBoostGreatestStatHelper(struct BattleStruct *sp, u32 client);
 BOOL MoveHitAttackerAbilityCheck(void *bw, struct BattleStruct *sp, int *seq_no);
@@ -894,11 +893,14 @@ u32 LONG_CALL ServerWazaKoyuuCheck(void *bw, struct BattleStruct *sp)
         return FALSE;
     }
 
-    if (((sp->waza_status_flag & 0x801FDA49) == 0) // just what is in the rom already
-     && (sp->oneTurnFlag[sp->defence_client].magic_cort_flag || GetBattlerAbility(sp, sp->defence_client) == ABILITY_MAGIC_BOUNCE)
+    if (((sp->waza_status_flag & WAZA_STATUS_FLAG_NO_OUT) == 0)
+     && (sp->oneTurnFlag[sp->defence_client].magic_cort_flag
+      // if magic bounce then activate only if it hasn't already activated this move
+      || (GetBattlerAbility(sp, sp->defence_client) == ABILITY_MAGIC_BOUNCE && !sp->magicBounceTracker))
      && (sp->moveTbl[sp->current_move_index].flag & FLAG_MAGIC_COAT))
     {
         sp->oneTurnFlag[sp->defence_client].magic_cort_flag = 0;
+        sp->magicBounceTracker = TRUE;
         sp->waza_no_mamoru[sp->attack_client] = 0;
         sp->waza_no_old[sp->attack_client] = sp->moveNoTemp;
         sp->waza_no_last = sp->moveNoTemp;
@@ -912,7 +914,7 @@ u32 LONG_CALL ServerWazaKoyuuCheck(void *bw, struct BattleStruct *sp)
     for(i = 0; i < client_set_max; i++)
     {
         client_no = sp->turnOrder[i];
-        if (((sp->waza_status_flag & 0x801FDA49) == 0)
+        if (((sp->waza_status_flag & WAZA_STATUS_FLAG_NO_OUT) == 0)
          && (sp->oneTurnFlag[client_no].snatchFlag)
          && (sp->moveTbl[sp->current_move_index].flag & FLAG_SNATCH))
         {
@@ -947,6 +949,7 @@ enum
     SWOAK_SEQ_CHECK_DEFENDER_ITEM_ON_HIT,
     SWOAK_SEQ_THAW_ICE,
     SWOAK_SEQ_CHECK_HEALING_ITEMS,
+    SWOAK_SEQ_CLEAR_MAGIC_COAT,
 };
 
 
@@ -964,7 +967,7 @@ void ServerDoPostMoveEffects(void *bw, struct BattleStruct *sp)
     switch (sp->swoak_seq_no) {
         case SWOAK_SEQ_VANISH_ON_OFF: {
             int ret = 0;
-            while(sp->swoak_work < BattleWorkClientSetMaxGet(bw))
+            while (sp->swoak_work < BattleWorkClientSetMaxGet(bw))
             {
                 if (((sp->battlemon[sp->swoak_work].effect_of_moves & (MOVE_EFFECT_FLAG_FLYING_IN_AIR | MOVE_EFFECT_FLAG_DIGGING | MOVE_EFFECT_FLAG_IS_DIVING | MOVE_EFFECT_FLAG_SHADOW_FORCE)) == 0)
                  && (sp->battlemon[sp->swoak_work].effect_of_moves_temp & (MOVE_EFFECT_FLAG_FLYING_IN_AIR | MOVE_EFFECT_FLAG_DIGGING | MOVE_EFFECT_FLAG_IS_DIVING | MOVE_EFFECT_FLAG_SHADOW_FORCE)))
@@ -1096,6 +1099,10 @@ void ServerDoPostMoveEffects(void *bw, struct BattleStruct *sp)
                 sp->swoak_work = 0;
             }
         }
+        FALLTHROUGH;
+    case SWOAK_SEQ_CLEAR_MAGIC_COAT:
+        sp->magicBounceTracker = FALSE;
+        sp->swoak_seq_no++;
         break;
     default:
         break;

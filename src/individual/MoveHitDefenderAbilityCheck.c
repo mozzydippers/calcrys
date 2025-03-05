@@ -13,7 +13,6 @@
 #include "../../include/constants/battle_message_constants.h"
 #include "../../include/constants/file.h"
 
-static BOOL MummyAbilityCheck(struct BattleStruct *sp);
 static BOOL CanPickpocketStealClientItem(struct BattleStruct *sp, int client_no);
 
 /**
@@ -298,12 +297,16 @@ BOOL MoveHitDefenderAbilityCheckInternal(void *bw, struct BattleStruct *sp, int 
             }
             break;
         case ABILITY_MUMMY:
+            FALLTHROUGH;
         // case ABILITY_LINGERING_AROMA:
+            if (sp->battlemon[sp->attack_client].ability == sp->battlemon[sp->defence_client].ability) {
+                break;
+            }
             if (((sp->waza_status_flag & WAZA_STATUS_FLAG_NO_OUT) == 0)
                 && ((sp->server_status_flag & SERVER_STATUS_FLAG_x20) == 0)
                 && ((sp->server_status_flag2 & SERVER_STATUS_FLAG2_U_TURN) == 0)
                 && (IsContactBeingMade(bw, sp))
-                && (MummyAbilityCheck(sp) == TRUE)
+                && (!AbilityCantSupress(sp->battlemon[sp->attack_client].ability))
                 && ((sp->oneSelfFlag[sp->defence_client].physical_damage) ||
                     (sp->oneSelfFlag[sp->defence_client].special_damage)))
             {
