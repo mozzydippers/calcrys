@@ -1846,6 +1846,10 @@ u32 LONG_CALL GetLevelCap(void);
  */
 u32 LONG_CALL IsLevelAtLevelCap(u32 level);
 
+void LONG_CALL correct_zacian_zamazenta_kyurem_moves_for_form(struct PartyPokemon *param, unsigned int expected_form, int *a3);
+
+void LONG_CALL ChangeToBattleForm(struct PartyPokemon *pp);
+
 void LONG_CALL ov12_02263D14(void *bsys, int battlerId, u32 a2, int slot);
 
 void LONG_CALL *SelectPartyMonAndLearnMove(void *taskman, u32 heapId);

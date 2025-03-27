@@ -437,20 +437,17 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
 
         struct Evolution *evoTable;
         evoTable = sys_AllocMemory(0, MAX_EVOS_PER_POKE * sizeof(struct Evolution));
-        ArchiveDataLoad(evoTable, 34, speciesWithForm); // 34 is evo narc
+        ArchiveDataLoad(evoTable, ARC_EVOLUTIONS, speciesWithForm);
 
-        // If a Pok�mon has any evolutions, there should be a non EVO_NONE entry at the top
-        // A more thorough check would be to check all methods, but would take longer
-        // This should yield the same result if things are written correctly
+        // If a Pokémon has any evolutions, there should be an entry at the top that isn't EVO_NONE.
+        // In that case, the Pokémon is capable of evolving, and so the effect of Eviolite should apply.
         if (evoTable[0].method != EVO_NONE) {
             defense = defense * 150 / 100;
             sp_defense = sp_defense * 150 / 100;
         }
-    }
 
-    // handle assault vest
-    if (DefendingMon.item_held_effect == HOLD_EFFECT_SPDEF_BOOST_NO_STATUS_MOVES)
-        sp_defense = sp_defense * (100 + AttackingMon.item_power) / 100;
+        sys_FreeMemoryEz(evoTable);
+    }
 
     // handle thick club
     if ((AttackingMon.item_held_effect == HOLD_EFFECT_CUBONE_ATK_UP)

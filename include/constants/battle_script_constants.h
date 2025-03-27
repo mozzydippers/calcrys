@@ -455,15 +455,17 @@
 #define SUB_SEQ_TIDY_UP                               (445)
 #define SUB_SEQ_BURN_AND_DRAIN_HEALTH                 (446)
 
-/* calcrys custom */
-#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (500)
-#define SUB_SEQ_OVERWORLD_TAILWIND                    (501)
-#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (502)
-#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (503)
-#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (504)
-#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (505)
-#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (506)
-#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (507)
+#define MAX_BASE_SUBSCRIPT_NUM 446
+
+// calcrys custom
+#define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (MAX_BASE_SUBSCRIPT_NUM + 1)
+#define SUB_SEQ_OVERWORLD_TAILWIND                    (MAX_BASE_SUBSCRIPT_NUM + 2)
+#define SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM          (MAX_BASE_SUBSCRIPT_NUM + 3)
+#define SUB_SEQ_WATER_VEIL_AQUA_RING                  (MAX_BASE_SUBSCRIPT_NUM + 4)
+#define SUB_SEQ_OVERWORLD_RADIO_WAVES                 (MAX_BASE_SUBSCRIPT_NUM + 5)
+#define SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES            (MAX_BASE_SUBSCRIPT_NUM + 6)
+#define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (MAX_BASE_SUBSCRIPT_NUM + 7)
+#define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (MAX_BASE_SUBSCRIPT_NUM + 8)
 
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
