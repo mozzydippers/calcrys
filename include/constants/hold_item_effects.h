@@ -225,6 +225,4 @@
 #define HOLD_EFFECT_WELLSPRING_MASK                    218
 #define HOLD_EFFECT_HEARTHFLAME_MASK                   219
 
-#define HOLD_EFFECT_ASSAULT_VEST 200
-
 #endif

@@ -467,6 +467,12 @@ move_narc: $(NARC_FILES)
 	@echo "form data table:"
 	cp $(POKEFORMDATATBL_BIN) $(POKEFORMDATATBL_TARGET)
 
+	@echo "form to species mapping table:"
+	cp $(FORMTOSPECIES_BIN) $(FORMTOSPECIES_TARGET)
+
+	@echo "form reversion mapping table:"
+	cp $(FORMREVERSION_BIN) $(FORMREVERSION_TARGET)
+
 .PHONY: $(SCR_SEQ_NARC)
 #.PHONY: $(MSGDATA_NARC)
 

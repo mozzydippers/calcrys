@@ -589,7 +589,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                                 // TODO: why is condition weird here?
                                 if (sp->battlemon[battlerId].condition & STATUS_SLEEP) {
                                     #ifdef DEBUG_ENDTURN_LOGIC
-                                    sprintf(buf, "In STATUS_SLEEP\n");
+                                    sprintf(buf, "In STATUS_FLAG_ASLEEP\n");
                                     debugsyscall(buf);
                                     #endif
 
@@ -610,7 +610,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                                     sp->msg_work = MSG_HEAL_BURN;
                                 } else if (sp->battlemon[battlerId].condition & STATUS_PARALYSIS) {
                                     #ifdef DEBUG_ENDTURN_LOGIC
-                                    sprintf(buf, "In STATUS_PARALYSIS\n");
+                                    sprintf(buf, "In STATUS_FLAG_PARALYSIS\n");
                                     debugsyscall(buf);
                                     #endif
 
@@ -1486,6 +1486,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                 sprintf(buf, "In ENDTURN_GRAVITY_DISSIPATING\n");
                 debugsyscall(buf);
                 #endif
+
                 if (sp->field_condition & FIELD_STATUS_GRAVITY) {
                     if ((sp->field_condition & FIELD_STATUS_GRAVITY) != 28672)
                     {

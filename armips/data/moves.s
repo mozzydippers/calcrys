@@ -12858,7 +12858,7 @@ movedata MOVE_FALSE_SURRENDER, "False Surrender"
     movedescription MOVE_FALSE_SURRENDER, "The user pretends to\nbow its head, but then\nit stabs the target\nwith its hair. This\nattack never misses."
 
 movedata MOVE_METEOR_ASSAULT, "Meteor Assault"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_HIGH_CRITICAL
     pss SPLIT_PHYSICAL
     basepower 150
     type TYPE_FIGHTING

@@ -420,9 +420,6 @@ arm9 02074128 F8 B5 82 B0 00 90 00 20
 # Fix Hidden Power to 60 BP (change +30 instruction to =60)
 0012 022424DC 3C 20
 
-# UseItemOnPokemon_hook setup
-arm9 020902D0 60 B4 C0 46
-
 # StruggleCheck_hook setup
 0012 022517EC 60 B4 C0 46
 
@@ -551,3 +548,6 @@ arm9 020436CC C0 68 F8 F7
 arm9 020436D4 0C 21
 arm9 020436DA 28 1C F8 F7 52 F9 80 34 01 1C 20 68 40 68 C0 68
 arm9 02043720 01 20 38 BD
+
+# UseItemOnPokemon_hook setup
+arm9 020902D0 60 B4 C0 46
