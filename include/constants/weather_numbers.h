@@ -45,7 +45,4 @@
 #define WEATHER_SYS_HIGH_SUN      (1001)
 #define WEATHER_SYS_TRICK_ROOM    (1002)
 
-#define RULESET_CAMOMONS                (1)
-#define RULESET_PROTEAN_PALACE          (2)
-
 #endif

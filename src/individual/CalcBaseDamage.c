@@ -186,7 +186,6 @@ static const u16 SoundProofMovesList[] = {
 
 
 
-
 int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
                    u32 field_cond, u16 pow, u8 type UNUSED, u8 attacker, u8 defender, u8 critical)
 {
@@ -368,6 +367,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         movepower = movepower * 130 / 100;
     }
 
+
     // type boosting held items
     {
         u8 element[2] = {AttackingMon.item_held_effect, movetype};
@@ -383,7 +383,6 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
     // handle choice specs
     if (AttackingMon.item_held_effect == HOLD_EFFECT_CHOICE_SPATK)
         sp_attack = sp_attack * 150 / 100;
-
 
     // handle soul dew - gen 4
     if ((AttackingMon.item_held_effect == HOLD_EFFECT_LATI_SPECIAL) &&
@@ -1147,6 +1146,9 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         case GRASSY_TERRAIN:
             if (IsClientGrounded(sp, attacker) && movetype == TYPE_GRASS) {
                 damage = damage * 130 / 100;
+            }
+            if (moveno == MOVE_EARTHQUAKE || moveno == MOVE_MAGNITUDE || moveno == MOVE_BULLDOZE) {
+                damage /= 2;
             }
             break;
         case ELECTRIC_TERRAIN:

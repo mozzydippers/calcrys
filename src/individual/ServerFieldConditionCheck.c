@@ -610,7 +610,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                                     sp->msg_work = MSG_HEAL_BURN;
                                 } else if (sp->battlemon[battlerId].condition & STATUS_PARALYSIS) {
                                     #ifdef DEBUG_ENDTURN_LOGIC
-                                    sprintf(buf, "In STATUS_FLAG_PARALYSIS\n");
+                                    sprintf(buf, "In STATUS_FLAG_PARALYZED\n");
                                     debugsyscall(buf);
                                     #endif
 

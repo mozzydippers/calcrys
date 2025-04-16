@@ -158,7 +158,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         case ABILITY_NEUTRALIZING_GAS:
                             break;
                 //        case ABILITY_TERA_SHIFT:
-                            break;
+                //            break;
 
                         default:
                             break;

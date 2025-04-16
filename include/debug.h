@@ -4,7 +4,7 @@
 // DEBUG_ADJUSTED_ACCURACY is used to debug the adjusted accuracy for testing abilities that affect accuracy.
 // this is used in combination with a lua script to dynamically display the adjusted accuracy.
 // uncomment the define to have the information written to 0x23DF000
-#define DEBUG_ADJUSTED_ACCURACY
+//#define DEBUG_ADJUSTED_ACCURACY
 
 // DEBUG_ADJUSTED_DAMAGE is used to debug the adjusted damage for testing abilities that affect damage output.
 //#define DEBUG_ADJUSTED_DAMAGE
@@ -57,7 +57,7 @@
 //#define DEBUG_PRINT_HEAP_OVERFLOW_MESSAGES_ASSERT_FAIL
 
 // DEBUG_ALWAYS_OBEY will force all battlers to obey regardless of badges owned
-//#define DEBUG_ALWAYS_OBEY
+#define DEBUG_ALWAYS_OBEY
 
 // DEBUG_ENDTURN_LOGIC turns on a number of debug prints related to the end-turn logic
 //#define DEBUG_ENDTURN_LOGIC
@@ -72,6 +72,6 @@
 //#define DEBUG_PRINT_HEAP_ALLOCATION
 
 // NOCASH_GBA_PRINT swaps from desmume prints with the syscall to NO$GBA-style prints for use with i.e. melonDS
-//#define NOCASH_GBA_PRINT
+#define NOCASH_GBA_PRINT
 
 #endif // DEBUG_H
