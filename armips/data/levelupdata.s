@@ -7179,51 +7179,39 @@ levelup SPECIES_WHISCASH
 
 
 levelup SPECIES_CORPHISH
-    learnset MOVE_WATER_GUN, 1
-    learnset MOVE_HARDEN, 1
     learnset MOVE_BUBBLE, 1
-    learnset MOVE_HARDEN, 5
-    learnset MOVE_LEER, 6
-    learnset MOVE_VICE_GRIP, 7
+    learnset MOVE_LEER, 4
+    learnset MOVE_VICE_GRIP, 8
     learnset MOVE_BUBBLE_BEAM, 12
-    learnset MOVE_KNOCK_OFF, 19
+    learnset MOVE_KNOCK_OFF, 16
     learnset MOVE_TAUNT, 20
-    learnset MOVE_DOUBLE_HIT, 20
-    learnset MOVE_PROTECT, 20
-    learnset MOVE_NIGHT_SLASH, 27
-    learnset MOVE_RAZOR_SHELL, 31
-    learnset MOVE_SWORDS_DANCE, 36
-    learnset MOVE_CRUNCH, 39
-    learnset MOVE_CRABHAMMER, 43
+    learnset MOVE_DOUBLE_HIT, 24
+    learnset MOVE_PROTECT, 28
+    learnset MOVE_NIGHT_SLASH, 32
+    learnset MOVE_RAZOR_SHELL, 36
+    learnset MOVE_CRUNCH, 40
+    learnset MOVE_CRABHAMMER, 44
     learnset MOVE_ENDEAVOR, 48
-    learnset MOVE_GUILLOTINE, 50
+    learnset MOVE_GUILLOTINE, 52
     terminatelearnset
 
 
 levelup SPECIES_CRAWDAUNT
     learnset MOVE_SWIFT, 0
-    learnset MOVE_SWIFT, 1
-    learnset MOVE_WATER_GUN, 1
-    learnset MOVE_HARDEN, 1
-    learnset MOVE_LEER, 1
-    learnset MOVE_TAUNT, 1
     learnset MOVE_BUBBLE, 1
-    learnset MOVE_VICE_GRIP, 1
-    learnset MOVE_HARDEN, 5
-    learnset MOVE_VICE_GRIP, 7
-    learnset MOVE_LEER, 10
+    learnset MOVE_LEER, 4
+    learnset MOVE_VICE_GRIP, 8
     learnset MOVE_BUBBLE_BEAM, 12
-    learnset MOVE_KNOCK_OFF, 19
-    learnset MOVE_DOUBLE_HIT, 20
-    learnset MOVE_PROTECT, 20
-    learnset MOVE_NIGHT_SLASH, 27
-    learnset MOVE_RAZOR_SHELL, 33
-    learnset MOVE_TAUNT, 36
-    learnset MOVE_SWORDS_DANCE, 40
+    learnset MOVE_KNOCK_OFF, 16
+    learnset MOVE_TAUNT, 20
+    learnset MOVE_DOUBLE_HIT, 24
+    learnset MOVE_PROTECT, 28
+    learnset MOVE_NIGHT_SLASH, 34
+    learnset MOVE_RAZOR_SHELL, 40
     learnset MOVE_CRUNCH, 44
     learnset MOVE_CRABHAMMER, 50
-    learnset MOVE_ENDEAVOR, 58
-    learnset MOVE_GUILLOTINE, 59
+    learnset MOVE_ENDEAVOR, 54
+    learnset MOVE_GUILLOTINE, 60
     terminatelearnset
 
 
@@ -18851,7 +18839,7 @@ levelup SPECIES_COPPERAJAH
 levelup SPECIES_DRACOZOLT
     learnset MOVE_TACKLE, 1
     learnset MOVE_THUNDER_SHOCK, 1
-    learnset MOVE_CHARGE, 7
+    learnset MOVE_ENDURE, 7
     learnset MOVE_AERIAL_ACE, 14
     learnset MOVE_ANCIENT_POWER, 21
     learnset MOVE_PLUCK, 28
@@ -18868,7 +18856,7 @@ levelup SPECIES_DRACOZOLT
 levelup SPECIES_ARCTOZOLT
     learnset MOVE_POWDER_SNOW, 1
     learnset MOVE_THUNDER_SHOCK, 1
-    learnset MOVE_CHARGE, 7
+    learnset MOVE_ENDURE, 7
     learnset MOVE_ECHOED_VOICE, 14
     learnset MOVE_ANCIENT_POWER, 21
     learnset MOVE_PLUCK, 28
@@ -18906,7 +18894,7 @@ levelup SPECIES_ARCTOVISH
     learnset MOVE_ICY_WIND, 14
     learnset MOVE_ANCIENT_POWER, 21
     learnset MOVE_BITE, 28
-    learnset MOVE_AURORA_VEIL, 35
+    learnset MOVE_AURORA_BEAM, 35
     learnset MOVE_FREEZE_DRY, 42
     learnset MOVE_SUPER_FANG, 49
     learnset MOVE_CRUNCH, 56

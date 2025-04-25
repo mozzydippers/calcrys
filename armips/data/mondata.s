@@ -17207,7 +17207,7 @@ mondata SPECIES_GOLISOPOD, "Golisopod"
     abilities ABILITY_EMERGENCY_EXIT, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
-    mondexentry SPECIES_GOLISOPOD, "With a flashing slash of its giant\nsharp claws, it cleaves seawater-or even\nair-right in two."
+    mondexentry SPECIES_GOLISOPOD, "It battles skillfully with its six arms,\nbut spends most of its time peacefully\nmeditating in caves deep beneath the sea."
     mondexclassification SPECIES_GOLISOPOD, "Hard Scale Pokémon"
     mondexheight SPECIES_GOLISOPOD, "6’07”"
     mondexweight SPECIES_GOLISOPOD, "238.1 lbs."

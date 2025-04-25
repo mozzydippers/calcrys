@@ -193,7 +193,13 @@ const u16 *_0210FA3C[] = {
 .halfword 0xFFFF
 
 /* Goldenrod Tunnel Herb Shop */
-/* const u16 _020FBACA[] = {ITEM_RED_NECTAR, ITEM_YELLOW_NECTAR, ITEM_PINK_NECTAR, ITEM_PURPLE_NECTAR, 0xFFFF}; */
+/* const u16 _020FBACA[] = {ITEM_HEAL_POWDER, ITEM_ENERGYPOWDER, ITEM_ENERGY_ROOT, ITEM_REVIVAL_HERB, 0xFFFF}; */
+.org 0x020FBACA
+.halfword ITEM_RED_NECTAR
+.halfword ITEM_YELLOW_NECTAR
+.halfword ITEM_PINK_NECTAR
+.halfword ITEM_PURPLE_NECTAR
+.halfword 0xFFFF
 
 /* Ecruteak City 2nd Clerk */
 /* const u16 _020FBA60[] = {ITEM_AIR_MAIL, ITEM_HEAL_BALL, ITEM_NET_BALL, 0xFFFF}; */
@@ -254,7 +260,6 @@ const u16 *_0210FA3C[] = {
 
 /*  Celadon Dept Store 2nd Clerk 5F */
 /* const u16 _020FBB08[] = {ITEM_PROTEIN, ITEM_IRON, ITEM_CALCIUM, ITEM_ZINC, ITEM_CARBOS, ITEM_HP_UP, 0xFFFF}; */
-.halfword 0xFFFF
 
 /* Fushia City 2nd Clerk */
 /* const u16 _020FBA90[] = {ITEM_STEEL_MAIL, ITEM_DUSK_BALL, ITEM_QUICK_BALL, 0xFFFF}; */
@@ -267,22 +272,9 @@ const u16 *_0210FA3C[] = {
 
 /* Mt. Moon Square Shop */
 /* const u16 _020FBB16[] = {ITEM_POKE_DOLL, ITEM_FRESH_WATER, ITEM_SODA_POP, ITEM_LEMONADE, ITEM_REPEL, ITEM_HEART_MAIL, 0xFFFF}; */
-.org 0x020FBB16
-.halfword ITEM_POKE_DOLL
-.halfword ITEM_FRESH_WATER
-.halfword ITEM_SODA_POP
-.halfword ITEM_LEMONADE
-.halfword ITEM_REPEL
-.halfword ITEM_HEART_MAIL
-.halfword 0xFFFF
 
 /* Mahogany Town Shop Rockets */
 /* const u16 _020FBAB8[] = {ITEM_TINY_MUSHROOM, ITEM_POKE_BALL, ITEM_POTION, 0xFFFF}; */
-.org 0x020FBAB8
-.halfword ITEM_TINY_MUSHROOM
-.halfword ITEM_POKE_BALL
-.halfword ITEM_POTION
-.halfword 0xFFFF
 
 /* Mahogany Shop Post Rockets */
 /* const u16 _020FBBD8[] = {ITEM_GREAT_BALL, ITEM_SUPER_POTION, ITEM_HYPER_POTION, ITEM_ANTIDOTE, ITEM_PARALYZE_HEAL, ITEM_SUPER_REPEL, ITEM_REVIVE, ITEM_AIR_MAIL, 0xFFFF}; */

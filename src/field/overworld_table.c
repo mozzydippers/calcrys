@@ -1670,6 +1670,12 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     { .tag = 1795, .gfx =  297, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_IRON_CROWN
     { .tag = 1796, .gfx =  297, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_TERAPAGOS
     { .tag = 1797, .gfx = 1547, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_PECHARUNT
+    
+    NEW_NPC_ENTRY(0), // persian sitting
+    NEW_NPC_ENTRY(1), // celebi
+    NEW_NPC_ENTRY(2), // gimmighoul sealed
+    NEW_NPC_ENTRY(3), // gimmighoul walking
+    NEW_NPC_ENTRY(4), // mega ampharos
     { 0xFFFF, 0, 0},
 };
 

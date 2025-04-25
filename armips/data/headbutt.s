@@ -1321,16 +1321,16 @@ headbuttheader  47,   3,   0   // Route 45
     // normal slots
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
-    headbuttencounter SPECIES_VESPIQUEN, 66, 67
-    headbuttencounter SPECIES_RIBOMBEE, 66, 67
+    headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_RIBOMBEE, 66, 67
     headbuttencounter SPECIES_URSARING, 68, 69
+    headbuttencounter SPECIES_QUILLADIN, 66, 66
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_URSARING, 68, 69
-    headbuttencounter SPECIES_VESPIQUEN, 66, 69
     headbuttencounter SPECIES_GLISCOR, 69, 69
+    headbuttencounter SPECIES_QUILLADIN, 66, 66
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -2418,25 +2418,25 @@ headbuttheader 150,   0,   0   // Route 35 & Pokéathlon Dome Inbetween
 
 headbuttheader 151,  10,   4   // Route 47
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 15, 16
-    headbuttencounter SPECIES_PINECO, 15, 16
-    headbuttencounter SPECIES_PINECO, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_HOOTHOOT, 17, 18
-    headbuttencounter SPECIES_SPINARAK, 17, 18
-    headbuttencounter SPECIES_SPINARAK, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 52
     // special slots
-    headbuttencounter SPECIES_METAPOD, 25, 28
-    headbuttencounter SPECIES_BUTTERFREE, 25, 28
-    headbuttencounter SPECIES_BUTTERFREE, 25, 28
-    headbuttencounter SPECIES_HERACROSS, 25, 28
-    headbuttencounter SPECIES_HERACROSS, 25, 28
-    headbuttencounter SPECIES_HERACROSS, 27, 30
+    headbuttencounterwithform SPECIES_BRAVIARY, 1, 54, 54
+    headbuttencounterwithform SPECIES_BRAVIARY, 1, 54, 54
+    headbuttencounter SPECIES_BRAVIARY, 54, 54
+    headbuttencounter SPECIES_MANDIBUZZ, 54, 54
+    headbuttencounter SPECIES_RUFFLET, 50, 52
+    headbuttencounter SPECIES_VULLABY, 50, 52
     // normal trees
     treecoords 108, 383, 109, 383, -1, -1, -1, -1, -1, -1, -1, -1
     treecoords 100, 361, 100, 360, -1, -1, -1, -1, -1, -1, -1, -1
@@ -2457,18 +2457,18 @@ headbuttheader 151,  10,   4   // Route 47
 
 headbuttheader 152,   6,   0   // Route 48
     // normal slots
-    headbuttencounter SPECIES_HOOTHOOT, 15, 16
-    headbuttencounter SPECIES_PINECO, 15, 16
-    headbuttencounter SPECIES_PINECO, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_EXEGGCUTE, 15, 16
-    headbuttencounter SPECIES_HOOTHOOT, 17, 18
-    headbuttencounter SPECIES_SPINARAK, 17, 18
-    headbuttencounter SPECIES_SPINARAK, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
-    headbuttencounter SPECIES_EXEGGCUTE, 17, 18
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_RUFFLET, 50, 51
+    headbuttencounter SPECIES_RUFFLET, 50, 51
+    headbuttencounter SPECIES_VULLABY, 50, 51
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_VULLABY, 50, 51
+    headbuttencounter SPECIES_VULLABY, 50, 51
+    headbuttencounter SPECIES_RUFFLET, 50, 51
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -2550,15 +2550,15 @@ headbuttheader 173,   0,   0   // Safari Zone Gate (Inside)
 
 headbuttheader 174,  17,   0   // Safari Zone Gate (Outside)
     // normal slots
-    headbuttencounter SPECIES_CRABRAWLER, 50, 52
-    headbuttencounter SPECIES_CRABRAWLER, 50, 52
-    headbuttencounter SPECIES_CRABRAWLER, 50, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
     headbuttencounter SPECIES_EXEGGCUTE, 50, 52
     headbuttencounter SPECIES_EXEGGCUTE, 50, 52
     headbuttencounter SPECIES_EXEGGCUTE, 50, 52
-    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
-    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
-    headbuttencounter SPECIES_EXEGGCUTE, 50, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
+    headbuttencounter SPECIES_CRABRAWLER, 51, 52
     headbuttencounter SPECIES_EXEGGCUTE, 50, 52
     headbuttencounter SPECIES_EXEGGCUTE, 50, 52
     headbuttencounter SPECIES_MUNCHLAX, 50, 52

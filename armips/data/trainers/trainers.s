@@ -1033,7 +1033,7 @@ trainerdata 20, "Falkner"
         abilityslot 15
         level 18
         monwithform SPECIES_ORICORIO, 3
-        item ITEM_SHARP_BEAK
+        item ITEM_SITRUS_BERRY
         move MOVE_AIR_CUTTER
         move MOVE_ICY_WIND
         move MOVE_QUIVER_DANCE
