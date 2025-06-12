@@ -71,11 +71,13 @@
 
 // IMPLEMENT_LEVEL_CAP defines whether or not a configurable hard level cap system is built into the rom based on the value in LEVEL_CAP_VARIABLE
 // if the level is greater than or equal to LEVEL_CAP_VARIABLE, the pokémon will no longer gain experience
-// uncommenting IMPLEMENT_LEVEL_CAP enables the level cap system.  undefining LEVEL_CAP_VARIABLE will just cause compilation errors
+// uncommenting IMPLEMENT_LEVEL_CAP enables the level cap system.  make sure to also uncomment LEVEL_CAP_VARIABLE in the process
 // uncommenting UNCAP_CANDIES_FROM_LEVEL_CAP will allow for rare candies to not be capped by the level cap even with the level cap in place, like run & bun
+// uncommenting ALLOW_LEVEL_CAP_EVOLVE will allow for rare candies to evolve pokemon already at the level cap that can evolve at that level already
 #define IMPLEMENT_LEVEL_CAP
 #define LEVEL_CAP_VARIABLE 0x416F
 #define UNCAP_CANDIES_FROM_LEVEL_CAP
+#define ALLOW_LEVEL_CAP_EVOLVE
 
 // UPDATE_OVERWORLD_POISON will remove overworld poison if enabled
 // comment the line out below to retain overworld poison
@@ -124,6 +126,10 @@
 // uncommenting IMPLEMENT_SCALING enables dynamic scaling.  Undefining SCALING_TYPE_VARIABLE will just cause compilation errors
 #define IMPLEMENT_SCALING
 #define SCALING_TYPE_VARIABLE 0x406A
+
+// Friendship grants additional bonuses.
+// Comment out the line below to revert back to Gen 5- behaviour
+//#define FRIENDSHIP_EFFECTS
 
 // RESTORE_ITEMS_AT_BATTLE_END will restore held items that are single-use at the end of battle (Gen 9)
 // comment out the line below to revert back to Gen 8- behavior
