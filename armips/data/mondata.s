@@ -113,7 +113,7 @@ mondata SPECIES_CHARMANDER, "Charmander"
     abilities ABILITY_BLAZE, ABILITY_SOLAR_POWER
     runchance 0
     colorflip BODY_COLOR_RED, 0
-    mondexentry SPECIES_CHARMANDER, "If Charmander is healthy, the flame on\nthe tip of its tail will burn vigorously\nand won’t go out even if it gets a bit wet."
+    mondexentry SPECIES_CHARMANDER, "If it's healthy, the flame on the tip\nof its tail will burn vigorously, even\nif it gets a bit wet."
     mondexclassification SPECIES_CHARMANDER, "Lizard Pokémon"
     mondexheight SPECIES_CHARMANDER, "2’00”"
     mondexweight SPECIES_CHARMANDER, "18.7 lbs."
@@ -155,7 +155,7 @@ mondata SPECIES_CHARIZARD, "Charizard"
     abilities ABILITY_BLAZE, ABILITY_SOLAR_POWER
     runchance 0
     colorflip BODY_COLOR_RED, 0
-    mondexentry SPECIES_CHARIZARD, "It uses its wings to fly sky-high. The more\nexperience it gains in battle, the greater\nthe temperature at which its flames burn."
+    mondexentry SPECIES_CHARIZARD, "It uses its wings to fly high.\nThe temperature of its fire increases\nas it gains experience in battle."
     mondexclassification SPECIES_CHARIZARD, "Flame Pokémon"
     mondexheight SPECIES_CHARIZARD, "5’07”"
     mondexweight SPECIES_CHARIZARD, "199.5 lbs."
@@ -302,7 +302,7 @@ mondata SPECIES_WEEDLE, "Weedle"
     abilities ABILITY_SHIELD_DUST, ABILITY_RUN_AWAY
     runchance 0
     colorflip BODY_COLOR_BROWN, 0
-    mondexentry SPECIES_WEEDLE, "The barb on top of its head\nsecretes a strong poison.\nIt uses this toxic barb to protect itself."
+    mondexentry SPECIES_WEEDLE, "The barb on top of its head\nsecretes strong poison. It uses\nthis toxic barb to protect itself."
     mondexclassification SPECIES_WEEDLE, "Hairy Bug Pokémon"
     mondexheight SPECIES_WEEDLE, "1’00”"
     mondexweight SPECIES_WEEDLE, "7.1 lbs."
@@ -5216,7 +5216,7 @@ mondata SPECIES_PUPITAR, "Pupitar"
     abilities ABILITY_SHED_SKIN, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
-    mondexentry SPECIES_PUPITAR, "It will not stay still, even while\nit's a pupa. It already has arms\rand legs under its solid shell."
+    mondexentry SPECIES_PUPITAR, "It will not stay still, even while\nit's a pupa. It already has arms\nand legs under its solid shell."
     mondexclassification SPECIES_PUPITAR, "Hard Shell Pokémon"
     mondexheight SPECIES_PUPITAR, "3’11”"
     mondexweight SPECIES_PUPITAR, "335.1 lbs."
@@ -16052,7 +16052,7 @@ mondata SPECIES_AVALUGG, "Avalugg"
     abilities ABILITY_OWN_TEMPO, ABILITY_ICE_BODY
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_AVALUGG, "The way several Bergmite huddle on its\nback make it look like an aircraft\ncarrier made of ice."
+    mondexentry SPECIES_AVALUGG, "At high latitudes, this Pokémon can be\nfound with clusters of Bergmite on its\nback as it swims among the icebergs."
     mondexclassification SPECIES_AVALUGG, "Iceberg Pokémon"
     mondexheight SPECIES_AVALUGG, "6’07”"
     mondexweight SPECIES_AVALUGG, "1113.3 lbs."
@@ -16745,7 +16745,7 @@ mondata SPECIES_WISHIWASHI, "Wishiwashi"
     abilities ABILITY_SCHOOLING, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_WISHIWASHI, "They’re weak, so they move in schools.\nHowever, they can also often be seen all\nalone, having strayed from the school."
+    mondexentry SPECIES_WISHIWASHI, "On their own, they're very weak. But when\nWishiwashi pool their power together in\na school, they become a demon of the sea."
     mondexclassification SPECIES_WISHIWASHI, "Small Fry Pokémon"
     mondexheight SPECIES_WISHIWASHI, "0’08”"
     mondexweight SPECIES_WISHIWASHI, "0.7 lbs."
@@ -18698,7 +18698,7 @@ mondata SPECIES_COALOSSAL, "Coalossal"
     abilities ABILITY_STEAM_ENGINE, ABILITY_FLAME_BODY
     runchance 0
     colorflip BODY_COLOR_BLACK, 0
-    mondexentry SPECIES_COALOSSAL, "While engaged in battle, its mountain\nof coal will burn bright red, scorching\nthe surrounding area with sparks."
+    mondexentry SPECIES_COALOSSAL, "While it's engaged in battle, its mountain\nof coal will burn bright red, sending off\nsparks that scorch the surrounding area."
     mondexclassification SPECIES_COALOSSAL, "Coal Pokémon"
     mondexheight SPECIES_COALOSSAL, "9’02”"
     mondexweight SPECIES_COALOSSAL, "684.5 lbs."

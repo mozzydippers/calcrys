@@ -945,6 +945,40 @@ u32 LONG_CALL UseItemMonAttrChangeCheck(struct PLIST_WORK *wk, void *dat)
         return TRUE;
     }
 
+    if (wk->dat->item == ITEM_INFINITE_CANDY) {
+    s32 stack_data[4];
+    #define sp60 stack_data[3]
+    #define sp58 stack_data[2]
+    #define sp54 stack_data[1]
+    #define sp5C stack_data[0]
+    BOOL hadEffect;
+    BOOL effectFound;
+        
+        hadEffect = FALSE;
+        effectFound = FALSE;
+        sp54 = GetMonData(pp, MON_DATA_HP, NULL);
+        sp58 = GetMonData(pp, MON_DATA_MAXHP, NULL);
+        sp5C = GetMonData(pp, MON_DATA_LEVEL, NULL);
+        if (sp5C < GetLevelCap()) {
+            u16 species = (u16)GetMonData(pp, MON_DATA_SPECIES, NULL);
+            // u8 level = (u8)(GetMonData(pp, MON_DATA_LEVEL, NULL) + 1);
+            // u32 exp = GetMonData(pp, MON_DATA_EXPERIENCE, NULL);
+            u32 growthrate = (u32)PokePersonalParaGet(species, PERSONAL_EXP_GROUP);
+            u32 maxexp = GetExpByGrowthRateAndLevel((int)growthrate, GetLevelCap());
+            //AddMonData(pp, MON_DATA_EXPERIENCE, CalcMonExpToNextLevel(pp));
+            SetMonData(pp, MON_DATA_EXPERIENCE, &maxexp);
+            RecalcPartyPokemonStats(pp);
+            if (sp54 == 0) {
+                sp60 = GetMonData(pp, MON_DATA_MAXHP, NULL);
+                RestoreMonHPBy(pp, sp54, sp60, sp60 - sp58);
+            }
+            hadEffect = TRUE;
+        }
+        effectFound = TRUE;
+    }
+#undef sp60
+#undef sp54
+#undef sp5c
     return FALSE;
 }
 
@@ -1000,7 +1034,7 @@ BOOL LONG_CALL UseItemOnPokemon(struct PartyPokemon *mon, u16 itemID, u16 moveId
         SetMonData(mon, MON_DATA_STATUS, &sp58);
         hadEffect = TRUE;
     }
-
+     
     sp54 = GetMonData(mon, MON_DATA_HP, NULL);
     sp58 = GetMonData(mon, MON_DATA_MAXHP, NULL);
     if ((GetItemAttr_PreloadedItemData(itemData, ITEM_PARAM_DEATH_RECOVERY) || GetItemAttr_PreloadedItemData(itemData, ITEM_PARAM_ALL_DEATH_RECOVERY)) 
@@ -1019,15 +1053,15 @@ BOOL LONG_CALL UseItemOnPokemon(struct PartyPokemon *mon, u16 itemID, u16 moveId
     }
 
     sp5C = GetMonData(mon, MON_DATA_LEVEL, NULL);
-    if (GetItemAttr_PreloadedItemData(itemData, ITEM_PARAM_LEVEL_UP)) {        
-        if (sp5C < GetLevelCap()) {
-            u16 species = (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
+    if (GetItemAttr_PreloadedItemData(itemData, ITEM_PARAM_LEVEL_UP)) {
+        if (sp5C < 100) {
+            // u16 species = (u16)GetMonData(mon, MON_DATA_SPECIES, NULL);
             // u8 level = (u8)(GetMonData(mon, MON_DATA_LEVEL, NULL) + 1);
             // u32 exp = GetMonData(mon, MON_DATA_EXPERIENCE, NULL);
-            u32 growthrate = (u32)PokePersonalParaGet(species, PERSONAL_EXP_GROUP);
-            u32 maxexp = GetExpByGrowthRateAndLevel((int)growthrate, GetLevelCap());
-            //AddMonData(mon, MON_DATA_EXPERIENCE, CalcMonExpToNextLevel(mon));
-            SetMonData(mon, MON_DATA_EXPERIENCE, &maxexp);
+            // u32 growthrate = (u32)PokePersonalParaGet(species, PERSONAL_EXP_GROUP);
+            // u32 maxexp = GetExpByGrowthRateAndLevel((int)growthrate, GetLevelCap());
+            AddMonData(mon, MON_DATA_EXPERIENCE, CalcMonExpToNextLevel(mon));
+            // SetMonData(mon, MON_DATA_EXPERIENCE, &maxexp);
             RecalcPartyPokemonStats(mon);
             if (sp54 == 0) {
                 sp60 = GetMonData(mon, MON_DATA_MAXHP, NULL);
@@ -1376,6 +1410,7 @@ void LONG_CALL UpdatePassiveForms(struct PartyPokemon *pp)
             form = (pid % 100 == 0); // 1/100 three seg / family of three
             break;
 #ifdef IMPLEMENT_DYNAMIC_WILD_SPECIES_FORMS
+        case SPECIES_BASCULIN:
         case SPECIES_SHELLOS:
         case SPECIES_GASTRODON:
             form = gf_rand() % 2; // allow both to show up

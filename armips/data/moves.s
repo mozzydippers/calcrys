@@ -10042,7 +10042,7 @@ movedata MOVE_LIGHT_OF_RUIN, "Light of Ruin"
 movedata MOVE_ORIGIN_PULSE, "Origin Pulse"
     battleeffect MOVE_EFFECT_HIT
     pss SPLIT_SPECIAL
-    basepower 120
+    basepower 110
     type TYPE_WATER
     accuracy 100
     pp 10

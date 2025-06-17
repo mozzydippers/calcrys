@@ -70,8 +70,11 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_MIST1:
                         case WEATHER_SYS_MIST2:
-                            scriptnum = SUB_SEQ_OVERWORLD_FOG;
+                    //        scriptnum = SUB_SEQ_OVERWORLD_FOG;
+                    //        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
                             break;
                         case WEATHER_SYS_HIGH_SUN:
                         case 14:
