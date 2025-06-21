@@ -469,6 +469,8 @@
 #define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (MAX_BASE_SUBSCRIPT_NUM + 8)
 
 #define SUB_SEQ_STRENGTH_SAP                          (MAX_BASE_SUBSCRIPT_NUM + 9)
+#define SUB_SEQ_HEAL_PULSE                            (MAX_BASE_SUBSCRIPT_NUM + 10)
+#define SUB_SEQ_POLLEN_PUFF_HEAL                      (MAX_BASE_SUBSCRIPT_NUM + 11)
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
@@ -664,7 +666,10 @@
 #define ADD_STATUS_EFF_MORTAL_SPIN                     (189)
 #define ADD_STATUS_EFF_TIDY_UP                         (190)
 #define ADD_STATUS_EFF_BURN_AND_DRAIN_HEALTH           (191)
+// custom
 #define ADD_STATUS_EFF_STRENGTH_SAP                    (192)
+#define ADD_STATUS_EFF_HEAL_PULSE                      (193)
+#define ADD_STATUS_EFF_POLLEN_PUFF_HEAL                (194)
 
 // additional effect constants
 #define ADD_STATUS_NONE (0)
