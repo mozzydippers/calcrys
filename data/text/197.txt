@@ -1998,6 +1998,3 @@ The opposing {STRVAR_1 1, 0, 0} can’t be hit\nby attacks from its ally Pokémo
 
 
 Radio waves alter the move categories!
-{STRVAR_1 1, 0, 0} is about to be\nattacked by its {STRVAR_1 6, 1, 0}!
-The wild {STRVAR_1 1, 0, 0} is about to be\nattacked by its {STRVAR_1 6, 1, 0}!
-The opposing {STRVAR_1 1, 0, 0} is about to be\nattacked by its {STRVAR_1 6, 1, 0}!
