@@ -456,7 +456,7 @@
 #define SUB_SEQ_BURN_AND_DRAIN_HEALTH                 (446)
 #define SUB_SEQ_HANDLE_TELEPATHY                      (447)
 
-#define MAX_BASE_SUBSCRIPT_NUM 446
+#define MAX_BASE_SUBSCRIPT_NUM 447
 
 // calcrys custom
 #define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (MAX_BASE_SUBSCRIPT_NUM + 1)
@@ -468,6 +468,7 @@
 #define SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES             (MAX_BASE_SUBSCRIPT_NUM + 7)
 #define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (MAX_BASE_SUBSCRIPT_NUM + 8)
 
+#define SUB_SEQ_STRENGTH_SAP                          (MAX_BASE_SUBSCRIPT_NUM + 9)
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
@@ -663,6 +664,7 @@
 #define ADD_STATUS_EFF_MORTAL_SPIN                     (189)
 #define ADD_STATUS_EFF_TIDY_UP                         (190)
 #define ADD_STATUS_EFF_BURN_AND_DRAIN_HEALTH           (191)
+#define ADD_STATUS_EFF_STRENGTH_SAP                    (192)
 
 // additional effect constants
 #define ADD_STATUS_NONE (0)

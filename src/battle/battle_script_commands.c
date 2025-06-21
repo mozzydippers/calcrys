@@ -109,6 +109,9 @@ u32 LoadCaptureSuccessSPA(u32 id);
 u32 LoadCaptureSuccessSPAStarEmitter(u32 id);
 u32 LoadCaptureSuccessSPANumEmitters(u32 id);
 
+// custom
+BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw, struct BattleStruct* sp);
+
 #ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
 const u8 *BattleScrCmdNames[] =
 {
@@ -372,12 +375,13 @@ const u8 *BattleScrCmdNames[] =
     "AddEntryHazardToQueue",
     "RemoveEntryHazardFromQueue",
     // "YourCustomCommand",
+    "StrengthSapCalc",
 };
 
 u32 cmdAddress = 0;
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0xFF
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x102
 
 const btl_scr_cmd_func NewBattleScriptCmdTable[] =
 {
@@ -416,6 +420,7 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] =
     [0x101 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_101_addentryhazardtoqueue,
     [0x102 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_102_removeentryhazardfromqueue,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
+    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_strengthsapcalc, // was 0xFD btl_scr_cmd_FD_strengthsapcalc
 };
 
 // entries before 0xFFFE are banned for mimic and metronome--after is just banned for metronome.  table ends with 0xFFFF
@@ -3261,6 +3266,31 @@ BOOL btl_scr_cmd_102_removeentryhazardfromqueue(void *bsys UNUSED, struct Battle
     u32 side = (1 & GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx)));
     u32 hazard = read_battle_script_param(ctx);
     BattleContext_RemoveEntryHazardFromQueue(ctx, side, hazard);
+
+    return FALSE;
+}
+
+/**
+ *  @brief script command to calculate Strength Sap healing
+ *
+ *  @param bw battle work structure
+ *  @param sp global battle structure
+ *  @return FALSE
+ */
+BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw UNUSED, struct BattleStruct* sp) {
+    IncrementBattleScriptPtr(sp, 1);
+
+    s32 damage;
+    u16 attack;
+    s8 atkstate;
+
+    attack = BattlePokemonParamGet(sp, sp->defence_client, BATTLE_MON_DATA_ATK, NULL);
+    atkstate = BattlePokemonParamGet(sp, sp->defence_client, BATTLE_MON_DATA_STATE_ATK, NULL);
+
+    damage = attack * StatBoostModifiers[atkstate][0];
+    damage /= StatBoostModifiers[atkstate][1];
+
+    sp->hp_calc_work = -damage;
 
     return FALSE;
 }
