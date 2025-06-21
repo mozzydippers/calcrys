@@ -1228,6 +1228,7 @@ _0AB4: // Trainer 61
     trainertextentry  61, TEXT_DEFEATED_IN_BATTLE, "Whoa! You’ve got more zip than me!\n"
     trainertextentry  61, TEXT_DEFEATED_IN_OVERWORLD, "We Hikers are at our best in\nthe mountains.\n"
     trainertextentry  61, TEXT_REMATCH_IN_OVERWORLD, "All righty, then!\nMy Pokémon and I are raring to go!\r"
+    trainertextentry  61, TEXT_PLAYER_LOSES, "Huh? Your teams all tired!\nA trip to the Pokémon Center will do\fyou some good!\n"
 
 _0AC4: // Trainer 66
     trainertextentry  66, TEXT_NOTICE_IN_OVERWORLD, "I’m confident in my ability to raise\nPokémon. Want to see?\r"

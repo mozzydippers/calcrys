@@ -3697,7 +3697,7 @@ mondata SPECIES_TOGEPI, "Togepi"
     evyields 0, 0, 0, 0, 0, 0
     items ITEM_NONE, ITEM_NONE
     genderratio 31
-    eggcycles 10
+    eggcycles 0
     basefriendship 50
     growthrate GROWTH_FAST
     egggroups EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED
@@ -8576,7 +8576,7 @@ mondata SPECIES_ROSERADE, "Roserade"
     abilities ABILITY_NATURAL_CURE, ABILITY_POISON_POINT
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
-    mondexentry SPECIES_ROSERADE, "Its sweet aroma attracts prey.\nThen it spews poison. The more\ntoxic it is, the sweeter its aroma."
+    mondexentry SPECIES_ROSERADE, "The poison in its right hand is quick acting.\nThe poison in its left hand is slow acting.\nBoth are life threatening."
     mondexclassification SPECIES_ROSERADE, "Bouquet Pokémon"
     mondexheight SPECIES_ROSERADE, "2’11”"
     mondexweight SPECIES_ROSERADE, "32.0 lbs."
@@ -9980,7 +9980,7 @@ mondata SPECIES_PORYGON_Z, "Porygon-Z"
     basefriendship 50
     growthrate GROWTH_MEDIUM_FAST
     egggroups EGG_GROUP_MINERAL, EGG_GROUP_MINERAL
-    abilities ABILITY_TRACE, ABILITY_DOWNLOAD
+    abilities ABILITY_ADAPTABILITY, ABILITY_DOWNLOAD
     runchance 0
     colorflip BODY_COLOR_RED, 0
     mondexentry SPECIES_PORYGON_Z, "Its programming was modified to enable\nit to travel through alien dimensions.\nSeems there might have been an error..."
@@ -10001,7 +10001,7 @@ mondata SPECIES_GALLADE, "Gallade"
     basefriendship 35
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS
-    abilities ABILITY_SHARPNESS, ABILITY_TRACE
+    abilities ABILITY_STEADFAST, ABILITY_SHARPNESS
     runchance 0
     colorflip BODY_COLOR_WHITE, 0
     mondexentry SPECIES_GALLADE, "Because it can sense what its foe\nis thinking, its attacks burst out\nfirst, fast, and fierce."

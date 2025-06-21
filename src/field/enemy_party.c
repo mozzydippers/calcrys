@@ -427,12 +427,12 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         ab2 = PokePersonalParaGet(species, PERSONAL_ABILITY_2);
         if (ab2 != 0)
         {
-            if (abilityslot & 1 || abilityslot == 32) // abilityslot 32 gives second slot in vanilla
+            if (abilityslot == 1 || abilityslot == 32) // abilityslot 32 gives second slot in vanilla
             {
-                SetMonData(mons[i], MON_DATA_ABILITY, (u8 *)&ab1);
+                SetMonData(mons[i], MON_DATA_ABILITY, (u8 *)&ab2);
             }
             else{
-                SetMonData(mons[i], MON_DATA_ABILITY, (u8 *)&ab2);
+                SetMonData(mons[i], MON_DATA_ABILITY, (u8 *)&ab1);
             }
         }
         else
@@ -612,7 +612,7 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
 	
 	else*/ {
 		if (DoScaling == 1) {
-			level = avgLevel;
+			level = (avgLevel - 1);
 			exp = PokeLevelExpGet(species,level);
 			SetMonData(encounterPartyPokemon, MON_DATA_LEVEL, &level);
 			SetMonData(encounterPartyPokemon, MON_DATA_EXPERIENCE, (u8 *)&exp);
@@ -621,7 +621,7 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
 		}
 	
 		if (DoScaling == 2) {
-			level = highLevel;
+			level = (highLevel - 1);
 			exp = PokeLevelExpGet(species,level);
 			SetMonData(encounterPartyPokemon, MON_DATA_LEVEL, &level);
 			SetMonData(encounterPartyPokemon, MON_DATA_EXPERIENCE, (u8 *)&exp);

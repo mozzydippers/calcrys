@@ -3149,7 +3149,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
             }
             break;
         }
-        case MOVE_POLLEN_PUFF: {
+        /*case MOVE_POLLEN_PUFF: {
             if (ctx->battlemon[ctx->defence_client].hp == (s32)ctx->battlemon[ctx->defence_client].maxhp) {
                 ctx->oneTurnFlag[ctx->attack_client].parental_bond_flag = 0;
                 ctx->oneTurnFlag[ctx->attack_client].parental_bond_is_active = FALSE;
@@ -3162,7 +3162,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
                 return TRUE;
             }
             break;
-        }
+        }*/
         case MOVE_BELLY_DRUM: {
             if ((ctx->battlemon[ctx->defence_client].hp < (s32)ctx->battlemon[ctx->defence_client].maxhp / 2)
             || ctx->battlemon[ctx->defence_client].states[STAT_ATTACK] == 12) {

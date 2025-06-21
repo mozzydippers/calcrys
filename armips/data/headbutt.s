@@ -948,18 +948,18 @@ headbuttheader  36,  35,   0   // Route 32
 
 headbuttheader  37,   4,   0   // Route 33
     // normal slots
+    headbuttencounter SPECIES_FEAROW, 26, 26
+    headbuttencounter SPECIES_FEAROW, 26, 26
+    headbuttencounter SPECIES_FEAROW, 26, 26
+    headbuttencounter SPECIES_FEAROW, 26, 26
+    headbuttencounter SPECIES_AIPOM, 22, 25
+    headbuttencounter SPECIES_AIPOM, 22, 25
+    headbuttencounter SPECIES_SPEAROW, 22, 25
+    headbuttencounter SPECIES_SPEAROW, 22, 25
+    headbuttencounter SPECIES_SPEAROW, 22, 25
+    headbuttencounter SPECIES_AIPOM, 22, 25
+    headbuttencounter SPECIES_AIPOM, 22, 25
     headbuttencounter SPECIES_HERACROSS, 26, 26
-    headbuttencounter SPECIES_SPEAROW, 22, 25
-    headbuttencounter SPECIES_SPEAROW, 22, 25
-    headbuttencounter SPECIES_AIPOM, 22, 25
-    headbuttencounter SPECIES_SPEAROW, 22, 25
-    headbuttencounter SPECIES_AIPOM, 22, 25
-    headbuttencounter SPECIES_FEAROW, 26, 26
-    headbuttencounter SPECIES_FEAROW, 26, 26
-    headbuttencounter SPECIES_FEAROW, 26, 26
-    headbuttencounter SPECIES_FEAROW, 26, 26
-    headbuttencounter SPECIES_AIPOM, 22, 25
-    headbuttencounter SPECIES_AIPOM, 22, 25
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0
@@ -1018,13 +1018,13 @@ headbuttheader  39,  14,   0   // Route 35
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
+    headbuttencounter SPECIES_YANMA, 10, 11
+    headbuttencounter SPECIES_EXEGGCUTE, 10, 11
+    headbuttencounter SPECIES_YANMA, 10, 11
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
     headbuttencounter SPECIES_EXEGGCUTE, 10, 11
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 11
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 11
-    headbuttencounter SPECIES_EXEGGCUTE, 10, 11
-    headbuttencounter SPECIES_EXEGGCUTE, 13, 14
+    headbuttencounter SPECIES_YANMA, 13, 14
     headbuttencounter SPECIES_EXEGGCUTE, 13, 14
     headbuttencounter SPECIES_EXEGGCUTE, 13, 14
     // special slots
@@ -1355,8 +1355,8 @@ headbuttheader  48,  10,   0   // Route 46
     headbuttencounter SPECIES_COMBEE, 6, 7
     headbuttencounter SPECIES_COMBEE, 6, 7
     headbuttencounter SPECIES_COMBEE, 6, 7
-    headbuttencounter SPECIES_COMBEE, 6, 7
     headbuttencounter SPECIES_TEDDIURSA, 6, 7
+    headbuttencounter SPECIES_COMBEE, 6, 7
     headbuttencounter SPECIES_TEDDIURSA, 6, 7
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
@@ -1848,18 +1848,18 @@ headbuttheader  73,  27,   0   // Violet City
 
 headbuttheader  74,  15,   0   // Azalea Town
     // normal slots
+    headbuttencounter SPECIES_ARBOK, 26, 26
+    headbuttencounter SPECIES_ARBOK, 26, 26
+    headbuttencounter SPECIES_TAROUNTULA, 22, 25
+    headbuttencounter SPECIES_YANMA, 22, 25
+    headbuttencounter SPECIES_ARBOK, 26, 26
+    headbuttencounter SPECIES_TAROUNTULA, 22, 25
+    headbuttencounter SPECIES_TAROUNTULA, 22, 25
+    headbuttencounter SPECIES_TAROUNTULA, 22, 25
+    headbuttencounter SPECIES_TAROUNTULA, 22, 25
+    headbuttencounter SPECIES_EKANS, 22, 25
+    headbuttencounter SPECIES_EKANS, 22, 25
     headbuttencounter SPECIES_HERACROSS, 26, 26
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
-    headbuttencounter SPECIES_EKANS, 22, 25
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
-    headbuttencounter SPECIES_EKANS, 22, 25
-    headbuttencounter SPECIES_ARBOK, 26, 26
-    headbuttencounter SPECIES_ARBOK, 26, 26
-    headbuttencounter SPECIES_ARBOK, 26, 26
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
-    headbuttencounter SPECIES_TAROUNTULA, 22, 25
     // special slots
     headbuttencounter SPECIES_NONE, 0, 0
     headbuttencounter SPECIES_NONE, 0, 0

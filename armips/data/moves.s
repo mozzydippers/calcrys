@@ -2150,7 +2150,7 @@ movedata MOVE_SPIKE_CANNON, "Spike Cannon"
     battleeffect MOVE_EFFECT_MULTI_HIT
     pss SPLIT_PHYSICAL
     basepower 25
-    type TYPE_WATER
+    type TYPE_NORMAL
     accuracy 100
     pp 15
     effectchance 0
@@ -4887,7 +4887,7 @@ movedata MOVE_ICE_BALL, "Ice Ball"
 // EFF : MOVE_EFFECT_FLINCH_HIT > MOVE_EFFECT_SET_SPIKES_HIT
 // BP : 60 > 90
 movedata MOVE_NEEDLE_ARM, "Needle Arm"
-    battleeffect MOVE_EFFECT_FLINCH_HIT
+    battleeffect MOVE_EFFECT_SET_SPIKES_HIT
     pss SPLIT_PHYSICAL
     basepower 90
     type TYPE_GRASS
@@ -10842,7 +10842,7 @@ movedata MOVE_HIGH_HORSEPOWER, "High Horsepower"
     movedescription MOVE_HIGH_HORSEPOWER, "The user fiercely\nattacks the target\nusing its entire body."
 
 movedata MOVE_STRENGTH_SAP, "Strength Sap"
-    battleeffect MOVE_EFFECT_HIT
+    battleeffect MOVE_EFFECT_STRENGTH_SAP
     pss SPLIT_STATUS
     basepower 0
     type TYPE_GRASS
