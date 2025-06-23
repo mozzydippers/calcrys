@@ -1683,6 +1683,11 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     NEW_NPC_ENTRY(3), // gimmighoul walking
     NEW_NPC_ENTRY(4), // mega ampharos
     NEW_NPC_ENTRY(5), // azumarill
+    NEW_NPC_ENTRY(6), // miltank
+    NEW_NPC_ENTRY(7), // hisui arcanine
+    NEW_NPC_ENTRY(8), // machop
+    NEW_NPC_ENTRY(9), // machoke
+    NEW_NPC_ENTRY(10), // flaaffy
     { 0xFFFF, 0, 0},
 };
 

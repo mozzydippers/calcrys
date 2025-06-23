@@ -472,6 +472,8 @@
 #define SUB_SEQ_HEAL_PULSE                            (MAX_BASE_SUBSCRIPT_NUM + 10)
 #define SUB_SEQ_POLLEN_PUFF_HEAL                      (MAX_BASE_SUBSCRIPT_NUM + 11)
 
+#define SUB_SEQ_OVERWORLD_WATER_SPORT                 (MAX_BASE_SUBSCRIPT_NUM + 12)
+
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
 #define ADD_STATUS_EFF_START_BATTLE                    (  0)

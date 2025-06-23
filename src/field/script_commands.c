@@ -325,7 +325,7 @@ BOOL ScrCmd_DaycareSanitizeMon(SCRIPTCONTEXT *ctx) {
  * ty blurose <3
  */
 
- struct HMMoveToTMId
+struct HMMoveToTMId
 {
     u16 move;
     u8 tmId;
@@ -343,7 +343,7 @@ struct HMMoveToTMId moveToTMIdTable[] =
     {MOVE_ROCK_CLIMB, 100},
 };
 
-BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT *ctx) {
+ BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT* ctx) {
     FieldSystem *fsys = ctx->fsys;
     u16 *slot = ScriptGetVarPointer(ctx);
     u16 move = ScriptGetVar(ctx);

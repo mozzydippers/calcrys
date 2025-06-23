@@ -10,10 +10,30 @@ _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
        // Trainer 210
+       trainertextentry 210, TEXT_LAST_MON_SENT_OUT, "Sorry, but there's no way I'll lose to\nyour Pokémon!\n"
+       trainertextentry 210, TEXT_LAST_MON_CRITICAL, "I can't let you beat me.\nThe honor of bird trainers everywhere\nis at stake!\n"
+       trainertextentry 210, TEXT_DEFEATED_IN_BATTLE, "...Shoot!\nYeah, I lost.\n"
+       trainertextentry 210, TEXT_PLAYER_LOSES, "How's that?!\nBird Pokémon are the best after all!\n"
        // Trainer 225
+       trainertextentry 225, TEXT_LAST_MON_SENT_OUT, "Behold my bug research!\n"
+       trainertextentry 225, TEXT_LAST_MON_CRITICAL, "My research isn't complete yet!\n"
+       trainertextentry 225, TEXT_DEFEATED_IN_BATTLE, "I give up! You're tough.\nI need to do some more research...\n"
+       trainertextentry 225, TEXT_PLAYER_LOSES, "What do you think of that?\n"
        // Trainer 226
+       trainertextentry 226, TEXT_LAST_MON_SENT_OUT, "OK!\nIt's the time you've been waiting for!\n"
+       trainertextentry 226, TEXT_LAST_MON_CRITICAL, "Stop it!\nCut that out!\n"
+       trainertextentry 226, TEXT_DEFEATED_IN_BATTLE, "Waaaaah! Waaaaah!\n"
+       trainertextentry 226, TEXT_PLAYER_LOSES, "Heheheh!\nThat's what you get when you challenge me!\n"
        // Trainer 229
+       trainertextentry 229, TEXT_LAST_MON_SENT_OUT, "I'll show you just how hard we've trained!\n"
+       trainertextentry 229, TEXT_LAST_MON_CRITICAL, "The future is just beyond the horizon!\n"
+       trainertextentry 229, TEXT_DEFEATED_IN_BATTLE, "I lost, I have to redo my training.\n"
+       trainertextentry 229, TEXT_PLAYER_LOSES, "If the trainer isn't focused, his Pokémon can't concentrate, either.\n"
        // Trainer 243
+       trainertextentry 243, TEXT_LAST_MON_SENT_OUT, "Are you brave or just ignorant?\nYou must have guts. Come on!\n"
+       trainertextentry 243, TEXT_LAST_MON_CRITICAL, "Something's wrong!\nThis just isn't right...\n"
+       trainertextentry 243, TEXT_DEFEATED_IN_BATTLE, "Hmm... I lost?\nHow about that!\n"
+       trainertextentry 243, TEXT_PLAYER_LOSES, "See? My Pokémon were as strong as I said!"
        // Trainer 262
        // Trainer 265
        // Trainer 273

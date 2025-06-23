@@ -2,6 +2,7 @@
 #include "../include/config.h"
 #include "../include/pokemon.h"
 #include "../include/battle.h"
+#include "../include/bag.h"
 #include "../include/constants/item.h"
 #include "../include/constants/moves.h"
 #include "../include/constants/species.h"
@@ -57,6 +58,54 @@ u8 LONG_CALL sub_0207B0B0(struct PLIST_WORK *wk, u8 *buf)
                     ++count;
                     PartyMenu_ContextMenuAddFieldMove(wk, move, fieldMoveIndex);
                     ++fieldMoveIndex;
+                }
+
+                // nabbed from kumakuma (@kumakuma1 on github)
+                u8 fieldMoveIndex = 0;
+                BAG_DATA *bag = Sav2_Bag_get(SaveBlock2_get());
+                u8 type1 = GetMonData(pp, MON_DATA_TYPE_1, NULL);
+                u8 type2 = GetMonData(pp, MON_DATA_TYPE_2, NULL);
+                u32 monSpecies = GetMonData(pp, MON_DATA_SPECIES_OR_EGG, 0);
+
+                if ((Bag_HasItem(bag, ITEM_HM02, 1, HEAPID_MAIN_HEAP)) == TRUE)
+                {
+                    if (count < 8 && (type1 == TYPE_FLYING || type2 == TYPE_FLYING))
+                    {
+                        buf[count] = PARTY_MON_CONTEXT_MENU_FLY;
+                        ++count;
+                        PartyMenu_ContextMenuAddFieldMove(wk, MOVE_FLY, fieldMoveIndex);
+                        ++fieldMoveIndex;
+                    }
+                }
+                if ((Bag_HasItem(bag, ITEM_HM03, 1, HEAPID_MAIN_HEAP)) == TRUE)
+                {
+                    if (count < 8 && (type1 == TYPE_WATER || type2 == TYPE_WATER))
+                    {
+                        buf[count] = PARTY_MON_CONTEXT_MENU_SURF;
+                        ++count;
+                        PartyMenu_ContextMenuAddFieldMove(wk, MOVE_SURF, fieldMoveIndex);
+                        ++fieldMoveIndex;
+                    }
+                }
+                if ((Bag_HasItem(bag, ITEM_HM06, 1, HEAPID_MAIN_HEAP)) == TRUE)
+                {
+                    if (count < 8 && (type1 == TYPE_WATER || type2 == TYPE_WATER))
+                    {
+                        buf[count] = PARTY_MON_CONTEXT_MENU_WHIRLPOOL;
+                        ++count;
+                        PartyMenu_ContextMenuAddFieldMove(wk, MOVE_WHIRLPOOL, fieldMoveIndex);
+                        ++fieldMoveIndex;
+                    }
+                }
+                if ((Bag_HasItem(bag, ITEM_HM07, 1, HEAPID_MAIN_HEAP)) == TRUE)
+                {
+                    if (count < 8 && (type1 == TYPE_WATER || type2 == TYPE_WATER))
+                    {
+                        buf[count] = PARTY_MON_CONTEXT_MENU_WATERFALL;
+                        ++count;
+                        PartyMenu_ContextMenuAddFieldMove(wk, MOVE_WATERFALL, fieldMoveIndex);
+                        ++fieldMoveIndex;
+                    }
                 }
             }
         }

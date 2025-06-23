@@ -3893,7 +3893,7 @@ mondata SPECIES_AZUMARILL, "Azumarill"
     abilities ABILITY_THICK_FAT, ABILITY_HUGE_POWER
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
-    mondexentry SPECIES_AZUMARILL, "The bubble-like pattern on its stomach\nhelps it camouflage itself when it's\nin the water."
+    mondexentry SPECIES_AZUMARILL, "The bubble-like pattern on its\nstomach helps it camouflage\nitself when it's in the water."
     mondexclassification SPECIES_AZUMARILL, "Aqua Rabbit Pokémon"
     mondexheight SPECIES_AZUMARILL, "2’07”"
     mondexweight SPECIES_AZUMARILL, "62.8 lbs."

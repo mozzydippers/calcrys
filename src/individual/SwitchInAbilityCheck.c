@@ -141,6 +141,10 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES;
                             break;
+                        case 31:
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            scriptnum = SUB_SEQ_OVERWORLD_WATER_SPORT;
+                            break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                         sp->weather_check_flag = 1;
@@ -305,13 +309,6 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
                                     break;
-                                case ABILITY_WATER_VEIL:
-                                    sp->battlemon[client_no].ability_activated_flag = 1; {
-                                        sp->battlerIdTemp = sp->attack_client;
-                                        scriptnum = SUB_SEQ_WATER_VEIL_AQUA_RING;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
                                 /* case ABILITY_DESOLATE_LAND:
                                     sp->battlemon[client_no].appear_check_flag = 1;
                                     if ((sp->field_condition & WEATHER_EXTREMELY_HARSH_SUNLIGHT) == 0) {
@@ -337,6 +334,17 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         }
                         if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                             sp->battlerIdTemp = client_no;
+                            break;
+                        }
+                    }
+
+                    // calcrys custom water veil
+                    {
+                        if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_WATER_VEIL)) {
+                            sp->battlemon[client_no].ability_activated_flag = 1; 
+                            sp->battlerIdTemp = client_no;
+                            scriptnum = SUB_SEQ_WATER_VEIL_AQUA_RING;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         }
                     }
