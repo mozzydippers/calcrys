@@ -476,6 +476,8 @@
 
 #define SUB_SEQ_OVERWORLD_WATER_SPORT                 (MAX_BASE_SUBSCRIPT_NUM + 12)
 
+#define SUB_SEQ_COACHING                              (MAX_BASE_SUBSCRIPT_NUM + 13)
+
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
 #define ADD_STATUS_EFF_START_BATTLE                    (  0)
@@ -674,6 +676,7 @@
 #define ADD_STATUS_EFF_STRENGTH_SAP                    (192)
 #define ADD_STATUS_EFF_HEAL_PULSE                      (193)
 #define ADD_STATUS_EFF_POLLEN_PUFF_HEAL                (194)
+#define ADD_STATUS_EFF_COACHING                        (195)
 
 // additional effect constants
 #define ADD_STATUS_NONE (0)
