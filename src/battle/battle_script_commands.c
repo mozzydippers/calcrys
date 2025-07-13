@@ -113,6 +113,7 @@ u32 LoadCaptureSuccessSPANumEmitters(u32 id);
 BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw, struct BattleStruct* sp);
 BOOL btl_scr_cmd_custom_02_boltbeakdamagecalc(void* bw, struct BattleStruct* sp);
 BOOL btl_scr_cmd_custom_03_checktargetispartner(void* bw, struct BattleStruct* sp);
+BOOL btl_scr_cmd_custom_04_tryemergencyexit(void* bw, struct BattleStruct* sp);
 
 #ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
 const u8 *BattleScrCmdNames[] =
@@ -380,6 +381,7 @@ const u8 *BattleScrCmdNames[] =
     "StrengthSapCalc",
     "BoltBeakDamageCalc",
     "CheckTargetIsPartner",
+    "TryEmergencyExit",
 };
 
 u32 cmdAddress = 0;
@@ -427,6 +429,7 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] =
     [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_strengthsapcalc, // was 0xFD btl_scr_cmd_FD_strengthsapcalc
     [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 2] = btl_scr_cmd_custom_02_boltbeakdamagecalc,
     [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 3] = btl_scr_cmd_custom_03_checktargetispartner,
+    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 4] = btl_scr_cmd_custom_04_tryemergencyexit,
 };
 
 // entries before 0xFFFE are banned for mimic and metronome--after is just banned for metronome.  table ends with 0xFFFF
@@ -3336,6 +3339,25 @@ BOOL btl_scr_cmd_custom_03_checktargetispartner(void* bw, struct BattleStruct* s
     //    debug_printf("target is ally\n")
     }
     
+    return FALSE;
+}
+
+/**
+ *  @brief script command to check if the battle format isn't a trainer
+ *  
+ *  @param bw battle work structure
+ *  @param sp global battle structure
+ *  @return FALSE
+ */
+BOOL btl_scr_cmd_custom_04_tryemergencyexit(void* bw, struct BattleStruct* sp) {
+    IncrementBattleScriptPtr(sp, 1);
+    int adrs = read_battle_script_param(sp);
+        
+    if (BattleTypeGet(bw) != BATTLE_TYPE_TRAINER)
+    {
+        IncrementBattleScriptPtr(sp, adrs);
+    }
+
     return FALSE;
 }
 

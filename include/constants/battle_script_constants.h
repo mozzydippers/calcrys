@@ -478,6 +478,8 @@
 
 #define SUB_SEQ_COACHING                              (MAX_BASE_SUBSCRIPT_NUM + 13)
 
+#define SUB_SEQ_HANDLE_EMERGENCY_EXIT                 (MAX_BASE_SUBSCRIPT_NUM + 14)
+
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
 #define ADD_STATUS_EFF_START_BATTLE                    (  0)
