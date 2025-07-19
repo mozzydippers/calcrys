@@ -115,6 +115,9 @@ const u16 BulletproofMoveList[] =
     MOVE_SYRUP_BOMB,
     MOVE_WEATHER_BALL,
     MOVE_ZAP_CANNON,
+    // calcrys custom
+    MOVE_FLASH_CANNON,
+    MOVE_MOONBLAST,
 };
 
 const u16 WindMovesTable[] = {

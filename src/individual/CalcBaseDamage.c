@@ -842,13 +842,14 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
                 continue;
             }
 
-            if ((AttackingMon.ability == ABILITY_RIVALRY)
+            // calcrys custom, no longer drops attack
+            /* if ((AttackingMon.ability == ABILITY_RIVALRY)
             && (AttackingMon.sex != DefendingMon.sex)
             && (AttackingMon.sex != POKEMON_GENDER_UNKNOWN)
             && (DefendingMon.sex != POKEMON_GENDER_UNKNOWN)) {
                 basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__0_75);
                 continue;
-            }
+            } */
 
             if (MoveIsAffectedByNormalizeVariants(moveno)) {
                 // handle Aerilate - 20% boost if a Normal type move was changed to a Flying type move. Does not boost Flying type moves themselves
@@ -883,9 +884,10 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
             }
 
             // handle Iron Fist
+            // calcrys custom change, 1.2x -> 1.3x
             if ((AttackingMon.ability == ABILITY_IRON_FIST)
             && IsElementInArray(PunchingMovesTable, (u16 *)&moveno, NELEMS(PunchingMovesTable), sizeof(PunchingMovesTable[0]))) {
-                basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_2);
+                basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_3);
                 continue;
             }
 
@@ -951,9 +953,25 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
                 continue;
             }
 
+            // calcrys custom, additionally boosts fire moves
+            if ((AttackingMon.ability == ABILITY_FLARE_BOOST)
+                && (AttackingMon.condition & STATUS_BURN)
+                && (movetype == TYPE_FIRE)) {
+                basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
+                continue;
+            }
+
             // handle Toxic Boost
             if ((AttackingMon.ability == ABILITY_TOXIC_BOOST)
             && (AttackingMon.condition & (STATUS_BAD_POISON | STATUS_POISON))) {
+                basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
+                continue;
+            }
+
+            // calcrys custom, additionally boosts poison moves
+            if ((AttackingMon.ability == ABILITY_TOXIC_BOOST)
+                && (AttackingMon.condition & (STATUS_BAD_POISON | STATUS_POISON))
+                && (movetype == TYPE_POISON)) {
                 basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
                 continue;
             }
@@ -1262,10 +1280,11 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
                 && (movesplit == SPLIT_SPECIAL)) {
                     attackModifier = QMul_RoundUp(attackModifier, UQ412__1_5);
                 }
+                // calcrys custom, boosts both phys & special
                 if ((!flowerGiftAppliedForAttackModifier)
                 && (field_cond & WEATHER_SUNNY_ANY)
                 && (AttackingMon.ability == ABILITY_FLOWER_GIFT)
-                && (movesplit == SPLIT_PHYSICAL)) {
+                /* && (movesplit == SPLIT_PHYSICAL) */ ) {
                     flowerGiftAppliedForAttackModifier = TRUE;
                     attackModifier = QMul_RoundUp(attackModifier, UQ412__1_5);
                 }
@@ -1356,10 +1375,11 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
             // handle weather boosts
             if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_CLOUD_NINE) == 0)
             && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AIR_LOCK) == 0)) {
+                // calcrys custom, boosts both phys & special
                 if ((!flowerGiftAppliedForAttackModifier)
                 && (field_cond & WEATHER_SUNNY_ANY)
                 && (GetBattlerAbility(sp, BATTLER_ALLY(attacker)) == ABILITY_FLOWER_GIFT)
-                && (movesplit == SPLIT_PHYSICAL)) {
+                /* && (movesplit == SPLIT_PHYSICAL) */ ) {
                     flowerGiftAppliedForAttackModifier = TRUE;
                     attackModifier = QMul_RoundUp(attackModifier, UQ412__1_5);
                 }
@@ -1594,8 +1614,9 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
     // Abilities
     for (i = 0; i < maxBattlers; i++) {
         if (defender == sp->rawSpeedNonRNGClientOrder[i]) {
+            // calcrys custom, no longer boosts def
             // handle weather boosts
-            if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_CLOUD_NINE) == 0)
+            /* if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_CLOUD_NINE) == 0)
             && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AIR_LOCK) == 0)) {
                 if ((!flowerGiftAppliedForDefenseModifier)
                 && (field_cond & WEATHER_SUNNY_ANY)
@@ -1604,7 +1625,7 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
                     flowerGiftAppliedForDefenseModifier = TRUE;
                     defenseModifier = QMul_RoundUp(defenseModifier, UQ412__1_5);
                 }
-            }
+            } */
 
             // handle Marvel Scale
             if ((MoldBreakerAbilityCheck(sp, attacker, defender, ABILITY_MARVEL_SCALE) == TRUE)
@@ -1627,7 +1648,8 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
             }
         }
 
-        if (BATTLER_ALLY(defender) == sp->rawSpeedNonRNGClientOrder[i]) {
+        // calcrys custom, no longer boosts def
+        /* if (BATTLER_ALLY(defender) == sp->rawSpeedNonRNGClientOrder[i]) {
             // handle weather boosts
             if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_CLOUD_NINE) == 0)
             && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AIR_LOCK) == 0)) {
@@ -1639,7 +1661,7 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
                     defenseModifier = QMul_RoundUp(defenseModifier, UQ412__1_5);
                 }
             }
-        }
+        }*/
     }
 
     // Items
