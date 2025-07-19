@@ -657,5 +657,8 @@ _skipLevelScale:
         ResetPartyPokemonAbility(encounterPartyPokemon);
         InitBoxMonMoveset(&encounterPartyPokemon->box);
     }
+
+    ChangeToBattleForm(encounterPartyPokemon);
+
     return PokeParty_Add(bp->poke_party[inTarget], encounterPartyPokemon);
 }

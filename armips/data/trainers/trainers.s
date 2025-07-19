@@ -4633,7 +4633,7 @@ trainerdata 77, "Kim"
 trainerdata 78, "Arnie"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass TRAINERCLASS_BUG_CATCHER
-    nummons 6
+    nummons 5
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -5600,7 +5600,7 @@ trainerdata 93, "Kara"
     endparty
 
 trainerdata 94, "Wendy"
-    trainermontype TRAINER_DATA_TYPE_MOVES
+    trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ITEMS
     trainerclass TRAINERCLASS_SWIMMER_F
     nummons 6
     item ITEM_NONE
@@ -10644,7 +10644,7 @@ trainerdata 177, "Rei"
 trainerdata 178, "Jack"
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_NATURE_SET
     trainerclass TRAINERCLASS_SCHOOL_KID_M
-    nummons 2
+    nummons 3
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -10871,6 +10871,7 @@ trainerdata 184, "Krise"
         abilityslot 2
         level 38
         pokemon SPECIES_MAROWAK
+        item ITEM_THICK_CLUB
         move MOVE_BONE_CLUB
         move MOVE_RETALIATE
         move MOVE_THUNDER_PUNCH
@@ -10883,6 +10884,7 @@ trainerdata 184, "Krise"
         abilityslot 2
         level 38
         pokemon SPECIES_BELLOSSOM
+        item ITEM_NONE
         move MOVE_GIGA_DRAIN
         move MOVE_ACID
         move MOVE_MOONLIGHT
@@ -10895,6 +10897,7 @@ trainerdata 184, "Krise"
         abilityslot 15
         level 38
         pokemon SPECIES_NINETALES
+        item ITEM_NONE
         move MOVE_FLAMETHROWER
         move MOVE_HEX
         move MOVE_WILL_O_WISP
@@ -12652,7 +12655,7 @@ trainerdata 207, "Scarlett"
 trainerdata 208, "JJo & G'ma"
     trainermontype TRAINER_DATA_TYPE_NOTHING
     trainerclass TRAINERCLASS_DOUBLE_TEAM
-    nummons 1
+    nummons 2
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -17265,7 +17268,7 @@ trainerdata 279, "Joey" // REMATCH 1
 trainerdata 280, "Joey" // REMATCH 2
     trainermontype TRAINER_DATA_TYPE_MOVES | TRAINER_DATA_TYPE_ITEMS | TRAINER_DATA_TYPE_IV_EV_SET | TRAINER_DATA_TYPE_NATURE_SET | TRAINER_DATA_TYPE_ADDITIONAL_FLAGS
     trainerclass TRAINERCLASS_YOUNGSTER
-    nummons 6
+    nummons 1 // 6
     item ITEM_NONE
     item ITEM_NONE
     item ITEM_NONE
@@ -21533,6 +21536,7 @@ trainerdata 392, "Donald"
         move MOVE_POWER_GEM
         move MOVE_FUTURE_SIGHT
         move MOVE_YAWN
+        nature NATURE_MODEST
         ballseal 0
 
         // mon 1
@@ -22749,7 +22753,7 @@ trainerdata 417, "Jenn"
         move MOVE_ICY_WIND
         move MOVE_MEMENTO
         nature NATURE_TIMID
-        additionalflags TRAINER_DATA_TYPE_NATURE_SET
+        additionalflags TRAINER_DATA_EXTRA_TYPE_STATUS
         status 0x80
         ballseal 0
         
