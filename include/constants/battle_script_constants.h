@@ -458,8 +458,9 @@
 #define SUB_SEQ_HANDLE_WIND_RIDER                     (448)
 #define SUB_SEQ_HANDLE_CHARGE_BOOST                   (449)
 #define SUB_SEQ_SPIKY_SHIELD                          (450)
+#define SUB_SEQ_HANDLE_ANGER_SHELL                    (451)
 
-#define MAX_BASE_SUBSCRIPT_NUM 450
+#define MAX_BASE_SUBSCRIPT_NUM 451
 
 // calcrys custom
 #define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (MAX_BASE_SUBSCRIPT_NUM + 1)
