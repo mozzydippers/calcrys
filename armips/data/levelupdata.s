@@ -28591,3 +28591,23 @@ levelup SPECIES_TERAPAGOS_STELLAR
     learnset MOVE_ROCK_POLISH, 80
     learnset MOVE_GYRO_BALL, 90
     terminatelearnset
+
+levelup SPECIES_MEGA_DRAGONITE
+    learnset MOVE_HURRICANE, 0
+    learnset MOVE_WING_ATTACK, 1
+    learnset MOVE_ROOST, 1
+    learnset MOVE_FIRE_PUNCH, 1
+    learnset MOVE_THUNDER_PUNCH, 1
+    learnset MOVE_WRAP, 1
+    learnset MOVE_LEER, 1
+    learnset MOVE_TWISTER, 5
+    learnset MOVE_THUNDER_WAVE, 11
+    learnset MOVE_DRAGON_RAGE, 16
+    learnset MOVE_DRAGON_TAIL, 21
+    learnset MOVE_SLAM, 26
+    learnset MOVE_AQUA_TAIL, 37
+    learnset MOVE_DRAGON_RUSH, 44
+    learnset MOVE_SAFEGUARD, 51
+    learnset MOVE_OUTRAGE, 62
+    learnset MOVE_HYPER_BEAM, 69
+    terminatelearnset

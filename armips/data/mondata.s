@@ -27681,3 +27681,19 @@ mondata SPECIES_TERAPAGOS_STELLAR, "-----"
     abilities ABILITY_TERAFORM_ZERO, ABILITY_NONE
     runchance 0
     colorflip BODY_COLOR_BLUE, 0
+
+mondata SPECIES_MEGA_DRAGONITE, "-----"
+    basestats 91, 144, 110, 90, 150, 115
+    types TYPE_DRAGON, TYPE_FLYING
+    catchrate 45
+    baseexp 0 // defined in baseexp.s
+    evyields 0, 0, 0, 0, 0, 0
+    items ITEM_NONE, ITEM_NONE
+    genderratio 127
+    eggcycles 40
+    basefriendship 35
+    growthrate GROWTH_SLOW
+    egggroups EGG_GROUP_WATER_1, EGG_GROUP_DRAGON
+    abilities ABILITY_INNER_FOCUS, ABILITY_NONE
+    runchance 0
+    colorflip BODY_COLOR_BROWN, 0

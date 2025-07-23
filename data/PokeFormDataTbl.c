@@ -149,6 +149,10 @@ const u16 UNUSED PokeFormDataTbl[][32] =
     [SPECIES_DIANCIE] = {
         NEEDS_REVERSION | SPECIES_MEGA_DIANCIE,
     },
+    // calcrys custom 
+    [SPECIES_DRAGONITE] = {
+        NEEDS_REVERSION | SPECIES_MEGA_DRAGONITE,
+    },
 #endif // MEGA_EVOLUTIONS
 
 #ifdef PRIMAL_REVERSION

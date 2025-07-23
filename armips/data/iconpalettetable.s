@@ -1418,6 +1418,8 @@ gIconPalTable:
 /* SPECIES_TERAPAGOS_TERASTAL          */ .byte  0x0
 /* SPECIES_TERAPAGOS_STELLAR           */ .byte  0x0
 
+/* SPECIES_MEGA_DRAGONITE       */ .byte  0x2
+
 .endarea
 
 .close

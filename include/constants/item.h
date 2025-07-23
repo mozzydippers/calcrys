@@ -872,6 +872,7 @@
 
 // define your custom move effects below like this
 #define ITEM_INFINITE_CANDY (MAX_BASE_ITEM_NUM + 1)
+#define ITEM_DRAGONITENITE (MAX_BASE_ITEM_NUM + 2)
 
 
 
@@ -884,7 +885,7 @@
 #define NUM_UNKNOWN_SLOTS 22 // used to adjust in data/itemdata.c
 #define NUM_UNKNOWN_SLOTS_EXPLORER_KIT (NUM_UNKNOWN_SLOTS+1) // used to adjust in data/itemdata.c
 
-#define NEW_ITEM_MAX ITEM_INFINITE_CANDY
+#define NEW_ITEM_MAX ITEM_DRAGONITENITE
 
 #define BAG_SLOT_QUANTITY_MAX                    999
 

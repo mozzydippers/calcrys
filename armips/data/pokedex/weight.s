@@ -1401,4 +1401,6 @@
 /* SPECIES_TERAPAGOS_TERASTAL                */ .word 160
 /* SPECIES_TERAPAGOS_STELLAR                 */ .word 770
 
+/* SPECIES_MEGA_DRAGONITE                    */ .word 2100
+
 .close
