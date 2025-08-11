@@ -3,6 +3,7 @@
 #include "../../include/debug.h"
 #include "../../include/overlay.h"
 #include "../../include/pokemon.h"
+#include "../../include/z_moves.h"
 #include "../../include/types.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/hold_item_effects.h"
@@ -324,6 +325,11 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
     //     debug_printf("Second case\n");
     //     movepower = pow;
     // }
+
+    if (MoveIsZMove(moveno)) {
+        movepower = GetZMovePower(sp, newBS.SideZMoveBaseMove, sp->battlemon[sp->attack_client].item);
+        debug_printf("[CalcBaseDamage] movepower: %d\n", movepower);
+    }
 
     switch (moveno) {
     // Speed-based

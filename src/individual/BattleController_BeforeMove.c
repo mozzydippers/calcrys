@@ -3,6 +3,7 @@
 #include "../../include/battle.h"
 #include "../../include/item.h"
 #include "../../include/mega.h"
+#include "../../include/z_moves.h"
 #include "../../include/pokemon.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/battle_script_constants.h"
@@ -300,8 +301,14 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
         // TODO implement new mechanics
         case BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
-            debug_printf("In BEFORE_MOVE_STATE_DIctxLAY_Z_DANCE_AND_EFFECT\n");
+            debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
 #endif
+
+            if (newBS.needZMove[ctx->attack_client]) {
+                newBS.SideZMove[ctx->attack_client] = TRUE;
+                newBS.needZMove[ctx->attack_client] = FALSE;
+                ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client]);
+            }
 
             ctx->wb_seq_no++;
             return;

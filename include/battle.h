@@ -1629,6 +1629,12 @@ struct PACKED newBattleStruct
     u8 MegaIconLight;
     u8 ChangeBgFlag:4;
     u8 CanMega:4;
+    
+    int SideZMoveBaseMove[4];
+    u8 SideZMove[4];
+    u8 needZMove[4];
+    u8 playerWantZMove;
+    u8 ZIconLight;
 
     CATS_ACT_PTR MegaOAM;
     CATS_ACT_PTR MegaButton;

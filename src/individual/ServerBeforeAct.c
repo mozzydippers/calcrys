@@ -4,6 +4,7 @@
 #include "../../include/battle.h"
 #include "../../include/item.h"
 #include "../../include/mega.h"
+#include "../../include/z_moves.h"
 #include "../../include/pokemon.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/battle_script_constants.h"
@@ -119,12 +120,18 @@ void __attribute__((section (".init"))) ServerBeforeActInternal(struct BattleSys
                                     flag = TRUE;
                                 }
                             }
-                            // ai requests mega
+                            
                             else {
+                                // ai requests mega
                                 if (CheckCanMega(sp, client_no)) {
                                     sp->battlemon[client_no].canMega = 1;
                                     newBS.SideMega[client_no] = TRUE;
                                     flag = TRUE;
+                                }
+
+                                if (AICheckCanUseZMove(sp, client_no)) {
+                                    newBS.needZMove[client_no] = TRUE;
+                                    newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                                 }
                             }
                         } else {
@@ -137,13 +144,19 @@ void __attribute__((section (".init"))) ServerBeforeActInternal(struct BattleSys
                                     flag = TRUE;
                                 }
                             }
-                            // ai requests mega
+                            
                             else {
+                                // ai requests mega
                                 if (CheckCanMega(sp, client_no)) {
                                     sp->battlemon[client_no].canMega = 1;
                                     newBS.SideMega[1] = TRUE;
                                     newBS.SideMega[3] = TRUE;
                                     flag = TRUE;
+                                }
+
+                                if (AICheckCanUseZMove(sp, client_no)) {
+                                    newBS.needZMove[client_no] = TRUE;
+                                    newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                                 }
                             }
                         }
