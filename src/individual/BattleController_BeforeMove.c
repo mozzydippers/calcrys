@@ -298,21 +298,6 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
             ctx->wb_seq_no++;
             return;
         }
-        // TODO implement new mechanics
-        case BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT: {
-#ifdef DEBUG_BEFORE_MOVE_LOGIC
-            debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
-#endif
-
-            if (newBS.needZMove[ctx->attack_client]) {
-                newBS.SideZMove[ctx->attack_client] = TRUE;
-                newBS.needZMove[ctx->attack_client] = FALSE;
-                ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client]);
-            }
-
-            ctx->wb_seq_no++;
-            return;
-        }
         case BEFORE_MOVE_STATE_TRUANT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
             debug_printf("In BEFORE_MOVE_STATE_TRUANT\n");
@@ -439,6 +424,28 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
             if ((ctx->waza_out_check_on_off & SYSCTL_SKIP_STATUS_CHECK) == FALSE) {
                 BattleController_CheckInfatuation(bsys, ctx);
             }
+            ctx->wb_seq_no++;
+            return;
+        }
+        // TODO implement new mechanics
+        case BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT: {
+#ifdef DEBUG_BEFORE_MOVE_LOGIC
+            debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
+#endif
+
+            if (newBS.needZMove[ctx->attack_client]) {
+                newBS.SideZMove[ctx->attack_client] = TRUE;
+                newBS.needZMove[ctx->attack_client] = FALSE;
+                ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client]);
+
+                // TODO
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_PROTEAN_MESSAGE);
+                ctx->msg_work = ctx->battlemon[ctx->attack_client].type1;
+                ctx->battlerIdTemp = ctx->attack_client;
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            }
+
             ctx->wb_seq_no++;
             return;
         }
