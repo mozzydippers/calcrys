@@ -1571,3 +1571,120 @@ The opposing {STRVAR_1 1, 0, 0} was hurt!
 {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nboosted the attack!
 The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nboosted the attack!
 The opposing {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nboosted the attack!
+{STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+The wild {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+The opposing {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+{STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+The wild {STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+The opposing {STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its critical-hit ratio using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its critical-hit ratio using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its critical-hit ratio\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack using\nits Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness using\nits Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def sharply using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed sharply using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy\nsharply using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness sharply\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness\nsharply using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its stats using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its stats sharply using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats sharply using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its stats drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} returned its decreased stats to normal\nusing its Z-Power!
+The wild {STRVAR_1 1, 0, 0} returned its decreased stats to\nnormal using its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} returned its decreased stats\nto normal using its Z-Power!
+{STRVAR_1 1, 0, 0} restored its HP using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} restored its HP using its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} restored its HP using its\nZ-Power!
+{STRVAR_1 1, 0, 0} will restore its replacement’s HP using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} will restore its replacement’s HP\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} will restore its replacement’s\nHP using its Z-Power!
+{STRVAR_1 1, 0, 0}’s HP was restored by the Z-Power!
+The wild {STRVAR_1 1, 0, 0}’s HP was restored by the Z-Power!
+The opposing {STRVAR_1 1, 0, 0}’s HP was restored by the\nZ-Power!
+{STRVAR_1 1, 0, 0} became the center of attention using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} became the center of attention\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} became the center of\nattention using its Z-Power!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Metronome to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Metronome to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Metronome to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0} to its\nZ-Move using Mirror Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} to its Z-Move using Mirror Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} to its Z-Move using Mirror Move!
+{STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+The wild {STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+The opposing {STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Assist to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Assist to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Assist to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nit stole using Me First to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} it stole using Me First to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} it stole using Me First to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Sleep Talk to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Sleep Talk to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Sleep Talk to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\ncopied by Copycat to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!

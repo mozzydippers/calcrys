@@ -439,8 +439,7 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
                 ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client]);
 
                 // TODO
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_PROTEAN_MESSAGE);
-                ctx->msg_work = ctx->battlemon[ctx->attack_client].type1;
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT);
                 ctx->battlerIdTemp = ctx->attack_client;
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;

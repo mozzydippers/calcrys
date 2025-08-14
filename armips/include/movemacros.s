@@ -2,9 +2,19 @@
 
     movename movenum, name
     movenamecaps movenum, name
-    userusedmovename 3*movenum, "{STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
-    userusedmovename 3*movenum+1, "The wild {STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
-    userusedmovename 3*movenum+2, "The opposing {STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
+
+	.if ((movenum >= MOVE_BREAKNECK_BLITZ_PHYSICAL && movenum <= MOVE_CATASTROPIKA)\
+	|| (movenum >= MOVE_SINISTER_ARROW_RAID && movenum <= MOVE_GENESIS_SUPERNOVA)\
+	|| (movenum == MOVE_10_000_000_VOLT_THUNDERBOLT)\
+	|| (movenum >= MOVE_LIGHT_THAT_BURNS_THE_SKY && movenum <= MOVE_CLANGOROUS_SOULBLAZE))
+		userusedmovename 3*movenum, " "
+    	userusedmovename 3*movenum+1, " "
+    	userusedmovename 3*movenum+2, " "
+	.else
+    	userusedmovename 3*movenum, "{STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
+    	userusedmovename 3*movenum+1, "The wild {STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
+    	userusedmovename 3*movenum+2, "The opposing {STRVAR_1 1, 0, 0} used\\n" + fullname + "!"
+	.endif
 
 	.if movenum < 10
 		.create "build/a011/move_00" + movenum,0

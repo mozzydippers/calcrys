@@ -10021,11 +10021,11 @@ movedata MOVE_BREAKNECK_BLITZ_PHYSICAL, "Breakneck Blitz"
     effectchance 0
     target RANGE_SINGLE_TARGET
     priority 0
-    flags FLAG_KEEP_HP_BAR | FLAG_KINGS_ROCK
+    flags FLAG_KINGS_ROCK
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_BREAKNECK_BLITZ_PHYSICAL, "---"
+    movedescription MOVE_BREAKNECK_BLITZ_PHYSICAL, "The user builds up its\nmomentum using its\nZ-Power and crashes into\nthe target at full speed.\nThe power varies,\ndepending on the\noriginal move."
 
 movedata MOVE_BREAKNECK_BLITZ_SPECIAL, "Breakneck Blitz"
     battleeffect MOVE_EFFECT_HIT
@@ -10037,11 +10037,11 @@ movedata MOVE_BREAKNECK_BLITZ_SPECIAL, "Breakneck Blitz"
     effectchance 0
     target RANGE_SINGLE_TARGET
     priority 0
-    flags FLAG_KEEP_HP_BAR | FLAG_KINGS_ROCK
+    flags FLAG_KINGS_ROCK
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_BREAKNECK_BLITZ_SPECIAL, "---"
+    movedescription MOVE_BREAKNECK_BLITZ_SPECIAL, "The user builds up its\nmomentum using its\nZ-Power and crashes into\nthe target at full speed.\nThe power varies,\ndepending on the\noriginal move."
 
 movedatalongname MOVE_ALL_OUT_PUMMELING_PHYSICAL, "All-Out Pummel", "All-Out Pummeling"
     battleeffect MOVE_EFFECT_HIT
