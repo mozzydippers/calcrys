@@ -364,7 +364,7 @@ void SortTMHMPocket(ITEM_SLOT *slots, u32 count) {
             u8 iSortOrder = GetTMHMPocketSortPrecedence(slots[i].id);
             u8 jSortOrder = GetTMHMPocketSortPrecedence(slots[j].id);
             if (slots[i].quantity == 0 || (slots[j].quantity != 0 &&
-                (iSortOrder > jSortOrder || iSortOrder == jSortOrder && slots[i].id > slots[j].id))) {
+                (iSortOrder > jSortOrder || (iSortOrder == jSortOrder && slots[i].id > slots[j].id)))) {
                 SwapItemSlots(&slots[i], &slots[j]);
             }
         }
@@ -482,9 +482,9 @@ int GetMachineMoveNumber(u16 itemId) {
         return itemId - ITEM_HM01 + 1;
     }
     if (IS_ITEM_VANILLA_TM(itemId)) {
-        return itemId - ITEM_TM01 + 1;
+        return itemId - ITEM_TM001 + 1;
     }
-    // TODO zebben once we have item ids
+    // TODO zebben think of a better way to organize this
     if (IS_ITEM_EXPANSION_HM(itemId)) {
         return 0;
     }

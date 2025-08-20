@@ -1445,13 +1445,15 @@ typedef struct {
 } PACKED TRAINER_DATA; // size: 52 bytes
 
 
+typedef struct MessageFormat MessageFormat;
+
 struct BattleSystem {
     /* 0x00 */ u32 *unk0;
     /* 0x04 */ void * /*BgConfig **/ bgConfig;
     /* 0x08 */ void * /*Window **/ window;
     /* 0x0C */ u32 *unkC;
     /* 0x10 */ u32 *unk10;
-    /* 0x14 */ u32 *msgFormat;
+    /* 0x14 */ MessageFormat *msgFormat;
     /* 0x18 */ void * /*String **/ msgBuffer;
     /* 0x1C */ u32 unk1C;
     /* 0x20 */ u32 unk20;
@@ -3765,8 +3767,6 @@ void LONG_CALL BattleMessage_BufferFlavorPreference(struct BattleSystem *bsys, i
 void LONG_CALL BattleMessage_BufferTrainerClass(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferTrainerName(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferBoxName(struct BattleSystem *bsys, int bufferIndex, int param);
-
-void LONG_CALL BufferItemNameWithIndefArticle(u32 *msgFmt, u32 fieldno, u32 itemId);
 
 int LONG_CALL MoveCheckDamageNegatingAbilities(struct BattleStruct *sp, int attacker, int defender);
 
