@@ -436,7 +436,7 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
             if (newBS.needZMove[ctx->attack_client]) {
                 newBS.SideZMove[ctx->attack_client] = TRUE;
                 newBS.needZMove[ctx->attack_client] = FALSE;
-                ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client]);
+                ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
 
                 // TODO
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT);

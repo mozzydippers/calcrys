@@ -14,10 +14,11 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
     debug_printf("In AICheckCanUseZMove\n");
 #endif
 
-    u16 mon = battle->battlemon[client].species;
+    int species = battle->battlemon[client].species;
 
-    // TODO check item
-    u16 item = battle->battlemon[client].item;
+    int form = battle->battlemon[client].form_no;
+
+    int item = battle->battlemon[client].item;
 
     int command = battle->playerActions[client][3];
 
@@ -31,62 +32,50 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
     if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND)
         return FALSE;
 
+    // No known data for Gen 8+ moves
     if (command == SELECT_FIGHT_COMMAND) {
         if (moveID > MOVE_DOUBLE_IRON_BASH) {
             return FALSE;
         }
 
         BOOL canUseZMove = FALSE;
-        // TODO wait for new items
-        if (move.type == TYPE_NORMAL && item == ITEM_DATA_CARD_01) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_FIGHTING && item == ITEM_DATA_CARD_02) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_FLYING && item == ITEM_DATA_CARD_03) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_POISON && item == ITEM_DATA_CARD_04) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_ROCK && item == ITEM_DATA_CARD_05) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_BUG && item == ITEM_DATA_CARD_06) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_GHOST && item == ITEM_DATA_CARD_07) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_STEEL && item == ITEM_DATA_CARD_08) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_FIRE && item == ITEM_DATA_CARD_09) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_WATER && item == ITEM_DATA_CARD_10) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_GRASS && item == ITEM_DATA_CARD_11) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_ELECTRIC && item == ITEM_DATA_CARD_12) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_PSYCHIC && item == ITEM_DATA_CARD_13) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_ICE && item == ITEM_DATA_CARD_14) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_DRAGON && item == ITEM_DATA_CARD_15) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_DARK && item == ITEM_DATA_CARD_16) {
-            canUseZMove = TRUE;
-        }
-        if (move.type == TYPE_FAIRY && item == ITEM_DATA_CARD_17) {
+        if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
+        || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
+        || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
+        || (move.type == TYPE_FLYING && item == ITEM_FLYINIUM_Z_HELD)
+        || (move.type == TYPE_POISON && item == ITEM_POISONIUM_Z_HELD)
+        || (move.type == TYPE_ROCK && item == ITEM_ROCKIUM_Z_HELD)
+        || (move.type == TYPE_BUG && item == ITEM_BUGINIUM_Z_HELD)
+        || (move.type == TYPE_GHOST && item == ITEM_GHOSTIUM_Z_HELD)
+        || (move.type == TYPE_STEEL && item == ITEM_STEELIUM_Z_HELD)
+        || (move.type == TYPE_FIRE && item == ITEM_FIRIUM_Z_HELD)
+        || (move.type == TYPE_WATER && item == ITEM_WATERIUM_Z_HELD)
+        || (move.type == TYPE_GRASS && item == ITEM_GRASSIUM_Z_HELD)
+        || (move.type == TYPE_ELECTRIC && item == ITEM_ELECTRIUM_Z_HELD)
+        || (move.type == TYPE_PSYCHIC && item == ITEM_PSYCHIUM_Z_HELD)
+        || (move.type == TYPE_ICE && item == ITEM_ICIUM_Z_HELD)
+        || (move.type == TYPE_DARK && item == ITEM_DARKINIUM_Z_HELD)
+        || (move.type == TYPE_FAIRY && item == ITEM_FAIRIUM_Z_HELD)
+        // Only regular Pikachu can use Catastropika
+        || (moveID == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0)
+        || (moveID == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14)
+        || (moveID == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1)
+        || (moveID == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE)
+        || (moveID == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX)
+        || (moveID == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW)
+        || (moveID == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE)
+        || (moveID == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR)
+        || (moveID == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA)
+        || (moveID == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU)
+        || (moveID == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O)
+        || (moveID == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD
+            && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI))
+        || (moveID == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM
+            && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1)))
+        || (moveID == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM
+            && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2)))
+        || (moveID == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4)))
+        || (moveID == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW)) {
             canUseZMove = TRUE;
         }
 
@@ -98,12 +87,70 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
     return FALSE;
 }
 
-int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove) {
+int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client) {
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("In GetZMoveToBeUsed\n");
 #endif
 
     int zMove = 0;
+
+    int species = battle->battlemon[client].species;
+
+    int form = battle->battlemon[client].form_no;
+
+    int item = battle->battlemon[client].item;
+
+    if (baseMove == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0) {
+        return MOVE_CATASTROPIKA;
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14) {
+        return MOVE_10_000_000_VOLT_THUNDERBOLT;
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1) {
+        return MOVE_STOKED_SPARKSURFER;
+    }
+    if (baseMove == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE) {
+        return MOVE_EXTREME_EVOBOOST;
+    }
+    if (baseMove == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX) {
+        return MOVE_PULVERIZING_PANCAKE;
+    }
+    if (baseMove == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW) {
+        return MOVE_GENESIS_SUPERNOVA;
+    }
+    if (baseMove == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE) {
+        return MOVE_SINISTER_ARROW_RAID;
+    }
+    if (baseMove == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR) {
+        return MOVE_MALICIOUS_MOONSAULT;
+    }
+    if (baseMove == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA) {
+        return MOVE_OCEANIC_OPERETTA;
+    }
+    if (baseMove == MOVE_STONE_EDGE && item == ITEM_LYCANIUM_Z_ITEM && species == SPECIES_LYCANROC) {
+        return MOVE_SPLINTERED_STORMSHARDS;
+    }
+    if (baseMove == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU) {
+        return MOVE_LETS_SNUGGLE_FOREVER;
+    }
+    if (baseMove == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O) {
+        return MOVE_CLANGOROUS_SOULBLAZE;
+    }
+    if (baseMove == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI)) {
+        return MOVE_GUARDIAN_OF_ALOLA;
+    }
+    if (baseMove == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1))) {
+        return MOVE_SEARING_SUNRAZE_SMASH;
+    }
+    if (baseMove == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2))) {
+        return MOVE_MENACING_MOONRAZE_MAELSTROM;
+    }
+    if (baseMove == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4))) {
+        return MOVE_LIGHT_THAT_BURNS_THE_SKY;
+    }
+    if (baseMove == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW) {
+        return MOVE_SOUL_STEALING_7_STAR_STRIKE;
+    }
 
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("baseMove: %d\n", baseMove);
@@ -180,7 +227,69 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove) {
     return zMove;
 }
 
-int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int item) {
+int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int client) {
+    int species = battle->battlemon[client].species;
+
+    int form = battle->battlemon[client].form_no;
+
+    int item = battle->battlemon[client].item;
+
+    if (baseMove == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0) {
+        return 210; // MOVE_CATASTROPIKA
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14) {
+        return 195; // MOVE_10_000_000_VOLT_THUNDERBOLT
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1) {
+        return 175; // MOVE_STOKED_SPARKSURFER
+    }
+    if (baseMove == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE) {
+        // Should not enter damage calculation
+        GF_ASSERT_INTERNAL(); // MOVE_EXTREME_EVOBOOST
+        return 0;
+    }
+    if (baseMove == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX) {
+        return 210; // MOVE_PULVERIZING_PANCAKE
+    }
+    if (baseMove == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW) {
+        return 185; // MOVE_GENESIS_SUPERNOVA
+    }
+    if (baseMove == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE) {
+        return 180; // MOVE_SINISTER_ARROW_RAID
+    }
+    if (baseMove == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR) {
+        return 180; // MOVE_MALICIOUS_MOONSAULT
+    }
+    if (baseMove == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA) {
+        return 195; // MOVE_OCEANIC_OPERETTA
+    }
+    if (baseMove == MOVE_STONE_EDGE && item == ITEM_LYCANIUM_Z_ITEM && species == SPECIES_LYCANROC) {
+        return 190; // MOVE_SPLINTERED_STORMSHARDS
+    }
+    if (baseMove == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU) {
+        return 190; // MOVE_LETS_SNUGGLE_FOREVER
+    }
+    if (baseMove == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O) {
+        return 185; // MOVE_CLANGOROUS_SOULBLAZE
+    }
+    if (baseMove == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI)) {
+        // Should not enter damage calculation
+        GF_ASSERT_INTERNAL(); // MOVE_GUARDIAN_OF_ALOLA
+        return 0;
+    }
+    if (baseMove == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1))) {
+        return 200; // MOVE_SEARING_SUNRAZE_SMASH
+    }
+    if (baseMove == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2))) {
+        return 200; // MOVE_MENACING_MOONRAZE_MAELSTROM
+    }
+    if (baseMove == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4))) {
+        return 200; // MOVE_LIGHT_THAT_BURNS_THE_SKY
+    }
+    if (baseMove == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW) {
+        return 195; // MOVE_SOUL_STEALING_7_STAR_STRIKE
+    }
+
     switch (baseMove) {
         case MOVE_MEGA_DRAIN:
             return 120;
@@ -242,6 +351,6 @@ int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int item)
             break;
     }
 
-    return 0;
     GF_ASSERT_INTERNAL();
+    return 0;
 }

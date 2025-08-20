@@ -327,7 +327,7 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
     // }
 
     if (MoveIsZMove(moveno)) {
-        movepower = GetZMovePower(sp, newBS.SideZMoveBaseMove[sp->attack_client], sp->battlemon[sp->attack_client].item);
+        movepower = GetZMovePower(sp, newBS.SideZMoveBaseMove[sp->attack_client], sp->attack_client);
     }
 
     switch (moveno) {
