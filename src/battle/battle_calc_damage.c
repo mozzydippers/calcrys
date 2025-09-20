@@ -43,8 +43,8 @@ const u8 StatBoostModifiers[][2] = {
         { 8, 2 },
 };
 
-int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
-                   u32 field_cond, u16 pow, u8 type UNUSED, u8 attacker, u8 defender, u8 critical)
+int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond UNUSED,
+                   u32 field_cond, u16 pow UNUSED, u8 type UNUSED, u8 attacker, u8 defender, u8 critical)
 {
 
     struct DamageCalcStruct damageCalc = {0};
@@ -117,7 +117,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond,
         client.ability = GetBattlerAbility(sp, i);
         client.sex = BattlePokemonParamGet(sp, i, BATTLE_MON_DATA_SEX, NULL);
         client.speed = sp->effectiveSpeed[i];
-        client.weight = GetPokemonWeight(bw, sp, i, i);
+        client.weight = GetPokemonWeight(bw, sp, attacker, i);
         client.happiness = sp->battlemon[i].friendship;
         client.form = sp->battlemon[i].form_no;
         client.furyCutterCount = sp->battlemon[i].moveeffect.furyCutterCount;
@@ -546,10 +546,9 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp) {
 
     // Effects relative to a particular side of the field
     // 6.9.1 Screens
-    // TODO: handle Aurora Veil
     // handle Reflect
     if ((movesplit == SPLIT_PHYSICAL)
-    && ((side_cond & SIDE_STATUS_REFLECT) != 0)
+    && ((side_cond & SIDE_STATUS_REFLECT) != 0 || (side_cond & SIDE_STATUS_AURORA_VEIL) != 0)
     && (sp->critical == 1)
     && (sp->moveTbl[moveno].effect != MOVE_EFFECT_REMOVE_SCREENS)
     && (sp->battlemon[attacker].ability != ABILITY_INFILTRATOR)) {
@@ -561,7 +560,7 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp) {
     }
     // handle Light Screen
     if ((movesplit == SPLIT_SPECIAL)
-    && ((side_cond & SIDE_STATUS_LIGHT_SCREEN) != 0)
+    && ((side_cond & SIDE_STATUS_LIGHT_SCREEN) != 0 || (side_cond & SIDE_STATUS_AURORA_VEIL) != 0)
     && (sp->critical == 1)
     && (sp->moveTbl[moveno].effect != MOVE_EFFECT_REMOVE_SCREENS)
     && (attackerAbility != ABILITY_INFILTRATOR)) {

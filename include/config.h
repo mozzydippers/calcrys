@@ -140,8 +140,6 @@
 // CORROSIVE_GAS_IMPLIED_BEHAVIOUR defines the behavior that Corrosive Gas should exhibit, where it either does it does not affect a Kyogre, a Groudon, or species holding their respective Mega Stones to not lose their Blue Orb, Red Orb, and Mega Stones respectively (TRUE), or affects species in the above cases (FALSE).
 #define CORROSIVE_GAS_IMPLIED_BEHAVIOUR TRUE
 
-#define IMPLEMENT_FORM_REVERSION TRUE
-
 // SNOW_WARNING_GENERATION controls whether to summon Snow or Hail when the ability is activated.
 // 9 or above: Snow
 // Otherwise: Hail
@@ -162,6 +160,12 @@
 // DELETABLE_HMS allows HMs to be forgotten, this also makes their quantity reduce, but the infinite TMs change prevents this.
 //#define DELETABLE_HMS
 
+// MART_EXPANSION allows for adding and modifying items to the mart inventories
+#define MART_EXPANSION
+
+// POKEATHLON_EXPANSION allows for adding and modifying items to the Pokéathlon shop inventories
+//#define POKEATHLON_SHOP_EXPANSION
+
 // STATIC_HP_BAR updates the HP bar to increase/decrease at a fixed rate like later generations
 #define STATIC_HP_BAR
 
@@ -169,5 +173,9 @@
 // to more closely match later generations. Note that disabling this will break TMs > 99 rendering in the bag
 // Comment out the line below to disable this feature
 #define UPDATE_MACHINE_MOVE_LABELS
+
+// INCLUDE_LURE_PARK_SPORTS_BALL_CALCULATION includes assumed parameter calculations for the Sport Ball,
+// Park Ball, and Lure Ball.  Comment this line to make the balls behave as they do in Gen 9
+#define INCLUDE_LURE_PARK_SPORTS_BALL_CALCULATION
 
 #endif

@@ -130,6 +130,7 @@ arm9 set_starter_hidden_ability_hook 02096158 5
 0012 BtlCmd_GenerateEndOfBattleItem 022440A0 3
 0012 BtlCmd_TryPluck 022444D0 3
 0012 BtlCmd_PlayFaintAnimation 0223E290 3
+0012 BtlCmd_TryBreakScreens 02242E00 3
 
 #trainer data expansion
 arm9 MakeTrainerPokemonParty 08073604 3
@@ -530,3 +531,7 @@ arm9 LoadLevelUpLearnset_HandleAlternateForm 02071FC8 3
 0001 GetLearnableTutorMoves 02202D40 3
 arm9 PartyMenu_LearnMoveToSlot 0208254C 3
 0015 Bag_RenderMachineMoveSlot_hook 021FF586 3
+
+#ifdef MART_EXPANSION
+arm9 ScrCmd_MartBuy 02048060 1
+#endif
