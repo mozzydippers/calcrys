@@ -41,9 +41,9 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
         BOOL canUseZMove = FALSE;
         if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
         || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
-        || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
         || (move.type == TYPE_FLYING && item == ITEM_FLYINIUM_Z_HELD)
         || (move.type == TYPE_POISON && item == ITEM_POISONIUM_Z_HELD)
+        || (move.type == TYPE_GROUND && item == ITEM_GROUNDIUM_Z_HELD)
         || (move.type == TYPE_ROCK && item == ITEM_ROCKIUM_Z_HELD)
         || (move.type == TYPE_BUG && item == ITEM_BUGINIUM_Z_HELD)
         || (move.type == TYPE_GHOST && item == ITEM_GHOSTIUM_Z_HELD)
@@ -54,6 +54,7 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
         || (move.type == TYPE_ELECTRIC && item == ITEM_ELECTRIUM_Z_HELD)
         || (move.type == TYPE_PSYCHIC && item == ITEM_PSYCHIUM_Z_HELD)
         || (move.type == TYPE_ICE && item == ITEM_ICIUM_Z_HELD)
+        || (move.type == TYPE_DRAGON && item == ITEM_DRAGONIUM_Z_HELD)
         || (move.type == TYPE_DARK && item == ITEM_DARKINIUM_Z_HELD)
         || (move.type == TYPE_FAIRY && item == ITEM_FAIRIUM_Z_HELD)
         // Only regular Pikachu can use Catastropika
@@ -184,9 +185,6 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
         case TYPE_STEEL:
             zMove = MOVE_CORKSCREW_CRASH_PHYSICAL;
             break;
-        case TYPE_FAIRY:
-            zMove = MOVE_TWINKLE_TACKLE_PHYSICAL;
-            break;
         case TYPE_FIRE:
             zMove = MOVE_INFERNO_OVERDRIVE_PHYSICAL;
             break;
@@ -210,6 +208,9 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
             break;
         case TYPE_DARK:
             zMove = MOVE_BLACK_HOLE_ECLIPSE_PHYSICAL;
+            break;
+        case TYPE_FAIRY:
+            zMove = MOVE_TWINKLE_TACKLE_PHYSICAL;
             break;
 
         default:
