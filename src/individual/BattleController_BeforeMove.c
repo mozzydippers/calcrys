@@ -2410,7 +2410,12 @@ BOOL BattleController_CheckAbilityFailures2(struct BattleSystem *bsys UNUSED, st
 }
 
 BOOL CalcDamageAndSetMoveStatusFlags(struct BattleSystem *bsys, struct BattleStruct *ctx, int defender) {
-    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE && ctx->moveTbl[ctx->current_move_index].power != 0 && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY) /* && !(ctx->server_status_flag & BATTLE_STATUS_CHARGE_TURN) */) || ctx->current_move_index == MOVE_THUNDER_WAVE) {
+    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
+            && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
+            // Z-Moves and Max Moves do not always have non-zero power
+            && (ctx->moveTbl[ctx->current_move_index].power != 0 || MoveIsZMove(ctx->current_move_index) || !MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)
+            && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
+        || ctx->current_move_index == MOVE_THUNDER_WAVE) {
         // TODO: Probably wrong?
         u32 temp = ctx->moveStatusFlagForSpreadMoves[defender];
         // TODO: Use GetTypeEffectiveness
