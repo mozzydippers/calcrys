@@ -1794,11 +1794,11 @@ enum
 
 
 typedef enum BeforeTurnState {
-    SBA_RESET_DEFIANT = 0,
+    SBA_SET_GIMMICK_REQUEST_STATUS = 0,
+    SBA_RESET_DEFIANT,
     SBA_RESET_FURY_CUTTER,
     SBA_RANDOM_SPEED_ROLL,
     SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION,
-    SBA_SET_GIMMICK_REQUEST_STATUS,
     // This part is inconsistent between Bulbapedia, Victory Road VGC, and Showdown, defaulting to Showdown for now
     SBA_ESCAPING,
     SBA_SWITCHING,

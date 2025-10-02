@@ -1,7 +1,7 @@
 #include "../../include/types.h"
 #include "../../include/battle.h"
 #include "../../include/pokemon.h"
-#include "../../include/mega.h"
+#include "../../include/constants/move_effects.h"
 #include "../../include/sprite.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/item.h"
@@ -34,7 +34,7 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
 
     // No known data for Gen 8+ moves
     if (command == SELECT_FIGHT_COMMAND) {
-        if (moveID > MOVE_DOUBLE_IRON_BASH) {
+        if (moveID >= MOVE_ZIPPY_ZAP) {
             return FALSE;
         }
 
@@ -157,7 +157,10 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
     debug_printf("baseMove: %d\n", baseMove);
 #endif
 
-    switch (GetAdjustedMoveType(battle, battle->attack_client, baseMove)) {
+    if (baseMove == MOVE_HIDDEN_POWER) {
+        zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
+    } else {
+        switch (GetAdjustedMoveType(battle, battle->attack_client, baseMove)) {
         case TYPE_NORMAL:
             zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
             break;
@@ -216,6 +219,7 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
         default:
             GF_ASSERT_INTERNAL();
             break;
+        }
     }
     if (battle->moveTbl[baseMove].split == SPLIT_SPECIAL) {
         zMove += 1;
@@ -291,6 +295,12 @@ int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int clien
         return 195; // MOVE_SOUL_STEALING_7_STAR_STRIKE
     }
 
+    // When hacked into normal move slots, damaging Z-moves (Hydro Vortex, Bloom Doom, etc) becomes 1 BP / -- Accuracy moves of their respective types. Special Z-moves (Catastropika, pulverizing Pancake, etc) function normally with their actual Base Powers and effects. All normal move slot Z-Moves have 1 PP ( PP Ups don't work). You can use as many normal move slot Z-Moves as you want in a battle. You cannot power up a normal slot Z-Move with a Z-Crystal (it won't recognize the move as that typing at all). (UltiMario) Their PP can be restored with a Leppa Berry. (UltiMario)
+    // "Crystal-Free Z-Moves"
+    if (baseMove == MOVE_NONE) {
+        return 1;
+    }
+
     switch (baseMove) {
         case MOVE_MEGA_DRAIN:
             return 120;
@@ -311,6 +321,10 @@ int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int clien
 
         default:
             break;
+    }
+
+    if (battle->moveTbl[baseMove].effect == MOVE_EFFECT_ONE_HIT_KO) {
+        return 180;
     }
 
     int power = battle->moveTbl[baseMove].power;

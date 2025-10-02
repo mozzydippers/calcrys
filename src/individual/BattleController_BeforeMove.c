@@ -628,7 +628,7 @@ void __attribute__((section (".init"))) BattleController_BeforeMove(struct Battl
                 // Protean cannot activate if the client is Terastallized
                 && (!ctx->battlemon[ctx->attack_client].is_currently_terastallized)
                 // Protean should activate only once per switch-in if gen 9 behavior
-                && (ctx->battlemon[ctx->attack_client].ability_activated_flag == 0 || PROTEAN_GENERATION < 9)) 
+                && (ctx->battlemon[ctx->attack_client].ability_activated_flag == 0 || PROTEAN_GENERATION < 9))
             {
                 ctx->battlemon[ctx->attack_client].type1 = type;
                 ctx->battlemon[ctx->attack_client].type2 = type;
@@ -2413,7 +2413,7 @@ BOOL CalcDamageAndSetMoveStatusFlags(struct BattleSystem *bsys, struct BattleStr
     if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
             && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
             // Z-Moves and Max Moves do not always have non-zero power
-            && ((ctx->moveTbl[ctx->current_move_index].power != 0 || MoveIsZMove(ctx->current_move_index) || MoveIsMaxMove(ctx->current_move_index)) && ctx->current_move_index != MOVE_MAX_GUARD)
+            && (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS)
             && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
         || ctx->current_move_index == MOVE_THUNDER_WAVE) {
         // TODO: Probably wrong?

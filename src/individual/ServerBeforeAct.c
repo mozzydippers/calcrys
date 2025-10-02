@@ -63,45 +63,6 @@ void __attribute__((section (".init"))) ServerBeforeActInternal(struct BattleSys
         BattleControllerPlayer_CalcExecutionOrder(bw, sp);
 
         switch (sp->sba_seq_no) {
-            case SBA_RESET_DEFIANT: {
-                // debug_printf("In SBA_RESET_DEFIANT\n");
-
-                CalcPriorityAndQuickClawCustapBerry(bw, sp);
-
-                for (client_no = 0; client_no < client_set_max; client_no++) {
-                    sp->oneSelfFlag[client_no].defiant_flag = 0;
-                }
-                sp->sba_work = 0;
-                sp->sba_seq_no++;
-                break;
-            }
-            case SBA_RESET_FURY_CUTTER: {
-                // debug_printf("In SBA_RESET_FURY_CUTTER\n");
-
-                for (client_no = 0; client_no < client_set_max; client_no++) {
-                    if (((sp->battlemon[client_no].condition & 7) != 0) || (GetBattlerSelectedMove(sp, client_no) != MOVE_FURY_CUTTER) || (ST_CheckIfInTruant(sp, client_no) != FALSE) || (sp->oneTurnFlag[client_no].struggle_flag != 0))
-                        sp->battlemon[client_no].moveeffect.furyCutterCount = 0;
-                }
-                sp->sba_seq_no++;
-                break;
-            }
-            case SBA_RANDOM_SPEED_ROLL: {
-                // debug_printf("In SBA_RANDOM_SPEED_ROLL\n");
-
-                for (client_no = 0; client_no < CLIENT_MAX; client_no++) {
-                    sp->agi_rand[client_no] = BattleRand(bw);
-                }
-                sp->sba_seq_no++;
-                break;
-            }
-            // TODO: Check correctness, probably need to move checks out of CalcSpeed
-            case SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION: {
-                // debug_printf("In SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION\n");
-
-                ServerSenseiCheck(bw, sp);  /// 先制之爪/釋陀果效果 80143E4h
-                sp->sba_seq_no++;
-                return;
-            }
             case SBA_SET_GIMMICK_REQUEST_STATUS: {
                 // debug_printf("In SBA_SET_GIMMICK_REQUEST_STATUS\n");
 
@@ -169,6 +130,45 @@ void __attribute__((section (".init"))) ServerBeforeActInternal(struct BattleSys
                 }
                 sp->sba_seq_no++;
                 break;
+            }
+            case SBA_RESET_DEFIANT: {
+                // debug_printf("In SBA_RESET_DEFIANT\n");
+
+                CalcPriorityAndQuickClawCustapBerry(bw, sp);
+
+                for (client_no = 0; client_no < client_set_max; client_no++) {
+                    sp->oneSelfFlag[client_no].defiant_flag = 0;
+                }
+                sp->sba_work = 0;
+                sp->sba_seq_no++;
+                break;
+            }
+            case SBA_RESET_FURY_CUTTER: {
+                // debug_printf("In SBA_RESET_FURY_CUTTER\n");
+
+                for (client_no = 0; client_no < client_set_max; client_no++) {
+                    if (((sp->battlemon[client_no].condition & 7) != 0) || (GetBattlerSelectedMove(sp, client_no) != MOVE_FURY_CUTTER) || (ST_CheckIfInTruant(sp, client_no) != FALSE) || (sp->oneTurnFlag[client_no].struggle_flag != 0))
+                        sp->battlemon[client_no].moveeffect.furyCutterCount = 0;
+                }
+                sp->sba_seq_no++;
+                break;
+            }
+            case SBA_RANDOM_SPEED_ROLL: {
+                // debug_printf("In SBA_RANDOM_SPEED_ROLL\n");
+
+                for (client_no = 0; client_no < CLIENT_MAX; client_no++) {
+                    sp->agi_rand[client_no] = BattleRand(bw);
+                }
+                sp->sba_seq_no++;
+                break;
+            }
+            // TODO: Check correctness, probably need to move checks out of CalcSpeed
+            case SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION: {
+                // debug_printf("In SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION\n");
+
+                ServerSenseiCheck(bw, sp);  /// 先制之爪/釋陀果效果 80143E4h
+                sp->sba_seq_no++;
+                return;
             }
             case SBA_ESCAPING: {
                 // debug_printf("In SBA_ESCAPING\n");

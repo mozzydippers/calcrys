@@ -211,6 +211,10 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
         // Reset Focus Punch flag
         ctx->oneTurnFlag[ctx->attack_client].pendingFocusPunchFlag = FALSE;
 
+        // Reset Z-Move flags
+        // newBS.needZMove[ctx->attack_client] = FALSE;
+        newBS.SideZMoveBaseMove[ctx->attack_client] = MOVE_NONE;
+
         script = SwitchInAbilityCheck(bsys, ctx);
         if (script) {
             LoadBattleSubSeqScript(ctx, 1, script);

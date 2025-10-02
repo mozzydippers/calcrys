@@ -1,6 +1,7 @@
 #include "../../include/battle.h"
 #include "../../include/config.h"
 #include "../../include/debug.h"
+#include "../../include/z_moves.h"
 #include "../../include/pokemon.h"
 #include "../../include/types.h"
 #include "../../include/constants/ability.h"
@@ -1303,7 +1304,11 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
             if (ctx->oneTurnFlag[client].struggle_flag) {
                 move = MOVE_STRUGGLE;
             } else {
-                move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                if (newBS.needZMove[client]) {
+                    move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                } else {
+                    move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                }
             }
         }
         priority = ctx->moveTbl[move].priority;
@@ -1606,7 +1611,13 @@ int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int 
     atk_d = HeldItemAtkGet(sp, defence_client, ATK_CHECK_NORMAL);
 
     move_type = GetAdjustedMoveType(sp, attack_client, move_no); // new normalize checks
-    base_power = sp->moveTbl[move_no].power;
+
+    if (newBS.SideZMoveBaseMove[attack_client]) {
+        // It does not matter
+        base_power = 1;
+    } else {
+        base_power = sp->moveTbl[move_no].power;
+    }
 
     u8 attacker_type_1 = GetSanitisedType(BattlePokemonParamGet(sp, attack_client, BATTLE_MON_DATA_TYPE1, NULL));
     u8 attacker_type_2 = GetSanitisedType(BattlePokemonParamGet(sp, attack_client, BATTLE_MON_DATA_TYPE2, NULL));
