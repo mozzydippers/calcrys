@@ -48,6 +48,7 @@ a010_091:
     checkturn _0180, _03D0
     end
 _0180:
+    // this make the sprite move down
     callfunction 67, 5, 2, 0, 0, 8, 10, "NaN", "NaN", "NaN", "NaN", "NaN"
     addparticle 0, 0, 17
     cmd37 6, 0, 1, 5, 0, 0, 0, "NaN", "NaN"
@@ -73,6 +74,7 @@ _0180:
     cmd37 4, 1, 0, -688, 0, "NaN", "NaN", "NaN", "NaN"
     repeatse 1976, -117, 2, 3
     wait 45
+    // This makes the sprite disappear
     callfunction 40, 2, 2, 1, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
     waitparticle
     unloadparticle 0

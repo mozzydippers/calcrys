@@ -10,6 +10,8 @@
 
 .create "build/move/move_anim/0_626", 0
 
+// Breakneck Blitz
+
 a010_626:
     cmd43
     cmd0C 7, 1
