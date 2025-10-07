@@ -963,7 +963,7 @@ u32 LONG_CALL UseItemMonAttrChangeCheck(struct PLIST_WORK *wk, void *dat)
         return TRUE;
     }
 
-    if (wk->dat->item == ITEM_INFINITE_CANDY) {
+    /* if (wk->dat->item == ITEM_INFINITE_CANDY) {
     s32 stack_data[4];
     #define sp60 stack_data[3]
     #define sp58 stack_data[2]
@@ -993,10 +993,10 @@ u32 LONG_CALL UseItemMonAttrChangeCheck(struct PLIST_WORK *wk, void *dat)
             hadEffect = TRUE;
         }
         effectFound = TRUE;
-    }
-#undef sp60
-#undef sp54
-#undef sp5c
+    } 
+    #undef sp60
+    #undef sp54
+    #undef sp5c */
     return FALSE;
 }
 
@@ -2739,6 +2739,7 @@ const u8 sTrainerGenders[] = {
     [TRAINERCLASS_PKMN_TRAINER_LUCAS_PT] = TRAINER_MALE,
     // calcrys custom
     [TRAINERCLASS_SNAIL] = TRAINER_FEMALE,
+    [TRAINERCLASS_KURT] = TRAINER_MALE,
 };
 
 TrainerGender LONG_CALL TT_TrainerTypeSexGet(int tr_type) {

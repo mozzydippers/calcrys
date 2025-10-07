@@ -2,6 +2,9 @@
 #include "../include/pokemon.h"
 #include "../include/npc_trade.h"
 #include "../include/constants/species.h" 
+// for custom trades
+#include "../include/constants/item.h" 
+#include "../include/constants/ability.h" 
 
 void LONG_CALL _CreateTradeMon(struct PartyPokemon *mon, struct NPCTrade *trade_dat, u32 level, u32 tradeno, u32 mapno, u32 met_level_strat, u32 heapId)
 {
@@ -9,6 +12,47 @@ void LONG_CALL _CreateTradeMon(struct PartyPokemon *mon, struct NPCTrade *trade_
     u8 nickname_flag;
     u32 mapsec;
     int heapId_2;
+    // for custom trades
+    int ability = -1;
+    int nature = -1;
+
+    // for custom trades
+    if (tradeno == NPC_TRADE_ROCKY_ONIX)
+    {
+        trade_dat->give_species = SPECIES_MAROWAK_ALOLAN;
+
+        trade_dat->heldItem = ITEM_RARE_BONE;
+
+        trade_dat->ask_species = SPECIES_HOPPIP;
+    }
+
+    if (tradeno == NPC_TRADE_MUSCLE_MACHOP)
+    {
+        trade_dat->give_species = SPECIES_HONEDGE;
+
+        trade_dat->ask_species = SPECIES_TAUROS;
+
+    }
+
+    if (tradeno == NPC_TRADE_BILLY_VOLTORB)
+    {
+        trade_dat->give_species = SPECIES_ROTOM;
+
+        trade_dat->heldItem = ITEM_RARE_BONE;
+
+        // ability = ABILITY_ROCK_HEAD;
+    }
+
+    if (tradeno == NPC_TRADE_DORIS_DODRIO)
+    {
+        trade_dat->give_species = SPECIES_MAROWAK_ALOLAN;
+
+        trade_dat->heldItem = ITEM_RARE_BONE;
+
+        // ability = ABILITY_ROCK_HEAD;
+    }
+
+    // end of custom trades
 
     PokeParaSet(mon, trade_dat->give_species, level, 32, TRUE, trade_dat->pid, OT_ID_PRESET, trade_dat->otId);
 

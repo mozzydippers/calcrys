@@ -865,15 +865,30 @@ u8 LONG_CALL CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int clien
 
     if ((hold_effect1 == HOLD_EFFECT_DITTO_SPEED_UP) && (sp->battlemon[client1].species == SPECIES_DITTO)
         // Not transformed
-        && !(sp->battlemon[client1].condition2 & STATUS2_TRANSFORMED)) {
+        /* && !(sp->battlemon[client1].condition2 & STATUS2_TRANSFORMED) */) {
         speedModifier1 = QMul_RoundUp(speedModifier1, UQ412__2_0);
     }
 
     if ((hold_effect2 == HOLD_EFFECT_DITTO_SPEED_UP)
     && (sp->battlemon[client2].species == SPECIES_DITTO)
     // Not transformed
-    && !(sp->battlemon[client2].condition2 & STATUS2_TRANSFORMED)) {
+    /* && !(sp->battlemon[client2].condition2 & STATUS2_TRANSFORMED) */ ) {
         speedModifier2 = QMul_RoundUp(speedModifier2, UQ412__2_0);
+    }
+
+    // Step 4.5: Metal Powder
+
+    if ((hold_effect1 == HOLD_EFFECT_DITTO_DEF_UP) && (sp->battlemon[client1].species == SPECIES_DITTO)
+        // Not transformed
+        /* && !(sp->battlemon[client1].condition2 & STATUS2_TRANSFORMED) */) {
+        speedModifier1 = QMul_RoundUp(speedModifier1, UQ412__0_5);
+    }
+
+    if ((hold_effect2 == HOLD_EFFECT_DITTO_DEF_UP)
+        && (sp->battlemon[client2].species == SPECIES_DITTO)
+        // Not transformed
+        /* && !(sp->battlemon[client2].condition2 & STATUS2_TRANSFORMED) */) {
+        speedModifier2 = QMul_RoundUp(speedModifier2, UQ412__0_5);
     }
 
 #ifdef DEBUG_SPEED_CALC

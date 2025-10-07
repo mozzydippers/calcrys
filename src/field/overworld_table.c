@@ -1679,8 +1679,8 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     
     NEW_NPC_ENTRY(0), // persian sitting (radio tower)
     NEW_NPC_ENTRY(1), // celebi (ilex forest)
-    NEW_NPC_ENTRY(2), // gimmighoul sealed (bell tower)
-    NEW_NPC_ENTRY(3), // gimmighoul walking (bell tower)
+    NEW_NPC_ENTRY(2), // gimmighoul (bell tower)
+    NEW_NPC_ENTRY(3), // gimmighoul walking (unused)
     NEW_NPC_ENTRY(4), // mega ampharos (lighthouse)
     NEW_NPC_ENTRY(5), // azumarill (lotta places)
     NEW_NPC_ENTRY(6), // hisui arcanine (ecruteak -> route 38)

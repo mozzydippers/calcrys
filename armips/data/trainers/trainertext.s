@@ -9,32 +9,6 @@
 _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
-       // Trainer 210
-       trainertextentry 210, TEXT_LAST_MON_SENT_OUT, "Sorry, but there's no way I'll lose to\nyour Pokémon!\n"
-       trainertextentry 210, TEXT_LAST_MON_CRITICAL, "I can't let you beat me.\nThe honor of bird trainers everywhere\nis at stake!\n"
-       trainertextentry 210, TEXT_DEFEATED_IN_BATTLE, "...Shoot!\nYeah, I lost.\n"
-       trainertextentry 210, TEXT_PLAYER_LOSES, "How's that?!\nBird Pokémon are the best after all!\n"
-       // Trainer 225
-       trainertextentry 225, TEXT_LAST_MON_SENT_OUT, "Behold my bug research!\n"
-       trainertextentry 225, TEXT_LAST_MON_CRITICAL, "My research isn't complete yet!\n"
-       trainertextentry 225, TEXT_DEFEATED_IN_BATTLE, "I give up! You're tough.\nI need to do some more research...\n"
-       trainertextentry 225, TEXT_PLAYER_LOSES, "What do you think of that?\n"
-       // Trainer 226
-       trainertextentry 226, TEXT_LAST_MON_SENT_OUT, "OK!\nIt's the time you've been waiting for!\n"
-       trainertextentry 226, TEXT_LAST_MON_CRITICAL, "Stop it!\nCut that out!\n"
-       trainertextentry 226, TEXT_DEFEATED_IN_BATTLE, "Waaaaah! Waaaaah!\n"
-       trainertextentry 226, TEXT_PLAYER_LOSES, "Heheheh!\nThat's what you get when you challenge me!\n"
-       // Trainer 229
-       trainertextentry 229, TEXT_LAST_MON_SENT_OUT, "I'll show you just how hard we've trained!\n"
-       trainertextentry 229, TEXT_LAST_MON_CRITICAL, "The future is just beyond the horizon!\n"
-       trainertextentry 229, TEXT_DEFEATED_IN_BATTLE, "I lost, I have to redo my training.\n"
-       trainertextentry 229, TEXT_PLAYER_LOSES, "If the trainer isn't focused, his Pokémon can't concentrate, either.\n"
-       // Trainer 243
-       trainertextentry 243, TEXT_LAST_MON_SENT_OUT, "Are you brave or just ignorant?\nYou must have guts. Come on!\n"
-       trainertextentry 243, TEXT_LAST_MON_CRITICAL, "Something's wrong!\nThis just isn't right...\n"
-       trainertextentry 243, TEXT_DEFEATED_IN_BATTLE, "Hmm... I lost?\nHow about that!\n"
-       trainertextentry 243, TEXT_PLAYER_LOSES, "See? My Pokémon were as strong as I said!"
-       // Trainer 262
        // Trainer 265
        // Trainer 273
        // Trainer 292
@@ -2111,9 +2085,11 @@ _12BC: // Trainer 216
 
 _12C8: // Trainer 223
     trainertextentry 223, TEXT_DEFEATED_IN_BATTLE, "Grr... I failed...\n"
+    trainertextentry 223, TEXT_PLAYER_LOSES, "Isn't it past your bedtime, kid?\rKeep your nose out of grown-up\nbusiness.\n"
 
 _12CC: // Trainer 224
     trainertextentry 224, TEXT_DEFEATED_IN_BATTLE, "Surveillance cams are in the\nPokémon statues.\rWe’ll keep appearing until you trip a\nsecret switch.\n"
+    trainertextentry 224, TEXT_PLAYER_LOSES, "All Pokémon exist for the glory of\nTeam Rocket!\n"
 
 _12D0: // Trainer 479
     trainertextentry 479, TEXT_LAST_MON_SENT_OUT, "Argh! I’m getting nervous!\n"
@@ -2135,6 +2111,7 @@ _12F4: // Trainer 220
     trainertextentry 220, TEXT_NOTICE_IN_OVERWORLD, "You rotten little pest!\r"
     trainertextentry 220, TEXT_DEFEATED_IN_BATTLE, "Grrrr...\n"
     trainertextentry 220, TEXT_DEFEATED_IN_OVERWORLD, "Heh, only the one who guards the boss’s\nroom knows the password for that door.\rWhere’s the boss’s room?\nWho knows? Go look for yourself.\n"
+    trainertextentry 224, TEXT_PLAYER_LOSES, "I squash bugs like you!\n"
 
 _1300: // Trainer 499
     trainertextentry 499, TEXT_DEFEATED_IN_BATTLE, "...\n"
@@ -3160,7 +3137,7 @@ _1AD8: // Trainer 19
     trainertextentry  19, TEXT_PLAYER_LOSES, "That was a battle I'll never forget!\n"
 
 _1ADC: // Trainer 40
-    trainertextentry  40, TEXT_LAST_MON_CRITICAL, "Amphy, are you ready?\n"
+    trainertextentry  40, TEXT_LAST_MON_SENT_OUT, "Amphy, are you ready?\n"
     trainertextentry  40, TEXT_PLAYER_LOSES, "It's working...\n"
 
 _1AE0: // Trainer 63
@@ -3176,12 +3153,12 @@ _1AE4: // Trainer 87
     trainertextentry  87, TEXT_PLAYER_LOSES, "Better luck next time!\n"
 
 _1AE8: // Trainer 88
-    trainertextentry  88, TEXT_PLAYER_LOSES, "Hmph.\nThe nerve to ask for the medicine for\nmy poor, poor Ursaring...\n"
+    trainertextentry  88, TEXT_PLAYER_LOSES, "Hmph.\rThe nerve to ask for the medicine for\nmy poor, poor Ursaring...\n"
 
 _1AEC: // Trainer 105
     trainertextentry 105, TEXT_DEFEATED_IN_BATTLE, "Hmph... That was a truly intense fight.\rYour love of Pokémon gave you the\nadvantage...this time.\n"
     trainertextentry 105, TEXT_LAST_MON_SENT_OUT, "I’ll remind you and your Pokémon of\nyour place.\rGet ready.\n"
-    trainertextentry 105, TEXT_LAST_MON_CRITICAL, "You failed as soon as you challenged me,\nTrainer.\n"
+    trainertextentry 105, TEXT_LAST_MON_CRITICAL, "Unbelievable.\rYou will regret challenging me.\n"
     trainertextentry 105, TEXT_PLAYER_LOSES, "As expected.\rRun back to your professor.\nYou still have much training to do.\n"
 
 _1AF0: // Trainer 107
@@ -3329,6 +3306,40 @@ _1B4C: // Trainer 221
     trainertextentry 221, TEXT_NOTICE_IN_OVERWORLD, "One man stands alone between Johto\nand ensuing calamity.\rThat man is I!\nAce Trainer Louis!\r"
     trainertextentry 221, TEXT_DEFEATED_IN_BATTLE, "alas. i have failed... \r"
     trainertextentry 221, TEXT_DEFEATED_IN_OVERWORLD, "alas. i have failed... \r"
+
+_1B50: // Trainer 210
+    trainertextentry 210, TEXT_LAST_MON_SENT_OUT, "Sorry, but there's no way I'll lose to\nyour Pokémon!\n"
+    trainertextentry 210, TEXT_LAST_MON_CRITICAL, "I can't let you beat me.\nThe honor of bird trainers everywhere\nis at stake!\n"
+    trainertextentry 210, TEXT_DEFEATED_IN_BATTLE, "...Shoot!\nYeah, I lost.\n"
+    trainertextentry 210, TEXT_PLAYER_LOSES, "How's that?!\nBird Pokémon are the best after all!\n"
+
+_1B54: // Trainer 225
+    trainertextentry 225, TEXT_LAST_MON_SENT_OUT, "Behold my bug research!\n"
+    trainertextentry 225, TEXT_LAST_MON_CRITICAL, "My research isn't complete yet!\n"
+    trainertextentry 225, TEXT_DEFEATED_IN_BATTLE, "I give up! You're tough.\nI need to do some more research...\n"
+    trainertextentry 225, TEXT_PLAYER_LOSES, "What do you think of that?\n"
+
+_1B58: // Trainer 226
+    trainertextentry 226, TEXT_LAST_MON_SENT_OUT, "OK!\nIt's the time you've been waiting for!\n"
+    trainertextentry 226, TEXT_LAST_MON_CRITICAL, "Stop it!\nCut that out!\n"
+    trainertextentry 226, TEXT_DEFEATED_IN_BATTLE, "Waaaaah! Waaaaah!\n"
+    trainertextentry 226, TEXT_PLAYER_LOSES, "Heheheh!\nThat's what you get when you challenge me!\n"
+       
+_1B5C: // Trainer 229
+    trainertextentry 229, TEXT_LAST_MON_SENT_OUT, "I'll show you just how hard we've trained!\n"
+    trainertextentry 229, TEXT_LAST_MON_CRITICAL, "The future is just beyond the horizon!\n"
+    trainertextentry 229, TEXT_DEFEATED_IN_BATTLE, "I lost, I have to redo my training.\n"
+    trainertextentry 229, TEXT_PLAYER_LOSES, "If the trainer isn't focused, his Pokémon can't concentrate, either.\n"
+
+_1B60: // Trainer 243
+    trainertextentry 243, TEXT_LAST_MON_SENT_OUT, "Are you brave or just ignorant?\nYou must have guts. Come on!\n"
+    trainertextentry 243, TEXT_LAST_MON_CRITICAL, "Something's wrong!\nThis just isn't right...\n"
+    trainertextentry 243, TEXT_DEFEATED_IN_BATTLE, "What? How...?!\n"
+    trainertextentry 243, TEXT_PLAYER_LOSES, "See? My Pokémon were as strong as I said!"
+
+_1B64: // Trainer 262
+    trainertextentry 262, TEXT_PLAYER_LOSES, "That wasn't a lesson in pain, but you still have much to learn..."
+
 .close
 
 .create "build/trainer_text_offsets/1_0", 0
@@ -3543,7 +3554,7 @@ _1B4C: // Trainer 221
 /* Trainer 207 */ .halfword _0000
 /* Trainer 208 */ .halfword _0000
 /* Trainer 209 */ .halfword _0F48
-/* Trainer 210 */ .halfword _0000
+/* Trainer 210 */ .halfword _1B50
 /* Trainer 211 */ .halfword _127C
 /* Trainer 212 */ .halfword _128C
 /* Trainer 213 */ .halfword _1298
@@ -3558,11 +3569,11 @@ _1B4C: // Trainer 221
 /* Trainer 222 */ .halfword _1328
 /* Trainer 223 */ .halfword _12C8
 /* Trainer 224 */ .halfword _12CC
-/* Trainer 225 */ .halfword _0000
-/* Trainer 226 */ .halfword _0000
+/* Trainer 225 */ .halfword _1B54
+/* Trainer 226 */ .halfword _1B58
 /* Trainer 227 */ .halfword _13D0
 /* Trainer 228 */ .halfword _13A0
-/* Trainer 229 */ .halfword _0000
+/* Trainer 229 */ .halfword _1B5C
 /* Trainer 230 */ .halfword _05B8
 /* Trainer 231 */ .halfword _0F24
 /* Trainer 232 */ .halfword _054C
@@ -3576,7 +3587,7 @@ _1B4C: // Trainer 221
 /* Trainer 240 */ .halfword _0F84
 /* Trainer 241 */ .halfword _0FFC
 /* Trainer 242 */ .halfword _0F00
-/* Trainer 243 */ .halfword _0000
+/* Trainer 243 */ .halfword _1B60
 /* Trainer 244 */ .halfword _03A0
 /* Trainer 245 */ .halfword _0370
 /* Trainer 246 */ .halfword _0394
@@ -3595,7 +3606,7 @@ _1B4C: // Trainer 221
 /* Trainer 259 */ .halfword _043C
 /* Trainer 260 */ .halfword _1418
 /* Trainer 261 */ .halfword _03E8
-/* Trainer 262 */ .halfword _0000
+/* Trainer 262 */ .halfword _1B64
 /* Trainer 263 */ .halfword _0054
 /* Trainer 264 */ .halfword _00B4
 /* Trainer 265 */ .halfword _0000

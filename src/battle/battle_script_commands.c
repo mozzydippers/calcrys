@@ -392,7 +392,7 @@ u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x102
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x103
 
 const btl_scr_cmd_func NewBattleScriptCmdTable[] =
 {
@@ -3371,7 +3371,7 @@ BOOL btl_scr_cmd_custom_04_tryemergencyexit(void* bw, struct BattleStruct* sp) {
     IncrementBattleScriptPtr(sp, 1);
     int adrs = read_battle_script_param(sp);
         
-    if (BattleTypeGet(bw) != BATTLE_TYPE_TRAINER)
+    if (!(BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_WIRELESS | BATTLE_TYPE_MULTI | BATTLE_TYPE_TAG | BATTLE_TYPE_NPC_MULTI | BATTLE_TYPE_BATTLE_TOWER)))
     {
         IncrementBattleScriptPtr(sp, adrs);
     }

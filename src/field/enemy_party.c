@@ -234,12 +234,20 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         offset++;
 
         // level field
+        u32 levelCap = GetScriptVar(LEVEL_CAP_VARIABLE);
 		level = buf[offset] | (buf[offset+1] << 8);
         gLastPokemonLevelForMoneyCalc = level; // ends up being the last level at the end of the loop that we use for the money calc loop default case
         offset += 2;
+
         if ((DoScaling == 1) && highLevel >= level) { // always highest level on trainers
-			level = highLevel;
-            // level = avgLevel; // standard is usually avg but i just put it at highest
+            if (highLevel > levelCap && highLevel > level) // if highest level is > cap scale to cap
+            {
+			    level = levelCap; 
+            } 
+            else 
+            {
+                level = highLevel;
+            }
 		}
         if ((DoScaling == 2) && highLevel >= level) { // always highest level on trainers
 			level = highLevel;
@@ -588,19 +596,20 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
 	u16 highLevel = GetHighLevel(bp);
 	u16 lowLevel = GetLowLevel(bp);
 	
-	/*if ((species == SPECIES_DIANCIE) && (level == 50)) {
+	if ((species == SPECIES_CELEBI) && (level == 60)) {
 		goto _skipLevelScale;
 	}
-	
-	else*/ {
-		if (DoScaling == 1) {
-			level = (avgLevel - 1);
-			exp = PokeLevelExpGet(species,level);
-			SetMonData(encounterPartyPokemon, MON_DATA_LEVEL, &level);
-			SetMonData(encounterPartyPokemon, MON_DATA_EXPERIENCE, (u8 *)&exp);
-			RecalcPartyPokemonStats(encounterPartyPokemon);
-			InitBoxMonMoveset(&encounterPartyPokemon->box);
-		}
+
+	else
+    {
+        if ((DoScaling == 1) & (level < avgLevel)) {
+			    level = (avgLevel - 1);
+			    exp = PokeLevelExpGet(species,level);
+			    SetMonData(encounterPartyPokemon, MON_DATA_LEVEL, &level);
+			    SetMonData(encounterPartyPokemon, MON_DATA_EXPERIENCE, (u8 *)&exp);
+			    RecalcPartyPokemonStats(encounterPartyPokemon);
+			    InitBoxMonMoveset(&encounterPartyPokemon->box);
+            }
 	
 		if (DoScaling == 2) {
 			level = (highLevel - 1);

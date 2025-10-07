@@ -53,6 +53,8 @@ u16 MainMusicComboTable[][2] =
     [ANIM_MUSIC_COMBO_KIMONO_GIRL] = {0x2D, SEQ_GS_VS_TRAINER},
     [ANIM_MUSIC_COMBO_RED] = {0x2E, SEQ_GS_VS_CHAMP},
     // (***END OF VANILLA ENTRIES***)
+    [ANIM_MUSIC_COMBO_CELEBI] = {0x22, SEQ_GS_VS_NORAPOKE},
+
 };
 
 // format is one byte for trainer class, then one byte for combo (combo increments by 4 because each combo is four bytes long)
@@ -114,6 +116,7 @@ struct MonBattleMusic PokemonBattleMusic[] =
     {.species = SPECIES_LATIOS,   .combo = ANIM_MUSIC_COMBO_MEWTWO_LATI_TWINS},
     {.species = SPECIES_LATIAS,   .combo = ANIM_MUSIC_COMBO_MEWTWO_LATI_TWINS},
     // (***END VANILLA ENTRIES***)
+    {.species = SPECIES_CELEBI,   .combo = ANIM_MUSIC_COMBO_CELEBI},
 };
 
 struct TrainerMusic

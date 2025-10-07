@@ -215,7 +215,12 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp) {
                     // If the current weather is Sunny Day and the user is not holding Utility Umbrella, this move's damage is multiplied by 1.5 instead of halved for being Water type.
                     if (moveno == MOVE_HYDRO_STEAM && GetBattleMonItem(sp, attacker) != ITEM_UTILITY_UMBRELLA) {
                         damage = QMul_RoundDown(damage, UQ412__1_5);
-                    } else {
+                    }
+                    if (moveno == MOVE_STEAM_ERUPTION && GetBattleMonItem(sp, attacker) != ITEM_UTILITY_UMBRELLA) {
+                        damage = QMul_RoundDown(damage, UQ412__1_0);
+                    } 
+                    else 
+                    {
                         damage = QMul_RoundDown(damage, UQ412__0_5);
                     }
                     break;

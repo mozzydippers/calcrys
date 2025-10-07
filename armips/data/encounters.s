@@ -1012,13 +1012,13 @@ encounter SPECIES_CLODSIRE, 42, 46
 encounter SPECIES_CLODSIRE, 42, 46
 
 // rock smash encounters
-encounter SPECIES_KABUTO, 15, 15
-encounter SPECIES_OMANYTE, 15, 15
+encounter SPECIES_TIRTOUGA, 15, 15
+encounter SPECIES_ARCHEN, 15, 15
 
 // old rod encounters
-encounter SPECIES_CARVANHA, 18, 22
-encounter SPECIES_CARVANHA, 18, 22
-encounter SPECIES_CARVANHA, 18, 22
+encounter SPECIES_OMANYTE, 18, 22
+encounter SPECIES_KABUTO, 18, 22
+encounter SPECIES_KABUTO, 18, 22
 encounterwithform SPECIES_QWILFISH, 1, 22, 26
 encounterwithform SPECIES_QWILFISH, 1, 22, 26
 
@@ -8646,7 +8646,7 @@ rocksmashrate 30
 oldrodrate 0
 goodrodrate 0
 superrodrate 0
-walklevels 50, 51, 50, 51, 50, 50, 51, 51, 51, 52, 52, 51
+walklevels 50, 51, 50, 51, 50, 50, 51, 51, 51, 51, 52, 51
 
 // morning encounter slots
 pokemon SPECIES_KINGLER
@@ -8658,7 +8658,7 @@ pokemon SPECIES_MACHAMP
 pokemon SPECIES_CRUSTLE
 pokemon SPECIES_BARBARACLE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_STEELIX
+pokemon SPECIES_EXCADRILL
 pokemon SPECIES_GRAPPLOCT
 pokemon SPECIES_WIMPOD
 
@@ -8672,7 +8672,7 @@ pokemon SPECIES_MACHAMP
 pokemon SPECIES_CRUSTLE
 pokemon SPECIES_BARBARACLE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_STEELIX
+pokemon SPECIES_EXCADRILL
 pokemon SPECIES_GRAPPLOCT
 pokemon SPECIES_WIMPOD
 
@@ -8686,7 +8686,7 @@ pokemon SPECIES_MACHAMP
 pokemon SPECIES_CRUSTLE
 pokemon SPECIES_BARBARACLE
 pokemon SPECIES_STEELIX
-pokemon SPECIES_STEELIX
+pokemon SPECIES_EXCADRILL
 pokemon SPECIES_GRAPPLOCT
 pokemon SPECIES_WIMPOD
 

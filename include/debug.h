@@ -24,7 +24,7 @@
 #define DEBUG_BATTLE_SCRIPT_COMMANDS
 
 // DEBUG_PRINT_OVERLAY_LOADS prints out overlay loads and unloads in the desmume window
-#define DEBUG_PRINT_OVERLAY_LOADS
+// #define DEBUG_PRINT_OVERLAY_LOADS
 
 // DEBUG_SOUND_SSEQ_LOADS prints out sseq loads from the SDAT and the free space left after the load.
 //#define DEBUG_SOUND_SSEQ_LOADS
@@ -48,7 +48,7 @@
 //#define DEBUG_CAPTURE_RATE_PERCENTAGES
 
 // DEBUG_SERVER_QUEUE prints debug information about the status of the server queue when the waitmessage script command
-#define DEBUG_SERVER_QUEUE
+//#define DEBUG_SERVER_QUEUE
 
 // DEBUG_INIT_PC_BOXES_WITH_MONS initializes pc boxes with mons on save creation.  inits with national dex num
 //#define DEBUG_INIT_PC_BOXES_WITH_MONS

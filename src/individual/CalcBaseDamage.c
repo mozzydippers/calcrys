@@ -1721,8 +1721,8 @@ int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 sid
             if ((DefendingMon.item_held_effect == HOLD_EFFECT_DITTO_DEF_UP)
             && (DefendingMon.species == SPECIES_DITTO)
             // it’s not a Ditto/Smeargle/Mew Transformed into the species
-            && !(sp->battlemon[attacker].condition2 & STATUS2_TRANSFORMED)
-            && (movesplit == SPLIT_PHYSICAL)) {
+            /* && !(sp->battlemon[attacker].condition2 & STATUS2_TRANSFORMED)
+            && (movesplit == SPLIT_PHYSICAL) */) {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
         }

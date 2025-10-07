@@ -126,24 +126,24 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 27:
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_RADIO_WAVES;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 28:
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 29:
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 30:
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 31:
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = SUB_SEQ_OVERWORLD_WATER_SPORT;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
@@ -269,7 +269,6 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         sp->defence_client_work = TraceClientGet(bw, sp, def1, def2);
 
                         if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->defence_client_work != 0xFF) && (sp->battlemon[client_no].hp) && (sp->battlemon[client_no].item != ITEM_GRISEOUS_ORB) && (sp->battlemon[sp->defence_client_work].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_TRACE)) {
-                            sp->battlemon[client_no].ability_activated_flag = 1;
                             sp->battlerIdTemp = client_no;
                             scriptnum = SUB_SEQ_TRACE;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
