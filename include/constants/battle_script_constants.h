@@ -460,9 +460,17 @@
 #define SUB_SEQ_SPIKY_SHIELD                          (450)
 #define SUB_SEQ_HANDLE_ANGER_SHELL                    (451)
 #define SUB_SEQ_HANDLE_GEM_ACTIVATION_MESSAGE         (452)
+#define SUB_SEQ_HANDLE_INCINERATE                     (453)
+#define SUB_SEQ_ADD_THIRD_TYPE_GRASS                  (454)
+#define SUB_SEQ_ADD_THIRD_TYPE_GHOST                  (455)
+#define SUB_SEQ_CHANGE_TARGET_TO_PSYCHIC_TYPE         (456)
+#define SUB_SEQ_AURORA_VEIL                           (457)
+#define SUB_SEQ_CHEEK_POUCH                           (458)
 
-#define MAX_BASE_SUBSCRIPT_NUM 452
+#define MAX_BASE_SUBSCRIPT_NUM 458
 
+// define your custom subscripts below like this
+// #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
 // calcrys custom
 #define SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES         (MAX_BASE_SUBSCRIPT_NUM + 1)
 #define SUB_SEQ_OVERWORLD_TAILWIND                    (MAX_BASE_SUBSCRIPT_NUM + 2)
@@ -677,11 +685,24 @@
 #define ADD_STATUS_EFF_MORTAL_SPIN                     (189)
 #define ADD_STATUS_EFF_TIDY_UP                         (190)
 #define ADD_STATUS_EFF_BURN_AND_DRAIN_HEALTH           (191)
-// custom
-#define ADD_STATUS_EFF_STRENGTH_SAP                    (192)
-#define ADD_STATUS_EFF_HEAL_PULSE                      (193)
-#define ADD_STATUS_EFF_POLLEN_PUFF_HEAL                (194)
-#define ADD_STATUS_EFF_COACHING                        (195)
+#define ADD_STATUS_EFF_INCINERATE                      (192)
+#define ADD_STATUS_EFF_BOOST_STATS_ATTACK_UP_6         (193) // This constant and the one below are only used as spacers for Steam Engine.
+#define ADD_STATUS_EFF_BOOST_STATS_DEFENSE_UP_6        (194) // To add more +6 effects, copy the order & proximity of other stat stage change constants.
+#define ADD_STATUS_EFF_BOOST_STATS_SPEED_UP_6          (195) // Used for Steam Engine.
+#define ADD_STATUS_EFF_ADD_THIRD_TYPE_GRASS            (196)
+#define ADD_STATUS_EFF_ADD_THIRD_TYPE_GHOST            (197)
+#define ADD_STATUS_EFF_CHANGE_TARGET_TO_PSYCHIC_TYPE   (198)
+#define ADD_STATUS_EFF_AURORA_VEIL                     (199)
+
+#define MAX_BASE_SUBSCRIPT_PTR_NUM (199)
+
+// define your custom subscripts below like this
+// #define MOVE_SUBSCRIPT_PTR_CUSTOM_1 (MAX_BASE_SUBSCRIPT_PTR_NUM + 1)
+// calcrys custom custom
+#define ADD_STATUS_EFF_STRENGTH_SAP                    (MAX_BASE_SUBSCRIPT_PTR_NUM + 1)
+#define ADD_STATUS_EFF_HEAL_PULSE                      (MAX_BASE_SUBSCRIPT_PTR_NUM + 2)
+#define ADD_STATUS_EFF_POLLEN_PUFF_HEAL                (MAX_BASE_SUBSCRIPT_PTR_NUM + 3)
+#define ADD_STATUS_EFF_COACHING                        (MAX_BASE_SUBSCRIPT_PTR_NUM + 4)
 
 // additional effect constants
 #define ADD_STATUS_NONE (0)
