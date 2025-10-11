@@ -465,9 +465,10 @@
 #define SUB_SEQ_ADD_THIRD_TYPE_GHOST                  (455)
 #define SUB_SEQ_CHANGE_TARGET_TO_PSYCHIC_TYPE         (456)
 #define SUB_SEQ_AURORA_VEIL                           (457)
-#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT             (458)
+#define SUB_SEQ_CHEEK_POUCH                           (458)
+#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT             (459)
 
-#define MAX_BASE_SUBSCRIPT_NUM 458
+#define MAX_BASE_SUBSCRIPT_NUM 459
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
