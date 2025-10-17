@@ -27811,7 +27811,7 @@ mondata SPECIES_MEGA_FROSLASS, "-----"
     colorflip BODY_COLOR_WHITE, 0
 
 mondata SPECIES_MEGA_EMBOAR, "-----"
-    basestats 115, 150, 75, 75, 110, 110
+    basestats 110, 148, 75, 75, 110, 110
     types TYPE_FIRE, TYPE_FIGHTING
     catchrate 45
     baseexp 0 // defined in baseexp.s
