@@ -15039,7 +15039,7 @@ trainerdata 244, "Lance"
         abilityslot 2
         level 76
         pokemon SPECIES_DRAGONITE
-        item ITEM_DRAGONITENITE
+        item ITEM_DRAGONINITE
         move MOVE_DUAL_WINGBEAT
         move MOVE_EARTHQUAKE
         move MOVE_EXTREME_SPEED
@@ -33123,7 +33123,7 @@ trainerdata 675, "Lance"
         abilityslot 2
         level 60
         pokemon SPECIES_DRAGONITE
-        item ITEM_DRAGONITENITE
+        item ITEM_DRAGONINITE
         move MOVE_DRAGON_CLAW
         move MOVE_DUAL_WINGBEAT
         move MOVE_EXTREME_SPEED
