@@ -511,19 +511,19 @@ BOOL AbilityIsIgnoredByMoldBreaker (int ability) {
         case ABILITY_ICE_FACE:
         case ABILITY_PASTEL_VEIL:
         case ABILITY_THERMAL_EXCHANGE:
-        case ABILITY_PURIFYING_SALT:
+        // case ABILITY_PURIFYING_SALT:
         case ABILITY_WELL_BAKED_BODY:
         case ABILITY_WIND_RIDER:
-        case ABILITY_GUARD_DOG:
+        // case ABILITY_GUARD_DOG:
         case ABILITY_GOOD_AS_GOLD:
-        case ABILITY_VESSEL_OF_RUIN:
-        case ABILITY_SWORD_OF_RUIN:
-        case ABILITY_TABLETS_OF_RUIN:
-        case ABILITY_BEADS_OF_RUIN:
+        // case ABILITY_VESSEL_OF_RUIN:
+        // case ABILITY_SWORD_OF_RUIN:
+        // case ABILITY_TABLETS_OF_RUIN:
+        // case ABILITY_BEADS_OF_RUIN:
         case ABILITY_ARMOR_TAIL:
         case ABILITY_EARTH_EATER:
         case ABILITY_MINDS_EYE:
-        case ABILITY_TERA_SHELL:
+        // case ABILITY_TERA_SHELL:
             return TRUE;
             break;
 
