@@ -1260,8 +1260,8 @@ evodata SPECIES_EXEGGUTOR
     terminateevodata
 
 evodata SPECIES_CUBONE
+    evolutionwithform EVO_SINJOH_RUINS, 28, SPECIES_MAROWAK, 1
     evolution EVO_LEVEL, 28, SPECIES_MAROWAK
-    evolutionwithform EVO_LEVEL_NIGHT, 28, SPECIES_MAROWAK, 1
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -1884,7 +1884,7 @@ evodata SPECIES_CYNDAQUIL
     terminateevodata
 
 evodata SPECIES_QUILAVA
-    evolution EVO_LEVEL_DAY, 36, SPECIES_TYPHLOSION
+    evolution EVO_LEVEL, 36, SPECIES_TYPHLOSION
     evolutionwithform EVO_LEVEL_NIGHT, 36, SPECIES_TYPHLOSION, 1
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -6640,8 +6640,8 @@ evodata SPECIES_OSHAWOTT
     terminateevodata
 
 evodata SPECIES_DEWOTT
+    evolutionwithform EVO_SINJOH_RUINS, 36, SPECIES_SAMUROTT, 1
     evolution EVO_LEVEL, 36, SPECIES_SAMUROTT
-    evolutionwithform EVO_LEVEL_DARK_TYPE_MON_IN_PARTY, 36, SPECIES_SAMUROTT, 1
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -8141,7 +8141,7 @@ evodata SPECIES_BOUFFALANT
 
 evodata SPECIES_RUFFLET
     evolution EVO_LEVEL, 54, SPECIES_BRAVIARY
-    evolutionwithform EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY, 54, SPECIES_BRAVIARY, 1
+    evolutionwithform EVO_SINJOH_RUINS, 54, SPECIES_BRAVIARY, 1
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -9064,7 +9064,7 @@ evodata SPECIES_CARBINK
 terminateevodata
 
 evodata SPECIES_GOOMY
-    evolutionwithform EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY, 40, SPECIES_SLIGGOO, 1
+    evolutionwithform EVO_SINJOH_RUINS, 40, SPECIES_SLIGGOO, 1
     evolution EVO_LEVEL, 40, SPECIES_SLIGGOO
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
@@ -9160,8 +9160,8 @@ evodata SPECIES_GOURGEIST
 terminateevodata
 
 evodata SPECIES_BERGMITE
+    evolutionwithform EVO_SINJOH_RUINS, 37, SPECIES_AVALUGG, 1
     evolution EVO_LEVEL, 37, SPECIES_AVALUGG
-    evolutionwithform EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY, 37, SPECIES_AVALUGG, 1
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE
     evolution EVO_NONE, 0, SPECIES_NONE

@@ -17492,7 +17492,7 @@ mondata SPECIES_JANGMO_O, "Jangmo-o"
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
-    items ITEM_NONE, ITEM_NONE
+    items ITEM_NONE, ITEM_RAZOR_CLAW
     genderratio 127
     eggcycles 40
     basefriendship 50
@@ -17513,7 +17513,7 @@ mondata SPECIES_HAKAMO_O, "Hakamo-o"
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
-    items ITEM_NONE, ITEM_NONE
+    items ITEM_NONE, ITEM_RAZOR_CLAW
     genderratio 127
     eggcycles 40
     basefriendship 50
@@ -17534,7 +17534,7 @@ mondata SPECIES_KOMMO_O, "Kommo-o"
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
-    items ITEM_NONE, ITEM_NONE
+    items ITEM_RAZOR_CLAW, ITEM_NONE
     genderratio 127
     eggcycles 40
     basefriendship 50
@@ -22771,7 +22771,7 @@ mondata SPECIES_MEGA_KANGASKHAN, "-----"
     colorflip 0, 0
 
 mondata SPECIES_MEGA_PINSIR, "-----"
-    basestats 80, 155, 120, 115, 40, 90
+    basestats 80, 155, 120, 105, 40, 90
     types TYPE_BUG, TYPE_FLYING
     catchrate 45
     baseexp 200
@@ -27694,7 +27694,7 @@ mondata SPECIES_MEGA_CLEFABLE, "-----"
     basefriendship 140
     growthrate GROWTH_FAST
     egggroups EGG_GROUP_FAIRY, EGG_GROUP_FAIRY
-    abilities ABILITY_CUTE_CHARM, ABILITY_CUTE_CHARM
+    abilities ABILITY_AERILATE, ABILITY_AERILATE
     runchance 0
     colorflip BODY_COLOR_PINK, 0
 
@@ -27710,12 +27710,12 @@ mondata SPECIES_MEGA_VICTREEBEL, "-----"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_GRASS, EGG_GROUP_GRASS
-    abilities ABILITY_CHLOROPHYLL, ABILITY_CHLOROPHYLL
+    abilities ABILITY_CORROSION, ABILITY_CORROSION
     runchance 0
     colorflip BODY_COLOR_GREEN, 0
 
 mondata SPECIES_MEGA_STARMIE, "Starmie"
-    basestats 60, 140, 105, 120, 130, 105
+    basestats 60, 100, 105, 120, 130, 105
     types TYPE_WATER, TYPE_PSYCHIC
     catchrate 60
     baseexp 0 // defined in baseexp.s
@@ -27726,7 +27726,7 @@ mondata SPECIES_MEGA_STARMIE, "Starmie"
     basefriendship 50
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_WATER_3, EGG_GROUP_WATER_3
-    abilities ABILITY_ILLUMINATE, ABILITY_ILLUMINATE
+    abilities ABILITY_PURE_POWER, ABILITY_PURE_POWER
     runchance 0
     colorflip BODY_COLOR_PURPLE, 0
 
@@ -27747,7 +27747,7 @@ mondata SPECIES_MEGA_DRAGONITE, "-----"
     colorflip BODY_COLOR_BROWN, 0
 
 mondata SPECIES_MEGA_MEGANIUM, "-----"
-    basestats 85, 92, 115, 80, 143, 115
+    basestats 85, 95, 115, 80, 145, 115
     types TYPE_GRASS, TYPE_FAIRY
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -27763,7 +27763,7 @@ mondata SPECIES_MEGA_MEGANIUM, "-----"
     colorflip BODY_COLOR_GREEN, 0
 
 mondata SPECIES_MEGA_FERALIGATR, "-----"
-    basestats 85, 160, 100, 78, 89, 93
+    basestats 85, 160, 100, 83, 89, 93
     types TYPE_WATER, TYPE_DRAGON
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -27790,7 +27790,7 @@ mondata SPECIES_MEGA_SKARMORY, "-----"
     basefriendship 50
     growthrate GROWTH_SLOW
     egggroups EGG_GROUP_FLYING, EGG_GROUP_FLYING
-    abilities ABILITY_KEEN_EYE, ABILITY_KEEN_EYE
+    abilities ABILITY_GOOD_AS_GOLD, ABILITY_GOOD_AS_GOLD
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
 
@@ -27811,7 +27811,7 @@ mondata SPECIES_MEGA_FROSLASS, "-----"
     colorflip BODY_COLOR_WHITE, 0
 
 mondata SPECIES_MEGA_EMBOAR, "-----"
-    basestats 110, 148, 75, 75, 110, 110
+    basestats 115, 150, 75, 75, 110, 110
     types TYPE_FIRE, TYPE_FIGHTING
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -27822,7 +27822,7 @@ mondata SPECIES_MEGA_EMBOAR, "-----"
     basefriendship 70
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_BLAZE, ABILITY_BLAZE
+    abilities ABILITY_SUPREME_OVERLORD, ABILITY_SUPREME_OVERLORD
     runchance 0
     colorflip BODY_COLOR_RED, 0
 
@@ -27843,7 +27843,7 @@ mondata SPECIES_MEGA_EXCADRILL, "-----"
     colorflip BODY_COLOR_GRAY, 0
 
 mondata SPECIES_MEGA_SCOLIPEDE, "-----"
-    basestats 60, 140, 149, 62, 75, 99
+    basestats 60, 140, 149, 82, 55, 99
     types TYPE_BUG, TYPE_POISON
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -27875,7 +27875,7 @@ mondata SPECIES_MEGA_SCRAFTY, "-----"
     colorflip BODY_COLOR_RED, 0
 
 mondata SPECIES_MEGA_EELEKTROSS, "-----"
-    basestats 85, 145, 80, 80, 135, 90
+    basestats 85, 145, 80, 90, 145, 90
     types TYPE_ELECTRIC, TYPE_ELECTRIC
     catchrate 30
     baseexp 0 // defined in baseexp.s
@@ -28003,7 +28003,7 @@ mondata SPECIES_MEGA_BARBARACLE, "-----"
     colorflip BODY_COLOR_BROWN, 0
 
 mondata SPECIES_MEGA_DRAGALGE, "-----"
-    basestats 65, 85, 105, 44, 132, 163
+    basestats 81, 75, 105, 44, 132, 163
     types TYPE_POISON, TYPE_DRAGON
     catchrate 55
     baseexp 0 // defined in baseexp.s

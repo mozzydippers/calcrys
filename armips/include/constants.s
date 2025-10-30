@@ -110,9 +110,7 @@
 .equ EVO_HURT_IN_BATTLE_AMOUNT, 37
 //EVO_DARK_SCROLL  // implemented through an item use forme-change-esque cut scene
 //EVO_WATER_SCROLL // implemented through an item use forme-change-esque cut scene
-.equ EVO_LEVEL_ROCK_TYPE_MON_IN_PARTY, 40
-.equ EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY, 41
-.equ EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY, 42
+.equ EVO_SINJOH_RUINS, 40
 
 // shadow size constants
 

@@ -301,7 +301,7 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp) {
                     if (moveno == MOVE_HYDRO_STEAM && GetBattleMonItem(sp, attacker) != ITEM_UTILITY_UMBRELLA) {
                         damage = QMul_RoundDown(damage, UQ412__1_5);
                     }
-                    if (moveno == MOVE_STEAM_ERUPTION && GetBattleMonItem(sp, attacker) != ITEM_UTILITY_UMBRELLA) {
+                    else if (moveno == MOVE_STEAM_ERUPTION && GetBattleMonItem(sp, attacker) != ITEM_UTILITY_UMBRELLA) {
                         damage = QMul_RoundDown(damage, UQ412__1_0);
                     } 
                     else 

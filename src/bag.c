@@ -237,7 +237,10 @@ BOOL Bag_TakeItem(BAG_DATA *bag, u16 itemId, u16 quantity, int heap_id) {
             || (itemId == ITEM_SACRED_ASH) 
             || (itemId == ITEM_SOOTHE_BELL) 
             || (itemId == ITEM_SCROLL_OF_DARKNESS) || (itemId == ITEM_SCROLL_OF_WATERS) 
-            || (itemId == ITEM_LINKING_CORD)) {
+            || (itemId == ITEM_LINKING_CORD)
+            // now just berries
+            || (itemId >= ITEM_CHERI_BERRY && itemId <= ITEM_ROWAP_BERRY) 
+            || (itemId >= ITEM_ROSELI_BERRY && itemId <= ITEM_MARANGA_BERRY)) {
         return FALSE;
     }
     slot->quantity -= quantity;

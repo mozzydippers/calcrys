@@ -5532,17 +5532,13 @@ movedata MOVE_MUD_SHOT, "Mud Shot"
     terminatedata
     movedescription MOVE_MUD_SHOT, "The user attacks by\nhurling a blob of mud\nat the foe.\nIt also reduces the\ntarget’s Speed."
 
-// BP : 50 > 120
-// ACC : 100 > 75
-// PP : 25 > 15
-// EFFECT CHANCE : 10 > 30
 movedata MOVE_POISON_TAIL, "Poison Tail"
     battleeffect MOVE_EFFECT_HIGH_CRITICAL_POISON_HIT
     pss SPLIT_PHYSICAL
-    basepower 120
+    basepower 50
     type TYPE_POISON
-    accuracy 75
-    pp 15
+    accuracy 100
+    pp 25
     effectchance 10
     target RANGE_SINGLE_TARGET
     priority 0

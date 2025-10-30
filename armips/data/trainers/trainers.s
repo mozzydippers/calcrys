@@ -2237,19 +2237,6 @@ trainerdata 35, "Clair"
 
         // mon 2
         ivs 255
-        abilityslot 15
-        level 69
-        pokemon SPECIES_ARCHALUDON
-        item ITEM_ASSAULT_VEST
-        move MOVE_FLASH_CANNON
-        move MOVE_DRAGON_PULSE
-        move MOVE_ELECTRO_SHOT
-        move MOVE_BODY_PRESS
-        nature NATURE_TIMID
-        ballseal 0
-
-        // mon 3
-        ivs 255
         abilityslot 32
         level 69
         pokemon SPECIES_GOODRA
@@ -2258,6 +2245,19 @@ trainerdata 35, "Clair"
         move MOVE_SCALD
         move MOVE_ACID_ARMOR
         move MOVE_REST
+        nature NATURE_TIMID
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 15
+        level 69
+        pokemon SPECIES_ARCHALUDON
+        item ITEM_ASSAULT_VEST
+        move MOVE_FLASH_CANNON
+        move MOVE_DRAGON_PULSE
+        move MOVE_ELECTRO_SHOT
+        move MOVE_BODY_PRESS
         nature NATURE_TIMID
         ballseal 0
 
@@ -2276,15 +2276,15 @@ trainerdata 35, "Clair"
 
         // mon 5
         ivs 255
-        abilityslot 2
+        abilityslot 32
         level 69
-        pokemon SPECIES_ALTARIA
-        item ITEM_ALTARIANITE
-        move MOVE_RETURN
-        move MOVE_EARTHQUAKE
+        pokemon SPECIES_DRAMPA
+        item ITEM_DRAMPITE
+        move MOVE_DRAGON_PULSE
+        move MOVE_HYPER_VOICE
+        move MOVE_SURF
         move MOVE_ROOST
-        move MOVE_DRAGON_DANCE
-        nature NATURE_JOLLY
+        nature NATURE_MODEST
         ballseal 0
     endparty
 
@@ -7277,15 +7277,15 @@ trainerdata 117, "Lola"
 
         // mon 2
         ivs 255
-        abilityslot 15
+        abilityslot 2
         level 67
-        pokemon SPECIES_DRAMPA
+        pokemon SPECIES_ALTARIA
         item ITEM_LEFTOVERS
-        move MOVE_HYPER_VOICE
         move MOVE_DRAGON_PULSE
-        move MOVE_GLARE
+        move MOVE_FIRE_SPIN
+        move MOVE_PERISH_SONG
         move MOVE_ROOST
-        nature NATURE_MODEST
+        nature NATURE_BOLD
         ballseal 0
 
         // mon 3
@@ -8875,8 +8875,8 @@ trainerdata 151, "Erin"
         ivs 0
         abilityslot 32
         level 17
-        pokemon SPECIES_SABLEYE
-        item ITEM_SABLENITE
+        pokemon SPECIES_PONYTA
+        item ITEM_NONE
         ballseal 0
 
         // mon 1
@@ -10587,15 +10587,15 @@ trainerdata 176, "Kit"
 
         // mon 5
         ivs 255
-        abilityslot 2
+        abilityslot 32
         level 75
-        pokemon SPECIES_GALLADE
-        item ITEM_GALLADITE
-        move MOVE_SACRED_SWORD
-        move MOVE_PSYCHO_CUT
-        move MOVE_NIGHT_SLASH
-        move MOVE_SWORDS_DANCE
-        nature NATURE_JOLLY
+        pokemon SPECIES_CHESNAUGHT
+        item ITEM_CHESNAUGHTITE
+        move MOVE_WOOD_HAMMER
+        move MOVE_BODY_PRESS
+        move MOVE_LEECH_SEED
+        move MOVE_SPIKY_SHIELD
+        nature NATURE_IMPISH
         ballseal 0
     endparty
 
@@ -14971,15 +14971,15 @@ trainerdata 244, "Lance"
     party 244
         // mon 0
         ivs 255
-        abilityslot 2
+        abilityslot 15
         level 76
-        pokemon SPECIES_TYRANITAR
-        item ITEM_EJECT_PACK
-        move MOVE_KNOCK_OFF
-        move MOVE_EARTHQUAKE
-        move MOVE_PURSUIT
-        move MOVE_STEALTH_ROCK
-        nature NATURE_ADAMANT
+        pokemon SPECIES_WALKING_WAKE
+        item ITEM_ASSAULT_VEST
+        move MOVE_SCALD
+        move MOVE_DRAGON_PULSE
+        move MOVE_FLAMETHROWER
+        move MOVE_FLIP_TURN
+        nature NATURE_TIMID
         ballseal 0
 
         // mon 1
@@ -14997,6 +14997,19 @@ trainerdata 244, "Lance"
 
         // mon 2
         ivs 255
+        abilityslot 2
+        level 76
+        pokemon SPECIES_OGERPON, 2
+        item ITEM_HEARTHFLAME_MASK
+        move MOVE_IVY_CUDGEL
+        move MOVE_HORN_LEECH
+        move MOVE_ROCK_TOMB
+        move MOVE_SWORDS_DANCE
+        nature NATURE_ADAMANT
+        ballseal 0
+
+        // mon 3
+        ivs 255
         abilityslot 15
         level 76
         pokemon SPECIES_MELMETAL
@@ -15006,19 +15019,6 @@ trainerdata 244, "Lance"
         move MOVE_THUNDER_PUNCH
         move MOVE_ICE_PUNCH
         nature NATURE_ADAMANT
-        ballseal 0
-
-        // mon 3
-        ivs 255
-        abilityslot 15
-        level 76
-        pokemon SPECIES_WALKING_WAKE
-        item ITEM_ASSAULT_VEST
-        move MOVE_SCALD
-        move MOVE_DRAGON_PULSE
-        move MOVE_FLAMETHROWER
-        move MOVE_FLIP_TURN
-        nature NATURE_TIMID
         ballseal 0
 
         // mon 4
@@ -15173,33 +15173,19 @@ trainerdata 246, "Karen"
     party 246
         // mon 0
         ivs 255
-        abilityslot 15
+        abilityslot 2
         level 75
-        pokemon SPECIES_GHOLDENGO
-        item ITEM_AIR_BALLOON
-        move MOVE_MAKE_IT_RAIN
-        move MOVE_SHADOW_BALL
-        move MOVE_NASTY_PLOT
-        move MOVE_RECOVER
+        monwithform SPECIES_UMBREON
+        item ITEM_LIFE_ORB
+        move MOVE_BADDY_BAD
+        move MOVE_ALLURING_VOICE
+        move MOVE_WORK_UP
+        move MOVE_BATON_PASS
         ball ITEM_LUXURY_BALL
-        nature NATURE_TIMID
+        nature NATURE_BOLD
         ballseal 0
 
         // mon 1
-        ivs 255
-        abilityslot 15
-        level 75
-        monwithform SPECIES_FLOETTE, 5
-        item ITEM_LIFE_ORB
-        move MOVE_LIGHT_OF_RUIN
-        move MOVE_EARTH_POWER
-        move MOVE_MYSTICAL_FIRE
-        move MOVE_FLOWER_SHIELD
-        ball ITEM_LUXURY_BALL
-        nature NATURE_MODEST
-        ballseal 0
-
-        // mon 2
         ivs 255
         abilityslot 2
         level 75
@@ -15213,7 +15199,7 @@ trainerdata 246, "Karen"
         nature NATURE_ADAMANT
         ballseal 0
 
-        // mon 3
+        // mon 2
         ivs 255
         abilityslot 15
         level 75
@@ -15225,6 +15211,20 @@ trainerdata 246, "Karen"
         move MOVE_MOONLIGHT
         ball ITEM_LUXURY_BALL
         nature NATURE_MODEST
+        ballseal 0
+
+        // mon 3
+        ivs 255
+        abilityslot 15
+        level 75
+        pokemon SPECIES_GHOLDENGO
+        item ITEM_EJECT_PACK
+        move MOVE_MAKE_IT_RAIN
+        move MOVE_SHADOW_BALL
+        move MOVE_THUNDERBOLT
+        move MOVE_RECOVER
+        ball ITEM_LUXURY_BALL
+        nature NATURE_TIMID
         ballseal 0
 
         // mon 4
@@ -15245,14 +15245,14 @@ trainerdata 246, "Karen"
         ivs 255
         abilityslot 2
         level 75
-        pokemon SPECIES_ABSOL
-        item ITEM_ABSOLITE
-        move MOVE_NIGHT_SLASH
-        move MOVE_SACRED_SWORD
-        move MOVE_PSYCHO_CUT
-        move MOVE_SWORDS_DANCE
+        pokemon SPECIES_FLOETTE, 5
+        item ITEM_FLOETTITE
+        move MOVE_LIGHT_OF_RUIN
+        move MOVE_EARTH_POWER
+        move MOVE_MYSTICAL_FIRE
+        move MOVE_FLOWER_SHIELD
         ball ITEM_LUXURY_BALL
-        nature NATURE_JOLLY
+        nature NATURE_TIMID
         ballseal 0
     endparty
 
@@ -15287,6 +15287,20 @@ trainerdata 247, "Koga"
         ivs 255
         abilityslot 2
         level 75
+        pokemon SPECIES_GLIMMORA
+        item ITEM_POWER_HERB
+        move MOVE_POWER_GEM
+        move MOVE_SLUDGE_WAVE
+        move MOVE_ENERGY_BALL
+        move MOVE_METEOR_BEAM
+        ball ITEM_DUSK_BALL
+        nature NATURE_MODEST
+        ballseal 0
+
+        // mon 2
+        ivs 255
+        abilityslot 2
+        level 75
         monwithform SPECIES_SLOWKING, 1
         item ITEM_ASSAULT_VEST
         move MOVE_EERIE_SPELL
@@ -15295,20 +15309,6 @@ trainerdata 247, "Koga"
         move MOVE_ICE_BEAM
         ball ITEM_DUSK_BALL
         nature NATURE_TIMID
-        ballseal 0
-
-        // mon 2
-        ivs 255
-        abilityslot 2
-        level 75
-        pokemon SPECIES_DRAGALGE
-        item ITEM_EJECT_PACK
-        move MOVE_DRACO_METEOR
-        move MOVE_SLUDGE_WAVE
-        move MOVE_FLIP_TURN
-        move MOVE_TOXIC_SPIKES
-        ball ITEM_DUSK_BALL
-        nature NATURE_MODEST
         ballseal 0
 
         // mon 3
@@ -15343,14 +15343,14 @@ trainerdata 247, "Koga"
         ivs 255
         abilityslot 2
         level 75
-        pokemon SPECIES_VENUSAUR
-        item ITEM_VENUSAURITE
-        move MOVE_GIGA_DRAIN
+        pokemon SPECIES_DRAGALGE
+        item ITEM_DRAGALGITE
+        move MOVE_DRACO_METEOR
         move MOVE_SLUDGE_WAVE
-        move MOVE_EARTH_POWER
-        move MOVE_SYNTHESIS
+        move MOVE_FOCUS_BLAST
+        move MOVE_FLIP_TURN
         ball ITEM_DUSK_BALL
-        nature NATURE_MODEST
+        nature NATURE_TIMID
         ballseal 0
     endparty
 
@@ -26280,9 +26280,9 @@ trainerdata 488, "Petrel"
         pokemon SPECIES_SABLEYE
         item ITEM_SABLENITE
         move MOVE_DARK_PULSE
-        move MOVE_RECOVER
         move MOVE_WILL_O_WISP
         move MOVE_CALM_MIND
+        move MOVE_RECOVER
         setivs 31, 0, 31, 0, 31, 31 // hp, atk, def, spd, spatk, spdef
         setevs 0, 0, 0, 0, 0, 0
         nature NATURE_SASSY
@@ -33124,11 +33124,11 @@ trainerdata 675, "Lance"
         level 60
         pokemon SPECIES_DRAGONITE
         item ITEM_DRAGONINITE
-        move MOVE_DRAGON_CLAW
-        move MOVE_DUAL_WINGBEAT
-        move MOVE_EXTREME_SPEED
-        move MOVE_ROOST
-        nature NATURE_ADAMANT
+        move MOVE_DRACO_METEOR
+        move MOVE_HURRICANE
+        move MOVE_FIRE_BLAST
+        move MOVE_HYPER_BEAM
+        nature NATURE_MODEST
         ballseal 0
 
         // mon 0
@@ -33161,13 +33161,13 @@ trainerdata 675, "Lance"
         ivs 255
         abilityslot 15
         level 60
-        pokemon SPECIES_TYRANITAR
-        item ITEM_ASSAULT_VEST
-        move MOVE_ROCK_SLIDE
-        move MOVE_CRUNCH
-        move MOVE_FIRE_PUNCH
-        move MOVE_THUNDER_PUNCH
-        nature NATURE_JOLLY
+        pokemon SPECIES_OGERPON, 2
+        item ITEM_HEARTHFLAME_MASK
+        move MOVE_POWER_WHIP
+        move MOVE_IVY_CUDGEL
+        move MOVE_SPIKY_SHIELD
+        move MOVE_FOLLOW_ME
+        nature NATURE_ADAMANT
         ballseal 0
 
         // mon 0
@@ -34552,7 +34552,7 @@ trainerdata 706, "Proton"
         move MOVE_PIN_MISSILE
         move MOVE_ARM_THRUST
         move MOVE_ROCK_BLAST
-        move MOVE_SWORDS_DANCE
+        move MOVE_TRAILBLAZE
         nature NATURE_ADAMANT
         ballseal 0
     endparty

@@ -1678,15 +1678,17 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     { .tag = 1797, .gfx = 1547, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_PECHARUNT
     
     NEW_NPC_ENTRY(0), // persian sitting (radio tower)
-    NEW_NPC_ENTRY(1), // celebi (ilex forest)
-    NEW_NPC_ENTRY(2), // gimmighoul (bell tower)
-    NEW_NPC_ENTRY(3), // gimmighoul walking (unused)
-    NEW_NPC_ENTRY(4), // mega ampharos (lighthouse)
-    NEW_NPC_ENTRY(5), // azumarill (lotta places)
-    NEW_NPC_ENTRY(6), // hisui arcanine (ecruteak -> route 38)
-    NEW_NPC_ENTRY(7), // machop (route 42)
-    NEW_NPC_ENTRY(8), // machoke (route 42)
-    NEW_NPC_ENTRY(9), // flaaffy (route 42)
+    NEW_NPC_ENTRY(01), // celebi (ilex forest)
+    NEW_NPC_ENTRY(02), // gimmighoul (bell tower)
+    NEW_NPC_ENTRY(03), // tm ball
+    NEW_NPC_ENTRY(04), // mega ampharos (lighthouse)
+    NEW_NPC_ENTRY(05), // azumarill (lotta places)
+    NEW_NPC_ENTRY(06), // hisui arcanine (ecruteak -> route 38)
+    NEW_NPC_ENTRY(07), // machop (route 42)
+    NEW_NPC_ENTRY(08), // machoke (route 42)
+    NEW_NPC_ENTRY(09), // flaaffy (route 42)
+    NEW_NPC_ENTRY(10), // steven metagross
+    NEW_NPC_ENTRY(11), // cynthia garchomp sinjoh ruins
     { 0xFFFF, 0, 0},
 };
 

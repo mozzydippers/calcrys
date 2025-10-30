@@ -356,33 +356,15 @@ u16 GetMonEvolutionInternal(struct Party *party, struct PartyPokemon *pokemon, u
                     }
                 }
                 break;
-            case EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY:
-                if (evoTable[i].param <= level && party != NULL)
+            case EVO_SINJOH_RUINS: // sinjoh ruins
+                if (evoTable[i].param <= level)
                 {
-                    for (int k = 0; k < 6; k++)
+                    u32 location = gFieldSysPtr->location->mapId;
+
+                    if (location == 521)
                     {
-                        if (!CheckIfMonsAreEqual(pokemon, Party_GetMonByIndex(party, k)) // make sure that pancham doesn't satisfy its own requirement
-                         && (GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_1, NULL) == TYPE_PSYCHIC || GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_2, NULL) == TYPE_PSYCHIC)) // if either type is PSYCHIC then set evolution
-                        {
-                            target = evoTable[i].target & 0x7FF;
-                            *method_ret = EVO_LEVEL_PSYCHIC_TYPE_MON_IN_PARTY;
-                            break;
-                        }
-                    }
-                }
-                break;
-            case EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY:
-                if (evoTable[i].param <= level && party != NULL)
-                {
-                    for (int k = 0; k < 6; k++)
-                    {
-                        if (!CheckIfMonsAreEqual(pokemon, Party_GetMonByIndex(party, k)) // make sure that pancham doesn't satisfy its own requirement
-                         && (GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_1, NULL) == TYPE_STEEL || GetMonData(Party_GetMonByIndex(party, k), MON_DATA_TYPE_2, NULL) == TYPE_STEEL)) // if either type is STEEL then set evolution
-                        {
-                            target = evoTable[i].target & 0x7FF;
-                            *method_ret = EVO_LEVEL_STEEL_TYPE_MON_IN_PARTY;
-                            break;
-                        }
+                        target = evoTable[i].target & 0x7FF;
+                        *method_ret = EVO_SINJOH_RUINS;
                     }
                 }
                 break;
