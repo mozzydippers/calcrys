@@ -149,7 +149,6 @@ const u16 UNUSED PokeFormDataTbl[][32] =
     [SPECIES_DIANCIE] = {
         NEEDS_REVERSION | SPECIES_MEGA_DIANCIE,
     },
-    // calcrys custom 
     [SPECIES_CLEFABLE] = {
         NEEDS_REVERSION | SPECIES_MEGA_CLEFABLE,
     },
@@ -201,7 +200,7 @@ const u16 UNUSED PokeFormDataTbl[][32] =
         NEEDS_REVERSION | SPECIES_MEGA_GRENINJA,
     },
     [SPECIES_PYROAR] = {
-        SPECIES_PYROAR_FEMALE
+        SPECIES_PYROAR_FEMALE,
         NEEDS_REVERSION | SPECIES_MEGA_PYROAR,
     },
     [SPECIES_FLOETTE] = {
