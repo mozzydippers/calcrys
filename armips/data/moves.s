@@ -9093,7 +9093,7 @@ movedata MOVE_STICKY_WEB, "Sticky Web"
     effectchance 0
     target RANGE_OPPONENT_SIDE
     priority 0
-    flags FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT
+    flags FLAG_MIRROR_MOVE | FLAG_MAGIC_COAT
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
