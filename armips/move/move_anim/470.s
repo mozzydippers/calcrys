@@ -1,6 +1,7 @@
 .nds
 .thumb
 .include "armips/include/animscriptcmd.s"
+.include "armips/include/constants.s"
 
 //mega
 
@@ -9,7 +10,7 @@
 MegaAnimScript:
     loadparticlefromspa 0, 490
     loadparticlefromspa 1, 107
-    loadparticlefromspa 2, 541
+    loadparticlefromspa 2, SPA_MEGA
     waitparticle
 
     playsepanmod 1939, -117, 0x75, 4, 2

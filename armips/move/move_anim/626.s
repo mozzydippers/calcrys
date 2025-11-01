@@ -7,6 +7,7 @@
 .include "asm/include/items.inc"
 .include "asm/include/species.inc"
 .include "asm/include/moves.inc"
+.include "armips/include/constants.s"
 
 .create "build/move/move_anim/0_626", 0
 
@@ -17,7 +18,7 @@ a010_626:
     cmd0C 7, 1
     changebg 0, 0x800001
     waitforchangebg
-    loadparticlefromspa 1, 543
+    loadparticlefromspa 1, SPA_BREAKNECK_BLITZ
     loadparticlefromspa 0, 500
     waitparticle
 
@@ -43,13 +44,13 @@ a010_626:
 
     unloadparticle 0
     waitstate
-    
+
     cmd43
     cmd0C 7, 1
     resetbg 0, 0x1000001
     wait 10
     waitstate
     end
-    
+
 
 .close

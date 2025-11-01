@@ -7,6 +7,7 @@
 .include "asm/include/items.inc"
 .include "asm/include/species.inc"
 .include "asm/include/moves.inc"
+.include "armips/include/constants.s"
 
 .create "build/move/move_anim/0_627", 0
 
@@ -19,7 +20,7 @@ a010_627:
     waitforchangebg
 
     // Z-Move name
-    loadparticlefromspa 1, 544
+    loadparticlefromspa 1, SPA_ALL_OUT_PUMMELING
     // hit + clouds
     loadparticlefromspa 0, 500
     // Double Kick
@@ -92,13 +93,13 @@ a010_627:
 
     unloadparticle 0
     waitstate
-    
+
     cmd43
     cmd0C 7, 1
     resetbg 0, 0x1000001
     wait 10
     waitstate
     end
-    
+
 
 .close

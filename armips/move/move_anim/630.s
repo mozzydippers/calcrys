@@ -7,6 +7,7 @@
 .include "asm/include/items.inc"
 .include "asm/include/species.inc"
 .include "asm/include/moves.inc"
+.include "armips/include/constants.s"
 
 .create "build/move/move_anim/0_630", 0
 
@@ -22,7 +23,7 @@ a010_630:
     waitforchangebg
 
     // Z-Move name
-    loadparticlefromspa 1, 545
+    loadparticlefromspa 1, SPA_SUPERSONIC_SKYSTRIKE
     addparticle 1, 0, 0
     wait 700
     unloadparticle 1

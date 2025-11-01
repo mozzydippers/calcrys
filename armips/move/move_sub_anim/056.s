@@ -7,6 +7,7 @@
 .include "asm/include/items.inc"
 .include "asm/include/species.inc"
 .include "asm/include/moves.inc"
+.include "armips/include/constants.s"
 
 .create "build/move/move_sub_anim/1_056", 0
 
@@ -19,7 +20,7 @@ a061_055:
     changebg 36, 0x20001
     waitforchangebg
 
-    loadparticlefromspa 1, 542
+    loadparticlefromspa 1, SPA_Z_DANCE
     loadparticlefromspa 2, 489
     waitparticle
 
@@ -69,7 +70,7 @@ a061_055:
     cmd0C 1, 0
     resetbg 36, 0x40001
     waitstate
-    
+
     waitparticle
     unloadparticle 1
     waitforchangebg

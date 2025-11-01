@@ -7,6 +7,7 @@
 .include "asm/include/items.inc"
 .include "asm/include/species.inc"
 .include "asm/include/moves.inc"
+.include "armips/include/constants.s"
 
 .create "build/move/move_anim/0_632", 0
 
@@ -22,7 +23,7 @@ a010_632:
     waitforchangebg
 
     // Z-Move name
-    loadparticlefromspa 1, 546
+    loadparticlefromspa 1, SPA_ACID_DOWNPOUR
     addparticle 1, 0, 0
     wait 700
     unloadparticle 1
@@ -68,6 +69,6 @@ a010_632:
     resetbg 13, 0x40001
     waitforchangebg
     end
-    
+
 
 .close
