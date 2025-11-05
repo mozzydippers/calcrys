@@ -1417,6 +1417,7 @@ struct PACKED BattleStruct {
                u8 enemySideHasFaintedTeammateLastTurn : 2;
 
                BOOL gemBoostingMove;
+               BOOL printedTrainerSendOutMessage;
 };
 
 enum {
@@ -1650,7 +1651,7 @@ struct PACKED newBattleStruct
     u8 MegaIconLight;
     u8 ChangeBgFlag:4;
     u8 CanMega:4;
-    
+
     int SideZMoveBaseMove[4];
     u8 SideZMove[4];
     u8 needZMove[4];
