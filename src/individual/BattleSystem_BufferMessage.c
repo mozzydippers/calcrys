@@ -27,8 +27,8 @@ const u8 OrganizationTrainerClassList[] = {
 // Example use case:
 // You are challenged by the Team Star Grunt!
 const u8 GruntTrainerClassList[] = {
-    // TRAINERCLASS_TEAM_ROCKET,
-    // TRAINERCLASS_TEAM_ROCKET_F,
+    TRAINERCLASS_TEAM_ROCKET,
+    TRAINERCLASS_TEAM_ROCKET_F,
 };
 
 static BOOL IsOrganizationTrainerClass(u8 trainerClass)
