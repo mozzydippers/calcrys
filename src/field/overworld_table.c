@@ -1685,8 +1685,8 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     NEW_NPC_ENTRY(05), // azumarill (lotta places)
     NEW_NPC_ENTRY(06), // hisui arcanine (ecruteak -> route 38)
     NEW_NPC_ENTRY(07), // machop (route 42)
-    NEW_NPC_ENTRY(08), // machoke (route 42)
-    NEW_NPC_ENTRY(09), // flaaffy (route 42)
+    NEW_NPC_ENTRY(8), // machoke (route 42)
+    NEW_NPC_ENTRY(9), // flaaffy (route 42)
     NEW_NPC_ENTRY(10), // steven metagross
     NEW_NPC_ENTRY(11), // cynthia garchomp sinjoh ruins
     { 0xFFFF, 0, 0},

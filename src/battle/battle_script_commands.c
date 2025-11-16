@@ -95,6 +95,8 @@ BOOL btl_scr_cmd_104_tryincinerate(void* bsys, struct BattleStruct* ctx);
 BOOL btl_scr_cmd_105_addthirdtype(void* bsys UNUSED, struct BattleStruct* ctx);
 BOOL btl_scr_cmd_106_tryauroraveil(void* bw, struct BattleStruct* ctx);
 BOOL btl_scr_cmd_107_clearauroraveil(void *bsys, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_108_strengthsapcalc(void* bw, struct BattleStruct* sp);
+BOOL btl_scr_cmd_109_checktargetispartner(void* bw, struct BattleStruct* sp);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -117,10 +119,7 @@ u32 LoadCaptureSuccessSPAStarEmitter(u32 id);
 u32 LoadCaptureSuccessSPANumEmitters(u32 id);
 
 // custom
-BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw, struct BattleStruct* sp);
-BOOL btl_scr_cmd_custom_02_boltbeakdamagecalc(void* bw, struct BattleStruct* sp);
-BOOL btl_scr_cmd_custom_03_checktargetispartner(void* bw, struct BattleStruct* sp);
-BOOL btl_scr_cmd_custom_04_tryemergencyexit(void* bw, struct BattleStruct* sp);
+BOOL btl_scr_cmd_custom_01_tryemergencyexit(void* bw, struct BattleStruct* sp);
 
 #ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
 #pragma GCC diagnostic push
@@ -391,10 +390,9 @@ const u8 *BattleScrCmdNames[] =
     "AddThirdType",
     "TryAuroraVeil",
     "ClearAuroraVeil",
-    // "YourCustomCommand",
     "StrengthSapCalc",
-    "BoltBeakDamageCalc",
     "CheckTargetIsPartner",
+    // "YourCustomCommand",
     "TryEmergencyExit",
 };
 
@@ -445,11 +443,10 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] =
     [0x105 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_105_addthirdtype,
     [0x106 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_106_tryauroraveil,
     [0x107 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_107_clearauroraveil,
+    [0x105 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_108_strengthsapcalc,
+    [0x106 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_109_checktargetispartner,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_strengthsapcalc, // was 0xFD btl_scr_cmd_FD_strengthsapcalc
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 2] = btl_scr_cmd_custom_02_boltbeakdamagecalc,
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 3] = btl_scr_cmd_custom_03_checktargetispartner,
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 4] = btl_scr_cmd_custom_04_tryemergencyexit,
+    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_tryemergencyexit,
 };
 
 // entries before 0xFFFE are banned for mimic and metronome--after is just banned for metronome.  table ends with 0xFFFF
@@ -3306,13 +3303,32 @@ BOOL btl_scr_cmd_103_checkprotectcontactmoves(void *bsys UNUSED, struct BattleSt
 }
 
 /**
+ *  @brief script command to check if the battle format isn't a trainer
+ *  
+ *  @param bw battle work structure
+ *  @param sp global battle structure
+ *  @return FALSE
+ */
+BOOL btl_scr_cmd_custom_01_tryemergencyexit(void* bw, struct BattleStruct* sp) {
+    IncrementBattleScriptPtr(sp, 1);
+    int adrs = read_battle_script_param(sp);
+        
+    if (!(BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_WIRELESS | BATTLE_TYPE_MULTI | BATTLE_TYPE_TAG | BATTLE_TYPE_NPC_MULTI | BATTLE_TYPE_BATTLE_TOWER)))
+    {
+        IncrementBattleScriptPtr(sp, adrs);
+    }
+
+    return FALSE;
+}
+
+/**
  *  @brief script command to calculate Strength Sap healing
  *
  *  @param bw battle work structure
  *  @param sp global battle structure
  *  @return FALSE
  */
-BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw UNUSED, struct BattleStruct* sp) {
+BOOL btl_scr_cmd_108_strengthsapcalc(void* bw UNUSED, struct BattleStruct* sp) {
     IncrementBattleScriptPtr(sp, 1);
 
     s32 damage;
@@ -3333,36 +3349,13 @@ BOOL btl_scr_cmd_custom_01_strengthsapcalc(void* bw UNUSED, struct BattleStruct*
 }
 
 /**
- *  @brief script command to calculate the damage for bolt beak / fishous rend
- *
- *  @param bw battle work structure
- *  @param sp global battle structure
- *  @return FALSE
- */
-BOOL btl_scr_cmd_custom_02_boltbeakdamagecalc(void* bw, struct BattleStruct* sp) {
-    IncrementBattleScriptPtr(sp, 1);
-    int defender = sp->defence_client;
-
-    if (IsMovingAfterClient(sp, defender) == FALSE || sp->playerActions[sp->defence_client][3] == CONTROLLER_COMMAND_40) {
-        sp->damage_power = sp->moveTbl[sp->current_move_index].power * 2;
-    }
-    else {
-        sp->damage_power = sp->moveTbl[sp->current_move_index].power;
-    }
-
-    // debug_printf("boltbeak dmg: %d\n", sp->damage_power)
-
-    return FALSE;
-}
-
-/**
  *  @brief script command to check if the target is partner or not. 
  *  used for pollen puff because TryHelpingHand has unique conditions built in
  *  @param bw battle work structure
  *  @param sp global battle structure
  *  @return FALSE
  */
-BOOL btl_scr_cmd_custom_03_checktargetispartner(void* bw, struct BattleStruct* sp) {
+BOOL btl_scr_cmd_109_checktargetispartner(void* bw, struct BattleStruct* sp) {
     IncrementBattleScriptPtr(sp, 1);
     int adrs = read_battle_script_param(sp);
     int defender = sp->defence_client;
@@ -3375,25 +3368,6 @@ BOOL btl_scr_cmd_custom_03_checktargetispartner(void* bw, struct BattleStruct* s
     //    debug_printf("target is ally\n")
     }
     
-    return FALSE;
-}
-
-/**
- *  @brief script command to check if the battle format isn't a trainer
- *  
- *  @param bw battle work structure
- *  @param sp global battle structure
- *  @return FALSE
- */
-BOOL btl_scr_cmd_custom_04_tryemergencyexit(void* bw, struct BattleStruct* sp) {
-    IncrementBattleScriptPtr(sp, 1);
-    int adrs = read_battle_script_param(sp);
-        
-    if (!(BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_WIRELESS | BATTLE_TYPE_MULTI | BATTLE_TYPE_TAG | BATTLE_TYPE_NPC_MULTI | BATTLE_TYPE_BATTLE_TOWER)))
-    {
-        IncrementBattleScriptPtr(sp, adrs);
-    }
-
     return FALSE;
 }
 
