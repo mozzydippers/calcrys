@@ -2421,6 +2421,12 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
             sp->waza_status_flag &= ~MOVE_STATUS_FLAG_MISS;
             return TRUE;
         }
+        // calcrys custom, 100% hurricane in strong winds
+        if ((sp->field_condition & WEATHER_RAIN_ANY)
+            && (sp->moveTbl[move].effect == MOVE_EFFECT_HURRICANE)) {
+            sp->waza_status_flag &= ~MOVE_STATUS_FLAG_MISS;
+            return TRUE;
+        }
     }
 
     if (sp->battlemon[battlerIdTarget].effect_of_moves & MOVE_EFFECT_FLAG_MINIMIZED

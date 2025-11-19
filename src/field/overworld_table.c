@@ -1677,7 +1677,7 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     { .tag = 1796, .gfx =  297, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_TERAPAGOS
     { .tag = 1797, .gfx = 1547, .callback_params = OVERWORLD_SIZE_SMALL}, // SPECIES_PECHARUNT
     
-    NEW_NPC_ENTRY(0), // persian sitting (radio tower)
+    NEW_NPC_ENTRY(00), // persian sitting (radio tower)
     NEW_NPC_ENTRY(01), // celebi (ilex forest)
     NEW_NPC_ENTRY(02), // gimmighoul (bell tower)
     NEW_NPC_ENTRY(03), // tm ball
@@ -1687,7 +1687,7 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     NEW_NPC_ENTRY(07), // machop (route 42)
     NEW_NPC_ENTRY(8), // machoke (route 42)
     NEW_NPC_ENTRY(9), // flaaffy (route 42)
-    NEW_NPC_ENTRY(10), // steven metagross
+    NEW_NPC_ENTRY(10), // steven metagross, goldenrod dept. store
     NEW_NPC_ENTRY(11), // cynthia garchomp sinjoh ruins
     { 0xFFFF, 0, 0},
 };

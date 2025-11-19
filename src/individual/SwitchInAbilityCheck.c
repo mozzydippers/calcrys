@@ -145,6 +145,10 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             scriptnum = SUB_SEQ_OVERWORLD_WATER_SPORT;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
+                        case 32:
+                            scriptnum = SUB_SEQ_OVERWORLD_STRONG_WINDS;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
                     }
                     if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
                         sp->weather_check_flag = 1;

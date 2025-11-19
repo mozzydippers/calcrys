@@ -490,6 +490,7 @@
 #define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (MAX_BASE_SUBSCRIPT_NUM + 8)
 #define SUB_SEQ_OVERWORLD_WATER_SPORT                 (MAX_BASE_SUBSCRIPT_NUM + 9)
 #define SUB_SEQ_HANDLE_EMERGENCY_EXIT                 (MAX_BASE_SUBSCRIPT_NUM + 10)
+#define SUB_SEQ_OVERWORLD_STRONG_WINDS                (MAX_BASE_SUBSCRIPT_NUM + 11)
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 

@@ -12844,10 +12844,10 @@ trainerdata 210, "Falkner" // REMATCH
 
         // mon 5
         ivs 255
-        abilityslot 15
+        abilityslot 2
         level 55
         pokemon SPECIES_SKARMORY
-        item ITEM_NONE
+        item ITEM_SKARMORITE
         move MOVE_IRON_HEAD
         move MOVE_BRAVE_BIRD
         move MOVE_BODY_PRESS
@@ -14971,14 +14971,14 @@ trainerdata 244, "Lance"
     party 244
         // mon 0
         ivs 255
-        abilityslot 15
+        abilityslot 2
         level 76
-        pokemon SPECIES_WALKING_WAKE
-        item ITEM_ASSAULT_VEST
-        move MOVE_SCALD
+        pokemon SPECIES_REGIDRAGO
+        item ITEM_DRAGON_FANG
         move MOVE_DRAGON_PULSE
+        move MOVE_EARTH_POWER
         move MOVE_FLAMETHROWER
-        move MOVE_FLIP_TURN
+        move MOVE_EXPLOSION
         nature NATURE_TIMID
         ballseal 0
 
@@ -14997,14 +14997,14 @@ trainerdata 244, "Lance"
 
         // mon 2
         ivs 255
-        abilityslot 2
+        abilityslot 15
         level 76
-        pokemon SPECIES_OGERPON, 2
-        item ITEM_HEARTHFLAME_MASK
-        move MOVE_IVY_CUDGEL
-        move MOVE_HORN_LEECH
-        move MOVE_ROCK_TOMB
-        move MOVE_SWORDS_DANCE
+        pokemon SPECIES_BAXCALIBUR
+        item ITEM_LOADED_DICE
+        move MOVE_SCALE_SHOT
+        move MOVE_ICICLE_SPEAR
+        move MOVE_EARTHQUAKE
+        move MOVE_DRAGON_DANCE
         nature NATURE_ADAMANT
         ballseal 0
 
@@ -15012,13 +15012,13 @@ trainerdata 244, "Lance"
         ivs 255
         abilityslot 15
         level 76
-        pokemon SPECIES_MELMETAL
+        pokemon SPECIES_WALKING_WAKE
         item ITEM_ASSAULT_VEST
-        move MOVE_DOUBLE_IRON_BASH
-        move MOVE_EARTHQUAKE
-        move MOVE_THUNDER_PUNCH
-        move MOVE_ICE_PUNCH
-        nature NATURE_ADAMANT
+        move MOVE_SCALD
+        move MOVE_DRAGON_PULSE
+        move MOVE_FLAMETHROWER
+        move MOVE_FLIP_TURN
+        nature NATURE_TIMID
         ballseal 0
 
         // mon 4
@@ -33118,7 +33118,7 @@ trainerdata 675, "Lance"
     endentry
 
     party 675
-        // mon 1
+        // mon 0
         ivs 255
         abilityslot 2
         level 60
@@ -33131,7 +33131,20 @@ trainerdata 675, "Lance"
         nature NATURE_MODEST
         ballseal 0
 
-        // mon 0
+        // mon 1
+        ivs 255
+        abilityslot 15
+        level 60
+        pokemon SPECIES_REGIDRAGO
+        item ITEM_CUSTAP_BERRY
+        move MOVE_DRAGON_ENERGY
+        move MOVE_EARTHQUAKE
+        move MOVE_FIRE_FANG
+        move MOVE_EXPLOSION
+        nature NATURE_ADAMANT
+        ballseal 0
+
+        // mon 2
         ivs 255
         abilityslot 15
         level 60
@@ -33144,33 +33157,20 @@ trainerdata 675, "Lance"
         nature NATURE_BOLD
         ballseal 0
 
-        // mon 0
+        // mon 3
         ivs 255
         abilityslot 15
         level 60
-        pokemon SPECIES_MELMETAL
-        item ITEM_OCCA_BERRY
-        move MOVE_DYNAMIC_PUNCH
-        move MOVE_THUNDER_PUNCH
-        move MOVE_ICE_PUNCH
-        move MOVE_PROTECT
+        pokemon SPECIES_BAXCALIBUR
+        item ITEM_SITRUS_BERRY
+        move MOVE_GLAIVE_RUSH
+        move MOVE_ICICLE_CRASH
+        move MOVE_HIGH_HORSEPOWER
+        move MOVE_ICE_SHARD
         nature NATURE_ADAMANT
         ballseal 0
 
-        // mon 0
-        ivs 255
-        abilityslot 15
-        level 60
-        pokemon SPECIES_OGERPON, 2
-        item ITEM_HEARTHFLAME_MASK
-        move MOVE_POWER_WHIP
-        move MOVE_IVY_CUDGEL
-        move MOVE_SPIKY_SHIELD
-        move MOVE_FOLLOW_ME
-        nature NATURE_ADAMANT
-        ballseal 0
-
-        // mon 0
+        // mon 4
         ivs 255
         abilityslot 15
         level 60
@@ -33183,7 +33183,7 @@ trainerdata 675, "Lance"
         nature NATURE_JOLLY
         ballseal 0
 
-        // mon 0
+        // mon 5
         ivs 255
         abilityslot 2
         level 60
