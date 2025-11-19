@@ -2279,7 +2279,7 @@ trainerdata 35, "Clair"
         abilityslot 32
         level 69
         pokemon SPECIES_DRAMPA
-        item ITEM_DRAMPITE
+        item ITEM_DRAMPANITE
         move MOVE_DRAGON_PULSE
         move MOVE_HYPER_VOICE
         move MOVE_SURF
@@ -15175,7 +15175,7 @@ trainerdata 246, "Karen"
         ivs 255
         abilityslot 2
         level 75
-        monwithform SPECIES_UMBREON
+        pokemon SPECIES_UMBREON
         item ITEM_LIFE_ORB
         move MOVE_BADDY_BAD
         move MOVE_ALLURING_VOICE
@@ -15245,7 +15245,7 @@ trainerdata 246, "Karen"
         ivs 255
         abilityslot 2
         level 75
-        pokemon SPECIES_FLOETTE, 5
+        monwithform SPECIES_FLOETTE, 5
         item ITEM_FLOETTITE
         move MOVE_LIGHT_OF_RUIN
         move MOVE_EARTH_POWER
