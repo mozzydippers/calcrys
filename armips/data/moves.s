@@ -10681,7 +10681,7 @@ movedata MOVE_DARKEST_LARIAT, "Darkest Lariat"
     appeal 0x00
     contesttype CONTEST_COOL
     terminatedata
-    movedescription MOVE_DARKEST_LARIAT, "---"
+    movedescription MOVE_DARKEST_LARIAT, "Looking for an open-\ning, the user strik-\res consistently. The\ntarget's stat chan-\rges don't affect th-\nis attack's damage."
 
 movedata MOVE_SPARKLING_ARIA, "Sparkling Aria"
     battleeffect MOVE_EFFECT_HIT // handled in BattleController_MoveEndInternal
