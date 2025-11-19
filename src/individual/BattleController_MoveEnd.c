@@ -128,8 +128,8 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
                     }
                 }
                 break;
-            /* case ABILITY_CHILLING_NEIGH:
-            case ABILITY_AS_ONE_GLASTRIER: */
+            case ABILITY_CHILLING_NEIGH:
+            case ABILITY_AS_ONE_GLASTRIER: 
             case ABILITY_MOXIE:
                 if (ctx->oneTurnFlag[ctx->attack_client].numberOfKOs) {
                     if (ctx->battlemon[ctx->attack_client].states[STAT_ATTACK] < 12) {
@@ -157,7 +157,7 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
                     }
                 }
                 break;
-            /* case ABILITY_GRIM_NEIGH:
+            case ABILITY_GRIM_NEIGH:
             case ABILITY_AS_ONE_SPECTRIER:
                 if (ctx->oneTurnFlag[ctx->attack_client].numberOfKOs) {
                     if (ctx->battlemon[ctx->attack_client].states[STAT_SPATK] < 12) {
@@ -184,7 +184,7 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
                         return;
                     }
                 }
-                break; */
+                break; 
             case ABILITY_BATTLE_BOND:
                 if (ctx->oneTurnFlag[ctx->attack_client].numberOfKOs) {
                     if (ctx->battlemon[ctx->attack_client].species == SPECIES_GRENINJA

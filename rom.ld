@@ -94,6 +94,7 @@ sub_02017FE4 = 0x02017FE4 | 1;
 SetEggStats = 0x0206C8B8 | 1;
 SaveMisc_SetTogepiPersonalityGender = 0x0202ABB0 | 1;
 SaveMisc_GetTogepiPersonalityGender = 0x0202ABBC | 1;
+CalcLevelBySpeciesAndExp = 0x0206FDA8 | 1;
 
 SaveData_GetRepelPtr = 0x0202DB05;
 SaveData_GetEventPtr = 0x020503D0 | 1;
@@ -774,10 +775,7 @@ InitMartUI = 0x02256D34 | 1;
 
 /* calcrys custom */
 
-/* primo script */
-SaveArray_PCStorage_Get = 0x020270D8 | 1;
-
-/* tms as long as they can learn it */
+/* for hms as long as they can learn it */
 GetMonTMHMCompat = 0x0207224C | 1;
 
 /* Adding things to make multi level candy work */

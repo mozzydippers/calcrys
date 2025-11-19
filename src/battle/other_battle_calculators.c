@@ -2466,124 +2466,6 @@ BOOL LONG_CALL CanUndergoPrimalReversion(struct BattleStruct *sp, u8 client_no) 
     return FALSE;
 }
 
-/*
-
-// this big bitch of code was formerly used for tr; got absorbed into the new turn order handling
-
-typedef enum scc_work 
-{
-    UFCE_STATE_FUTURE_SIGHT,
-    UFCE_STATE_PERISH_SONG,
-    UFCE_STATE_TRICK_ROOM,
-    UFCE_STATE_END
-} scc_work;
-
-// Future sight and doom desire are here due to mons being able to faint simulataneously, which means exp shouldn't be awarded like when a mon faints due to burn
-// Trick room is here due to every other update function being reliant on turn order, meaning it must be updated last
-void BattleControllerPlayer_UpdateFieldConditionExtra(struct BattleSystem *bsys, struct BattleStruct *ctx) {
-    int maxBattlers = BattleWorkClientSetMaxGet(bsys);
-    int client_no;
-    int side = ctx->fcc_work;
-
-    if (CheckIfAnyoneShouldFaint(ctx, ctx->server_seq_no, ctx->server_seq_no, 1) == TRUE) {
-        return;
-    }
-
-    SCIO_BlankMessage(bsys);
-
-    switch (ctx->scc_work) {
-    case UFCE_STATE_FUTURE_SIGHT:
-        while (ctx->scc_work < maxBattlers) 
-        {
-            client_no = ctx->turnOrder[ctx->scc_work];
-            if (ctx->no_reshuffle_client & No2Bit(client_no)) 
-            {
-                ctx->scc_work++;
-                continue;
-            }
-            ctx->scc_work++;
-            if (ctx->fcc.future_prediction_count[client_no]) 
-            {
-                
-                if (!(--ctx->fcc.future_prediction_count[client_no]) && ctx->battlemon[client_no].hp != 0) 
-                {
-                    ctx->side_condition[side] &= ~SIDE_STATUS_FUTURE_SIGHT;
-                    ctx->mp.msg_id = BATTLE_MSG_TOOK_FUTURE_SIGHT; // Seadra took the Doom Desire attack!
-                    ctx->mp.msg_tag = TAG_NICK_MOVE;
-                    ctx->mp.msg_para[0] = CreateNicknameTag(ctx, client_no);
-                    ctx->mp.msg_para[1] = ctx->fcc.future_prediction_wazano[client_no];
-                    ctx->client_work = client_no;
-                    ctx->attack_client_work = ctx->fcc.future_prediction_client_no[client_no];
-                    ctx->waza_work = ctx->fcc.future_prediction_wazano[client_no];
-                    ctx->hp_calc_work = ctx->fcc.future_prediction_damage[client_no];
-                    LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FUTURE_SIGHT_DAMAGE);
-                    ctx->next_server_seq_no = ctx->server_seq_no;
-                    ctx->server_seq_no      = CONTROLLER_COMMAND_RUN_SCRIPT;
-                    return;
-                }
-            }
-        }
-        ctx->scc_seq_no++;
-        ctx->scc_work = 0;
-    case UFCE_STATE_PERISH_SONG:
-        while (ctx->scc_work < maxBattlers) 
-        {
-            client_no = ctx->turnOrder[ctx->scc_work];
-            if (ctx->no_reshuffle_client & No2Bit(client_no)) 
-            {
-                ctx->scc_work++;
-                continue;
-            }
-            ctx->scc_work++;
-            if (ctx->battlemon[client_no].effect_of_moves & MOVE_EFFECT_FLAG_PERISH_SONG_ACTIVE) 
-            {
-                if (ctx->battlemon[client_no].moveeffect.perishSongTurns == 0) 
-                {
-                    ctx->battlemon[client_no].effect_of_moves &= ~MOVE_EFFECT_FLAG_PERISH_SONG_ACTIVE;
-                    ctx->msg_work = ctx->battlemon[client_no].moveeffect.perishSongTurns;
-                    ctx->hp_calc_work  = ctx->battlemon[client_no].hp * -1;
-                    ctx->server_status_flag |= BATTLE_STATUS_NO_BLINK;
-                } 
-                else 
-                {
-                    ctx->msg_work = ctx->battlemon[client_no].moveeffect.perishSongTurns;
-                    ctx->battlemon[client_no].moveeffect.perishSongTurns--;
-                }
-                ctx->client_work = client_no; 
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_COUNT_PERISH_SONG);
-                ctx->next_server_seq_no = ctx->server_seq_no;
-                ctx->server_seq_no      = CONTROLLER_COMMAND_RUN_SCRIPT;
-                return;
-            }
-        }
-        ctx->scc_seq_no++;
-        ctx->scc_work = 0;
-    case UFCE_STATE_TRICK_ROOM:
-        if (ctx->field_condition & FIELD_STATUS_TRICK_ROOM) 
-        {
-            if ((ctx->field_condition & FIELD_STATUS_TRICK_ROOM) != 458752)
-            {
-            ctx->field_condition -= (1 << 16);
-            }
-            if (!(ctx->field_condition & FIELD_STATUS_TRICK_ROOM)) 
-            {
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_TRICK_ROOM_END);
-                ctx->next_server_seq_no = ctx->server_seq_no;
-                ctx->server_seq_no      = CONTROLLER_COMMAND_RUN_SCRIPT;
-                return;
-            }
-        }
-        ctx->scc_seq_no++;
-        ctx->scc_work = 0;
-        break;
-    default:
-        break;
-    }
-    ctx->scc_seq_no = 0;
-    ctx->scc_work  = 0;
-    ctx->server_seq_no = CONTROLLER_COMMAND_TURN_END;
-} */
-
 /**
  * Platinum version as reference
  * BattleController_MoveEnd
@@ -3511,18 +3393,18 @@ BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type) {
 BOOL LONG_CALL AbilityNoTransform(int ability) {
     switch (ability) {
         case ABILITY_DISGUISE:
-    //    case ABILITY_GULP_MISSILE:
+        case ABILITY_GULP_MISSILE:
         case ABILITY_ICE_FACE:
         case ABILITY_NEUTRALIZING_GAS:
-    //    case ABILITY_HUNGER_SWITCH:
-    //    case ABILITY_ZERO_TO_HERO:
+        case ABILITY_HUNGER_SWITCH:
+        case ABILITY_ZERO_TO_HERO:
         case ABILITY_PROTOSYNTHESIS:
         case ABILITY_QUARK_DRIVE:
-    //    case ABILITY_EMBODY_ASPECT:
-    //    case ABILITY_EMBODY_ASPECT_2:
-    //    case ABILITY_EMBODY_ASPECT_3:
-    //    case ABILITY_EMBODY_ASPECT_4:
-    //    case ABILITY_TERA_SHIFT:
+        case ABILITY_EMBODY_ASPECT:
+        case ABILITY_EMBODY_ASPECT_2:
+        case ABILITY_EMBODY_ASPECT_3:
+        case ABILITY_EMBODY_ASPECT_4:
+        case ABILITY_TERA_SHIFT:
             return TRUE;
             break;
 
@@ -3534,6 +3416,7 @@ BOOL LONG_CALL AbilityNoTransform(int ability) {
 
 // TODO: Just use this instead of the Mold Breaker one
 u32 LONG_CALL GetBattlerAbility(struct BattleStruct *ctx, int battlerId) {
+    u32 ability = ctx->battlemon[battlerId].ability;
     if ((ctx->battlemon[battlerId].effect_of_moves & MOVE_EFFECT_GASTRO_ACID) && ctx->battlemon[battlerId].ability != ABILITY_MULTITYPE) {
         return ABILITY_NONE;
     } else if ((ctx->field_condition & FIELD_STATUS_GRAVITY) && ctx->battlemon[battlerId].ability == ABILITY_LEVITATE) {
@@ -3543,7 +3426,7 @@ u32 LONG_CALL GetBattlerAbility(struct BattleStruct *ctx, int battlerId) {
     } else if (AbilityNoTransform(ctx->battlemon[battlerId].ability) && (ctx->battlemon[battlerId].condition2 & STATUS2_TRANSFORMED)) {
         return ABILITY_NONE;
     } else {
-        return ctx->battlemon[battlerId].ability;
+        return ability;
     }
 }
 
@@ -3556,19 +3439,19 @@ BOOL LONG_CALL AbilityCantSupress(int ability) {
     case ABILITY_MULTITYPE:
     case ABILITY_ZEN_MODE:
     case ABILITY_STANCE_CHANGE:
-    // case ABILITY_SHIELDS_DOWN:
+    case ABILITY_SHIELDS_DOWN:
     case ABILITY_SCHOOLING:
     case ABILITY_DISGUISE:
     case ABILITY_BATTLE_BOND:
     case ABILITY_POWER_CONSTRUCT:
     case ABILITY_COMATOSE:
     case ABILITY_RKS_SYSTEM:
-    // case ABILITY_GULP_MISSILE:
+    case ABILITY_GULP_MISSILE:
     case ABILITY_ICE_FACE:
-    // case ABILITY_AS_ONE_GLASTRIER:
-    // case ABILITY_AS_ONE_SPECTRIER:
-    // case ABILITY_ZERO_TO_HERO:
-    // case ABILITY_TERA_SHIFT:
+    case ABILITY_AS_ONE_GLASTRIER:
+    case ABILITY_AS_ONE_SPECTRIER:
+    case ABILITY_ZERO_TO_HERO:
+    case ABILITY_TERA_SHIFT:
         return TRUE;
         break;
 

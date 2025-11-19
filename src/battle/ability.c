@@ -357,9 +357,8 @@ BOOL MoveHitAttackerAbilityCheck(void *bw, struct BattleStruct *sp, int *seq_no)
                 }
             }
             break;
-
-//        case ABILITY_CHILLING_NEIGH:
-//        case ABILITY_AS_ONE_GLASTRIER:
+        case ABILITY_CHILLING_NEIGH:
+        case ABILITY_AS_ONE_GLASTRIER:
         case ABILITY_MOXIE:
             if ((sp->defence_client == sp->fainting_client)
                 && ((sp->server_status_flag2 & SERVER_STATUS_FLAG2_U_TURN) == 0)
@@ -373,8 +372,8 @@ BOOL MoveHitAttackerAbilityCheck(void *bw, struct BattleStruct *sp, int *seq_no)
                 }
             }
             break;
-//        case ABILITY_GRIM_NEIGH:
-//        case ABILITY_AS_ONE_SPECTRIER:
+          case ABILITY_GRIM_NEIGH:
+          case ABILITY_AS_ONE_SPECTRIER:
           case ABILITY_SOUL_HEART:
             if ((sp->defence_client == sp->fainting_client)
                 && ((sp->server_status_flag2 & SERVER_STATUS_FLAG2_U_TURN) == 0)
@@ -511,19 +510,19 @@ BOOL AbilityIsIgnoredByMoldBreaker (int ability) {
         case ABILITY_ICE_FACE:
         case ABILITY_PASTEL_VEIL:
         case ABILITY_THERMAL_EXCHANGE:
-        // case ABILITY_PURIFYING_SALT:
+        case ABILITY_PURIFYING_SALT:
         case ABILITY_WELL_BAKED_BODY:
         case ABILITY_WIND_RIDER:
-        // case ABILITY_GUARD_DOG:
+        case ABILITY_GUARD_DOG:
         case ABILITY_GOOD_AS_GOLD:
-        // case ABILITY_VESSEL_OF_RUIN:
-        // case ABILITY_SWORD_OF_RUIN:
-        // case ABILITY_TABLETS_OF_RUIN:
-        // case ABILITY_BEADS_OF_RUIN:
+        case ABILITY_VESSEL_OF_RUIN:
+        case ABILITY_SWORD_OF_RUIN:
+        case ABILITY_TABLETS_OF_RUIN:
+        case ABILITY_BEADS_OF_RUIN:
         case ABILITY_ARMOR_TAIL:
         case ABILITY_EARTH_EATER:
         case ABILITY_MINDS_EYE:
-        // case ABILITY_TERA_SHELL:
+        case ABILITY_TERA_SHELL:
             return TRUE;
             break;
 

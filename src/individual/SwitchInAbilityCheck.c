@@ -164,7 +164,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     switch (GetBattlerAbility(sp, client_no)) {
                         case ABILITY_NEUTRALIZING_GAS:
                             break;
-                //        case ABILITY_TERA_SHIFT:
+                        case ABILITY_TERA_SHIFT:
                 //            break;
 
                         default:
@@ -314,8 +314,8 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
                                     break;
-                                /* case ABILITY_DESOLATE_LAND:
-                                    sp->battlemon[client_no].appear_check_flag = 1;
+                                case ABILITY_DESOLATE_LAND:
+                                    sp->battlemon[client_no].ability_activated_flag = 1;
                                     if ((sp->field_condition & WEATHER_EXTREMELY_HARSH_SUNLIGHT) == 0) {
                                         scriptnum = SUB_SEQ_DESOLATE_LAND;
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
@@ -334,7 +334,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                         scriptnum = SUB_SEQ_DELTA_STREAM;
                                         ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                                     }
-                                    break; */
+                                    break;
                             } 
                         }
                         if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
@@ -618,7 +618,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Dark Aura
-                    /*{
+                    {
                         if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_DARK_AURA)) {
                             sp->battlemon[client_no].ability_activated_flag = 1;
                             sp->battlerIdTemp = client_no;
@@ -637,7 +637,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         }
-                    }*/
+                    }
 
                     // Aura Break
                     {
@@ -677,7 +677,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             src = (u8 *)&sp->battlemon[sp->attack_client];
                             dest = (u8 *)&sp->battlemon[sp->defence_client];
 
-                            for (num = 0; num <= (int)offsetof(struct BattlePokemon, ability); num++) {
+                            for (num = 0; num <= (int)0x26/*offsetof(struct BattlePokemon, ability)*/; num++) {
                                 src[num] = dest[num];
                             }
 
@@ -702,7 +702,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
 
                     // Surge Abilities
-                    /*{
+                    {
                         if (sp->battlemon[client_no].ability_activated_flag == 0 &&
                             (sp->battlemon[client_no].hp)) {
                             switch (GetBattlerAbility(sp, client_no)) {
@@ -738,7 +738,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                                 break;
                             }
                         }
-                    }*/
+                    }
 
                     // Intrepid Sword
                     {
