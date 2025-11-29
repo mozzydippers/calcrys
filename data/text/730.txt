@@ -9,7 +9,7 @@ Aroma Lady
 Twins
 Hiker
 Battle Girl
-Fisherman
+Fisher
 Cyclist
 Cyclist
 Black Belt
@@ -33,15 +33,15 @@ Juggler
 Rich Boy
 Lady
 Gentleman
-Socialite
+Madame
 Beauty
 Collector
-Policeman
+Police Officer
 ₧₦ Ranger
 ₧₦ Ranger
 Scientist
-Swimmer♂
-Swimmer♀
+Swimmer
+Swimmer
 Tuber
 Tuber
 Sailor

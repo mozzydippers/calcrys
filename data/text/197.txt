@@ -698,10 +698,10 @@ A sandstorm kicked up!
 (Unused)
 The sunlight turned harsh!
 (Unused)
-The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+(Unused)
 It started to hail!
-You are challenged by\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
-You defeated\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!
+(Unused)
+(Unused)
 {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nprevents {STRVAR_1 13, 2, 0} loss!
 The wild {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} prevents\f{STRVAR_1 13, 2, 0} loss!
 The opposing {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} prevents\f{STRVAR_1 13, 2, 0} loss!
@@ -1352,12 +1352,12 @@ The opposing {STRVAR_1 1, 0, 0}’s\nillusion wore off!
 {STRVAR_1 1, 0, 0}’s disguise was busted!
 The wild {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
 The opposing {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
-You are challenged by\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!\r
-{STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
-{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
-{STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
-You defeated\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!
-The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+(Unused)
+(Unused)
+(Unused)
+(Unused)
+(Unused)
+(Unused)
 You sense the presence of many!
 {STRVAR_1 1, 0, 0} transformed into its Complete\nForme!
 The wild {STRVAR_1 1, 0, 0} transformed\ninto its Complete Forme!
@@ -1709,3 +1709,27 @@ The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Sleep 
 {STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\ncopied by Copycat to its Z-Move!
 The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!
 The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!
+You are challenged by\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!\r
+You are challenged by\n{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0}!\r
+You are challenged by\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+You are challenged by\n{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0}!\r
+You are challenged by\nthe {STRVAR_1 14, 0, 0}\fof the {STRVAR_1 3, 1, 0}!
+{STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 3, 1, 0}\nof the {STRVAR_1 14, 0, 0} sent\fout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+
+You defeated\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!\r
+You defeated\n{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0}!\r
+You defeated\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+You defeated\n{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0}!\r
+You defeated\nthe {STRVAR_1 14, 0, 0}\fof the {STRVAR_1 3, 1, 0}!
+{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{STRVAR_1 14, 0, 0} the {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{YESNO 0}
