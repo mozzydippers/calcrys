@@ -405,23 +405,23 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, MESSAGE_PARAM *msg)
         switch (msg->msg_id) {
         case BATTLE_MSG_OLD_SEND_OUT: // {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
             if (bsys->sp->printedTrainerSendOutMessage) {
-                msg->msg_id = 1716; // {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+                msg->msg_id = BATTLE_MSG_NEW_SEND_OUT_START; // {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
             } else {
                 if (trainerMessageOffset != GRUNT_TRAINER_CLASS) {
                     bsys->sp->printedTrainerSendOutMessage = TRUE;
                 }
                 if (trainerMessageOffset) {
-                    msg->msg_id = 1716 + trainerMessageOffset;
+                    msg->msg_id = BATTLE_MSG_NEW_SEND_OUT_START + trainerMessageOffset;
                 }
             }
             break;
         case BATTLE_MSG_OLD_WITHDRAW: // {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
             if (trainerMessageOffset == GRUNT_TRAINER_CLASS) {
-                msg->msg_id = 1723; // The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+                msg->msg_id = BATTLE_MSG_GRUNT_WITHDRAW; // The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
             } else if (trainerMessageOffset == REPRESENTATIVE_TRAINER_CLASS) {
-                msg->msg_id = 1724; //
+                msg->msg_id = BATTLE_MSG_REPRESENTATIVE_WITHDRAW; //
             } else {
-                msg->msg_id = 1722; // {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+                msg->msg_id = BATTLE_MSG_NEW_WITHDRAW_START; // {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
             }
             break;
         }
