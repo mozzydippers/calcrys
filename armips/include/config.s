@@ -25,6 +25,15 @@ TYPE_EFFECTIVENESS_GEN equ GEN_LATEST
 // Otherwise: Hail
 SNOW_WARNING_GENERATION equ GEN_LATEST
 
+// THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN makes the Thunder & Storm map header weathers set permanent
+// Electric Terrain (and rain) in battle
+// If you do not want this change, then set it to 0.
+THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN equ 1
+
+// FOG_SETS_MISTY_TERRAIN makes the Fog map header weather set permanent Misty Terrain in battle
+// If you do not want this change, then set it to 0.
+FOG_WEATHER_MISTY_TERRAIN equ 1
+
 // ALLOW_SAVE_CHANGES tells the assembler that it can build the code that pertains to expanding the save data for extra fields for our usage.
 // this is required for dex expansion and will break PKHeX compatibility!  comment this line out to prevent save changes from being made.
 .definelabel ALLOW_SAVE_CHANGES, 0

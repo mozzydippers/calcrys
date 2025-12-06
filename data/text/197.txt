@@ -1739,3 +1739,7 @@ You defeated\nthe {STRVAR_1 14, 0, 0}\fof the {STRVAR_1 3, 1, 0}!
 The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
 {STRVAR_1 14, 0, 0} the {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
 {YESNO 0}
+The battlefield is covered with grass!
+Mist swirls around the battlefield!
+An electric current is running across the battlefield!
+The battlefield seems weird!
