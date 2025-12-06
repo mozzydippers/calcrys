@@ -3,11 +3,11 @@
 .data
 
 _000:
-    PrintAttackMessage 
-    Wait 
+    PrintAttackMessage
+    Wait
     WaitButtonABTime 30
     CompareVarToValue OPCODE_FLAG_NOT, BSCRIPT_VAR_MOVE_STATUS_FLAGS, MOVE_STATUS_LOST_FOCUS, _011
-    PrintBufferedMessage 
+    PrintBufferedMessage
     GoTo _179
 
 _011:
@@ -83,8 +83,8 @@ _157:
     GetCurrentMoveData MOVEATTRIBUTE_RANGE
     CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_CALC_TEMP, RANGE_ADJACENT_OPPONENTS, _175
     CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_CALC_TEMP, RANGE_ALL_ADJACENT, _175
-    // {0}’s attack missed!
-    PrintMessage 12, TAG_NICKNAME, BATTLER_CATEGORY_ATTACKER
+    // {0} avoided the attack!
+    PrintMessage 24, TAG_NICKNAME, BATTLER_CATEGORY_DEFENDER
     GoTo _179
 
 _175:
@@ -92,7 +92,7 @@ _175:
     PrintMessage 24, TAG_NICKNAME, BATTLER_CATEGORY_DEFENDER
 
 _179:
-    Wait 
+    Wait
     WaitButtonABTime 30
     CompareVarToValue OPCODE_FLAG_NOT, BSCRIPT_VAR_BATTLE_STATUS, BATTLE_STATUS_MISS_MESSAGE, _189
     Call BATTLE_SUBSCRIPT_SHOW_PREPARED_MESSAGE
@@ -100,4 +100,4 @@ _179:
 _189:
     UnlockMoveChoice BATTLER_CATEGORY_ATTACKER
     Call BATTLE_SUBSCRIPT_CRASH_ON_MISS
-    End 
+    End
