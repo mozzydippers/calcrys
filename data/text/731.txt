@@ -64,17 +64,17 @@ a Team Rocket
 a Burglar
 a Firebreather
 a Biker
-a Leader
-a Leader
+a Gym Leader
+a Gym Leader
 a Poké Maniac
 a Bird Keeper
-a Leader
+a Gym Leader
 a Rancher
-a Leader
-a Leader
-a Leader
-a Leader
-a Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
 a Teacher
 a Super Nerd
 a Sage
@@ -96,19 +96,19 @@ a ₧₦ Trainer
 a ₧₦ Trainer
 a ₧₦ Trainer
 a Tower Tycoon
-a Leader
+a Gym Leader
 a Hall Matron
 a Factory Head
 an Arcade Star
 a Castle Valet
-a Leader
-a Leader
-a Leader
-a Leader
-a Leader
-a Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
+a Gym Leader
 a ₧₦ Trainer
-a Leader
+a Gym Leader
 an Elder
 an Elite Four
 a Scientist
