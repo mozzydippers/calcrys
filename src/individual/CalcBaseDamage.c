@@ -458,6 +458,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             movepower = 20;
         }
         break;
+
     case MOVE_BOLT_BEAK:
     case MOVE_FISHIOUS_REND:
         // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-8433978
@@ -470,6 +471,10 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             movepower = 140;
         }
         break;
+    case MOVE_TERRAIN_PULSE:
+        if (terrainOverlayNumberOfTurnsLeft > 0) {
+            movepower = 100;
+        }
     // Item-based
     case MOVE_FLING:
         // TODO: test Parental Bond interaction
