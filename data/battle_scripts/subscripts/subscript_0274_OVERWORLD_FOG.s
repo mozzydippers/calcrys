@@ -13,7 +13,7 @@ _000:
     UpdateVar OPCODE_FLAG_ON, BSCRIPT_VAR_FIELD_CONDITION, FIELD_CONDITION_FOG
 .else
     // Mist swirls around the battlefield!
-    PrintMessage 1742, TAG_NONE
+    PrintMessage BATTLE_MSG_OVERWORLD_MISTY_TERRAIN_START, TAG_NONE
     Wait
     WaitButtonABTime 30
 .endif

@@ -12,7 +12,7 @@ _000:
     UpdateVar OPCODE_FLAG_ON, BSCRIPT_VAR_FIELD_CONDITION, FIELD_CONDITION_RAIN_PERMANENT
 .if THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN == 1
     // An electric current is running across the battlefield!
-    PrintMessage 1743, TAG_NONE
+    PrintMessage BATTLE_MSG_OVERWORLD_ELECTRIC_TERRAIN_START, TAG_NONE
     Wait
     WaitButtonABTime 30
 .endif
