@@ -475,6 +475,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         if (terrainOverlayNumberOfTurnsLeft > 0) {
             movepower = 100;
         }
+        break;
     // Item-based
     case MOVE_FLING:
         // TODO: test Parental Bond interaction
