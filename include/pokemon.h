@@ -1900,4 +1900,23 @@ u8 LONG_CALL GetMoveMaxPP(u16 moveId, u8 ppUps);
 
 void LONG_CALL ApplyMonMoodModifier(struct PartyPokemon *mon, int modifierId);
 
+void LONG_CALL SetupAndStartWildBattle(void *taskManager, u16 species, u8 level, u32 *winFlag, BOOL canFlee, BOOL shiny);
+
+struct BATTLE_PARAM LONG_CALL *BattleSetup_New(int heapID, u32 battleFlags);
+
+void LONG_CALL BattleSetup_InitFromFieldSystem(struct BATTLE_PARAM *setup, FieldSystem *fieldSystem);
+
+void LONG_CALL ov02_02247F30(FieldSystem *fieldSystem, u16 mon, u8 level, BOOL shiny, struct BATTLE_PARAM *setup);
+
+void LONG_CALL *Save_GameStats_Get(void *saveData);
+
+u32 LONG_CALL GameStats_Inc(void *gameStats, int statIdx);
+
+void LONG_CALL CallTask_StartEncounter(void *taskManager, struct BATTLE_PARAM *setup, s32 effect, s32 bgm, u32 *winFlag);
+
+int LONG_CALL BattleSetup_GetWildTransitionEffect(struct BATTLE_PARAM *setup);
+int LONG_CALL BattleSetup_GetWildBattleMusic(struct BATTLE_PARAM *setup);
+
+u32 LONG_CALL ChangePersonalityToNatureGenderAndAbility(u32 pid, u16 species, u8 nature, u8 gender, u8 ability, BOOL gen_mode);
+
 #endif

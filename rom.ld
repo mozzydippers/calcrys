@@ -773,4 +773,21 @@ PrintItemSlotQuantity = 0x021FF66C | 1;
 PlayerProfile_TestBadgeFlag = 0x02028F98 | 1;
 InitMartUI = 0x02256D34 | 1;
 
+PlayBGM = 0x02005D48 | 1;
 sBattleBgProfileTable = 0x0226E70C;
+ov12_0223BDDC = 0x0223BDDC | 1;
+BattleController_EmitShowWaitMessage = 0x02263F30 | 1;
+BattleBuffer_GetNext = 0x0225682C | 1;
+
+SetupAndStartWildBattle = 0x02051020 | 1;
+TaskManager_GetFieldSystem = 0x0205064C | 1;
+BattleSetup_New = 0x020518D8 | 1;
+BattleSetup_InitFromFieldSystem = 0x02051F00 | 1;
+
+ov02_02247F30 = 0x02247F30 | 1;
+Save_GameStats_Get = 0x0202CF54 | 1;
+GameStats_Inc = 0x0202D0FC | 1;
+CallTask_StartEncounter = 0x0205085C | 1;
+BattleSetup_GetWildTransitionEffect = 0x020517E8 | 1;
+BattleSetup_GetWildBattleMusic = 0x020517FC | 1;
+ChangePersonalityToNatureGenderAndAbility = 0x02072490 | 1;

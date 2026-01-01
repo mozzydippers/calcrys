@@ -474,6 +474,14 @@ move_narc: $(NARC_FILES)
 	@echo "tutor moves:"
 	cp $(TUTORLEARNSET_BIN) $(TUTORLEARNSET_TARGET)
 
+	@echo "Totem Battles:"
+	cp $(TOTEMBATTLES_BIN) $(TOTEMBATTLES_TARGET)
+
+	@echo "Max Raid Battles:"
+	cp $(MAXRAIDBATTLES_BIN) $(MAXRAIDBATTLES_TARGET)
+
+	@echo "Tera Raid Battles:"
+	cp $(TERARAIDBATTLES_BIN) $(TERARAIDBATTLES_TARGET)
 
 DUMP_SCRIPT_LOCATION := tools/source/dumptools
 # the goal here is to extract the required narcs to the proper folders for the dump scripts to work.

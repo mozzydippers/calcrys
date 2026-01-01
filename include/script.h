@@ -32,7 +32,7 @@ enum ScriptEnvField {
     SCRIPTENV_GENERIC_WORK_PTR                = 21,
     SCRIPTENV_B4                              = 22,
     SCRIPTENV_B8                              = 23,
-    SCRIPTENV_0C                              = 24,
+    SCRIPTENV_BATTLE_WIN_FLAG                 = 24,
     SCRIPTENV_54_0_00                         = 25,
     SCRIPTENV_54_0_04                         = 26,
     SCRIPTENV_54_0_08                         = 27,
@@ -109,6 +109,7 @@ void LONG_CALL EventSet_Script(FieldSystem *fsys, u16 scr_id, void* obj);
 void LONG_CALL ScriptJump(SCRIPTCONTEXT* ctx, const u8* ptr); // this is important
 void *LONG_CALL FieldSysGetAttrAddr(FieldSystem *fsys, int field);
 u32 LONG_CALL Fsys_GetWeather_HandleDiamondDust(FieldSystem *fsys, u32 mapID);
+FieldSystem LONG_CALL *TaskManager_GetFieldSystem(void *taskManager);
 
 // there are actual functions for ScriptReadHalfword and ScriptReadWord, but it's whatever
 #define ScriptReadByte(ctx) *(u8*)(ctx->script_ptr++)

@@ -3,14 +3,15 @@
 .include "armips/include/animscriptcmd.s"
 .include "armips/include/constants.s"
 
-//mega
+// Mega Evolution
 
 .create "build/move/move_anim/0_470", 0x0
 
 MegaAnimScript:
-    loadparticlefromspa 0, 490
-    loadparticlefromspa 1, 107
-    loadparticlefromspa 2, SPA_MEGA
+    loadparticlefromspa 0, 489
+    loadparticlefromspa 1, SPA_MEGA
+    loadparticlefromspa 2, 489
+
     waitparticle
 
     playsepanmod 1939, -117, 0x75, 4, 2
@@ -18,27 +19,32 @@ MegaAnimScript:
     changebg 47, 0x020001
     waitforchangebg
 
-    addparticle 2, 0, 3
-    addparticle 0, 1, 3
+    addparticle 0,0,3
+    addparticle 0,8,3
+    wait 30
+    addparticle 1, 0, 3
+    // Terminate effect early and reload
+    unloadparticle 0
 
-    waitparticle
+    wait 60
 
-    addparticle 1, 8, 3
-    addparticle 1, 9, 3
-    addparticle 1, 10, 3
+    // Explosion particles
+    addparticle 2, 10, 3
+    addparticle 2, 12, 3
 
-    wait 15
-    callfunction 0x24, 5, 2, 0, 1, 4, 8 | 0x100, 0, 0, 0, 0, 0
-
-    waitstate
     transform 0
     waitstate
-    addparticle 0, 10, 3
-    addparticle 0, 12, 3
     wait 15
-    unloadparticle 0
+
     playcry 0, -117, 127
-    addparticle 2,1,3
+
+    // Shake client
+    shaketargetmon 4, 7
+    waitstate
+
+    // Mega symbol
+    addparticle 1, 1, 3
+
     waitcry 0
     wait 15
 
@@ -47,13 +53,8 @@ MegaAnimScript:
     waitstate
     waitforchangebg
 
-    waitparticle
-
-    unloadparticle 0
     unloadparticle 1
     unloadparticle 2
-    waitstate
-
     end
 
 .close

@@ -1744,3 +1744,27 @@ The battlefield is covered with grass!
 Mist swirls around the battlefield!
 An electric current is running across the battlefield!
 The battlefield seems weird!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose drastically!
+{STRVAR_1 1, 0, 0} called for help!
+{STRVAR_1 1, 0, 0} called its ally Pokémon!
+...{WAIT 20} ...{WAIT 20} ...{WAIT 20}
+Its help didn’t appear!
+{STRVAR_1 1, 0, 0} appeared!
+The Adrenaline Orb makes the wild Pokémon nervous!
