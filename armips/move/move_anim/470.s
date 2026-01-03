@@ -14,19 +14,20 @@ MegaAnimScript:
 
     waitparticle
 
-    playsepanmod 1939, -117, 0x75, 4, 2
-
     changebg 47, 0x020001
     waitforchangebg
 
+    playse 2380
+
     addparticle 0,0,3
     addparticle 0,8,3
-    wait 30
+    wait 100
+
     addparticle 1, 0, 3
     // Terminate effect early and reload
     unloadparticle 0
 
-    wait 60
+    wait 30
 
     // Explosion particles
     addparticle 2, 10, 3
@@ -43,10 +44,11 @@ MegaAnimScript:
     waitstate
 
     // Mega symbol
+    wait 45
     addparticle 1, 1, 3
 
     waitcry 0
-    wait 15
+    waitparticle
 
     resetbg 47, 0x040001
 
