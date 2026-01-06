@@ -76,7 +76,7 @@ void CheckOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, FieldSystem *fsys)
     {
         if (CheckScriptFlag(2565)) 
         {
-            EventSet_Script(fsys, 2074, NULL); // set up script
+            EventSet_Script(fsys, 2075, NULL); // set up script
         } 
         else 
         { 

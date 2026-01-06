@@ -782,6 +782,9 @@ Encounter_New = 0x020506BC | 1;
 TaskManager_Call = 0x02050530 | 1;
 Task_TutorialBattle = 0x0205128C | 1;
 
+GetItemAttrSub = 0x02077E48 | 1;
+
+
 /* calcrys custom */
 
 /* for hms as long as they can learn it */

@@ -87,8 +87,9 @@ scrdef scr_seq_0003_069
 scrdef scr_seq_0003_070
 scrdef scr_seq_0003_071
 scrdef scr_seq_0003_072_repels
-scrdef scr_seq_0003_073
-scrdef scr_seq_0003_074
+scrdef scr_seq_0003_073_autobattle_testing
+scrdef scr_seq_0003_074_move_relearner // custom
+scrdef scr_seq_0003_075_box_link_fail
 scrdef_end
 
 scr_seq_0003_002:
@@ -1739,8 +1740,18 @@ scr_seq_0003_064:
     closemsg
     releaseall
     end
-    
-scr_seq_0003_073:
+
+scr_seq_0003_073_autobattle_testing:
+    play_se SEQ_SE_DP_SELECT
+    lockall
+    npc_msg 120
+    closemsg
+    trainer_battle 1, 0, 0, 0
+    white_out
+    releaseall
+    end
+
+scr_seq_0003_074_move_relearner:
     playfanfare SEQ_SE_DP_SELECT
 	lockall 
 	fade_screen 6, 1, 0, RGB_BLACK
@@ -1762,7 +1773,7 @@ scr_seq_0003_073:
 	releaseall 
     end 
 
-scr_seq_0003_074:
+scr_seq_0003_075_box_link_fail:
     play_se SEQ_SE_DP_SELECT
     lockall
     buffer_players_name 0
