@@ -481,6 +481,7 @@
 #define SUB_SEQ_FOCUS_SASH                             (472)
 #define SUB_SEQ_ION_DELUGE                             (473)
 #define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (474)
+#define SUB_SEQ_AURA_FLARED_TO_LIFE                    (475)
 
 #define MAX_BASE_SUBSCRIPT_NUM 473
 

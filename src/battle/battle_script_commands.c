@@ -16,6 +16,7 @@
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
 #include "../../include/constants/weather_numbers.h"
+#include "../../include/battle_variations.h"
 
 struct EXP_CALCULATOR
 {
@@ -98,6 +99,7 @@ BOOL btl_scr_cmd_107_clearauroraveil(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_108_strengthsapcalc(void* bw, struct BattleStruct* sp);
 BOOL btl_scr_cmd_109_checktargetispartner(void* bw, struct BattleStruct* sp);
 BOOL btl_scr_cmd_10A_clearsmog(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_10B_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -392,6 +394,7 @@ const u8 *BattleScrCmdNames[] =
     "StrengthSapCalc",
     "CheckTargetIsPartner",
     "ClearSmog",
+    "SetAuraBoost",
     // "YourCustomCommand",
 };
 
@@ -399,7 +402,7 @@ u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x107
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x10B
 
 const btl_scr_cmd_func NewBattleScriptCmdTable[] =
 {
@@ -445,6 +448,7 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] =
     [0x108 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_108_strengthsapcalc,
     [0x109 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_109_checktargetispartner,
     [0x10A - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10A_clearsmog,
+    [0x10B - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10B_SetAuraBoost,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -4329,5 +4333,90 @@ BOOL btl_scr_cmd_10A_clearsmog(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
     reset_stat_changes(ctx, ctx->defence_client);
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_10B_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx) {
+    IncrementBattleScriptPtr(ctx, 1);
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+
+    struct TotemBattle battleData;
+
+    ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, GetScriptVar(RAID_ID_VARIABLE) * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
+
+    // Why is it -2???
+    ctx->mp.msg_id = BATTLE_MSG_AURA_FLARED_TO_LIFE_START - 2 + battleData.auraType;
+    ctx->mp.msg_tag = TAG_NICKNAME;
+    ctx->mp.msg_para[0] = CreateNicknameTag(ctx, battlerId);
+
+    switch (battleData.auraType) {
+    case AURA_TYPE_ATTACK_UP:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 7;
+        break;
+    case AURA_TYPE_ATTACK_UP_2:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 8;
+        break;
+    case AURA_TYPE_ATTACK_UP_3:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 9;
+        break;
+    case AURA_TYPE_DEFENSE_UP:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 7;
+        break;
+    case AURA_TYPE_DEFENSE_UP_2:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 8;
+        break;
+    case AURA_TYPE_DEFENSE_UP_3:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 9;
+        break;
+    case AURA_TYPE_SP_ATK_UP:
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 7;
+        break;
+    case AURA_TYPE_SP_ATK_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 8;
+        break;
+    case AURA_TYPE_SP_ATK_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 9;
+        break;
+    case AURA_TYPE_SP_DEF_UP:
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 7;
+        break;
+    case AURA_TYPE_SP_DEF_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 8;
+        break;
+    case AURA_TYPE_SP_DEF_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 9;
+        break;
+    case AURA_TYPE_SPEED_UP:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 7;
+        break;
+    case AURA_TYPE_SPEED_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 8;
+        break;
+    case AURA_TYPE_SPEED_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 9;
+        break;
+    case AURA_TYPE_OMNIBOOST:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 7;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 7;
+        break;
+    case AURA_TYPE_OMNIBOOST_2:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 8;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 8;
+        break;
+    case AURA_TYPE_OMNIBOOST_3:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 9;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPATK] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPDEF] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 9;
+        break;
+    }
+
     return FALSE;
 }

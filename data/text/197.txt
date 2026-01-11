@@ -1352,8 +1352,8 @@ The opposing {STRVAR_1 1, 0, 0}’s\nillusion wore off!
 {STRVAR_1 1, 0, 0}’s disguise was busted!
 The wild {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
 The opposing {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
-(Unused)
-(Unused)
+You are challenged by\nTotem {STRVAR_1 1, 0, 0}!
+You are challenged by\nthe Titan {STRVAR_1 1, 0, 0}!
 (Unused)
 (Unused)
 (Unused)
@@ -1750,9 +1750,9 @@ The battlefield seems weird!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose sharply!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose drastically!
-{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose!
-{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose sharply!
-{STRVAR_1 1, 0, 0}’s aura flared to life! Its Sp. Atk rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose drastically!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose sharply!
 {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose drastically!

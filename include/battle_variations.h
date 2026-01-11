@@ -21,11 +21,13 @@
 #define BATTLE_SPECIAL_DISTORTION_WORLD (1 << 7)
 #define BATTLE_SPECIAL_TOTEM            (1 << 8)
 #define BATTLE_SPECIAL_MAX_RAID         (1 << 9)
-#define BATTLE_SPECIAL_TERA_RAID        (1 << 10)
+#define BATTLE_SPECIAL_TITAN            (1 << 10)
+#define BATTLE_SPECIAL_TERA_RAID        (1 << 11)
 
 enum BattleVariationType {
     BATTLE_VARIATION_TYPE_TOTEM = 1,
     BATTLE_VARIATION_TYPE_MAX_RAID,
+    BATTLE_VARIATION_TYPE_TITAN_BATTLE,
     BATTLE_VARIATION_TYPE_TERA_RAID,
     // Custom raids go below
 };
@@ -38,6 +40,7 @@ typedef struct BattleVariationPokemon {
     u32 heldItem;
     u32 moves[4];
     u8 basePoints[6]; // HP, Attack, Defense, Speed, Special Attack, Special Defense
+    u8 potential[6]; // HP, Attack, Defense, Speed, Special Attack, Special Defense
     u8 nature;
     u16 abilitySlot;
     u8 forceShiny;
@@ -49,18 +52,24 @@ typedef struct BattleVariationBase {
 } BattleVariationBase;
 
 enum AuraType {
-    ATTACK_UP = 1,
-    ATTACK_UP_2,
-    DEFENSE_UP,
-    DEFENSE_UP_2,
-    SP_ATK_UP,
-    SP_ATK_UP_2,
-    SP_DEF_UP,
-    SP_DEF_UP_2,
-    SPEED_UP,
-    SPEED_UP_2,
-    OMNIBOOST,
-    OMNIBOOST_2
+    AURA_TYPE_ATTACK_UP = 1,
+    AURA_TYPE_ATTACK_UP_2,
+    AURA_TYPE_ATTACK_UP_3,
+    AURA_TYPE_DEFENSE_UP,
+    AURA_TYPE_DEFENSE_UP_2,
+    AURA_TYPE_DEFENSE_UP_3,
+    AURA_TYPE_SP_ATK_UP,
+    AURA_TYPE_SP_ATK_UP_2,
+    AURA_TYPE_SP_ATK_UP_3,
+    AURA_TYPE_SP_DEF_UP,
+    AURA_TYPE_SP_DEF_UP_2,
+    AURA_TYPE_SP_DEF_UP_3,
+    AURA_TYPE_SPEED_UP,
+    AURA_TYPE_SPEED_UP_2,
+    AURA_TYPE_SPEED_UP_3,
+    AURA_TYPE_OMNIBOOST,
+    AURA_TYPE_OMNIBOOST_2,
+    AURA_TYPE_OMNIBOOST_3,
 };
 
 typedef struct TotemBattle {

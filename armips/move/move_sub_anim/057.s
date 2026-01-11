@@ -9,17 +9,11 @@
 .include "asm/include/moves.inc"
 .include "armips/include/constants.s"
 
-.create "build/move/move_sub_anim/1_056", 0
+.create "build/move/move_sub_anim/1_057", 0
 
-// Z Dance animation
+// Aura flared to life animation
 
 a061_055:
-    // change background
-    cmd0C 0, -32
-    cmd0C 1, 0
-    changebg 36, 0x20001
-    waitforchangebg
-
     loadparticlefromspa 1, SPA_Z_DANCE
     loadparticlefromspa 2, 489
     waitparticle
@@ -45,19 +39,10 @@ a061_055:
     waitparticle
     unloadparticle 0
 
-    // Z Move Symbol
-    addparticle 1, 2, 3
-
     wait 120
-
-    cmd0C 0, -64
-    cmd0C 1, 0
-    resetbg 36, 0x40001
-    waitstate
 
     waitparticle
     unloadparticle 1
-    waitforchangebg
     end
 
 .close
