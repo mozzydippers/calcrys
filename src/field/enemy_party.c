@@ -16,7 +16,7 @@
 #include "../../include/constants/species.h"
 #include "../../include/constants/weather_numbers.h"
 
-const u8 TrainerClassDefaultBallList[] = {
+const u32 TrainerClassDefaultBallList[] = {
     [TRAINERCLASS_PKMN_TRAINER_ETHAN] = ITEM_POKE_BALL,
     [TRAINERCLASS_PKMN_TRAINER_LYRA] = ITEM_POKE_BALL,
     [TRAINERCLASS_YOUNGSTER] = ITEM_POKE_BALL,
