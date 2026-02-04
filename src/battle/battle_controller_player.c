@@ -1,19 +1,24 @@
 #include "../../include/battle.h"
 #include "../../include/battle_controller_player.h"
 #include "../../include/constants/battle_message_constants.h"
+#include "../../include/battle_variations.h"
 
-#if defined (DISABLE_ITEMS_IN_TRAINER_BATTLE)
 void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
     MESSAGE_PARAM mp;
     int battlerId;
     u32 fight_type = BattleTypeGet(bsys);
+    u32 battleVariation = bsys->battleSpecial;
 
     for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++)
     {
         if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_ITEM_INPUT && ctx->com_seq_no[battlerId] == 7)
         {
-            if (fight_type & BATTLE_TYPE_TRAINER)
+#ifdef DISABLE_ITEMS_IN_TRAINER_BATTLE
+            if ((fight_type & BATTLE_TYPE_TRAINER) || (battleVariation & BATTLE_SPECIAL_NO_ITEMS))
+#else
+            if (battleVariation & BATTLE_SPECIAL_NO_ITEMS)
+#endif
             {
                 mp.msg_id = BATTLE_MSG_ITEMS_CANT_BE_USED_HERE; //msg.id  = msg_0197_00593; // Items can't be used here
                 mp.msg_tag = TAG_NONE;
@@ -24,7 +29,6 @@ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
         }
     }
 }
-#endif
 
 BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
@@ -37,9 +41,8 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
     }
 
     sPlayerBattleCommands[ctx->server_seq_no](bsys, ctx);
-#if defined (DISABLE_ITEMS_IN_TRAINER_BATTLE)
+
     overrideItemUsage(bsys, ctx);
-#endif
 
     if (ctx->server_seq_no == CONTROLLER_COMMAND_45)
     {

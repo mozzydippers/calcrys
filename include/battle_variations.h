@@ -23,6 +23,7 @@
 #define BATTLE_SPECIAL_MAX_RAID         (1 << 9)
 #define BATTLE_SPECIAL_TITAN            (1 << 10)
 #define BATTLE_SPECIAL_TERA_RAID        (1 << 11)
+#define BATTLE_SPECIAL_NO_ITEMS         (BATTLE_SPECIAL_MAX_RAID | BATTLE_SPECIAL_TERA_RAID)
 
 enum BattleVariationType {
     BATTLE_VARIATION_TYPE_TOTEM = 1,
