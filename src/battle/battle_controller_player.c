@@ -27,6 +27,17 @@ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
                 ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
             }
         }
+
+        if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_RUN_INPUT && ctx->com_seq_no[battlerId] == 11)
+        {
+            if (battleVariation & BATTLE_SPECIAL_NO_ITEMS)
+            {
+                mp.msg_id = 779; // empty message
+                mp.msg_tag = TAG_NONE;
+                ctx->com_seq_no[battlerId] = SSI_STATE_15;
+                ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
+            }
+        }
     }
 }
 
