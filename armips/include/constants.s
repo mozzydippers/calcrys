@@ -667,7 +667,7 @@
 .equ TRUE, (1)
 
 // TODO: remember to change this
-.equ LAST_MAIN_BRANCH_SPA, (542)
+.equ LAST_MAIN_BRANCH_SPA, (543)
 
 .equ SPA_MEGA                   , (LAST_MAIN_BRANCH_SPA + 1)
 .equ SPA_Z_DANCE                , (LAST_MAIN_BRANCH_SPA + 2)
