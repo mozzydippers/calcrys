@@ -16,6 +16,13 @@
 #include "../../include/constants/species.h"
 #include "../../include/constants/weather_numbers.h"
 
+#ifdef DEBUG_BATTLE_SCENARIOS
+#include "../../include/test_battle.h"
+#endif // DEBUG_BATTLE_SCENARIOS
+
+struct BATTLE_PARAM LONG_CALL *BattleSetup_New_Tutorial(u32 heapID, FieldSystem *fieldSystem);
+void LONG_CALL *Encounter_New(struct BATTLE_PARAM *setup, s32 effect, s32 bgm, u32 *winFlag);
+
 const u32 TrainerClassDefaultBallList[] = {
     [TRAINERCLASS_PKMN_TRAINER_ETHAN] = ITEM_POKE_BALL,
     [TRAINERCLASS_PKMN_TRAINER_LYRA] = ITEM_POKE_BALL,
@@ -475,6 +482,11 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         {
             for (j = 0; j < 4; j++)
             {
+#ifdef BLOCK_LEARNING_UNIMPLEMENTED_MOVES
+                if (IsMoveUnimplemented(moves[j])) {
+                    moves[j] = MOVE_NONE;
+                }
+#endif
                 SetPartyPokemonMoveAtPos(mons[i], moves[j], j);
             }
         }
@@ -580,6 +592,22 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
     sys_FreeMemoryEz(nickname);
 
     gf_srand(seed_tmp);
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+    // Override parties with test scenario if enabled
+    TestBattle_OverrideParties(bp);
+#endif
+
+    // Change battle forms for player party
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 6; j++) {
+            struct PartyPokemon *mon = Party_GetMonByIndex(bp->poke_party[i], j);
+            if (mon != NULL) {
+                ChangeToBattleForm(mon);
+                RecalcPartyPokemonStats(mon);
+            }
+        }
+    }
 }
 
 extern u32 space_for_setmondata;
@@ -644,4 +672,35 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
     ChangeToBattleForm(encounterPartyPokemon);
 
     return PokeParty_Add(encounterBattleParam->poke_party[inTarget], encounterPartyPokemon);
+}
+
+void LONG_CALL SetupAndStartTutorialBattle(TaskManager *taskManager) {
+    struct BATTLE_PARAM *setup = BattleSetup_New_Tutorial(11, taskManager->fieldSystem);
+
+    struct PartyPokemon *marill = Party_GetMonByIndex(setup->poke_party[BATTLER_PLAYER], 0);
+
+    // move slot 1 is tackle
+    u16 data = MOVE_TACKLE;
+    SetMonData(marill, MON_DATA_MOVE1, &data);
+    data = GetMoveMaxPP(data, 0);
+    SetMonData(marill, MON_DATA_MOVE1PP, &data);
+    data = 0;
+    SetMonData(marill, MON_DATA_MOVE1PPUP, &data);
+
+    // move slot 2 is tail whip
+    data = MOVE_TAIL_WHIP;
+    SetMonData(marill, MON_DATA_MOVE2, &data);
+    data = GetMoveMaxPP(data, 0);
+    SetMonData(marill, MON_DATA_MOVE2PP, &data);
+    data = 0;
+    SetMonData(marill, MON_DATA_MOVE2PPUP, &data);
+
+    // move slot 3 and 4 none
+    data = MOVE_NONE;
+    SetMonData(marill, MON_DATA_MOVE3, &data);
+    SetMonData(marill, MON_DATA_MOVE4, &data);
+
+    void *encounter = Encounter_New(setup, BattleSetup_GetWildTransitionEffect(setup), BattleSetup_GetWildBattleMusic(setup), NULL);
+
+    TaskManager_Call(taskManager, Task_TutorialBattle, encounter);
 }

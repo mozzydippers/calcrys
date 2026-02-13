@@ -107,6 +107,7 @@
 #define ADD_EFFECT_VARIOUS      7
 // new
 #define ADD_EFFECT_PRINT_WORK_ABILITY 8
+#define ADD_EFFECT_STICKY_WEB 9
 
 /**
  *  @brief move status flag defines for the BattleStruct's waza_status_flag field.
@@ -381,24 +382,25 @@
  *
  *  largely for weathers, but also covers uproar, gravity, fog, etc.
  */
-#define WEATHER_RAIN                    (0x00000001) // 0000 0000 0000 0000 0001
-#define WEATHER_RAIN_PERMANENT          (0x00000002) // 0000 0000 0000 0000 0010
-#define WEATHER_RAIN_ANY                (WEATHER_RAIN | WEATHER_RAIN_PERMANENT | WEATHER_HEAVY_RAIN) // 0010 0000 0000 0000 0000 0000 0011
-#define WEATHER_SANDSTORM               (0x00000004) // 0000 0000 0000 0000 0100
-#define WEATHER_SANDSTORM_PERMANENT     (0x00000008) // 0000 0000 0000 0000 1000
-#define WEATHER_SANDSTORM_ANY           (WEATHER_SANDSTORM | WEATHER_SANDSTORM_PERMANENT) // 0000 0000 0000 0000 1100
-#define WEATHER_SUNNY                   (0x00000010) // 0000 0000 0000 0001 0000
-#define WEATHER_SUNNY_PERMANENT         (0x00000020) // 0000 0000 0000 0010 0000
-#define WEATHER_SUNNY_ANY               (WEATHER_SUNNY | WEATHER_SUNNY_PERMANENT | WEATHER_EXTREMELY_HARSH_SUNLIGHT) // 0001 0000 0000 0000 0000 0011 0000
-#define WEATHER_HAIL                    (0x00000040) // 0000 0000 0000 0100 0000
-#define WEATHER_HAIL_PERMANENT          (0x00000080) // 0000 0000 0000 1000 0000
-#define WEATHER_HAIL_ANY                (WEATHER_HAIL | WEATHER_HAIL_PERMANENT) // 0000 0000 0000 1100 0000
-#define FIELD_STATUS_UPROAR             (0x00000f00) // 0000 0000 1111 0000 0000
-#define FIELD_CONDITION_GRAVITY_INIT    (0x00005000) // 0000 0101 0000 0000 0000
-#define FIELD_STATUS_GRAVITY            (0x00007000) // 0000 0111 0000 0000 0000
-#define FIELD_STATUS_FOG                (0x00008000) // 0000 1000 0000 0000 0000
-#define FIELD_CONDITION_TRICK_ROOM_INIT (0x00050000) // 0101 0000 0000 0000 0000
-#define FIELD_STATUS_TRICK_ROOM         (0x00070000) // 0111 0000 0000 0000 0000
+#define WEATHER_NONE                        (0x00000000)
+#define WEATHER_RAIN                        (0x00000001)                                                                    // 0000 0000 0000 0000 0001
+#define WEATHER_RAIN_PERMANENT              (0x00000002)                                                                    // 0000 0000 0000 0000 0010
+#define WEATHER_RAIN_ANY                    (WEATHER_RAIN | WEATHER_RAIN_PERMANENT | WEATHER_HEAVY_RAIN)                    // 0010 0000 0000 0000 0000 0000 0011
+#define WEATHER_SANDSTORM                   (0x00000004)                                                                    // 0000 0000 0000 0000 0100
+#define WEATHER_SANDSTORM_PERMANENT         (0x00000008)                                                                    // 0000 0000 0000 0000 1000
+#define WEATHER_SANDSTORM_ANY               (WEATHER_SANDSTORM | WEATHER_SANDSTORM_PERMANENT)                               // 0000 0000 0000 0000 1100
+#define WEATHER_SUNNY                       (0x00000010)                                                                    // 0000 0000 0000 0001 0000
+#define WEATHER_SUNNY_PERMANENT             (0x00000020)                                                                    // 0000 0000 0000 0010 0000
+#define WEATHER_SUNNY_ANY                   (WEATHER_SUNNY | WEATHER_SUNNY_PERMANENT | WEATHER_EXTREMELY_HARSH_SUNLIGHT)    // 0001 0000 0000 0000 0000 0011 0000
+#define WEATHER_HAIL                        (0x00000040)                                                                    // 0000 0000 0000 0100 0000
+#define WEATHER_HAIL_PERMANENT              (0x00000080)                                                                    // 0000 0000 0000 1000 0000
+#define WEATHER_HAIL_ANY                    (WEATHER_HAIL | WEATHER_HAIL_PERMANENT)                                         // 0000 0000 0000 1100 0000
+#define FIELD_STATUS_UPROAR                 (0x00000f00)                                                                    // 0000 0000 1111 0000 0000
+#define FIELD_CONDITION_GRAVITY_INIT        (0x00005000)                                                                    // 0000 0101 0000 0000 0000
+#define FIELD_STATUS_GRAVITY                (0x00007000)                                                                    // 0000 0111 0000 0000 0000
+#define FIELD_STATUS_FOG                    (0x00008000)                                                                    // 0000 1000 0000 0000 0000
+#define FIELD_CONDITION_TRICK_ROOM_INIT     (0x00050000)                                                                    // 0101 0000 0000 0000 0000
+#define FIELD_STATUS_TRICK_ROOM             (0x00070000)                                                                    // 0111 0000 0000 0000 0000
 
 // New weathers
 #define WEATHER_SNOW           (0x00100000) //      0001 0000 0000 0000 0000 0000
@@ -632,20 +634,23 @@
 
 #define BATTLE_STATUS2_EXP_GAIN_SHIFT 28
 
-// Struggle Checks
-#define STRUGGLE_CHECK_NO_MOVES        (1 << 0)
-#define STRUGGLE_CHECK_NO_PP           (1 << 1)
-#define STRUGGLE_CHECK_DISABLED        (1 << 2)
-#define STRUGGLE_CHECK_TORMENT         (1 << 3)
-#define STRUGGLE_CHECK_TAUNT           (1 << 4)
-#define STRUGGLE_CHECK_IMPRISON        (1 << 5)
-#define STRUGGLE_CHECK_GRAVITY         (1 << 6)
-#define STRUGGLE_CHECK_HEAL_BLOCK      (1 << 7)
-#define STRUGGLE_CHECK_ENCORE          (1 << 8) // unused because they straight up forgot
-#define STRUGGLE_CHECK_CHOICED         (1 << 9)
-#define STRUGGLE_CHECK_GORILLA_TACTICS (1 << 10)
-#define STRUGGLE_CHECK_GIGATON_HAMMER  (1 << 11)
-#define STRUGGLE_CHECK_ASSAULT_VEST    (1 << 12)
+//Struggle Checks
+#define STRUGGLE_CHECK_NO_MOVES             (1 << 0)
+#define STRUGGLE_CHECK_NO_PP                (1 << 1)
+#define STRUGGLE_CHECK_DISABLED             (1 << 2)
+#define STRUGGLE_CHECK_TORMENT              (1 << 3)
+#define STRUGGLE_CHECK_TAUNT                (1 << 4)
+#define STRUGGLE_CHECK_IMPRISON             (1 << 5)
+#define STRUGGLE_CHECK_GRAVITY              (1 << 6)
+#define STRUGGLE_CHECK_HEAL_BLOCK           (1 << 7)
+#define STRUGGLE_CHECK_ENCORE               (1 << 8) //unused because they straight up forgot
+#define STRUGGLE_CHECK_CHOICED              (1 << 9)
+#define STRUGGLE_CHECK_GORILLA_TACTICS      (1 << 10)
+#define STRUGGLE_CHECK_GIGATON_HAMMER       (1 << 11)
+#define STRUGGLE_CHECK_ASSAULT_VEST         (1 << 12)
+#define STRUGGLE_CHECK_THROAT_CHOPPED       (1 << 13)
+#define STRUGGLE_CHECK_BELCH                (1 << 14)
+#define STRUGGLE_CHECK_STUFF_CHEEKS         (1 << 15)
 
 /**
  *  @brief msg work specifically for statuses
@@ -680,30 +685,27 @@ struct __attribute__((packed)) BattleMove {
 /**
  *  @brief effects to track across one turn
  */
-struct __attribute__((packed)) OneTurnEffect {
-    /* 0x00 */ u32 struggle_flag : 1; /**< pokémon struggled this turn */
-    u32 pp_dec_flag : 1; /**< pp decreased this turn? */
-    u32 protectFlag : 1; /**< pokémon is currently protecting */
-    u32 helping_hand_flag : 1; /**< pokémon is being aided by helping hand */
-    u32 magic_cort_flag : 1; /**< pokémon has magic coat active */
-    u32 snatchFlag : 1;
-    u32 haneyasume_flag : 1;
-    u32 escape_flag : 2;
-    u32 prevent_one_hit_ko_ability : 1; /**< pokémon has damp active */
-    // begin custom flags
-    enum ForceExecutionOrder {
-        EXECUTION_ORDER_NORMAL,
-        EXECUTION_ORDER_AFTER_YOU,
-        EXECUTION_ORDER_QUASH
-    } forceExecutionOrderFlag : 2;
-    u32 parental_bond_flag : 2;
-    u32 parental_bond_is_active : 1;
-    u32 rampageProcessedFlag : 1;
-    u32 chargeProcessedFlag : 1;
-    u32 numberOfKOs : 3;
-    u32 pendingFocusPunchFlag : 1;
-    u32 gainedProtectFlagFromAlly : 1;
-    u32 : 10;
+struct __attribute__((packed)) OneTurnEffect
+{
+    /* 0x00 */ u32 struggle_flag : 1;     /**< pokémon struggled this turn */
+               u32 pp_dec_flag : 1;       /**< pp decreased this turn? */
+               u32 protectFlag : 1;       /**< pokémon is currently protecting */
+               u32 helping_hand_flag : 1; /**< pokémon is being aided by helping hand */
+               u32 magic_cort_flag : 1;   /**< pokémon has magic coat active */
+               u32 snatchFlag : 1;
+               u32 roostFlag : 1;
+               u32 escape_flag : 2;
+               u32 prevent_one_hit_ko_ability : 1; /**< pokémon has damp active */
+               // begin custom flags
+               enum ForceExecutionOrder{EXECUTION_ORDER_NORMAL, EXECUTION_ORDER_AFTER_YOU, EXECUTION_ORDER_QUASH} forceExecutionOrderFlag : 2;
+               u32 parental_bond_flag : 2;
+               u32 parental_bond_is_active : 1;
+               u32 rampageProcessedFlag : 1;
+               u32 chargeProcessedFlag : 1;
+               u32 numberOfKOs : 3;
+               u32 pendingFocusPunchFlag : 1;
+               u32 gainedProtectFlagFromAlly : 1;
+               u32 : 10;
 
     /* 0x04 */ int physical_damage[4]; /**< [don't use] physical damage as indexed by battler.  Counter doesn't use this, use OneSelfTurnEffect's physical_damage (sp->oneSelfFlag[battler].physical_damage) */
     /* 0x14 */ int physical_damager; /**< [don't use] last battler that physically damaged this pokémon.  Counter doesn't use this, use OneSelfTurnEffect's physical_damager (sp->oneSelfFlag[battler].physical_damager) */
@@ -919,15 +921,26 @@ typedef struct
     u8 msg_tag;
     u16 msg_id;
     int msg_para[6];
-    int msg_keta;
+    int numDigits;
     int msg_client;
 } __attribute__((packed)) MESSAGE_PARAM;
 
-struct __attribute__((packed)) side_condition_work {
-    u32 reflectBattler : 2;
-    u32 reflectCount : 3;
-    u32 lightScreenBattler : 2;
-    u32 lightScreenCount : 3;
+typedef struct
+{
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
+    int unk4[6];
+    int unk1C;
+} __attribute__((packed)) BattleMessageData;
+
+
+struct __attribute__((packed)) side_condition_work
+{
+    u32     reflectBattler          : 2;
+    u32     reflectCount            : 3;
+    u32     lightScreenBattler      : 2;
+    u32     lightScreenCount        : 3;
 
     u32 mistBattler : 2;
     u32 mistCount : 3;
@@ -1174,11 +1187,27 @@ typedef struct OnceOnlyAbilityFlags {
     BOOL superSweetSyrupFlag;
 } OnceOnlyAbilityFlags;
 
+typedef struct OnceOnlyMoveConditionFlags {
+    u8 berryEatenAndCanBelch : 1;
+    u8 padding : 7;
+} OnceOnlyMoveConditionFlags;
+
 typedef struct MoveConditionsFlags {
     u8 endTurnMoveEffectActivated : 1;
     u8 moveFailureLastTurn : 1;
     u8 moveFailureThisTurn : 1;
-    u8 padding : 5;
+    u8 soakFlag : 1;
+    u8 magicPowderFlag : 1;
+    u8 forestsCurseFlag : 1;
+    u8 trickOrTreatFlag : 1;
+    u8 burnUpFlag : 1;
+
+    u8 doubleShockFlag : 1;
+    u8 powderBlockingFireMove : 1;
+    u8 laserFocusTimer : 2;
+    u8 glaiveRush : 1;
+    u8 anyStatLoweredThisTurn : 1;
+    u8 throatChopTimer : 2;
 } MoveConditionsFlags;
 
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
@@ -1376,7 +1405,7 @@ struct BattleStruct {
     /*0x317E*/ struct BattleMove moveTbl[NUM_OF_MOVES + 1];
     /*0x    */ u32 gainedExperience[6]; // possible experience gained per party member in order to get level scaling done right
     /*0x    */ u32 gainedExperienceShare[6]; // possible experience gained per party member in order to get level scaling done right
-    /*0x    */ int SkillSeqWork[600];
+    /*0x    */ int SkillSeqWork[650];
     /*...*/
 
     FutureCondition futureConditionQueue[CLIENT_MAX * FUTURE_CONDITION_MAX];
@@ -1386,10 +1415,10 @@ struct BattleStruct {
 
     TerrainOverlay terrainOverlay; // realign this to u32 boundary lol
     u8 printed_field_message;
-    u8 original_terrain : 7;
-    u8 hasLoadedTerrainOver : 1;
-    u8 original_bgId : 7;
-    u8 hasLoadedBgIdOver : 1;
+    u8 original_terrain:7;
+    u8 hasLoadedTerrainOver:1;
+    u8 original_bgId:7;
+    u8 hasLoadedBgIdOver:1;
     u32 moveStatusFlagForSpreadMoves[CLIENT_MAX];
     u32 damageForSpreadMoves[CLIENT_MAX]; // u32 or int?
     u8 clientLoopForSpreadMoves;
@@ -1401,6 +1430,7 @@ struct BattleStruct {
     int numberOfTurnsClientHasCurrentAbility[CLIENT_MAX]; // idk it's probably not u8?
     u8 clientPriority[CLIENT_MAX];
     OnceOnlyAbilityFlags onceOnlyAbilityFlags[4][6];
+    OnceOnlyMoveConditionFlags onceOnlyMoveConditionFlags[4][6];
 
     u8 playerSideHasFaintedTeammateThisTurn : 2; // bitmask for Trainer on player side who has lost a Mon: either 0b01 (left), 0b10 (right), or 0b11 (both)
     u8 enemySideHasFaintedTeammateThisTurn : 2; // ..enemy side... either 0b01, 0b10, or 0b11
@@ -1511,8 +1541,8 @@ struct BattleSystem {
     u8 padding_19C[0x220 - 0x19C]; // 220 based on assembly at 0223B884
     u8 *bg_area;
     u16 *pal_area;
-    // u8 sendBuffer[0x1000];
-    // u8 recvBuffer[0x1000];
+    u8 sendBuffer[0x1000];
+    u8 recvBuffer[0x1000];
     // u16 unk2238[0x70];
     // u16 unk2318[0x70];
     // u16 unk23E8; //labeling may be wrong before here
@@ -1531,7 +1561,7 @@ struct BattleSystem {
     // u8 unk240E_F:1;
     // u8 criticalHpMusic:2;
     // u8 criticalHpMusicDelay:3;
-    u8 padding[0x2400 - 0x228];
+    u8 padding[0x2400 - 0x2228];
     u32 terrain;
     u32 bgId;
     int location;
@@ -1811,7 +1841,7 @@ enum {
     BEFORE_MOVE_STATE_GRAVITY_THROAT_CHOP,
     BEFORE_MOVE_STATE_CHECK_CHOICE_LOCK,
     BEFORE_MOVE_STATE_TAUNT,
-    BEFORE_MOVE_STATE_IMPRISION,
+    BEFORE_MOVE_STATE_IMPRISON,
     BEFORE_MOVE_STATE_CONFUSION_SELF_HIT_OR_WEAR_OFF,
     BEFORE_MOVE_STATE_PARALYSIS,
     BEFORE_MOVE_STATE_INFATUATION,
@@ -2034,6 +2064,36 @@ struct PACKED DamageCalcStruct {
 };
 
 extern u8 TypeEffectivenessTable[][3];
+
+extern u8 HeldItemPowerUpTable[36][2];
+
+extern u16 PunchingMovesTable[24];
+
+extern u16 StrongJawMovesTable[10];
+
+extern u16 MegaLauncherMovesTable[7];
+
+extern u16 SharpnessMovesTable[24];
+
+extern u16 sLowKickWeightToPower[6][2];
+
+extern int typeToBerryMapping[18];
+
+extern u8 StatBoostModifiers[13][2];
+
+extern u16 WeightMoveList[6];
+
+
+
+
+
+
+
+
+
+
+
+
 
 extern struct newBattleStruct newBS;
 extern struct ILLUSION_STRUCT gIllusionStruct;
@@ -2789,7 +2849,19 @@ enum {
     SWITCH_IN_CHECK_CHECK_END,
 };
 
-extern const u8 StatBoostModifiers[][2];
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // defined in battle_calc_damage.c
 /**
@@ -3384,6 +3456,64 @@ typedef enum Terrain {
 #define TRAINER_2    2 // 0b10
 #define TRAINER_BOTH (TRAINER_1 & TRAINER_2)
 
+
+struct BattleSetupSub_138 {
+    int unk_0;
+    int unk_4;
+    int unk_8;
+};
+
+struct BattleSetup {
+    u32 battleType;                      // 0
+    struct Party *party[4];           // 4
+    int winFlag;                         // 14
+    int trainerId[4];          // 18
+    TRAINER_DATA trainer[4];        // 28
+    void *profile[4]; // f8
+    void *bag;                            // 108
+    void *bagCursor;                // 10c
+    void *pokedex;                    // 110
+    void *storagePC;                // 114
+    void *chatot[4];   // 118
+    void *unk_128;
+    void *wifiHistory;
+    struct OPTIONS *options; // 130
+    void *unk_134;
+    struct BattleSetupSub_138 unk138;
+    void *gameStats; // 144
+    void *palPad;   // 148
+    BattleBg battleBg;    // 14C
+    Terrain terrain;
+    u32 mapSection;        // 154
+    u32 mapNumber;         // 158
+    TIMEOFDAY timeOfDay;   // 15C
+    u32 evolutionLocation; // 160
+    u32 unk_164;
+    BOOL metBill;          // 168
+    int momsSavingsActive; // 16C
+    u32 unk_170;
+    u32 weatherType; // 174
+    int levelUpFlag; // 178
+    u8 filler_17C[0x10];
+    u32 battleSpecial; // 18C
+    int safariBalls;   // 190
+    BOOL fixedDamaageMovesBanned;
+    void *evolutionTaskData;
+    int unk_19C;
+    int unk_1A0[4];
+    u16 unk1B0;
+    u8 unk1B2;
+    u8 unk1B3;
+    int unk1B4;
+    void *unk1B8;
+    int unk1BC;
+    SaveData *saveData; // 1c0
+    int unk1C4;
+    struct PartyPokemon *bugContestMon; // 1c8
+    u8 unk1CC[4];
+    BOOL unk_1D0;
+};
+
 /**
  *  @brief load in different battle bg and terrain
  *
@@ -3523,6 +3653,12 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
 /// @param type
 /// @return whether the client has the type
 BOOL LONG_CALL HasType(struct BattleStruct *ctx, int battlerId, int type);
+
+BOOL LONG_CALL ChangeToPureType(struct BattleStruct *ctx, int battlerId, int type);
+
+BOOL LONG_CALL AddType(struct BattleStruct *ctx, int battlerId, int type);
+
+BOOL LONG_CALL RemoveType(struct BattleStruct *ctx, int battlerId, int type);
 
 void LONG_CALL ov12_0224DD74(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
@@ -3867,7 +4003,9 @@ Trainer LONG_CALL *BattleSystem_GetTrainer(struct BattleSystem *bsys, int battle
 
 BOOL LONG_CALL TryEatOpponentBerry(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
 
-void LONG_CALL BattleController_EmitPlayFaintAnimation(struct BattleSystem *bsys, struct BattleStruct *ctx, int batlterId);
+BOOL LONG_CALL TryFling(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
+
+void LONG_CALL BattleController_EmitPlayFaintAnimation(struct BattleSystem* bsys, struct BattleStruct* ctx, int batlterId);
 
 void LONG_CALL InitFaintedWork(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
 
@@ -3892,5 +4030,16 @@ void LONG_CALL BattleBgExpansionLoader(struct BattleSystem *bsys);
  * @brief Callback for loading custom battle backgrounds
  */
 void LONG_CALL BattleBackgroundCallback(void *unkPtr, UNUSED int unk2, UNUSED int unk3);
+
+void LONG_CALL InitBattleMsgData(struct BattleStruct *sp, BattleMessageData *msgdata);
+void LONG_CALL InitBattleMsg(struct BattleSystem *bw, struct BattleStruct *sp, BattleMessageData *msgdata, MESSAGE_PARAM *msg);
+void LONG_CALL BattleController_EmitPrintMessage(struct BattleSystem *bw, struct BattleStruct *sp, MESSAGE_PARAM *msg);
+void LONG_CALL BattleController_EmitPrintAttackMessage(struct BattleSystem *bw, struct BattleStruct *sp);
+
+void LONG_CALL BattleMon_AddVar(struct BattlePokemon *mon, u32 varId, int data);
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *bw, struct BattleStruct *sp);
+#endif
 
 #endif // BATTLE_H
