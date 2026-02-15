@@ -842,3 +842,5 @@ Save_GameStats_Get = 0x0202CF54 | 1;
 GameStats_Inc = 0x0202D0FC | 1;
 CallTask_StartEncounter = 0x0205085C | 1;
 ChangePersonalityToNatureGenderAndAbility = 0x02072490 | 1;
+Party_GetCount = 0x02074640 | 1;
+TrainerMessageWithIdPairExists = 0x020734D0 | 1;

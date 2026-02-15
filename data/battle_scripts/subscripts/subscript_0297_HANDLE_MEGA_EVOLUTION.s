@@ -3,6 +3,7 @@
 .data
 
 _000:
+    CheckTrainerGimmickMessage
     UpdateVar OPCODE_SET, BSCRIPT_VAR_MOVE_EFFECT_CHANCE, 1
     UpdateVar OPCODE_SET, BSCRIPT_VAR_MSG_MOVE_TEMP, MOVE_470
     // {0}’s {1} is reacting to the {3}!

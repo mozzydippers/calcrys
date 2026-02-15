@@ -1527,7 +1527,11 @@
     .long \arg_0
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 278
+    .macro CheckTrainerGimmickMessage
+    .long 279
+    .endm
+
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 279
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)

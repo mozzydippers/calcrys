@@ -115,6 +115,7 @@ BOOL btl_scr_cmd_113_HandleDoubleShock(void* bsys UNUSED, struct BattleStruct* c
 BOOL btl_scr_cmd_114_stuffCheeks(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_115_setMoveConditionFlag(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_116_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_117_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -430,6 +431,7 @@ const u8 *BattleScrCmdNames[] =
     "StuffCheeks",
     "SetMoveConditionFlag",
     "SetAuraBoost",
+    "CheckTrainerGimmickMessage",
     // "YourCustomCommand",
 };
 
@@ -437,7 +439,7 @@ u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x10B
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x117
 
 const btl_scr_cmd_func NewBattleScriptCmdTable[] =
 {
@@ -495,6 +497,7 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] =
     [0x114 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_114_stuffCheeks,
     [0x115 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_115_setMoveConditionFlag,
     [0x116 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_116_SetAuraBoost,
+    [0x117 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_117_CheckTrainerGimmickMessage,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -5050,6 +5053,17 @@ BOOL btl_scr_cmd_116_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx) {
         ctx->battlemon[battlerId].states[STAT_SPDEF] = 9;
         ctx->battlemon[battlerId].states[STAT_SPEED] = 9;
         break;
+    };
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_117_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx) {
+    IncrementBattleScriptPtr(ctx, 1);
+
+    if (newBS.needMega[ctx->battlerIdTemp] == MEGA_CHECK_APPER && ctx->battlemon[ctx->battlerIdTemp].hp && ctx->battlerIdTemp == BATTLER_ENEMY) {
+        ctx->msg_work = TEXT_MEGA_EVOLVE;
+        SkillSequenceGosub(ctx, 1, SUB_SEQ_TRAINER_MESSAGE);
     }
 
     return FALSE;
