@@ -494,7 +494,7 @@
 #define SUB_SEQ_AURA_FLARED_TO_LIFE                    (485)
 
 
-#define MAX_BASE_SUBSCRIPT_NUM 483
+#define MAX_BASE_SUBSCRIPT_NUM 485
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
