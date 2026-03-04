@@ -262,6 +262,7 @@
 // calcrys custom
 .equ TRAINERCLASS_SNAIL,                  129
 .equ TRAINERCLASS_KURT,                   130
+.equ TRAINERCLASS_PKMN_TRAINER_WHITNEY,   131
 
 // pokedex data constants
 .equ DEX_END_AREA_DATA, 0x0

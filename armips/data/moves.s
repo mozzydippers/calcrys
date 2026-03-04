@@ -8892,10 +8892,11 @@ movedata MOVE_TECHNO_BLAST, "Techno Blast"
     terminatedata
     movedescription MOVE_TECHNO_BLAST, "The user fires a beam\nof light at its foe.\nThe type changes\ndepending on the\nDrive held."
 
+// BP : 75 > 90
 movedata MOVE_RELIC_SONG, "Relic Song"
     battleeffect MOVE_EFFECT_SLEEP_HIT
     pss SPLIT_SPECIAL
-    basepower 75
+    basepower 90
     type TYPE_NORMAL
     accuracy 100
     pp 10

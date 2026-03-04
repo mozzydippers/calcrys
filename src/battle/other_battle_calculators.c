@@ -1612,6 +1612,11 @@ u8 LONG_CALL UpdateTypeEffectiveness(u32 move_no, u32 held_effect, u8 defender_t
     if (move_no == MOVE_FREEZE_DRY && defender_type == TYPE_WATER) {
         defaultEffectiveness = TYPE_MUL_SUPER_EFFECTIVE;
     }
+    // calcrys custom
+    if (move_no == MOVE_SKY_UPPERCUT && defender_type == TYPE_FLYING) {
+        defaultEffectiveness = TYPE_MUL_SUPER_EFFECTIVE;
+    }
+
     if (held_effect == HOLD_EFFECT_LOSE_TYPE_IMMUNITIES && defaultEffectiveness == TYPE_MUL_NO_EFFECT) {
         defaultEffectiveness = TYPE_MUL_NORMAL;
     }
@@ -2392,6 +2397,7 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
             *equivalentDefense = rawPhysicalDefense;
             break;
         case MOVE_PHOTON_GEYSER:
+        // temp
         case MOVE_SHELL_SIDE_ARM:
         // custom
         case MOVE_BLAST_BURN:
@@ -2407,7 +2413,17 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
                 *equivalentDefense = rawPhysicalDefense;
             }
             break;
-
+        case MOVE_RELIC_SONG:
+            if (sp->battlemon[attacker].species == SPECIES_MELOETTA && sp->battlemon[attacker].form_no == 1) {
+                *movesplit = SPLIT_PHYSICAL;
+                *equivalentAttack = rawPhysicalAttack;
+                *equivalentDefense = rawPhysicalDefense;
+            } else {
+                *movesplit = SPLIT_SPECIAL;
+                *equivalentAttack = rawSpecialAttack;
+                *equivalentDefense = rawPhysicalDefense;
+            }
+            break;
         default:
             break;
     }

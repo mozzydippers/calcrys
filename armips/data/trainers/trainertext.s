@@ -9,6 +9,7 @@
 _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
+       // Trainer 106 whitney parter @ goldenrod city
        // Trainer 265
        // Trainer 273
        // Trainer 292
@@ -65,7 +66,7 @@ _0000: // Trainer 0
        // Trainer 669
        // Trainer 670
        // Trainer 671
-       // Trainer 675
+       // Trainer 675 lance parter @ trhq
        // Trainer 707
        // Trainer 708
        // Trainer 709
@@ -3339,6 +3340,14 @@ _1B60: // Trainer 243
 
 _1B64: // Trainer 262
     trainertextentry 262, TEXT_PLAYER_LOSES, "That wasn't a lesson in pain, but you still have much to learn..."
+
+_1B68: // Trainer 180
+    trainertextentry 180, TEXT_DEFEATED_IN_BATTLE, "Urgh! You guys are..!\n"
+    trainertextentry 180, TEXT_PLAYER_LOSES, "Never forget that all Pokémon exist for\nTeam Rocket!"
+
+_1B6C: // 194
+    trainertextentry 194, TEXT_DEFEATED_IN_BATTLE, "I suppose this little ruse was a\nfailure.\n"
+    trainertextentry 194, TEXT_PLAYER_LOSES, "Have fun watching us stir up trouble."
 
 .close
 

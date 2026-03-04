@@ -697,6 +697,13 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
                 continue;
             }
 
+            // calcrys custom anger point
+            if ((AttackingMon.ability == ABILITY_ANGER_POINT) &&
+                (AttackingMon.hasMoveFailureLastTurn)) {
+                basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
+                continue;
+            }
+
             if ((AttackingMon.ability == ABILITY_RECKLESS)
             && ((moveEffect == MOVE_EFFECT_CRASH_ON_MISS)
                 || (moveEffect == MOVE_EFFECT_RECOIL_QUARTER)

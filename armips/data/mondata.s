@@ -5076,7 +5076,7 @@ mondata SPECIES_MAGBY, "Magby"
 
 
 mondata SPECIES_MILTANK, "Miltank"
-    basestats 95, 80, 105, 100, 40, 70
+    basestats 95, 90, 105, 100, 30, 70
     types TYPE_NORMAL, TYPE_NORMAL
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -9004,7 +9004,7 @@ mondata SPECIES_BUNEARY, "Buneary"
 
 mondata SPECIES_LOPUNNY, "Lopunny"
     basestats 65, 76, 84, 105, 54, 96
-    types TYPE_NORMAL, TYPE_FIGHTING
+    types TYPE_NORMAL, TYPE_NORMAL
     catchrate 60
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
@@ -23155,8 +23155,8 @@ mondata SPECIES_MEGA_BANETTE, "-----"
     colorflip 0, 0
 
 mondata SPECIES_MEGA_ABSOL, "-----"
-    basestats 65, 160, 70, 125, 75, 70
-    types TYPE_DARK, TYPE_PSYCHIC
+    basestats 65, 150, 60, 115, 115, 70
+    types TYPE_DARK, TYPE_DARK
     catchrate 30
     baseexp 174
     evyields 0, 0, 0, 0, 0, 0
@@ -23166,7 +23166,7 @@ mondata SPECIES_MEGA_ABSOL, "-----"
     basefriendship 35
     growthrate GROWTH_MEDIUM_SLOW
     egggroups EGG_GROUP_FIELD, EGG_GROUP_FIELD
-    abilities ABILITY_SHARPNESS, ABILITY_SHARPNESS
+    abilities ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE
     runchance 0
     colorflip 0, 0
 

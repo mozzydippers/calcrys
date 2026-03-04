@@ -299,7 +299,7 @@ BOOL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq_no)
             *seq_no = SUB_SEQ_FORM_CHANGE;
             ret = TRUE;
             break;
-        }
+        } 
 
         // handle genesect
         if ((sp->battlemon[sp->battlerIdTemp].species == SPECIES_GENESECT)

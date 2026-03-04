@@ -2872,6 +2872,7 @@ const u8 sTrainerGenders[] = {
     // calcrys custom
     [TRAINERCLASS_SNAIL] = TRAINER_FEMALE,
     [TRAINERCLASS_KURT] = TRAINER_MALE,
+    [TRAINERCLASS_PKMN_TRAINER_WHITNEY] = TRAINER_FEMALE,
 };
 
 TrainerGender LONG_CALL TT_TrainerTypeSexGet(int tr_type) {
