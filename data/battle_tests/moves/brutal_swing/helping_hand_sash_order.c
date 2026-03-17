@@ -1,4 +1,4 @@
-// Test: Bulldoze - doubles, hits ally and both enemies, Weak Armor and Stamina proc
+// Test: Brutal Swing - Helping Hand, ally Rough Skin, Focus Sash order, Weak Armor
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -19,24 +19,24 @@ const struct TestBattleScenario BattleTests[] = {
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_MUDKIP,
-                .level = 50,
+                .species = SPECIES_OKIDOGI,
+                .level = 100,
                 .form = 0,
                 .ability = ABILITY_INSOMNIA,
                 .item = ITEM_NONE,
-                .moves = { MOVE_BULLDOZE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .moves = { MOVE_BRUTAL_SWING, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
                 .moveEffectFlags = 0,
             },
             {
-                .species = SPECIES_CHARMANDER,
-                .level = 100,
+                .species = SPECIES_GARCHOMP,
+                .level = 1,
                 .form = 0,
-                .ability = ABILITY_INSOMNIA,
+                .ability = ABILITY_ROUGH_SKIN,
                 .item = ITEM_FOCUS_SASH,
-                .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .moves = { MOVE_HELPING_HAND, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -45,13 +45,14 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
-            { .species = SPECIES_NONE } },
+            { .species = SPECIES_NONE }
+        },
         .enemyParty = {
             {
-                .species = SPECIES_TREECKO,
-                .level = 100,
+                .species = SPECIES_ARMAROUGE,
+                .level = 1,
                 .form = 0,
-                .ability = ABILITY_INSOMNIA,
+                .ability = ABILITY_WEAK_ARMOR,
                 .item = ITEM_FOCUS_SASH,
                 .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
@@ -60,10 +61,10 @@ const struct TestBattleScenario BattleTests[] = {
                 .moveEffectFlags = 0,
             },
             {
-                .species = SPECIES_CHIKORITA,
-                .level = 100,
+                .species = SPECIES_CERULEDGE,
+                .level = 1,
                 .form = 0,
-                .ability = ABILITY_INSOMNIA,
+                .ability = ABILITY_WEAK_ARMOR,
                 .item = ITEM_FOCUS_SASH,
                 .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
@@ -74,18 +75,9 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
-            { .species = SPECIES_NONE } },
+            { .species = SPECIES_NONE }
+        },
         .playerScript = {
-            {
-                  { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-                  { ACTION_NONE, 0 },
-              },
             {
                 { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
                 { ACTION_NONE, 0 },
@@ -95,18 +87,29 @@ const struct TestBattleScenario BattleTests[] = {
                 { ACTION_NONE, 0 },
                 { ACTION_NONE, 0 },
                 { ACTION_NONE, 0 },
-            } },
+            },
+            {
+                { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+            }
+        },
         .enemyScript = {
             {
-                 { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-                 { ACTION_NONE, 0 },
-             },
+                { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+                { ACTION_NONE, 0 },
+            },
             {
                 { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
                 { ACTION_NONE, 0 },
@@ -119,15 +122,16 @@ const struct TestBattleScenario BattleTests[] = {
             }
         },
         .expectations = {
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Mudkip used Bulldoze!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective on Charmander!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's not very effective on the opposing Treecko or Chikorita." },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Charmander's Speed fell!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Treecko's Speed fell!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Chikorita's Speed fell!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Garchomp hung on using its Focus Sash!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Garchomp's Rough Skin hurt Okidogi!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Armarouge hung on using its Focus Sash!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ceruledge hung on using its Focus Sash!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Armarouge's Weak Armor cut its Defense!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Armarouge's Weak Armor raised its Speed sharply!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ceruledge's Weak Armor cut its Defense!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ceruledge's Weak Armor raised its Speed sharply!" },
         },
     },
 #ifndef GET_TEST_CASE_ONLY
 };
-// each test file is a separate .c file in battle_tests/ for better organization
 #endif
