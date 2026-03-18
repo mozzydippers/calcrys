@@ -2556,7 +2556,6 @@ Meteorite
 Scarlet Book
 Violet Book
 Briar’s Book
-Infinite Candy
 Clefablite
 Victreebelite
 Starminite
@@ -2581,5 +2580,6 @@ Barbaracite
 Dragalgite
 Hawluchanite
 Zygardite
-Drampanite
+Drampite
 Falinksite
+Infinite Candy
