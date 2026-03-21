@@ -1,4 +1,4 @@
-// Test: Substitute - Apply Attacker's Stat Drop
+// Test: Substitute - Infiltrator goes through Substitute
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -20,12 +20,12 @@ const struct TestBattleScenario BattleTests[] = {
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_MACHOP,
+                .species = SPECIES_NOIBAT,
                 .level = 50,
                 .form = 0,
-                .ability = ABILITY_GUTS,
-                .item = ITEM_CHOICE_BAND,
-                .moves = { MOVE_SUPERPOWER, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .ability = ABILITY_INFILTRATOR,
+                .item = ITEM_NONE,
+                .moves = { MOVE_LEER, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -40,12 +40,12 @@ const struct TestBattleScenario BattleTests[] = {
         .enemyParty = { 
                         {
                             .species = SPECIES_CLEFABLE,
-                            .level = 35,
+                            .level = 100,
                             .form = 0,
                             .ability = ABILITY_MAGIC_GUARD,
                             .item = ITEM_NONE,
                             .moves = { MOVE_SUBSTITUTE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
-                            .hp = FULL_HP, // 122 : Substitute HP 30
+                            .hp = FULL_HP,
                             .status = 0,
                             .condition2 = 0,
                             .moveEffectFlags = 0,
@@ -59,7 +59,7 @@ const struct TestBattleScenario BattleTests[] = {
         .playerScript = {
             {
                               { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
-                              { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
+                              { ACTION_NONE, 0 },
                               { ACTION_NONE, 0 },
                               { ACTION_NONE, 0 },
                               { ACTION_NONE, 0 },
@@ -81,7 +81,7 @@ const struct TestBattleScenario BattleTests[] = {
         .enemyScript = {
             {
                              { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
-                             { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+                             { ACTION_NONE, 0 },
                              { ACTION_NONE, 0 },
                              { ACTION_NONE, 0 },
                              { ACTION_NONE, 0 },
@@ -101,16 +101,8 @@ const struct TestBattleScenario BattleTests[] = {
             }
         },
         .expectations = {
-            //{ .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 28, 28, 30, 30, 30, 30, 30, 31, 31, 31, 31, 33, 33, 33, 33, 34 } },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The substitute took damage for the opposing Clefable!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's not very effective..." },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Clefable's substitute faded!" },
-            //{ .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 28, 28, 30, 30, 30, 30, 30, 31, 31, 31, 31, 33, 33, 33, 33, 34 } },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Machop's Attack fell!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Machop's Defense fell!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Clefable's substitute faded!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Clefable's Defense fell!" },
         },
-        .knownFailing = TRUE,
     },
 #ifndef GET_TEST_CASE_ONLY
 };
