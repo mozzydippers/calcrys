@@ -1,4 +1,4 @@
-// Test: Make It Rain - One stat Drop 
+// Test: Subsitute - Ally and one Opponent
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -19,24 +19,24 @@ const struct TestBattleScenario BattleTests[] = {
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_GHOLDENGO,
+                .species = SPECIES_DEDENNE,
                 .level = 50,
                 .form = 0,
-                .ability = ABILITY_GOOD_AS_GOLD,
-                .item = ITEM_LIFE_ORB,
-                .moves = { MOVE_MAKE_IT_RAIN, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .ability = ABILITY_CHEEK_POUCH,
+                .item = ITEM_NONE,
+                .moves = { MOVE_DISCHARGE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
                 .moveEffectFlags = 0,
             },
             {
-                .species = SPECIES_SNOM,
+                .species = SPECIES_MURKROW,
                 .level = 50,
                 .form = 0,
-                .ability = ABILITY_ICE_SCALES,
-                .item = ITEM_NONE,
-                .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .ability = ABILITY_PRANKSTER,
+                .item = ITEM_AIR_BALLOON,
+                .moves = { MOVE_SUBSTITUTE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -48,11 +48,11 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE } },
         .enemyParty = {
             {
-                .species = SPECIES_RAPIDASH,
-                .level = 50,
+                .species = SPECIES_TALONFLAME,
+                .level = 60,
                 .form = 0,
                 .ability = ABILITY_FLAME_BODY,
-                .item = ITEM_NONE,
+                .item = ITEM_AIR_BALLOON,
                 .moves = { MOVE_SUBSTITUTE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
@@ -60,11 +60,11 @@ const struct TestBattleScenario BattleTests[] = {
                 .moveEffectFlags = 0,
             },
             {
-                .species = SPECIES_BLASTOISE,
-                .level = 50,
+                .species = SPECIES_SWANNA,
+                .level = 20,
                 .form = 0,
-                .ability = ABILITY_TORRENT,
-                .item = ITEM_NONE,
+                .ability = ABILITY_BIG_PECKS,
+                .item = ITEM_FOCUS_SASH,
                 .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
@@ -119,12 +119,13 @@ const struct TestBattleScenario BattleTests[] = {
             }
         },
         .expectations = {
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Gholdengo used Make It Rain!" },
-            //{ .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 30, 30, 31, 31, 31, 31, 31, 32, 32, 32, 34, 34, 34, 35, 35, 35 } },  
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It’s not very effective on the opposing Rapidash or Blastoise." },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The substitute took damage for the opposing Rapidash!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Gholdengo's Sp. Atk fell!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Gholdengo lost some of its HP!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective on Murkrow!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective on the opposing Talonflame and Swanna!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The substitute took damage for Murkrow!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Murkrow's substitute faded!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The substitute took damage for the opposing Talonflame!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Talonflame's substitute faded!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Swanna hung on using its Focus Sash!" },
         },
         .knownFailing = TRUE,
     },
