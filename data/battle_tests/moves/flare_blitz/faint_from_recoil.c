@@ -1,4 +1,4 @@
-﻿// Test: Rock Head - no recoil
+// Test: Flare Blitz - Faint from recoil
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -20,12 +20,12 @@ const struct TestBattleScenario BattleTests[] = {
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_FERROSEED,
-                .level = 40,
+                .species = SPECIES_ONIX,
+                .level = 50,
                 .form = 0,
-                .ability = ABILITY_INSOMNIA,
-                .item = ITEM_NONE,
-                .moves = { MOVE_TACKLE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .ability = ABILITY_WEAK_ARMOR,
+                .item = ITEM_WHITE_HERB,
+                .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -39,18 +39,29 @@ const struct TestBattleScenario BattleTests[] = {
         },
         .enemyParty = { 
                         {
-                            .species = SPECIES_KANGASKHAN,
+                            .species = SPECIES_ARCANINE,
                             .level = 50,
                             .form = 0,
-                            .ability = ABILITY_ROCK_HEAD,
-                            .item = ITEM_SITRUS_BERRY,
-                            .moves = { MOVE_DOUBLE_EDGE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
-                            .hp = 91,// of 180
+                            .ability = ABILITY_FLASH_FIRE,
+                            .item = ITEM_NONE,
+                            .moves = { MOVE_FLARE_BLITZ, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                            .hp = 1,
                             .status = 0,
                             .condition2 = 0,
                             .moveEffectFlags = 0,
                         },
-            { .species = SPECIES_NONE },
+            {
+                .species = SPECIES_CUBONE,
+                .level = 50,
+                .form = 0,
+                .ability = ABILITY_ROCK_HEAD,
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_DOUBLE_EDGE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .hp = FULL_HP, 
+                .status = 0,
+                .condition2 = 0,
+                .moveEffectFlags = 0,
+            },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
@@ -100,10 +111,10 @@ const struct TestBattleScenario BattleTests[] = {
                 { ACTION_NONE, 0 },
             }
         },
-        .expectations = {
-            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 43, 44, 45, 45, 45, 46, 46, 47, 48, 48, 48, 49, 49, 50, 51, 51 } },
-            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10 } },        
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Kangaskhan restored its health using its Sitrus Berry!" },
+        .expectations = {  
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Arcanine was damaged by the recoil!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Arcanine fainted!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE_CONTAINS, .expectationValue.message = "returned its stats to normal using its White Herb" },
         },
     },
 #ifndef GET_TEST_CASE_ONLY
