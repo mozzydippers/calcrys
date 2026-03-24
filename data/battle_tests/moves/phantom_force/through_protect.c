@@ -14,18 +14,19 @@ const struct TestBattleScenario BattleTests[] = {
 
 #endif
 
-    { .battleType = BATTLE_TYPE_SINGLE,
+    {
+        .battleType = BATTLE_TYPE_SINGLE,
         .weather = WEATHER_NONE,
         .fieldCondition = 0,
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_STARAPTOR,
-                .level = 40,
+                .species = SPECIES_DREEPY,
+                .level = 50,
                 .form = 0,
-                .ability = ABILITY_RECKLESS,
+                .ability = ABILITY_CLEAR_BODY,
                 .item = ITEM_NONE,
-                .moves = { MOVE_BRAVE_BIRD, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .moves = { MOVE_PHANTOM_FORCE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -37,12 +38,12 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE } },
         .enemyParty = { {
-                            .species = SPECIES_EISCUE,
+                            .species = SPECIES_INCINEROAR,
                             .level = 50,
                             .form = 0,
-                            .ability = ABILITY_ICE_FACE,
-                            .item = ITEM_ROCKY_HELMET,
-                            .moves = { MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                            .ability = ABILITY_BLAZE,
+                            .item = ITEM_NONE,
+                            .moves = { MOVE_BITE, MOVE_PROTECT, MOVE_NONE, MOVE_NONE },
                             .hp = FULL_HP,
                             .status = 0,
                             .condition2 = 0,
@@ -55,7 +56,7 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE } },
         .playerScript = { {
                               { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
-                              { ACTION_NONE, 0 },
+                              { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
                               { ACTION_NONE, 0 },
                               { ACTION_NONE, 0 },
                               { ACTION_NONE, 0 },
@@ -75,7 +76,7 @@ const struct TestBattleScenario BattleTests[] = {
             } },
         .enemyScript = { {
                              { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
-                             { ACTION_NONE, 0 },
+                             { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
                              { ACTION_NONE, 0 },
                              { ACTION_NONE, 0 },
                              { ACTION_NONE, 0 },
@@ -94,10 +95,9 @@ const struct TestBattleScenario BattleTests[] = {
                 { ACTION_NONE, 0 },
             } },
         .expectations = {
-            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Staraptor is hurt by the opposing Eiscue's Rocky Helmet!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Eiscue transformed!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Staraptor was damaged by the recoil!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "But it missed!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar protected itself!" },
+            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 18, 18, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 22 } },
         },
         .knownFailing = TRUE,
     },
