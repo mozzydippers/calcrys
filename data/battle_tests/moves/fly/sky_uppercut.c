@@ -1,4 +1,4 @@
-// Test: Phantom Force - Semi Invun, hit through Protect
+// Test: Fly - Semi invun - Sky uppercut hit
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -21,12 +21,12 @@ const struct TestBattleScenario BattleTests[] = {
         .terrain = TERRAIN_NONE,
         .playerParty = {
             {
-                .species = SPECIES_DREEPY,
+                .species = SPECIES_STARAPTOR,
                 .level = 50,
                 .form = 0,
-                .ability = ABILITY_CLEAR_BODY,
-                .item = ITEM_NONE,
-                .moves = { MOVE_PHANTOM_FORCE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .ability = ABILITY_NO_GUARD,
+                .item = ITEM_SITRUS_BERRY,
+                .moves = { MOVE_FLY, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                 .hp = FULL_HP,
                 .status = 0,
                 .condition2 = 0,
@@ -38,12 +38,12 @@ const struct TestBattleScenario BattleTests[] = {
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE } },
         .enemyParty = { {
-                            .species = SPECIES_INCINEROAR,
+                            .species = SPECIES_CONKELDURR,
                             .level = 50,
                             .form = 0,
-                            .ability = ABILITY_BLAZE,
+                            .ability = ABILITY_IRON_FIST,
                             .item = ITEM_ROCKY_HELMET,
-                            .moves = { MOVE_BITE, MOVE_PROTECT, MOVE_NONE, MOVE_NONE },
+                            .moves = { MOVE_SKY_UPPERCUT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                             .hp = FULL_HP,
                             .status = 0,
                             .condition2 = 0,
@@ -95,11 +95,12 @@ const struct TestBattleScenario BattleTests[] = {
                 { ACTION_NONE, 0 },
             } },
         .expectations = {
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Dreepy vanished instantly!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The attack of the opposing Incineroar missed!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar protected itself!" },
-            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 18, 18, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 22 } },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Dreepy is hurt by the opposing Incineroar's Rocky Helmet!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Staraptor flew up high!" },
+            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 102, 103, 105, 106, 108, 108, 109, 111, 112, 114, 114, 115, 117, 118, 120, 121 } },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Staraptor restored HP using its Sitrus Berry!" },        
+            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 126, 128, 128, 132, 132, 134, 134, 138, 138, 140, 140, 144, 144, 146, 146, 150 } },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Staraptor is hurt by the opposing Conkeldurr's Rocky Helmet!" },
+            { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 102, 103, 105, 106, 108, 108, 109, 111, 112, 114, 114, 115, 117, 118, 120, 121 } },
         },
         .knownFailing = TRUE,
     },
