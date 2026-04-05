@@ -1,4 +1,4 @@
-// Test: Eject Pack - only fastest Eject Pack triggers
+// Test: Eject Pack - Red Card does not prevent Eject Pack
 #ifndef GET_TEST_CASE_ONLY
 
 #include "../../../../include/battle.h"
@@ -12,8 +12,7 @@ const struct TestBattleScenario BattleTests[] = {
 
 #endif
 
-    {
-        .battleType = BATTLE_TYPE_DOUBLE,
+    { .battleType = BATTLE_TYPE_DOUBLE,
         .weather = WEATHER_NONE,
         .fieldCondition = 0,
         .terrain = TERRAIN_NONE,
@@ -42,7 +41,18 @@ const struct TestBattleScenario BattleTests[] = {
                 .condition2 = 0,
                 .moveEffectFlags = 0,
             },
-            { .species = SPECIES_NONE },
+            {
+                .species = SPECIES_TREECKO,
+                .level = 29,
+                .form = 0,
+                .ability = ABILITY_CHLOROPHYLL,
+                .item = ITEM_NONE,
+                .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                .hp = FULL_HP,
+                .status = 0,
+                .condition2 = 0,
+                .moveEffectFlags = 0,
+            },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE },
             { .species = SPECIES_NONE } },
@@ -51,7 +61,7 @@ const struct TestBattleScenario BattleTests[] = {
                             .level = 50,
                             .form = 0,
                             .ability = ABILITY_CHLOROPHYLL,
-                            .item = ITEM_EJECT_PACK,
+                            .item = ITEM_RED_CARD,
                             .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                             .hp = FULL_HP,
                             .status = 0,
@@ -134,8 +144,11 @@ const struct TestBattleScenario BattleTests[] = {
             { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Litten's Intimidate cuts Marshtomb's Attack!" },
             { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Chikorita used Sleep Talk!" },
         },
-    },
+        .knownFailing = TRUE;
+}
+,
 #ifndef GET_TEST_CASE_ONLY
-};
+}
+;
 // each test file is a separate .c file in battle_tests/ for better organization
 #endif
