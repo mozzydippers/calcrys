@@ -3442,7 +3442,7 @@ u8 LONG_CALL BeastBoostGreatestStatHelper(struct BattleStruct *sp, u32 client);
 u8 LONG_CALL ParadoxGreatestStatHelper(struct BattleStruct *ctx, u32 client);
 u16 LONG_CALL GetStatValueWithStages(struct BattleStruct *ctx, u32 client, u8 stat);
 u16 LONG_CALL ActivateParadoxAbility(void *bsys, struct BattleStruct *ctx, u8 client);
-void LONG_CALL UpdateTerrainOverlay(struct BattleStruct *ctx, u8 client, u8 terrainType);
+void LONG_CALL UpdateTerrainOverlay(struct BattleStruct *ctx, u8 client, enum TerrainOverlayType terrainType);
 
 // defined in other_battle_calculators.c
 /**
@@ -3722,9 +3722,9 @@ typedef enum Terrain {
 #define BATTLER_MAX     4
 
 // For setting a Bitmask to flag trainer position on enemy/player side
-#define TRAINER_1    1 // 0b01
-#define TRAINER_2    2 // 0b10
-#define TRAINER_BOTH (TRAINER_1 & TRAINER_2)
+#define TRAINER_1     1 //0b01
+#define TRAINER_2     2 //0b10
+#define TRAINER_BOTH  (TRAINER_1 | TRAINER_2)
 
 
 struct BattleSetupSub_138 {

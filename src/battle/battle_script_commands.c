@@ -2587,7 +2587,7 @@ BOOL btl_scr_cmd_EC_updateterrainoverlay(void *bw UNUSED, struct BattleStruct *s
     int address = read_battle_script_param(sp);
 
     enum TerrainOverlayType oldTerrainOverlay = sp->terrainOverlay.type;
-    enum TerrainOverlayType terrainType;
+    enum TerrainOverlayType terrainType = TERRAIN_NONE;
 
     switch (sp->current_move_index) {
         case MOVE_GRASSY_TERRAIN:
@@ -2612,7 +2612,7 @@ BOOL btl_scr_cmd_EC_updateterrainoverlay(void *bw UNUSED, struct BattleStruct *s
         return FALSE;
     }
 
-    debug_printf("endTerrainFlag: %d\noldTerrainOverlay: %d\nterrainType: %d\ncurrent_move_index: %d\n", endTerrainFlag, oldTerrainOverlay, terrainType, sp->current_move_index);
+    // debug_printf("endTerrainFlag: %d\noldTerrainOverlay: %d\nterrainType: %d\ncurrent_move_index: %d\n", endTerrainFlag, oldTerrainOverlay, terrainType, sp->current_move_index);
 
     if (terrainType == oldTerrainOverlay) {
         IncrementBattleScriptPtr(sp, address); // Unused currently
@@ -4625,7 +4625,7 @@ void UpdateHealthBarValue(void *bsys, struct BattleStruct *ctx, int client_no)
 
         if (ctx->battlemon[client_no].hp < 0) {
             ctx->battlemon[client_no].hp = 0;
-        } else if (ctx->battlemon[client_no].hp > ctx->battlemon[client_no].maxhp) {
+        } else if ((u32)ctx->battlemon[client_no].hp > ctx->battlemon[client_no].maxhp) {
             ctx->battlemon[client_no].hp = ctx->battlemon[client_no].maxhp;
         }
         CopyBattleMonToPartyMon(bsys, ctx, client_no);
@@ -5313,9 +5313,32 @@ BOOL BtlCmd_TryFaintMon(struct BattleSystem *bsys, struct BattleStruct *ctx)
 
     int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
 
-    if (ctx->battlemon[battlerId].hp == 0 && ctx->battlemon[battlerId].species != SPECIES_NONE && ctx->battlemon[battlerId].species != SPECIES_BAD_EGG)
-    {
-        ctx->battlemon[battlerId].species = SPECIES_NONE;
+    switch (battlerId) {
+    case BATTLER_PLAYER:
+        if (ctx->playerSideHasFaintedTeammateThisTurn & TRAINER_1) {
+            return FALSE;
+        }
+        break;
+    case BATTLER_PLAYER2:
+        if (ctx->playerSideHasFaintedTeammateThisTurn & TRAINER_2) {
+            return FALSE;
+        }
+        break;
+    case BATTLER_ENEMY:
+        if (ctx->enemySideHasFaintedTeammateThisTurn & TRAINER_1) {
+            return FALSE;
+        }
+        break;
+    case BATTLER_ENEMY2:
+        if (ctx->enemySideHasFaintedTeammateThisTurn & TRAINER_2) {
+            return FALSE;
+        }
+        break;
+    default:
+        break;
+    }
+
+    if (ctx->battlemon[battlerId].hp == 0) {
         ctx->fainting_client = battlerId;
         ctx->server_status_flag |= MaskOfFlagNo(battlerId) << BATTLE_STATUS_FAINTED_SHIFT;
         ctx->total_hinshi[battlerId]++;
