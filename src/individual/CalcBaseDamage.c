@@ -338,6 +338,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         {
             movepower = 100;
         }
+        break;
     // Item-based
     case MOVE_FLING:
         movepower = GetHeldItemFlingPower(sp, attacker);
