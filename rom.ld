@@ -731,7 +731,6 @@ CanSwitchMon = 0x02252890 | 1;
 BattleMon_AddVar = 0x0224F7AC | 1;
 GetFlavorPreferenceFromPID = 0x020718E8 | 1;
 
-ov12_0224DD74 = 0x0224DD74 | 1;
 ov12_02261258 = 0x02261258 | 1;
 //ov12_02252D14 = 0x02252D14 | 1;
 
@@ -808,6 +807,8 @@ InitBattleMsg = 0x022479C0 | 1;
 BattleController_EmitPrintMessage = 0x022633F0 | 1;
 BattleController_EmitPrintAttackMessage = 0x022633B8 | 1;
 
+BattleScriptGetVarPointer = 0x02245528 | 1;
+
 Mon_UpdateRotomForm	= 0x02071EC0 | 1;
 
 LoadItemDataOrGfx = 0x02077CE8 | 1;
@@ -844,6 +845,8 @@ UpdateFriendshipFainted = 0x02248558 | 1;
 
 StringExpandPlaceholders = 0x0200CBBC | 1;
 
+ov12_02256694 = 0x02256694 | 1;
+
 
 /* calcrys custom */
 
@@ -869,3 +872,4 @@ Sav2_PlayerData_GetOptionsAddr = 0x02028EA8 | 1;
 ScrNative_WaitApplication = 0x020429F8 | 1;
 StartMoveRelearner = 0x0204ECD0 | 1;
 CreateScriptContext = 0x020400AC | 1;
+
