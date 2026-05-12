@@ -11,6 +11,9 @@
 #include "../../include/test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
 
+void BattleHpBarPct_UpdateAll(struct BattleSystem *bsys, struct BattleStruct *ctx);
+void BattleHpBarPct_DestroyAll(void);
+
 #if defined (DISABLE_ITEMS_IN_TRAINER_BATTLE)
 void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
@@ -86,6 +89,7 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
     }
 
     sPlayerBattleCommands[ctx->server_seq_no](bsys, ctx);
+    BattleHpBarPct_UpdateAll(bsys, ctx);
 #ifdef DEBUG_BATTLE_SCENARIOS
     TestBattle_autoSelectPlayerMoves(bsys, ctx);
 #endif
@@ -95,6 +99,7 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
 
     if (ctx->server_seq_no == CONTROLLER_COMMAND_45)
     {
+        BattleHpBarPct_DestroyAll();
         return TRUE;
     }
     return FALSE;
