@@ -63,6 +63,11 @@ arm9 AddBoxMonData_EditedCases_hook 0206F67C 0
 arm9 set_starter_hidden_ability_hook 02096158 5
 
 #battle hooks
+0012 BattleInput_CheckTouch 02266B78 1
+0012 BattleInput_CheckCursorInput 02269A24 1
+0012 BattleInput_ChangeMenu 02266508
+#0012 BattleControllerPlayer_SelectionScreenInput 02248848
+0012 ov12_02269830 02269830 2
 0012 CalcBaseDamage 02256FF8
 0012 CalcDamageOverall 0223DCE0 2
 0012 AdjustDamageForRoll 02257C30 3

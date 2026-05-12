@@ -9,13 +9,6 @@
 #define ENEMY_HP_PERCENT_STRING_EOS   0xFFFF
 #define ENEMY_HP_PERCENT_TEXT_COLOR   ((((ENEMY_HP_PERCENT_FILL_COLOR) & 0xFF) << 16) | (((ENEMY_HP_PERCENT_SHADOW_COLOR) & 0xFF) << 8) | 0)
 
-typedef struct ManagedSprite {
-    void *sprite;
-    void *spriteResourcesHeader;
-    void *spriteResourceHeaderList;
-    int vramTransfer;
-} ManagedSprite;
-
 typedef struct UnkStruct_02021AC8 {
     u32 size;
     u32 offset;

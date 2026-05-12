@@ -1,4 +1,5 @@
 #include "../../include/battle.h"
+#include "../../include/battle_input.h"
 #include "../../include/battle_controller_player.h"
 #include "../../include/config.h"
 #include "../../include/constants/battle_message_constants.h"
@@ -6,6 +7,7 @@
 #include "../../include/constants/move_effects.h"
 #include "../../include/constants/hold_item_effects.h"
 #include "../../include/constants/file.h"
+#include "../../include/overlay.h"
 
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "../../include/test_battle.h"
@@ -13,6 +15,129 @@
 
 void BattleHpBarPct_UpdateAll(struct BattleSystem *bsys, struct BattleStruct *ctx);
 void BattleHpBarPct_DestroyAll(void);
+
+#define BATTLE_INFO_OVERLAY_ENTRY_ADDR   (0x023C0400 | 1)
+#define BATTLE_MENU_MAIN_INITIAL_ID      1
+#define BATTLE_MENU_MAIN_ID              2
+#define BATTLE_MENU_3_ID                 3
+#define BATTLE_MENU_4_ID                 4
+#define BATTLE_MENU_7_ID                 7
+#define BATTLE_MENU_8_ID                 8
+#define BATTLE_MENU_19_ID                19
+#define BATTLE_MENU_20_ID                20
+
+typedef int (*BattleInfoOverlayEntry)(int command, void *arg0, void *arg1, void *arg2);
+
+BattleInput *LONG_CALL ov12_0223A900(struct BattleSystem *battleSystem);
+
+static BOOL BattleInfo_CanOpenFromSelection(BattleInput *battleInput, struct BattleStruct *ctx, int battlerId)
+{
+    int otherBattlerId;
+
+    if (battleInput == NULL || ctx == NULL) {
+        return FALSE;
+    }
+
+    if (ctx->server_seq_no != CONTROLLER_COMMAND_SELECTION_SCREEN_INPUT) {
+        return FALSE;
+    }
+
+    if (ctx->battleInfoActive || ctx->battleInfoApp != NULL) {
+        return FALSE;
+    }
+
+    if (ctx->com_seq_no[battlerId] != SSI_STATE_1) {
+        return FALSE;
+    }
+
+    if (battleInput->menu.main.battlerId != battlerId) {
+        return FALSE;
+    }
+
+    if (battleInput->isTouchDisabled == TRUE) {
+        return FALSE;
+    }
+
+    if (BattleInput_CheckFeedbackDone(battleInput) == FALSE) {
+        return FALSE;
+    }
+
+    switch (battleInput->curMenuId) {
+    case BATTLE_MENU_MAIN_INITIAL_ID:
+    case BATTLE_MENU_MAIN_ID:
+    case BATTLE_MENU_3_ID:
+    case BATTLE_MENU_4_ID:
+    case BATTLE_MENU_7_ID:
+    case BATTLE_MENU_8_ID:
+    case BATTLE_MENU_19_ID:
+    case BATTLE_MENU_20_ID:
+        break;
+    default:
+        return FALSE;
+    }
+
+    for (otherBattlerId = 0; otherBattlerId < CLIENT_MAX; otherBattlerId++) {
+        if (otherBattlerId == battlerId) {
+            continue;
+        }
+
+        if (ctx->com_seq_no[otherBattlerId] == SSI_STATE_7
+            || ctx->com_seq_no[otherBattlerId] == SSI_STATE_8
+            || ctx->com_seq_no[otherBattlerId] == SSI_STATE_9
+            || ctx->com_seq_no[otherBattlerId] == SSI_STATE_10) {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
+static void BattleInfo_UpdateOverlayLifetime(struct BattleStruct *ctx)
+{
+    if (ctx == NULL) {
+        return;
+    }
+
+    if (IsOverlayLoaded(OVERLAY_BATTLEINFO_PAGE) && !ctx->battleInfoActive && ctx->battleInfoApp == NULL) {
+        UnloadOverlayByID(OVERLAY_BATTLEINFO_PAGE);
+    }
+}
+
+static BOOL BattleInfo_Launch(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId)
+{
+    BattleInfoOverlayEntry entry;
+    BattleInput *battleInput;
+    BOOL opened;
+
+    if (bsys == NULL || ctx == NULL) {
+        return FALSE;
+    }
+
+    battleInput = ov12_0223A900(bsys);
+    if (!BattleInfo_CanOpenFromSelection(battleInput, ctx, battlerId)) {
+        return FALSE;
+    }
+
+    BattleInfo_UpdateOverlayLifetime(ctx);
+
+    if (!IsOverlayLoaded(OVERLAY_BATTLEINFO_PAGE) && !HandleLoadOverlay(OVERLAY_BATTLEINFO_PAGE, 2)) {
+        return FALSE;
+    }
+
+    entry = (BattleInfoOverlayEntry)BATTLE_INFO_OVERLAY_ENTRY_ADDR;
+    opened = entry(BATTLE_INFO_OVERLAY_CMD_MAIN, bsys, ctx, battleInput);
+    ctx->battleInfoActive = opened;
+    if (!opened) {
+        BattleInfo_UpdateOverlayLifetime(ctx);
+    }
+
+    return opened;
+}
+
+BOOL LONG_CALL BattleInfo_TryOpenFromInput(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId)
+{
+    return BattleInfo_Launch(bsys, ctx, battlerId);
+}
 
 #if defined (DISABLE_ITEMS_IN_TRAINER_BATTLE)
 void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
@@ -90,6 +215,7 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
 
     sPlayerBattleCommands[ctx->server_seq_no](bsys, ctx);
     BattleHpBarPct_UpdateAll(bsys, ctx);
+    BattleInfo_UpdateOverlayLifetime(ctx);
 #ifdef DEBUG_BATTLE_SCENARIOS
     TestBattle_autoSelectPlayerMoves(bsys, ctx);
 #endif

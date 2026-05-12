@@ -1,20 +1,87 @@
-#include "../../include/types.h"
+#include "../../include/battle_input.h"
+
 #include "../../include/battle.h"
 #include "../../include/config.h"
-#include "../../include/pokemon.h"
-#include "../../include/sprite.h"
-#include "../../include/mega.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/battle_script_constants.h"
-#include "../../include/constants/item.h"
 #include "../../include/constants/file.h"
+#include "../../include/constants/item.h"
+#include "../../include/constants/sndseq.h"
 #include "../../include/constants/weather_numbers.h"
+#include "../../include/mega.h"
+#include "../../include/nitro.h"
+#include "../../include/overlay.h"
+#include "../../include/pokemon.h"
+#include "../../include/sound.h"
+#include "../../include/sprite.h"
+#include "../../include/system.h"
+#include "../../include/types.h"
 
+#define PLTTBUF_SUB_BG                   1
+#define PLTTBUF_SUB_OBJ                  3
+#define TOUCH_MENU_NO_INPUT              -1
+#define BATTLE_MENU_NONE                 -1
+#define GF_BG_LYR_SUB_0                  4
+#define GF_PLANE_TOGGLE_OFF              FALSE
+#define GF_PLANE_TOGGLE_ON               TRUE
+#define BATTLE_MENU_MAIN_INITIAL_ID      1
+#define BATTLE_MENU_MAIN_ID              2
+#define BATTLE_MENU_3_ID                 3
+#define BATTLE_MENU_4_ID                 4
+#define BATTLE_MENU_19_ID                19
+#define BATTLE_MENU_20_ID                20
+#define BATTLE_INFO_PAGE_ID              21
+#define BATTLE_INFO_NATIVE_PAGE_COUNT    21
+#define BATTLE_INFO_SOURCE_PAGE_ID       0x03
+#define BATTLE_INFO_NATIVE_MENU_GFX_NARC 7
+#define BATTLE_INFO_NATIVE_MENU_NCGR     28
+#define BATTLE_INFO_FRONTIER_MENU_NCGR   173
 
+#ifndef BATTLE_TYPE_TUTORIAL
+#define BATTLE_TYPE_TUTORIAL BATTLE_TYPE_CATCHING_DEMO
+#endif
+
+#ifndef MI_CpuCopy8
+#define MI_CpuCopy8(src, dst, size) memcpy((dst), (src), (size))
+#endif
+
+#ifndef MI_CpuClear8
+#define MI_CpuClear8(dst, size) memset((dst), 0, (size))
+#endif
+
+#ifndef SysTask_Destroy
+#define SysTask_Destroy DestroySysTask
+#endif
+
+typedef struct PaletteData PaletteData;
+typedef struct SpriteManager SpriteManager;
+typedef struct SpriteSystem SpriteSystem;
+
+BgConfig *LONG_CALL BattleSystem_GetBgConfig(BattleSystem *battleSystem);
+u32 LONG_CALL BattleSystem_GetBattleType(BattleSystem *battleSystem);
+SpriteSystem *LONG_CALL BattleSystem_GetSpriteSystem(BattleSystem *battleSystem);
+SpriteManager *LONG_CALL BattleSystem_GetSpriteManager(BattleSystem *battleSystem);
+PaletteData *LONG_CALL BattleSystem_GetPaletteData(struct BattleSystem *bsys);
+struct BattleStruct *LONG_CALL BattleSystem_GetBattleContext(BattleSystem *battleSystem);
+void LONG_CALL ToggleBgLayer(u8 bgId, u8 toggle);
+void LONG_CALL PaletteData_LoadPalette(PaletteData *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
+u8 LONG_CALL SpriteSystem_LoadPaletteBufferFromOpenNarc(PaletteData *plttData, u32 bufferId, SpriteSystem *spriteSystem, SpriteManager *spriteManager, NARC *narc, int fileId, BOOL compressed, int pltt_num, int vram, int resId);
+void LONG_CALL BattleInput_FreePersistentResources(BattleInput *battleInput);
+int LONG_CALL BattleInput_CatchingTutorialMain(BattleInput *battleInput);
+int LONG_CALL TouchscreenHitbox_FindRectAtTouchNew(const void *hitboxes);
+void LONG_CALL BattleCursor_Disable(BattleCursor *cursor);
+SysTask *LONG_CALL SysTask_CreateOnVWaitQueue(SysTaskFunc func, void *data, u32 priority);
+BOOL LONG_CALL BattleInfo_TryOpenFromInput(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
+
+extern const BattleInfoMenuTemplate sBattleMenuTemplates[];
+
+static inline void G2S_SetBlendAlpha(int plane1, int plane2, int ev1, int ev2)
+{
+    reg_G2S_DB_BLDCNT = (u16)(plane1 | (plane2 << 8) | (1 << 6));
+    reg_G2S_DB_BLDALPHA = (u16)(ev1 | (ev2 << 8));
+}
 
 // function declarations for this file
-void Sub_PokeIconResourceLoad(struct BI_PARAM *bip);
-void Sub_PokeIconResourceFree(struct BI_PARAM *bip);
 void LoadMegaIcon(struct BI_PARAM *bip);
 void LoadMegaButton(struct BI_PARAM *bip);
 BOOL CheckMegaButton(struct BI_PARAM *bip, int tp_ret);
@@ -22,24 +89,110 @@ void EFFECT_MegaTouch(void *tcb, void *work);
 void BGCallback_Waza_Extend(struct BI_PARAM *bip, int select_bg, int force_put);
 u32 GrabCancelXValue(void);
 void SwapOutBottomScreen(struct BI_PARAM *bip);
+static const BattleInfoMenuTemplate *BattleInfo_GetPageConfigById(int pageId);
+void ov12_02269830(SysTask *task, void *data);
+int BattleInput_CheckCursorInput(BattleInput *battleInput);
+void LONG_CALL BattleInput_EnableBallGauge(BattleInput *battleInput);
+static BOOL BattleInput_IsMainCommandMenu(int menuId);
+static void BattleInput_RestoreNativeMenuBgChars(BattleInput *battleInput, int menuId);
 
 void LONG_CALL BGCallback_Waza(struct BI_PARAM *bip, int select_bg, int force_put);
 
-
-
 // new battle structure with a few overlay 12 global things that can be accessed.
-struct newBattleStruct __attribute__((section (".data"))) newBS = {0};
+struct newBattleStruct __attribute__((section(".data"))) newBS = { 0 };
+
+static const BattleInfoMenuTemplate sBattleInfoPageTemplate = {
+    .unk_00 = 28,
+    .paletteId = 246,
+    .unk_04_val2 = { 0xFFFF, 0xFFFF, 2, 3 },
+    .priority = { 2, 1, 3, 0 },
+    .touchscreenRect = NULL,
+    .touchInput = NULL,
+    .unk_1C = NULL,
+    .funcCursor = NULL,
+    .funcSaveCursorPos = NULL,
+    .funcCreateMenuObjects = NULL,
+    .funcTouchCallback = NULL,
+};
+
+static const BattleInfoMenuTemplate *BattleInfo_GetPageConfigById(int pageId)
+{
+    if (pageId == BATTLE_INFO_PAGE_ID) {
+        return &sBattleInfoPageTemplate;
+    }
+
+    if (pageId >= 0 && pageId < BATTLE_INFO_NATIVE_PAGE_COUNT) {
+        return &sBattleMenuTemplates[pageId];
+    }
+
+    return &sBattleMenuTemplates[BATTLE_INFO_SOURCE_PAGE_ID];
+}
+
+static BOOL BattleInput_IsMainCommandMenu(int menuId)
+{
+    switch (menuId) {
+    case BATTLE_MENU_MAIN_INITIAL_ID:
+    case BATTLE_MENU_MAIN_ID:
+    case BATTLE_MENU_3_ID:
+    case BATTLE_MENU_4_ID:
+    case BATTLE_MENU_19_ID:
+    case BATTLE_MENU_20_ID:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static void BattleInput_RestoreNativeMenuBgChars(BattleInput *battleInput, int menuId)
+{
+    u32 battleType;
+    int bgTilesId;
+
+    if (battleInput == NULL || battleInput->battleSystem == NULL) {
+        return;
+    }
+
+    if (menuId < 0 || menuId >= BATTLE_INFO_NATIVE_PAGE_COUNT) {
+        return;
+    }
+
+    battleType = BattleSystem_GetBattleType(battleInput->battleSystem);
+    bgTilesId = (battleType & BATTLE_TYPE_BATTLE_TOWER) ? BATTLE_INFO_FRONTIER_MENU_NCGR : BATTLE_INFO_NATIVE_MENU_NCGR;
+
+    GfGfxLoader_LoadCharData(
+        BATTLE_INFO_NATIVE_MENU_GFX_NARC,
+        bgTilesId,
+        BattleSystem_GetBgConfig(battleInput->battleSystem),
+        GF_BG_LYR_SUB_0,
+        0,
+        0x6000,
+        TRUE,
+        HEAPID_BATTLE_HEAP);
+}
+
+int BattleInput_TouchCallback_MainMenu_Hook(struct BI_PARAM *bip, int page, void *arg)
+{
+    BattleInput *battleInput = (BattleInput *)bip;
+
+    (void)page;
+
+    if (battleInput != NULL && battleInput->feedbackTask != NULL) {
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    return ov12_02266C64(arg);
+}
 
 // icon sprite tags to keep track of things
-#define MEGA_ICON_SPRITE_TAG 22050
-#define MEGA_ICON_PAL_TAG 22051
-#define MEGA_ICON_CELL_TAG 22052
-#define MEGA_ICON_CELL_ANIM_TAG 22053
-#define MEGA_BUTTON_SPRITE_TAG 22054
-#define MEGA_BUTTON_PAL_TAG 22055
-#define WEATHER_ICON_SPRITE_TAG 22056
-#define WEATHER_ICON_PAL_TAG 22057
-#define WEATHER_ICON_CELL_TAG 22058
+#define MEGA_ICON_SPRITE_TAG       22050
+#define MEGA_ICON_PAL_TAG          22051
+#define MEGA_ICON_CELL_TAG         22052
+#define MEGA_ICON_CELL_ANIM_TAG    22053
+#define MEGA_BUTTON_SPRITE_TAG     22054
+#define MEGA_BUTTON_PAL_TAG        22055
+#define WEATHER_ICON_SPRITE_TAG    22056
+#define WEATHER_ICON_PAL_TAG       22057
+#define WEATHER_ICON_CELL_TAG      22058
 #define WEATHER_ICON_CELL_ANIM_TAG 22059
 
 // values to return when rectangle is touched
@@ -204,6 +357,7 @@ void Sub_PokeIconResourceLoad(struct BI_PARAM *bip)
 
     OAM_LoadResourceCellAnmArc(csp, crp, ARC_ITEM_GFX_DATA, 0, 0, MEGA_ICON_CELL_ANIM_TAG);
 
+    BattleInfoHint_LoadResources(bip);
 
     // weather
     if (bip->bw->sp->field_condition & WEATHER_ANY_ICONS)
@@ -280,7 +434,7 @@ void Sub_PokeIconResourceFree(struct BI_PARAM *bip)
             newBS.playerWantMega = FALSE;
         newBS.MegaIconLight = 0;
     }
-
+    BattleInfoHint_FreeResources(bip);
 
 
     if (bip->bw->sp->field_condition & WEATHER_ANY_ICONS)
@@ -380,6 +534,8 @@ void LoadMegaIcon(struct BI_PARAM *bip)
         OAM_ObjectUpdate(newBS.WeatherOAM->act);
         newBS.weatherUpdateTask = CreateSysTask((SysTaskFunc)0x022684ED, newBS.WeatherOAM, 1300); // 0x022684ED is the pokemon icon animation function
     }
+
+    BattleInfoHint_LoadSprite(bip);
 }
 
 /**
@@ -437,6 +593,190 @@ ALIGN4 static const ButtonTBL MoveSelectButtonScreenRectangle[] = {
 ALIGN4 static const ButtonTBL MoveSelectMegaButtonScreenRectangle[] = {
     {0x12, 0x17, 0x1, 0x1e},
 };
+
+void LONG_CALL BattleInput_ChangeMenu(NARC *narc0 UNUSED, NARC *narc1, BattleInput *battleInput, int menuId, int a4, BattleInputMenu *a5)
+{
+    const BattleMenuTemplate *menuTemplate, *prevMenuTemplate;
+    BOOL restoringFromBattleInfoPage;
+
+    if (a5 != NULL) {
+        MI_CpuCopy8(a5, &battleInput->menu, sizeof(BattleInputMenu));
+    }
+
+    battleInput->isTouchDisabled = FALSE;
+
+    BgConfig *bgConfig = BattleSystem_GetBgConfig(battleInput->battleSystem);
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
+
+    if (battleInput->curMenuId == BATTLE_MENU_NONE) {
+        a4 = 1;
+        prevMenuTemplate = NULL;
+    } else {
+        prevMenuTemplate = BattleInfo_GetPageConfigById(battleInput->curMenuId);
+    }
+
+    restoringFromBattleInfoPage = (battleInput->curMenuId == BATTLE_INFO_PAGE_ID && menuId != BATTLE_INFO_PAGE_ID);
+    if (restoringFromBattleInfoPage) {
+        BattleInput_RestoreNativeMenuBgChars(battleInput, menuId);
+    }
+
+    menuTemplate = BattleInfo_GetPageConfigById(menuId);
+
+    PaletteData_LoadPalette(BattleSystem_GetPaletteData(battleInput->battleSystem), battleInput->paletteBuffer, PLTTBUF_SUB_BG, 0, 0x200);
+
+    for (int i = 0; i < 4; i++) {
+        if ((menuTemplate->unk_04_val2[i] != 0xffff) && ((a4 == 1) || (menuTemplate->unk_04_val2[i] != prevMenuTemplate->unk_04_val2[i]))) {
+            BG_LoadScreenTilemapData(bgConfig, 4 + i, battleInput->screenBuffer[menuTemplate->unk_04_val2[i]], 0x800);
+            ScheduleBgTilemapBufferTransfer(bgConfig, 4 + i);
+        }
+    }
+
+    SpriteSystem_LoadPaletteBufferFromOpenNarc(BattleSystem_GetPaletteData(battleInput->battleSystem), PLTTBUF_SUB_OBJ, spriteSystem, spriteManager, narc1, 72, 0, 7, NNS_G2D_VRAM_TYPE_2DSUB, 20023);
+
+    battleInput->curMenuId = menuId;
+
+    G2S_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, 15, 8, 12);
+    BattleInput_FreePersistentResources(battleInput);
+
+    if (menuTemplate->funcCreateMenuObjects != NULL) {
+        menuTemplate->funcCreateMenuObjects(battleInput, menuId, a4);
+    }
+
+    SysTask_CreateOnVWaitQueue(ov12_02269830, battleInput, 10);
+}
+
+void ov12_02269830(SysTask *task, void *data)
+{
+    BattleInput *battleInput = data;
+    const BattleMenuTemplate *menu;
+    int i;
+
+    menu = BattleInfo_GetPageConfigById(battleInput->curMenuId);
+
+    for (i = 0; i < 4; i++) {
+        if (menu->unk_04_val2[i] == 0xffff) {
+            ToggleBgLayer(GF_BG_LYR_SUB_0 + i, GF_PLANE_TOGGLE_OFF);
+        } else {
+            ToggleBgLayer(GF_BG_LYR_SUB_0 + i, GF_PLANE_TOGGLE_ON);
+        }
+    }
+
+    for (i = 0; i < 4; i++) {
+        SetBgPriority(GF_BG_LYR_SUB_0 + i, (u8)menu->priority[i]);
+    }
+
+    SysTask_Destroy(task);
+}
+
+int LONG_CALL BattleInput_CheckTouch(BattleInput *battleInput)
+{
+    int ret, rectHit, paletteId;
+    int keyPressed = 0;
+    struct BattleStruct *ctx;
+    int battlerId;
+
+    GF_ASSERT(battleInput->curMenuId != BATTLE_MENU_NONE);
+
+    const BattleMenuTemplate *menuTemplate = BattleInfo_GetPageConfigById(battleInput->curMenuId);
+
+    if ((menuTemplate->touchscreenRect == NULL) || (battleInput->isTouchDisabled == TRUE)) {
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    ctx = BattleSystem_GetBattleContext(battleInput->battleSystem);
+    battlerId = battleInput->menu.main.battlerId;
+    if (ctx != NULL
+        && battlerId >= 0
+        && battlerId < CLIENT_MAX
+        && BattleInput_IsMainCommandMenu(battleInput->curMenuId)
+        && (ctx->server_seq_no != CONTROLLER_COMMAND_SELECTION_SCREEN_INPUT || ctx->com_seq_no[battlerId] != SSI_STATE_1)) {
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    if (battleInput->feedbackTask != NULL) {
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    GF_ASSERT(menuTemplate->touchInput != NULL);
+
+    if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_TUTORIAL) {
+        rectHit = BattleInput_CatchingTutorialMain(battleInput);
+    } else {
+        rectHit = TouchscreenHitbox_FindRectAtTouchNew(menuTemplate->touchscreenRect);
+
+        if (rectHit == TOUCH_MENU_NO_INPUT) {
+            rectHit = BattleInput_CheckCursorInput(battleInput);
+            keyPressed++;
+        }
+    }
+
+    if (rectHit == TOUCH_MENU_NO_INPUT) {
+        ret = TOUCH_MENU_NO_INPUT;
+        paletteId = 0xff;
+    } else {
+        ret = menuTemplate->touchInput[rectHit];
+        paletteId = menuTemplate->unk_1C[rectHit];
+    }
+
+    if (menuTemplate->funcTouchCallback != NULL) {
+        ret = menuTemplate->funcTouchCallback(battleInput, ret, paletteId);
+
+        if (ret != TOUCH_MENU_NO_INPUT) {
+            if (menuTemplate->funcSaveCursorPos != NULL) {
+                menuTemplate->funcSaveCursorPos(battleInput, rectHit);
+            }
+
+            MI_CpuClear8(&battleInput->menuCursor, sizeof(BattleMenuCursor));
+            BattleCursor_Disable(battleInput->cursor);
+
+            if (keyPressed > 0) {
+                battleInput->keyPressed = 1;
+            } else {
+                battleInput->keyPressed = 0;
+            }
+        }
+    }
+
+    return ret;
+}
+
+int BattleInput_CheckCursorInput(BattleInput *battleInput)
+{
+    BattleMenuCursor *cursor;
+    const BattleMenuTemplate *menu;
+    struct BattleStruct *ctx;
+
+    cursor = &battleInput->menuCursor;
+    menu = BattleInfo_GetPageConfigById(battleInput->curMenuId);
+
+    if ((gSystem.newKeys & PAD_BUTTON_X) != 0) {
+        ctx = BattleSystem_GetBattleContext(battleInput->battleSystem);
+        if (ctx != NULL && BattleInfo_TryOpenFromInput(battleInput->battleSystem, ctx, battleInput->menu.main.battlerId)) {
+            return TOUCH_MENU_NO_INPUT;
+        }
+    }
+
+    if (menu->funcCursor == NULL) {
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    if (cursor->enabled == FALSE) {
+        if ((battleInput->keyPressed == TRUE) || (gSystem.newKeys & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+            if (battleInput->keyPressed == FALSE) {
+                PlaySE(SEQ_SE_DP_SELECT);
+            }
+
+            cursor->enabled = TRUE;
+            battleInput->keyPressed = FALSE;
+            menu->funcCursor(battleInput, TRUE);
+        }
+
+        return TOUCH_MENU_NO_INPUT;
+    }
+
+    return menu->funcCursor(battleInput, FALSE);
+}
 
 /**
  *  @brief check if the mega button was pressed and should be toggled
