@@ -14,7 +14,6 @@
 #endif // DEBUG_BATTLE_SCENARIOS
 
 void BattleHpBarPct_UpdateAll(struct BattleSystem *bsys, struct BattleStruct *ctx);
-void BattleHpBarPct_DestroyAll(void);
 
 #define BATTLE_INFO_OVERLAY_ENTRY_ADDR   (0x023C0400 | 1)
 #define BATTLE_MENU_MAIN_INITIAL_ID      1
@@ -225,7 +224,6 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
 
     if (ctx->server_seq_no == CONTROLLER_COMMAND_45)
     {
-        BattleHpBarPct_DestroyAll();
         return TRUE;
     }
     return FALSE;

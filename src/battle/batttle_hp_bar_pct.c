@@ -336,7 +336,7 @@ static void BattleHpBarPct_DestroyOverlay(int battlerId)
     memset(overlay, 0, sizeof(*overlay));
 }
 
-void BattleHpBarPct_DestroyAll(void)
+void BattleHpBarPct_DestroyAll()
 {
     int battlerId;
 
