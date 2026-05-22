@@ -1574,16 +1574,22 @@
     .long (((\arg_2 - .) / 4) - 1)
     .endm
 
-    .macro SetAuraBoost arg_0
+    .macro DivideVarByValueRoundUp var, val
     .long 288
+    .long \var
+    .long \val
+    .endm
+
+    .macro SetAuraBoost arg_0
+    .long 289
     .long \arg_0
     .endm
 
     .macro CheckTrainerGimmickMessage
-    .long 289
+    .long 290
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 289
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 290
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)

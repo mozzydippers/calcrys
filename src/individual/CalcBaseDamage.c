@@ -81,7 +81,6 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
 
     // https://web.archive.org/web/20241226231016/https://www.trainertower.com/dawoblefets-damage-dissertation/
 
-
     //=====Step 1. Custom BP=====
 
     // TODO: Check if there are any moves not ported yet
@@ -214,6 +213,8 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         movepower = (255 - AttackingMon.happiness) * 10 / 25;
         break;
     // Counter-based
+    // Fury Cutter's damage cap is handled in src/battle/battle_script_commands.c.
+    // By default, the modern cap is 3 (meaning furyCutterCount will be between 0-2).
     case MOVE_FURY_CUTTER:
         for (u32 n = 1; n < AttackingMon.furyCutterCount; n++) {
             if (movepower >= 160) {
@@ -276,7 +277,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         break;
     case MOVE_PAYBACK:
         // TODO: Check correctness
-        if (IsMovingAfterClient(sp, defender) == TRUE) { //as of Gen5 no longer doubles on switching
+        if (IsMovingAfterClient(sp, defender) == TRUE) { // as of Gen5 no longer doubles on switching
             movepower *= 2;
         }
         break;
@@ -299,8 +300,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         }
         break;
     case MOVE_WAKE_UP_SLAP:
-        if (CheckSubstitute(sp, defender) == FALSE  &&
-            (DefendingMon.condition & STATUS_SLEEP || MoldBreakerAbilityCheck(sp, defender, defender, ABILITY_COMATOSE))) {
+        if (CheckSubstitute(sp, defender) == FALSE && (DefendingMon.condition & STATUS_SLEEP || MoldBreakerAbilityCheck(sp, defender, defender, ABILITY_COMATOSE))) {
             movepower *= 2;
         }
         break;
@@ -463,8 +463,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         if (teammateFaintedLastTurn) {
             basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__2_0);
         }
-        }
-        break;
+    } break;
     case MOVE_FUSION_FLARE:
         // TODO
         break;
@@ -473,7 +472,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         break;
     case MOVE_GRAV_APPLE:
         // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-8870357
-        if ((field_cond & FIELD_STATUS_GRAVITY)) {
+        if (field_cond & FIELD_STATUS_GRAVITY) {
             basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
         }
         break;
@@ -679,13 +678,14 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             }
 
             if ((AttackingMon.ability == ABILITY_RECKLESS)
-            && ((moveEffect == MOVE_EFFECT_CRASH_ON_MISS)
-                || (moveEffect == MOVE_EFFECT_RECOIL_QUARTER)
-                || (moveEffect == MOVE_EFFECT_RECOIL_THIRD)
-                || (moveEffect == MOVE_EFFECT_RECOIL_BURN_HIT)
-                || (moveEffect == MOVE_EFFECT_RECOIL_PARALYZE_HIT)
-                || (moveEffect == MOVE_EFFECT_RECOIL_HALF)
-                || (moveEffect == MOVE_EFFECT_CONFUSE_HIT_CRASH_ON_MISS))) {
+                && ((moveEffect == MOVE_EFFECT_CRASH_ON_MISS)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_QUARTER)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_THIRD)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_BURN_HIT)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_PARALYZE_HIT)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_HALF)
+                    || (moveEffect == MOVE_EFFECT_RECOIL_HALF_MAX_HP)
+                    || (moveEffect == MOVE_EFFECT_CONFUSE_HIT_CRASH_ON_MISS))) {
                 basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_2);
                 continue;
             }
@@ -728,7 +728,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
 
             // handle Technician
             if ((AttackingMon.ability == ABILITY_TECHNICIAN)
-                && (moveno != MOVE_STRUGGLE)
+                /* && (moveno != MOVE_STRUGGLE) as of Gen5 */
                 && (movepower <= 60)) {
                 basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
                 continue;
@@ -1072,11 +1072,11 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
                 // handle Orichalcum Pulse
                 // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
                 if ((AttackingMon.ability == ABILITY_ORICHALCUM_PULSE)
-                && (field_cond & WEATHER_SUNNY_ANY)
-                // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9426805
-                // TODO: For Orichalcum Pulse itself - still shows "sending its ancient pulse into a frenzy!" message even with Utility Umbrella disabling the attack boost.
-                && !(AttackingMon.item_held_effect == HOLD_EFFECT_UNAFFECTED_BY_RAIN_OR_SUN)
-                && (movesplit == SPLIT_PHYSICAL)) {
+                    && (field_cond & WEATHER_SUNNY_ANY)
+                    // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9426805
+                    // TODO: For Orichalcum Pulse itself - still shows "sending its ancient pulse into a frenzy!" message even with Utility Umbrella disabling the attack boost.
+                    && !(AttackingMon.item_held_effect == HOLD_EFFECT_UNAFFECTED_BY_RAIN_OR_SUN)
+                    && (movesplit == SPLIT_PHYSICAL)) {
                     attackModifier = QMul_RoundUp(attackModifier, UQ412__1_3333);
                 }
             }
@@ -1163,17 +1163,16 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Protosynthesis and Quark Drive
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((AttackingMon.ability == ABILITY_PROTOSYNTHESIS || AttackingMon.ability == ABILITY_QUARK_DRIVE)
-            && ((movesplit == SPLIT_PHYSICAL && AttackingMon.paradoxBoostedStat == STAT_ATTACK) ||
-                (movesplit == SPLIT_SPECIAL && AttackingMon.paradoxBoostedStat == STAT_SPATK))) {
+                && ((movesplit == SPLIT_PHYSICAL && AttackingMon.paradoxBoostedStat == STAT_ATTACK) || (movesplit == SPLIT_SPECIAL && AttackingMon.paradoxBoostedStat == STAT_SPATK))) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_3);
             }
 
             // handle Hadron Engine
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((AttackingMon.ability == ABILITY_HADRON_ENGINE)
-            && (movesplit == SPLIT_SPECIAL)
-            && (terrainOverlayType == ELECTRIC_TERRAIN)
-            && (terrainOverlayNumberOfTurnsLeft > 0)) {
+                && (movesplit == SPLIT_SPECIAL)
+                && (terrainOverlayType == ELECTRIC_TERRAIN)
+                && (terrainOverlayNumberOfTurnsLeft > 0)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_3333);
             }
         }
@@ -1235,8 +1234,6 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Thick Club
             if ((AttackingMon.item_held_effect == HOLD_EFFECT_CUBONE_ATK_UP)
                 && ((AttackingMon.species == SPECIES_CUBONE) || (AttackingMon.species == SPECIES_MAROWAK))
-                // it’s not a Ditto/Smeargle/Mew Transformed into the species
-                && !(AttackingMon.condition2 & STATUS2_TRANSFORMED)
                 && (movesplit == SPLIT_PHYSICAL)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__2_0);
             }
@@ -1455,8 +1452,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Protosynthesis and Quark Drive
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((DefendingMon.ability == ABILITY_PROTOSYNTHESIS || DefendingMon.ability == ABILITY_QUARK_DRIVE)
-            && ((movesplit == SPLIT_PHYSICAL && DefendingMon.paradoxBoostedStat == STAT_DEFENSE) ||
-                (movesplit == SPLIT_SPECIAL && DefendingMon.paradoxBoostedStat == STAT_SPDEF))) {
+                && ((movesplit == SPLIT_PHYSICAL && DefendingMon.paradoxBoostedStat == STAT_DEFENSE) || (movesplit == SPLIT_SPECIAL && DefendingMon.paradoxBoostedStat == STAT_SPDEF))) {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__1_3);
             }
         }
