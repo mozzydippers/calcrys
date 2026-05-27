@@ -1550,7 +1550,7 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
 
 // calcrys custom, deoxys stance change
 void BattleController_CheckDeoxysStanceChange(struct BattleSystem *bsys, struct BattleStruct *ctx) {
-    if (ctx->battlemon[ctx->defence_client].ability == ABILITY_STANCE_CHANGE && ctx->battlemon[ctx->attack_client].species == SPECIES_DEOXYS) {
+    if (ctx->battlemon[ctx->defence_client].ability == ABILITY_STANCE_CHANGE && ctx->battlemon[ctx->defence_client].species == SPECIES_DEOXYS) {
         ctx->battlerIdTemp = ctx->attack_client;
         if (ctx->moveTbl[ctx->current_move_index].power >= 0) 
         {

@@ -1998,3 +1998,5 @@ The opposing {STRVAR_1 1, 0, 0}\nheld up its Red Card against\fthe opposing {STR
 
 
 Radio waves alter the move categories!
+The sandstorm rages on!
+The snow is crashing down!

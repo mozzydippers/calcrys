@@ -195,6 +195,9 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         }
         break;
     case MOVE_CRUSH_GRIP:
+        // TODO: Check correctness
+        movepower = QMul_RoundDown(150 * 100, (DefendingMon.hp * 4096) / DefendingMon.maxhp) / 100;
+        break;
     case MOVE_WRING_OUT:
         // TODO: Check correctness
         movepower = QMul_RoundDown(120 * 100, (DefendingMon.hp * 4096) / DefendingMon.maxhp) / 100;
@@ -1530,7 +1533,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
                 && (DefendingMon.species == SPECIES_DITTO)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
                 /* && !(AttackingMon.condition2 & STATUS2_TRANSFORMED) */ 
-                && (movesplit == SPLIT_PHYSICAL)) {
+                /* && (movesplit == SPLIT_PHYSICAL) */) {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
         }

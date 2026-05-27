@@ -341,7 +341,7 @@ struct HMMoveToTMId moveToTMIdTable[] =
     {MOVE_ROCK_CLIMB, 100},
 };
 
- BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT* ctx) {
+BOOL ScrCmd_GetPartySlotWithMove(SCRIPTCONTEXT* ctx) {
     FieldSystem *fsys = ctx->fsys;
     u16 *slot = ScriptGetVarPointer(ctx);
     u16 move = ScriptGetVar(ctx);
@@ -397,65 +397,62 @@ static const u16 sSpikyEarPichuMoveset[4] = {
 
 BOOL ScrCmd_GiveSpikyEarPichu(SCRIPTCONTEXT *ctx) {
     s32 i;
+    u8 form;
+    u8 pp;
+    u16 heldItem;
+    struct PartyPokemon *mon;
     struct Party *party;
-    struct PartyPokemon *pokemon;
     FieldSystem *fsys = ctx->fsys;
     void *profile;
-    u32 sp1C;
-    BOOL result;
-    u32 location = gFieldSysPtr->location->mapId;
-    u32 pp;
 
-    /* u32 trId = PlayerProfile_GetTrainerID(profile);
-    u32 unkA = ChangePersonalityToNatureGenderAndAbility(trId, 0xac, NATURE_NAUGHTY, 1, 0, 0); */
-    u32 unkB = sub_02017FE4(1, location);
 
     profile = Sav2_PlayerData_GetProfileAddr(fsys->savedata);
     party = SaveData_GetPlayerPartyPtr(fsys->savedata);
-
-    pokemon = AllocMonZeroed(11);
-    ZeroMonData(pokemon);
-    PokeParaSet(pokemon, SPECIES_PICHU, 30, 32, 1, 0, 1, 0); // CreateMon
-    sub_020720FC(pokemon, profile, ITEM_POKE_BALL, unkB, 0x18, 11);
-
-    sp1C = ITEM_LIGHT_BALL;
-    SetMonData(pokemon, MON_DATA_HELD_ITEM, &sp1C);
-
-    int forme = 1;
-    SetMonData(pokemon, MON_DATA_FORM, &forme);
 
     if (party->count >= 6) {
         return FALSE;
     }
 
-    /* for (i = 0; i < 4; i++) {
-        SetMonData(pokemon, MON_DATA_MOVE1 + i, &sSpikyEarPichuMoveset[i]);
-        pp = GetMonData(pokemon, MON_DATA_MOVE1MAXPP + i, 0);
-        SetMonData(pokemon, MON_DATA_MOVE1PP + i, &pp);
-    } */
+    mon = AllocMonZeroed(11);
+    ZeroMonData(mon);
 
-    RecalcPartyPokemonStats(pokemon); // recalculate stats
+    u32 trId = PlayerProfile_GetTrainerID(profile);
+    // u32 unkA = ChangePersonalityToNatureGenderAndAbility(trId, 0xac, NATURE_NAUGHTY, MON_FEMALE, 0, 0);
+    CreateMon(mon, SPECIES_PICHU, 30, 0x20, 1, 0, 1, trId);
+
+    form = 1;
+    SetMonData(mon, MON_DATA_FORM, &form);
+
+    for (i = 0; i < MAX_MON_MOVES; i++) {
+        SetMonData(mon, MON_DATA_MOVE1 + i, &sSpikyEarPichuMoveset[i]);
+        pp = GetMonData(mon, MON_DATA_MOVE1MAXPP + i, 0);
+        SetMonData(mon, MON_DATA_MOVE1PP + i, &pp);
+    }
+
+    heldItem = ITEM_LIGHT_BALL;
+    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
 
     if (gf_rand() % 3 == 0)
     {
-        SET_MON_HIDDEN_ABILITY_BIT(pokemon)
+        SET_MON_HIDDEN_ABILITY_BIT(mon)
         // need to clear this script flag because this function is used for in-battle form change ability resets as well, which shouldn't happen normally
         // ClearScriptFlag(HIDDEN_ABILITIES_FLAG);
     }
 
-    /* if (ability != 0) {
-        SetMonData(pokemon, MON_DATA_ABILITY, &ability);
-    } else {
-        ResetPartyPokemonAbility(pokemon); // with the flag set, the hidden ability should be set
-    } */
+    u32 location = gFieldSysPtr->location->mapId;
 
-    result = PokeParty_Add(party, pokemon);
-    if (result) {
-        UpdatePokedexWithReceivedSpecies(fsys->savedata, pokemon);
-    }
-    sys_FreeMemoryEz(pokemon);
+    // u32 unkB = sub_02017FE4(MAPSECTYPE_NORMAL, MapHeader_GetMapSec(ctx->fsys->location->mapId));
+    u32 unkB = sub_02017FE4(1, location);
 
-    return result;
-}
+    sub_020720FC(mon, profile, 4, unkB, 0x18, 11);
+
+    PokeParty_Add(party, mon);
+
+    sys_FreeMemoryEz(mon);
+
+    UpdatePokedexWithReceivedSpecies(fsys->savedata, mon);
+
+    return FALSE;
+} 
 
 

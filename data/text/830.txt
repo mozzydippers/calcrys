@@ -219,7 +219,7 @@ An item to be held by a Pokémon.\nThis light, sharp claw lets the\nholder move 
 An item to be held by a Pokémon.\nThe comforting chime of this bell\ncalms the holder, making it friendly.
 An item to be held by a Pokémon.\nIt snaps the user out of move-binding\neffects to move freely--but only once.
 An item to be held by a Pokémon.\nThis curious headband boosts Attack\nbut only allows the use of one move.
-An item to be held by a Pokémon.\nWhen the holder successfully inflicts\ndamage, the target may also flinch.
+An impressive icon that conveys a\nkingly nobility.\nIt’s loved by a certain Pokémon.
 An item to be held by a Pokémon.\nIt’s a shiny silver powder that boosts\nthe power of the holder’s Bug-type moves.
 An item to be held by a Pokémon.\nIt doubles any prize money received\nif the holding Pokémon joins a battle.
 An item to be held by a Pokémon.\nIt helps keep wild Pokémon away when\nthe holder is the head of the party.
@@ -324,7 +324,7 @@ A box packed with a tremendous amount\nof electric energy.\nIt’s loved by a ce
 A box packed with a tremendous amount\nof magma energy.\nIt’s loved by a certain Pokémon.
 A transparent device overflowing with\ndubious data.\nIt’s loved by a certain Pokémon.
 A cloth imbued with horrifyingly strong\nspiritual energy.\nIt’s loved by a certain Pokémon.
-An item to be held by a Pokémon.\nThis sharply hooked claw boosts the\ncritical-hit ratio of the holder’s moves.
+A wickedly sharp claw perfect for\nraking enemies.\nIt’s loved by a certain Pokémon.
 An item to be held by a Pokémon.\nWhen the holder successfully inflicts\ndamage, the target may also flinch.
 The user focuses its mind before\nlaunching this attack. It will fail\nif the user is hit before it is used.
 Sharp, huge claws hook and slash\nthe foe quickly and with great\npower.

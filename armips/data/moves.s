@@ -6084,7 +6084,7 @@ movedata MOVE_TRUMP_CARD, "Trump Card"
     basepower 1
     type TYPE_NORMAL
     accuracy 0
-    pp 5
+    pp 1
     effectchance 0
     target RANGE_SINGLE_TARGET
     priority 0
@@ -7408,11 +7408,12 @@ movedata MOVE_HEAD_SMASH, "Head Smash"
     terminatedata
     movedescription MOVE_HEAD_SMASH, "The user delivers a\nlife-endangering\nattack at full power.\nThe user also takes\nterrible damage."
 
+// BP : 35 > 40
 // ACC : 90 > 100
 movedata MOVE_DOUBLE_HIT, "Double Hit"
     battleeffect MOVE_EFFECT_HIT_TWICE
     pss SPLIT_PHYSICAL
-    basepower 35
+    basepower 40
     type TYPE_NORMAL
     accuracy 100
     pp 10

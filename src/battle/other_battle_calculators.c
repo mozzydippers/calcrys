@@ -1662,6 +1662,11 @@ u8 LONG_CALL UpdateTypeEffectiveness(u32 move_no, u8 defender_type, u8 defaultEf
     if (move_no == MOVE_SKY_UPPERCUT && defender_type == TYPE_FLYING) {
         defaultEffectiveness = TYPE_MUL_SUPER_EFFECTIVE;
     }
+
+    if (move_no == MOVE_SYNCHRONOISE) {
+        defaultEffectiveness = TYPE_MUL_SUPER_EFFECTIVE;
+    }
+
     return defaultEffectiveness;
 }
 
@@ -2536,10 +2541,10 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
             *equivalentDefense = rawPhysicalDefense;
         }
     case MOVE_RELIC_SONG:
-            if (sp->battlemon[attacker].species == SPECIES_MELOETTA && sp->battlemon[attacker].form_no == 1) {
-                *movesplit = SPLIT_PHYSICAL;
-                *equivalentAttack = rawPhysicalAttack;
-                *equivalentDefense = rawPhysicalDefense;
+        if (sp->battlemon[attacker].species == SPECIES_MELOETTA && sp->battlemon[attacker].form_no == 1)
+            *movesplit = SPLIT_PHYSICAL;
+            *equivalentAttack = rawPhysicalAttack;
+            *equivalentDefense = rawPhysicalDefense;
         break;
 
     default:

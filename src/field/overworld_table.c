@@ -1688,6 +1688,7 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
     NEW_NPC_ENTRY(9), // flaaffy (route 42)
     NEW_NPC_ENTRY(10), // steven metagross, goldenrod dept. store
     NEW_NPC_ENTRY(11), // cynthia garchomp sinjoh ruins
+    NEW_NPC_ENTRY(12), // master ball
     { 0xFFFF, 0, 0},
 };
 

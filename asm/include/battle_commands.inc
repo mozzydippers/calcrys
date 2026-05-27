@@ -1582,9 +1582,4 @@
 
     .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 288
 
-    .macro TryEmergencyExit arg_0
-    .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
-    .long (((\arg_0 - .) / 4) - 1)
-    .endm
-
 .endif

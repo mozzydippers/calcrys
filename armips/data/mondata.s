@@ -3312,7 +3312,7 @@ mondata SPECIES_QUILAVA, "Quilava"
 
 
 mondata SPECIES_TYPHLOSION, "Typhlosion"
-    basestats 85, 78, 78, 100, 109, 85
+    basestats 84, 78, 78, 100, 110, 85
     types TYPE_FIRE, TYPE_FIRE
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -3921,8 +3921,8 @@ mondata SPECIES_SUDOWOODO, "Sudowoodo"
 
 
 mondata SPECIES_POLITOED, "Politoed"
-    basestats 90, 75, 75, 70, 90, 100
-    types TYPE_WATER, TYPE_NORMAL
+    basestats 90, 75, 75, 80, 90, 100
+    types TYPE_WATER, TYPE_WATER
     catchrate 45
     baseexp 0 // defined in baseexp.s
     evyields 0, 0, 0, 0, 0, 0
@@ -6147,7 +6147,7 @@ mondata SPECIES_NINJASK, "Ninjask"
 
 
 mondata SPECIES_SHEDINJA, "Shedinja"
-    basestats 0, 90, 45, 80, 15, 15
+    basestats 0, 90, 45, 55, 30, 15
     types TYPE_BUG, TYPE_GHOST
     catchrate 45
     baseexp 0 // defined in baseexp.s
@@ -6588,7 +6588,7 @@ mondata SPECIES_MINUN, "Minun"
 
 
 mondata SPECIES_VOLBEAT, "Volbeat"
-    basestats 65, 47, 85, 85, 73, 75
+    basestats 65, 73, 75, 85, 47, 85
     types TYPE_BUG, TYPE_BUG
     catchrate 150
     baseexp 0 // defined in baseexp.s
@@ -12209,7 +12209,7 @@ mondata SPECIES_EXCADRILL, "Excadrill"
     abilities ABILITY_SAND_RUSH, ABILITY_SAND_FORCE
     runchance 0
     colorflip BODY_COLOR_GRAY, 0
-    mondexentry SPECIES_EXCADRILL, "Forming a drill with its steel claws\nand head, it can bore through a steel\nplate, no matter how thick it is."
+    mondexentry SPECIES_EXCADRILL, "Known as the Drill King, this Pokémon\ncan tunnel through the terrain at\nspeeds of over 90 mph."
     mondexclassification SPECIES_EXCADRILL, "Subterrene Pokémon"
     mondexheight SPECIES_EXCADRILL, "2’04”"
     mondexweight SPECIES_EXCADRILL, "89.1 lbs."
@@ -26675,7 +26675,7 @@ mondata SPECIES_ELECTRODE_HISUIAN, "-----"
     colorflip BODY_COLOR_RED, 0
 
 mondata SPECIES_TYPHLOSION_HISUIAN, "-----"
-    basestats 73, 84, 78, 95, 119, 85
+    basestats 79, 78, 78, 95, 120, 85
     types TYPE_FIRE, TYPE_GHOST
     catchrate 45
     baseexp 209

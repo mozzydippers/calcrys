@@ -26,6 +26,7 @@
 .include "armips/asm/custom/remove_obedience_check.s"
 .include "armips/asm/custom/smashable_rock_items.s"
 .include "armips/asm/custom/title_screen_cry.s"
+.include "armips/asm/custom/force_radio.s"
 
 .include "armips/data/starters.s" // data definitions for which species to use for the starter Pokemon
 .include "armips/asm/tm_palettes.s" // allows editing of pallete table for TMs

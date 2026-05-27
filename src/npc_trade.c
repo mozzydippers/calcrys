@@ -38,7 +38,7 @@ void LONG_CALL _CreateTradeMon(struct PartyPokemon *mon, struct NPCTrade *trade_
     {
         trade_dat->give_species = SPECIES_ROTOM;
 
-        trade_dat->heldItem = ITEM_RARE_BONE;
+        // trade_dat->heldItem = ITEM_RARE_BONE;
 
         // ability = ABILITY_ROCK_HEAD;
     }

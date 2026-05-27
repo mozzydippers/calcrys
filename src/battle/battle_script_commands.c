@@ -162,9 +162,6 @@ u32 LoadCaptureSuccessSPAStarEmitter(u32 id);
 u32 LoadCaptureSuccessSPANumEmitters(u32 id);
 void LONG_CALL UpdateFriendshipFainted(struct BattleSystem *battleSystem, struct BattleStruct *ctx, int battlerId);
 
-// custom
-BOOL btl_scr_cmd_custom_01_tryemergencyexit(void* bw, struct BattleStruct* sp);
-
 #ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpointer-sign"
@@ -459,7 +456,6 @@ const u8 *BattleScrCmdNames[] = {
     "BatchEffectivenessMessage",
     "DivideVarByValueRoundUp",
     // "YourCustomCommand",
-    "TryEmergencyExit",
 };
 
 u32 cmdAddress = 0;
@@ -535,7 +531,6 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x11F - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_11F_BatchEffectivenessMessage,
     [0x120 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_120_DivideVarByValueRoundUp,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_tryemergencyexit,
 };
 
 // clang-format on
@@ -3332,25 +3327,6 @@ BOOL btl_scr_cmd_103_checkprotectcontactmoves(void *bsys UNUSED, struct BattleSt
         }
     }
     
-    return FALSE;
-}
-
-/**
- *  @brief script command to check if the battle format isn't a trainer
- *  
- *  @param bw battle work structure
- *  @param sp global battle structure
- *  @return FALSE
- */
-BOOL btl_scr_cmd_custom_01_tryemergencyexit(void* bw, struct BattleStruct* sp) {
-    IncrementBattleScriptPtr(sp, 1);
-    int adrs = read_battle_script_param(sp);
-        
-    if (!(BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE | BATTLE_TYPE_WIRELESS | BATTLE_TYPE_MULTI | BATTLE_TYPE_TAG | BATTLE_TYPE_NPC_MULTI | BATTLE_TYPE_BATTLE_TOWER)))
-    {
-        IncrementBattleScriptPtr(sp, adrs);
-    }
-
     return FALSE;
 }
 

@@ -10,7 +10,6 @@ _0000: // Trainer 0
        // Trainer 2
        // Trainer 3
        // Trainer 106 whitney parter @ goldenrod city
-       // Trainer 265
        // Trainer 273
        // Trainer 292
        // Trainer 295
@@ -366,6 +365,7 @@ _02C8: // Trainer 156
     trainertextentry 156, TEXT_NOTICE_IN_OVERWORLD, "My Pokémon and I are bound together by\nfriendship.\fOur bond will never be broken!\r"
     trainertextentry 156, TEXT_DEFEATED_IN_BATTLE, "This isn’t real!\n"
     trainertextentry 156, TEXT_DEFEATED_IN_OVERWORLD, "You seem to have a strong bond with\nyour Pokémon, too!\n"
+    trainertextentry 156, TEXT_PLAYER_LOSES, "Our bond is unbreakable!"
 
 _02D4: // Trainer 157
     trainertextentry 157, TEXT_NOTICE_IN_OVERWORLD, "We martial artists fear nothing!\r"
@@ -3349,6 +3349,30 @@ _1B6C: // 194
     trainertextentry 194, TEXT_DEFEATED_IN_BATTLE, "I suppose this little ruse was a\nfailure.\n"
     trainertextentry 194, TEXT_PLAYER_LOSES, "Have fun watching us stir up trouble."
 
+_1B70: // Trainer 265
+    trainertextentry 265, TEXT_LAST_MON_SENT_OUT, "Fwahaha! Cornered? You're mistaken,\nI'm afraid.\rThis is going exactly as I planned.\n"
+    trainertextentry 265, TEXT_LAST_MON_CRITICAL, "It's still too early for you to claim\nvictory over me.\n"
+    trainertextentry 265, TEXT_DEFEATED_IN_BATTLE, "Heh. It's over now.\rBut you know what? Despite the bitter\naftertaste of being beaten by a kid\flike you, I...\fHmph. Doesn't matter.\rYou demonstrated your full power to me\nwithout hesitation, and I'll admit that\fI'm impressed.\rThis is the emergence of a new\nChampion.\n"
+    trainertextentry 265, TEXT_PLAYER_LOSES, "Game over.\n"
+
+_1B74: // Trainer 273 
+    trainertextentry 273, TEXT_LAST_MON_SENT_OUT, "Tsk.\nYou're always so persistent.\n"
+    trainertextentry 273, TEXT_LAST_MON_CRITICAL, "Ugh!\nThat's impossible!\n"
+    trainertextentry 273, TEXT_DEFEATED_IN_BATTLE, "Are you happy that you won?\nHmph!\fSure.\fGo ahead and brag about it.\n"
+    trainertextentry 273, TEXT_PLAYER_LOSES, "There you go.\nGo on home to your mommy.\n"
+
+_1B78: // Trainer 292 
+    trainertextentry 292, TEXT_LAST_MON_SENT_OUT, "Tsk.\nYou're always so persistent.\n"
+    trainertextentry 292, TEXT_LAST_MON_CRITICAL, "Ugh!\nThat's impossible!\n"
+    trainertextentry 292, TEXT_DEFEATED_IN_BATTLE, "Are you happy that you won?\nHmph!\fSure.\fGo ahead and brag about it.\n"
+    trainertextentry 292, TEXT_PLAYER_LOSES, "There you go.\nGo on home to your mommy.\n"
+
+_1B7C: // Trainer 295 
+    trainertextentry 295, TEXT_LAST_MON_SENT_OUT, "Tsk.\nYou're always so persistent.\n"
+    trainertextentry 295, TEXT_LAST_MON_CRITICAL, "Ugh!\nThat's impossible!\n"
+    trainertextentry 295, TEXT_DEFEATED_IN_BATTLE, "Are you happy that you won?\nHmph!\fSure.\fGo ahead and brag about it.\n"
+    trainertextentry 295, TEXT_PLAYER_LOSES, "There you go.\nGo on home to your mommy.\n"
+
 .close
 
 .create "build/trainer_text_offsets/1_0", 0
@@ -3618,7 +3642,7 @@ _1B6C: // 194
 /* Trainer 262 */ .halfword _1B64
 /* Trainer 263 */ .halfword _0054
 /* Trainer 264 */ .halfword _00B4
-/* Trainer 265 */ .halfword _0000
+/* Trainer 265 */ .halfword _1B70
 /* Trainer 266 */ .halfword _0034
 /* Trainer 267 */ .halfword _0064
 /* Trainer 268 */ .halfword _00C4
@@ -3626,7 +3650,7 @@ _1B6C: // 194
 /* Trainer 270 */ .halfword _0074
 /* Trainer 271 */ .halfword _00A4
 /* Trainer 272 */ .halfword _00D4
-/* Trainer 273 */ .halfword _0000
+/* Trainer 273 */ .halfword _1B74
 /* Trainer 274 */ .halfword _1AA4
 /* Trainer 275 */ .halfword _1AA8
 /* Trainer 276 */ .halfword _18AC
@@ -3645,10 +3669,10 @@ _1B6C: // 194
 /* Trainer 289 */ .halfword _0094
 /* Trainer 290 */ .halfword _1050
 /* Trainer 291 */ .halfword _08BC
-/* Trainer 292 */ .halfword _0000
+/* Trainer 292 */ .halfword _1B78
 /* Trainer 293 */ .halfword _08D4
 /* Trainer 294 */ .halfword _08E0
-/* Trainer 295 */ .halfword _0000
+/* Trainer 295 */ .halfword _1B7C
 /* Trainer 296 */ .halfword _0904
 /* Trainer 297 */ .halfword _051C
 /* Trainer 298 */ .halfword _0528
