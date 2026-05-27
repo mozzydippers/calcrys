@@ -1,7 +1,13 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define GEN_CHAMPIONS 99
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+#define GEN_LATEST GEN_CHAMPIONS
+#else
 #define GEN_LATEST 9
+#endif
 
 // FAIRY_TYPE_IMPLEMENTED should be used if you want to implement the fairy type and overwrite type 9 in this project
 // set FAIRY_TYPE_IMPLEMENTED to 0 if you do not want this to happen
@@ -55,12 +61,12 @@
 
 // IMPLEMENT_TRANSPARENT_TEXTBOXES should be used if you want to implement transparent textboxes
 // uncommenting this line out will enable transparent textboxes
-//#define IMPLEMENT_TRANSPARENT_TEXTBOXES
+// #define IMPLEMENT_TRANSPARENT_TEXTBOXES
 
 // IMPLEMENT_WILD_DOUBLE_BATTLES defines whether or not grass tiles will have a 10% chance of starting a wild double battle
 // commenting this line out disables wild double battles entirely
 // NOTE:  wild double battles are currently unstable and broken.  i would not use them at this time.  see this issue for updates on this problem: https://github.com/BluRosie/hg-engine/issues/86
-//#define IMPLEMENT_WILD_DOUBLE_BATTLES
+// #define IMPLEMENT_WILD_DOUBLE_BATTLES
 
 // IMPLEMENT_CAPTURE_EXPERIENCE defines whether or not capturing wild pokemon will net experience
 // commenting this line out disables capture experience
@@ -89,9 +95,9 @@
 #define ALLOW_LEVEL_CAP_EVOLVE
 
 // System flags that need to be enabled for the player to use the gimmick. If you want to change them, remember to change them in flags.s as well for consistency
-#define FLAG_MEGA_EVOLUTION_ENABLED 2518
-#define FLAG_Z_MOVE_ENABLED 2519
-#define FLAG_DYNAMAX_ENABLED 2520
+#define FLAG_MEGA_EVOLUTION_ENABLED  2518
+#define FLAG_Z_MOVE_ENABLED          2519
+#define FLAG_DYNAMAX_ENABLED         2520
 #define FLAG_TERASTALIZATION_ENABLED 2521
 
 // UPDATE_OVERWORLD_POISON will remove overworld poison if enabled
@@ -168,19 +174,19 @@
 #define UPDATE_VITAMIN_EV_CAPS
 
 // DISABLE_ITEMS_IN_TRAINER_BATTLE will disable the usage of items in trainer battles. This is also true for the AI.
-//#define DISABLE_ITEMS_IN_TRAINER_BATTLE
+// #define DISABLE_ITEMS_IN_TRAINER_BATTLE
 
 // REUSABLE_TMS will make TMs infinite and hide the quantity number.
 #define REUSABLE_TMS
 
 // DELETABLE_HMS allows HMs to be forgotten, this also makes their quantity reduce, but the infinite TMs change prevents this.
-//#define DELETABLE_HMS
+// #define DELETABLE_HMS
 
 // MART_EXPANSION allows for adding and modifying items to the mart inventories
 #define MART_EXPANSION
 
 // POKEATHLON_EXPANSION allows for adding and modifying items to the Pokéathlon shop inventories
-//#define POKEATHLON_SHOP_EXPANSION
+// #define POKEATHLON_SHOP_EXPANSION
 
 // STATIC_HP_BAR updates the HP bar to increase/decrease at a fixed rate like later generations
 #define STATIC_HP_BAR
@@ -192,26 +198,26 @@
 
 // Configs the ball capture ratio. 4 emulates the behaviour in HeartGold. However, due to the modernization of
 // the capture formula, it is only an estimate. Some are left as 4 to be less disruptive. Use GEN_LATEST for vanilla behaviour
-#define NEST_BALL_GENERATION    GEN_LATEST
-#define NET_BALL_GENERATION     GEN_LATEST
-#define REPEAT_BALL_GENERATION  GEN_LATEST
-#define TIMER_BALL_GENERATION   GEN_LATEST
-#define DUSK_BALL_GENERATION    GEN_LATEST
-#define QUICK_BALL_GENERATION   GEN_LATEST
-#define SAFARI_BALL_GENERATION  4
-#define LURE_BALL_GENERATION    4
-#define SPORT_BALL_GENERATION   4
-#define MOON_BALL_GENERATION    GEN_LATEST
+#define NEST_BALL_GENERATION   GEN_LATEST
+#define NET_BALL_GENERATION    GEN_LATEST
+#define REPEAT_BALL_GENERATION GEN_LATEST
+#define TIMER_BALL_GENERATION  GEN_LATEST
+#define DUSK_BALL_GENERATION   GEN_LATEST
+#define QUICK_BALL_GENERATION  GEN_LATEST
+#define SAFARI_BALL_GENERATION 4
+#define LURE_BALL_GENERATION   4
+#define SPORT_BALL_GENERATION  4
+#define MOON_BALL_GENERATION   GEN_LATEST
 
 // If caught, the Pokémon's friendship is set to 200 in Generations II through VII, or 150 in Generation VIII onwards.
-#define FRIEND_BALL_GENERATION  GEN_LATEST
+#define FRIEND_BALL_GENERATION GEN_LATEST
 
 // THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN makes the Thunder & Storm map header weathers set permanent
 // Electric Terrain (and rain) in battle
-//#define THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN
+// #define THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN
 
 // FOG_SETS_MISTY_TERRAIN makes the Fog map header weather set permanent Misty Terrain in battle
-//#define FOG_WEATHER_MISTY_TERRAIN
+// #define FOG_WEATHER_MISTY_TERRAIN
 
 // NATURAL_GIFT_POWER_GEN defines the power of Natural Gift based on generation. Gen 6 or higher are modernized values.
 #define NATURAL_GIFT_POWER_GEN GEN_LATEST
@@ -235,5 +241,12 @@
 // DISABLE_CRITICAL_HP_WARNING should be used if you want to disable the warning whenever your pokemon is at critical health
 // comment out this line if you do not want this to happen
 #define DISABLE_CRITICAL_HP_WARNING
+
+// UNSEEN_FIST_GENERATION defines the behavior that Unseen Fist should exhibit, where it either completely ignores Protect (<=8) or deals 0.25x Damage (>=9)
+#define UNSEEN_FIST_GENERATION GEN_CHAMPIONS
+
+// PREVENT_SELECTING_BERRY_PREREQUISITE_MOVES_GENERATION actiavtes the struggle check for Belch/Stuff Cheeks in Generations before Champions
+#define PREVENT_SELECTING_BERRY_PREREQUISITE_MOVES_GENERATION GEN_LATEST
+
 
 #endif
