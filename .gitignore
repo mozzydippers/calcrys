@@ -104,3 +104,4 @@ changelog
 /include/constants/generated/
 test_logs.txt
 .scratch/
+*.bak
