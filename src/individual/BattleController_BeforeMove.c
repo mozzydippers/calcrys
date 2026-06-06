@@ -317,6 +317,18 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
 #endif
 
+        if (newBS.needZMove[ctx->attack_client]) {
+            newBS.SideZMove[ctx->attack_client] = TRUE;
+            newBS.needZMove[ctx->attack_client] = FALSE;
+            ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
+
+            // TODO
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT);
+            ctx->battlerIdTemp = ctx->attack_client;
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+        }
+
         ctx->wb_seq_no++;
         return;
     }
