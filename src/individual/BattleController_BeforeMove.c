@@ -311,11 +311,33 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         ctx->wb_seq_no++;
         return;
     }
+    case BEFORE_MOVE_STATE_ILLUSION_WEAR_OFF: {
+#ifdef DEBUG_BEFORE_MOVE_LOGIC
+        debug_printf("In BEFORE_MOVE_STATE_ILLUSION_WEAR_OFF\n");
+#endif
+
+        ctx->wb_seq_no++;
+
+        if (newBS.needZMove[ctx->attack_client] && IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, ctx->attack_client)) {
+            gIllusionStruct.isSideInIllusion &= ~No2Bit(SanitizeClientForTeamAccess(bsys, ctx->attack_client));
+            gIllusionStruct.illusionClient[SanitizeClientForTeamAccess(bsys, ctx->attack_client)] = CLIENT_MAX;
+            gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(bsys, ctx->attack_client)] = 6;
+            BattleFormChange(ctx->attack_client, ctx->battlemon[ctx->attack_client].form_no, bsys, ctx, 0);
+            ctx->battlerIdTemp = ctx->attack_client;
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_HANDLE_ILLUSION_FADED);
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return;
+        }
+
+        FALLTHROUGH;
+    }
     // TODO implement new mechanics
     case BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
         debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
 #endif
+        ctx->wb_seq_no++;
 
         if (newBS.needZMove[ctx->attack_client]) {
             newBS.SideZMove[ctx->attack_client] = TRUE;
@@ -327,10 +349,10 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
             ctx->battlerIdTemp = ctx->attack_client;
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return;
         }
 
-        ctx->wb_seq_no++;
-        return;
+        FALLTHROUGH;
     }
     case BEFORE_MOVE_STATE_TRUANT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
