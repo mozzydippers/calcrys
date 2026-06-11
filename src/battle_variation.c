@@ -44,7 +44,7 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct Ba
 
 void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 battleID)
 {
-    struct BattleSetup *setup;
+    struct BATTLE_PARAM *setup;
 
     SetScriptVar(RAID_ID_VARIABLE, battleID);
 
@@ -52,13 +52,13 @@ void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 bat
 
     ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleID * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
 
-    setup = BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_SINGLE);
+    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_SINGLE);
 
-    setup->battleSpecial |= BATTLE_SPECIAL_TOTEM;
+    setup->battleSpecial |= (BATTLE_SPECIAL_TOTEM | BATTLE_SPECIAL_NO_RUNNING);
 
-    InitialiseBattleVariationEnemy(taskManager, setup, &battleData.battleVariationBase);
+    InitialiseBattleVariationEnemy(taskManager, (struct BattleSetup *)setup, &battleData.battleVariationBase);
 
-    CallTask_StartEncounter(taskManager, setup, BattleSetup_GetWildTransitionEffect(setup), BattleSetup_GetWildBattleMusic(setup), winFlag);
+    CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
 }
 
 BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
