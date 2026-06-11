@@ -25,6 +25,7 @@
 #define ARC_PBR_OTHERPOKE        195
 #define ARC_ICON_FORM_CHANGE_SPA 208
 #define ARC_DEX_LISTS            216
+#define ARC_SAFARI_ENCOUNTERS    230
 #define ARC_EGG_MOVES            231
 
 // ARC_BATTLE_GFX file indexes

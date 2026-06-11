@@ -21,9 +21,10 @@ SNOW_WARNING_GENERATION equ GEN_LATEST
 // If you do not want this change, then set it to 0.
 THUNDER_STORM_WEATHER_ELECTRIC_TERRAIN equ 1
 
-// FOG_SETS_MISTY_TERRAIN makes the Fog map header weather set permanent Misty Terrain in battle
+// FOG_WEATHER_MISTY_TERRAIN makes the Fog map header weather set permanent Misty Terrain in battle
 // If you do not want this change, then set it to 0.
 FOG_WEATHER_MISTY_TERRAIN equ 1
+
 // SLEEP_TURNS_GENERATION controls the number of turns a Pokémon can be asleep.
 // 4 : 2-5 turns (Prevents movement for 1-4 turns.)
 // 5 or above : 2-4 turns

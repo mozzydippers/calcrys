@@ -5,14 +5,14 @@
 #include "../include/types.h"
 
 // Pokemon generated will be illegal
-struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BATTLE_PARAM *setup, struct BattleVariationBase *battleVariationBase)
+struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BattleSetup *setup, struct BattleVariationBase *battleVariationBase)
 {
     FieldSystem *fieldSystem = TaskManager_GetFieldSystem(taskManager);
 
     BattleSetup_InitFromFieldSystem(setup, fieldSystem);
     ov02_02247F30(fieldSystem, battleVariationBase->mainPokemon.species, battleVariationBase->mainPokemon.level, battleVariationBase->mainPokemon.forceShiny, setup);
 
-    struct PartyPokemon *mon = Party_GetMonByIndex(setup->poke_party[BATTLER_ENEMY], 0);
+    struct PartyPokemon *mon = Party_GetMonByIndex(setup->party[BATTLER_ENEMY], 0);
 
     u32 personality = ChangePersonalityToNatureGenderAndAbility(42, battleVariationBase->mainPokemon.species, battleVariationBase->mainPokemon.nature, battleVariationBase->mainPokemon.gender, battleVariationBase->mainPokemon.abilitySlot, 0);
 
@@ -44,7 +44,7 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BA
 
 void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 battleID)
 {
-    struct BATTLE_PARAM *setup;
+    struct BattleSetup *setup;
 
     SetScriptVar(RAID_ID_VARIABLE, battleID);
 

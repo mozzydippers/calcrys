@@ -21,8 +21,10 @@
 #include "../../include/test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
 
-struct BATTLE_PARAM LONG_CALL *BattleSetup_New_Tutorial(u32 heapID, FieldSystem *fieldSystem);
-void LONG_CALL *Encounter_New(struct BATTLE_PARAM *setup, s32 effect, s32 bgm, u32 *winFlag);
+struct BattleSetup LONG_CALL *BattleSetup_New_Tutorial(u32 heapID, FieldSystem *fieldSystem);
+int LONG_CALL BattleSetup_GetWildTransitionEffect(struct BattleSetup *setup);
+int LONG_CALL BattleSetup_GetWildBattleMusic(struct BattleSetup *setup);
+void LONG_CALL *Encounter_New(struct BattleSetup *setup, s32 effect, s32 bgm, u32 *winFlag);
 
 const u32 TrainerClassDefaultBallList[] = {
     [TRAINERCLASS_PKMN_TRAINER_ETHAN] = ITEM_POKE_BALL,
@@ -608,9 +610,9 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
 
 void LONG_CALL SetupAndStartTutorialBattle(TaskManager *taskManager)
 {
-    struct BATTLE_PARAM *setup = BattleSetup_New_Tutorial(11, taskManager->fieldSystem);
+    struct BattleSetup *setup = BattleSetup_New_Tutorial(11, taskManager->fieldSystem);
 
-    struct PartyPokemon *marill = Party_GetMonByIndex(setup->poke_party[BATTLER_PLAYER], 0);
+    struct PartyPokemon *marill = Party_GetMonByIndex(setup->party[BATTLER_PLAYER], 0);
 
     // move slot 1 is tackle
     u16 data = MOVE_TACKLE;
