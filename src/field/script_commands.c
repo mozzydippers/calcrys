@@ -416,9 +416,9 @@ BOOL ScrCmd_GiveSpikyEarPichu(SCRIPTCONTEXT *ctx) {
     mon = AllocMonZeroed(11);
     ZeroMonData(mon);
 
-    u32 trId = PlayerProfile_GetTrainerID(profile);
+    // u32 trId = PlayerProfile_GetTrainerID(profile);
     // u32 unkA = ChangePersonalityToNatureGenderAndAbility(trId, 0xac, NATURE_NAUGHTY, MON_FEMALE, 0, 0);
-    CreateMon(mon, SPECIES_PICHU, 30, 0x20, 1, 0, 1, trId);
+    PokeParaSet(mon, SPECIES_PICHU, 30, 0x20, 1, 0, 1, 0);
 
     form = 1;
     SetMonData(mon, MON_DATA_FORM, &form);

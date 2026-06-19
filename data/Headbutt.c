@@ -12,4021 +12,4023 @@ typedef struct PACKED HeadbuttTreeCoord {
     s16 y;
 } HeadbuttTreeCoord;
 
-typedef struct PACKED HeadbuttFile_000 {
+typedef struct PACKED HeadbuttFile_000_EVERYWHERE {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_000;
+} HeadbuttFile_000_EVERYWHERE;
 
-typedef struct PACKED HeadbuttFile_001 {
+typedef struct PACKED HeadbuttFile_001_NOTHING {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_001;
+} HeadbuttFile_001_NOTHING;
 
-typedef struct PACKED HeadbuttFile_002 {
+typedef struct PACKED HeadbuttFile_002_Union_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_002;
+} HeadbuttFile_002_Union_Room;
 
-typedef struct PACKED HeadbuttFile_003 {
+typedef struct PACKED HeadbuttFile_003_UG {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_003;
+} HeadbuttFile_003_UG;
 
-typedef struct PACKED HeadbuttFile_004 {
+typedef struct PACKED HeadbuttFile_004_DIRECT2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_004;
+} HeadbuttFile_004_DIRECT2;
 
-typedef struct PACKED HeadbuttFile_005 {
+typedef struct PACKED HeadbuttFile_005_DIRECT4 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_005;
+} HeadbuttFile_005_DIRECT4;
 
-typedef struct PACKED HeadbuttFile_006 {
+typedef struct PACKED HeadbuttFile_006_Bellchime_Trail {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_006;
+} HeadbuttFile_006_Bellchime_Trail;
 
-typedef struct PACKED HeadbuttFile_007 {
+typedef struct PACKED HeadbuttFile_007_Burned_Tower_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_007;
+} HeadbuttFile_007_Burned_Tower_1F;
 
-typedef struct PACKED HeadbuttFile_008 {
+typedef struct PACKED HeadbuttFile_008_Ruins_Of_Alph_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_008;
+} HeadbuttFile_008_Ruins_Of_Alph_Inside;
 
-typedef struct PACKED HeadbuttFile_009 {
+typedef struct PACKED HeadbuttFile_009_Route_1 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[20][6];
-} HeadbuttFile_009;
+} HeadbuttFile_009_Route_1;
 
-typedef struct PACKED HeadbuttFile_010 {
+typedef struct PACKED HeadbuttFile_010_Route_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_010;
+} HeadbuttFile_010_Route_2;
 
-typedef struct PACKED HeadbuttFile_011 {
+typedef struct PACKED HeadbuttFile_011_Route_3 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[4][6];
-} HeadbuttFile_011;
+} HeadbuttFile_011_Route_3;
 
-typedef struct PACKED HeadbuttFile_012 {
+typedef struct PACKED HeadbuttFile_012_Route_4 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[9][6];
-} HeadbuttFile_012;
+} HeadbuttFile_012_Route_4;
 
-typedef struct PACKED HeadbuttFile_013 {
+typedef struct PACKED HeadbuttFile_013_Route_5 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[4][6];
-} HeadbuttFile_013;
+} HeadbuttFile_013_Route_5;
 
-typedef struct PACKED HeadbuttFile_014 {
+typedef struct PACKED HeadbuttFile_014_Route_6 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[6][6];
-} HeadbuttFile_014;
+} HeadbuttFile_014_Route_6;
 
-typedef struct PACKED HeadbuttFile_015 {
+typedef struct PACKED HeadbuttFile_015_Route_7 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[8][6];
-} HeadbuttFile_015;
+} HeadbuttFile_015_Route_7;
 
-typedef struct PACKED HeadbuttFile_016 {
+typedef struct PACKED HeadbuttFile_016_Route_8 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[5][6];
-} HeadbuttFile_016;
+} HeadbuttFile_016_Route_8;
 
-typedef struct PACKED HeadbuttFile_017 {
+typedef struct PACKED HeadbuttFile_017_Route_9 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_017;
+} HeadbuttFile_017_Route_9;
 
-typedef struct PACKED HeadbuttFile_018 {
+typedef struct PACKED HeadbuttFile_018_Route_10 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_018;
+} HeadbuttFile_018_Route_10;
 
-typedef struct PACKED HeadbuttFile_019 {
+typedef struct PACKED HeadbuttFile_019_Route_11 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[11][6];
-} HeadbuttFile_019;
+} HeadbuttFile_019_Route_11;
 
-typedef struct PACKED HeadbuttFile_020 {
+typedef struct PACKED HeadbuttFile_020_Route_12 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[10][6];
-} HeadbuttFile_020;
+} HeadbuttFile_020_Route_12;
 
-typedef struct PACKED HeadbuttFile_021 {
+typedef struct PACKED HeadbuttFile_021_Route_13 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_021;
+} HeadbuttFile_021_Route_13;
 
-typedef struct PACKED HeadbuttFile_022 {
+typedef struct PACKED HeadbuttFile_022_Route_14 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_022;
+} HeadbuttFile_022_Route_14;
 
-typedef struct PACKED HeadbuttFile_023 {
+typedef struct PACKED HeadbuttFile_023_Route_15 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[19][6];
-} HeadbuttFile_023;
+} HeadbuttFile_023_Route_15;
 
-typedef struct PACKED HeadbuttFile_024 {
+typedef struct PACKED HeadbuttFile_024_Route_16 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[2][6];
-} HeadbuttFile_024;
+} HeadbuttFile_024_Route_16;
 
-typedef struct PACKED HeadbuttFile_025 {
+typedef struct PACKED HeadbuttFile_025_Route_17 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_025;
+} HeadbuttFile_025_Route_17;
 
-typedef struct PACKED HeadbuttFile_026 {
+typedef struct PACKED HeadbuttFile_026_Route_18 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_026;
+} HeadbuttFile_026_Route_18;
 
-typedef struct PACKED HeadbuttFile_027 {
+typedef struct PACKED HeadbuttFile_027_Route_22 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[7][6];
-} HeadbuttFile_027;
+} HeadbuttFile_027_Route_22;
 
-typedef struct PACKED HeadbuttFile_028 {
+typedef struct PACKED HeadbuttFile_028_Route_24 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_028;
+} HeadbuttFile_028_Route_24;
 
-typedef struct PACKED HeadbuttFile_029 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-    HeadbuttEncounterSlot normalSlots[12];
-    HeadbuttEncounterSlot specialSlots[6];
-    HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_029;
-
-typedef struct PACKED HeadbuttFile_030 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-    HeadbuttEncounterSlot normalSlots[12];
-    HeadbuttEncounterSlot specialSlots[6];
-    HeadbuttTreeCoord treeCoords[17][6];
-} HeadbuttFile_030;
-
-typedef struct PACKED HeadbuttFile_031 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-    HeadbuttEncounterSlot normalSlots[12];
-    HeadbuttEncounterSlot specialSlots[6];
-    HeadbuttTreeCoord treeCoords[17][6];
-} HeadbuttFile_031;
-
-typedef struct PACKED HeadbuttFile_032 {
+typedef struct PACKED HeadbuttFile_029_Route_25 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_032;
+} HeadbuttFile_029_Route_25;
 
-typedef struct PACKED HeadbuttFile_033 {
+typedef struct PACKED HeadbuttFile_030_Route_26 {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+    HeadbuttEncounterSlot normalSlots[12];
+    HeadbuttEncounterSlot specialSlots[6];
+    HeadbuttTreeCoord treeCoords[17][6];
+} HeadbuttFile_030_Route_26;
+
+typedef struct PACKED HeadbuttFile_031_Route_27 {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+    HeadbuttEncounterSlot normalSlots[12];
+    HeadbuttEncounterSlot specialSlots[6];
+    HeadbuttTreeCoord treeCoords[17][6];
+} HeadbuttFile_031_Route_27;
+
+typedef struct PACKED HeadbuttFile_032_Route_28 {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+    HeadbuttEncounterSlot normalSlots[12];
+    HeadbuttEncounterSlot specialSlots[6];
+    HeadbuttTreeCoord treeCoords[15][6];
+} HeadbuttFile_032_Route_28;
+
+typedef struct PACKED HeadbuttFile_033_Route_29 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[35][6];
-} HeadbuttFile_033;
+} HeadbuttFile_033_Route_29;
 
-typedef struct PACKED HeadbuttFile_034 {
+typedef struct PACKED HeadbuttFile_034_Route_30 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[30][6];
-} HeadbuttFile_034;
+} HeadbuttFile_034_Route_30;
 
-typedef struct PACKED HeadbuttFile_035 {
+typedef struct PACKED HeadbuttFile_035_Route_31 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_035;
+} HeadbuttFile_035_Route_31;
 
-typedef struct PACKED HeadbuttFile_036 {
+typedef struct PACKED HeadbuttFile_036_Route_32 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[35][6];
-} HeadbuttFile_036;
+} HeadbuttFile_036_Route_32;
 
-typedef struct PACKED HeadbuttFile_037 {
+typedef struct PACKED HeadbuttFile_037_Route_33 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[4][6];
-} HeadbuttFile_037;
+} HeadbuttFile_037_Route_33;
 
-typedef struct PACKED HeadbuttFile_038 {
+typedef struct PACKED HeadbuttFile_038_Route_34 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_038;
+} HeadbuttFile_038_Route_34;
 
-typedef struct PACKED HeadbuttFile_039 {
+typedef struct PACKED HeadbuttFile_039_Route_35 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[14][6];
-} HeadbuttFile_039;
+} HeadbuttFile_039_Route_35;
 
-typedef struct PACKED HeadbuttFile_040 {
+typedef struct PACKED HeadbuttFile_040_Route_36 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[26][6];
-} HeadbuttFile_040;
+} HeadbuttFile_040_Route_36;
 
-typedef struct PACKED HeadbuttFile_041 {
+typedef struct PACKED HeadbuttFile_041_Route_37 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[13][6];
-} HeadbuttFile_041;
+} HeadbuttFile_041_Route_37;
 
-typedef struct PACKED HeadbuttFile_042 {
+typedef struct PACKED HeadbuttFile_042_Route_38 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[14][6];
-} HeadbuttFile_042;
+} HeadbuttFile_042_Route_38;
 
-typedef struct PACKED HeadbuttFile_043 {
+typedef struct PACKED HeadbuttFile_043_Route_39 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_043;
+} HeadbuttFile_043_Route_39;
 
-typedef struct PACKED HeadbuttFile_044 {
+typedef struct PACKED HeadbuttFile_044_Route_42 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[10][6];
-} HeadbuttFile_044;
+} HeadbuttFile_044_Route_42;
 
-typedef struct PACKED HeadbuttFile_045 {
+typedef struct PACKED HeadbuttFile_045_Route_43 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[17][6];
-} HeadbuttFile_045;
+} HeadbuttFile_045_Route_43;
 
-typedef struct PACKED HeadbuttFile_046 {
+typedef struct PACKED HeadbuttFile_046_Route_44 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[14][6];
-} HeadbuttFile_046;
+} HeadbuttFile_046_Route_44;
 
-typedef struct PACKED HeadbuttFile_047 {
+typedef struct PACKED HeadbuttFile_047_Route_45 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_047;
+} HeadbuttFile_047_Route_45;
 
-typedef struct PACKED HeadbuttFile_048 {
+typedef struct PACKED HeadbuttFile_048_Route_46 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[10][6];
-} HeadbuttFile_048;
+} HeadbuttFile_048_Route_46;
 
-typedef struct PACKED HeadbuttFile_049 {
+typedef struct PACKED HeadbuttFile_049_Pallet_Town {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[17][6];
-} HeadbuttFile_049;
+} HeadbuttFile_049_Pallet_Town;
 
-typedef struct PACKED HeadbuttFile_050 {
+typedef struct PACKED HeadbuttFile_050_Viridian_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[21][6];
-} HeadbuttFile_050;
+} HeadbuttFile_050_Viridian_City;
 
-typedef struct PACKED HeadbuttFile_051 {
+typedef struct PACKED HeadbuttFile_051_Pewter_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[23][6];
-} HeadbuttFile_051;
+} HeadbuttFile_051_Pewter_City;
 
-typedef struct PACKED HeadbuttFile_052 {
+typedef struct PACKED HeadbuttFile_052_Cerulean_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[11][6];
-} HeadbuttFile_052;
+} HeadbuttFile_052_Cerulean_City;
 
-typedef struct PACKED HeadbuttFile_053 {
+typedef struct PACKED HeadbuttFile_053_Lavender_Town {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_053;
+} HeadbuttFile_053_Lavender_Town;
 
-typedef struct PACKED HeadbuttFile_054 {
+typedef struct PACKED HeadbuttFile_054_Vermilion_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[10][6];
-} HeadbuttFile_054;
+} HeadbuttFile_054_Vermilion_City;
 
-typedef struct PACKED HeadbuttFile_055 {
+typedef struct PACKED HeadbuttFile_055_Celadon_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[32][6];
-} HeadbuttFile_055;
+} HeadbuttFile_055_Celadon_City;
 
-typedef struct PACKED HeadbuttFile_056 {
+typedef struct PACKED HeadbuttFile_056_Fuchsia_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[18][6];
-} HeadbuttFile_056;
+} HeadbuttFile_056_Fuchsia_City;
 
-typedef struct PACKED HeadbuttFile_057 {
+typedef struct PACKED HeadbuttFile_057_Cinnabar_Island {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_057;
+} HeadbuttFile_057_Cinnabar_Island;
 
-typedef struct PACKED HeadbuttFile_058 {
+typedef struct PACKED HeadbuttFile_058_Indigo_Plateau {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_058;
+} HeadbuttFile_058_Indigo_Plateau;
 
-typedef struct PACKED HeadbuttFile_059 {
+typedef struct PACKED HeadbuttFile_059_Saffron_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_059;
+} HeadbuttFile_059_Saffron_City;
 
-typedef struct PACKED HeadbuttFile_060 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-    HeadbuttEncounterSlot normalSlots[12];
-    HeadbuttEncounterSlot specialSlots[6];
-    HeadbuttTreeCoord treeCoords[11][6];
-} HeadbuttFile_060;
-
-typedef struct PACKED HeadbuttFile_061 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_061;
-
-typedef struct PACKED HeadbuttFile_062 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_062;
-
-typedef struct PACKED HeadbuttFile_063 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_063;
-
-typedef struct PACKED HeadbuttFile_064 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_064;
-
-typedef struct PACKED HeadbuttFile_065 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_065;
-
-typedef struct PACKED HeadbuttFile_066 {
-    u16 normalTreeCount;
-    u16 specialTreeCount;
-} HeadbuttFile_066;
-
-typedef struct PACKED HeadbuttFile_067 {
+typedef struct PACKED HeadbuttFile_060_New_Bark_Town {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[11][6];
-} HeadbuttFile_067;
+} HeadbuttFile_060_New_Bark_Town;
 
-typedef struct PACKED HeadbuttFile_068 {
+typedef struct PACKED HeadbuttFile_061_Elms_Lab_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_068;
+} HeadbuttFile_061_Elms_Lab_1F;
 
-typedef struct PACKED HeadbuttFile_069 {
+typedef struct PACKED HeadbuttFile_062_Elms_Lab_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_069;
+} HeadbuttFile_062_Elms_Lab_2F;
 
-typedef struct PACKED HeadbuttFile_070 {
+typedef struct PACKED HeadbuttFile_063_Moms_House_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_070;
+} HeadbuttFile_063_Moms_House_1F;
 
-typedef struct PACKED HeadbuttFile_071 {
+typedef struct PACKED HeadbuttFile_064_Moms_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_071;
+} HeadbuttFile_064_Moms_House_2F;
 
-typedef struct PACKED HeadbuttFile_072 {
+typedef struct PACKED HeadbuttFile_065_New_Bark_Town_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_072;
+} HeadbuttFile_065_New_Bark_Town_House;
 
-typedef struct PACKED HeadbuttFile_073 {
+typedef struct PACKED HeadbuttFile_066_Ethan_Lyras_House_1F {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_066_Ethan_Lyras_House_1F;
+
+typedef struct PACKED HeadbuttFile_067_Cherrygrove_City {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+    HeadbuttEncounterSlot normalSlots[12];
+    HeadbuttEncounterSlot specialSlots[6];
+    HeadbuttTreeCoord treeCoords[11][6];
+} HeadbuttFile_067_Cherrygrove_City;
+
+typedef struct PACKED HeadbuttFile_068_Cherrygrove_City_Pokmart {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_068_Cherrygrove_City_Pokmart;
+
+typedef struct PACKED HeadbuttFile_069_Cherrygrove_City_Pokmon_Centre {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_069_Cherrygrove_City_Pokmon_Centre;
+
+typedef struct PACKED HeadbuttFile_070_Cherrygrove_City_House {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_070_Cherrygrove_City_House;
+
+typedef struct PACKED HeadbuttFile_071_Cherrygrove_City_House {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_071_Cherrygrove_City_House;
+
+typedef struct PACKED HeadbuttFile_072_Cherrygrove_City_House {
+    u16 normalTreeCount;
+    u16 specialTreeCount;
+} HeadbuttFile_072_Cherrygrove_City_House;
+
+typedef struct PACKED HeadbuttFile_073_Violet_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[27][6];
-} HeadbuttFile_073;
+} HeadbuttFile_073_Violet_City;
 
-typedef struct PACKED HeadbuttFile_074 {
+typedef struct PACKED HeadbuttFile_074_Azalea_Town {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[15][6];
-} HeadbuttFile_074;
+} HeadbuttFile_074_Azalea_Town;
 
-typedef struct PACKED HeadbuttFile_075 {
+typedef struct PACKED HeadbuttFile_075_Cianwood_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_075;
+} HeadbuttFile_075_Cianwood_City;
 
-typedef struct PACKED HeadbuttFile_076 {
+typedef struct PACKED HeadbuttFile_076_Goldenrod_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_076;
+} HeadbuttFile_076_Goldenrod_City;
 
-typedef struct PACKED HeadbuttFile_077 {
+typedef struct PACKED HeadbuttFile_077_Olivine_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_077;
+} HeadbuttFile_077_Olivine_City;
 
-typedef struct PACKED HeadbuttFile_078 {
+typedef struct PACKED HeadbuttFile_078_Ecruteak_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[18][6];
-} HeadbuttFile_078;
+} HeadbuttFile_078_Ecruteak_City;
 
-typedef struct PACKED HeadbuttFile_079 {
+typedef struct PACKED HeadbuttFile_079_Ecruteak_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_079;
+} HeadbuttFile_079_Ecruteak_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_080 {
+typedef struct PACKED HeadbuttFile_080_Ecruteak_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_080;
+} HeadbuttFile_080_Ecruteak_City_Gym;
 
-typedef struct PACKED HeadbuttFile_081 {
+typedef struct PACKED HeadbuttFile_081_Ecruteak_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_081;
+} HeadbuttFile_081_Ecruteak_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_082 {
+typedef struct PACKED HeadbuttFile_082_Jubilife_City_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_082;
+} HeadbuttFile_082_Jubilife_City_Unused;
 
-typedef struct PACKED HeadbuttFile_083 {
+typedef struct PACKED HeadbuttFile_083_Barrier_Station_to_Bell_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_083;
+} HeadbuttFile_083_Barrier_Station_to_Bell_Tower;
 
-typedef struct PACKED HeadbuttFile_084 {
+typedef struct PACKED HeadbuttFile_084_Ecruteak_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_084;
+} HeadbuttFile_084_Ecruteak_City_House;
 
-typedef struct PACKED HeadbuttFile_085 {
+typedef struct PACKED HeadbuttFile_085_Ecruteak_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_085;
+} HeadbuttFile_085_Ecruteak_City_House;
 
-typedef struct PACKED HeadbuttFile_086 {
+typedef struct PACKED HeadbuttFile_086_Ecruteak_Dance_Theatre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_086;
+} HeadbuttFile_086_Ecruteak_Dance_Theatre;
 
-typedef struct PACKED HeadbuttFile_087 {
+typedef struct PACKED HeadbuttFile_087_Mahogany_Town {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_087;
+} HeadbuttFile_087_Mahogany_Town;
 
-typedef struct PACKED HeadbuttFile_088 {
+typedef struct PACKED HeadbuttFile_088_Lake_of_Rage {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[22][6];
-} HeadbuttFile_088;
+} HeadbuttFile_088_Lake_of_Rage;
 
-typedef struct PACKED HeadbuttFile_089 {
+typedef struct PACKED HeadbuttFile_089_Blackthorn_City {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_089;
+} HeadbuttFile_089_Blackthorn_City;
 
-typedef struct PACKED HeadbuttFile_090 {
+typedef struct PACKED HeadbuttFile_090_Mt_Silver {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[5][6];
-} HeadbuttFile_090;
+} HeadbuttFile_090_Mt_Silver;
 
-typedef struct PACKED HeadbuttFile_091 {
+typedef struct PACKED HeadbuttFile_091_Route_19 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_091;
+} HeadbuttFile_091_Route_19;
 
-typedef struct PACKED HeadbuttFile_092 {
+typedef struct PACKED HeadbuttFile_092_Route_20 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_092;
+} HeadbuttFile_092_Route_20;
 
-typedef struct PACKED HeadbuttFile_093 {
+typedef struct PACKED HeadbuttFile_093_Route_21 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_093;
+} HeadbuttFile_093_Route_21;
 
-typedef struct PACKED HeadbuttFile_094 {
+typedef struct PACKED HeadbuttFile_094_Route_40 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_094;
+} HeadbuttFile_094_Route_40;
 
-typedef struct PACKED HeadbuttFile_095 {
+typedef struct PACKED HeadbuttFile_095_Route_41 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_095;
+} HeadbuttFile_095_Route_41;
 
-typedef struct PACKED HeadbuttFile_096 {
+typedef struct PACKED HeadbuttFile_096_National_Park {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[27][6];
-} HeadbuttFile_096;
+} HeadbuttFile_096_National_Park;
 
-typedef struct PACKED HeadbuttFile_097 {
+typedef struct PACKED HeadbuttFile_097_Route_31_And_Violet_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_097;
+} HeadbuttFile_097_Route_31_And_Violet_City_Gate;
 
-typedef struct PACKED HeadbuttFile_098 {
+typedef struct PACKED HeadbuttFile_098_Route_32_And_Ruins_Of_Alph_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_098;
+} HeadbuttFile_098_Route_32_And_Ruins_Of_Alph_Gate;
 
-typedef struct PACKED HeadbuttFile_099 {
+typedef struct PACKED HeadbuttFile_099_Union_Cave_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_099;
+} HeadbuttFile_099_Union_Cave_1F;
 
-typedef struct PACKED HeadbuttFile_100 {
+typedef struct PACKED HeadbuttFile_100_Azalea_Town_And_Ilex_Forest_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_100;
+} HeadbuttFile_100_Azalea_Town_And_Ilex_Forest_Gate;
 
-typedef struct PACKED HeadbuttFile_101 {
+typedef struct PACKED HeadbuttFile_101_Goldenrod_City_And_Route_35_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_101;
+} HeadbuttFile_101_Goldenrod_City_And_Route_35_Gate;
 
-typedef struct PACKED HeadbuttFile_102 {
+typedef struct PACKED HeadbuttFile_102_Route_35_And_National_Park_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_102;
+} HeadbuttFile_102_Route_35_And_National_Park_Gate;
 
-typedef struct PACKED HeadbuttFile_103 {
+typedef struct PACKED HeadbuttFile_103_Ruins_Of_Alph_And_Route_36_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_103;
+} HeadbuttFile_103_Ruins_Of_Alph_And_Route_36_Gate;
 
-typedef struct PACKED HeadbuttFile_104 {
+typedef struct PACKED HeadbuttFile_104_National_Park_And_Route_36_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_104;
+} HeadbuttFile_104_National_Park_And_Route_36_Gate;
 
-typedef struct PACKED HeadbuttFile_105 {
+typedef struct PACKED HeadbuttFile_105_Jubilife_City_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_105;
+} HeadbuttFile_105_Jubilife_City_Unused;
 
-typedef struct PACKED HeadbuttFile_106 {
+typedef struct PACKED HeadbuttFile_106_Digletts_Cave {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_106;
+} HeadbuttFile_106_Digletts_Cave;
 
-typedef struct PACKED HeadbuttFile_107 {
+typedef struct PACKED HeadbuttFile_107_Mt_Moon {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_107;
+} HeadbuttFile_107_Mt_Moon;
 
-typedef struct PACKED HeadbuttFile_108 {
+typedef struct PACKED HeadbuttFile_108_Rock_Tunnel_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_108;
+} HeadbuttFile_108_Rock_Tunnel_1F;
 
-typedef struct PACKED HeadbuttFile_109 {
+typedef struct PACKED HeadbuttFile_109_Pal_Park {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_109;
+} HeadbuttFile_109_Pal_Park;
 
-typedef struct PACKED HeadbuttFile_110 {
+typedef struct PACKED HeadbuttFile_110_Sprout_Tower_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_110;
+} HeadbuttFile_110_Sprout_Tower_1F;
 
-typedef struct PACKED HeadbuttFile_111 {
+typedef struct PACKED HeadbuttFile_111_Bell_Tower_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_111;
+} HeadbuttFile_111_Bell_Tower_1F;
 
-typedef struct PACKED HeadbuttFile_112 {
+typedef struct PACKED HeadbuttFile_112_Radio_Tower_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_112;
+} HeadbuttFile_112_Radio_Tower_1F;
 
-typedef struct PACKED HeadbuttFile_113 {
+typedef struct PACKED HeadbuttFile_113_Ruins_Of_Alph_Outside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_113;
+} HeadbuttFile_113_Ruins_Of_Alph_Outside;
 
-typedef struct PACKED HeadbuttFile_114 {
+typedef struct PACKED HeadbuttFile_114_Slowpoke_Well_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_114;
+} HeadbuttFile_114_Slowpoke_Well_Entrance;
 
-typedef struct PACKED HeadbuttFile_115 {
+typedef struct PACKED HeadbuttFile_115_Olivine_Lighthouse_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_115;
+} HeadbuttFile_115_Olivine_Lighthouse_1F;
 
-typedef struct PACKED HeadbuttFile_116 {
+typedef struct PACKED HeadbuttFile_116_Mahogany_Town_Souvenir_Shop {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_116;
+} HeadbuttFile_116_Mahogany_Town_Souvenir_Shop;
 
-typedef struct PACKED HeadbuttFile_117 {
+typedef struct PACKED HeadbuttFile_117_Ilex_Forest {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[56][6];
-} HeadbuttFile_117;
+} HeadbuttFile_117_Ilex_Forest;
 
-typedef struct PACKED HeadbuttFile_118 {
+typedef struct PACKED HeadbuttFile_118_Goldenrod_Tunnel {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_118;
+} HeadbuttFile_118_Goldenrod_Tunnel;
 
-typedef struct PACKED HeadbuttFile_119 {
+typedef struct PACKED HeadbuttFile_119_Mt_Mortar_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_119;
+} HeadbuttFile_119_Mt_Mortar_1F;
 
-typedef struct PACKED HeadbuttFile_120 {
+typedef struct PACKED HeadbuttFile_120_Ice_Path_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_120;
+} HeadbuttFile_120_Ice_Path_1F;
 
-typedef struct PACKED HeadbuttFile_121 {
+typedef struct PACKED HeadbuttFile_121_Whirl_Islands {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_121;
+} HeadbuttFile_121_Whirl_Islands;
 
-typedef struct PACKED HeadbuttFile_122 {
+typedef struct PACKED HeadbuttFile_122_Mt_Silver_Cave {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_122;
+} HeadbuttFile_122_Mt_Silver_Cave;
 
-typedef struct PACKED HeadbuttFile_123 {
+typedef struct PACKED HeadbuttFile_123_Dark_Cave_Route_45_entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_123;
+} HeadbuttFile_123_Dark_Cave_Route_45_entrance;
 
-typedef struct PACKED HeadbuttFile_124 {
+typedef struct PACKED HeadbuttFile_124_Victory_Road_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_124;
+} HeadbuttFile_124_Victory_Road_1F;
 
-typedef struct PACKED HeadbuttFile_125 {
+typedef struct PACKED HeadbuttFile_125_Dragons_Den_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_125;
+} HeadbuttFile_125_Dragons_Den_Entrance;
 
-typedef struct PACKED HeadbuttFile_126 {
+typedef struct PACKED HeadbuttFile_126_Tohjo_Falls {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_126;
+} HeadbuttFile_126_Tohjo_Falls;
 
-typedef struct PACKED HeadbuttFile_127 {
+typedef struct PACKED HeadbuttFile_127_Route_30_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_127;
+} HeadbuttFile_127_Route_30_House;
 
-typedef struct PACKED HeadbuttFile_128 {
+typedef struct PACKED HeadbuttFile_128_Ecruteak_City_Union_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_128;
+} HeadbuttFile_128_Ecruteak_City_Union_Room;
 
-typedef struct PACKED HeadbuttFile_129 {
+typedef struct PACKED HeadbuttFile_129_Ecruteak_City_Union_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_129;
+} HeadbuttFile_129_Ecruteak_City_Union_Room;
 
-typedef struct PACKED HeadbuttFile_130 {
+typedef struct PACKED HeadbuttFile_130_Ecruteak_City_Union_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_130;
+} HeadbuttFile_130_Ecruteak_City_Union_Room;
 
-typedef struct PACKED HeadbuttFile_131 {
+typedef struct PACKED HeadbuttFile_131_Ecruteak_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_131;
+} HeadbuttFile_131_Ecruteak_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_132 {
+typedef struct PACKED HeadbuttFile_132_Ecruteak_City_And_Route_42_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_132;
+} HeadbuttFile_132_Ecruteak_City_And_Route_42_Gate;
 
-typedef struct PACKED HeadbuttFile_133 {
+typedef struct PACKED HeadbuttFile_133_Mahogany_Town_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_133;
+} HeadbuttFile_133_Mahogany_Town_House;
 
-typedef struct PACKED HeadbuttFile_134 {
+typedef struct PACKED HeadbuttFile_134_Route_29_And_Route_46_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_134;
+} HeadbuttFile_134_Route_29_And_Route_46_Gate;
 
-typedef struct PACKED HeadbuttFile_135 {
+typedef struct PACKED HeadbuttFile_135_Violet_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_135;
+} HeadbuttFile_135_Violet_City_Gym;
 
-typedef struct PACKED HeadbuttFile_136 {
+typedef struct PACKED HeadbuttFile_136_Azalea_Gym_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_136;
+} HeadbuttFile_136_Azalea_Gym_Entrance;
 
-typedef struct PACKED HeadbuttFile_137 {
+typedef struct PACKED HeadbuttFile_137_Goldenrod_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_137;
+} HeadbuttFile_137_Goldenrod_City_Gym;
 
-typedef struct PACKED HeadbuttFile_138 {
+typedef struct PACKED HeadbuttFile_138_Olivine_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_138;
+} HeadbuttFile_138_Olivine_City_Gym;
 
-typedef struct PACKED HeadbuttFile_139 {
+typedef struct PACKED HeadbuttFile_139_Cianwood_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_139;
+} HeadbuttFile_139_Cianwood_City_Gym;
 
-typedef struct PACKED HeadbuttFile_140 {
+typedef struct PACKED HeadbuttFile_140_Mahogany_City_Gym_3rd_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_140;
+} HeadbuttFile_140_Mahogany_City_Gym_3rd_Room;
 
-typedef struct PACKED HeadbuttFile_141 {
+typedef struct PACKED HeadbuttFile_141_Blackthorn_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_141;
+} HeadbuttFile_141_Blackthorn_City_Gym;
 
-typedef struct PACKED HeadbuttFile_142 {
+typedef struct PACKED HeadbuttFile_142_Route_43_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_142;
+} HeadbuttFile_142_Route_43_Gate;
 
-typedef struct PACKED HeadbuttFile_143 {
+typedef struct PACKED HeadbuttFile_143_Mr_Pokmons_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_143;
+} HeadbuttFile_143_Mr_Pokmons_House;
 
-typedef struct PACKED HeadbuttFile_144 {
+typedef struct PACKED HeadbuttFile_144_Cherrygrove_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_144;
+} HeadbuttFile_144_Cherrygrove_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_145 {
+typedef struct PACKED HeadbuttFile_145_Cerulean_Cave_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_145;
+} HeadbuttFile_145_Cerulean_Cave_1F;
 
-typedef struct PACKED HeadbuttFile_146 {
+typedef struct PACKED HeadbuttFile_146_Seafoam_Islands_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_146;
+} HeadbuttFile_146_Seafoam_Islands_1F;
 
-typedef struct PACKED HeadbuttFile_147 {
+typedef struct PACKED HeadbuttFile_147_Viridian_Forest {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[24][6];
-} HeadbuttFile_147;
+} HeadbuttFile_147_Viridian_Forest;
 
-typedef struct PACKED HeadbuttFile_148 {
+typedef struct PACKED HeadbuttFile_148_Power_Plant_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_148;
+} HeadbuttFile_148_Power_Plant_Unused;
 
-typedef struct PACKED HeadbuttFile_149 {
+typedef struct PACKED HeadbuttFile_149_Route_36_And_Violet_City_Inbetween {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_149;
+} HeadbuttFile_149_Route_36_And_Violet_City_Inbetween;
 
-typedef struct PACKED HeadbuttFile_150 {
+typedef struct PACKED HeadbuttFile_150_Route_35_And_Pokathlon_Dome_Inbetween {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_150;
+} HeadbuttFile_150_Route_35_And_Pokathlon_Dome_Inbetween;
 
-typedef struct PACKED HeadbuttFile_151 {
+typedef struct PACKED HeadbuttFile_151_Route_47 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[14][6];
-} HeadbuttFile_151;
+} HeadbuttFile_151_Route_47;
 
-typedef struct PACKED HeadbuttFile_152 {
+typedef struct PACKED HeadbuttFile_152_Route_48 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[6][6];
-} HeadbuttFile_152;
+} HeadbuttFile_152_Route_48;
 
-typedef struct PACKED HeadbuttFile_153 {
+typedef struct PACKED HeadbuttFile_153_Union_Cave_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_153;
+} HeadbuttFile_153_Union_Cave_B1F;
 
-typedef struct PACKED HeadbuttFile_154 {
+typedef struct PACKED HeadbuttFile_154_Union_Cave_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_154;
+} HeadbuttFile_154_Union_Cave_B2F;
 
-typedef struct PACKED HeadbuttFile_155 {
+typedef struct PACKED HeadbuttFile_155_Sprout_Tower_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_155;
+} HeadbuttFile_155_Sprout_Tower_2F;
 
-typedef struct PACKED HeadbuttFile_156 {
+typedef struct PACKED HeadbuttFile_156_Sprout_Tower_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_156;
+} HeadbuttFile_156_Sprout_Tower_3F;
 
-typedef struct PACKED HeadbuttFile_157 {
+typedef struct PACKED HeadbuttFile_157_Violet_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_157;
+} HeadbuttFile_157_Violet_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_158 {
+typedef struct PACKED HeadbuttFile_158_Violet_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_158;
+} HeadbuttFile_158_Violet_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_159 {
+typedef struct PACKED HeadbuttFile_159_Violet_City_Pokmon_School {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_159;
+} HeadbuttFile_159_Violet_City_Pokmon_School;
 
-typedef struct PACKED HeadbuttFile_160 {
+typedef struct PACKED HeadbuttFile_160_Violet_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_160;
+} HeadbuttFile_160_Violet_City_House;
 
-typedef struct PACKED HeadbuttFile_161 {
+typedef struct PACKED HeadbuttFile_161_Jubilife_City_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_161;
+} HeadbuttFile_161_Jubilife_City_Unused;
 
-typedef struct PACKED HeadbuttFile_162 {
+typedef struct PACKED HeadbuttFile_162_Violet_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_162;
+} HeadbuttFile_162_Violet_City_House;
 
-typedef struct PACKED HeadbuttFile_163 {
+typedef struct PACKED HeadbuttFile_163_Azalea_Town_Charcoal_Kiln {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_163;
+} HeadbuttFile_163_Azalea_Town_Charcoal_Kiln;
 
-typedef struct PACKED HeadbuttFile_164 {
+typedef struct PACKED HeadbuttFile_164_Azalea_Town_Kurts_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_164;
+} HeadbuttFile_164_Azalea_Town_Kurts_House;
 
-typedef struct PACKED HeadbuttFile_165 {
+typedef struct PACKED HeadbuttFile_165_Azalea_Town_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_165;
+} HeadbuttFile_165_Azalea_Town_Pokmart;
 
-typedef struct PACKED HeadbuttFile_166 {
+typedef struct PACKED HeadbuttFile_166_Azalea_Town_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_166;
+} HeadbuttFile_166_Azalea_Town_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_167 {
+typedef struct PACKED HeadbuttFile_167_Violet_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_167;
+} HeadbuttFile_167_Violet_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_168 {
+typedef struct PACKED HeadbuttFile_168_Azalea_Town_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_168;
+} HeadbuttFile_168_Azalea_Town_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_169 {
+typedef struct PACKED HeadbuttFile_169_Route_32_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_169;
+} HeadbuttFile_169_Route_32_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_170 {
+typedef struct PACKED HeadbuttFile_170_Route_32_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_170;
+} HeadbuttFile_170_Route_32_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_171 {
+typedef struct PACKED HeadbuttFile_171_Ilex_Forest_And_Route_34_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_171;
+} HeadbuttFile_171_Ilex_Forest_And_Route_34_Gate;
 
-typedef struct PACKED HeadbuttFile_172 {
+typedef struct PACKED HeadbuttFile_172_Ecruteak_And_Route_38_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_172;
+} HeadbuttFile_172_Ecruteak_And_Route_38_Gate;
 
-typedef struct PACKED HeadbuttFile_173 {
+typedef struct PACKED HeadbuttFile_173_Safari_Zone_Gate_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_173;
+} HeadbuttFile_173_Safari_Zone_Gate_Inside;
 
-typedef struct PACKED HeadbuttFile_174 {
+typedef struct PACKED HeadbuttFile_174_Safari_Zone_Gate_Outside {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[17][6];
-} HeadbuttFile_174;
+} HeadbuttFile_174_Safari_Zone_Gate_Outside;
 
-typedef struct PACKED HeadbuttFile_175 {
+typedef struct PACKED HeadbuttFile_175_Jubilife_City_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_175;
+} HeadbuttFile_175_Jubilife_City_Unused;
 
-typedef struct PACKED HeadbuttFile_176 {
+typedef struct PACKED HeadbuttFile_176_Dark_Cave_Route_31_entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_176;
+} HeadbuttFile_176_Dark_Cave_Route_31_entrance;
 
-typedef struct PACKED HeadbuttFile_177 {
+typedef struct PACKED HeadbuttFile_177_Slowpoke_Well_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_177;
+} HeadbuttFile_177_Slowpoke_Well_1F;
 
-typedef struct PACKED HeadbuttFile_178 {
+typedef struct PACKED HeadbuttFile_178_Victory_Road_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_178;
+} HeadbuttFile_178_Victory_Road_2F;
 
-typedef struct PACKED HeadbuttFile_179 {
+typedef struct PACKED HeadbuttFile_179_Victory_Road_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_179;
+} HeadbuttFile_179_Victory_Road_3F;
 
-typedef struct PACKED HeadbuttFile_180 {
+typedef struct PACKED HeadbuttFile_180_Azalea_Town_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_180;
+} HeadbuttFile_180_Azalea_Town_Gym;
 
-typedef struct PACKED HeadbuttFile_181 {
+typedef struct PACKED HeadbuttFile_181_Slowpoke_Well_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_181;
+} HeadbuttFile_181_Slowpoke_Well_B1F;
 
-typedef struct PACKED HeadbuttFile_182 {
+typedef struct PACKED HeadbuttFile_182_Goldenrod_City_Bike_Store {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_182;
+} HeadbuttFile_182_Goldenrod_City_Bike_Store;
 
-typedef struct PACKED HeadbuttFile_183 {
+typedef struct PACKED HeadbuttFile_183_Goldenrod_City_Game_Corner_JAP {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_183;
+} HeadbuttFile_183_Goldenrod_City_Game_Corner_JAP;
 
-typedef struct PACKED HeadbuttFile_184 {
+typedef struct PACKED HeadbuttFile_184_Goldenrod_City_Flower_Shop {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_184;
+} HeadbuttFile_184_Goldenrod_City_Flower_Shop;
 
-typedef struct PACKED HeadbuttFile_185 {
+typedef struct PACKED HeadbuttFile_185_Goldenrod_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_185;
+} HeadbuttFile_185_Goldenrod_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_186 {
+typedef struct PACKED HeadbuttFile_186_Goldenrod_Radio_Tower_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_186;
+} HeadbuttFile_186_Goldenrod_Radio_Tower_2F;
 
-typedef struct PACKED HeadbuttFile_187 {
+typedef struct PACKED HeadbuttFile_187_Goldenrod_Radio_Tower_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_187;
+} HeadbuttFile_187_Goldenrod_Radio_Tower_3F;
 
-typedef struct PACKED HeadbuttFile_188 {
+typedef struct PACKED HeadbuttFile_188_Goldenrod_Radio_Tower_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_188;
+} HeadbuttFile_188_Goldenrod_Radio_Tower_4F;
 
-typedef struct PACKED HeadbuttFile_189 {
+typedef struct PACKED HeadbuttFile_189_Goldenrod_Radio_Tower_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_189;
+} HeadbuttFile_189_Goldenrod_Radio_Tower_5F;
 
-typedef struct PACKED HeadbuttFile_190 {
+typedef struct PACKED HeadbuttFile_190_Goldenrod_Radio_Tower_Observation_Deck {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_190;
+} HeadbuttFile_190_Goldenrod_Radio_Tower_Observation_Deck;
 
-typedef struct PACKED HeadbuttFile_191 {
+typedef struct PACKED HeadbuttFile_191_Goldenrod_Department_Store_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_191;
+} HeadbuttFile_191_Goldenrod_Department_Store_1F;
 
-typedef struct PACKED HeadbuttFile_192 {
+typedef struct PACKED HeadbuttFile_192_Goldenrod_Department_Store_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_192;
+} HeadbuttFile_192_Goldenrod_Department_Store_2F;
 
-typedef struct PACKED HeadbuttFile_193 {
+typedef struct PACKED HeadbuttFile_193_Goldenrod_Department_Store_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_193;
+} HeadbuttFile_193_Goldenrod_Department_Store_3F;
 
-typedef struct PACKED HeadbuttFile_194 {
+typedef struct PACKED HeadbuttFile_194_Goldenrod_Department_Store_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_194;
+} HeadbuttFile_194_Goldenrod_Department_Store_4F;
 
-typedef struct PACKED HeadbuttFile_195 {
+typedef struct PACKED HeadbuttFile_195_Goldenrod_Department_Store_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_195;
+} HeadbuttFile_195_Goldenrod_Department_Store_5F;
 
-typedef struct PACKED HeadbuttFile_196 {
+typedef struct PACKED HeadbuttFile_196_Goldenrod_Department_Store_6F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_196;
+} HeadbuttFile_196_Goldenrod_Department_Store_6F;
 
-typedef struct PACKED HeadbuttFile_197 {
+typedef struct PACKED HeadbuttFile_197_Goldenrod_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_197;
+} HeadbuttFile_197_Goldenrod_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_198 {
+typedef struct PACKED HeadbuttFile_198_Goldenrod_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_198;
+} HeadbuttFile_198_Goldenrod_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_199 {
+typedef struct PACKED HeadbuttFile_199_Goldenrod_Tunnel {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_199;
+} HeadbuttFile_199_Goldenrod_Tunnel;
 
-typedef struct PACKED HeadbuttFile_200 {
+typedef struct PACKED HeadbuttFile_200_Goldenrod_Department_Store_Basement {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_200;
+} HeadbuttFile_200_Goldenrod_Department_Store_Basement;
 
-typedef struct PACKED HeadbuttFile_201 {
+typedef struct PACKED HeadbuttFile_201_Goldenrod_Tunnel_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_201;
+} HeadbuttFile_201_Goldenrod_Tunnel_B2F;
 
-typedef struct PACKED HeadbuttFile_202 {
+typedef struct PACKED HeadbuttFile_202_Goldenrod_Tunnel_Warehouse {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_202;
+} HeadbuttFile_202_Goldenrod_Tunnel_Warehouse;
 
-typedef struct PACKED HeadbuttFile_203 {
+typedef struct PACKED HeadbuttFile_203_Goldenrod_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_203;
+} HeadbuttFile_203_Goldenrod_City_House;
 
-typedef struct PACKED HeadbuttFile_204 {
+typedef struct PACKED HeadbuttFile_204_Goldenrod_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_204;
+} HeadbuttFile_204_Goldenrod_City_House;
 
-typedef struct PACKED HeadbuttFile_205 {
+typedef struct PACKED HeadbuttFile_205_Goldenrod_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_205;
+} HeadbuttFile_205_Goldenrod_City_House;
 
-typedef struct PACKED HeadbuttFile_206 {
+typedef struct PACKED HeadbuttFile_206_Goldenrod_City_Name_Rater {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_206;
+} HeadbuttFile_206_Goldenrod_City_Name_Rater;
 
-typedef struct PACKED HeadbuttFile_207 {
+typedef struct PACKED HeadbuttFile_207_Global_Terminal {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_207;
+} HeadbuttFile_207_Global_Terminal;
 
-typedef struct PACKED HeadbuttFile_208 {
+typedef struct PACKED HeadbuttFile_208_Goldenrod_City_House_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_208;
+} HeadbuttFile_208_Goldenrod_City_House_1F;
 
-typedef struct PACKED HeadbuttFile_209 {
+typedef struct PACKED HeadbuttFile_209_Goldenrod_City_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_209;
+} HeadbuttFile_209_Goldenrod_City_House_2F;
 
-typedef struct PACKED HeadbuttFile_210 {
+typedef struct PACKED HeadbuttFile_210_Goldenrod_City_House_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_210;
+} HeadbuttFile_210_Goldenrod_City_House_3F;
 
-typedef struct PACKED HeadbuttFile_211 {
+typedef struct PACKED HeadbuttFile_211_Goldenrod_City_House_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_211;
+} HeadbuttFile_211_Goldenrod_City_House_4F;
 
-typedef struct PACKED HeadbuttFile_212 {
+typedef struct PACKED HeadbuttFile_212_Goldenrod_City_House_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_212;
+} HeadbuttFile_212_Goldenrod_City_House_5F;
 
-typedef struct PACKED HeadbuttFile_213 {
+typedef struct PACKED HeadbuttFile_213_Goldenrod_City_House_6F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_213;
+} HeadbuttFile_213_Goldenrod_City_House_6F;
 
-typedef struct PACKED HeadbuttFile_214 {
+typedef struct PACKED HeadbuttFile_214_Moomoo_Farm_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_214;
+} HeadbuttFile_214_Moomoo_Farm_House;
 
-typedef struct PACKED HeadbuttFile_215 {
+typedef struct PACKED HeadbuttFile_215_Moomoo_Farm_Barn {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_215;
+} HeadbuttFile_215_Moomoo_Farm_Barn;
 
-typedef struct PACKED HeadbuttFile_216 {
+typedef struct PACKED HeadbuttFile_216_Barrier_Station_to_Bell_Tower_And_Bellchime_Trail_Path {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_216;
+} HeadbuttFile_216_Barrier_Station_to_Bell_Tower_And_Bellchime_Trail_Path;
 
-typedef struct PACKED HeadbuttFile_217 {
+typedef struct PACKED HeadbuttFile_217_Burned_Tower_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_217;
+} HeadbuttFile_217_Burned_Tower_B1F;
 
-typedef struct PACKED HeadbuttFile_218 {
+typedef struct PACKED HeadbuttFile_218_Ruins_of_Alph_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_218;
+} HeadbuttFile_218_Ruins_of_Alph_Inside;
 
-typedef struct PACKED HeadbuttFile_219 {
+typedef struct PACKED HeadbuttFile_219_Goldenrod_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_219;
+} HeadbuttFile_219_Goldenrod_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_220 {
+typedef struct PACKED HeadbuttFile_220_Glitter_Lighthouse_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_220;
+} HeadbuttFile_220_Glitter_Lighthouse_2F;
 
-typedef struct PACKED HeadbuttFile_221 {
+typedef struct PACKED HeadbuttFile_221_Glitter_Lighthouse_Exterior {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_221;
+} HeadbuttFile_221_Glitter_Lighthouse_Exterior;
 
-typedef struct PACKED HeadbuttFile_222 {
+typedef struct PACKED HeadbuttFile_222_Glitter_Lighthouse_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_222;
+} HeadbuttFile_222_Glitter_Lighthouse_3F;
 
-typedef struct PACKED HeadbuttFile_223 {
+typedef struct PACKED HeadbuttFile_223_Glitter_Lighthouse_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_223;
+} HeadbuttFile_223_Glitter_Lighthouse_4F;
 
-typedef struct PACKED HeadbuttFile_224 {
+typedef struct PACKED HeadbuttFile_224_Glitter_Lighthouse_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_224;
+} HeadbuttFile_224_Glitter_Lighthouse_5F;
 
-typedef struct PACKED HeadbuttFile_225 {
+typedef struct PACKED HeadbuttFile_225_Glitter_Lighthouse_Light_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_225;
+} HeadbuttFile_225_Glitter_Lighthouse_Light_Room;
 
-typedef struct PACKED HeadbuttFile_226 {
+typedef struct PACKED HeadbuttFile_226_Olivine_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_226;
+} HeadbuttFile_226_Olivine_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_227 {
+typedef struct PACKED HeadbuttFile_227_Olivine_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_227;
+} HeadbuttFile_227_Olivine_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_228 {
+typedef struct PACKED HeadbuttFile_228_Olivine_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_228;
+} HeadbuttFile_228_Olivine_City_House;
 
-typedef struct PACKED HeadbuttFile_229 {
+typedef struct PACKED HeadbuttFile_229_Olivine_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_229;
+} HeadbuttFile_229_Olivine_City_House;
 
-typedef struct PACKED HeadbuttFile_230 {
+typedef struct PACKED HeadbuttFile_230_Olivine_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_230;
+} HeadbuttFile_230_Olivine_City_House;
 
-typedef struct PACKED HeadbuttFile_231 {
+typedef struct PACKED HeadbuttFile_231_Olivine_City_Caf {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_231;
+} HeadbuttFile_231_Olivine_City_Caf;
 
-typedef struct PACKED HeadbuttFile_232 {
+typedef struct PACKED HeadbuttFile_232_Cianwood_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_232;
+} HeadbuttFile_232_Cianwood_City_House;
 
-typedef struct PACKED HeadbuttFile_233 {
+typedef struct PACKED HeadbuttFile_233_Cianwood_City_Pharmacy {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_233;
+} HeadbuttFile_233_Cianwood_City_Pharmacy;
 
-typedef struct PACKED HeadbuttFile_234 {
+typedef struct PACKED HeadbuttFile_234_Cianwood_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_234;
+} HeadbuttFile_234_Cianwood_City_House;
 
-typedef struct PACKED HeadbuttFile_235 {
+typedef struct PACKED HeadbuttFile_235_Cianwood_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_235;
+} HeadbuttFile_235_Cianwood_City_House;
 
-typedef struct PACKED HeadbuttFile_236 {
+typedef struct PACKED HeadbuttFile_236_Cianwood_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_236;
+} HeadbuttFile_236_Cianwood_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_237 {
+typedef struct PACKED HeadbuttFile_237_Ice_Path_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_237;
+} HeadbuttFile_237_Ice_Path_B1F;
 
-typedef struct PACKED HeadbuttFile_238 {
+typedef struct PACKED HeadbuttFile_238_Ice_Path_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_238;
+} HeadbuttFile_238_Ice_Path_B2F;
 
-typedef struct PACKED HeadbuttFile_239 {
+typedef struct PACKED HeadbuttFile_239_Ice_Path_B3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_239;
+} HeadbuttFile_239_Ice_Path_B3F;
 
-typedef struct PACKED HeadbuttFile_240 {
+typedef struct PACKED HeadbuttFile_240_Olivine_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_240;
+} HeadbuttFile_240_Olivine_City_House;
 
-typedef struct PACKED HeadbuttFile_241 {
+typedef struct PACKED HeadbuttFile_241_Cianwood_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_241;
+} HeadbuttFile_241_Cianwood_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_242 {
+typedef struct PACKED HeadbuttFile_242_Whirl_Islands_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_242;
+} HeadbuttFile_242_Whirl_Islands_B1F;
 
-typedef struct PACKED HeadbuttFile_243 {
+typedef struct PACKED HeadbuttFile_243_Whirl_Islands_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_243;
+} HeadbuttFile_243_Whirl_Islands_B2F;
 
-typedef struct PACKED HeadbuttFile_244 {
+typedef struct PACKED HeadbuttFile_244_Whirl_Islands_B3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_244;
+} HeadbuttFile_244_Whirl_Islands_B3F;
 
-typedef struct PACKED HeadbuttFile_245 {
+typedef struct PACKED HeadbuttFile_245_Route_43_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_245;
+} HeadbuttFile_245_Route_43_Gate;
 
-typedef struct PACKED HeadbuttFile_246 {
+typedef struct PACKED HeadbuttFile_246_Mahogany_Town_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_246;
+} HeadbuttFile_246_Mahogany_Town_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_247 {
+typedef struct PACKED HeadbuttFile_247_Team_Rocket_HQ_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_247;
+} HeadbuttFile_247_Team_Rocket_HQ_B1F;
 
-typedef struct PACKED HeadbuttFile_248 {
+typedef struct PACKED HeadbuttFile_248_Team_Rocket_HQ_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_248;
+} HeadbuttFile_248_Team_Rocket_HQ_B2F;
 
-typedef struct PACKED HeadbuttFile_249 {
+typedef struct PACKED HeadbuttFile_249_Team_Rocket_HQ_B3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_249;
+} HeadbuttFile_249_Team_Rocket_HQ_B3F;
 
-typedef struct PACKED HeadbuttFile_250 {
+typedef struct PACKED HeadbuttFile_250_Mt_Mortar_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_250;
+} HeadbuttFile_250_Mt_Mortar_1F;
 
-typedef struct PACKED HeadbuttFile_251 {
+typedef struct PACKED HeadbuttFile_251_Mt_Mortar_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_251;
+} HeadbuttFile_251_Mt_Mortar_2F;
 
-typedef struct PACKED HeadbuttFile_252 {
+typedef struct PACKED HeadbuttFile_252_Mt_Mortar_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_252;
+} HeadbuttFile_252_Mt_Mortar_1F;
 
-typedef struct PACKED HeadbuttFile_253 {
+typedef struct PACKED HeadbuttFile_253_Dragons_Den_Main {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_253;
+} HeadbuttFile_253_Dragons_Den_Main;
 
-typedef struct PACKED HeadbuttFile_254 {
+typedef struct PACKED HeadbuttFile_254_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_254;
+} HeadbuttFile_254_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_255 {
+typedef struct PACKED HeadbuttFile_255_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_255;
+} HeadbuttFile_255_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_256 {
+typedef struct PACKED HeadbuttFile_256_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_256;
+} HeadbuttFile_256_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_257 {
+typedef struct PACKED HeadbuttFile_257_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_257;
+} HeadbuttFile_257_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_258 {
+typedef struct PACKED HeadbuttFile_258_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_258;
+} HeadbuttFile_258_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_259 {
+typedef struct PACKED HeadbuttFile_259_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_259;
+} HeadbuttFile_259_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_260 {
+typedef struct PACKED HeadbuttFile_260_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_260;
+} HeadbuttFile_260_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_261 {
+typedef struct PACKED HeadbuttFile_261_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_261;
+} HeadbuttFile_261_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_262 {
+typedef struct PACKED HeadbuttFile_262_Fight_Area {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_262;
+} HeadbuttFile_262_Fight_Area;
 
-typedef struct PACKED HeadbuttFile_263 {
+typedef struct PACKED HeadbuttFile_263_Battle_Park {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_263;
+} HeadbuttFile_263_Battle_Park;
 
-typedef struct PACKED HeadbuttFile_264 {
+typedef struct PACKED HeadbuttFile_264_Battle_Park {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_264;
+} HeadbuttFile_264_Battle_Park;
 
-typedef struct PACKED HeadbuttFile_265 {
+typedef struct PACKED HeadbuttFile_265_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_265;
+} HeadbuttFile_265_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_266 {
+typedef struct PACKED HeadbuttFile_266_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_266;
+} HeadbuttFile_266_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_267 {
+typedef struct PACKED HeadbuttFile_267_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_267;
+} HeadbuttFile_267_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_268 {
+typedef struct PACKED HeadbuttFile_268_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_268;
+} HeadbuttFile_268_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_269 {
+typedef struct PACKED HeadbuttFile_269_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_269;
+} HeadbuttFile_269_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_270 {
+typedef struct PACKED HeadbuttFile_270_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_270;
+} HeadbuttFile_270_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_271 {
+typedef struct PACKED HeadbuttFile_271_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_271;
+} HeadbuttFile_271_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_272 {
+typedef struct PACKED HeadbuttFile_272_Battle_Frontier {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_272;
+} HeadbuttFile_272_Battle_Frontier;
 
-typedef struct PACKED HeadbuttFile_273 {
+typedef struct PACKED HeadbuttFile_273_Battle_Frontier {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_273;
+} HeadbuttFile_273_Battle_Frontier;
 
-typedef struct PACKED HeadbuttFile_274 {
+typedef struct PACKED HeadbuttFile_274_Battle_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_274;
+} HeadbuttFile_274_Battle_Tower;
 
-typedef struct PACKED HeadbuttFile_275 {
+typedef struct PACKED HeadbuttFile_275_Battle_Factory {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_275;
+} HeadbuttFile_275_Battle_Factory;
 
-typedef struct PACKED HeadbuttFile_276 {
+typedef struct PACKED HeadbuttFile_276_Battle_Hall {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_276;
+} HeadbuttFile_276_Battle_Hall;
 
-typedef struct PACKED HeadbuttFile_277 {
+typedef struct PACKED HeadbuttFile_277_Battle_Castle {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_277;
+} HeadbuttFile_277_Battle_Castle;
 
-typedef struct PACKED HeadbuttFile_278 {
+typedef struct PACKED HeadbuttFile_278_Battle_Arcade {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_278;
+} HeadbuttFile_278_Battle_Arcade;
 
-typedef struct PACKED HeadbuttFile_279 {
+typedef struct PACKED HeadbuttFile_279_Cliff_Edge_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_279;
+} HeadbuttFile_279_Cliff_Edge_Gate;
 
-typedef struct PACKED HeadbuttFile_280 {
+typedef struct PACKED HeadbuttFile_280_Pokathlon_Dome_Outside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_280;
+} HeadbuttFile_280_Pokathlon_Dome_Outside;
 
-typedef struct PACKED HeadbuttFile_281 {
+typedef struct PACKED HeadbuttFile_281_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_281;
+} HeadbuttFile_281_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_282 {
+typedef struct PACKED HeadbuttFile_282_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_282;
+} HeadbuttFile_282_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_283 {
+typedef struct PACKED HeadbuttFile_283_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_283;
+} HeadbuttFile_283_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_284 {
+typedef struct PACKED HeadbuttFile_284_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_284;
+} HeadbuttFile_284_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_285 {
+typedef struct PACKED HeadbuttFile_285_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_285;
+} HeadbuttFile_285_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_286 {
+typedef struct PACKED HeadbuttFile_286_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_286;
+} HeadbuttFile_286_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_287 {
+typedef struct PACKED HeadbuttFile_287_Pokathlon_Dome_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_287;
+} HeadbuttFile_287_Pokathlon_Dome_Inside;
 
-typedef struct PACKED HeadbuttFile_288 {
+typedef struct PACKED HeadbuttFile_288_Dragons_Den_Shrine {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_288;
+} HeadbuttFile_288_Dragons_Den_Shrine;
 
-typedef struct PACKED HeadbuttFile_289 {
+typedef struct PACKED HeadbuttFile_289_Blackthorn_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_289;
+} HeadbuttFile_289_Blackthorn_City_House;
 
-typedef struct PACKED HeadbuttFile_290 {
+typedef struct PACKED HeadbuttFile_290_Blackthorn_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_290;
+} HeadbuttFile_290_Blackthorn_City_House;
 
-typedef struct PACKED HeadbuttFile_291 {
+typedef struct PACKED HeadbuttFile_291_Blackthorn_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_291;
+} HeadbuttFile_291_Blackthorn_City_House;
 
-typedef struct PACKED HeadbuttFile_292 {
+typedef struct PACKED HeadbuttFile_292_Blackthorn_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_292;
+} HeadbuttFile_292_Blackthorn_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_293 {
+typedef struct PACKED HeadbuttFile_293_Blackthorn_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_293;
+} HeadbuttFile_293_Blackthorn_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_294 {
+typedef struct PACKED HeadbuttFile_294_Lake_of_Rage_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_294;
+} HeadbuttFile_294_Lake_of_Rage_House;
 
-typedef struct PACKED HeadbuttFile_295 {
+typedef struct PACKED HeadbuttFile_295_Lake_of_Rage_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_295;
+} HeadbuttFile_295_Lake_of_Rage_House;
 
-typedef struct PACKED HeadbuttFile_296 {
+typedef struct PACKED HeadbuttFile_296_Route_26_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_296;
+} HeadbuttFile_296_Route_26_House;
 
-typedef struct PACKED HeadbuttFile_297 {
+typedef struct PACKED HeadbuttFile_297_Route_26_Week_Siblings_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_297;
+} HeadbuttFile_297_Route_26_Week_Siblings_House;
 
-typedef struct PACKED HeadbuttFile_298 {
+typedef struct PACKED HeadbuttFile_298_Tohjo_Falls_Hidden_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_298;
+} HeadbuttFile_298_Tohjo_Falls_Hidden_Room;
 
-typedef struct PACKED HeadbuttFile_299 {
+typedef struct PACKED HeadbuttFile_299_Pokmon_League_Reception_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_299;
+} HeadbuttFile_299_Pokmon_League_Reception_Gate;
 
-typedef struct PACKED HeadbuttFile_300 {
+typedef struct PACKED HeadbuttFile_300_Pokmon_League {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_300;
+} HeadbuttFile_300_Pokmon_League;
 
-typedef struct PACKED HeadbuttFile_301 {
+typedef struct PACKED HeadbuttFile_301_Pokmon_League_Wills_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_301;
+} HeadbuttFile_301_Pokmon_League_Wills_Room;
 
-typedef struct PACKED HeadbuttFile_302 {
+typedef struct PACKED HeadbuttFile_302_Pokmon_League_Kogas_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_302;
+} HeadbuttFile_302_Pokmon_League_Kogas_Room;
 
-typedef struct PACKED HeadbuttFile_303 {
+typedef struct PACKED HeadbuttFile_303_Pokmon_League_Brunos_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_303;
+} HeadbuttFile_303_Pokmon_League_Brunos_Room;
 
-typedef struct PACKED HeadbuttFile_304 {
+typedef struct PACKED HeadbuttFile_304_Pokmon_League_Karens_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_304;
+} HeadbuttFile_304_Pokmon_League_Karens_Room;
 
-typedef struct PACKED HeadbuttFile_305 {
+typedef struct PACKED HeadbuttFile_305_Pokmon_League_Lances_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_305;
+} HeadbuttFile_305_Pokmon_League_Lances_Room;
 
-typedef struct PACKED HeadbuttFile_306 {
+typedef struct PACKED HeadbuttFile_306_Pokmon_League_Hall_of_Fame {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_306;
+} HeadbuttFile_306_Pokmon_League_Hall_of_Fame;
 
-typedef struct PACKED HeadbuttFile_307 {
+typedef struct PACKED HeadbuttFile_307_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_307;
+} HeadbuttFile_307_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_308 {
+typedef struct PACKED HeadbuttFile_308_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_308;
+} HeadbuttFile_308_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_309 {
+typedef struct PACKED HeadbuttFile_309_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_309;
+} HeadbuttFile_309_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_310 {
+typedef struct PACKED HeadbuttFile_310_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_310;
+} HeadbuttFile_310_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_311 {
+typedef struct PACKED HeadbuttFile_311_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_311;
+} HeadbuttFile_311_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_312 {
+typedef struct PACKED HeadbuttFile_312_Ruins_of_Alph_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_312;
+} HeadbuttFile_312_Ruins_of_Alph_Entrance;
 
-typedef struct PACKED HeadbuttFile_313 {
+typedef struct PACKED HeadbuttFile_313_Ruins_of_Alph_Chamber_1 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_313;
+} HeadbuttFile_313_Ruins_of_Alph_Chamber_1;
 
-typedef struct PACKED HeadbuttFile_314 {
+typedef struct PACKED HeadbuttFile_314_Ruins_of_Alph_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_314;
+} HeadbuttFile_314_Ruins_of_Alph_Entrance;
 
-typedef struct PACKED HeadbuttFile_315 {
+typedef struct PACKED HeadbuttFile_315_Ruins_of_Alph_Underground_Hall {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_315;
+} HeadbuttFile_315_Ruins_of_Alph_Underground_Hall;
 
-typedef struct PACKED HeadbuttFile_316 {
+typedef struct PACKED HeadbuttFile_316_Ruins_of_Alph_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_316;
+} HeadbuttFile_316_Ruins_of_Alph_Entrance;
 
-typedef struct PACKED HeadbuttFile_317 {
+typedef struct PACKED HeadbuttFile_317_Ruins_of_Alph_Chamber_3 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_317;
+} HeadbuttFile_317_Ruins_of_Alph_Chamber_3;
 
-typedef struct PACKED HeadbuttFile_318 {
+typedef struct PACKED HeadbuttFile_318_Ruins_of_Alph_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_318;
+} HeadbuttFile_318_Ruins_of_Alph_Entrance;
 
-typedef struct PACKED HeadbuttFile_319 {
+typedef struct PACKED HeadbuttFile_319_Ruins_of_Alph_Chamber_4 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_319;
+} HeadbuttFile_319_Ruins_of_Alph_Chamber_4;
 
-typedef struct PACKED HeadbuttFile_320 {
+typedef struct PACKED HeadbuttFile_320_Ruins_of_Alph_Chamber_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_320;
+} HeadbuttFile_320_Ruins_of_Alph_Chamber_2;
 
-typedef struct PACKED HeadbuttFile_321 {
+typedef struct PACKED HeadbuttFile_321_Ruins_of_Alph_Research_Center {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_321;
+} HeadbuttFile_321_Ruins_of_Alph_Research_Center;
 
-typedef struct PACKED HeadbuttFile_322 {
+typedef struct PACKED HeadbuttFile_322_Route_27_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_322;
+} HeadbuttFile_322_Route_27_House;
 
-typedef struct PACKED HeadbuttFile_323 {
+typedef struct PACKED HeadbuttFile_323_Ruins_of_Alph_Hall_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_323;
+} HeadbuttFile_323_Ruins_of_Alph_Hall_Entrance;
 
-typedef struct PACKED HeadbuttFile_324 {
+typedef struct PACKED HeadbuttFile_324_Ruins_of_Alph_Entrance_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_324;
+} HeadbuttFile_324_Ruins_of_Alph_Entrance_2;
 
-typedef struct PACKED HeadbuttFile_325 {
+typedef struct PACKED HeadbuttFile_325_Ruins_of_Alph_Entrance_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_325;
+} HeadbuttFile_325_Ruins_of_Alph_Entrance_2;
 
-typedef struct PACKED HeadbuttFile_326 {
+typedef struct PACKED HeadbuttFile_326_Ruins_of_Alph_Entrance_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_326;
+} HeadbuttFile_326_Ruins_of_Alph_Entrance_2;
 
-typedef struct PACKED HeadbuttFile_327 {
+typedef struct PACKED HeadbuttFile_327_Ruins_of_Alph_Entrance_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_327;
+} HeadbuttFile_327_Ruins_of_Alph_Entrance_2;
 
-typedef struct PACKED HeadbuttFile_328 {
+typedef struct PACKED HeadbuttFile_328_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_328;
+} HeadbuttFile_328_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_329 {
+typedef struct PACKED HeadbuttFile_329_S_S_Aqua {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_329;
+} HeadbuttFile_329_S_S_Aqua;
 
-typedef struct PACKED HeadbuttFile_330 {
+typedef struct PACKED HeadbuttFile_330_Olivine_Port {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_330;
+} HeadbuttFile_330_Olivine_Port;
 
-typedef struct PACKED HeadbuttFile_331 {
+typedef struct PACKED HeadbuttFile_331_Pokmon_Daycare {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_331;
+} HeadbuttFile_331_Pokmon_Daycare;
 
-typedef struct PACKED HeadbuttFile_332 {
+typedef struct PACKED HeadbuttFile_332_Bell_Tower_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_332;
+} HeadbuttFile_332_Bell_Tower_2F;
 
-typedef struct PACKED HeadbuttFile_333 {
+typedef struct PACKED HeadbuttFile_333_Bell_Tower_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_333;
+} HeadbuttFile_333_Bell_Tower_3F;
 
-typedef struct PACKED HeadbuttFile_334 {
+typedef struct PACKED HeadbuttFile_334_Bell_Tower_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_334;
+} HeadbuttFile_334_Bell_Tower_4F;
 
-typedef struct PACKED HeadbuttFile_335 {
+typedef struct PACKED HeadbuttFile_335_Bell_Tower_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_335;
+} HeadbuttFile_335_Bell_Tower_5F;
 
-typedef struct PACKED HeadbuttFile_336 {
+typedef struct PACKED HeadbuttFile_336_Bell_Tower_6F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_336;
+} HeadbuttFile_336_Bell_Tower_6F;
 
-typedef struct PACKED HeadbuttFile_337 {
+typedef struct PACKED HeadbuttFile_337_Bell_Tower_7F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_337;
+} HeadbuttFile_337_Bell_Tower_7F;
 
-typedef struct PACKED HeadbuttFile_338 {
+typedef struct PACKED HeadbuttFile_338_Bell_Tower_8F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_338;
+} HeadbuttFile_338_Bell_Tower_8F;
 
-typedef struct PACKED HeadbuttFile_339 {
+typedef struct PACKED HeadbuttFile_339_Bell_Tower_9F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_339;
+} HeadbuttFile_339_Bell_Tower_9F;
 
-typedef struct PACKED HeadbuttFile_340 {
+typedef struct PACKED HeadbuttFile_340_Bell_Tower_Roof {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_340;
+} HeadbuttFile_340_Bell_Tower_Roof;
 
-typedef struct PACKED HeadbuttFile_341 {
+typedef struct PACKED HeadbuttFile_341_Bell_Tower_10F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_341;
+} HeadbuttFile_341_Bell_Tower_10F;
 
-typedef struct PACKED HeadbuttFile_342 {
+typedef struct PACKED HeadbuttFile_342_Cliff_Cave {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_342;
+} HeadbuttFile_342_Cliff_Cave;
 
-typedef struct PACKED HeadbuttFile_343 {
+typedef struct PACKED HeadbuttFile_343_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_343;
+} HeadbuttFile_343_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_344 {
+typedef struct PACKED HeadbuttFile_344_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_344;
+} HeadbuttFile_344_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_345 {
+typedef struct PACKED HeadbuttFile_345_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_345;
+} HeadbuttFile_345_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_346 {
+typedef struct PACKED HeadbuttFile_346_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_346;
+} HeadbuttFile_346_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_347 {
+typedef struct PACKED HeadbuttFile_347_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_347;
+} HeadbuttFile_347_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_348 {
+typedef struct PACKED HeadbuttFile_348_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_348;
+} HeadbuttFile_348_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_349 {
+typedef struct PACKED HeadbuttFile_349_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_349;
+} HeadbuttFile_349_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_350 {
+typedef struct PACKED HeadbuttFile_350_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_350;
+} HeadbuttFile_350_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_351 {
+typedef struct PACKED HeadbuttFile_351_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_351;
+} HeadbuttFile_351_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_352 {
+typedef struct PACKED HeadbuttFile_352_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_352;
+} HeadbuttFile_352_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_353 {
+typedef struct PACKED HeadbuttFile_353_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_353;
+} HeadbuttFile_353_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_354 {
+typedef struct PACKED HeadbuttFile_354_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_354;
+} HeadbuttFile_354_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_355 {
+typedef struct PACKED HeadbuttFile_355_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_355;
+} HeadbuttFile_355_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_356 {
+typedef struct PACKED HeadbuttFile_356_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_356;
+} HeadbuttFile_356_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_357 {
+typedef struct PACKED HeadbuttFile_357_Safari_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_357;
+} HeadbuttFile_357_Safari_Zone;
 
-typedef struct PACKED HeadbuttFile_358 {
+typedef struct PACKED HeadbuttFile_358_Vermilion_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_358;
+} HeadbuttFile_358_Vermilion_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_359 {
+typedef struct PACKED HeadbuttFile_359_Vermilion_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_359;
+} HeadbuttFile_359_Vermilion_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_360 {
+typedef struct PACKED HeadbuttFile_360_Vermilion_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_360;
+} HeadbuttFile_360_Vermilion_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_361 {
+typedef struct PACKED HeadbuttFile_361_Vermilion_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_361;
+} HeadbuttFile_361_Vermilion_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_362 {
+typedef struct PACKED HeadbuttFile_362_Vermilion_City_Pokmon_Fan_Club {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_362;
+} HeadbuttFile_362_Vermilion_City_Pokmon_Fan_Club;
 
-typedef struct PACKED HeadbuttFile_363 {
+typedef struct PACKED HeadbuttFile_363_Vermilion_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_363;
+} HeadbuttFile_363_Vermilion_City_House;
 
-typedef struct PACKED HeadbuttFile_364 {
+typedef struct PACKED HeadbuttFile_364_Vermilion_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_364;
+} HeadbuttFile_364_Vermilion_City_House;
 
-typedef struct PACKED HeadbuttFile_365 {
+typedef struct PACKED HeadbuttFile_365_Vermilion_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_365;
+} HeadbuttFile_365_Vermilion_City_Gym;
 
-typedef struct PACKED HeadbuttFile_366 {
+typedef struct PACKED HeadbuttFile_366_Route_40_And_Frontier_Access_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_366;
+} HeadbuttFile_366_Route_40_And_Frontier_Access_Gate;
 
-typedef struct PACKED HeadbuttFile_367 {
+typedef struct PACKED HeadbuttFile_367_Olivine_City_Pokmon_Center_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_367;
+} HeadbuttFile_367_Olivine_City_Pokmon_Center_Lower;
 
-typedef struct PACKED HeadbuttFile_368 {
+typedef struct PACKED HeadbuttFile_368_Mahogany_Town_Pokmon_Center_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_368;
+} HeadbuttFile_368_Mahogany_Town_Pokmon_Center_Lower;
 
-typedef struct PACKED HeadbuttFile_369 {
+typedef struct PACKED HeadbuttFile_369_Blackthorn_Town_Pokmon_Center_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_369;
+} HeadbuttFile_369_Blackthorn_Town_Pokmon_Center_Lower;
 
-typedef struct PACKED HeadbuttFile_370 {
+typedef struct PACKED HeadbuttFile_370_Celadon_City_Department_Store_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_370;
+} HeadbuttFile_370_Celadon_City_Department_Store_1F;
 
-typedef struct PACKED HeadbuttFile_371 {
+typedef struct PACKED HeadbuttFile_371_Celadon_City_Department_Store_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_371;
+} HeadbuttFile_371_Celadon_City_Department_Store_2F;
 
-typedef struct PACKED HeadbuttFile_372 {
+typedef struct PACKED HeadbuttFile_372_Celadon_City_Department_Store_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_372;
+} HeadbuttFile_372_Celadon_City_Department_Store_3F;
 
-typedef struct PACKED HeadbuttFile_373 {
+typedef struct PACKED HeadbuttFile_373_Celadon_City_Department_Store_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_373;
+} HeadbuttFile_373_Celadon_City_Department_Store_4F;
 
-typedef struct PACKED HeadbuttFile_374 {
+typedef struct PACKED HeadbuttFile_374_Celadon_City_Department_Store_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_374;
+} HeadbuttFile_374_Celadon_City_Department_Store_5F;
 
-typedef struct PACKED HeadbuttFile_375 {
+typedef struct PACKED HeadbuttFile_375_Celadon_City_Department_Store_6F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_375;
+} HeadbuttFile_375_Celadon_City_Department_Store_6F;
 
-typedef struct PACKED HeadbuttFile_376 {
+typedef struct PACKED HeadbuttFile_376_Celadon_Condominiums_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_376;
+} HeadbuttFile_376_Celadon_Condominiums_1F;
 
-typedef struct PACKED HeadbuttFile_377 {
+typedef struct PACKED HeadbuttFile_377_Celadon_Condominiums_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_377;
+} HeadbuttFile_377_Celadon_Condominiums_2F;
 
-typedef struct PACKED HeadbuttFile_378 {
+typedef struct PACKED HeadbuttFile_378_Celadon_Condominiums_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_378;
+} HeadbuttFile_378_Celadon_Condominiums_3F;
 
-typedef struct PACKED HeadbuttFile_379 {
+typedef struct PACKED HeadbuttFile_379_Celadon_Condominiums_4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_379;
+} HeadbuttFile_379_Celadon_Condominiums_4F;
 
-typedef struct PACKED HeadbuttFile_380 {
+typedef struct PACKED HeadbuttFile_380_Celadon_Condominiums_5F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_380;
+} HeadbuttFile_380_Celadon_Condominiums_5F;
 
-typedef struct PACKED HeadbuttFile_381 {
+typedef struct PACKED HeadbuttFile_381_Celadon_Game_Corner_Main_JP {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_381;
+} HeadbuttFile_381_Celadon_Game_Corner_Main_JP;
 
-typedef struct PACKED HeadbuttFile_382 {
+typedef struct PACKED HeadbuttFile_382_Celadon_Game_Corner_Prize_Building_JP {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_382;
+} HeadbuttFile_382_Celadon_Game_Corner_Prize_Building_JP;
 
-typedef struct PACKED HeadbuttFile_383 {
+typedef struct PACKED HeadbuttFile_383_Celadon_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_383;
+} HeadbuttFile_383_Celadon_City_House;
 
-typedef struct PACKED HeadbuttFile_384 {
+typedef struct PACKED HeadbuttFile_384_Ethan_Lyras_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_384;
+} HeadbuttFile_384_Ethan_Lyras_House_2F;
 
-typedef struct PACKED HeadbuttFile_385 {
+typedef struct PACKED HeadbuttFile_385_Cianwood_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_385;
+} HeadbuttFile_385_Cianwood_City_House;
 
-typedef struct PACKED HeadbuttFile_386 {
+typedef struct PACKED HeadbuttFile_386_Vermilion_Port {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_386;
+} HeadbuttFile_386_Vermilion_Port;
 
-typedef struct PACKED HeadbuttFile_387 {
+typedef struct PACKED HeadbuttFile_387_Vermilion_Port {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_387;
+} HeadbuttFile_387_Vermilion_Port;
 
-typedef struct PACKED HeadbuttFile_388 {
+typedef struct PACKED HeadbuttFile_388_Route_10 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_388;
+} HeadbuttFile_388_Route_10;
 
-typedef struct PACKED HeadbuttFile_389 {
+typedef struct PACKED HeadbuttFile_389_Route_6_And_Saffron_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_389;
+} HeadbuttFile_389_Route_6_And_Saffron_City_Gate;
 
-typedef struct PACKED HeadbuttFile_390 {
+typedef struct PACKED HeadbuttFile_390_Route_8_And_Saffron_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_390;
+} HeadbuttFile_390_Route_8_And_Saffron_City_Gate;
 
-typedef struct PACKED HeadbuttFile_391 {
+typedef struct PACKED HeadbuttFile_391_Route_5_And_Saffron_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_391;
+} HeadbuttFile_391_Route_5_And_Saffron_City_Gate;
 
-typedef struct PACKED HeadbuttFile_392 {
+typedef struct PACKED HeadbuttFile_392_Route_15_And_Fushsia_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_392;
+} HeadbuttFile_392_Route_15_And_Fushsia_City_Gate;
 
-typedef struct PACKED HeadbuttFile_393 {
+typedef struct PACKED HeadbuttFile_393_Celadon_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_393;
+} HeadbuttFile_393_Celadon_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_394 {
+typedef struct PACKED HeadbuttFile_394_Celadon_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_394;
+} HeadbuttFile_394_Celadon_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_395 {
+typedef struct PACKED HeadbuttFile_395_Celadon_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_395;
+} HeadbuttFile_395_Celadon_City_Gym;
 
-typedef struct PACKED HeadbuttFile_396 {
+typedef struct PACKED HeadbuttFile_396_Mahogany_Town_Gym_2nd_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_396;
+} HeadbuttFile_396_Mahogany_Town_Gym_2nd_Room;
 
-typedef struct PACKED HeadbuttFile_397 {
+typedef struct PACKED HeadbuttFile_397_Mahogany_Town_Gym_1st_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_397;
+} HeadbuttFile_397_Mahogany_Town_Gym_1st_Room;
 
-typedef struct PACKED HeadbuttFile_398 {
+typedef struct PACKED HeadbuttFile_398_Saffron_City_Fighting_Dojo {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_398;
+} HeadbuttFile_398_Saffron_City_Fighting_Dojo;
 
-typedef struct PACKED HeadbuttFile_399 {
+typedef struct PACKED HeadbuttFile_399_Saffron_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_399;
+} HeadbuttFile_399_Saffron_City_House;
 
-typedef struct PACKED HeadbuttFile_400 {
+typedef struct PACKED HeadbuttFile_400_Saffron_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_400;
+} HeadbuttFile_400_Saffron_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_401 {
+typedef struct PACKED HeadbuttFile_401_Saffron_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_401;
+} HeadbuttFile_401_Saffron_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_402 {
+typedef struct PACKED HeadbuttFile_402_Saffron_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_402;
+} HeadbuttFile_402_Saffron_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_403 {
+typedef struct PACKED HeadbuttFile_403_ROTOMs_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_403;
+} HeadbuttFile_403_ROTOMs_Room;
 
-typedef struct PACKED HeadbuttFile_404 {
+typedef struct PACKED HeadbuttFile_404_Saffron_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_404;
+} HeadbuttFile_404_Saffron_City_House;
 
-typedef struct PACKED HeadbuttFile_405 {
+typedef struct PACKED HeadbuttFile_405_Saffron_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_405;
+} HeadbuttFile_405_Saffron_City_House;
 
-typedef struct PACKED HeadbuttFile_406 {
+typedef struct PACKED HeadbuttFile_406_Saffron_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_406;
+} HeadbuttFile_406_Saffron_City_House;
 
-typedef struct PACKED HeadbuttFile_407 {
+typedef struct PACKED HeadbuttFile_407_Saffron_City_Pokmon_Center {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_407;
+} HeadbuttFile_407_Saffron_City_Pokmon_Center;
 
-typedef struct PACKED HeadbuttFile_408 {
+typedef struct PACKED HeadbuttFile_408_Saffron_City_Pokmon_Center_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_408;
+} HeadbuttFile_408_Saffron_City_Pokmon_Center_Lower;
 
-typedef struct PACKED HeadbuttFile_409 {
+typedef struct PACKED HeadbuttFile_409_Saffron_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_409;
+} HeadbuttFile_409_Saffron_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_410 {
+typedef struct PACKED HeadbuttFile_410_Saffron_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_410;
+} HeadbuttFile_410_Saffron_City_Gym;
 
-typedef struct PACKED HeadbuttFile_411 {
+typedef struct PACKED HeadbuttFile_411_Frontier_Access {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_411;
+} HeadbuttFile_411_Frontier_Access;
 
-typedef struct PACKED HeadbuttFile_412 {
+typedef struct PACKED HeadbuttFile_412_Global_Terminal_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_412;
+} HeadbuttFile_412_Global_Terminal_2F;
 
-typedef struct PACKED HeadbuttFile_413 {
+typedef struct PACKED HeadbuttFile_413_Global_Terminal_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_413;
+} HeadbuttFile_413_Global_Terminal_3F;
 
-typedef struct PACKED HeadbuttFile_414 {
+typedef struct PACKED HeadbuttFile_414_Route_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[13][6];
-} HeadbuttFile_414;
+} HeadbuttFile_414_Route_2;
 
-typedef struct PACKED HeadbuttFile_415 {
+typedef struct PACKED HeadbuttFile_415_Route_16_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_415;
+} HeadbuttFile_415_Route_16_House;
 
-typedef struct PACKED HeadbuttFile_416 {
+typedef struct PACKED HeadbuttFile_416_Route_20_Unused {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_416;
+} HeadbuttFile_416_Route_20_Unused;
 
-typedef struct PACKED HeadbuttFile_417 {
+typedef struct PACKED HeadbuttFile_417_Route_2 {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_417;
+} HeadbuttFile_417_Route_2;
 
-typedef struct PACKED HeadbuttFile_418 {
+typedef struct PACKED HeadbuttFile_418_Route_2_And_Pewter_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_418;
+} HeadbuttFile_418_Route_2_And_Pewter_City_Gate;
 
-typedef struct PACKED HeadbuttFile_419 {
+typedef struct PACKED HeadbuttFile_419_Route_2_And_Viridian_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_419;
+} HeadbuttFile_419_Route_2_And_Viridian_City_Gate;
 
-typedef struct PACKED HeadbuttFile_420 {
+typedef struct PACKED HeadbuttFile_420_Route_2_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_420;
+} HeadbuttFile_420_Route_2_Gate;
 
-typedef struct PACKED HeadbuttFile_421 {
+typedef struct PACKED HeadbuttFile_421_Route_16_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_421;
+} HeadbuttFile_421_Route_16_Gate;
 
-typedef struct PACKED HeadbuttFile_422 {
+typedef struct PACKED HeadbuttFile_422_Route_16 {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[5][6];
-} HeadbuttFile_422;
+} HeadbuttFile_422_Route_16;
 
-typedef struct PACKED HeadbuttFile_423 {
+typedef struct PACKED HeadbuttFile_423_Route_18_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_423;
+} HeadbuttFile_423_Route_18_Gate;
 
-typedef struct PACKED HeadbuttFile_424 {
+typedef struct PACKED HeadbuttFile_424_Route_19_And_Fushsia_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_424;
+} HeadbuttFile_424_Route_19_And_Fushsia_City_Gate;
 
-typedef struct PACKED HeadbuttFile_425 {
+typedef struct PACKED HeadbuttFile_425_Route_11_And_Route_12_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_425;
+} HeadbuttFile_425_Route_11_And_Route_12_Gate;
 
-typedef struct PACKED HeadbuttFile_426 {
+typedef struct PACKED HeadbuttFile_426_Cerulean_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_426;
+} HeadbuttFile_426_Cerulean_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_427 {
+typedef struct PACKED HeadbuttFile_427_Cerulean_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_427;
+} HeadbuttFile_427_Cerulean_City_Gym;
 
-typedef struct PACKED HeadbuttFile_428 {
+typedef struct PACKED HeadbuttFile_428_Cerulean_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_428;
+} HeadbuttFile_428_Cerulean_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_429 {
+typedef struct PACKED HeadbuttFile_429_Cerulean_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_429;
+} HeadbuttFile_429_Cerulean_City_House;
 
-typedef struct PACKED HeadbuttFile_430 {
+typedef struct PACKED HeadbuttFile_430_Cerulean_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_430;
+} HeadbuttFile_430_Cerulean_City_House;
 
-typedef struct PACKED HeadbuttFile_431 {
+typedef struct PACKED HeadbuttFile_431_Cerulean_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_431;
+} HeadbuttFile_431_Cerulean_City_House;
 
-typedef struct PACKED HeadbuttFile_432 {
+typedef struct PACKED HeadbuttFile_432_Cerulean_City_Bike_Shop {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_432;
+} HeadbuttFile_432_Cerulean_City_Bike_Shop;
 
-typedef struct PACKED HeadbuttFile_433 {
+typedef struct PACKED HeadbuttFile_433_Lavender_Town_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_433;
+} HeadbuttFile_433_Lavender_Town_Pokmart;
 
-typedef struct PACKED HeadbuttFile_434 {
+typedef struct PACKED HeadbuttFile_434_Lavender_Town_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_434;
+} HeadbuttFile_434_Lavender_Town_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_435 {
+typedef struct PACKED HeadbuttFile_435_Lavender_Town_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_435;
+} HeadbuttFile_435_Lavender_Town_House;
 
-typedef struct PACKED HeadbuttFile_436 {
+typedef struct PACKED HeadbuttFile_436_Lavender_Town_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_436;
+} HeadbuttFile_436_Lavender_Town_House;
 
-typedef struct PACKED HeadbuttFile_437 {
+typedef struct PACKED HeadbuttFile_437_Lavender_Town_Name_Rater {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_437;
+} HeadbuttFile_437_Lavender_Town_Name_Rater;
 
-typedef struct PACKED HeadbuttFile_438 {
+typedef struct PACKED HeadbuttFile_438_House_of_Memories {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_438;
+} HeadbuttFile_438_House_of_Memories;
 
-typedef struct PACKED HeadbuttFile_439 {
+typedef struct PACKED HeadbuttFile_439_Lavender_Town_Radio_Tower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_439;
+} HeadbuttFile_439_Lavender_Town_Radio_Tower;
 
-typedef struct PACKED HeadbuttFile_440 {
+typedef struct PACKED HeadbuttFile_440_Sea_Cottage {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_440;
+} HeadbuttFile_440_Sea_Cottage;
 
-typedef struct PACKED HeadbuttFile_441 {
+typedef struct PACKED HeadbuttFile_441_Goldenrod_City_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_441;
+} HeadbuttFile_441_Goldenrod_City_Elevator;
 
-typedef struct PACKED HeadbuttFile_442 {
+typedef struct PACKED HeadbuttFile_442_Celadon_City_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_442;
+} HeadbuttFile_442_Celadon_City_Elevator;
 
-typedef struct PACKED HeadbuttFile_443 {
+typedef struct PACKED HeadbuttFile_443_Celadon_City_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_443;
+} HeadbuttFile_443_Celadon_City_Elevator;
 
-typedef struct PACKED HeadbuttFile_444 {
+typedef struct PACKED HeadbuttFile_444_Celadon_City_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_444;
+} HeadbuttFile_444_Celadon_City_Elevator;
 
-typedef struct PACKED HeadbuttFile_445 {
+typedef struct PACKED HeadbuttFile_445_Saffron_City_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_445;
+} HeadbuttFile_445_Saffron_City_Elevator;
 
-typedef struct PACKED HeadbuttFile_446 {
+typedef struct PACKED HeadbuttFile_446_Lighthouse_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_446;
+} HeadbuttFile_446_Lighthouse_Elevator;
 
-typedef struct PACKED HeadbuttFile_447 {
+typedef struct PACKED HeadbuttFile_447_Radio_Tower_Elevator {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_447;
+} HeadbuttFile_447_Radio_Tower_Elevator;
 
-typedef struct PACKED HeadbuttFile_448 {
+typedef struct PACKED HeadbuttFile_448_Mt_Moon_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_448;
+} HeadbuttFile_448_Mt_Moon_Entrance;
 
-typedef struct PACKED HeadbuttFile_449 {
+typedef struct PACKED HeadbuttFile_449_Mt_Moon_Square {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_449;
+} HeadbuttFile_449_Mt_Moon_Square;
 
-typedef struct PACKED HeadbuttFile_450 {
+typedef struct PACKED HeadbuttFile_450_Cerulean_Cave_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_450;
+} HeadbuttFile_450_Cerulean_Cave_2F;
 
-typedef struct PACKED HeadbuttFile_451 {
+typedef struct PACKED HeadbuttFile_451_Cerulean_Cave_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_451;
+} HeadbuttFile_451_Cerulean_Cave_B1F;
 
-typedef struct PACKED HeadbuttFile_452 {
+typedef struct PACKED HeadbuttFile_452_Rock_Tunnel_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_452;
+} HeadbuttFile_452_Rock_Tunnel_B1F;
 
-typedef struct PACKED HeadbuttFile_453 {
+typedef struct PACKED HeadbuttFile_453_Seafoam_Islands_B1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_453;
+} HeadbuttFile_453_Seafoam_Islands_B1F;
 
-typedef struct PACKED HeadbuttFile_454 {
+typedef struct PACKED HeadbuttFile_454_Seafoam_Islands_B2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_454;
+} HeadbuttFile_454_Seafoam_Islands_B2F;
 
-typedef struct PACKED HeadbuttFile_455 {
+typedef struct PACKED HeadbuttFile_455_Seafoam_Islands_B3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_455;
+} HeadbuttFile_455_Seafoam_Islands_B3F;
 
-typedef struct PACKED HeadbuttFile_456 {
+typedef struct PACKED HeadbuttFile_456_Seafoam_Islands_B4F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_456;
+} HeadbuttFile_456_Seafoam_Islands_B4F;
 
-typedef struct PACKED HeadbuttFile_457 {
+typedef struct PACKED HeadbuttFile_457_Cinnabar_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_457;
+} HeadbuttFile_457_Cinnabar_Gym;
 
-typedef struct PACKED HeadbuttFile_458 {
+typedef struct PACKED HeadbuttFile_458_Cinnabar_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_458;
+} HeadbuttFile_458_Cinnabar_Gym;
 
-typedef struct PACKED HeadbuttFile_459 {
+typedef struct PACKED HeadbuttFile_459_Mt_Silver_Cave_Upper_Mountainside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_459;
+} HeadbuttFile_459_Mt_Silver_Cave_Upper_Mountainside;
 
-typedef struct PACKED HeadbuttFile_460 {
+typedef struct PACKED HeadbuttFile_460_Mt_Silver_Cave_Lower_Mountainside {
     u16 normalTreeCount;
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
     HeadbuttTreeCoord treeCoords[3][6];
-} HeadbuttFile_460;
+} HeadbuttFile_460_Mt_Silver_Cave_Lower_Mountainside;
 
-typedef struct PACKED HeadbuttFile_461 {
+typedef struct PACKED HeadbuttFile_461_Mt_Silver_Cave_Expert_Belt_Chamber {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_461;
+} HeadbuttFile_461_Mt_Silver_Cave_Expert_Belt_Chamber;
 
-typedef struct PACKED HeadbuttFile_462 {
+typedef struct PACKED HeadbuttFile_462_Mt_Silver_Cave_Moltres_Chamber {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_462;
+} HeadbuttFile_462_Mt_Silver_Cave_Moltres_Chamber;
 
-typedef struct PACKED HeadbuttFile_463 {
+typedef struct PACKED HeadbuttFile_463_Mt_Silver_Cave_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_463;
+} HeadbuttFile_463_Mt_Silver_Cave_2F;
 
-typedef struct PACKED HeadbuttFile_464 {
+typedef struct PACKED HeadbuttFile_464_Mt_Silver_Cave_3F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_464;
+} HeadbuttFile_464_Mt_Silver_Cave_3F;
 
-typedef struct PACKED HeadbuttFile_465 {
+typedef struct PACKED HeadbuttFile_465_Mt_Silver_Cave_Summit {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_465;
+} HeadbuttFile_465_Mt_Silver_Cave_Summit;
 
-typedef struct PACKED HeadbuttFile_466 {
+typedef struct PACKED HeadbuttFile_466_Route_10_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_466;
+} HeadbuttFile_466_Route_10_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_467 {
+typedef struct PACKED HeadbuttFile_467_Power_Plant {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_467;
+} HeadbuttFile_467_Power_Plant;
 
-typedef struct PACKED HeadbuttFile_468 {
+typedef struct PACKED HeadbuttFile_468_Underground_Path {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_468;
+} HeadbuttFile_468_Underground_Path;
 
-typedef struct PACKED HeadbuttFile_469 {
+typedef struct PACKED HeadbuttFile_469_Route_5_Underground_Path_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_469;
+} HeadbuttFile_469_Route_5_Underground_Path_Entrance;
 
-typedef struct PACKED HeadbuttFile_470 {
+typedef struct PACKED HeadbuttFile_470_Route_6_Underground_Path_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_470;
+} HeadbuttFile_470_Route_6_Underground_Path_Entrance;
 
-typedef struct PACKED HeadbuttFile_471 {
+typedef struct PACKED HeadbuttFile_471_Pewter_Museum_of_Science {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_471;
+} HeadbuttFile_471_Pewter_Museum_of_Science;
 
-typedef struct PACKED HeadbuttFile_472 {
+typedef struct PACKED HeadbuttFile_472_Pewter_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_472;
+} HeadbuttFile_472_Pewter_City_House;
 
-typedef struct PACKED HeadbuttFile_473 {
+typedef struct PACKED HeadbuttFile_473_Pewter_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_473;
+} HeadbuttFile_473_Pewter_City_Gym;
 
-typedef struct PACKED HeadbuttFile_474 {
+typedef struct PACKED HeadbuttFile_474_Pewter_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_474;
+} HeadbuttFile_474_Pewter_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_475 {
+typedef struct PACKED HeadbuttFile_475_Pewter_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_475;
+} HeadbuttFile_475_Pewter_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_476 {
+typedef struct PACKED HeadbuttFile_476_Pewter_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_476;
+} HeadbuttFile_476_Pewter_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_477 {
+typedef struct PACKED HeadbuttFile_477_Pewter_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_477;
+} HeadbuttFile_477_Pewter_City_House;
 
-typedef struct PACKED HeadbuttFile_478 {
+typedef struct PACKED HeadbuttFile_478_Fushsia_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_478;
+} HeadbuttFile_478_Fushsia_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_479 {
+typedef struct PACKED HeadbuttFile_479_Pal_Park_Inside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_479;
+} HeadbuttFile_479_Pal_Park_Inside;
 
-typedef struct PACKED HeadbuttFile_480 {
+typedef struct PACKED HeadbuttFile_480_Fushsia_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_480;
+} HeadbuttFile_480_Fushsia_City_Gym;
 
-typedef struct PACKED HeadbuttFile_481 {
+typedef struct PACKED HeadbuttFile_481_Fushsia_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_481;
+} HeadbuttFile_481_Fushsia_City_House;
 
-typedef struct PACKED HeadbuttFile_482 {
+typedef struct PACKED HeadbuttFile_482_Fushsia_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_482;
+} HeadbuttFile_482_Fushsia_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_483 {
+typedef struct PACKED HeadbuttFile_483_Fushsia_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_483;
+} HeadbuttFile_483_Fushsia_City_House;
 
-typedef struct PACKED HeadbuttFile_484 {
+typedef struct PACKED HeadbuttFile_484_Route_10_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_484;
+} HeadbuttFile_484_Route_10_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_485 {
+typedef struct PACKED HeadbuttFile_485_Fuchsia_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_485;
+} HeadbuttFile_485_Fuchsia_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_486 {
+typedef struct PACKED HeadbuttFile_486_Whirl_Islands_Lugias_Room {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_486;
+} HeadbuttFile_486_Whirl_Islands_Lugias_Room;
 
-typedef struct PACKED HeadbuttFile_487 {
+typedef struct PACKED HeadbuttFile_487_National_Park_Bug_Catching_Contest {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_487;
+} HeadbuttFile_487_National_Park_Bug_Catching_Contest;
 
-typedef struct PACKED HeadbuttFile_488 {
+typedef struct PACKED HeadbuttFile_488_National_Park_Bug_Catching_Contest_National_Dex {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_488;
+} HeadbuttFile_488_National_Park_Bug_Catching_Contest_National_Dex;
 
-typedef struct PACKED HeadbuttFile_489 {
+typedef struct PACKED HeadbuttFile_489_Power_Plant {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_489;
+} HeadbuttFile_489_Power_Plant;
 
-typedef struct PACKED HeadbuttFile_490 {
+typedef struct PACKED HeadbuttFile_490_Ruins_of_Alph_Underground_Hall {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_490;
+} HeadbuttFile_490_Ruins_of_Alph_Underground_Hall;
 
-typedef struct PACKED HeadbuttFile_491 {
+typedef struct PACKED HeadbuttFile_491_Ruins_of_Alph_Hall_Entrance {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_491;
+} HeadbuttFile_491_Ruins_of_Alph_Hall_Entrance;
 
-typedef struct PACKED HeadbuttFile_492 {
+typedef struct PACKED HeadbuttFile_492_Ruins_of_Alph_Underground_Hall {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_492;
+} HeadbuttFile_492_Ruins_of_Alph_Underground_Hall;
 
-typedef struct PACKED HeadbuttFile_493 {
+typedef struct PACKED HeadbuttFile_493_Route_7_And_Saffron_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_493;
+} HeadbuttFile_493_Route_7_And_Saffron_City_Gate;
 
-typedef struct PACKED HeadbuttFile_494 {
+typedef struct PACKED HeadbuttFile_494_Lavender_Town_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_494;
+} HeadbuttFile_494_Lavender_Town_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_495 {
+typedef struct PACKED HeadbuttFile_495_Cerulean_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_495;
+} HeadbuttFile_495_Cerulean_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_496 {
+typedef struct PACKED HeadbuttFile_496_Viridian_City_Gym {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_496;
+} HeadbuttFile_496_Viridian_City_Gym;
 
-typedef struct PACKED HeadbuttFile_497 {
+typedef struct PACKED HeadbuttFile_497_Viridian_City_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_497;
+} HeadbuttFile_497_Viridian_City_House;
 
-typedef struct PACKED HeadbuttFile_498 {
+typedef struct PACKED HeadbuttFile_498_Viridian_City_Trainer_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_498;
+} HeadbuttFile_498_Viridian_City_Trainer_House;
 
-typedef struct PACKED HeadbuttFile_499 {
+typedef struct PACKED HeadbuttFile_499_Viridian_City_Trainer_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_499;
+} HeadbuttFile_499_Viridian_City_Trainer_House_2F;
 
-typedef struct PACKED HeadbuttFile_500 {
+typedef struct PACKED HeadbuttFile_500_Viridian_City_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_500;
+} HeadbuttFile_500_Viridian_City_Pokmart;
 
-typedef struct PACKED HeadbuttFile_501 {
+typedef struct PACKED HeadbuttFile_501_Viridian_City_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_501;
+} HeadbuttFile_501_Viridian_City_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_502 {
+typedef struct PACKED HeadbuttFile_502_Viridian_City_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_502;
+} HeadbuttFile_502_Viridian_City_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_503 {
+typedef struct PACKED HeadbuttFile_503_Pallet_Town_Reds_House_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_503;
+} HeadbuttFile_503_Pallet_Town_Reds_House_1F;
 
-typedef struct PACKED HeadbuttFile_504 {
+typedef struct PACKED HeadbuttFile_504_Pallet_Town_Blues_House_1F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_504;
+} HeadbuttFile_504_Pallet_Town_Blues_House_1F;
 
-typedef struct PACKED HeadbuttFile_505 {
+typedef struct PACKED HeadbuttFile_505_Oaks_Lab {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_505;
+} HeadbuttFile_505_Oaks_Lab;
 
-typedef struct PACKED HeadbuttFile_506 {
+typedef struct PACKED HeadbuttFile_506_Pallet_Town_Reds_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_506;
+} HeadbuttFile_506_Pallet_Town_Reds_House_2F;
 
-typedef struct PACKED HeadbuttFile_507 {
+typedef struct PACKED HeadbuttFile_507_Pallet_Town_Blues_House_2F {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_507;
+} HeadbuttFile_507_Pallet_Town_Blues_House_2F;
 
-typedef struct PACKED HeadbuttFile_508 {
+typedef struct PACKED HeadbuttFile_508_Cinnabar_Island_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_508;
+} HeadbuttFile_508_Cinnabar_Island_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_509 {
+typedef struct PACKED HeadbuttFile_509_Cinnabar_Island_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_509;
+} HeadbuttFile_509_Cinnabar_Island_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_510 {
+typedef struct PACKED HeadbuttFile_510_Route_28_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_510;
+} HeadbuttFile_510_Route_28_House;
 
-typedef struct PACKED HeadbuttFile_511 {
+typedef struct PACKED HeadbuttFile_511_Route_3_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_511;
+} HeadbuttFile_511_Route_3_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_512 {
+typedef struct PACKED HeadbuttFile_512_Route_3_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_512;
+} HeadbuttFile_512_Route_3_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_513 {
+typedef struct PACKED HeadbuttFile_513_Mt_Moon_Square {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_513;
+} HeadbuttFile_513_Mt_Moon_Square;
 
-typedef struct PACKED HeadbuttFile_514 {
+typedef struct PACKED HeadbuttFile_514_Mt_Silver_Pokmon_Centre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_514;
+} HeadbuttFile_514_Mt_Silver_Pokmon_Centre;
 
-typedef struct PACKED HeadbuttFile_515 {
+typedef struct PACKED HeadbuttFile_515_Mt_Silver_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_515;
+} HeadbuttFile_515_Mt_Silver_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_516 {
+typedef struct PACKED HeadbuttFile_516_HIROBA {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_516;
+} HeadbuttFile_516_HIROBA;
 
-typedef struct PACKED HeadbuttFile_517 {
+typedef struct PACKED HeadbuttFile_517_Route_5_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_517;
+} HeadbuttFile_517_Route_5_House;
 
-typedef struct PACKED HeadbuttFile_518 {
+typedef struct PACKED HeadbuttFile_518_Mt_Moon_Square_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_518;
+} HeadbuttFile_518_Mt_Moon_Square_House;
 
-typedef struct PACKED HeadbuttFile_519 {
+typedef struct PACKED HeadbuttFile_519_Goldenrod_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_519;
+} HeadbuttFile_519_Goldenrod_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_520 {
+typedef struct PACKED HeadbuttFile_520_Saffron_City_Magnet_Train_Station {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_520;
+} HeadbuttFile_520_Saffron_City_Magnet_Train_Station;
 
-typedef struct PACKED HeadbuttFile_521 {
+typedef struct PACKED HeadbuttFile_521_Sinjoh_Ruins_Outside {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_521;
+} HeadbuttFile_521_Sinjoh_Ruins_Outside;
 
-typedef struct PACKED HeadbuttFile_522 {
+typedef struct PACKED HeadbuttFile_522_Sinjoh_Ruins_Mystri_Stage {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_522;
+} HeadbuttFile_522_Sinjoh_Ruins_Mystri_Stage;
 
-typedef struct PACKED HeadbuttFile_523 {
+typedef struct PACKED HeadbuttFile_523_Sinjoh_Ruins_Cabin {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_523;
+} HeadbuttFile_523_Sinjoh_Ruins_Cabin;
 
-typedef struct PACKED HeadbuttFile_524 {
+typedef struct PACKED HeadbuttFile_524_Embedded_Tower_Groudon {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_524;
+} HeadbuttFile_524_Embedded_Tower_Groudon;
 
-typedef struct PACKED HeadbuttFile_525 {
+typedef struct PACKED HeadbuttFile_525_Embedded_Tower_Kyogre {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_525;
+} HeadbuttFile_525_Embedded_Tower_Kyogre;
 
-typedef struct PACKED HeadbuttFile_526 {
+typedef struct PACKED HeadbuttFile_526_Embedded_Tower_Rayquaza {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_526;
+} HeadbuttFile_526_Embedded_Tower_Rayquaza;
 
-typedef struct PACKED HeadbuttFile_527 {
+typedef struct PACKED HeadbuttFile_527_Route_1_And_Viridian_City_Gate {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_527;
+} HeadbuttFile_527_Route_1_And_Viridian_City_Gate;
 
-typedef struct PACKED HeadbuttFile_528 {
+typedef struct PACKED HeadbuttFile_528_Frontier_Access_Pokmon_Center {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_528;
+} HeadbuttFile_528_Frontier_Access_Pokmon_Center;
 
-typedef struct PACKED HeadbuttFile_529 {
+typedef struct PACKED HeadbuttFile_529_Frontier_Access_Pokmon_Center_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_529;
+} HeadbuttFile_529_Frontier_Access_Pokmon_Center_Lower;
 
-typedef struct PACKED HeadbuttFile_530 {
+typedef struct PACKED HeadbuttFile_530_Frontier_Access_Pokmart {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_530;
+} HeadbuttFile_530_Frontier_Access_Pokmart;
 
-typedef struct PACKED HeadbuttFile_531 {
+typedef struct PACKED HeadbuttFile_531_Frontier_Access_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_531;
+} HeadbuttFile_531_Frontier_Access_House;
 
-typedef struct PACKED HeadbuttFile_532 {
+typedef struct PACKED HeadbuttFile_532_Underground_Path {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_532;
+} HeadbuttFile_532_Underground_Path;
 
-typedef struct PACKED HeadbuttFile_533 {
+typedef struct PACKED HeadbuttFile_533_Route_12_House {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_533;
+} HeadbuttFile_533_Route_12_House;
 
-typedef struct PACKED HeadbuttFile_534 {
+typedef struct PACKED HeadbuttFile_534_Safari_Zone_Gate_Pokmon_Center {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_534;
+} HeadbuttFile_534_Safari_Zone_Gate_Pokmon_Center;
 
-typedef struct PACKED HeadbuttFile_535 {
+typedef struct PACKED HeadbuttFile_535_Safari_Zone_Gate_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_535;
+} HeadbuttFile_535_Safari_Zone_Gate_Pokmon_Centre_Lower;
 
-typedef struct PACKED HeadbuttFile_536 {
+typedef struct PACKED HeadbuttFile_536_Goldenrod_City_Game_Corner {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_536;
+} HeadbuttFile_536_Goldenrod_City_Game_Corner;
 
-typedef struct PACKED HeadbuttFile_537 {
+typedef struct PACKED HeadbuttFile_537_Celadon_City_Game_Corner {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_537;
+} HeadbuttFile_537_Celadon_City_Game_Corner;
 
-typedef struct PACKED HeadbuttFile_538 {
+typedef struct PACKED HeadbuttFile_538_Mystery_Zone {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_538;
+} HeadbuttFile_538_Mystery_Zone;
 
-typedef struct PACKED HeadbuttFile_539 {
+typedef struct PACKED HeadbuttFile_539_Pokmon_League_Pokmon_Centre_Lower {
     u16 normalTreeCount;
     u16 specialTreeCount;
-} HeadbuttFile_539;
+} HeadbuttFile_539_Pokmon_League_Pokmon_Centre_Lower;
+
 
 typedef struct PACKED HeadbuttArchiveData {
-    HeadbuttFile_000 000;
-    HeadbuttFile_001 001;
-    HeadbuttFile_002 002;
-    HeadbuttFile_003 003;
-    HeadbuttFile_004 004;
-    HeadbuttFile_005 005;
-    HeadbuttFile_006 006;
-    HeadbuttFile_007 007;
-    HeadbuttFile_008 008;
-    HeadbuttFile_009 009;
-    HeadbuttFile_010 010;
-    HeadbuttFile_011 011;
-    HeadbuttFile_012 012;
-    HeadbuttFile_013 013;
-    HeadbuttFile_014 014;
-    HeadbuttFile_015 015;
-    HeadbuttFile_016 016;
-    HeadbuttFile_017 017;
-    HeadbuttFile_018 018;
-    HeadbuttFile_019 019;
-    HeadbuttFile_020 020;
-    HeadbuttFile_021 021;
-    HeadbuttFile_022 022;
-    HeadbuttFile_023 023;
-    HeadbuttFile_024 024;
-    HeadbuttFile_025 025;
-    HeadbuttFile_026 026;
-    HeadbuttFile_027 027;
-    HeadbuttFile_028 028;
-    HeadbuttFile_029 029;
-    HeadbuttFile_030 030;
-    HeadbuttFile_031 031;
-    HeadbuttFile_032 032;
-    HeadbuttFile_033 033;
-    HeadbuttFile_034 034;
-    HeadbuttFile_035 035;
-    HeadbuttFile_036 036;
-    HeadbuttFile_037 037;
-    HeadbuttFile_038 038;
-    HeadbuttFile_039 039;
-    HeadbuttFile_040 040;
-    HeadbuttFile_041 041;
-    HeadbuttFile_042 042;
-    HeadbuttFile_043 043;
-    HeadbuttFile_044 044;
-    HeadbuttFile_045 045;
-    HeadbuttFile_046 046;
-    HeadbuttFile_047 047;
-    HeadbuttFile_048 048;
-    HeadbuttFile_049 049;
-    HeadbuttFile_050 050;
-    HeadbuttFile_051 051;
-    HeadbuttFile_052 052;
-    HeadbuttFile_053 053;
-    HeadbuttFile_054 054;
-    HeadbuttFile_055 055;
-    HeadbuttFile_056 056;
-    HeadbuttFile_057 057;
-    HeadbuttFile_058 058;
-    HeadbuttFile_059 059;
-    HeadbuttFile_060 060;
-    HeadbuttFile_061 061;
-    HeadbuttFile_062 062;
-    HeadbuttFile_063 063;
-    HeadbuttFile_064 064;
-    HeadbuttFile_065 065;
-    HeadbuttFile_066 066;
-    HeadbuttFile_067 067;
-    HeadbuttFile_068 068;
-    HeadbuttFile_069 069;
-    HeadbuttFile_070 070;
-    HeadbuttFile_071 071;
-    HeadbuttFile_072 072;
-    HeadbuttFile_073 073;
-    HeadbuttFile_074 074;
-    HeadbuttFile_075 075;
-    HeadbuttFile_076 076;
-    HeadbuttFile_077 077;
-    HeadbuttFile_078 078;
-    HeadbuttFile_079 079;
-    HeadbuttFile_080 080;
-    HeadbuttFile_081 081;
-    HeadbuttFile_082 082;
-    HeadbuttFile_083 083;
-    HeadbuttFile_084 084;
-    HeadbuttFile_085 085;
-    HeadbuttFile_086 086;
-    HeadbuttFile_087 087;
-    HeadbuttFile_088 088;
-    HeadbuttFile_089 089;
-    HeadbuttFile_090 090;
-    HeadbuttFile_091 091;
-    HeadbuttFile_092 092;
-    HeadbuttFile_093 093;
-    HeadbuttFile_094 094;
-    HeadbuttFile_095 095;
-    HeadbuttFile_096 096;
-    HeadbuttFile_097 097;
-    HeadbuttFile_098 098;
-    HeadbuttFile_099 099;
-    HeadbuttFile_100 100;
-    HeadbuttFile_101 101;
-    HeadbuttFile_102 102;
-    HeadbuttFile_103 103;
-    HeadbuttFile_104 104;
-    HeadbuttFile_105 105;
-    HeadbuttFile_106 106;
-    HeadbuttFile_107 107;
-    HeadbuttFile_108 108;
-    HeadbuttFile_109 109;
-    HeadbuttFile_110 110;
-    HeadbuttFile_111 111;
-    HeadbuttFile_112 112;
-    HeadbuttFile_113 113;
-    HeadbuttFile_114 114;
-    HeadbuttFile_115 115;
-    HeadbuttFile_116 116;
-    HeadbuttFile_117 117;
-    HeadbuttFile_118 118;
-    HeadbuttFile_119 119;
-    HeadbuttFile_120 120;
-    HeadbuttFile_121 121;
-    HeadbuttFile_122 122;
-    HeadbuttFile_123 123;
-    HeadbuttFile_124 124;
-    HeadbuttFile_125 125;
-    HeadbuttFile_126 126;
-    HeadbuttFile_127 127;
-    HeadbuttFile_128 128;
-    HeadbuttFile_129 129;
-    HeadbuttFile_130 130;
-    HeadbuttFile_131 131;
-    HeadbuttFile_132 132;
-    HeadbuttFile_133 133;
-    HeadbuttFile_134 134;
-    HeadbuttFile_135 135;
-    HeadbuttFile_136 136;
-    HeadbuttFile_137 137;
-    HeadbuttFile_138 138;
-    HeadbuttFile_139 139;
-    HeadbuttFile_140 140;
-    HeadbuttFile_141 141;
-    HeadbuttFile_142 142;
-    HeadbuttFile_143 143;
-    HeadbuttFile_144 144;
-    HeadbuttFile_145 145;
-    HeadbuttFile_146 146;
-    HeadbuttFile_147 147;
-    HeadbuttFile_148 148;
-    HeadbuttFile_149 149;
-    HeadbuttFile_150 150;
-    HeadbuttFile_151 151;
-    HeadbuttFile_152 152;
-    HeadbuttFile_153 153;
-    HeadbuttFile_154 154;
-    HeadbuttFile_155 155;
-    HeadbuttFile_156 156;
-    HeadbuttFile_157 157;
-    HeadbuttFile_158 158;
-    HeadbuttFile_159 159;
-    HeadbuttFile_160 160;
-    HeadbuttFile_161 161;
-    HeadbuttFile_162 162;
-    HeadbuttFile_163 163;
-    HeadbuttFile_164 164;
-    HeadbuttFile_165 165;
-    HeadbuttFile_166 166;
-    HeadbuttFile_167 167;
-    HeadbuttFile_168 168;
-    HeadbuttFile_169 169;
-    HeadbuttFile_170 170;
-    HeadbuttFile_171 171;
-    HeadbuttFile_172 172;
-    HeadbuttFile_173 173;
-    HeadbuttFile_174 174;
-    HeadbuttFile_175 175;
-    HeadbuttFile_176 176;
-    HeadbuttFile_177 177;
-    HeadbuttFile_178 178;
-    HeadbuttFile_179 179;
-    HeadbuttFile_180 180;
-    HeadbuttFile_181 181;
-    HeadbuttFile_182 182;
-    HeadbuttFile_183 183;
-    HeadbuttFile_184 184;
-    HeadbuttFile_185 185;
-    HeadbuttFile_186 186;
-    HeadbuttFile_187 187;
-    HeadbuttFile_188 188;
-    HeadbuttFile_189 189;
-    HeadbuttFile_190 190;
-    HeadbuttFile_191 191;
-    HeadbuttFile_192 192;
-    HeadbuttFile_193 193;
-    HeadbuttFile_194 194;
-    HeadbuttFile_195 195;
-    HeadbuttFile_196 196;
-    HeadbuttFile_197 197;
-    HeadbuttFile_198 198;
-    HeadbuttFile_199 199;
-    HeadbuttFile_200 200;
-    HeadbuttFile_201 201;
-    HeadbuttFile_202 202;
-    HeadbuttFile_203 203;
-    HeadbuttFile_204 204;
-    HeadbuttFile_205 205;
-    HeadbuttFile_206 206;
-    HeadbuttFile_207 207;
-    HeadbuttFile_208 208;
-    HeadbuttFile_209 209;
-    HeadbuttFile_210 210;
-    HeadbuttFile_211 211;
-    HeadbuttFile_212 212;
-    HeadbuttFile_213 213;
-    HeadbuttFile_214 214;
-    HeadbuttFile_215 215;
-    HeadbuttFile_216 216;
-    HeadbuttFile_217 217;
-    HeadbuttFile_218 218;
-    HeadbuttFile_219 219;
-    HeadbuttFile_220 220;
-    HeadbuttFile_221 221;
-    HeadbuttFile_222 222;
-    HeadbuttFile_223 223;
-    HeadbuttFile_224 224;
-    HeadbuttFile_225 225;
-    HeadbuttFile_226 226;
-    HeadbuttFile_227 227;
-    HeadbuttFile_228 228;
-    HeadbuttFile_229 229;
-    HeadbuttFile_230 230;
-    HeadbuttFile_231 231;
-    HeadbuttFile_232 232;
-    HeadbuttFile_233 233;
-    HeadbuttFile_234 234;
-    HeadbuttFile_235 235;
-    HeadbuttFile_236 236;
-    HeadbuttFile_237 237;
-    HeadbuttFile_238 238;
-    HeadbuttFile_239 239;
-    HeadbuttFile_240 240;
-    HeadbuttFile_241 241;
-    HeadbuttFile_242 242;
-    HeadbuttFile_243 243;
-    HeadbuttFile_244 244;
-    HeadbuttFile_245 245;
-    HeadbuttFile_246 246;
-    HeadbuttFile_247 247;
-    HeadbuttFile_248 248;
-    HeadbuttFile_249 249;
-    HeadbuttFile_250 250;
-    HeadbuttFile_251 251;
-    HeadbuttFile_252 252;
-    HeadbuttFile_253 253;
-    HeadbuttFile_254 254;
-    HeadbuttFile_255 255;
-    HeadbuttFile_256 256;
-    HeadbuttFile_257 257;
-    HeadbuttFile_258 258;
-    HeadbuttFile_259 259;
-    HeadbuttFile_260 260;
-    HeadbuttFile_261 261;
-    HeadbuttFile_262 262;
-    HeadbuttFile_263 263;
-    HeadbuttFile_264 264;
-    HeadbuttFile_265 265;
-    HeadbuttFile_266 266;
-    HeadbuttFile_267 267;
-    HeadbuttFile_268 268;
-    HeadbuttFile_269 269;
-    HeadbuttFile_270 270;
-    HeadbuttFile_271 271;
-    HeadbuttFile_272 272;
-    HeadbuttFile_273 273;
-    HeadbuttFile_274 274;
-    HeadbuttFile_275 275;
-    HeadbuttFile_276 276;
-    HeadbuttFile_277 277;
-    HeadbuttFile_278 278;
-    HeadbuttFile_279 279;
-    HeadbuttFile_280 280;
-    HeadbuttFile_281 281;
-    HeadbuttFile_282 282;
-    HeadbuttFile_283 283;
-    HeadbuttFile_284 284;
-    HeadbuttFile_285 285;
-    HeadbuttFile_286 286;
-    HeadbuttFile_287 287;
-    HeadbuttFile_288 288;
-    HeadbuttFile_289 289;
-    HeadbuttFile_290 290;
-    HeadbuttFile_291 291;
-    HeadbuttFile_292 292;
-    HeadbuttFile_293 293;
-    HeadbuttFile_294 294;
-    HeadbuttFile_295 295;
-    HeadbuttFile_296 296;
-    HeadbuttFile_297 297;
-    HeadbuttFile_298 298;
-    HeadbuttFile_299 299;
-    HeadbuttFile_300 300;
-    HeadbuttFile_301 301;
-    HeadbuttFile_302 302;
-    HeadbuttFile_303 303;
-    HeadbuttFile_304 304;
-    HeadbuttFile_305 305;
-    HeadbuttFile_306 306;
-    HeadbuttFile_307 307;
-    HeadbuttFile_308 308;
-    HeadbuttFile_309 309;
-    HeadbuttFile_310 310;
-    HeadbuttFile_311 311;
-    HeadbuttFile_312 312;
-    HeadbuttFile_313 313;
-    HeadbuttFile_314 314;
-    HeadbuttFile_315 315;
-    HeadbuttFile_316 316;
-    HeadbuttFile_317 317;
-    HeadbuttFile_318 318;
-    HeadbuttFile_319 319;
-    HeadbuttFile_320 320;
-    HeadbuttFile_321 321;
-    HeadbuttFile_322 322;
-    HeadbuttFile_323 323;
-    HeadbuttFile_324 324;
-    HeadbuttFile_325 325;
-    HeadbuttFile_326 326;
-    HeadbuttFile_327 327;
-    HeadbuttFile_328 328;
-    HeadbuttFile_329 329;
-    HeadbuttFile_330 330;
-    HeadbuttFile_331 331;
-    HeadbuttFile_332 332;
-    HeadbuttFile_333 333;
-    HeadbuttFile_334 334;
-    HeadbuttFile_335 335;
-    HeadbuttFile_336 336;
-    HeadbuttFile_337 337;
-    HeadbuttFile_338 338;
-    HeadbuttFile_339 339;
-    HeadbuttFile_340 340;
-    HeadbuttFile_341 341;
-    HeadbuttFile_342 342;
-    HeadbuttFile_343 343;
-    HeadbuttFile_344 344;
-    HeadbuttFile_345 345;
-    HeadbuttFile_346 346;
-    HeadbuttFile_347 347;
-    HeadbuttFile_348 348;
-    HeadbuttFile_349 349;
-    HeadbuttFile_350 350;
-    HeadbuttFile_351 351;
-    HeadbuttFile_352 352;
-    HeadbuttFile_353 353;
-    HeadbuttFile_354 354;
-    HeadbuttFile_355 355;
-    HeadbuttFile_356 356;
-    HeadbuttFile_357 357;
-    HeadbuttFile_358 358;
-    HeadbuttFile_359 359;
-    HeadbuttFile_360 360;
-    HeadbuttFile_361 361;
-    HeadbuttFile_362 362;
-    HeadbuttFile_363 363;
-    HeadbuttFile_364 364;
-    HeadbuttFile_365 365;
-    HeadbuttFile_366 366;
-    HeadbuttFile_367 367;
-    HeadbuttFile_368 368;
-    HeadbuttFile_369 369;
-    HeadbuttFile_370 370;
-    HeadbuttFile_371 371;
-    HeadbuttFile_372 372;
-    HeadbuttFile_373 373;
-    HeadbuttFile_374 374;
-    HeadbuttFile_375 375;
-    HeadbuttFile_376 376;
-    HeadbuttFile_377 377;
-    HeadbuttFile_378 378;
-    HeadbuttFile_379 379;
-    HeadbuttFile_380 380;
-    HeadbuttFile_381 381;
-    HeadbuttFile_382 382;
-    HeadbuttFile_383 383;
-    HeadbuttFile_384 384;
-    HeadbuttFile_385 385;
-    HeadbuttFile_386 386;
-    HeadbuttFile_387 387;
-    HeadbuttFile_388 388;
-    HeadbuttFile_389 389;
-    HeadbuttFile_390 390;
-    HeadbuttFile_391 391;
-    HeadbuttFile_392 392;
-    HeadbuttFile_393 393;
-    HeadbuttFile_394 394;
-    HeadbuttFile_395 395;
-    HeadbuttFile_396 396;
-    HeadbuttFile_397 397;
-    HeadbuttFile_398 398;
-    HeadbuttFile_399 399;
-    HeadbuttFile_400 400;
-    HeadbuttFile_401 401;
-    HeadbuttFile_402 402;
-    HeadbuttFile_403 403;
-    HeadbuttFile_404 404;
-    HeadbuttFile_405 405;
-    HeadbuttFile_406 406;
-    HeadbuttFile_407 407;
-    HeadbuttFile_408 408;
-    HeadbuttFile_409 409;
-    HeadbuttFile_410 410;
-    HeadbuttFile_411 411;
-    HeadbuttFile_412 412;
-    HeadbuttFile_413 413;
-    HeadbuttFile_414 414;
-    HeadbuttFile_415 415;
-    HeadbuttFile_416 416;
-    HeadbuttFile_417 417;
-    HeadbuttFile_418 418;
-    HeadbuttFile_419 419;
-    HeadbuttFile_420 420;
-    HeadbuttFile_421 421;
-    HeadbuttFile_422 422;
-    HeadbuttFile_423 423;
-    HeadbuttFile_424 424;
-    HeadbuttFile_425 425;
-    HeadbuttFile_426 426;
-    HeadbuttFile_427 427;
-    HeadbuttFile_428 428;
-    HeadbuttFile_429 429;
-    HeadbuttFile_430 430;
-    HeadbuttFile_431 431;
-    HeadbuttFile_432 432;
-    HeadbuttFile_433 433;
-    HeadbuttFile_434 434;
-    HeadbuttFile_435 435;
-    HeadbuttFile_436 436;
-    HeadbuttFile_437 437;
-    HeadbuttFile_438 438;
-    HeadbuttFile_439 439;
-    HeadbuttFile_440 440;
-    HeadbuttFile_441 441;
-    HeadbuttFile_442 442;
-    HeadbuttFile_443 443;
-    HeadbuttFile_444 444;
-    HeadbuttFile_445 445;
-    HeadbuttFile_446 446;
-    HeadbuttFile_447 447;
-    HeadbuttFile_448 448;
-    HeadbuttFile_449 449;
-    HeadbuttFile_450 450;
-    HeadbuttFile_451 451;
-    HeadbuttFile_452 452;
-    HeadbuttFile_453 453;
-    HeadbuttFile_454 454;
-    HeadbuttFile_455 455;
-    HeadbuttFile_456 456;
-    HeadbuttFile_457 457;
-    HeadbuttFile_458 458;
-    HeadbuttFile_459 459;
-    HeadbuttFile_460 460;
-    HeadbuttFile_461 461;
-    HeadbuttFile_462 462;
-    HeadbuttFile_463 463;
-    HeadbuttFile_464 464;
-    HeadbuttFile_465 465;
-    HeadbuttFile_466 466;
-    HeadbuttFile_467 467;
-    HeadbuttFile_468 468;
-    HeadbuttFile_469 469;
-    HeadbuttFile_470 470;
-    HeadbuttFile_471 471;
-    HeadbuttFile_472 472;
-    HeadbuttFile_473 473;
-    HeadbuttFile_474 474;
-    HeadbuttFile_475 475;
-    HeadbuttFile_476 476;
-    HeadbuttFile_477 477;
-    HeadbuttFile_478 478;
-    HeadbuttFile_479 479;
-    HeadbuttFile_480 480;
-    HeadbuttFile_481 481;
-    HeadbuttFile_482 482;
-    HeadbuttFile_483 483;
-    HeadbuttFile_484 484;
-    HeadbuttFile_485 485;
-    HeadbuttFile_486 486;
-    HeadbuttFile_487 487;
-    HeadbuttFile_488 488;
-    HeadbuttFile_489 489;
-    HeadbuttFile_490 490;
-    HeadbuttFile_491 491;
-    HeadbuttFile_492 492;
-    HeadbuttFile_493 493;
-    HeadbuttFile_494 494;
-    HeadbuttFile_495 495;
-    HeadbuttFile_496 496;
-    HeadbuttFile_497 497;
-    HeadbuttFile_498 498;
-    HeadbuttFile_499 499;
-    HeadbuttFile_500 500;
-    HeadbuttFile_501 501;
-    HeadbuttFile_502 502;
-    HeadbuttFile_503 503;
-    HeadbuttFile_504 504;
-    HeadbuttFile_505 505;
-    HeadbuttFile_506 506;
-    HeadbuttFile_507 507;
-    HeadbuttFile_508 508;
-    HeadbuttFile_509 509;
-    HeadbuttFile_510 510;
-    HeadbuttFile_511 511;
-    HeadbuttFile_512 512;
-    HeadbuttFile_513 513;
-    HeadbuttFile_514 514;
-    HeadbuttFile_515 515;
-    HeadbuttFile_516 516;
-    HeadbuttFile_517 517;
-    HeadbuttFile_518 518;
-    HeadbuttFile_519 519;
-    HeadbuttFile_520 520;
-    HeadbuttFile_521 521;
-    HeadbuttFile_522 522;
-    HeadbuttFile_523 523;
-    HeadbuttFile_524 524;
-    HeadbuttFile_525 525;
-    HeadbuttFile_526 526;
-    HeadbuttFile_527 527;
-    HeadbuttFile_528 528;
-    HeadbuttFile_529 529;
-    HeadbuttFile_530 530;
-    HeadbuttFile_531 531;
-    HeadbuttFile_532 532;
-    HeadbuttFile_533 533;
-    HeadbuttFile_534 534;
-    HeadbuttFile_535 535;
-    HeadbuttFile_536 536;
-    HeadbuttFile_537 537;
-    HeadbuttFile_538 538;
-    HeadbuttFile_539 539;
+    HeadbuttFile_000_EVERYWHERE everywhere;
+    HeadbuttFile_001_NOTHING nothing;
+    HeadbuttFile_002_Union_Room unionRoom;
+    HeadbuttFile_003_UG ug;
+    HeadbuttFile_004_DIRECT2 direct2;
+    HeadbuttFile_005_DIRECT4 direct4;
+    HeadbuttFile_006_Bellchime_Trail bellchimeTrail;
+    HeadbuttFile_007_Burned_Tower_1F burnedTower1F;
+    HeadbuttFile_008_Ruins_Of_Alph_Inside ruinsOfAlphInside;
+    HeadbuttFile_009_Route_1 route1;
+    HeadbuttFile_010_Route_2 route2;
+    HeadbuttFile_011_Route_3 route3;
+    HeadbuttFile_012_Route_4 route4;
+    HeadbuttFile_013_Route_5 route5;
+    HeadbuttFile_014_Route_6 route6;
+    HeadbuttFile_015_Route_7 route7;
+    HeadbuttFile_016_Route_8 route8;
+    HeadbuttFile_017_Route_9 route9;
+    HeadbuttFile_018_Route_10 route10;
+    HeadbuttFile_019_Route_11 route11;
+    HeadbuttFile_020_Route_12 route12;
+    HeadbuttFile_021_Route_13 route13;
+    HeadbuttFile_022_Route_14 route14;
+    HeadbuttFile_023_Route_15 route15;
+    HeadbuttFile_024_Route_16 route16;
+    HeadbuttFile_025_Route_17 route17;
+    HeadbuttFile_026_Route_18 route18;
+    HeadbuttFile_027_Route_22 route22;
+    HeadbuttFile_028_Route_24 route24;
+    HeadbuttFile_029_Route_25 route25;
+    HeadbuttFile_030_Route_26 route26;
+    HeadbuttFile_031_Route_27 route27;
+    HeadbuttFile_032_Route_28 route28;
+    HeadbuttFile_033_Route_29 route29;
+    HeadbuttFile_034_Route_30 route30;
+    HeadbuttFile_035_Route_31 route31;
+    HeadbuttFile_036_Route_32 route32;
+    HeadbuttFile_037_Route_33 route33;
+    HeadbuttFile_038_Route_34 route34;
+    HeadbuttFile_039_Route_35 route35;
+    HeadbuttFile_040_Route_36 route36;
+    HeadbuttFile_041_Route_37 route37;
+    HeadbuttFile_042_Route_38 route38;
+    HeadbuttFile_043_Route_39 route39;
+    HeadbuttFile_044_Route_42 route42;
+    HeadbuttFile_045_Route_43 route43;
+    HeadbuttFile_046_Route_44 route44;
+    HeadbuttFile_047_Route_45 route45;
+    HeadbuttFile_048_Route_46 route46;
+    HeadbuttFile_049_Pallet_Town palletTown;
+    HeadbuttFile_050_Viridian_City viridianCity;
+    HeadbuttFile_051_Pewter_City pewterCity;
+    HeadbuttFile_052_Cerulean_City ceruleanCity;
+    HeadbuttFile_053_Lavender_Town lavenderTown;
+    HeadbuttFile_054_Vermilion_City vermilionCity;
+    HeadbuttFile_055_Celadon_City celadonCity;
+    HeadbuttFile_056_Fuchsia_City fuchsiaCity;
+    HeadbuttFile_057_Cinnabar_Island cinnabarIsland;
+    HeadbuttFile_058_Indigo_Plateau indigoPlateau;
+    HeadbuttFile_059_Saffron_City saffronCity;
+    HeadbuttFile_060_New_Bark_Town newBarkTown;
+    HeadbuttFile_061_Elms_Lab_1F elmsLab1F;
+    HeadbuttFile_062_Elms_Lab_2F elmsLab2F;
+    HeadbuttFile_063_Moms_House_1F momsHouse1F;
+    HeadbuttFile_064_Moms_House_2F momsHouse2F;
+    HeadbuttFile_065_New_Bark_Town_House newBarkTownHouse;
+    HeadbuttFile_066_Ethan_Lyras_House_1F ethanLyrasHouse1F;
+    HeadbuttFile_067_Cherrygrove_City cherrygroveCity;
+    HeadbuttFile_068_Cherrygrove_City_Pokmart cherrygroveCityPokmart;
+    HeadbuttFile_069_Cherrygrove_City_Pokmon_Centre cherrygroveCityPokemonCentre;
+    HeadbuttFile_070_Cherrygrove_City_House cherrygroveCityHouse;
+    HeadbuttFile_071_Cherrygrove_City_House cherrygroveCityHouse071;
+    HeadbuttFile_072_Cherrygrove_City_House cherrygroveCityHouse072;
+    HeadbuttFile_073_Violet_City violetCity;
+    HeadbuttFile_074_Azalea_Town azaleaTown;
+    HeadbuttFile_075_Cianwood_City cianwoodCity;
+    HeadbuttFile_076_Goldenrod_City goldenrodCity;
+    HeadbuttFile_077_Olivine_City olivineCity;
+    HeadbuttFile_078_Ecruteak_City ecruteakCity;
+    HeadbuttFile_079_Ecruteak_City_Pokmart ecruteakCityPokmart;
+    HeadbuttFile_080_Ecruteak_City_Gym ecruteakCityGym;
+    HeadbuttFile_081_Ecruteak_Pokmon_Centre ecruteakPokemonCentre;
+    HeadbuttFile_082_Jubilife_City_Unused jubilifeCityUnused;
+    HeadbuttFile_083_Barrier_Station_to_Bell_Tower barrierStationToBellTower;
+    HeadbuttFile_084_Ecruteak_City_House ecruteakCityHouse;
+    HeadbuttFile_085_Ecruteak_City_House ecruteakCityHouse085;
+    HeadbuttFile_086_Ecruteak_Dance_Theatre ecruteakDanceTheatre;
+    HeadbuttFile_087_Mahogany_Town mahoganyTown;
+    HeadbuttFile_088_Lake_of_Rage lakeOfRage;
+    HeadbuttFile_089_Blackthorn_City blackthornCity;
+    HeadbuttFile_090_Mt_Silver mtSilver;
+    HeadbuttFile_091_Route_19 route19;
+    HeadbuttFile_092_Route_20 route20;
+    HeadbuttFile_093_Route_21 route21;
+    HeadbuttFile_094_Route_40 route40;
+    HeadbuttFile_095_Route_41 route41;
+    HeadbuttFile_096_National_Park nationalPark;
+    HeadbuttFile_097_Route_31_And_Violet_City_Gate route31AndVioletCityGate;
+    HeadbuttFile_098_Route_32_And_Ruins_Of_Alph_Gate route32AndRuinsOfAlphGate;
+    HeadbuttFile_099_Union_Cave_1F unionCave1F;
+    HeadbuttFile_100_Azalea_Town_And_Ilex_Forest_Gate azaleaTownAndIlexForestGate;
+    HeadbuttFile_101_Goldenrod_City_And_Route_35_Gate goldenrodCityAndRoute35Gate;
+    HeadbuttFile_102_Route_35_And_National_Park_Gate route35AndNationalParkGate;
+    HeadbuttFile_103_Ruins_Of_Alph_And_Route_36_Gate ruinsOfAlphAndRoute36Gate;
+    HeadbuttFile_104_National_Park_And_Route_36_Gate nationalParkAndRoute36Gate;
+    HeadbuttFile_105_Jubilife_City_Unused jubilifeCityUnused105;
+    HeadbuttFile_106_Digletts_Cave diglettsCave;
+    HeadbuttFile_107_Mt_Moon mtMoon;
+    HeadbuttFile_108_Rock_Tunnel_1F rockTunnel1F;
+    HeadbuttFile_109_Pal_Park palPark;
+    HeadbuttFile_110_Sprout_Tower_1F sproutTower1F;
+    HeadbuttFile_111_Bell_Tower_1F bellTower1F;
+    HeadbuttFile_112_Radio_Tower_1F radioTower1F;
+    HeadbuttFile_113_Ruins_Of_Alph_Outside ruinsOfAlphOutside;
+    HeadbuttFile_114_Slowpoke_Well_Entrance slowpokeWellEntrance;
+    HeadbuttFile_115_Olivine_Lighthouse_1F olivineLighthouse1F;
+    HeadbuttFile_116_Mahogany_Town_Souvenir_Shop mahoganyTownSouvenirShop;
+    HeadbuttFile_117_Ilex_Forest ilexForest;
+    HeadbuttFile_118_Goldenrod_Tunnel goldenrodTunnel;
+    HeadbuttFile_119_Mt_Mortar_1F mtMortar1F;
+    HeadbuttFile_120_Ice_Path_1F icePath1F;
+    HeadbuttFile_121_Whirl_Islands whirlIslands;
+    HeadbuttFile_122_Mt_Silver_Cave mtSilverCave;
+    HeadbuttFile_123_Dark_Cave_Route_45_entrance darkCaveRoute45Entrance;
+    HeadbuttFile_124_Victory_Road_1F victoryRoad1F;
+    HeadbuttFile_125_Dragons_Den_Entrance dragonsDenEntrance;
+    HeadbuttFile_126_Tohjo_Falls tohjoFalls;
+    HeadbuttFile_127_Route_30_House route30House;
+    HeadbuttFile_128_Ecruteak_City_Union_Room ecruteakCityUnionRoom;
+    HeadbuttFile_129_Ecruteak_City_Union_Room ecruteakCityUnionRoom129;
+    HeadbuttFile_130_Ecruteak_City_Union_Room ecruteakCityUnionRoom130;
+    HeadbuttFile_131_Ecruteak_City_Pokmon_Centre_Lower ecruteakCityPokemonCentreLower;
+    HeadbuttFile_132_Ecruteak_City_And_Route_42_Gate ecruteakCityAndRoute42Gate;
+    HeadbuttFile_133_Mahogany_Town_House mahoganyTownHouse;
+    HeadbuttFile_134_Route_29_And_Route_46_Gate route29AndRoute46Gate;
+    HeadbuttFile_135_Violet_City_Gym violetCityGym;
+    HeadbuttFile_136_Azalea_Gym_Entrance azaleaGymEntrance;
+    HeadbuttFile_137_Goldenrod_City_Gym goldenrodCityGym;
+    HeadbuttFile_138_Olivine_City_Gym olivineCityGym;
+    HeadbuttFile_139_Cianwood_City_Gym cianwoodCityGym;
+    HeadbuttFile_140_Mahogany_City_Gym_3rd_Room mahoganyCityGym3rdRoom;
+    HeadbuttFile_141_Blackthorn_City_Gym blackthornCityGym;
+    HeadbuttFile_142_Route_43_Gate route43Gate;
+    HeadbuttFile_143_Mr_Pokmons_House mrPokemonsHouse;
+    HeadbuttFile_144_Cherrygrove_City_Pokmon_Centre_Lower cherrygroveCityPokemonCentreLower;
+    HeadbuttFile_145_Cerulean_Cave_1F ceruleanCave1F;
+    HeadbuttFile_146_Seafoam_Islands_1F seafoamIslands1F;
+    HeadbuttFile_147_Viridian_Forest viridianForest;
+    HeadbuttFile_148_Power_Plant_Unused powerPlantUnused;
+    HeadbuttFile_149_Route_36_And_Violet_City_Inbetween route36AndVioletCityInbetween;
+    HeadbuttFile_150_Route_35_And_Pokathlon_Dome_Inbetween route35AndPokathlonDomeInbetween;
+    HeadbuttFile_151_Route_47 route47;
+    HeadbuttFile_152_Route_48 route48;
+    HeadbuttFile_153_Union_Cave_B1F unionCaveB1F;
+    HeadbuttFile_154_Union_Cave_B2F unionCaveB2F;
+    HeadbuttFile_155_Sprout_Tower_2F sproutTower2F;
+    HeadbuttFile_156_Sprout_Tower_3F sproutTower3F;
+    HeadbuttFile_157_Violet_City_Pokmart violetCityPokmart;
+    HeadbuttFile_158_Violet_City_Pokmon_Centre violetCityPokemonCentre;
+    HeadbuttFile_159_Violet_City_Pokmon_School violetCityPokemonSchool;
+    HeadbuttFile_160_Violet_City_House violetCityHouse;
+    HeadbuttFile_161_Jubilife_City_Unused jubilifeCityUnused161;
+    HeadbuttFile_162_Violet_City_House violetCityHouse162;
+    HeadbuttFile_163_Azalea_Town_Charcoal_Kiln azaleaTownCharcoalKiln;
+    HeadbuttFile_164_Azalea_Town_Kurts_House azaleaTownKurtsHouse;
+    HeadbuttFile_165_Azalea_Town_Pokmart azaleaTownPokmart;
+    HeadbuttFile_166_Azalea_Town_Pokmon_Centre azaleaTownPokemonCentre;
+    HeadbuttFile_167_Violet_City_Pokmon_Centre_Lower violetCityPokemonCentreLower;
+    HeadbuttFile_168_Azalea_Town_Pokmon_Centre_Lower azaleaTownPokemonCentreLower;
+    HeadbuttFile_169_Route_32_Pokmon_Centre route32PokemonCentre;
+    HeadbuttFile_170_Route_32_Pokmon_Centre_Lower route32PokemonCentreLower;
+    HeadbuttFile_171_Ilex_Forest_And_Route_34_Gate ilexForestAndRoute34Gate;
+    HeadbuttFile_172_Ecruteak_And_Route_38_Gate ecruteakAndRoute38Gate;
+    HeadbuttFile_173_Safari_Zone_Gate_Inside safariZoneGateInside;
+    HeadbuttFile_174_Safari_Zone_Gate_Outside safariZoneGateOutside;
+    HeadbuttFile_175_Jubilife_City_Unused jubilifeCityUnused175;
+    HeadbuttFile_176_Dark_Cave_Route_31_entrance darkCaveRoute31Entrance;
+    HeadbuttFile_177_Slowpoke_Well_1F slowpokeWell1F;
+    HeadbuttFile_178_Victory_Road_2F victoryRoad2F;
+    HeadbuttFile_179_Victory_Road_3F victoryRoad3F;
+    HeadbuttFile_180_Azalea_Town_Gym azaleaTownGym;
+    HeadbuttFile_181_Slowpoke_Well_B1F slowpokeWellB1F;
+    HeadbuttFile_182_Goldenrod_City_Bike_Store goldenrodCityBikeStore;
+    HeadbuttFile_183_Goldenrod_City_Game_Corner_JAP goldenrodCityGameCornerJAP;
+    HeadbuttFile_184_Goldenrod_City_Flower_Shop goldenrodCityFlowerShop;
+    HeadbuttFile_185_Goldenrod_City_Pokmon_Centre goldenrodCityPokemonCentre;
+    HeadbuttFile_186_Goldenrod_Radio_Tower_2F goldenrodRadioTower2F;
+    HeadbuttFile_187_Goldenrod_Radio_Tower_3F goldenrodRadioTower3F;
+    HeadbuttFile_188_Goldenrod_Radio_Tower_4F goldenrodRadioTower4F;
+    HeadbuttFile_189_Goldenrod_Radio_Tower_5F goldenrodRadioTower5F;
+    HeadbuttFile_190_Goldenrod_Radio_Tower_Observation_Deck goldenrodRadioTowerObservationDeck;
+    HeadbuttFile_191_Goldenrod_Department_Store_1F goldenrodDepartmentStore1F;
+    HeadbuttFile_192_Goldenrod_Department_Store_2F goldenrodDepartmentStore2F;
+    HeadbuttFile_193_Goldenrod_Department_Store_3F goldenrodDepartmentStore3F;
+    HeadbuttFile_194_Goldenrod_Department_Store_4F goldenrodDepartmentStore4F;
+    HeadbuttFile_195_Goldenrod_Department_Store_5F goldenrodDepartmentStore5F;
+    HeadbuttFile_196_Goldenrod_Department_Store_6F goldenrodDepartmentStore6F;
+    HeadbuttFile_197_Goldenrod_City_Magnet_Train_Station goldenrodCityMagnetTrainStation;
+    HeadbuttFile_198_Goldenrod_City_Magnet_Train_Station goldenrodCityMagnetTrainStation198;
+    HeadbuttFile_199_Goldenrod_Tunnel goldenrodTunnel199;
+    HeadbuttFile_200_Goldenrod_Department_Store_Basement goldenrodDepartmentStoreBasement;
+    HeadbuttFile_201_Goldenrod_Tunnel_B2F goldenrodTunnelB2F;
+    HeadbuttFile_202_Goldenrod_Tunnel_Warehouse goldenrodTunnelWarehouse;
+    HeadbuttFile_203_Goldenrod_City_House goldenrodCityHouse;
+    HeadbuttFile_204_Goldenrod_City_House goldenrodCityHouse204;
+    HeadbuttFile_205_Goldenrod_City_House goldenrodCityHouse205;
+    HeadbuttFile_206_Goldenrod_City_Name_Rater goldenrodCityNameRater;
+    HeadbuttFile_207_Global_Terminal globalTerminal;
+    HeadbuttFile_208_Goldenrod_City_House_1F goldenrodCityHouse1F;
+    HeadbuttFile_209_Goldenrod_City_House_2F goldenrodCityHouse2F;
+    HeadbuttFile_210_Goldenrod_City_House_3F goldenrodCityHouse3F;
+    HeadbuttFile_211_Goldenrod_City_House_4F goldenrodCityHouse4F;
+    HeadbuttFile_212_Goldenrod_City_House_5F goldenrodCityHouse5F;
+    HeadbuttFile_213_Goldenrod_City_House_6F goldenrodCityHouse6F;
+    HeadbuttFile_214_Moomoo_Farm_House moomooFarmHouse;
+    HeadbuttFile_215_Moomoo_Farm_Barn moomooFarmBarn;
+    HeadbuttFile_216_Barrier_Station_to_Bell_Tower_And_Bellchime_Trail_Path barrierStationToBellTowerAndBellchimeTrailPath;
+    HeadbuttFile_217_Burned_Tower_B1F burnedTowerB1F;
+    HeadbuttFile_218_Ruins_of_Alph_Inside ruinsOfAlphInside218;
+    HeadbuttFile_219_Goldenrod_City_Pokmon_Centre_Lower goldenrodCityPokemonCentreLower;
+    HeadbuttFile_220_Glitter_Lighthouse_2F glitterLighthouse2F;
+    HeadbuttFile_221_Glitter_Lighthouse_Exterior glitterLighthouseExterior;
+    HeadbuttFile_222_Glitter_Lighthouse_3F glitterLighthouse3F;
+    HeadbuttFile_223_Glitter_Lighthouse_4F glitterLighthouse4F;
+    HeadbuttFile_224_Glitter_Lighthouse_5F glitterLighthouse5F;
+    HeadbuttFile_225_Glitter_Lighthouse_Light_Room glitterLighthouseLightRoom;
+    HeadbuttFile_226_Olivine_City_Pokmon_Centre olivineCityPokemonCentre;
+    HeadbuttFile_227_Olivine_City_Pokmart olivineCityPokmart;
+    HeadbuttFile_228_Olivine_City_House olivineCityHouse;
+    HeadbuttFile_229_Olivine_City_House olivineCityHouse229;
+    HeadbuttFile_230_Olivine_City_House olivineCityHouse230;
+    HeadbuttFile_231_Olivine_City_Caf olivineCityCaf;
+    HeadbuttFile_232_Cianwood_City_House cianwoodCityHouse;
+    HeadbuttFile_233_Cianwood_City_Pharmacy cianwoodCityPharmacy;
+    HeadbuttFile_234_Cianwood_City_House cianwoodCityHouse234;
+    HeadbuttFile_235_Cianwood_City_House cianwoodCityHouse235;
+    HeadbuttFile_236_Cianwood_City_Pokmon_Centre cianwoodCityPokemonCentre;
+    HeadbuttFile_237_Ice_Path_B1F icePathB1F;
+    HeadbuttFile_238_Ice_Path_B2F icePathB2F;
+    HeadbuttFile_239_Ice_Path_B3F icePathB3F;
+    HeadbuttFile_240_Olivine_City_House olivineCityHouse240;
+    HeadbuttFile_241_Cianwood_City_Pokmon_Centre_Lower cianwoodCityPokemonCentreLower;
+    HeadbuttFile_242_Whirl_Islands_B1F whirlIslandsB1F;
+    HeadbuttFile_243_Whirl_Islands_B2F whirlIslandsB2F;
+    HeadbuttFile_244_Whirl_Islands_B3F whirlIslandsB3F;
+    HeadbuttFile_245_Route_43_Gate route43Gate245;
+    HeadbuttFile_246_Mahogany_Town_Pokmon_Centre mahoganyTownPokemonCentre;
+    HeadbuttFile_247_Team_Rocket_HQ_B1F teamRocketHQB1F;
+    HeadbuttFile_248_Team_Rocket_HQ_B2F teamRocketHQB2F;
+    HeadbuttFile_249_Team_Rocket_HQ_B3F teamRocketHQB3F;
+    HeadbuttFile_250_Mt_Mortar_1F mtMortar1F250;
+    HeadbuttFile_251_Mt_Mortar_2F mtMortar2F;
+    HeadbuttFile_252_Mt_Mortar_1F mtMortar1F252;
+    HeadbuttFile_253_Dragons_Den_Main dragonsDenMain;
+    HeadbuttFile_254_Fight_Area fightArea;
+    HeadbuttFile_255_Fight_Area fightArea255;
+    HeadbuttFile_256_Fight_Area fightArea256;
+    HeadbuttFile_257_Fight_Area fightArea257;
+    HeadbuttFile_258_Fight_Area fightArea258;
+    HeadbuttFile_259_Fight_Area fightArea259;
+    HeadbuttFile_260_Fight_Area fightArea260;
+    HeadbuttFile_261_Fight_Area fightArea261;
+    HeadbuttFile_262_Fight_Area fightArea262;
+    HeadbuttFile_263_Battle_Park battlePark;
+    HeadbuttFile_264_Battle_Park battlePark264;
+    HeadbuttFile_265_Battle_Tower battleTower;
+    HeadbuttFile_266_Battle_Tower battleTower266;
+    HeadbuttFile_267_Battle_Tower battleTower267;
+    HeadbuttFile_268_Battle_Tower battleTower268;
+    HeadbuttFile_269_Battle_Tower battleTower269;
+    HeadbuttFile_270_Battle_Tower battleTower270;
+    HeadbuttFile_271_Battle_Tower battleTower271;
+    HeadbuttFile_272_Battle_Frontier battleFrontier;
+    HeadbuttFile_273_Battle_Frontier battleFrontier273;
+    HeadbuttFile_274_Battle_Tower battleTower274;
+    HeadbuttFile_275_Battle_Factory battleFactory;
+    HeadbuttFile_276_Battle_Hall battleHall;
+    HeadbuttFile_277_Battle_Castle battleCastle;
+    HeadbuttFile_278_Battle_Arcade battleArcade;
+    HeadbuttFile_279_Cliff_Edge_Gate cliffEdgeGate;
+    HeadbuttFile_280_Pokathlon_Dome_Outside pokathlonDomeOutside;
+    HeadbuttFile_281_Pokathlon_Dome_Inside pokathlonDomeInside;
+    HeadbuttFile_282_Pokathlon_Dome_Inside pokathlonDomeInside282;
+    HeadbuttFile_283_Pokathlon_Dome_Inside pokathlonDomeInside283;
+    HeadbuttFile_284_Pokathlon_Dome_Inside pokathlonDomeInside284;
+    HeadbuttFile_285_Pokathlon_Dome_Inside pokathlonDomeInside285;
+    HeadbuttFile_286_Pokathlon_Dome_Inside pokathlonDomeInside286;
+    HeadbuttFile_287_Pokathlon_Dome_Inside pokathlonDomeInside287;
+    HeadbuttFile_288_Dragons_Den_Shrine dragonsDenShrine;
+    HeadbuttFile_289_Blackthorn_City_House blackthornCityHouse;
+    HeadbuttFile_290_Blackthorn_City_House blackthornCityHouse290;
+    HeadbuttFile_291_Blackthorn_City_House blackthornCityHouse291;
+    HeadbuttFile_292_Blackthorn_City_Pokmart blackthornCityPokmart;
+    HeadbuttFile_293_Blackthorn_City_Pokmon_Centre blackthornCityPokemonCentre;
+    HeadbuttFile_294_Lake_of_Rage_House lakeOfRageHouse;
+    HeadbuttFile_295_Lake_of_Rage_House lakeOfRageHouse295;
+    HeadbuttFile_296_Route_26_House route26House;
+    HeadbuttFile_297_Route_26_Week_Siblings_House route26WeekSiblingsHouse;
+    HeadbuttFile_298_Tohjo_Falls_Hidden_Room tohjoFallsHiddenRoom;
+    HeadbuttFile_299_Pokmon_League_Reception_Gate pokmonLeagueReceptionGate;
+    HeadbuttFile_300_Pokmon_League pokmonLeague;
+    HeadbuttFile_301_Pokmon_League_Wills_Room pokmonLeagueWillsRoom;
+    HeadbuttFile_302_Pokmon_League_Kogas_Room pokmonLeagueKogasRoom;
+    HeadbuttFile_303_Pokmon_League_Brunos_Room pokmonLeagueBrunosRoom;
+    HeadbuttFile_304_Pokmon_League_Karens_Room pokmonLeagueKarensRoom;
+    HeadbuttFile_305_Pokmon_League_Lances_Room pokmonLeagueLancesRoom;
+    HeadbuttFile_306_Pokmon_League_Hall_of_Fame pokmonLeagueHallOfFame;
+    HeadbuttFile_307_S_S_Aqua sSAqua;
+    HeadbuttFile_308_S_S_Aqua sSAqua308;
+    HeadbuttFile_309_S_S_Aqua sSAqua309;
+    HeadbuttFile_310_S_S_Aqua sSAqua310;
+    HeadbuttFile_311_S_S_Aqua sSAqua311;
+    HeadbuttFile_312_Ruins_of_Alph_Entrance ruinsOfAlphEntrance;
+    HeadbuttFile_313_Ruins_of_Alph_Chamber_1 ruinsOfAlphChamber1;
+    HeadbuttFile_314_Ruins_of_Alph_Entrance ruinsOfAlphEntrance314;
+    HeadbuttFile_315_Ruins_of_Alph_Underground_Hall ruinsOfAlphUndergroundHall;
+    HeadbuttFile_316_Ruins_of_Alph_Entrance ruinsOfAlphEntrance316;
+    HeadbuttFile_317_Ruins_of_Alph_Chamber_3 ruinsOfAlphChamber3;
+    HeadbuttFile_318_Ruins_of_Alph_Entrance ruinsOfAlphEntrance318;
+    HeadbuttFile_319_Ruins_of_Alph_Chamber_4 ruinsOfAlphChamber4;
+    HeadbuttFile_320_Ruins_of_Alph_Chamber_2 ruinsOfAlphChamber2;
+    HeadbuttFile_321_Ruins_of_Alph_Research_Center ruinsOfAlphResearchCenter;
+    HeadbuttFile_322_Route_27_House route27House;
+    HeadbuttFile_323_Ruins_of_Alph_Hall_Entrance ruinsOfAlphHallEntrance;
+    HeadbuttFile_324_Ruins_of_Alph_Entrance_2 ruinsOfAlphEntrance2;
+    HeadbuttFile_325_Ruins_of_Alph_Entrance_2 ruinsOfAlphEntrance2325;
+    HeadbuttFile_326_Ruins_of_Alph_Entrance_2 ruinsOfAlphEntrance2326;
+    HeadbuttFile_327_Ruins_of_Alph_Entrance_2 ruinsOfAlphEntrance2327;
+    HeadbuttFile_328_S_S_Aqua sSAqua328;
+    HeadbuttFile_329_S_S_Aqua sSAqua329;
+    HeadbuttFile_330_Olivine_Port olivinePort;
+    HeadbuttFile_331_Pokmon_Daycare pokmonDaycare;
+    HeadbuttFile_332_Bell_Tower_2F bellTower2F;
+    HeadbuttFile_333_Bell_Tower_3F bellTower3F;
+    HeadbuttFile_334_Bell_Tower_4F bellTower4F;
+    HeadbuttFile_335_Bell_Tower_5F bellTower5F;
+    HeadbuttFile_336_Bell_Tower_6F bellTower6F;
+    HeadbuttFile_337_Bell_Tower_7F bellTower7F;
+    HeadbuttFile_338_Bell_Tower_8F bellTower8F;
+    HeadbuttFile_339_Bell_Tower_9F bellTower9F;
+    HeadbuttFile_340_Bell_Tower_Roof bellTowerRoof;
+    HeadbuttFile_341_Bell_Tower_10F bellTower10F;
+    HeadbuttFile_342_Cliff_Cave cliffCave;
+    HeadbuttFile_343_Safari_Zone safariZone;
+    HeadbuttFile_344_Safari_Zone safariZone344;
+    HeadbuttFile_345_Safari_Zone safariZone345;
+    HeadbuttFile_346_Safari_Zone safariZone346;
+    HeadbuttFile_347_Safari_Zone safariZone347;
+    HeadbuttFile_348_Safari_Zone safariZone348;
+    HeadbuttFile_349_Safari_Zone safariZone349;
+    HeadbuttFile_350_Safari_Zone safariZone350;
+    HeadbuttFile_351_Safari_Zone safariZone351;
+    HeadbuttFile_352_Safari_Zone safariZone352;
+    HeadbuttFile_353_Safari_Zone safariZone353;
+    HeadbuttFile_354_Safari_Zone safariZone354;
+    HeadbuttFile_355_Safari_Zone safariZone355;
+    HeadbuttFile_356_Safari_Zone safariZone356;
+    HeadbuttFile_357_Safari_Zone safariZone357;
+    HeadbuttFile_358_Vermilion_City_Pokmon_Centre vermilionCityPokemonCentre;
+    HeadbuttFile_359_Vermilion_City_Pokmon_Centre_Lower vermilionCityPokemonCentreLower;
+    HeadbuttFile_360_Vermilion_City_Pokmart vermilionCityPokmart;
+    HeadbuttFile_361_Vermilion_City_Pokmon_Centre vermilionCityPokemonCentre361;
+    HeadbuttFile_362_Vermilion_City_Pokmon_Fan_Club vermilionCityPokemonFanClub;
+    HeadbuttFile_363_Vermilion_City_House vermilionCityHouse;
+    HeadbuttFile_364_Vermilion_City_House vermilionCityHouse364;
+    HeadbuttFile_365_Vermilion_City_Gym vermilionCityGym;
+    HeadbuttFile_366_Route_40_And_Frontier_Access_Gate route40AndFrontierAccessGate;
+    HeadbuttFile_367_Olivine_City_Pokmon_Center_Lower olivineCityPokemonCenterLower;
+    HeadbuttFile_368_Mahogany_Town_Pokmon_Center_Lower mahoganyTownPokemonCenterLower;
+    HeadbuttFile_369_Blackthorn_Town_Pokmon_Center_Lower blackthornTownPokemonCenterLower;
+    HeadbuttFile_370_Celadon_City_Department_Store_1F celadonCityDepartmentStore1F;
+    HeadbuttFile_371_Celadon_City_Department_Store_2F celadonCityDepartmentStore2F;
+    HeadbuttFile_372_Celadon_City_Department_Store_3F celadonCityDepartmentStore3F;
+    HeadbuttFile_373_Celadon_City_Department_Store_4F celadonCityDepartmentStore4F;
+    HeadbuttFile_374_Celadon_City_Department_Store_5F celadonCityDepartmentStore5F;
+    HeadbuttFile_375_Celadon_City_Department_Store_6F celadonCityDepartmentStore6F;
+    HeadbuttFile_376_Celadon_Condominiums_1F celadonCondominiums1F;
+    HeadbuttFile_377_Celadon_Condominiums_2F celadonCondominiums2F;
+    HeadbuttFile_378_Celadon_Condominiums_3F celadonCondominiums3F;
+    HeadbuttFile_379_Celadon_Condominiums_4F celadonCondominiums4F;
+    HeadbuttFile_380_Celadon_Condominiums_5F celadonCondominiums5F;
+    HeadbuttFile_381_Celadon_Game_Corner_Main_JP celadonGameCornerMainJP;
+    HeadbuttFile_382_Celadon_Game_Corner_Prize_Building_JP celadonGameCornerPrizeBuildingJP;
+    HeadbuttFile_383_Celadon_City_House celadonCityHouse;
+    HeadbuttFile_384_Ethan_Lyras_House_2F ethanLyrasHouse2F;
+    HeadbuttFile_385_Cianwood_City_House cianwoodCityHouse385;
+    HeadbuttFile_386_Vermilion_Port vermilionPort;
+    HeadbuttFile_387_Vermilion_Port vermilionPort387;
+    HeadbuttFile_388_Route_10 route10388;
+    HeadbuttFile_389_Route_6_And_Saffron_City_Gate route6AndSaffronCityGate;
+    HeadbuttFile_390_Route_8_And_Saffron_City_Gate route8AndSaffronCityGate;
+    HeadbuttFile_391_Route_5_And_Saffron_City_Gate route5AndSaffronCityGate;
+    HeadbuttFile_392_Route_15_And_Fushsia_City_Gate route15AndFushsiaCityGate;
+    HeadbuttFile_393_Celadon_City_Pokmon_Centre celadonCityPokemonCentre;
+    HeadbuttFile_394_Celadon_City_Pokmon_Centre_Lower celadonCityPokemonCentreLower;
+    HeadbuttFile_395_Celadon_City_Gym celadonCityGym;
+    HeadbuttFile_396_Mahogany_Town_Gym_2nd_Room mahoganyTownGym2ndRoom;
+    HeadbuttFile_397_Mahogany_Town_Gym_1st_Room mahoganyTownGym1stRoom;
+    HeadbuttFile_398_Saffron_City_Fighting_Dojo saffronCityFightingDojo;
+    HeadbuttFile_399_Saffron_City_House saffronCityHouse;
+    HeadbuttFile_400_Saffron_City_Magnet_Train_Station saffronCityMagnetTrainStation;
+    HeadbuttFile_401_Saffron_City_Magnet_Train_Station saffronCityMagnetTrainStation401;
+    HeadbuttFile_402_Saffron_City_Magnet_Train_Station saffronCityMagnetTrainStation402;
+    HeadbuttFile_403_ROTOMs_Room rotomsRoom;
+    HeadbuttFile_404_Saffron_City_House saffronCityHouse404;
+    HeadbuttFile_405_Saffron_City_House saffronCityHouse405;
+    HeadbuttFile_406_Saffron_City_House saffronCityHouse406;
+    HeadbuttFile_407_Saffron_City_Pokmon_Center saffronCityPokemonCenter;
+    HeadbuttFile_408_Saffron_City_Pokmon_Center_Lower saffronCityPokemonCenterLower;
+    HeadbuttFile_409_Saffron_City_Pokmart saffronCityPokmart;
+    HeadbuttFile_410_Saffron_City_Gym saffronCityGym;
+    HeadbuttFile_411_Frontier_Access frontierAccess;
+    HeadbuttFile_412_Global_Terminal_2F globalTerminal2F;
+    HeadbuttFile_413_Global_Terminal_3F globalTerminal3F;
+    HeadbuttFile_414_Route_2 route2414;
+    HeadbuttFile_415_Route_16_House route16House;
+    HeadbuttFile_416_Route_20_Unused route20Unused;
+    HeadbuttFile_417_Route_2 route2417;
+    HeadbuttFile_418_Route_2_And_Pewter_City_Gate route2AndPewterCityGate;
+    HeadbuttFile_419_Route_2_And_Viridian_City_Gate route2AndViridianCityGate;
+    HeadbuttFile_420_Route_2_Gate route2Gate;
+    HeadbuttFile_421_Route_16_Gate route16Gate;
+    HeadbuttFile_422_Route_16 route16422;
+    HeadbuttFile_423_Route_18_Gate route18Gate;
+    HeadbuttFile_424_Route_19_And_Fushsia_City_Gate route19AndFushsiaCityGate;
+    HeadbuttFile_425_Route_11_And_Route_12_Gate route11AndRoute12Gate;
+    HeadbuttFile_426_Cerulean_City_Pokmart ceruleanCityPokmart;
+    HeadbuttFile_427_Cerulean_City_Gym ceruleanCityGym;
+    HeadbuttFile_428_Cerulean_City_Pokmon_Centre ceruleanCityPokemonCentre;
+    HeadbuttFile_429_Cerulean_City_House ceruleanCityHouse;
+    HeadbuttFile_430_Cerulean_City_House ceruleanCityHouse430;
+    HeadbuttFile_431_Cerulean_City_House ceruleanCityHouse431;
+    HeadbuttFile_432_Cerulean_City_Bike_Shop ceruleanCityBikeShop;
+    HeadbuttFile_433_Lavender_Town_Pokmart lavenderTownPokmart;
+    HeadbuttFile_434_Lavender_Town_Pokmon_Centre lavenderTownPokemonCentre;
+    HeadbuttFile_435_Lavender_Town_House lavenderTownHouse;
+    HeadbuttFile_436_Lavender_Town_House lavenderTownHouse436;
+    HeadbuttFile_437_Lavender_Town_Name_Rater lavenderTownNameRater;
+    HeadbuttFile_438_House_of_Memories houseOfMemories;
+    HeadbuttFile_439_Lavender_Town_Radio_Tower lavenderTownRadioTower;
+    HeadbuttFile_440_Sea_Cottage seaCottage;
+    HeadbuttFile_441_Goldenrod_City_Elevator goldenrodCityElevator;
+    HeadbuttFile_442_Celadon_City_Elevator celadonCityElevator;
+    HeadbuttFile_443_Celadon_City_Elevator celadonCityElevator443;
+    HeadbuttFile_444_Celadon_City_Elevator celadonCityElevator444;
+    HeadbuttFile_445_Saffron_City_Elevator saffronCityElevator;
+    HeadbuttFile_446_Lighthouse_Elevator lighthouseElevator;
+    HeadbuttFile_447_Radio_Tower_Elevator radioTowerElevator;
+    HeadbuttFile_448_Mt_Moon_Entrance mtMoonEntrance;
+    HeadbuttFile_449_Mt_Moon_Square mtMoonSquare;
+    HeadbuttFile_450_Cerulean_Cave_2F ceruleanCave2F;
+    HeadbuttFile_451_Cerulean_Cave_B1F ceruleanCaveB1F;
+    HeadbuttFile_452_Rock_Tunnel_B1F rockTunnelB1F;
+    HeadbuttFile_453_Seafoam_Islands_B1F seafoamIslandsB1F;
+    HeadbuttFile_454_Seafoam_Islands_B2F seafoamIslandsB2F;
+    HeadbuttFile_455_Seafoam_Islands_B3F seafoamIslandsB3F;
+    HeadbuttFile_456_Seafoam_Islands_B4F seafoamIslandsB4F;
+    HeadbuttFile_457_Cinnabar_Gym cinnabarGym;
+    HeadbuttFile_458_Cinnabar_Gym cinnabarGym458;
+    HeadbuttFile_459_Mt_Silver_Cave_Upper_Mountainside mtSilverCaveUpperMountainside;
+    HeadbuttFile_460_Mt_Silver_Cave_Lower_Mountainside mtSilverCaveLowerMountainside;
+    HeadbuttFile_461_Mt_Silver_Cave_Expert_Belt_Chamber mtSilverCaveExpertBeltChamber;
+    HeadbuttFile_462_Mt_Silver_Cave_Moltres_Chamber mtSilverCaveMoltresChamber;
+    HeadbuttFile_463_Mt_Silver_Cave_2F mtSilverCave2F;
+    HeadbuttFile_464_Mt_Silver_Cave_3F mtSilverCave3F;
+    HeadbuttFile_465_Mt_Silver_Cave_Summit mtSilverCaveSummit;
+    HeadbuttFile_466_Route_10_Pokmon_Centre route10PokemonCentre;
+    HeadbuttFile_467_Power_Plant powerPlant;
+    HeadbuttFile_468_Underground_Path undergroundPath;
+    HeadbuttFile_469_Route_5_Underground_Path_Entrance route5UndergroundPathEntrance;
+    HeadbuttFile_470_Route_6_Underground_Path_Entrance route6UndergroundPathEntrance;
+    HeadbuttFile_471_Pewter_Museum_of_Science pewterMuseumOfScience;
+    HeadbuttFile_472_Pewter_City_House pewterCityHouse;
+    HeadbuttFile_473_Pewter_City_Gym pewterCityGym;
+    HeadbuttFile_474_Pewter_City_Pokmart pewterCityPokmart;
+    HeadbuttFile_475_Pewter_City_Pokmon_Centre pewterCityPokemonCentre;
+    HeadbuttFile_476_Pewter_City_Pokmon_Centre_Lower pewterCityPokemonCentreLower;
+    HeadbuttFile_477_Pewter_City_House pewterCityHouse477;
+    HeadbuttFile_478_Fushsia_City_Pokmart fushsiaCityPokmart;
+    HeadbuttFile_479_Pal_Park_Inside palParkInside;
+    HeadbuttFile_480_Fushsia_City_Gym fushsiaCityGym;
+    HeadbuttFile_481_Fushsia_City_House fushsiaCityHouse;
+    HeadbuttFile_482_Fushsia_City_Pokmon_Centre fushsiaCityPokemonCentre;
+    HeadbuttFile_483_Fushsia_City_House fushsiaCityHouse483;
+    HeadbuttFile_484_Route_10_Pokmon_Centre_Lower route10PokemonCentreLower;
+    HeadbuttFile_485_Fuchsia_City_Pokmon_Centre_Lower fuchsiaCityPokemonCentreLower;
+    HeadbuttFile_486_Whirl_Islands_Lugias_Room whirlIslandsLugiasRoom;
+    HeadbuttFile_487_National_Park_Bug_Catching_Contest nationalParkBugCatchingContest;
+    HeadbuttFile_488_National_Park_Bug_Catching_Contest_National_Dex nationalParkBugCatchingContestNationalDex;
+    HeadbuttFile_489_Power_Plant powerPlant489;
+    HeadbuttFile_490_Ruins_of_Alph_Underground_Hall ruinsOfAlphUndergroundHall490;
+    HeadbuttFile_491_Ruins_of_Alph_Hall_Entrance ruinsOfAlphHallEntrance491;
+    HeadbuttFile_492_Ruins_of_Alph_Underground_Hall ruinsOfAlphUndergroundHall492;
+    HeadbuttFile_493_Route_7_And_Saffron_City_Gate route7AndSaffronCityGate;
+    HeadbuttFile_494_Lavender_Town_Pokmon_Centre_Lower lavenderTownPokemonCentreLower;
+    HeadbuttFile_495_Cerulean_City_Pokmon_Centre_Lower ceruleanCityPokemonCentreLower;
+    HeadbuttFile_496_Viridian_City_Gym viridianCityGym;
+    HeadbuttFile_497_Viridian_City_House viridianCityHouse;
+    HeadbuttFile_498_Viridian_City_Trainer_House viridianCityTrainerHouse;
+    HeadbuttFile_499_Viridian_City_Trainer_House_2F viridianCityTrainerHouse2F;
+    HeadbuttFile_500_Viridian_City_Pokmart viridianCityPokmart;
+    HeadbuttFile_501_Viridian_City_Pokmon_Centre viridianCityPokemonCentre;
+    HeadbuttFile_502_Viridian_City_Pokmon_Centre_Lower viridianCityPokemonCentreLower;
+    HeadbuttFile_503_Pallet_Town_Reds_House_1F palletTownRedsHouse1F;
+    HeadbuttFile_504_Pallet_Town_Blues_House_1F palletTownBluesHouse1F;
+    HeadbuttFile_505_Oaks_Lab oaksLab;
+    HeadbuttFile_506_Pallet_Town_Reds_House_2F palletTownRedsHouse2F;
+    HeadbuttFile_507_Pallet_Town_Blues_House_2F palletTownBluesHouse2F;
+    HeadbuttFile_508_Cinnabar_Island_Pokmon_Centre cinnabarIslandPokemonCentre;
+    HeadbuttFile_509_Cinnabar_Island_Pokmon_Centre_Lower cinnabarIslandPokemonCentreLower;
+    HeadbuttFile_510_Route_28_House route28House;
+    HeadbuttFile_511_Route_3_Pokmon_Centre route3PokemonCentre;
+    HeadbuttFile_512_Route_3_Pokmon_Centre_Lower route3PokemonCentreLower;
+    HeadbuttFile_513_Mt_Moon_Square mtMoonSquare513;
+    HeadbuttFile_514_Mt_Silver_Pokmon_Centre mtSilverPokemonCentre;
+    HeadbuttFile_515_Mt_Silver_Pokmon_Centre_Lower mtSilverPokemonCentreLower;
+    HeadbuttFile_516_HIROBA hiroba;
+    HeadbuttFile_517_Route_5_House route5House;
+    HeadbuttFile_518_Mt_Moon_Square_House mtMoonSquareHouse;
+    HeadbuttFile_519_Goldenrod_City_Magnet_Train_Station goldenrodCityMagnetTrainStation519;
+    HeadbuttFile_520_Saffron_City_Magnet_Train_Station saffronCityMagnetTrainStation520;
+    HeadbuttFile_521_Sinjoh_Ruins_Outside sinjohRuinsOutside;
+    HeadbuttFile_522_Sinjoh_Ruins_Mystri_Stage sinjohRuinsMystriStage;
+    HeadbuttFile_523_Sinjoh_Ruins_Cabin sinjohRuinsCabin;
+    HeadbuttFile_524_Embedded_Tower_Groudon embeddedTowerGroudon;
+    HeadbuttFile_525_Embedded_Tower_Kyogre embeddedTowerKyogre;
+    HeadbuttFile_526_Embedded_Tower_Rayquaza embeddedTowerRayquaza;
+    HeadbuttFile_527_Route_1_And_Viridian_City_Gate route1AndViridianCityGate;
+    HeadbuttFile_528_Frontier_Access_Pokmon_Center frontierAccessPokemonCenter;
+    HeadbuttFile_529_Frontier_Access_Pokmon_Center_Lower frontierAccessPokemonCenterLower;
+    HeadbuttFile_530_Frontier_Access_Pokmart frontierAccessPokmart;
+    HeadbuttFile_531_Frontier_Access_House frontierAccessHouse;
+    HeadbuttFile_532_Underground_Path undergroundPath532;
+    HeadbuttFile_533_Route_12_House route12House;
+    HeadbuttFile_534_Safari_Zone_Gate_Pokmon_Center safariZoneGatePokemonCenter;
+    HeadbuttFile_535_Safari_Zone_Gate_Pokmon_Centre_Lower safariZoneGatePokemonCentreLower;
+    HeadbuttFile_536_Goldenrod_City_Game_Corner goldenrodCityGameCorner;
+    HeadbuttFile_537_Celadon_City_Game_Corner celadonCityGameCorner;
+    HeadbuttFile_538_Mystery_Zone mysteryZone;
+    HeadbuttFile_539_Pokmon_League_Pokmon_Centre_Lower pokmonLeaguePokemonCentreLower;
 } HeadbuttArchiveData;
+
 
 const u32 __size[] =
 {
-    sizeof(HeadbuttFile_000),
-    sizeof(HeadbuttFile_001),
-    sizeof(HeadbuttFile_002),
-    sizeof(HeadbuttFile_003),
-    sizeof(HeadbuttFile_004),
-    sizeof(HeadbuttFile_005),
-    sizeof(HeadbuttFile_006),
-    sizeof(HeadbuttFile_007),
-    sizeof(HeadbuttFile_008),
-    sizeof(HeadbuttFile_009),
-    sizeof(HeadbuttFile_010),
-    sizeof(HeadbuttFile_011),
-    sizeof(HeadbuttFile_012),
-    sizeof(HeadbuttFile_013),
-    sizeof(HeadbuttFile_014),
-    sizeof(HeadbuttFile_015),
-    sizeof(HeadbuttFile_016),
-    sizeof(HeadbuttFile_017),
-    sizeof(HeadbuttFile_018),
-    sizeof(HeadbuttFile_019),
-    sizeof(HeadbuttFile_020),
-    sizeof(HeadbuttFile_021),
-    sizeof(HeadbuttFile_022),
-    sizeof(HeadbuttFile_023),
-    sizeof(HeadbuttFile_024),
-    sizeof(HeadbuttFile_025),
-    sizeof(HeadbuttFile_026),
-    sizeof(HeadbuttFile_027),
-    sizeof(HeadbuttFile_028),
-    sizeof(HeadbuttFile_029),
-    sizeof(HeadbuttFile_030),
-    sizeof(HeadbuttFile_031),
-    sizeof(HeadbuttFile_032),
-    sizeof(HeadbuttFile_033),
-    sizeof(HeadbuttFile_034),
-    sizeof(HeadbuttFile_035),
-    sizeof(HeadbuttFile_036),
-    sizeof(HeadbuttFile_037),
-    sizeof(HeadbuttFile_038),
-    sizeof(HeadbuttFile_039),
-    sizeof(HeadbuttFile_040),
-    sizeof(HeadbuttFile_041),
-    sizeof(HeadbuttFile_042),
-    sizeof(HeadbuttFile_043),
-    sizeof(HeadbuttFile_044),
-    sizeof(HeadbuttFile_045),
-    sizeof(HeadbuttFile_046),
-    sizeof(HeadbuttFile_047),
-    sizeof(HeadbuttFile_048),
-    sizeof(HeadbuttFile_049),
-    sizeof(HeadbuttFile_050),
-    sizeof(HeadbuttFile_051),
-    sizeof(HeadbuttFile_052),
-    sizeof(HeadbuttFile_053),
-    sizeof(HeadbuttFile_054),
-    sizeof(HeadbuttFile_055),
-    sizeof(HeadbuttFile_056),
-    sizeof(HeadbuttFile_057),
-    sizeof(HeadbuttFile_058),
-    sizeof(HeadbuttFile_059),
-    sizeof(HeadbuttFile_060),
-    sizeof(HeadbuttFile_061),
-    sizeof(HeadbuttFile_062),
-    sizeof(HeadbuttFile_063),
-    sizeof(HeadbuttFile_064),
-    sizeof(HeadbuttFile_065),
-    sizeof(HeadbuttFile_066),
-    sizeof(HeadbuttFile_067),
-    sizeof(HeadbuttFile_068),
-    sizeof(HeadbuttFile_069),
-    sizeof(HeadbuttFile_070),
-    sizeof(HeadbuttFile_071),
-    sizeof(HeadbuttFile_072),
-    sizeof(HeadbuttFile_073),
-    sizeof(HeadbuttFile_074),
-    sizeof(HeadbuttFile_075),
-    sizeof(HeadbuttFile_076),
-    sizeof(HeadbuttFile_077),
-    sizeof(HeadbuttFile_078),
-    sizeof(HeadbuttFile_079),
-    sizeof(HeadbuttFile_080),
-    sizeof(HeadbuttFile_081),
-    sizeof(HeadbuttFile_082),
-    sizeof(HeadbuttFile_083),
-    sizeof(HeadbuttFile_084),
-    sizeof(HeadbuttFile_085),
-    sizeof(HeadbuttFile_086),
-    sizeof(HeadbuttFile_087),
-    sizeof(HeadbuttFile_088),
-    sizeof(HeadbuttFile_089),
-    sizeof(HeadbuttFile_090),
-    sizeof(HeadbuttFile_091),
-    sizeof(HeadbuttFile_092),
-    sizeof(HeadbuttFile_093),
-    sizeof(HeadbuttFile_094),
-    sizeof(HeadbuttFile_095),
-    sizeof(HeadbuttFile_096),
-    sizeof(HeadbuttFile_097),
-    sizeof(HeadbuttFile_098),
-    sizeof(HeadbuttFile_099),
-    sizeof(HeadbuttFile_100),
-    sizeof(HeadbuttFile_101),
-    sizeof(HeadbuttFile_102),
-    sizeof(HeadbuttFile_103),
-    sizeof(HeadbuttFile_104),
-    sizeof(HeadbuttFile_105),
-    sizeof(HeadbuttFile_106),
-    sizeof(HeadbuttFile_107),
-    sizeof(HeadbuttFile_108),
-    sizeof(HeadbuttFile_109),
-    sizeof(HeadbuttFile_110),
-    sizeof(HeadbuttFile_111),
-    sizeof(HeadbuttFile_112),
-    sizeof(HeadbuttFile_113),
-    sizeof(HeadbuttFile_114),
-    sizeof(HeadbuttFile_115),
-    sizeof(HeadbuttFile_116),
-    sizeof(HeadbuttFile_117),
-    sizeof(HeadbuttFile_118),
-    sizeof(HeadbuttFile_119),
-    sizeof(HeadbuttFile_120),
-    sizeof(HeadbuttFile_121),
-    sizeof(HeadbuttFile_122),
-    sizeof(HeadbuttFile_123),
-    sizeof(HeadbuttFile_124),
-    sizeof(HeadbuttFile_125),
-    sizeof(HeadbuttFile_126),
-    sizeof(HeadbuttFile_127),
-    sizeof(HeadbuttFile_128),
-    sizeof(HeadbuttFile_129),
-    sizeof(HeadbuttFile_130),
-    sizeof(HeadbuttFile_131),
-    sizeof(HeadbuttFile_132),
-    sizeof(HeadbuttFile_133),
-    sizeof(HeadbuttFile_134),
-    sizeof(HeadbuttFile_135),
-    sizeof(HeadbuttFile_136),
-    sizeof(HeadbuttFile_137),
-    sizeof(HeadbuttFile_138),
-    sizeof(HeadbuttFile_139),
-    sizeof(HeadbuttFile_140),
-    sizeof(HeadbuttFile_141),
-    sizeof(HeadbuttFile_142),
-    sizeof(HeadbuttFile_143),
-    sizeof(HeadbuttFile_144),
-    sizeof(HeadbuttFile_145),
-    sizeof(HeadbuttFile_146),
-    sizeof(HeadbuttFile_147),
-    sizeof(HeadbuttFile_148),
-    sizeof(HeadbuttFile_149),
-    sizeof(HeadbuttFile_150),
-    sizeof(HeadbuttFile_151),
-    sizeof(HeadbuttFile_152),
-    sizeof(HeadbuttFile_153),
-    sizeof(HeadbuttFile_154),
-    sizeof(HeadbuttFile_155),
-    sizeof(HeadbuttFile_156),
-    sizeof(HeadbuttFile_157),
-    sizeof(HeadbuttFile_158),
-    sizeof(HeadbuttFile_159),
-    sizeof(HeadbuttFile_160),
-    sizeof(HeadbuttFile_161),
-    sizeof(HeadbuttFile_162),
-    sizeof(HeadbuttFile_163),
-    sizeof(HeadbuttFile_164),
-    sizeof(HeadbuttFile_165),
-    sizeof(HeadbuttFile_166),
-    sizeof(HeadbuttFile_167),
-    sizeof(HeadbuttFile_168),
-    sizeof(HeadbuttFile_169),
-    sizeof(HeadbuttFile_170),
-    sizeof(HeadbuttFile_171),
-    sizeof(HeadbuttFile_172),
-    sizeof(HeadbuttFile_173),
-    sizeof(HeadbuttFile_174),
-    sizeof(HeadbuttFile_175),
-    sizeof(HeadbuttFile_176),
-    sizeof(HeadbuttFile_177),
-    sizeof(HeadbuttFile_178),
-    sizeof(HeadbuttFile_179),
-    sizeof(HeadbuttFile_180),
-    sizeof(HeadbuttFile_181),
-    sizeof(HeadbuttFile_182),
-    sizeof(HeadbuttFile_183),
-    sizeof(HeadbuttFile_184),
-    sizeof(HeadbuttFile_185),
-    sizeof(HeadbuttFile_186),
-    sizeof(HeadbuttFile_187),
-    sizeof(HeadbuttFile_188),
-    sizeof(HeadbuttFile_189),
-    sizeof(HeadbuttFile_190),
-    sizeof(HeadbuttFile_191),
-    sizeof(HeadbuttFile_192),
-    sizeof(HeadbuttFile_193),
-    sizeof(HeadbuttFile_194),
-    sizeof(HeadbuttFile_195),
-    sizeof(HeadbuttFile_196),
-    sizeof(HeadbuttFile_197),
-    sizeof(HeadbuttFile_198),
-    sizeof(HeadbuttFile_199),
-    sizeof(HeadbuttFile_200),
-    sizeof(HeadbuttFile_201),
-    sizeof(HeadbuttFile_202),
-    sizeof(HeadbuttFile_203),
-    sizeof(HeadbuttFile_204),
-    sizeof(HeadbuttFile_205),
-    sizeof(HeadbuttFile_206),
-    sizeof(HeadbuttFile_207),
-    sizeof(HeadbuttFile_208),
-    sizeof(HeadbuttFile_209),
-    sizeof(HeadbuttFile_210),
-    sizeof(HeadbuttFile_211),
-    sizeof(HeadbuttFile_212),
-    sizeof(HeadbuttFile_213),
-    sizeof(HeadbuttFile_214),
-    sizeof(HeadbuttFile_215),
-    sizeof(HeadbuttFile_216),
-    sizeof(HeadbuttFile_217),
-    sizeof(HeadbuttFile_218),
-    sizeof(HeadbuttFile_219),
-    sizeof(HeadbuttFile_220),
-    sizeof(HeadbuttFile_221),
-    sizeof(HeadbuttFile_222),
-    sizeof(HeadbuttFile_223),
-    sizeof(HeadbuttFile_224),
-    sizeof(HeadbuttFile_225),
-    sizeof(HeadbuttFile_226),
-    sizeof(HeadbuttFile_227),
-    sizeof(HeadbuttFile_228),
-    sizeof(HeadbuttFile_229),
-    sizeof(HeadbuttFile_230),
-    sizeof(HeadbuttFile_231),
-    sizeof(HeadbuttFile_232),
-    sizeof(HeadbuttFile_233),
-    sizeof(HeadbuttFile_234),
-    sizeof(HeadbuttFile_235),
-    sizeof(HeadbuttFile_236),
-    sizeof(HeadbuttFile_237),
-    sizeof(HeadbuttFile_238),
-    sizeof(HeadbuttFile_239),
-    sizeof(HeadbuttFile_240),
-    sizeof(HeadbuttFile_241),
-    sizeof(HeadbuttFile_242),
-    sizeof(HeadbuttFile_243),
-    sizeof(HeadbuttFile_244),
-    sizeof(HeadbuttFile_245),
-    sizeof(HeadbuttFile_246),
-    sizeof(HeadbuttFile_247),
-    sizeof(HeadbuttFile_248),
-    sizeof(HeadbuttFile_249),
-    sizeof(HeadbuttFile_250),
-    sizeof(HeadbuttFile_251),
-    sizeof(HeadbuttFile_252),
-    sizeof(HeadbuttFile_253),
-    sizeof(HeadbuttFile_254),
-    sizeof(HeadbuttFile_255),
-    sizeof(HeadbuttFile_256),
-    sizeof(HeadbuttFile_257),
-    sizeof(HeadbuttFile_258),
-    sizeof(HeadbuttFile_259),
-    sizeof(HeadbuttFile_260),
-    sizeof(HeadbuttFile_261),
-    sizeof(HeadbuttFile_262),
-    sizeof(HeadbuttFile_263),
-    sizeof(HeadbuttFile_264),
-    sizeof(HeadbuttFile_265),
-    sizeof(HeadbuttFile_266),
-    sizeof(HeadbuttFile_267),
-    sizeof(HeadbuttFile_268),
-    sizeof(HeadbuttFile_269),
-    sizeof(HeadbuttFile_270),
-    sizeof(HeadbuttFile_271),
-    sizeof(HeadbuttFile_272),
-    sizeof(HeadbuttFile_273),
-    sizeof(HeadbuttFile_274),
-    sizeof(HeadbuttFile_275),
-    sizeof(HeadbuttFile_276),
-    sizeof(HeadbuttFile_277),
-    sizeof(HeadbuttFile_278),
-    sizeof(HeadbuttFile_279),
-    sizeof(HeadbuttFile_280),
-    sizeof(HeadbuttFile_281),
-    sizeof(HeadbuttFile_282),
-    sizeof(HeadbuttFile_283),
-    sizeof(HeadbuttFile_284),
-    sizeof(HeadbuttFile_285),
-    sizeof(HeadbuttFile_286),
-    sizeof(HeadbuttFile_287),
-    sizeof(HeadbuttFile_288),
-    sizeof(HeadbuttFile_289),
-    sizeof(HeadbuttFile_290),
-    sizeof(HeadbuttFile_291),
-    sizeof(HeadbuttFile_292),
-    sizeof(HeadbuttFile_293),
-    sizeof(HeadbuttFile_294),
-    sizeof(HeadbuttFile_295),
-    sizeof(HeadbuttFile_296),
-    sizeof(HeadbuttFile_297),
-    sizeof(HeadbuttFile_298),
-    sizeof(HeadbuttFile_299),
-    sizeof(HeadbuttFile_300),
-    sizeof(HeadbuttFile_301),
-    sizeof(HeadbuttFile_302),
-    sizeof(HeadbuttFile_303),
-    sizeof(HeadbuttFile_304),
-    sizeof(HeadbuttFile_305),
-    sizeof(HeadbuttFile_306),
-    sizeof(HeadbuttFile_307),
-    sizeof(HeadbuttFile_308),
-    sizeof(HeadbuttFile_309),
-    sizeof(HeadbuttFile_310),
-    sizeof(HeadbuttFile_311),
-    sizeof(HeadbuttFile_312),
-    sizeof(HeadbuttFile_313),
-    sizeof(HeadbuttFile_314),
-    sizeof(HeadbuttFile_315),
-    sizeof(HeadbuttFile_316),
-    sizeof(HeadbuttFile_317),
-    sizeof(HeadbuttFile_318),
-    sizeof(HeadbuttFile_319),
-    sizeof(HeadbuttFile_320),
-    sizeof(HeadbuttFile_321),
-    sizeof(HeadbuttFile_322),
-    sizeof(HeadbuttFile_323),
-    sizeof(HeadbuttFile_324),
-    sizeof(HeadbuttFile_325),
-    sizeof(HeadbuttFile_326),
-    sizeof(HeadbuttFile_327),
-    sizeof(HeadbuttFile_328),
-    sizeof(HeadbuttFile_329),
-    sizeof(HeadbuttFile_330),
-    sizeof(HeadbuttFile_331),
-    sizeof(HeadbuttFile_332),
-    sizeof(HeadbuttFile_333),
-    sizeof(HeadbuttFile_334),
-    sizeof(HeadbuttFile_335),
-    sizeof(HeadbuttFile_336),
-    sizeof(HeadbuttFile_337),
-    sizeof(HeadbuttFile_338),
-    sizeof(HeadbuttFile_339),
-    sizeof(HeadbuttFile_340),
-    sizeof(HeadbuttFile_341),
-    sizeof(HeadbuttFile_342),
-    sizeof(HeadbuttFile_343),
-    sizeof(HeadbuttFile_344),
-    sizeof(HeadbuttFile_345),
-    sizeof(HeadbuttFile_346),
-    sizeof(HeadbuttFile_347),
-    sizeof(HeadbuttFile_348),
-    sizeof(HeadbuttFile_349),
-    sizeof(HeadbuttFile_350),
-    sizeof(HeadbuttFile_351),
-    sizeof(HeadbuttFile_352),
-    sizeof(HeadbuttFile_353),
-    sizeof(HeadbuttFile_354),
-    sizeof(HeadbuttFile_355),
-    sizeof(HeadbuttFile_356),
-    sizeof(HeadbuttFile_357),
-    sizeof(HeadbuttFile_358),
-    sizeof(HeadbuttFile_359),
-    sizeof(HeadbuttFile_360),
-    sizeof(HeadbuttFile_361),
-    sizeof(HeadbuttFile_362),
-    sizeof(HeadbuttFile_363),
-    sizeof(HeadbuttFile_364),
-    sizeof(HeadbuttFile_365),
-    sizeof(HeadbuttFile_366),
-    sizeof(HeadbuttFile_367),
-    sizeof(HeadbuttFile_368),
-    sizeof(HeadbuttFile_369),
-    sizeof(HeadbuttFile_370),
-    sizeof(HeadbuttFile_371),
-    sizeof(HeadbuttFile_372),
-    sizeof(HeadbuttFile_373),
-    sizeof(HeadbuttFile_374),
-    sizeof(HeadbuttFile_375),
-    sizeof(HeadbuttFile_376),
-    sizeof(HeadbuttFile_377),
-    sizeof(HeadbuttFile_378),
-    sizeof(HeadbuttFile_379),
-    sizeof(HeadbuttFile_380),
-    sizeof(HeadbuttFile_381),
-    sizeof(HeadbuttFile_382),
-    sizeof(HeadbuttFile_383),
-    sizeof(HeadbuttFile_384),
-    sizeof(HeadbuttFile_385),
-    sizeof(HeadbuttFile_386),
-    sizeof(HeadbuttFile_387),
-    sizeof(HeadbuttFile_388),
-    sizeof(HeadbuttFile_389),
-    sizeof(HeadbuttFile_390),
-    sizeof(HeadbuttFile_391),
-    sizeof(HeadbuttFile_392),
-    sizeof(HeadbuttFile_393),
-    sizeof(HeadbuttFile_394),
-    sizeof(HeadbuttFile_395),
-    sizeof(HeadbuttFile_396),
-    sizeof(HeadbuttFile_397),
-    sizeof(HeadbuttFile_398),
-    sizeof(HeadbuttFile_399),
-    sizeof(HeadbuttFile_400),
-    sizeof(HeadbuttFile_401),
-    sizeof(HeadbuttFile_402),
-    sizeof(HeadbuttFile_403),
-    sizeof(HeadbuttFile_404),
-    sizeof(HeadbuttFile_405),
-    sizeof(HeadbuttFile_406),
-    sizeof(HeadbuttFile_407),
-    sizeof(HeadbuttFile_408),
-    sizeof(HeadbuttFile_409),
-    sizeof(HeadbuttFile_410),
-    sizeof(HeadbuttFile_411),
-    sizeof(HeadbuttFile_412),
-    sizeof(HeadbuttFile_413),
-    sizeof(HeadbuttFile_414),
-    sizeof(HeadbuttFile_415),
-    sizeof(HeadbuttFile_416),
-    sizeof(HeadbuttFile_417),
-    sizeof(HeadbuttFile_418),
-    sizeof(HeadbuttFile_419),
-    sizeof(HeadbuttFile_420),
-    sizeof(HeadbuttFile_421),
-    sizeof(HeadbuttFile_422),
-    sizeof(HeadbuttFile_423),
-    sizeof(HeadbuttFile_424),
-    sizeof(HeadbuttFile_425),
-    sizeof(HeadbuttFile_426),
-    sizeof(HeadbuttFile_427),
-    sizeof(HeadbuttFile_428),
-    sizeof(HeadbuttFile_429),
-    sizeof(HeadbuttFile_430),
-    sizeof(HeadbuttFile_431),
-    sizeof(HeadbuttFile_432),
-    sizeof(HeadbuttFile_433),
-    sizeof(HeadbuttFile_434),
-    sizeof(HeadbuttFile_435),
-    sizeof(HeadbuttFile_436),
-    sizeof(HeadbuttFile_437),
-    sizeof(HeadbuttFile_438),
-    sizeof(HeadbuttFile_439),
-    sizeof(HeadbuttFile_440),
-    sizeof(HeadbuttFile_441),
-    sizeof(HeadbuttFile_442),
-    sizeof(HeadbuttFile_443),
-    sizeof(HeadbuttFile_444),
-    sizeof(HeadbuttFile_445),
-    sizeof(HeadbuttFile_446),
-    sizeof(HeadbuttFile_447),
-    sizeof(HeadbuttFile_448),
-    sizeof(HeadbuttFile_449),
-    sizeof(HeadbuttFile_450),
-    sizeof(HeadbuttFile_451),
-    sizeof(HeadbuttFile_452),
-    sizeof(HeadbuttFile_453),
-    sizeof(HeadbuttFile_454),
-    sizeof(HeadbuttFile_455),
-    sizeof(HeadbuttFile_456),
-    sizeof(HeadbuttFile_457),
-    sizeof(HeadbuttFile_458),
-    sizeof(HeadbuttFile_459),
-    sizeof(HeadbuttFile_460),
-    sizeof(HeadbuttFile_461),
-    sizeof(HeadbuttFile_462),
-    sizeof(HeadbuttFile_463),
-    sizeof(HeadbuttFile_464),
-    sizeof(HeadbuttFile_465),
-    sizeof(HeadbuttFile_466),
-    sizeof(HeadbuttFile_467),
-    sizeof(HeadbuttFile_468),
-    sizeof(HeadbuttFile_469),
-    sizeof(HeadbuttFile_470),
-    sizeof(HeadbuttFile_471),
-    sizeof(HeadbuttFile_472),
-    sizeof(HeadbuttFile_473),
-    sizeof(HeadbuttFile_474),
-    sizeof(HeadbuttFile_475),
-    sizeof(HeadbuttFile_476),
-    sizeof(HeadbuttFile_477),
-    sizeof(HeadbuttFile_478),
-    sizeof(HeadbuttFile_479),
-    sizeof(HeadbuttFile_480),
-    sizeof(HeadbuttFile_481),
-    sizeof(HeadbuttFile_482),
-    sizeof(HeadbuttFile_483),
-    sizeof(HeadbuttFile_484),
-    sizeof(HeadbuttFile_485),
-    sizeof(HeadbuttFile_486),
-    sizeof(HeadbuttFile_487),
-    sizeof(HeadbuttFile_488),
-    sizeof(HeadbuttFile_489),
-    sizeof(HeadbuttFile_490),
-    sizeof(HeadbuttFile_491),
-    sizeof(HeadbuttFile_492),
-    sizeof(HeadbuttFile_493),
-    sizeof(HeadbuttFile_494),
-    sizeof(HeadbuttFile_495),
-    sizeof(HeadbuttFile_496),
-    sizeof(HeadbuttFile_497),
-    sizeof(HeadbuttFile_498),
-    sizeof(HeadbuttFile_499),
-    sizeof(HeadbuttFile_500),
-    sizeof(HeadbuttFile_501),
-    sizeof(HeadbuttFile_502),
-    sizeof(HeadbuttFile_503),
-    sizeof(HeadbuttFile_504),
-    sizeof(HeadbuttFile_505),
-    sizeof(HeadbuttFile_506),
-    sizeof(HeadbuttFile_507),
-    sizeof(HeadbuttFile_508),
-    sizeof(HeadbuttFile_509),
-    sizeof(HeadbuttFile_510),
-    sizeof(HeadbuttFile_511),
-    sizeof(HeadbuttFile_512),
-    sizeof(HeadbuttFile_513),
-    sizeof(HeadbuttFile_514),
-    sizeof(HeadbuttFile_515),
-    sizeof(HeadbuttFile_516),
-    sizeof(HeadbuttFile_517),
-    sizeof(HeadbuttFile_518),
-    sizeof(HeadbuttFile_519),
-    sizeof(HeadbuttFile_520),
-    sizeof(HeadbuttFile_521),
-    sizeof(HeadbuttFile_522),
-    sizeof(HeadbuttFile_523),
-    sizeof(HeadbuttFile_524),
-    sizeof(HeadbuttFile_525),
-    sizeof(HeadbuttFile_526),
-    sizeof(HeadbuttFile_527),
-    sizeof(HeadbuttFile_528),
-    sizeof(HeadbuttFile_529),
-    sizeof(HeadbuttFile_530),
-    sizeof(HeadbuttFile_531),
-    sizeof(HeadbuttFile_532),
-    sizeof(HeadbuttFile_533),
-    sizeof(HeadbuttFile_534),
-    sizeof(HeadbuttFile_535),
-    sizeof(HeadbuttFile_536),
-    sizeof(HeadbuttFile_537),
-    sizeof(HeadbuttFile_538),
-    sizeof(HeadbuttFile_539),
+    sizeof(HeadbuttFile_000_EVERYWHERE),
+    sizeof(HeadbuttFile_001_NOTHING),
+    sizeof(HeadbuttFile_002_Union_Room),
+    sizeof(HeadbuttFile_003_UG),
+    sizeof(HeadbuttFile_004_DIRECT2),
+    sizeof(HeadbuttFile_005_DIRECT4),
+    sizeof(HeadbuttFile_006_Bellchime_Trail),
+    sizeof(HeadbuttFile_007_Burned_Tower_1F),
+    sizeof(HeadbuttFile_008_Ruins_Of_Alph_Inside),
+    sizeof(HeadbuttFile_009_Route_1),
+    sizeof(HeadbuttFile_010_Route_2),
+    sizeof(HeadbuttFile_011_Route_3),
+    sizeof(HeadbuttFile_012_Route_4),
+    sizeof(HeadbuttFile_013_Route_5),
+    sizeof(HeadbuttFile_014_Route_6),
+    sizeof(HeadbuttFile_015_Route_7),
+    sizeof(HeadbuttFile_016_Route_8),
+    sizeof(HeadbuttFile_017_Route_9),
+    sizeof(HeadbuttFile_018_Route_10),
+    sizeof(HeadbuttFile_019_Route_11),
+    sizeof(HeadbuttFile_020_Route_12),
+    sizeof(HeadbuttFile_021_Route_13),
+    sizeof(HeadbuttFile_022_Route_14),
+    sizeof(HeadbuttFile_023_Route_15),
+    sizeof(HeadbuttFile_024_Route_16),
+    sizeof(HeadbuttFile_025_Route_17),
+    sizeof(HeadbuttFile_026_Route_18),
+    sizeof(HeadbuttFile_027_Route_22),
+    sizeof(HeadbuttFile_028_Route_24),
+    sizeof(HeadbuttFile_029_Route_25),
+    sizeof(HeadbuttFile_030_Route_26),
+    sizeof(HeadbuttFile_031_Route_27),
+    sizeof(HeadbuttFile_032_Route_28),
+    sizeof(HeadbuttFile_033_Route_29),
+    sizeof(HeadbuttFile_034_Route_30),
+    sizeof(HeadbuttFile_035_Route_31),
+    sizeof(HeadbuttFile_036_Route_32),
+    sizeof(HeadbuttFile_037_Route_33),
+    sizeof(HeadbuttFile_038_Route_34),
+    sizeof(HeadbuttFile_039_Route_35),
+    sizeof(HeadbuttFile_040_Route_36),
+    sizeof(HeadbuttFile_041_Route_37),
+    sizeof(HeadbuttFile_042_Route_38),
+    sizeof(HeadbuttFile_043_Route_39),
+    sizeof(HeadbuttFile_044_Route_42),
+    sizeof(HeadbuttFile_045_Route_43),
+    sizeof(HeadbuttFile_046_Route_44),
+    sizeof(HeadbuttFile_047_Route_45),
+    sizeof(HeadbuttFile_048_Route_46),
+    sizeof(HeadbuttFile_049_Pallet_Town),
+    sizeof(HeadbuttFile_050_Viridian_City),
+    sizeof(HeadbuttFile_051_Pewter_City),
+    sizeof(HeadbuttFile_052_Cerulean_City),
+    sizeof(HeadbuttFile_053_Lavender_Town),
+    sizeof(HeadbuttFile_054_Vermilion_City),
+    sizeof(HeadbuttFile_055_Celadon_City),
+    sizeof(HeadbuttFile_056_Fuchsia_City),
+    sizeof(HeadbuttFile_057_Cinnabar_Island),
+    sizeof(HeadbuttFile_058_Indigo_Plateau),
+    sizeof(HeadbuttFile_059_Saffron_City),
+    sizeof(HeadbuttFile_060_New_Bark_Town),
+    sizeof(HeadbuttFile_061_Elms_Lab_1F),
+    sizeof(HeadbuttFile_062_Elms_Lab_2F),
+    sizeof(HeadbuttFile_063_Moms_House_1F),
+    sizeof(HeadbuttFile_064_Moms_House_2F),
+    sizeof(HeadbuttFile_065_New_Bark_Town_House),
+    sizeof(HeadbuttFile_066_Ethan_Lyras_House_1F),
+    sizeof(HeadbuttFile_067_Cherrygrove_City),
+    sizeof(HeadbuttFile_068_Cherrygrove_City_Pokmart),
+    sizeof(HeadbuttFile_069_Cherrygrove_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_070_Cherrygrove_City_House),
+    sizeof(HeadbuttFile_071_Cherrygrove_City_House),
+    sizeof(HeadbuttFile_072_Cherrygrove_City_House),
+    sizeof(HeadbuttFile_073_Violet_City),
+    sizeof(HeadbuttFile_074_Azalea_Town),
+    sizeof(HeadbuttFile_075_Cianwood_City),
+    sizeof(HeadbuttFile_076_Goldenrod_City),
+    sizeof(HeadbuttFile_077_Olivine_City),
+    sizeof(HeadbuttFile_078_Ecruteak_City),
+    sizeof(HeadbuttFile_079_Ecruteak_City_Pokmart),
+    sizeof(HeadbuttFile_080_Ecruteak_City_Gym),
+    sizeof(HeadbuttFile_081_Ecruteak_Pokmon_Centre),
+    sizeof(HeadbuttFile_082_Jubilife_City_Unused),
+    sizeof(HeadbuttFile_083_Barrier_Station_to_Bell_Tower),
+    sizeof(HeadbuttFile_084_Ecruteak_City_House),
+    sizeof(HeadbuttFile_085_Ecruteak_City_House),
+    sizeof(HeadbuttFile_086_Ecruteak_Dance_Theatre),
+    sizeof(HeadbuttFile_087_Mahogany_Town),
+    sizeof(HeadbuttFile_088_Lake_of_Rage),
+    sizeof(HeadbuttFile_089_Blackthorn_City),
+    sizeof(HeadbuttFile_090_Mt_Silver),
+    sizeof(HeadbuttFile_091_Route_19),
+    sizeof(HeadbuttFile_092_Route_20),
+    sizeof(HeadbuttFile_093_Route_21),
+    sizeof(HeadbuttFile_094_Route_40),
+    sizeof(HeadbuttFile_095_Route_41),
+    sizeof(HeadbuttFile_096_National_Park),
+    sizeof(HeadbuttFile_097_Route_31_And_Violet_City_Gate),
+    sizeof(HeadbuttFile_098_Route_32_And_Ruins_Of_Alph_Gate),
+    sizeof(HeadbuttFile_099_Union_Cave_1F),
+    sizeof(HeadbuttFile_100_Azalea_Town_And_Ilex_Forest_Gate),
+    sizeof(HeadbuttFile_101_Goldenrod_City_And_Route_35_Gate),
+    sizeof(HeadbuttFile_102_Route_35_And_National_Park_Gate),
+    sizeof(HeadbuttFile_103_Ruins_Of_Alph_And_Route_36_Gate),
+    sizeof(HeadbuttFile_104_National_Park_And_Route_36_Gate),
+    sizeof(HeadbuttFile_105_Jubilife_City_Unused),
+    sizeof(HeadbuttFile_106_Digletts_Cave),
+    sizeof(HeadbuttFile_107_Mt_Moon),
+    sizeof(HeadbuttFile_108_Rock_Tunnel_1F),
+    sizeof(HeadbuttFile_109_Pal_Park),
+    sizeof(HeadbuttFile_110_Sprout_Tower_1F),
+    sizeof(HeadbuttFile_111_Bell_Tower_1F),
+    sizeof(HeadbuttFile_112_Radio_Tower_1F),
+    sizeof(HeadbuttFile_113_Ruins_Of_Alph_Outside),
+    sizeof(HeadbuttFile_114_Slowpoke_Well_Entrance),
+    sizeof(HeadbuttFile_115_Olivine_Lighthouse_1F),
+    sizeof(HeadbuttFile_116_Mahogany_Town_Souvenir_Shop),
+    sizeof(HeadbuttFile_117_Ilex_Forest),
+    sizeof(HeadbuttFile_118_Goldenrod_Tunnel),
+    sizeof(HeadbuttFile_119_Mt_Mortar_1F),
+    sizeof(HeadbuttFile_120_Ice_Path_1F),
+    sizeof(HeadbuttFile_121_Whirl_Islands),
+    sizeof(HeadbuttFile_122_Mt_Silver_Cave),
+    sizeof(HeadbuttFile_123_Dark_Cave_Route_45_entrance),
+    sizeof(HeadbuttFile_124_Victory_Road_1F),
+    sizeof(HeadbuttFile_125_Dragons_Den_Entrance),
+    sizeof(HeadbuttFile_126_Tohjo_Falls),
+    sizeof(HeadbuttFile_127_Route_30_House),
+    sizeof(HeadbuttFile_128_Ecruteak_City_Union_Room),
+    sizeof(HeadbuttFile_129_Ecruteak_City_Union_Room),
+    sizeof(HeadbuttFile_130_Ecruteak_City_Union_Room),
+    sizeof(HeadbuttFile_131_Ecruteak_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_132_Ecruteak_City_And_Route_42_Gate),
+    sizeof(HeadbuttFile_133_Mahogany_Town_House),
+    sizeof(HeadbuttFile_134_Route_29_And_Route_46_Gate),
+    sizeof(HeadbuttFile_135_Violet_City_Gym),
+    sizeof(HeadbuttFile_136_Azalea_Gym_Entrance),
+    sizeof(HeadbuttFile_137_Goldenrod_City_Gym),
+    sizeof(HeadbuttFile_138_Olivine_City_Gym),
+    sizeof(HeadbuttFile_139_Cianwood_City_Gym),
+    sizeof(HeadbuttFile_140_Mahogany_City_Gym_3rd_Room),
+    sizeof(HeadbuttFile_141_Blackthorn_City_Gym),
+    sizeof(HeadbuttFile_142_Route_43_Gate),
+    sizeof(HeadbuttFile_143_Mr_Pokmons_House),
+    sizeof(HeadbuttFile_144_Cherrygrove_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_145_Cerulean_Cave_1F),
+    sizeof(HeadbuttFile_146_Seafoam_Islands_1F),
+    sizeof(HeadbuttFile_147_Viridian_Forest),
+    sizeof(HeadbuttFile_148_Power_Plant_Unused),
+    sizeof(HeadbuttFile_149_Route_36_And_Violet_City_Inbetween),
+    sizeof(HeadbuttFile_150_Route_35_And_Pokathlon_Dome_Inbetween),
+    sizeof(HeadbuttFile_151_Route_47),
+    sizeof(HeadbuttFile_152_Route_48),
+    sizeof(HeadbuttFile_153_Union_Cave_B1F),
+    sizeof(HeadbuttFile_154_Union_Cave_B2F),
+    sizeof(HeadbuttFile_155_Sprout_Tower_2F),
+    sizeof(HeadbuttFile_156_Sprout_Tower_3F),
+    sizeof(HeadbuttFile_157_Violet_City_Pokmart),
+    sizeof(HeadbuttFile_158_Violet_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_159_Violet_City_Pokmon_School),
+    sizeof(HeadbuttFile_160_Violet_City_House),
+    sizeof(HeadbuttFile_161_Jubilife_City_Unused),
+    sizeof(HeadbuttFile_162_Violet_City_House),
+    sizeof(HeadbuttFile_163_Azalea_Town_Charcoal_Kiln),
+    sizeof(HeadbuttFile_164_Azalea_Town_Kurts_House),
+    sizeof(HeadbuttFile_165_Azalea_Town_Pokmart),
+    sizeof(HeadbuttFile_166_Azalea_Town_Pokmon_Centre),
+    sizeof(HeadbuttFile_167_Violet_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_168_Azalea_Town_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_169_Route_32_Pokmon_Centre),
+    sizeof(HeadbuttFile_170_Route_32_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_171_Ilex_Forest_And_Route_34_Gate),
+    sizeof(HeadbuttFile_172_Ecruteak_And_Route_38_Gate),
+    sizeof(HeadbuttFile_173_Safari_Zone_Gate_Inside),
+    sizeof(HeadbuttFile_174_Safari_Zone_Gate_Outside),
+    sizeof(HeadbuttFile_175_Jubilife_City_Unused),
+    sizeof(HeadbuttFile_176_Dark_Cave_Route_31_entrance),
+    sizeof(HeadbuttFile_177_Slowpoke_Well_1F),
+    sizeof(HeadbuttFile_178_Victory_Road_2F),
+    sizeof(HeadbuttFile_179_Victory_Road_3F),
+    sizeof(HeadbuttFile_180_Azalea_Town_Gym),
+    sizeof(HeadbuttFile_181_Slowpoke_Well_B1F),
+    sizeof(HeadbuttFile_182_Goldenrod_City_Bike_Store),
+    sizeof(HeadbuttFile_183_Goldenrod_City_Game_Corner_JAP),
+    sizeof(HeadbuttFile_184_Goldenrod_City_Flower_Shop),
+    sizeof(HeadbuttFile_185_Goldenrod_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_186_Goldenrod_Radio_Tower_2F),
+    sizeof(HeadbuttFile_187_Goldenrod_Radio_Tower_3F),
+    sizeof(HeadbuttFile_188_Goldenrod_Radio_Tower_4F),
+    sizeof(HeadbuttFile_189_Goldenrod_Radio_Tower_5F),
+    sizeof(HeadbuttFile_190_Goldenrod_Radio_Tower_Observation_Deck),
+    sizeof(HeadbuttFile_191_Goldenrod_Department_Store_1F),
+    sizeof(HeadbuttFile_192_Goldenrod_Department_Store_2F),
+    sizeof(HeadbuttFile_193_Goldenrod_Department_Store_3F),
+    sizeof(HeadbuttFile_194_Goldenrod_Department_Store_4F),
+    sizeof(HeadbuttFile_195_Goldenrod_Department_Store_5F),
+    sizeof(HeadbuttFile_196_Goldenrod_Department_Store_6F),
+    sizeof(HeadbuttFile_197_Goldenrod_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_198_Goldenrod_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_199_Goldenrod_Tunnel),
+    sizeof(HeadbuttFile_200_Goldenrod_Department_Store_Basement),
+    sizeof(HeadbuttFile_201_Goldenrod_Tunnel_B2F),
+    sizeof(HeadbuttFile_202_Goldenrod_Tunnel_Warehouse),
+    sizeof(HeadbuttFile_203_Goldenrod_City_House),
+    sizeof(HeadbuttFile_204_Goldenrod_City_House),
+    sizeof(HeadbuttFile_205_Goldenrod_City_House),
+    sizeof(HeadbuttFile_206_Goldenrod_City_Name_Rater),
+    sizeof(HeadbuttFile_207_Global_Terminal),
+    sizeof(HeadbuttFile_208_Goldenrod_City_House_1F),
+    sizeof(HeadbuttFile_209_Goldenrod_City_House_2F),
+    sizeof(HeadbuttFile_210_Goldenrod_City_House_3F),
+    sizeof(HeadbuttFile_211_Goldenrod_City_House_4F),
+    sizeof(HeadbuttFile_212_Goldenrod_City_House_5F),
+    sizeof(HeadbuttFile_213_Goldenrod_City_House_6F),
+    sizeof(HeadbuttFile_214_Moomoo_Farm_House),
+    sizeof(HeadbuttFile_215_Moomoo_Farm_Barn),
+    sizeof(HeadbuttFile_216_Barrier_Station_to_Bell_Tower_And_Bellchime_Trail_Path),
+    sizeof(HeadbuttFile_217_Burned_Tower_B1F),
+    sizeof(HeadbuttFile_218_Ruins_of_Alph_Inside),
+    sizeof(HeadbuttFile_219_Goldenrod_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_220_Glitter_Lighthouse_2F),
+    sizeof(HeadbuttFile_221_Glitter_Lighthouse_Exterior),
+    sizeof(HeadbuttFile_222_Glitter_Lighthouse_3F),
+    sizeof(HeadbuttFile_223_Glitter_Lighthouse_4F),
+    sizeof(HeadbuttFile_224_Glitter_Lighthouse_5F),
+    sizeof(HeadbuttFile_225_Glitter_Lighthouse_Light_Room),
+    sizeof(HeadbuttFile_226_Olivine_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_227_Olivine_City_Pokmart),
+    sizeof(HeadbuttFile_228_Olivine_City_House),
+    sizeof(HeadbuttFile_229_Olivine_City_House),
+    sizeof(HeadbuttFile_230_Olivine_City_House),
+    sizeof(HeadbuttFile_231_Olivine_City_Caf),
+    sizeof(HeadbuttFile_232_Cianwood_City_House),
+    sizeof(HeadbuttFile_233_Cianwood_City_Pharmacy),
+    sizeof(HeadbuttFile_234_Cianwood_City_House),
+    sizeof(HeadbuttFile_235_Cianwood_City_House),
+    sizeof(HeadbuttFile_236_Cianwood_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_237_Ice_Path_B1F),
+    sizeof(HeadbuttFile_238_Ice_Path_B2F),
+    sizeof(HeadbuttFile_239_Ice_Path_B3F),
+    sizeof(HeadbuttFile_240_Olivine_City_House),
+    sizeof(HeadbuttFile_241_Cianwood_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_242_Whirl_Islands_B1F),
+    sizeof(HeadbuttFile_243_Whirl_Islands_B2F),
+    sizeof(HeadbuttFile_244_Whirl_Islands_B3F),
+    sizeof(HeadbuttFile_245_Route_43_Gate),
+    sizeof(HeadbuttFile_246_Mahogany_Town_Pokmon_Centre),
+    sizeof(HeadbuttFile_247_Team_Rocket_HQ_B1F),
+    sizeof(HeadbuttFile_248_Team_Rocket_HQ_B2F),
+    sizeof(HeadbuttFile_249_Team_Rocket_HQ_B3F),
+    sizeof(HeadbuttFile_250_Mt_Mortar_1F),
+    sizeof(HeadbuttFile_251_Mt_Mortar_2F),
+    sizeof(HeadbuttFile_252_Mt_Mortar_1F),
+    sizeof(HeadbuttFile_253_Dragons_Den_Main),
+    sizeof(HeadbuttFile_254_Fight_Area),
+    sizeof(HeadbuttFile_255_Fight_Area),
+    sizeof(HeadbuttFile_256_Fight_Area),
+    sizeof(HeadbuttFile_257_Fight_Area),
+    sizeof(HeadbuttFile_258_Fight_Area),
+    sizeof(HeadbuttFile_259_Fight_Area),
+    sizeof(HeadbuttFile_260_Fight_Area),
+    sizeof(HeadbuttFile_261_Fight_Area),
+    sizeof(HeadbuttFile_262_Fight_Area),
+    sizeof(HeadbuttFile_263_Battle_Park),
+    sizeof(HeadbuttFile_264_Battle_Park),
+    sizeof(HeadbuttFile_265_Battle_Tower),
+    sizeof(HeadbuttFile_266_Battle_Tower),
+    sizeof(HeadbuttFile_267_Battle_Tower),
+    sizeof(HeadbuttFile_268_Battle_Tower),
+    sizeof(HeadbuttFile_269_Battle_Tower),
+    sizeof(HeadbuttFile_270_Battle_Tower),
+    sizeof(HeadbuttFile_271_Battle_Tower),
+    sizeof(HeadbuttFile_272_Battle_Frontier),
+    sizeof(HeadbuttFile_273_Battle_Frontier),
+    sizeof(HeadbuttFile_274_Battle_Tower),
+    sizeof(HeadbuttFile_275_Battle_Factory),
+    sizeof(HeadbuttFile_276_Battle_Hall),
+    sizeof(HeadbuttFile_277_Battle_Castle),
+    sizeof(HeadbuttFile_278_Battle_Arcade),
+    sizeof(HeadbuttFile_279_Cliff_Edge_Gate),
+    sizeof(HeadbuttFile_280_Pokathlon_Dome_Outside),
+    sizeof(HeadbuttFile_281_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_282_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_283_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_284_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_285_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_286_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_287_Pokathlon_Dome_Inside),
+    sizeof(HeadbuttFile_288_Dragons_Den_Shrine),
+    sizeof(HeadbuttFile_289_Blackthorn_City_House),
+    sizeof(HeadbuttFile_290_Blackthorn_City_House),
+    sizeof(HeadbuttFile_291_Blackthorn_City_House),
+    sizeof(HeadbuttFile_292_Blackthorn_City_Pokmart),
+    sizeof(HeadbuttFile_293_Blackthorn_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_294_Lake_of_Rage_House),
+    sizeof(HeadbuttFile_295_Lake_of_Rage_House),
+    sizeof(HeadbuttFile_296_Route_26_House),
+    sizeof(HeadbuttFile_297_Route_26_Week_Siblings_House),
+    sizeof(HeadbuttFile_298_Tohjo_Falls_Hidden_Room),
+    sizeof(HeadbuttFile_299_Pokmon_League_Reception_Gate),
+    sizeof(HeadbuttFile_300_Pokmon_League),
+    sizeof(HeadbuttFile_301_Pokmon_League_Wills_Room),
+    sizeof(HeadbuttFile_302_Pokmon_League_Kogas_Room),
+    sizeof(HeadbuttFile_303_Pokmon_League_Brunos_Room),
+    sizeof(HeadbuttFile_304_Pokmon_League_Karens_Room),
+    sizeof(HeadbuttFile_305_Pokmon_League_Lances_Room),
+    sizeof(HeadbuttFile_306_Pokmon_League_Hall_of_Fame),
+    sizeof(HeadbuttFile_307_S_S_Aqua),
+    sizeof(HeadbuttFile_308_S_S_Aqua),
+    sizeof(HeadbuttFile_309_S_S_Aqua),
+    sizeof(HeadbuttFile_310_S_S_Aqua),
+    sizeof(HeadbuttFile_311_S_S_Aqua),
+    sizeof(HeadbuttFile_312_Ruins_of_Alph_Entrance),
+    sizeof(HeadbuttFile_313_Ruins_of_Alph_Chamber_1),
+    sizeof(HeadbuttFile_314_Ruins_of_Alph_Entrance),
+    sizeof(HeadbuttFile_315_Ruins_of_Alph_Underground_Hall),
+    sizeof(HeadbuttFile_316_Ruins_of_Alph_Entrance),
+    sizeof(HeadbuttFile_317_Ruins_of_Alph_Chamber_3),
+    sizeof(HeadbuttFile_318_Ruins_of_Alph_Entrance),
+    sizeof(HeadbuttFile_319_Ruins_of_Alph_Chamber_4),
+    sizeof(HeadbuttFile_320_Ruins_of_Alph_Chamber_2),
+    sizeof(HeadbuttFile_321_Ruins_of_Alph_Research_Center),
+    sizeof(HeadbuttFile_322_Route_27_House),
+    sizeof(HeadbuttFile_323_Ruins_of_Alph_Hall_Entrance),
+    sizeof(HeadbuttFile_324_Ruins_of_Alph_Entrance_2),
+    sizeof(HeadbuttFile_325_Ruins_of_Alph_Entrance_2),
+    sizeof(HeadbuttFile_326_Ruins_of_Alph_Entrance_2),
+    sizeof(HeadbuttFile_327_Ruins_of_Alph_Entrance_2),
+    sizeof(HeadbuttFile_328_S_S_Aqua),
+    sizeof(HeadbuttFile_329_S_S_Aqua),
+    sizeof(HeadbuttFile_330_Olivine_Port),
+    sizeof(HeadbuttFile_331_Pokmon_Daycare),
+    sizeof(HeadbuttFile_332_Bell_Tower_2F),
+    sizeof(HeadbuttFile_333_Bell_Tower_3F),
+    sizeof(HeadbuttFile_334_Bell_Tower_4F),
+    sizeof(HeadbuttFile_335_Bell_Tower_5F),
+    sizeof(HeadbuttFile_336_Bell_Tower_6F),
+    sizeof(HeadbuttFile_337_Bell_Tower_7F),
+    sizeof(HeadbuttFile_338_Bell_Tower_8F),
+    sizeof(HeadbuttFile_339_Bell_Tower_9F),
+    sizeof(HeadbuttFile_340_Bell_Tower_Roof),
+    sizeof(HeadbuttFile_341_Bell_Tower_10F),
+    sizeof(HeadbuttFile_342_Cliff_Cave),
+    sizeof(HeadbuttFile_343_Safari_Zone),
+    sizeof(HeadbuttFile_344_Safari_Zone),
+    sizeof(HeadbuttFile_345_Safari_Zone),
+    sizeof(HeadbuttFile_346_Safari_Zone),
+    sizeof(HeadbuttFile_347_Safari_Zone),
+    sizeof(HeadbuttFile_348_Safari_Zone),
+    sizeof(HeadbuttFile_349_Safari_Zone),
+    sizeof(HeadbuttFile_350_Safari_Zone),
+    sizeof(HeadbuttFile_351_Safari_Zone),
+    sizeof(HeadbuttFile_352_Safari_Zone),
+    sizeof(HeadbuttFile_353_Safari_Zone),
+    sizeof(HeadbuttFile_354_Safari_Zone),
+    sizeof(HeadbuttFile_355_Safari_Zone),
+    sizeof(HeadbuttFile_356_Safari_Zone),
+    sizeof(HeadbuttFile_357_Safari_Zone),
+    sizeof(HeadbuttFile_358_Vermilion_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_359_Vermilion_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_360_Vermilion_City_Pokmart),
+    sizeof(HeadbuttFile_361_Vermilion_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_362_Vermilion_City_Pokmon_Fan_Club),
+    sizeof(HeadbuttFile_363_Vermilion_City_House),
+    sizeof(HeadbuttFile_364_Vermilion_City_House),
+    sizeof(HeadbuttFile_365_Vermilion_City_Gym),
+    sizeof(HeadbuttFile_366_Route_40_And_Frontier_Access_Gate),
+    sizeof(HeadbuttFile_367_Olivine_City_Pokmon_Center_Lower),
+    sizeof(HeadbuttFile_368_Mahogany_Town_Pokmon_Center_Lower),
+    sizeof(HeadbuttFile_369_Blackthorn_Town_Pokmon_Center_Lower),
+    sizeof(HeadbuttFile_370_Celadon_City_Department_Store_1F),
+    sizeof(HeadbuttFile_371_Celadon_City_Department_Store_2F),
+    sizeof(HeadbuttFile_372_Celadon_City_Department_Store_3F),
+    sizeof(HeadbuttFile_373_Celadon_City_Department_Store_4F),
+    sizeof(HeadbuttFile_374_Celadon_City_Department_Store_5F),
+    sizeof(HeadbuttFile_375_Celadon_City_Department_Store_6F),
+    sizeof(HeadbuttFile_376_Celadon_Condominiums_1F),
+    sizeof(HeadbuttFile_377_Celadon_Condominiums_2F),
+    sizeof(HeadbuttFile_378_Celadon_Condominiums_3F),
+    sizeof(HeadbuttFile_379_Celadon_Condominiums_4F),
+    sizeof(HeadbuttFile_380_Celadon_Condominiums_5F),
+    sizeof(HeadbuttFile_381_Celadon_Game_Corner_Main_JP),
+    sizeof(HeadbuttFile_382_Celadon_Game_Corner_Prize_Building_JP),
+    sizeof(HeadbuttFile_383_Celadon_City_House),
+    sizeof(HeadbuttFile_384_Ethan_Lyras_House_2F),
+    sizeof(HeadbuttFile_385_Cianwood_City_House),
+    sizeof(HeadbuttFile_386_Vermilion_Port),
+    sizeof(HeadbuttFile_387_Vermilion_Port),
+    sizeof(HeadbuttFile_388_Route_10),
+    sizeof(HeadbuttFile_389_Route_6_And_Saffron_City_Gate),
+    sizeof(HeadbuttFile_390_Route_8_And_Saffron_City_Gate),
+    sizeof(HeadbuttFile_391_Route_5_And_Saffron_City_Gate),
+    sizeof(HeadbuttFile_392_Route_15_And_Fushsia_City_Gate),
+    sizeof(HeadbuttFile_393_Celadon_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_394_Celadon_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_395_Celadon_City_Gym),
+    sizeof(HeadbuttFile_396_Mahogany_Town_Gym_2nd_Room),
+    sizeof(HeadbuttFile_397_Mahogany_Town_Gym_1st_Room),
+    sizeof(HeadbuttFile_398_Saffron_City_Fighting_Dojo),
+    sizeof(HeadbuttFile_399_Saffron_City_House),
+    sizeof(HeadbuttFile_400_Saffron_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_401_Saffron_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_402_Saffron_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_403_ROTOMs_Room),
+    sizeof(HeadbuttFile_404_Saffron_City_House),
+    sizeof(HeadbuttFile_405_Saffron_City_House),
+    sizeof(HeadbuttFile_406_Saffron_City_House),
+    sizeof(HeadbuttFile_407_Saffron_City_Pokmon_Center),
+    sizeof(HeadbuttFile_408_Saffron_City_Pokmon_Center_Lower),
+    sizeof(HeadbuttFile_409_Saffron_City_Pokmart),
+    sizeof(HeadbuttFile_410_Saffron_City_Gym),
+    sizeof(HeadbuttFile_411_Frontier_Access),
+    sizeof(HeadbuttFile_412_Global_Terminal_2F),
+    sizeof(HeadbuttFile_413_Global_Terminal_3F),
+    sizeof(HeadbuttFile_414_Route_2),
+    sizeof(HeadbuttFile_415_Route_16_House),
+    sizeof(HeadbuttFile_416_Route_20_Unused),
+    sizeof(HeadbuttFile_417_Route_2),
+    sizeof(HeadbuttFile_418_Route_2_And_Pewter_City_Gate),
+    sizeof(HeadbuttFile_419_Route_2_And_Viridian_City_Gate),
+    sizeof(HeadbuttFile_420_Route_2_Gate),
+    sizeof(HeadbuttFile_421_Route_16_Gate),
+    sizeof(HeadbuttFile_422_Route_16),
+    sizeof(HeadbuttFile_423_Route_18_Gate),
+    sizeof(HeadbuttFile_424_Route_19_And_Fushsia_City_Gate),
+    sizeof(HeadbuttFile_425_Route_11_And_Route_12_Gate),
+    sizeof(HeadbuttFile_426_Cerulean_City_Pokmart),
+    sizeof(HeadbuttFile_427_Cerulean_City_Gym),
+    sizeof(HeadbuttFile_428_Cerulean_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_429_Cerulean_City_House),
+    sizeof(HeadbuttFile_430_Cerulean_City_House),
+    sizeof(HeadbuttFile_431_Cerulean_City_House),
+    sizeof(HeadbuttFile_432_Cerulean_City_Bike_Shop),
+    sizeof(HeadbuttFile_433_Lavender_Town_Pokmart),
+    sizeof(HeadbuttFile_434_Lavender_Town_Pokmon_Centre),
+    sizeof(HeadbuttFile_435_Lavender_Town_House),
+    sizeof(HeadbuttFile_436_Lavender_Town_House),
+    sizeof(HeadbuttFile_437_Lavender_Town_Name_Rater),
+    sizeof(HeadbuttFile_438_House_of_Memories),
+    sizeof(HeadbuttFile_439_Lavender_Town_Radio_Tower),
+    sizeof(HeadbuttFile_440_Sea_Cottage),
+    sizeof(HeadbuttFile_441_Goldenrod_City_Elevator),
+    sizeof(HeadbuttFile_442_Celadon_City_Elevator),
+    sizeof(HeadbuttFile_443_Celadon_City_Elevator),
+    sizeof(HeadbuttFile_444_Celadon_City_Elevator),
+    sizeof(HeadbuttFile_445_Saffron_City_Elevator),
+    sizeof(HeadbuttFile_446_Lighthouse_Elevator),
+    sizeof(HeadbuttFile_447_Radio_Tower_Elevator),
+    sizeof(HeadbuttFile_448_Mt_Moon_Entrance),
+    sizeof(HeadbuttFile_449_Mt_Moon_Square),
+    sizeof(HeadbuttFile_450_Cerulean_Cave_2F),
+    sizeof(HeadbuttFile_451_Cerulean_Cave_B1F),
+    sizeof(HeadbuttFile_452_Rock_Tunnel_B1F),
+    sizeof(HeadbuttFile_453_Seafoam_Islands_B1F),
+    sizeof(HeadbuttFile_454_Seafoam_Islands_B2F),
+    sizeof(HeadbuttFile_455_Seafoam_Islands_B3F),
+    sizeof(HeadbuttFile_456_Seafoam_Islands_B4F),
+    sizeof(HeadbuttFile_457_Cinnabar_Gym),
+    sizeof(HeadbuttFile_458_Cinnabar_Gym),
+    sizeof(HeadbuttFile_459_Mt_Silver_Cave_Upper_Mountainside),
+    sizeof(HeadbuttFile_460_Mt_Silver_Cave_Lower_Mountainside),
+    sizeof(HeadbuttFile_461_Mt_Silver_Cave_Expert_Belt_Chamber),
+    sizeof(HeadbuttFile_462_Mt_Silver_Cave_Moltres_Chamber),
+    sizeof(HeadbuttFile_463_Mt_Silver_Cave_2F),
+    sizeof(HeadbuttFile_464_Mt_Silver_Cave_3F),
+    sizeof(HeadbuttFile_465_Mt_Silver_Cave_Summit),
+    sizeof(HeadbuttFile_466_Route_10_Pokmon_Centre),
+    sizeof(HeadbuttFile_467_Power_Plant),
+    sizeof(HeadbuttFile_468_Underground_Path),
+    sizeof(HeadbuttFile_469_Route_5_Underground_Path_Entrance),
+    sizeof(HeadbuttFile_470_Route_6_Underground_Path_Entrance),
+    sizeof(HeadbuttFile_471_Pewter_Museum_of_Science),
+    sizeof(HeadbuttFile_472_Pewter_City_House),
+    sizeof(HeadbuttFile_473_Pewter_City_Gym),
+    sizeof(HeadbuttFile_474_Pewter_City_Pokmart),
+    sizeof(HeadbuttFile_475_Pewter_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_476_Pewter_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_477_Pewter_City_House),
+    sizeof(HeadbuttFile_478_Fushsia_City_Pokmart),
+    sizeof(HeadbuttFile_479_Pal_Park_Inside),
+    sizeof(HeadbuttFile_480_Fushsia_City_Gym),
+    sizeof(HeadbuttFile_481_Fushsia_City_House),
+    sizeof(HeadbuttFile_482_Fushsia_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_483_Fushsia_City_House),
+    sizeof(HeadbuttFile_484_Route_10_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_485_Fuchsia_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_486_Whirl_Islands_Lugias_Room),
+    sizeof(HeadbuttFile_487_National_Park_Bug_Catching_Contest),
+    sizeof(HeadbuttFile_488_National_Park_Bug_Catching_Contest_National_Dex),
+    sizeof(HeadbuttFile_489_Power_Plant),
+    sizeof(HeadbuttFile_490_Ruins_of_Alph_Underground_Hall),
+    sizeof(HeadbuttFile_491_Ruins_of_Alph_Hall_Entrance),
+    sizeof(HeadbuttFile_492_Ruins_of_Alph_Underground_Hall),
+    sizeof(HeadbuttFile_493_Route_7_And_Saffron_City_Gate),
+    sizeof(HeadbuttFile_494_Lavender_Town_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_495_Cerulean_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_496_Viridian_City_Gym),
+    sizeof(HeadbuttFile_497_Viridian_City_House),
+    sizeof(HeadbuttFile_498_Viridian_City_Trainer_House),
+    sizeof(HeadbuttFile_499_Viridian_City_Trainer_House_2F),
+    sizeof(HeadbuttFile_500_Viridian_City_Pokmart),
+    sizeof(HeadbuttFile_501_Viridian_City_Pokmon_Centre),
+    sizeof(HeadbuttFile_502_Viridian_City_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_503_Pallet_Town_Reds_House_1F),
+    sizeof(HeadbuttFile_504_Pallet_Town_Blues_House_1F),
+    sizeof(HeadbuttFile_505_Oaks_Lab),
+    sizeof(HeadbuttFile_506_Pallet_Town_Reds_House_2F),
+    sizeof(HeadbuttFile_507_Pallet_Town_Blues_House_2F),
+    sizeof(HeadbuttFile_508_Cinnabar_Island_Pokmon_Centre),
+    sizeof(HeadbuttFile_509_Cinnabar_Island_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_510_Route_28_House),
+    sizeof(HeadbuttFile_511_Route_3_Pokmon_Centre),
+    sizeof(HeadbuttFile_512_Route_3_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_513_Mt_Moon_Square),
+    sizeof(HeadbuttFile_514_Mt_Silver_Pokmon_Centre),
+    sizeof(HeadbuttFile_515_Mt_Silver_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_516_HIROBA),
+    sizeof(HeadbuttFile_517_Route_5_House),
+    sizeof(HeadbuttFile_518_Mt_Moon_Square_House),
+    sizeof(HeadbuttFile_519_Goldenrod_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_520_Saffron_City_Magnet_Train_Station),
+    sizeof(HeadbuttFile_521_Sinjoh_Ruins_Outside),
+    sizeof(HeadbuttFile_522_Sinjoh_Ruins_Mystri_Stage),
+    sizeof(HeadbuttFile_523_Sinjoh_Ruins_Cabin),
+    sizeof(HeadbuttFile_524_Embedded_Tower_Groudon),
+    sizeof(HeadbuttFile_525_Embedded_Tower_Kyogre),
+    sizeof(HeadbuttFile_526_Embedded_Tower_Rayquaza),
+    sizeof(HeadbuttFile_527_Route_1_And_Viridian_City_Gate),
+    sizeof(HeadbuttFile_528_Frontier_Access_Pokmon_Center),
+    sizeof(HeadbuttFile_529_Frontier_Access_Pokmon_Center_Lower),
+    sizeof(HeadbuttFile_530_Frontier_Access_Pokmart),
+    sizeof(HeadbuttFile_531_Frontier_Access_House),
+    sizeof(HeadbuttFile_532_Underground_Path),
+    sizeof(HeadbuttFile_533_Route_12_House),
+    sizeof(HeadbuttFile_534_Safari_Zone_Gate_Pokmon_Center),
+    sizeof(HeadbuttFile_535_Safari_Zone_Gate_Pokmon_Centre_Lower),
+    sizeof(HeadbuttFile_536_Goldenrod_City_Game_Corner),
+    sizeof(HeadbuttFile_537_Celadon_City_Game_Corner),
+    sizeof(HeadbuttFile_538_Mystery_Zone),
+    sizeof(HeadbuttFile_539_Pokmon_League_Pokmon_Centre_Lower),
 };
 
 const HeadbuttArchiveData __data =
 {
-    .000 = {
+    .everywhere = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .001 = {
+    .nothing = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .002 = {
+    .unionRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .003 = {
+    .ug = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .004 = {
+    .direct2 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .005 = {
+    .direct4 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .006 = {
+    .bellchimeTrail = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .007 = {
+    .burnedTower1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .008 = {
+    .ruinsOfAlphInside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .009 = {
+    .route1 = {
         .normalTreeCount = 20,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4078,7 +4080,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .010 = {
+    .route2 = {
         .normalTreeCount = 15,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4125,7 +4127,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .011 = {
+    .route3 = {
         .normalTreeCount = 4,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4161,7 +4163,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .012 = {
+    .route4 = {
         .normalTreeCount = 9,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4202,7 +4204,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .013 = {
+    .route5 = {
         .normalTreeCount = 4,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4238,7 +4240,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .014 = {
+    .route6 = {
         .normalTreeCount = 6,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4276,7 +4278,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .015 = {
+    .route7 = {
         .normalTreeCount = 8,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4316,7 +4318,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .016 = {
+    .route8 = {
         .normalTreeCount = 5,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4353,17 +4355,17 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .017 = {
+    .route9 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .018 = {
+    .route10 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .019 = {
+    .route11 = {
         .normalTreeCount = 11,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4406,7 +4408,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .020 = {
+    .route12 = {
         .normalTreeCount = 10,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4448,7 +4450,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .021 = {
+    .route13 = {
         .normalTreeCount = 15,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4495,7 +4497,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .022 = {
+    .route14 = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4530,7 +4532,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .023 = {
+    .route15 = {
         .normalTreeCount = 19,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4581,7 +4583,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .024 = {
+    .route16 = {
         .normalTreeCount = 2,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4615,12 +4617,12 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .025 = {
+    .route17 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .026 = {
+    .route18 = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4655,7 +4657,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .027 = {
+    .route22 = {
         .normalTreeCount = 7,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4694,12 +4696,12 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .028 = {
+    .route24 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .029 = {
+    .route25 = {
         .normalTreeCount = 11,
         .specialTreeCount = 4,
         .normalSlots =
@@ -4746,7 +4748,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .030 = {
+    .route26 = {
         .normalTreeCount = 17,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4795,7 +4797,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .031 = {
+    .route27 = {
         .normalTreeCount = 17,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4844,7 +4846,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .032 = {
+    .route28 = {
         .normalTreeCount = 15,
         .specialTreeCount = 0,
         .normalSlots =
@@ -4891,23 +4893,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .033 = {
+    .route29 = {
         .normalTreeCount = 35,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_AIPOM, 5, 6 },
-            { SPECIES_AIPOM, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_LEDYBA, 5, 6 },
-            { SPECIES_SPINARAK, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
-            { SPECIES_HOOTHOOT, 5, 6 },
+            { SPECIES_HOOTHOOT, 2, 3 },
+            { SPECIES_PINECO, 2, 3 },
+            { SPECIES_PINECO, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_HOOTHOOT, 4, 5 },
+            { SPECIES_SPINARAK, 4, 5 },
+            { SPECIES_SPINARAK, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
         },
         .specialSlots =
         {
@@ -4958,23 +4960,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .034 = {
+    .route30 = {
         .normalTreeCount = 30,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_HOOTHOOT, 6, 7 },
-            { SPECIES_HOOTHOOT, 6, 7 },
-            { SPECIES_HOOTHOOT, 6, 7 },
-            { SPECIES_HOOTHOOT, 6, 7 },
-            { SPECIES_PINECO, 6, 7 },
-            { SPECIES_PINECO, 6, 7 },
-            { SPECIES_LEDYBA, 6, 7 },
-            { SPECIES_LEDYBA, 6, 7 },
-            { SPECIES_SPINARAK, 6, 7 },
-            { SPECIES_SPINARAK, 6, 7 },
-            { SPECIES_LEDYBA, 6, 7 },
-            { SPECIES_SPINARAK, 6, 7 },
+            { SPECIES_HOOTHOOT, 2, 3 },
+            { SPECIES_PINECO, 2, 3 },
+            { SPECIES_PINECO, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_EXEGGCUTE, 2, 3 },
+            { SPECIES_HOOTHOOT, 4, 5 },
+            { SPECIES_SPINARAK, 4, 5 },
+            { SPECIES_SPINARAK, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
         },
         .specialSlots =
         {
@@ -5020,23 +5022,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .035 = {
+    .route31 = {
         .normalTreeCount = 15,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_PIDGEY, 7, 8 },
-            { SPECIES_ZUBAT, 7, 8 },
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_PIDGEY, 7, 8 },
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_SPEAROW, 7, 8 },
-            { SPECIES_ZUBAT, 7, 8 },
-            { SPECIES_HOOTHOOT, 7, 8 },
-            { SPECIES_SPEAROW, 7, 8 },
+            { SPECIES_HOOTHOOT, 3, 4 },
+            { SPECIES_PINECO, 3, 4 },
+            { SPECIES_PINECO, 3, 4 },
+            { SPECIES_EXEGGCUTE, 3, 4 },
+            { SPECIES_EXEGGCUTE, 3, 4 },
+            { SPECIES_EXEGGCUTE, 3, 4 },
+            { SPECIES_HOOTHOOT, 5, 6 },
+            { SPECIES_SPINARAK, 5, 6 },
+            { SPECIES_SPINARAK, 5, 6 },
+            { SPECIES_EXEGGCUTE, 5, 6 },
+            { SPECIES_EXEGGCUTE, 5, 6 },
+            { SPECIES_EXEGGCUTE, 5, 6 },
         },
         .specialSlots =
         {
@@ -5067,23 +5069,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .036 = {
+    .route32 = {
         .normalTreeCount = 35,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_PIDGEY, 14, 15 },
-            { SPECIES_PIDGEY, 14, 15 },
-            { SPECIES_PIDGEY, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
-            { SPECIES_SPEAROW, 14, 15 },
-            { SPECIES_SPEAROW, 14, 15 },
-            { SPECIES_SPEAROW, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
-            { SPECIES_EKANS, 14, 15 },
+            { SPECIES_HOOTHOOT, 4, 5 },
+            { SPECIES_PINECO, 4, 5 },
+            { SPECIES_PINECO, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_HOOTHOOT, 6, 7 },
+            { SPECIES_HOOTHOOT, 6, 7 },
+            { SPECIES_HOOTHOOT, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
         },
         .specialSlots =
         {
@@ -5134,23 +5136,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .037 = {
+    .route33 = {
         .normalTreeCount = 4,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_FEAROW, 26, 26 },
-            { SPECIES_FEAROW, 26, 26 },
-            { SPECIES_FEAROW, 26, 26 },
-            { SPECIES_FEAROW, 26, 26 },
-            { SPECIES_AIPOM, 22, 25 },
-            { SPECIES_AIPOM, 22, 25 },
-            { SPECIES_SPEAROW, 22, 25 },
-            { SPECIES_SPEAROW, 22, 25 },
-            { SPECIES_SPEAROW, 22, 25 },
-            { SPECIES_AIPOM, 22, 25 },
-            { SPECIES_AIPOM, 22, 25 },
-            { SPECIES_HERACROSS, 26, 26 },
+            { SPECIES_SPEAROW, 3, 5 },
+            { SPECIES_HERACROSS, 3, 5 },
+            { SPECIES_HERACROSS, 3, 5 },
+            { SPECIES_AIPOM, 3, 5 },
+            { SPECIES_AIPOM, 3, 5 },
+            { SPECIES_AIPOM, 3, 5 },
+            { SPECIES_SPEAROW, 6, 8 },
+            { SPECIES_SPEAROW, 6, 8 },
+            { SPECIES_SPEAROW, 6, 8 },
+            { SPECIES_AIPOM, 6, 8 },
+            { SPECIES_AIPOM, 6, 8 },
+            { SPECIES_AIPOM, 6, 8 },
         },
         .specialSlots =
         {
@@ -5170,23 +5172,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .038 = {
+    .route34 = {
         .normalTreeCount = 15,
         .specialTreeCount = 1,
         .normalSlots =
         {
-            { SPECIES_GREEDENT, 30, 32 },
-            { SPECIES_GREEDENT, 30, 32 },
-            { SPECIES_GREEDENT, 30, 32 },
-            { SPECIES_PACHIRISU, 30, 32 },
-            { SPECIES_PACHIRISU, 30, 32 },
-            { SPECIES_PACHIRISU, 30, 32 },
-            { SPECIES_TRUMBEAK, 30, 32 },
-            { SPECIES_TRUMBEAK, 30, 32 },
-            { SPECIES_TRUMBEAK, 30, 32 },
-            { SPECIES_TRUMBEAK, 30, 32 },
-            { SPECIES_EMOLGA, 30, 32 },
-            { SPECIES_EMOLGA, 30, 32 },
+            { SPECIES_HOOTHOOT, 9, 10 },
+            { SPECIES_PINECO, 9, 10 },
+            { SPECIES_PINECO, 9, 10 },
+            { SPECIES_EXEGGCUTE, 9, 10 },
+            { SPECIES_EXEGGCUTE, 9, 10 },
+            { SPECIES_EXEGGCUTE, 9, 10 },
+            { SPECIES_HOOTHOOT, 11, 12 },
+            { SPECIES_SPINARAK, 11, 12 },
+            { SPECIES_SPINARAK, 11, 12 },
+            { SPECIES_EXEGGCUTE, 11, 12 },
+            { SPECIES_EXEGGCUTE, 11, 12 },
+            { SPECIES_EXEGGCUTE, 11, 12 },
         },
         .specialSlots =
         {
@@ -5217,21 +5219,21 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .039 = {
+    .route35 = {
         .normalTreeCount = 14,
         .specialTreeCount = 0,
         .normalSlots =
         {
+            { SPECIES_HOOTHOOT, 10, 11 },
+            { SPECIES_PINECO, 10, 11 },
+            { SPECIES_PINECO, 10, 11 },
             { SPECIES_EXEGGCUTE, 10, 11 },
             { SPECIES_EXEGGCUTE, 10, 11 },
             { SPECIES_EXEGGCUTE, 10, 11 },
-            { SPECIES_YANMA, 10, 11 },
-            { SPECIES_EXEGGCUTE, 10, 11 },
-            { SPECIES_YANMA, 10, 11 },
-            { SPECIES_EXEGGCUTE, 10, 11 },
-            { SPECIES_EXEGGCUTE, 10, 11 },
-            { SPECIES_EXEGGCUTE, 10, 11 },
-            { SPECIES_YANMA, 13, 14 },
+            { SPECIES_HOOTHOOT, 13, 14 },
+            { SPECIES_SPINARAK, 13, 14 },
+            { SPECIES_SPINARAK, 13, 14 },
+            { SPECIES_EXEGGCUTE, 13, 14 },
             { SPECIES_EXEGGCUTE, 13, 14 },
             { SPECIES_EXEGGCUTE, 13, 14 },
         },
@@ -5263,23 +5265,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .040 = {
+    .route36 = {
         .normalTreeCount = 26,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
-            { SPECIES_APPLIN, 13, 15 },
+            { SPECIES_HOOTHOOT, 4, 5 },
+            { SPECIES_PINECO, 4, 5 },
+            { SPECIES_PINECO, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_EXEGGCUTE, 4, 5 },
+            { SPECIES_HOOTHOOT, 6, 7 },
+            { SPECIES_SPINARAK, 6, 7 },
+            { SPECIES_SPINARAK, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
+            { SPECIES_EXEGGCUTE, 6, 7 },
         },
         .specialSlots =
         {
@@ -5321,7 +5323,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .041 = {
+    .route37 = {
         .normalTreeCount = 13,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5366,7 +5368,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .042 = {
+    .route38 = {
         .normalTreeCount = 13,
         .specialTreeCount = 1,
         .normalSlots =
@@ -5412,7 +5414,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .043 = {
+    .route39 = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5447,23 +5449,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .044 = {
+    .route42 = {
         .normalTreeCount = 10,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_AMBIPOM, 40, 42 },
-            { SPECIES_AMBIPOM, 40, 42 },
-            { SPECIES_AMBIPOM, 40, 42 },
-            { SPECIES_PRIMEAPE, 40, 42 },
-            { SPECIES_PRIMEAPE, 40, 42 },
-            { SPECIES_PRIMEAPE, 40, 42 },
-            { SPECIES_VIKAVOLT, 41, 42 },
-            { SPECIES_VIKAVOLT, 41, 42 },
-            { SPECIES_PINSIR, 40, 42 },
-            { SPECIES_HERACROSS, 40, 42 },
-            { SPECIES_PINSIR, 40, 42 },
-            { SPECIES_HERACROSS, 40, 42 },
+            { SPECIES_SPEAROW, 13, 14 },
+            { SPECIES_HERACROSS, 13, 14 },
+            { SPECIES_HERACROSS, 13, 14 },
+            { SPECIES_AIPOM, 13, 14 },
+            { SPECIES_AIPOM, 13, 14 },
+            { SPECIES_AIPOM, 13, 14 },
+            { SPECIES_SPEAROW, 15, 16 },
+            { SPECIES_SPEAROW, 15, 16 },
+            { SPECIES_SPEAROW, 15, 16 },
+            { SPECIES_AIPOM, 15, 16 },
+            { SPECIES_AIPOM, 15, 16 },
+            { SPECIES_AIPOM, 15, 16 },
         },
         .specialSlots =
         {
@@ -5489,7 +5491,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .045 = {
+    .route43 = {
         .normalTreeCount = 17,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5538,7 +5540,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .046 = {
+    .route44 = {
         .normalTreeCount = 14,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5584,7 +5586,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .047 = {
+    .route45 = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5613,13 +5615,13 @@ const HeadbuttArchiveData __data =
         },
         .treeCoords =
         {
-            { { 667, 335 }, { 666, 335 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
-            { { 662, 335 }, { 663, 335 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 648, 341 }, { 649, 341 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 662, 341 }, { 662, 340 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 657, 331 }, { 657, 330 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
         },
     },
 
-    .048 = {
+    .route46 = {
         .normalTreeCount = 10,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5661,7 +5663,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .049 = {
+    .palletTown = {
         .normalTreeCount = 17,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5710,7 +5712,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .050 = {
+    .viridianCity = {
         .normalTreeCount = 21,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5763,7 +5765,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .051 = {
+    .pewterCity = {
         .normalTreeCount = 21,
         .specialTreeCount = 2,
         .normalSlots =
@@ -5818,7 +5820,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .052 = {
+    .ceruleanCity = {
         .normalTreeCount = 11,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5861,12 +5863,12 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .053 = {
+    .lavenderTown = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .054 = {
+    .vermilionCity = {
         .normalTreeCount = 10,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5908,7 +5910,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .055 = {
+    .celadonCity = {
         .normalTreeCount = 32,
         .specialTreeCount = 0,
         .normalSlots =
@@ -5972,7 +5974,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .056 = {
+    .fuchsiaCity = {
         .normalTreeCount = 18,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6022,22 +6024,22 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .057 = {
+    .cinnabarIsland = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .058 = {
+    .indigoPlateau = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .059 = {
+    .saffronCity = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .060 = {
+    .newBarkTown = {
         .normalTreeCount = 11,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6080,37 +6082,37 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .061 = {
+    .elmsLab1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .062 = {
+    .elmsLab2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .063 = {
+    .momsHouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .064 = {
+    .momsHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .065 = {
+    .newBarkTownHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .066 = {
+    .ethanLyrasHouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .067 = {
+    .cherrygroveCity = {
         .normalTreeCount = 7,
         .specialTreeCount = 4,
         .normalSlots =
@@ -6153,32 +6155,32 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .068 = {
+    .cherrygroveCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .069 = {
+    .cherrygroveCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .070 = {
+    .cherrygroveCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .071 = {
+    .cherrygroveCityHouse071 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .072 = {
+    .cherrygroveCityHouse072 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .073 = {
+    .violetCity = {
         .normalTreeCount = 27,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6237,7 +6239,7 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .074 = {
+    .azaleaTown = {
         .normalTreeCount = 15,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6284,22 +6286,22 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .075 = {
+    .cianwoodCity = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .076 = {
+    .goldenrodCity = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .077 = {
+    .olivineCity = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .078 = {
+    .ecruteakCity = {
         .normalTreeCount = 18,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6349,52 +6351,52 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .079 = {
+    .ecruteakCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .080 = {
+    .ecruteakCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .081 = {
+    .ecruteakPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .082 = {
+    .jubilifeCityUnused = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .083 = {
+    .barrierStationToBellTower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .084 = {
+    .ecruteakCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .085 = {
+    .ecruteakCityHouse085 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .086 = {
+    .ecruteakDanceTheatre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .087 = {
+    .mahoganyTown = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .088 = {
+    .lakeOfRage = {
         .normalTreeCount = 22,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6448,12 +6450,12 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .089 = {
+    .blackthornCity = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .090 = {
+    .mtSilver = {
         .normalTreeCount = 5,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6490,17 +6492,17 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .091 = {
+    .route19 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .092 = {
+    .route20 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .093 = {
+    .route21 = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6535,17 +6537,17 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .094 = {
+    .route40 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .095 = {
+    .route41 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .096 = {
+    .nationalPark = {
         .normalTreeCount = 22,
         .specialTreeCount = 5,
         .normalSlots =
@@ -6604,107 +6606,107 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .097 = {
+    .route31AndVioletCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .098 = {
+    .route32AndRuinsOfAlphGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .099 = {
+    .unionCave1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .100 = {
+    .azaleaTownAndIlexForestGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .101 = {
+    .goldenrodCityAndRoute35Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .102 = {
+    .route35AndNationalParkGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .103 = {
+    .ruinsOfAlphAndRoute36Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .104 = {
+    .nationalParkAndRoute36Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .105 = {
+    .jubilifeCityUnused105 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .106 = {
+    .diglettsCave = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .107 = {
+    .mtMoon = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .108 = {
+    .rockTunnel1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .109 = {
+    .palPark = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .110 = {
+    .sproutTower1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .111 = {
+    .bellTower1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .112 = {
+    .radioTower1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .113 = {
+    .ruinsOfAlphOutside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .114 = {
+    .slowpokeWellEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .115 = {
+    .olivineLighthouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .116 = {
+    .mahoganyTownSouvenirShop = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .117 = {
+    .ilexForest = {
         .normalTreeCount = 56,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6792,152 +6794,152 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .118 = {
+    .goldenrodTunnel = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .119 = {
+    .mtMortar1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .120 = {
+    .icePath1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .121 = {
+    .whirlIslands = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .122 = {
+    .mtSilverCave = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .123 = {
+    .darkCaveRoute45Entrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .124 = {
+    .victoryRoad1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .125 = {
+    .dragonsDenEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .126 = {
+    .tohjoFalls = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .127 = {
+    .route30House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .128 = {
+    .ecruteakCityUnionRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .129 = {
+    .ecruteakCityUnionRoom129 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .130 = {
+    .ecruteakCityUnionRoom130 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .131 = {
+    .ecruteakCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .132 = {
+    .ecruteakCityAndRoute42Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .133 = {
+    .mahoganyTownHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .134 = {
+    .route29AndRoute46Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .135 = {
+    .violetCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .136 = {
+    .azaleaGymEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .137 = {
+    .goldenrodCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .138 = {
+    .olivineCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .139 = {
+    .cianwoodCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .140 = {
+    .mahoganyCityGym3rdRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .141 = {
+    .blackthornCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .142 = {
+    .route43Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .143 = {
+    .mrPokemonsHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .144 = {
+    .cherrygroveCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .145 = {
+    .ceruleanCave1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .146 = {
+    .seafoamIslands1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .147 = {
+    .viridianForest = {
         .normalTreeCount = 24,
         .specialTreeCount = 0,
         .normalSlots =
@@ -6993,47 +6995,47 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .148 = {
+    .powerPlantUnused = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .149 = {
+    .route36AndVioletCityInbetween = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .150 = {
+    .route35AndPokathlonDomeInbetween = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .151 = {
+    .route47 = {
         .normalTreeCount = 10,
         .specialTreeCount = 4,
         .normalSlots =
         {
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_RUFFLET, 50, 52 },
+            { SPECIES_HOOTHOOT, 15, 16 },
+            { SPECIES_PINECO, 15, 16 },
+            { SPECIES_PINECO, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_HOOTHOOT, 17, 18 },
+            { SPECIES_SPINARAK, 17, 18 },
+            { SPECIES_SPINARAK, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
         },
         .specialSlots =
         {
-            { 2726, 54, 54 },
-            { 2726, 54, 54 },
-            { SPECIES_BRAVIARY, 54, 54 },
-            { SPECIES_MANDIBUZZ, 54, 54 },
-            { SPECIES_RUFFLET, 50, 52 },
-            { SPECIES_VULLABY, 50, 52 },
+            { SPECIES_METAPOD, 25, 28 },
+            { SPECIES_BUTTERFREE, 25, 28 },
+            { SPECIES_BUTTERFREE, 25, 28 },
+            { SPECIES_HERACROSS, 25, 28 },
+            { SPECIES_HERACROSS, 25, 28 },
+            { SPECIES_HERACROSS, 27, 30 },
         },
         .treeCoords =
         {
@@ -7054,23 +7056,23 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .152 = {
+    .route48 = {
         .normalTreeCount = 6,
         .specialTreeCount = 0,
         .normalSlots =
         {
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_RUFFLET, 50, 51 },
-            { SPECIES_RUFFLET, 50, 51 },
-            { SPECIES_VULLABY, 50, 51 },
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_CRABRAWLER, 51, 52 },
-            { SPECIES_VULLABY, 50, 51 },
-            { SPECIES_VULLABY, 50, 51 },
-            { SPECIES_RUFFLET, 50, 51 },
+            { SPECIES_HOOTHOOT, 15, 16 },
+            { SPECIES_PINECO, 15, 16 },
+            { SPECIES_PINECO, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_EXEGGCUTE, 15, 16 },
+            { SPECIES_HOOTHOOT, 17, 18 },
+            { SPECIES_SPINARAK, 17, 18 },
+            { SPECIES_SPINARAK, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
+            { SPECIES_EXEGGCUTE, 17, 18 },
         },
         .specialSlots =
         {
@@ -7092,112 +7094,112 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .153 = {
+    .unionCaveB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .154 = {
+    .unionCaveB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .155 = {
+    .sproutTower2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .156 = {
+    .sproutTower3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .157 = {
+    .violetCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .158 = {
+    .violetCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .159 = {
+    .violetCityPokemonSchool = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .160 = {
+    .violetCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .161 = {
+    .jubilifeCityUnused161 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .162 = {
+    .violetCityHouse162 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .163 = {
+    .azaleaTownCharcoalKiln = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .164 = {
+    .azaleaTownKurtsHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .165 = {
+    .azaleaTownPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .166 = {
+    .azaleaTownPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .167 = {
+    .violetCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .168 = {
+    .azaleaTownPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .169 = {
+    .route32PokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .170 = {
+    .route32PokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .171 = {
+    .ilexForestAndRoute34Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .172 = {
+    .ecruteakAndRoute38Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .173 = {
+    .safariZoneGateInside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .174 = {
+    .safariZoneGateOutside = {
         .normalTreeCount = 17,
         .specialTreeCount = 0,
         .normalSlots =
@@ -7246,1202 +7248,1202 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .175 = {
+    .jubilifeCityUnused175 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .176 = {
+    .darkCaveRoute31Entrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .177 = {
+    .slowpokeWell1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .178 = {
+    .victoryRoad2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .179 = {
+    .victoryRoad3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .180 = {
+    .azaleaTownGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .181 = {
+    .slowpokeWellB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .182 = {
+    .goldenrodCityBikeStore = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .183 = {
+    .goldenrodCityGameCornerJAP = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .184 = {
+    .goldenrodCityFlowerShop = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .185 = {
+    .goldenrodCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .186 = {
+    .goldenrodRadioTower2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .187 = {
+    .goldenrodRadioTower3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .188 = {
+    .goldenrodRadioTower4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .189 = {
+    .goldenrodRadioTower5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .190 = {
+    .goldenrodRadioTowerObservationDeck = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .191 = {
+    .goldenrodDepartmentStore1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .192 = {
+    .goldenrodDepartmentStore2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .193 = {
+    .goldenrodDepartmentStore3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .194 = {
+    .goldenrodDepartmentStore4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .195 = {
+    .goldenrodDepartmentStore5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .196 = {
+    .goldenrodDepartmentStore6F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .197 = {
+    .goldenrodCityMagnetTrainStation = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .198 = {
+    .goldenrodCityMagnetTrainStation198 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .199 = {
+    .goldenrodTunnel199 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .200 = {
+    .goldenrodDepartmentStoreBasement = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .201 = {
+    .goldenrodTunnelB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .202 = {
+    .goldenrodTunnelWarehouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .203 = {
+    .goldenrodCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .204 = {
+    .goldenrodCityHouse204 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .205 = {
+    .goldenrodCityHouse205 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .206 = {
+    .goldenrodCityNameRater = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .207 = {
+    .globalTerminal = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .208 = {
+    .goldenrodCityHouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .209 = {
+    .goldenrodCityHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .210 = {
+    .goldenrodCityHouse3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .211 = {
+    .goldenrodCityHouse4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .212 = {
+    .goldenrodCityHouse5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .213 = {
+    .goldenrodCityHouse6F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .214 = {
+    .moomooFarmHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .215 = {
+    .moomooFarmBarn = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .216 = {
+    .barrierStationToBellTowerAndBellchimeTrailPath = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .217 = {
+    .burnedTowerB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .218 = {
+    .ruinsOfAlphInside218 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .219 = {
+    .goldenrodCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .220 = {
+    .glitterLighthouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .221 = {
+    .glitterLighthouseExterior = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .222 = {
+    .glitterLighthouse3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .223 = {
+    .glitterLighthouse4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .224 = {
+    .glitterLighthouse5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .225 = {
+    .glitterLighthouseLightRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .226 = {
+    .olivineCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .227 = {
+    .olivineCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .228 = {
+    .olivineCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .229 = {
+    .olivineCityHouse229 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .230 = {
+    .olivineCityHouse230 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .231 = {
+    .olivineCityCaf = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .232 = {
+    .cianwoodCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .233 = {
+    .cianwoodCityPharmacy = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .234 = {
+    .cianwoodCityHouse234 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .235 = {
+    .cianwoodCityHouse235 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .236 = {
+    .cianwoodCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .237 = {
+    .icePathB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .238 = {
+    .icePathB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .239 = {
+    .icePathB3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .240 = {
+    .olivineCityHouse240 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .241 = {
+    .cianwoodCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .242 = {
+    .whirlIslandsB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .243 = {
+    .whirlIslandsB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .244 = {
+    .whirlIslandsB3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .245 = {
+    .route43Gate245 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .246 = {
+    .mahoganyTownPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .247 = {
+    .teamRocketHQB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .248 = {
+    .teamRocketHQB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .249 = {
+    .teamRocketHQB3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .250 = {
+    .mtMortar1F250 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .251 = {
+    .mtMortar2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .252 = {
+    .mtMortar1F252 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .253 = {
+    .dragonsDenMain = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .254 = {
+    .fightArea = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .255 = {
+    .fightArea255 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .256 = {
+    .fightArea256 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .257 = {
+    .fightArea257 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .258 = {
+    .fightArea258 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .259 = {
+    .fightArea259 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .260 = {
+    .fightArea260 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .261 = {
+    .fightArea261 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .262 = {
+    .fightArea262 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .263 = {
+    .battlePark = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .264 = {
+    .battlePark264 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .265 = {
+    .battleTower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .266 = {
+    .battleTower266 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .267 = {
+    .battleTower267 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .268 = {
+    .battleTower268 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .269 = {
+    .battleTower269 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .270 = {
+    .battleTower270 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .271 = {
+    .battleTower271 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .272 = {
+    .battleFrontier = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .273 = {
+    .battleFrontier273 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .274 = {
+    .battleTower274 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .275 = {
+    .battleFactory = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .276 = {
+    .battleHall = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .277 = {
+    .battleCastle = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .278 = {
+    .battleArcade = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .279 = {
+    .cliffEdgeGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .280 = {
+    .pokathlonDomeOutside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .281 = {
+    .pokathlonDomeInside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .282 = {
+    .pokathlonDomeInside282 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .283 = {
+    .pokathlonDomeInside283 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .284 = {
+    .pokathlonDomeInside284 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .285 = {
+    .pokathlonDomeInside285 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .286 = {
+    .pokathlonDomeInside286 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .287 = {
+    .pokathlonDomeInside287 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .288 = {
+    .dragonsDenShrine = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .289 = {
+    .blackthornCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .290 = {
+    .blackthornCityHouse290 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .291 = {
+    .blackthornCityHouse291 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .292 = {
+    .blackthornCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .293 = {
+    .blackthornCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .294 = {
+    .lakeOfRageHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .295 = {
+    .lakeOfRageHouse295 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .296 = {
+    .route26House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .297 = {
+    .route26WeekSiblingsHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .298 = {
+    .tohjoFallsHiddenRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .299 = {
+    .pokmonLeagueReceptionGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .300 = {
+    .pokmonLeague = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .301 = {
+    .pokmonLeagueWillsRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .302 = {
+    .pokmonLeagueKogasRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .303 = {
+    .pokmonLeagueBrunosRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .304 = {
+    .pokmonLeagueKarensRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .305 = {
+    .pokmonLeagueLancesRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .306 = {
+    .pokmonLeagueHallOfFame = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .307 = {
+    .sSAqua = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .308 = {
+    .sSAqua308 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .309 = {
+    .sSAqua309 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .310 = {
+    .sSAqua310 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .311 = {
+    .sSAqua311 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .312 = {
+    .ruinsOfAlphEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .313 = {
+    .ruinsOfAlphChamber1 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .314 = {
+    .ruinsOfAlphEntrance314 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .315 = {
+    .ruinsOfAlphUndergroundHall = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .316 = {
+    .ruinsOfAlphEntrance316 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .317 = {
+    .ruinsOfAlphChamber3 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .318 = {
+    .ruinsOfAlphEntrance318 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .319 = {
+    .ruinsOfAlphChamber4 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .320 = {
+    .ruinsOfAlphChamber2 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .321 = {
+    .ruinsOfAlphResearchCenter = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .322 = {
+    .route27House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .323 = {
+    .ruinsOfAlphHallEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .324 = {
+    .ruinsOfAlphEntrance2 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .325 = {
+    .ruinsOfAlphEntrance2325 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .326 = {
+    .ruinsOfAlphEntrance2326 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .327 = {
+    .ruinsOfAlphEntrance2327 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .328 = {
+    .sSAqua328 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .329 = {
+    .sSAqua329 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .330 = {
+    .olivinePort = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .331 = {
+    .pokmonDaycare = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .332 = {
+    .bellTower2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .333 = {
+    .bellTower3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .334 = {
+    .bellTower4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .335 = {
+    .bellTower5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .336 = {
+    .bellTower6F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .337 = {
+    .bellTower7F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .338 = {
+    .bellTower8F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .339 = {
+    .bellTower9F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .340 = {
+    .bellTowerRoof = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .341 = {
+    .bellTower10F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .342 = {
+    .cliffCave = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .343 = {
+    .safariZone = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .344 = {
+    .safariZone344 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .345 = {
+    .safariZone345 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .346 = {
+    .safariZone346 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .347 = {
+    .safariZone347 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .348 = {
+    .safariZone348 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .349 = {
+    .safariZone349 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .350 = {
+    .safariZone350 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .351 = {
+    .safariZone351 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .352 = {
+    .safariZone352 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .353 = {
+    .safariZone353 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .354 = {
+    .safariZone354 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .355 = {
+    .safariZone355 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .356 = {
+    .safariZone356 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .357 = {
+    .safariZone357 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .358 = {
+    .vermilionCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .359 = {
+    .vermilionCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .360 = {
+    .vermilionCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .361 = {
+    .vermilionCityPokemonCentre361 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .362 = {
+    .vermilionCityPokemonFanClub = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .363 = {
+    .vermilionCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .364 = {
+    .vermilionCityHouse364 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .365 = {
+    .vermilionCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .366 = {
+    .route40AndFrontierAccessGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .367 = {
+    .olivineCityPokemonCenterLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .368 = {
+    .mahoganyTownPokemonCenterLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .369 = {
+    .blackthornTownPokemonCenterLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .370 = {
+    .celadonCityDepartmentStore1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .371 = {
+    .celadonCityDepartmentStore2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .372 = {
+    .celadonCityDepartmentStore3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .373 = {
+    .celadonCityDepartmentStore4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .374 = {
+    .celadonCityDepartmentStore5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .375 = {
+    .celadonCityDepartmentStore6F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .376 = {
+    .celadonCondominiums1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .377 = {
+    .celadonCondominiums2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .378 = {
+    .celadonCondominiums3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .379 = {
+    .celadonCondominiums4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .380 = {
+    .celadonCondominiums5F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .381 = {
+    .celadonGameCornerMainJP = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .382 = {
+    .celadonGameCornerPrizeBuildingJP = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .383 = {
+    .celadonCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .384 = {
+    .ethanLyrasHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .385 = {
+    .cianwoodCityHouse385 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .386 = {
+    .vermilionPort = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .387 = {
+    .vermilionPort387 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .388 = {
+    .route10388 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .389 = {
+    .route6AndSaffronCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .390 = {
+    .route8AndSaffronCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .391 = {
+    .route5AndSaffronCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .392 = {
+    .route15AndFushsiaCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .393 = {
+    .celadonCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .394 = {
+    .celadonCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .395 = {
+    .celadonCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .396 = {
+    .mahoganyTownGym2ndRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .397 = {
+    .mahoganyTownGym1stRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .398 = {
+    .saffronCityFightingDojo = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .399 = {
+    .saffronCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .400 = {
+    .saffronCityMagnetTrainStation = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .401 = {
+    .saffronCityMagnetTrainStation401 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .402 = {
+    .saffronCityMagnetTrainStation402 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .403 = {
+    .rotomsRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .404 = {
+    .saffronCityHouse404 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .405 = {
+    .saffronCityHouse405 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .406 = {
+    .saffronCityHouse406 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .407 = {
+    .saffronCityPokemonCenter = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .408 = {
+    .saffronCityPokemonCenterLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .409 = {
+    .saffronCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .410 = {
+    .saffronCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .411 = {
+    .frontierAccess = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .412 = {
+    .globalTerminal2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .413 = {
+    .globalTerminal3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .414 = {
+    .route2414 = {
         .normalTreeCount = 13,
         .specialTreeCount = 0,
         .normalSlots =
@@ -8486,42 +8488,42 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .415 = {
+    .route16House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .416 = {
+    .route20Unused = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .417 = {
+    .route2417 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .418 = {
+    .route2AndPewterCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .419 = {
+    .route2AndViridianCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .420 = {
+    .route2Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .421 = {
+    .route16Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .422 = {
+    .route16422 = {
         .normalTreeCount = 5,
         .specialTreeCount = 0,
         .normalSlots =
@@ -8558,192 +8560,192 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .423 = {
+    .route18Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .424 = {
+    .route19AndFushsiaCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .425 = {
+    .route11AndRoute12Gate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .426 = {
+    .ceruleanCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .427 = {
+    .ceruleanCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .428 = {
+    .ceruleanCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .429 = {
+    .ceruleanCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .430 = {
+    .ceruleanCityHouse430 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .431 = {
+    .ceruleanCityHouse431 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .432 = {
+    .ceruleanCityBikeShop = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .433 = {
+    .lavenderTownPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .434 = {
+    .lavenderTownPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .435 = {
+    .lavenderTownHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .436 = {
+    .lavenderTownHouse436 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .437 = {
+    .lavenderTownNameRater = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .438 = {
+    .houseOfMemories = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .439 = {
+    .lavenderTownRadioTower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .440 = {
+    .seaCottage = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .441 = {
+    .goldenrodCityElevator = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .442 = {
+    .celadonCityElevator = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .443 = {
+    .celadonCityElevator443 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .444 = {
+    .celadonCityElevator444 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .445 = {
+    .saffronCityElevator = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .446 = {
+    .lighthouseElevator = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .447 = {
+    .radioTowerElevator = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .448 = {
+    .mtMoonEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .449 = {
+    .mtMoonSquare = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .450 = {
+    .ceruleanCave2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .451 = {
+    .ceruleanCaveB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .452 = {
+    .rockTunnelB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .453 = {
+    .seafoamIslandsB1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .454 = {
+    .seafoamIslandsB2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .455 = {
+    .seafoamIslandsB3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .456 = {
+    .seafoamIslandsB4F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .457 = {
+    .cinnabarGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .458 = {
+    .cinnabarGym458 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .459 = {
+    .mtSilverCaveUpperMountainside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .460 = {
+    .mtSilverCaveLowerMountainside = {
         .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
@@ -8778,397 +8780,397 @@ const HeadbuttArchiveData __data =
         },
     },
 
-    .461 = {
+    .mtSilverCaveExpertBeltChamber = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .462 = {
+    .mtSilverCaveMoltresChamber = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .463 = {
+    .mtSilverCave2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .464 = {
+    .mtSilverCave3F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .465 = {
+    .mtSilverCaveSummit = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .466 = {
+    .route10PokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .467 = {
+    .powerPlant = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .468 = {
+    .undergroundPath = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .469 = {
+    .route5UndergroundPathEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .470 = {
+    .route6UndergroundPathEntrance = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .471 = {
+    .pewterMuseumOfScience = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .472 = {
+    .pewterCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .473 = {
+    .pewterCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .474 = {
+    .pewterCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .475 = {
+    .pewterCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .476 = {
+    .pewterCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .477 = {
+    .pewterCityHouse477 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .478 = {
+    .fushsiaCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .479 = {
+    .palParkInside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .480 = {
+    .fushsiaCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .481 = {
+    .fushsiaCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .482 = {
+    .fushsiaCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .483 = {
+    .fushsiaCityHouse483 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .484 = {
+    .route10PokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .485 = {
+    .fuchsiaCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .486 = {
+    .whirlIslandsLugiasRoom = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .487 = {
+    .nationalParkBugCatchingContest = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .488 = {
+    .nationalParkBugCatchingContestNationalDex = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .489 = {
+    .powerPlant489 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .490 = {
+    .ruinsOfAlphUndergroundHall490 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .491 = {
+    .ruinsOfAlphHallEntrance491 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .492 = {
+    .ruinsOfAlphUndergroundHall492 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .493 = {
+    .route7AndSaffronCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .494 = {
+    .lavenderTownPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .495 = {
+    .ceruleanCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .496 = {
+    .viridianCityGym = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .497 = {
+    .viridianCityHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .498 = {
+    .viridianCityTrainerHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .499 = {
+    .viridianCityTrainerHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .500 = {
+    .viridianCityPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .501 = {
+    .viridianCityPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .502 = {
+    .viridianCityPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .503 = {
+    .palletTownRedsHouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .504 = {
+    .palletTownBluesHouse1F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .505 = {
+    .oaksLab = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .506 = {
+    .palletTownRedsHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .507 = {
+    .palletTownBluesHouse2F = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .508 = {
+    .cinnabarIslandPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .509 = {
+    .cinnabarIslandPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .510 = {
+    .route28House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .511 = {
+    .route3PokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .512 = {
+    .route3PokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .513 = {
+    .mtMoonSquare513 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .514 = {
+    .mtSilverPokemonCentre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .515 = {
+    .mtSilverPokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .516 = {
+    .hiroba = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .517 = {
+    .route5House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .518 = {
+    .mtMoonSquareHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .519 = {
+    .goldenrodCityMagnetTrainStation519 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .520 = {
+    .saffronCityMagnetTrainStation520 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .521 = {
+    .sinjohRuinsOutside = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .522 = {
+    .sinjohRuinsMystriStage = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .523 = {
+    .sinjohRuinsCabin = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .524 = {
+    .embeddedTowerGroudon = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .525 = {
+    .embeddedTowerKyogre = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .526 = {
+    .embeddedTowerRayquaza = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .527 = {
+    .route1AndViridianCityGate = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .528 = {
+    .frontierAccessPokemonCenter = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .529 = {
+    .frontierAccessPokemonCenterLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .530 = {
+    .frontierAccessPokmart = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .531 = {
+    .frontierAccessHouse = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .532 = {
+    .undergroundPath532 = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .533 = {
+    .route12House = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .534 = {
+    .safariZoneGatePokemonCenter = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .535 = {
+    .safariZoneGatePokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .536 = {
+    .goldenrodCityGameCorner = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .537 = {
+    .celadonCityGameCorner = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .538 = {
+    .mysteryZone = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
 
-    .539 = {
+    .pokmonLeaguePokemonCentreLower = {
         .normalTreeCount = 0,
         .specialTreeCount = 0,
     },
