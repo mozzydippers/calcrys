@@ -1581,16 +1581,21 @@
     .long \val
     .endm
 
-    .macro SetAuraBoost arg_0
+    .macro IsPursuitActive arg_0
     .long 289
+    .long (((\arg_0 - .) / 4) - 1)
+    .endm
+
+    .macro SetAuraBoost arg_0
+    .long 290
     .long \arg_0
     .endm
 
     .macro CheckTrainerGimmickMessage
-    .long 290
+    .long 291
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 290
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 291
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
