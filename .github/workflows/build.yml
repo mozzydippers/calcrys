@@ -19,7 +19,7 @@ env:
 
 jobs:
   build:
-    if: ${{ github.repository == 'BluRosie/hg-engine' }}
+    if: ${{ github.repository == 'BluRosie/hg-engine' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-22.04
 
     steps:
