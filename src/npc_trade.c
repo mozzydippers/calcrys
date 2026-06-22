@@ -1,6 +1,7 @@
 #include "../include/types.h"
 #include "../include/pokemon.h"
 #include "../include/npc_trade.h"
+#include "../include/save.h"
 #include "../include/constants/species.h" 
 // for custom trades
 #include "../include/constants/item.h" 
