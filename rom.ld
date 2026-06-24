@@ -195,7 +195,6 @@ sub_020777A4 = 0x020777A4 | 1;
 sub_020777C8 = 0x020777C8 | 1;
 thunk_ManagedSprite_DeleteAndFreeResources = 0x020777F8 | 1;
 sBattleMenuTemplates = 0x0226E70C;
-ov12_02266C64 = 0x02266C64 | 1;
 ov12_0223A900 = 0x0223A900 | 1;
 ov12_022581D4 = 0x022581D4 | 1;
 
