@@ -514,10 +514,11 @@
 #define SUB_SEQ_HANDLE_ANGER_POINT                     (505)
 #define SUB_SEQ_HANDLE_ABILITY_STAT_CHANGE             (506)
 #define SUB_SEQ_GIVE_HELD_ITEM                         (507)
-#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (508)
-#define SUB_SEQ_AURA_FLARED_TO_LIFE                    (509)
+#define SUB_SEQ_CLEAR_AFTER_PURSUIT                    (508)
+#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (509)
+#define SUB_SEQ_AURA_FLARED_TO_LIFE                    (510)
 
-#define MAX_BASE_SUBSCRIPT_NUM 509
+#define MAX_BASE_SUBSCRIPT_NUM 510
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
