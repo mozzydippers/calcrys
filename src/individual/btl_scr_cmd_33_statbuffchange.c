@@ -260,10 +260,10 @@ BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
                                || (MoldBreakerAbilityCheck(sp, sp->attack_client, sp->state_client, ABILITY_MINDS_EYE) == TRUE)
                                || (MoldBreakerAbilityCheck(sp, sp->attack_client, sp->state_client, ABILITY_ILLUMINATE) == TRUE))
                     && ((STAT_ATTACK + stattochange) == STAT_ACCURACY)) {
-                    sp->mp.id = BATTLE_MSG_ACCURACY_NOT_LOWERED;
-                    sp->mp.tag = TAG_NICKNAME;
-                    sp->mp.param[0] = CreateNicknameTag(sp, sp->state_client);
-                    flag = 3;
+                        sp->mp.id = BATTLE_MSG_ACCURACY_NOT_LOWERED;
+                        sp->mp.tag = TAG_NICKNAME;
+                        sp->mp.param[0] = CreateNicknameTag(sp, sp->state_client);
+                        flag = 3;
                 } else if (battlemon->states[STAT_ATTACK + stattochange] == 0) {
                     sp->server_status_flag |= SERVER_STATUS_FLAG_STAT_CHANGE_NEGATIVE;
                     if ((sp->addeffect_type == ADD_EFFECT_INDIRECT)
