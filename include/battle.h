@@ -1317,6 +1317,28 @@ typedef struct PursuitContext {
     u8 originalAttacker;
 } PursuitContext;
 
+enum ActionType {
+    ADDITIONAL_MOVE = 1,
+    SHIELD,
+    REMOVAL_OF_NEGATIVE_EFFECTS,
+    REMOVAL_OF_POSITIVE_EFFECTS,
+    TERA_ORB_CHARGE_STEALING,
+    DOUBLE_ACTION_PHASE,
+};
+
+enum ThresholdType {
+    THRESHOLD_TIMER = 1,
+    THRESHOLD_HEALTH,
+};
+
+typedef struct ExtraAction {
+    enum ActionType actionType;
+    enum ThresholdType thresholdType;
+    u32 threshold;
+    u32 move;
+} ExtraAction;
+
+#define MAX_EXTRA_ACTIONS 6
 
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
 
@@ -1561,6 +1583,8 @@ struct BattleStruct {
     u8 paradoxBoostedStat[CLIENT_MAX];
     BOOL boosterEnergyActivated[CLIENT_MAX];
     MovePerformanceContext moveContext;
+    u8 extraActionCount;
+    ExtraAction extraAction[MAX_EXTRA_ACTIONS];
 
     BOOL printedTrainerSendOutMessage;
     PursuitContext pursuitContext;

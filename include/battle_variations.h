@@ -79,30 +79,9 @@ typedef struct TotemBattle {
     enum AuraType auraType;
 } TotemBattle;
 
-enum ActionType {
-    ADDITIONAL_MOVE = 1,
-    SHIELD,
-    REMOVAL_OF_NEGATIVE_EFFECTS,
-    REMOVAL_OF_POSITIVE_EFFECTS,
-    TERA_ORB_CHARGE_STEALING,
-    DOUBLE_ACTION_PHASE,
-};
-
-enum ThresholdType {
-    TIMER = 1,
-    HEALTH,
-};
-
-typedef struct ExtraAction {
-    enum ActionType actionType;
-    enum ThresholdType thresholdType;
-    u32 threshold;
-    u32 move;
-} ExtraAction;
-
 typedef struct MaxRaidBattle {
     BattleVariationBase battleVariationBase;
-    ExtraAction extraActions[6];
+    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
     u8 multipliers[6]; // HP, Attack, Defense, Speed, Special Attack, Special Defense
 } MaxRaidBattle;
 
