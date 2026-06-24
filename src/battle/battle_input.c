@@ -1,24 +1,18 @@
-#include "../../include/battle_input.h"
-
 #include "../../include/battle.h"
-#include "../../include/battle_info.h"
 #include "../../include/config.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/battle_script_constants.h"
 #include "../../include/constants/file.h"
 #include "../../include/constants/item.h"
-#include "../../include/constants/sndseq.h"
 #include "../../include/constants/weather_numbers.h"
 #include "../../include/mega.h"
-#include "../../include/nitro.h"
-#include "../../include/overlay.h"
 #include "../../include/pokemon.h"
-#include "../../include/sound.h"
 #include "../../include/sprite.h"
-#include "../../include/system.h"
 #include "../../include/types.h"
 
 // function declarations for this file
+void Sub_PokeIconResourceLoad(struct BI_PARAM *bip);
+void Sub_PokeIconResourceFree(struct BI_PARAM *bip);
 void LoadMegaIcon(struct BI_PARAM *bip);
 void LoadMegaButton(struct BI_PARAM *bip);
 BOOL CheckMegaButton(struct BI_PARAM *bip, int tp_ret);
@@ -202,8 +196,6 @@ void Sub_PokeIconResourceLoad(struct BI_PARAM *bip)
 
     OAM_LoadResourceCellAnmArc(csp, crp, ARC_ITEM_GFX_DATA, 0, 0, MEGA_ICON_CELL_ANIM_TAG);
 
-    BattleInfoHint_LoadResources(bip);
-
     // weather
     if (bip->bw->sp->field_condition & WEATHER_ANY_ICONS) {
         if (bip->bw->sp->field_condition & WEATHER_SUNNY_ANY) {
@@ -267,7 +259,6 @@ void Sub_PokeIconResourceFree(struct BI_PARAM *bip)
         }
         newBS.MegaIconLight = 0;
     }
-    BattleInfoHint_FreeResources(bip);
 
     if (bip->bw->sp->field_condition & WEATHER_ANY_ICONS) {
         if (newBS.WeatherOAM) {
@@ -353,8 +344,6 @@ void LoadMegaIcon(struct BI_PARAM *bip)
         OAM_ObjectUpdate(newBS.WeatherOAM->act);
         newBS.weatherUpdateTask = CreateSysTask((SysTaskFunc)0x022684ED, newBS.WeatherOAM, 1300); // 0x022684ED is the pokemon icon animation function
     }
-
-    BattleInfoHint_LoadSprite(bip);
 }
 
 /**
@@ -920,4 +909,12 @@ void LONG_CALL BattleBackgroundCallback(void *unkPtr, int unk2, int unk3)
     // restore the original callback func
     BattleBgProfile *vanillaTable = (BattleBgProfile *)((u32)sBattleBgProfileTable & ~1);
     vanillaTable[0].callback = originalCallback;
+}
+
+u16 LONG_CALL ov07_0221FB7C(u32 backgroundId, u32 assetIndex)
+{
+    u16 ret;
+
+    ArchiveDataLoadOfs(&ret, ARC_CODE_ADDONS, CODE_ADDON_BACKGROUND_GFX_IDS, (backgroundId * 5 + assetIndex) * sizeof(u16), sizeof(ret));
+    return ret;
 }
