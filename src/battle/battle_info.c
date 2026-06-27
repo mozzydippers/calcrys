@@ -202,7 +202,7 @@ void LONG_CALL BattleInput_ChangeMenu(NARC *narc0 UNUSED, NARC *narc1, BattleInp
     BOOL restoringFromBattleInfoPage;
 
     if (a5 != NULL) {
-        memcpy(a5, &battleInput->menu, sizeof(BattleInputMenu));
+        memcpy(&battleInput->menu, a5, sizeof(BattleInputMenu));
     }
 
     battleInput->isTouchDisabled = FALSE;
