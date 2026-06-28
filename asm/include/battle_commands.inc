@@ -1586,16 +1586,20 @@
     .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .macro SetAuraBoost arg_0
+    .macro GoBackToBeforeMove
     .long 290
+    .endm
+
+    .macro SetAuraBoost arg_0
+    .long 291
     .long \arg_0
     .endm
 
     .macro CheckTrainerGimmickMessage
-    .long 291
+    .long 292
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 291
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 292
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
