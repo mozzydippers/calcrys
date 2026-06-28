@@ -897,3 +897,5 @@ Roamer_GetLocation = 0x0202D9F8 | 1;
 ApplyRoamerLocation = 0x02067914 | 1;
 
 PlayerProfile_CountBadges = 0x02028FF0 | 1;
+
+ov12_0223C0C4 = 0x0223C0C4 | 1;

@@ -121,6 +121,8 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
 
     ctx->pursuitContext.isActive = FALSE;
 
+    // There is execution index and order mutation during a raid extra action, but it does not matter
+
     ctx->playerActions[ctx->executionOrder[ctx->executionIndex]][0] = CONTROLLER_COMMAND_40;
 
     if (ctx->oneSelfFlag[ctx->attack_client].trickRoomFlag) {

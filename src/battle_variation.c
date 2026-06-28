@@ -4,6 +4,8 @@
 #include "../include/pokemon.h"
 #include "../include/types.h"
 
+static struct BattleVariationInfo sBattleVariationInfo = {0};
+
 // Pokemon generated will be illegal
 struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BattleSetup *setup, struct BattleVariationBase *battleVariationBase)
 {
@@ -46,8 +48,6 @@ void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 bat
 {
     struct BATTLE_PARAM *setup;
 
-    SetScriptVar(RAID_ID_VARIABLE, battleID);
-
     struct TotemBattle battleData;
 
     ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleID * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
@@ -68,6 +68,9 @@ BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
     u16 raidID = ScriptReadHalfword(ctx);
     u32 *winFlag = FieldSysGetAttrAddr(ctx->fsys, SCRIPTENV_BATTLE_WIN_FLAG);
 
+    sBattleVariationInfo.battleVariationType = battleVariationType;
+    sBattleVariationInfo.slot = raidID;
+
     switch (battleVariationType) {
     case BATTLE_VARIATION_TYPE_TOTEM:
         SetupAndStartTotemBattle(ctx->taskman, winFlag, raidID);
@@ -81,4 +84,13 @@ BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
     }
 
     return TRUE;
+}
+
+struct BattleVariationInfo* LONG_CALL GetBattleVariationInfo() {
+    return &sBattleVariationInfo;
+}
+
+void LONG_CALL ClearBattleVariationInfo() {
+    sBattleVariationInfo.battleVariationType = 0;
+    sBattleVariationInfo.slot = 0;
 }

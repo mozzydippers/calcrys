@@ -104,3 +104,19 @@ typedef struct TeraRaidBattle {
     u32 shieldHPThreshold;
     ExtraAction extraActions[6];
 } TeraRaidBattle;
+
+union BattleVariationUnion {
+    struct TotemBattle totemBattle;
+    struct MaxRaidBattle maxRaidBattle;
+    struct TeraRaidBattle teraRaidBattle;
+    // Custom variations go below:
+};
+
+typedef struct BattleVariationInfo {
+    enum BattleVariationType battleVariationType;
+    u32 slot;
+} BattleVariationInfo;
+
+struct BattleVariationInfo* LONG_CALL GetBattleVariationInfo();
+
+void LONG_CALL ClearBattleVariationInfo();

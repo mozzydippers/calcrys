@@ -1350,6 +1350,12 @@ typedef struct DancerContext {
 } DancerContext;
 
 
+typedef struct RaidContext {
+    BOOL isExtraActionActive;
+    u8 extraActionCount;
+    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
+} RaidContext;
+
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
 
 /**
@@ -1593,9 +1599,7 @@ struct BattleStruct {
     u8 paradoxBoostedStat[CLIENT_MAX];
     BOOL boosterEnergyActivated[CLIENT_MAX];
     MovePerformanceContext moveContext;
-    u8 extraActionCount;
-    ExtraAction extraAction[MAX_EXTRA_ACTIONS];
-
+    RaidContext raidContext;
     BOOL printedTrainerSendOutMessage;
     PursuitContext pursuitContext;
     DancerContext dancerContext;
@@ -4365,5 +4369,9 @@ BOOL LONG_CALL IsAttackerOnField(struct BattleStruct *ctx);
 int LONG_CALL ov12_0223ABB8(struct BattleSystem *bsys, int battlerId, int side);
 
 void LONG_CALL HandleTransform(struct BattleStruct *sp);
+
+void LONG_CALL ov12_0223C0C4(struct BattleSystem *battleSystem);
+
+BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct BattleStruct *ctx);
 
 #endif // BATTLE_H

@@ -59,6 +59,7 @@ enum EndTurnResolutionOrder {
     ENDTURN_FOURTH_EVENT_BLOCK,
     ENDTURN_ION_DELUGE_FADING,
     ENDTURN_END,
+    ENDTURN_EXTRA_ACTION,
 };
 
 enum FirstEventBlockResolutionOrder {
@@ -134,6 +135,11 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
 
         if (ServerZenmetsuCheck(bw, sp) == TRUE) {
             return;
+        }
+
+        if (sp->raidContext.isExtraActionActive) {
+            sp->fcc_seq_no = ENDTURN_EXTRA_ACTION;
+            sp->raidContext.isExtraActionActive = FALSE;
         }
 
         switch (sp->fcc_seq_no) {
@@ -1928,8 +1934,18 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                 sp->enemySideHasFaintedTeammateLastTurn = sp->enemySideHasFaintedTeammateThisTurn;
                 sp->playerSideHasFaintedTeammateThisTurn = 0;
                 sp->enemySideHasFaintedTeammateThisTurn = 0;
+                sp->fcc_seq_no++;
+                break;
+            case ENDTURN_EXTRA_ACTION: {
+#ifdef DEBUG_ENDTURN_LOGIC
+                debug_printf("In ENDTURN_EXTRA_MOVE\n");
+#endif
+                if (QueueRaidExtraAction(bw, sp)) {
+                    return;
+                }
                 ret = 2;
                 break;
+                }
             }
         }
     } while (ret == 0);

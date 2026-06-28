@@ -13,6 +13,7 @@
 #include "../../include/constants/species.h"
 #include "../../include/constants/system_control.h"
 #include "../../include/overlay.h"
+#include "../../include/battle_variations.h"
 
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "../../include/test_battle.h"
@@ -41,6 +42,21 @@ struct BattleStruct *ServerInit(struct BattleSystem *bw) {
     ServerMoveAIInit(bw, sp);
     DumpMoveTableData(&sp->moveTbl[0]);
     sp->aiWorkTable.item = ItemDataTableLoad(HEAPID_BATTLE_HEAP);
+
+    struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
+
+    int raidID = battleVariationInfo.slot;
+    union BattleVariationUnion battleData;
+
+    switch (battleVariationInfo.battleVariationType) {
+    case BATTLE_VARIATION_TYPE_TOTEM:
+    case BATTLE_VARIATION_TYPE_MAX_RAID:
+    case BATTLE_VARIATION_TYPE_TITAN_BATTLE:
+    case BATTLE_VARIATION_TYPE_TERA_RAID:
+        break;
+    default:
+        break;
+    }
 
 #ifdef RESTORE_ITEMS_AT_BATTLE_END
 

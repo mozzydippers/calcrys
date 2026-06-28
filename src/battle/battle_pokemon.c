@@ -11,6 +11,7 @@
 #include "../../include/constants/item.h"
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
+#include "../../include/battle_variations.h"
 
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "../../include/test_battle.h"
@@ -1073,6 +1074,7 @@ if (TestBattle_HasMoreExpectations()) {
 
 #endif // DEBUG_BATTLE_SCENARIOS
 
+    ClearBattleVariationInfo();
 }
 
 /**

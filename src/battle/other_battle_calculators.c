@@ -4435,3 +4435,89 @@ void LONG_CALL HandleTransform(struct BattleStruct *sp)
         }
     }
 }
+
+BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
+{
+    if (ctx->raidContext.extraActionCount < MAX_EXTRA_ACTIONS) {
+        switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].thresholdType) {
+        case THRESHOLD_TIMER:
+            break;
+        case THRESHOLD_HEALTH:
+            // debug_printf("current threshold: %d, current percentage: %d\n", ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold, (ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp))
+            if ((ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp) <= ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold) {
+                // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_DIRECT
+                ctx->add_status_flag_indirect = 0;
+                // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
+                ctx->add_status_flag_direct = 0;
+
+                switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].actionType) {
+                case ADDITIONAL_MOVE:
+                    // debug_printf("In ADDITIONAL_MOVE\n");
+                    ctx->raidContext.isExtraActionActive = TRUE;
+                    ctx->attack_client = 1;
+
+                    switch (ctx->moveTbl[ctx->current_move_index].target) {
+                    case RANGE_USER:
+                    case RANGE_USER_SIDE:
+                    case RANGE_FIELD:
+                        ctx->defence_client = 1;
+                        break;
+                    case RANGE_SINGLE_TARGET:
+                    case RANGE_RANDOM_OPPONENT:
+                        ctx->defence_client = gf_rand() & 1 ? BATTLER_OPPONENT(ctx->attack_client) : BATTLER_ACROSS(ctx->attack_client);
+                        break;
+                    default:
+                        ctx->defence_client = BATTLER_OPPONENT(ctx->attack_client);
+                        break;
+                    }
+
+                    ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+                    ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+                    ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+
+                    ctx->moveContext.hitFoesCount = 0;
+                    CopyBattleMonToPartyMon(battleSystem, ctx, ctx->attack_client);
+
+                    ctx->raidContext.extraActionCount++;
+                    ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
+                    ctx->server_seq_no = CONTROLLER_COMMAND_23;
+                    return TRUE;
+                case SHIELD:
+                case REMOVAL_OF_NEGATIVE_EFFECTS:
+                case REMOVAL_OF_POSITIVE_EFFECTS:
+                case TERA_ORB_CHARGE_STEALING:
+                case DOUBLE_ACTION_PHASE:
+                    break;
+                }
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    return FALSE;
+}
+
+void LONG_CALL BattleControllerPlayer_PokemonAppear(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
+{
+    int script = SwitchInAbilityCheck(battleSystem, ctx);
+
+    if (!script) {
+        if (QueueRaidExtraAction(battleSystem, ctx)) {
+            return;
+        }
+    }
+
+    if (script) {
+        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, script);
+        ctx->next_server_seq_no = ctx->server_seq_no;
+        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+    } else {
+        // debug_printf("Here\n");
+        // ctx->server_status_flag &= ~BATTLE_STATUS_NO_ATTACK_MESSAGE;
+        // ctx->server_status_flag &= ~BATTLE_STATUS_MOVE_ANIMATIONS_OFF;
+        SortMonsBySpeed(battleSystem, ctx);
+        ov12_0223C0C4(battleSystem);
+        ctx->server_seq_no = CONTROLLER_COMMAND_SELECTION_SCREEN_INIT;
+    }
+}
