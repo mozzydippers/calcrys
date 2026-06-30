@@ -1352,6 +1352,7 @@ typedef struct DancerContext {
 
 typedef struct RaidContext {
     BOOL isExtraActionActive;
+    BOOL isAbilityNullifyActive;
     u8 extraActionCount;
     ExtraAction extraActions[MAX_EXTRA_ACTIONS];
 } RaidContext;

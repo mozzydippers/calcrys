@@ -1924,3 +1924,61 @@ The battlefield seems weird!
 Its help didn’t appear!
 {STRVAR_1 1, 0, 0} appeared!
 The Adrenaline Orb makes the wild Pokémon nervous!
+The mysterious barrier is protecting {STRVAR_1 1, 0, 0} from the impacts\nfrom the move!
+{STRVAR_1 1, 0, 0} nullified the stat changes and Abilities of\nother Pokémon!
+The gathered Dynamax Energy let {STRVAR_1 1, 0, 0} unleash\nanother move!
+The mysterious barrier that was protecting {STRVAR_1 1, 0, 0} disappeared!
+A mysterious barrier appeared in front of {STRVAR_1 1, 0, 0} and is\nprotecting it from all attacks!
+{STRVAR_1 1, 0, 0} is getting desperate!\nIts attacks are growing more aggressive!
+{STRVAR_1 3, 1, 0} can Dynamax now!
+Victory!\n{STRVAR_1 1, 0, 0} was defeated!
+{STRVAR_1 1, 0, 0} is weak!\nThrow a Poké Ball now!
+{STRVAR_1 3, 1, 0} is deciding whether to throw a Poké Ball...
+The storm grew stronger!
+{STRVAR_1 3, 1, 0}’s Pokémon recovered from fainting!
+You can’t use any items!
+Dynamax Energy gathered around {STRVAR_1 3, 1, 0}!
+The storm raging above you is growing stronger!
+The storm is growing even stronger!
+The storm is getting too strong to withstand!
+You and the others were blown out of the cavern!
+{STRVAR_1 1, 0, 0} disappeared somewhere...
+You cheered for your side!
+Your cheering was powered up by all\nthe Dynamax Energy!
+The cheer echoed feebly around the area...
+What a vicious blow!\nIt damaged the mysterious barrier severely!
+{STRVAR_1 1, 0, 0} can’t use any moves due to\na mysterious power.
+{STRVAR_1 1, 0, 0} is storing its energy...
+The move was blocked by the power of Dynamax!
+{STRVAR_1 3, 1, 0}!\nGet the sword out!
+{STRVAR_1 3, 1, 0}!\nGet the shield out!
+You can’t throw a Poké Ball!
+{STRVAR_1 3, 1, 0} cheered for your side!
+{STRVAR_1 3, 1, 0}’s cheering was powered up by all\nthe Dynamax Energy!
+You pepped up all your allies with a cheer of “{STRVAR_1 3, 1, 0}”
+All allies’ Attack and Sp. Atk stats rose!
+All allies’ Defense and Sp. Def stats rose!
+All allies’ HP was restored!
+Energy has begun to gather around {STRVAR_1 1, 0, 0}!
+{STRVAR_1 1, 0, 0} succumbed to the onslaught and broke\nits stance!
+Terastallize your Pokémon to stop {STRVAR_1 1, 0, 0}!
+You can feel a tremendous energy gathering! There isn’t much time left!
+{STRVAR_1 1, 0, 0} released its gathered energy!
+{STRVAR_1 1, 0, 0} removed\nnegative effects from itself!
+{STRVAR_1 1, 0, 0} nullified\nthe stat changes and Abilities affecting\fyour side!
+{STRVAR_1 1, 0, 0} stole some of your Tera Orb’s charge!
+Your Tera Orb lacks the charge it needs to Terastallize your Pokémon!\nAfter {STRVAR_1 50, 0, 0} more attack, you’ll have the energy you need!
+Your Tera Orb lacks the charge it needs to Terastallize your Pokémon!\nAfter {STRVAR_1 50, 0, 0} more attacks, you’ll have the energy you need!
+It’s no good! You can’t find an opening to run away\nfrom such a strong opponent!
+You can’t find an opening to swap Pokémon!
+There’s no way you could run from this opponent!
+Your hands are trembling so badly you can’t pull items out of your Bag!
+You can’t battle without a Pokémon on the field!
+Your Poké Balls are locked! You can’t switch Pokémon!
+Your Poké Balls are locked! You can’t use that item!
+Running away would put everyone else in danger!
+The wild {STRVAR_1 1, 0, 0} was caught off guard and couldn’t move!
+You caught the wild {STRVAR_1 1, 0, 0} off guard!
+Mew is going to go all out against this formidable opponent!
+Terapagos absorbed Terastal energy!
+Terapagos used the power of the Terastal phenomenon to change its type!

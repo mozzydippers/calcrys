@@ -13,7 +13,7 @@
 
 // Aura flared to life animation
 
-a061_055:
+a061_058:
     loadparticlefromspa 1, SPA_Z_DANCE
     loadparticlefromspa 2, 489
     waitparticle

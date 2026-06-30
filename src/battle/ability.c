@@ -628,6 +628,10 @@ u32 LONG_CALL MoldBreakerAbilityCheckInternal(int attacker, int defender, int at
 {
     BOOL ret = FALSE;
 
+    if ((defender == BATTLER_PLAYER || defender == BATTLER_PLAYER2) && gBattleSystem->sp->raidContext.isAbilityNullifyActive) {
+        return FALSE;
+    }
+
     if ((attacker == defender) || !AbilityIsIgnoredByMoldBreaker(ability)) {
         return (u32)defenderAbility == ability;
     }

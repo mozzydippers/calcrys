@@ -1934,6 +1934,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                 sp->enemySideHasFaintedTeammateLastTurn = sp->enemySideHasFaintedTeammateThisTurn;
                 sp->playerSideHasFaintedTeammateThisTurn = 0;
                 sp->enemySideHasFaintedTeammateThisTurn = 0;
+                sp->raidContext.isAbilityNullifyActive = FALSE;
                 sp->fcc_seq_no++;
                 break;
             case ENDTURN_EXTRA_ACTION: {

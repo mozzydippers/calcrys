@@ -518,6 +518,8 @@
 #define SUB_SEQ_CLEAR_AFTER_PURSUIT                    (509)
 #define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (510)
 #define SUB_SEQ_AURA_FLARED_TO_LIFE                    (511)
+#define SUB_SEQ_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (512)
+#define SUB_SEQ_TERA_RAID_NULLIFY_STAT_CHANGES         (513)
 
 #define MAX_BASE_SUBSCRIPT_NUM 511
 

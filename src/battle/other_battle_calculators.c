@@ -4438,6 +4438,7 @@ void LONG_CALL HandleTransform(struct BattleStruct *sp)
 
 BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
 {
+    BOOL canActivateExtraAction = FALSE;
     if (ctx->raidContext.extraActionCount < MAX_EXTRA_ACTIONS) {
         switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].thresholdType) {
         case THRESHOLD_TIMER:
@@ -4445,54 +4446,84 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
         case THRESHOLD_HEALTH:
             // debug_printf("current threshold: %d, current percentage: %d\n", ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold, (ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp))
             if ((ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp) <= ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold) {
-                // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_DIRECT
-                ctx->add_status_flag_indirect = 0;
-                // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
-                ctx->add_status_flag_direct = 0;
-
-                switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].actionType) {
-                case ADDITIONAL_MOVE:
-                    // debug_printf("In ADDITIONAL_MOVE\n");
-                    ctx->raidContext.isExtraActionActive = TRUE;
-                    ctx->attack_client = 1;
-
-                    switch (ctx->moveTbl[ctx->current_move_index].target) {
-                    case RANGE_USER:
-                    case RANGE_USER_SIDE:
-                    case RANGE_FIELD:
-                        ctx->defence_client = 1;
-                        break;
-                    case RANGE_SINGLE_TARGET:
-                    case RANGE_RANDOM_OPPONENT:
-                        ctx->defence_client = gf_rand() & 1 ? BATTLER_OPPONENT(ctx->attack_client) : BATTLER_ACROSS(ctx->attack_client);
-                        break;
-                    default:
-                        ctx->defence_client = BATTLER_OPPONENT(ctx->attack_client);
-                        break;
-                    }
-
-                    ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
-                    ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
-                    ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
-
-                    ctx->moveContext.hitFoesCount = 0;
-                    CopyBattleMonToPartyMon(battleSystem, ctx, ctx->attack_client);
-
-                    ctx->raidContext.extraActionCount++;
-                    ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
-                    ctx->server_seq_no = CONTROLLER_COMMAND_23;
-                    return TRUE;
-                case SHIELD:
-                case REMOVAL_OF_NEGATIVE_EFFECTS:
-                case REMOVAL_OF_POSITIVE_EFFECTS:
-                case TERA_ORB_CHARGE_STEALING:
-                case DOUBLE_ACTION_PHASE:
-                    break;
-                }
+                canActivateExtraAction = TRUE;
             }
             break;
         default:
             break;
+        }
+
+        if (canActivateExtraAction) {
+            // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_DIRECT
+            ctx->add_status_flag_indirect = 0;
+            // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
+            ctx->add_status_flag_direct = 0;
+
+            switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].actionType) {
+            case ADDITIONAL_MOVE:
+                // debug_printf("In ADDITIONAL_MOVE\n");
+                ctx->raidContext.isExtraActionActive = TRUE;
+                ctx->attack_client = 1;
+
+                switch (ctx->moveTbl[ctx->current_move_index].target) {
+                case RANGE_USER:
+                case RANGE_USER_SIDE:
+                case RANGE_FIELD:
+                    ctx->defence_client = 1;
+                    break;
+                case RANGE_SINGLE_TARGET:
+                case RANGE_RANDOM_OPPONENT:
+                    ctx->defence_client = gf_rand() & 1 ? BATTLER_OPPONENT(ctx->attack_client) : BATTLER_ACROSS(ctx->attack_client);
+                    break;
+                default:
+                    ctx->defence_client = BATTLER_OPPONENT(ctx->attack_client);
+                    break;
+                }
+
+                ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+                ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+                ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+
+                ctx->moveContext.hitFoesCount = 0;
+                CopyBattleMonToPartyMon(battleSystem, ctx, ctx->attack_client);
+
+                ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
+                ctx->server_seq_no = CONTROLLER_COMMAND_23;
+                break;
+            case SHIELD:
+            case REMOVAL_OF_NEGATIVE_EFFECTS:
+                ctx->attack_client = BATTLER_ENEMY;
+                for (int stat = 0; stat < 8; stat++) {
+                    if (ctx->battlemon[BATTLER_ENEMY].states[stat] < 6) {
+                        ctx->battlemon[BATTLER_ENEMY].states[stat] = 6;
+                    }
+                }
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_TERA_RAID_REMOVE_NEGATIVE_EFFECTS);
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                break;
+            case REMOVAL_OF_POSITIVE_EFFECTS:
+                ctx->attack_client = BATTLER_ENEMY;
+                ctx->raidContext.isAbilityNullifyActive = TRUE;
+                for (int stat = 0; stat < 8; stat++) {
+                    if (IsBattlerSlotValid(battleSystem, BATTLER_PLAYER) && ctx->battlemon[BATTLER_PLAYER].states[stat] > 6) {
+                        ctx->battlemon[BATTLER_PLAYER].states[stat] = 6;
+                    }
+                    if (IsBattlerSlotValid(battleSystem, BATTLER_PLAYER2) && ctx->battlemon[BATTLER_PLAYER2].states[stat] > 6) {
+                        ctx->battlemon[BATTLER_PLAYER2].states[stat] = 6;
+                    }
+                }
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_TERA_RAID_NULLIFY_STAT_CHANGES);
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                break;
+            case TERA_ORB_CHARGE_STEALING:
+            case DOUBLE_ACTION_PHASE:
+                break;
+            }
+
+            ctx->raidContext.extraActionCount++;
+            return TRUE;
         }
     }
     return FALSE;

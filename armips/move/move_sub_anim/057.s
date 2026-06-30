@@ -13,7 +13,7 @@
 
 // Z Dance animation
 
-a061_055:
+a061_057:
     // change background
     cmd0C 0, -32
     cmd0C 1, 0
