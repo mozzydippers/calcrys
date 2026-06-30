@@ -28,8 +28,10 @@ _electricTerrain:
     ChangePermanentBackground BATTLE_BG_CURRENT, TERRAIN_CURRENT
     // The electricity disappeared from the battlefield.
     PrintMessage 1393, TAG_NONE
+    Wait
+    WaitButtonABTime 30
     ResetParadoxAbility ABILITY_QUARK_DRIVE
-    GoTo _afterMessage
+    GoTo _end
 
 _psychicTerrain:
     UpdateTerrainOverlay TRUE, _end
@@ -38,7 +40,7 @@ _psychicTerrain:
     PrintMessage 1395, TAG_NONE
 
 _afterMessage:
-    Wait 
+    Wait
     WaitButtonABTime 30
 _end:
-    End 
+    End
