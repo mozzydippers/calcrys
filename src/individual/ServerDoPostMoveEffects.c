@@ -1615,6 +1615,7 @@ int LONG_CALL Activate_Moxie_BeastBoost_Others(void *bsys, struct BattleStruct *
             }
         }
         break;
+    case ABILITY_EELEVATE:
     case ABILITY_BEAST_BOOST:
         if (ctx->oneTurnFlag[ctx->attack_client].numberOfKOs) {
             u8 stat = BeastBoostGreatestStatHelper(ctx, ctx->attack_client);
@@ -2138,7 +2139,6 @@ int LONG_CALL Activate_Switch(void *bsys UNUSED, struct BattleStruct *ctx)
             return TRUE;
         }
         break;
-    case MOVE_EFFECT_PASS_STATS_AND_STATUS: //baton pass
     case MOVE_EFFECT_SHED_TAIL:
         if (ctx->attack_client != BATTLER_NONE
             && ctx->battlemon[ctx->attack_client].hp > 0
@@ -2196,6 +2196,7 @@ void LONG_CALL Activate_KO_Count(void *bsys UNUSED, struct BattleStruct *ctx)
             }
         }
             FALLTHROUGH;
+        case ABILITY_EELEVATE:
         case ABILITY_BEAST_BOOST:
         case ABILITY_CHILLING_NEIGH:
         case ABILITY_AS_ONE_GLASTRIER:
