@@ -15,7 +15,7 @@
 
 a010_646:
     // Z-Move name
-    loadparticlefromspa 1, 553
+    loadparticlefromspa 1, SPA_HYDRO_VORTEX
     addparticle 1, 0, 0
 
     // Water Pulse background
@@ -25,7 +25,7 @@ a010_646:
     waitforchangebg2
     callfunction 76, 1, 75, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
     waitforchangebg
-    
+
     wait 700
     unloadparticle 1
 
@@ -162,6 +162,6 @@ a010_646:
     waitforchangebg
 
     end
-    
+
 
 .close
