@@ -12,7 +12,6 @@
 #include "../../include/task.h"
 #include "../../include/window.h"
 
-#define RECT_HIT_NONE                      (0xffffffff)
 #define BATTLE_INFO_EOS                    0xFFFF
 #define BATTLE_INFO_CHAR_SPACE             0x01DE
 #define BATTLE_INFO_CHAR_x                 0x015C
@@ -36,15 +35,13 @@
 #define BATTLE_INFO_STAT_ROW_GAP_PX        12
 #define BATTLE_INFO_STATUS_ROW_MAX         7
 #define BATTLE_INFO_PANEL_BG_LAYER         4
-#define BATTLE_INFO_FOOTER_BG_LAYER        7
-#define BATTLE_INFO_NATIVE_MENU_BG_LAYER   4
-#define BATTLE_INFO_NATIVE_MENU_GFX_NARC   7
-#define BATTLE_INFO_NATIVE_MENU_NCGR       28
-#define BATTLE_INFO_FRONTIER_MENU_NCGR     173
 #define BATTLE_INFO_PAGE_ID                21
-#define BATTLE_TYPE_FRONTIER               (1 << 7)
 #define BATTLE_INFO_BUTTON_W_TILES         5
 #define BATTLE_INFO_BUTTON_H_TILES         5
+#define BATTLE_INFO_FOOTER_BUTTON_GFX_NARC 71
+#define BATTLE_INFO_FOOTER_BUTTON_NSCR     20
+#define BATTLE_INFO_FOOTER_BUTTON_NCGR     22
+#define BATTLE_INFO_FOOTER_BUTTON_NCLR     23
 #define BATTLE_INFO_FOOTER_BUTTON_TILE_MAX 160
 #define BATTLE_INFO_FOOTER_BUTTON_PAL_BANK 11
 #define BATTLE_INFO_SHELL_PAL_BANK         10
@@ -65,21 +62,28 @@
 #define BATTLE_INFO_SHELL_TILEMAP_TILE_MAX (BATTLE_INFO_BG_W_TILES * BATTLE_INFO_BG_H_TILES)
 #define BATTLE_INFO_FOOTER_TILE_BYTES      ((BATTLE_INFO_FOOTER_BUTTON_TILE_MAX + 1) * 32)
 #define BATTLE_INFO_SHELL_TILE_BYTES       (BATTLE_INFO_SHELL_TILE_MAX * 32)
-#define PLTTBUF_SUB_OBJ                    3
 #define PLTTBUF_SUB_BG_F                   (1 << 1)
 #define PLTTBUF_SUB_OBJ_F                  (1 << 3)
 #define BATTLE_INFO_FADE_BUFFERS           (PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F)
 #define BATTLE_INFO_FADE_PALETTES          0xFFFF
 #define BATTLE_INFO_FADE_WAIT              -8
 
-typedef struct BattleInfoRawScreenData {
-    u16 width;
-    u16 height;
-    u16 colorMode;
-    u16 screenFormat;
+typedef struct NNSG2dCharacterData {
+    u16 H;
+    u16 W;
+    u32 pixelFmt;
+    u32 mappingType;
+    u32 characterFmt;
     u32 szByte;
-    u16 rawData[1];
-} BattleInfoRawScreenData;
+    void *pRawData;
+} NNSG2dCharacterData;
+
+typedef struct NNSG2dPaletteData {
+    u32 fmt;
+    BOOL bExtendedPlt;
+    u32 szByte;
+    void *pRawData;
+} NNSG2dPaletteData;
 
 typedef struct BattleInfoTextObjTemplate {
     void *fontSystem;
@@ -98,7 +102,6 @@ typedef struct BattleInfoTextObjTemplate {
 
 void *LONG_CALL BattleSystem_GetBattleContext(struct BattleSystem *bsys);
 void *LONG_CALL BattleSystem_GetPaletteData(struct BattleSystem *bsys);
-u32 LONG_CALL BattleSystem_GetBattleType(struct BattleSystem *bsys);
 void LONG_CALL NARC_Delete(NARC *narc);
 void LONG_CALL ToggleBgLayer(u8 bgId, u8 toggle);
 struct PartyPokemon *LONG_CALL BattleSystem_GetPartyMon(struct BattleSystem *bsys, int battlerId, int slot);
@@ -122,13 +125,14 @@ int LONG_CALL TouchscreenHitbox_FindRectAtTouchNew(const void *hitboxes);
 void LONG_CALL BattleInput_EnableBallGauge(BattleInput *battleInput);
 void LONG_CALL BattleInput_DisableBallGauge(BattleInput *battleInput);
 void LONG_CALL BattleCursor_Disable(void *cursor);
-u8 LONG_CALL SpriteSystem_LoadPaletteBufferFromOpenNarc(void *plttData, u32 bufferId, void *spriteSystem, void *spriteManager, void *narc, int fileId, BOOL compressed, int pltt_num, int vram, int resId);
 void *LONG_CALL BattleSystem_GetSpriteSystem(struct BattleSystem *battleSystem);
 void *LONG_CALL BattleSystem_GetSpriteManager(struct BattleSystem *battleSystem);
 void *LONG_CALL BattleSystem_GetBgConfig(struct BattleSystem *battleSystem);
 void *LONG_CALL SpriteManager_GetSpriteList(void *spriteManager);
 void *LONG_CALL SpriteManager_FindPlttResourceProxy(void *spriteManager, int id);
-void *LONG_CALL GfGfxLoader_LoadFromNarc(u32 narcId, s32 memberNo, BOOL isCompressed, u32 heapId, BOOL atEnd);
+void *LONG_CALL GfGfxLoader_GetCharData(u32 narcId, s32 memberNo, BOOL isCompressed, NNSG2dCharacterData **ppCharData, u32 heapId);
+void *LONG_CALL GfGfxLoader_GetScrnData(u32 narcId, s32 memberNo, BOOL isCompressed, NNSG2dScreenData **ppScrnData, u32 heapId);
+void *LONG_CALL GfGfxLoader_GetPlttData(u32 narcId, s32 memberNo, NNSG2dPaletteData **ppPlttData, u32 heapId);
 void LONG_CALL BG_LoadCharTilesData(void *bgl, u8 bgId, const void *data, u32 size, u32 tileStart);
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);
 void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
@@ -606,6 +610,19 @@ static int BattleInfo_FindFocusEntryIndex(struct BattleSystem *bsys, struct Batt
     return -1;
 }
 
+static void BattleInfo_FreeLoadedGfx(void *charRaw, void *screenRaw, void *palRaw)
+{
+    if (charRaw != NULL) {
+        sys_FreeMemoryEz(charRaw);
+    }
+    if (screenRaw != NULL) {
+        sys_FreeMemoryEz(screenRaw);
+    }
+    if (palRaw != NULL) {
+        sys_FreeMemoryEz(palRaw);
+    }
+}
+
 static void BattleInfo_BackupReturnShellPalette(BattleInfoApp *app, BattleInput *battleInput)
 {
     if (app == NULL || battleInput == NULL) {
@@ -644,11 +661,11 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     void *charRaw;
     void *screenRaw;
     void *palRaw;
-    const u8 *charBytes;
-    const u8 *screenBytes;
-    const u8 *palBytes;
+    NNSG2dCharacterData *charData;
+    NNSG2dScreenData *screenData;
+    NNSG2dPaletteData *palData;
     const u8 *charTiles;
-    const BattleInfoRawScreenData *screenData;
+    const u16 *screenTiles;
     const u16 *palette;
     u16 *subBgPalette;
     u16 shellEntries[BATTLE_INFO_SHELL_TILEMAP_TILE_MAX];
@@ -667,53 +684,18 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
         return FALSE;
     }
 
-    charRaw = GfGfxLoader_LoadFromNarc(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    screenRaw = GfGfxLoader_LoadFromNarc(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NSCR, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    palRaw = GfGfxLoader_LoadFromNarc(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCLR, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    charBytes = charRaw;
-    screenBytes = screenRaw;
-    palBytes = palRaw;
-    charTiles = NULL;
+    charData = NULL;
     screenData = NULL;
-    palette = NULL;
+    palData = NULL;
+    charRaw = GfGfxLoader_GetCharData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    screenRaw = GfGfxLoader_GetScrnData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
+    palRaw = GfGfxLoader_GetPlttData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCLR, &palData, HEAPID_BATTLE_HEAP);
+    charTiles = charData != NULL ? charData->pRawData : NULL;
+    screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
+    palette = palData != NULL ? palData->pRawData : NULL;
 
-    if (charBytes != NULL) {
-        for (i = 0; i + 0x20 < 0x40; i++) {
-            if (charBytes[i + 0] == 'R' && charBytes[i + 1] == 'A' && charBytes[i + 2] == 'H' && charBytes[i + 3] == 'C') {
-                charTiles = charBytes + i + 0x20;
-                break;
-            }
-        }
-    }
-
-    if (screenBytes != NULL) {
-        for (i = 0; i + sizeof(BattleInfoRawScreenData) < 0x40; i++) {
-            if (screenBytes[i + 0] == 'N' && screenBytes[i + 1] == 'R' && screenBytes[i + 2] == 'C' && screenBytes[i + 3] == 'S') {
-                screenData = (const BattleInfoRawScreenData *)(screenBytes + i + 8);
-                break;
-            }
-        }
-    }
-
-    if (palBytes != NULL) {
-        for (i = 0; i + 0x18 < 0x40; i++) {
-            if (palBytes[i + 0] == 'T' && palBytes[i + 1] == 'T' && palBytes[i + 2] == 'L' && palBytes[i + 3] == 'P') {
-                palette = (const u16 *)(palBytes + i + 0x18);
-                break;
-            }
-        }
-    }
-
-    if (charTiles == NULL || screenData == NULL || palette == NULL) {
-        if (charRaw != NULL) {
-            sys_FreeMemoryEz(charRaw);
-        }
-        if (screenRaw != NULL) {
-            sys_FreeMemoryEz(screenRaw);
-        }
-        if (palRaw != NULL) {
-            sys_FreeMemoryEz(palRaw);
-        }
+    if (charRaw == NULL || screenRaw == NULL || palRaw == NULL || charTiles == NULL || screenTiles == NULL || palette == NULL) {
+        BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
@@ -726,9 +708,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
         if (tileBuffer != NULL) {
             sys_FreeMemoryEz(tileBuffer);
         }
-        sys_FreeMemoryEz(charRaw);
-        sys_FreeMemoryEz(screenRaw);
-        sys_FreeMemoryEz(palRaw);
+        BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
@@ -760,7 +740,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     memcpy(app->shellTilemapBackup, BATTLE_INFO_SUB_BG_SCR_BASE, sizeof(app->shellTilemapBackup));
 
     for (i = 0; i < (BATTLE_INFO_BG_W_TILES * BATTLE_INFO_BG_H_TILES); i++) {
-        u16 entry = screenData->rawData[i];
+        u16 entry = screenTiles[i];
         u16 tile = entry & 0x3FF;
         u16 attr = entry & 0x0C00;
 
@@ -768,9 +748,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
             if (usedCount >= BATTLE_INFO_SHELL_TILE_MAX) {
                 sys_FreeMemoryEz(tileMap);
                 sys_FreeMemoryEz(tileBuffer);
-                sys_FreeMemoryEz(charRaw);
-                sys_FreeMemoryEz(screenRaw);
-                sys_FreeMemoryEz(palRaw);
+                BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
                 return FALSE;
             }
 
@@ -805,9 +783,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
         if (runStart < 0 || runLength < usedCount) {
             sys_FreeMemoryEz(tileMap);
             sys_FreeMemoryEz(tileBuffer);
-            sys_FreeMemoryEz(charRaw);
-            sys_FreeMemoryEz(screenRaw);
-            sys_FreeMemoryEz(palRaw);
+            BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
             return FALSE;
         }
 
@@ -851,9 +827,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     ScheduleBgTilemapBufferTransfer(bgl, GF_BGL_FRAME2_S);
     sys_FreeMemoryEz(tileMap);
     sys_FreeMemoryEz(tileBuffer);
-    sys_FreeMemoryEz(charRaw);
-    sys_FreeMemoryEz(screenRaw);
-    sys_FreeMemoryEz(palRaw);
+    BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
     app->shellReady = TRUE;
     return TRUE;
 }
@@ -863,11 +837,11 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
     void *charRaw;
     void *screenRaw;
     void *palRaw;
-    const u8 *charBytes;
-    const u8 *screenBytes;
-    const u8 *palBytes;
+    NNSG2dCharacterData *charData;
+    NNSG2dScreenData *screenData;
+    NNSG2dPaletteData *palData;
     const u8 *charTiles;
-    const BattleInfoRawScreenData *screenData;
+    const u16 *screenTiles;
     const u16 *palette;
     u16 *subBgPalette;
     void *bgl;
@@ -894,53 +868,18 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
         return FALSE;
     }
 
-    charRaw = GfGfxLoader_LoadFromNarc(71, 22, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    screenRaw = GfGfxLoader_LoadFromNarc(71, 20, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    palRaw = GfGfxLoader_LoadFromNarc(71, 23, FALSE, HEAPID_BATTLE_HEAP, FALSE);
-    charBytes = charRaw;
-    screenBytes = screenRaw;
-    palBytes = palRaw;
-    charTiles = NULL;
+    charData = NULL;
     screenData = NULL;
-    palette = NULL;
+    palData = NULL;
+    charRaw = GfGfxLoader_GetCharData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    screenRaw = GfGfxLoader_GetScrnData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
+    palRaw = GfGfxLoader_GetPlttData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCLR, &palData, HEAPID_BATTLE_HEAP);
+    charTiles = charData != NULL ? charData->pRawData : NULL;
+    screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
+    palette = palData != NULL ? palData->pRawData : NULL;
 
-    if (charBytes != NULL) {
-        for (i = 0; i + 0x20 < 0x40; i++) {
-            if (charBytes[i + 0] == 'R' && charBytes[i + 1] == 'A' && charBytes[i + 2] == 'H' && charBytes[i + 3] == 'C') {
-                charTiles = charBytes + i + 0x20;
-                break;
-            }
-        }
-    }
-
-    if (screenBytes != NULL) {
-        for (i = 0; i + sizeof(BattleInfoRawScreenData) < 0x40; i++) {
-            if (screenBytes[i + 0] == 'N' && screenBytes[i + 1] == 'R' && screenBytes[i + 2] == 'C' && screenBytes[i + 3] == 'S') {
-                screenData = (const BattleInfoRawScreenData *)(screenBytes + i + 8);
-                break;
-            }
-        }
-    }
-
-    if (palBytes != NULL) {
-        for (i = 0; i + 0x18 < 0x40; i++) {
-            if (palBytes[i + 0] == 'T' && palBytes[i + 1] == 'T' && palBytes[i + 2] == 'L' && palBytes[i + 3] == 'P') {
-                palette = (const u16 *)(palBytes + i + 0x18);
-                break;
-            }
-        }
-    }
-
-    if (charTiles == NULL || screenData == NULL || palette == NULL) {
-        if (charRaw != NULL) {
-            sys_FreeMemoryEz(charRaw);
-        }
-        if (screenRaw != NULL) {
-            sys_FreeMemoryEz(screenRaw);
-        }
-        if (palRaw != NULL) {
-            sys_FreeMemoryEz(palRaw);
-        }
+    if (charRaw == NULL || screenRaw == NULL || palRaw == NULL || charTiles == NULL || screenTiles == NULL || palette == NULL) {
+        BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
@@ -953,9 +892,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
         if (tileBuffer != NULL) {
             sys_FreeMemoryEz(tileBuffer);
         }
-        sys_FreeMemoryEz(charRaw);
-        sys_FreeMemoryEz(screenRaw);
-        sys_FreeMemoryEz(palRaw);
+        BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
@@ -1005,8 +942,8 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
 
             for (row = 0; row < BATTLE_INFO_BUTTON_H_TILES; row++) {
                 for (col = 0; col < BATTLE_INFO_BUTTON_W_TILES; col++) {
-                    int srcIndex = ((sStateCoords[i][state].y + row) * (screenData->width / 8)) + sStateCoords[i][state].x + col;
-                    u16 entry = screenData->rawData[srcIndex];
+                    int srcIndex = ((sStateCoords[i][state].y + row) * (screenData->screenWidth / 8)) + sStateCoords[i][state].x + col;
+                    u16 entry = screenTiles[srcIndex];
                     u16 tile = entry & 0x3FF;
                     u16 attr = entry & 0x0C00;
 
@@ -1014,9 +951,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
                         if (usedCount >= BATTLE_INFO_FOOTER_BUTTON_TILE_MAX) {
                             sys_FreeMemoryEz(tileMap);
                             sys_FreeMemoryEz(tileBuffer);
-                            sys_FreeMemoryEz(charRaw);
-                            sys_FreeMemoryEz(screenRaw);
-                            sys_FreeMemoryEz(palRaw);
+                            BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
                             return FALSE;
                         }
 
@@ -1054,9 +989,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
         if (runStart < 0 || runLength < (usedCount + 1)) {
             sys_FreeMemoryEz(tileMap);
             sys_FreeMemoryEz(tileBuffer);
-            sys_FreeMemoryEz(charRaw);
-            sys_FreeMemoryEz(screenRaw);
-            sys_FreeMemoryEz(palRaw);
+            BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
             return FALSE;
         }
 
@@ -1102,9 +1035,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
 
     sys_FreeMemoryEz(tileMap);
     sys_FreeMemoryEz(tileBuffer);
-    sys_FreeMemoryEz(charRaw);
-    sys_FreeMemoryEz(screenRaw);
-    sys_FreeMemoryEz(palRaw);
+    BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
     app->footerReady = TRUE;
     return TRUE;
 }
@@ -1326,11 +1257,6 @@ static BOOL BattleInfo_ResetFontSystem(BattleInfoApp *app, BattleInput *battleIn
     return TRUE;
 }
 
-static BOOL BattleInfo_EnsureTextResources(struct BattleSystem *bsys)
-{
-    return bsys != NULL;
-}
-
 static void *BattleInfo_GetTextSlot(BattleInfoApp *app, int slot)
 {
     if (app == NULL || slot < 0 || slot >= BATTLE_INFO_TEXT_SLOT_COUNT) {
@@ -1399,10 +1325,6 @@ static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *
     int size;
 
     if (app == NULL || bsys == NULL || battleInput == NULL || text == NULL) {
-        return FALSE;
-    }
-
-    if (!BattleInfo_EnsureTextResources(bsys)) {
         return FALSE;
     }
 
