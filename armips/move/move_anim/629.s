@@ -14,6 +14,9 @@
 // Supersonic Skystrike
 
 a010_629:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     cmd0C 0, -32
     cmd0C 1, 0
     cmd0C 6, 1
@@ -174,6 +177,10 @@ _0690:
     resetsprite 0
     cmd53 0
     resetsprite 4
+
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
     end
 
 .close

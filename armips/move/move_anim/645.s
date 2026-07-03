@@ -14,6 +14,9 @@
 // Hydro Vortex
 
 a010_645:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     // Z-Move name
     loadparticlefromspa 1, SPA_HYDRO_VORTEX
     addparticle 1, 0, 0
@@ -155,6 +158,8 @@ a010_645:
     unloadparticle 0
 
     Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
 
     cmd43
     cmd0C 7, 1

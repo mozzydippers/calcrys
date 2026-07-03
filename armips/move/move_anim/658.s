@@ -14,6 +14,9 @@
 // Black Hole Eclipse
 
 a010_658:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     // Z-Move name
     loadparticlefromspa 1, SPA_BLACK_HOLE_ECLIPSE
     addparticle 1, 0, 0
@@ -101,6 +104,9 @@ a010_658:
     cmd0C 4, 1
     resetbg 44, 0x1000001
     waitforchangebg
+
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
 
     end
 

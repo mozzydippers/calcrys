@@ -14,6 +14,9 @@
 // All-Out Pummeling
 
 a010_627:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     cmd43
     cmd0C 7, 1
     changebg 0, 0x800001
@@ -99,7 +102,10 @@ a010_627:
     resetbg 0, 0x1000001
     wait 10
     waitstate
-    end
 
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
+    end
 
 .close

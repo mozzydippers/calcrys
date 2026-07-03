@@ -14,6 +14,9 @@
 // Acid Downpour
 
 a010_631:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     cmd43
     cmd0C 0, -32
     cmd0C 1, 0
@@ -68,7 +71,10 @@ a010_631:
     cmd0C 7, 1
     resetbg 13, 0x40001
     waitforchangebg
-    end
 
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
+    end
 
 .close

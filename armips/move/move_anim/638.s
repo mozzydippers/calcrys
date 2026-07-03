@@ -14,6 +14,9 @@
 // Savage Spin-Out
 
 a010_638:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     // Rock Wrecker background
     cmd43
     cmd0C 0, -32
@@ -70,7 +73,10 @@ a010_638:
     cmd0C 5, 0
     resetbg 39, 0x40001
     waitforchangebg
-    end
 
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
+    end
 
 .close

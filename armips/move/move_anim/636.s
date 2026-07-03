@@ -14,6 +14,9 @@
 // Continental Crush
 
 a010_636:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     // Rock Wrecker background
     cmd43
     cmd0C 0, -32
@@ -29,20 +32,6 @@ a010_636:
     addparticle 1, 0, 0
     wait 700
     unloadparticle 1
-
-    // Extreme Speed
-    addparticle 0, 1, 4
-    wait 1
-    callfunction 50, 2, 5, 0, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
-    playsepan 1911, -117
-    callfunction 15, 0, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
-    addparticle 0, 0, 3
-    waitstate
-    addparticle 0, 1, 4
-
-    freeresources 0
-    waitparticle
-    unloadparticle 0
 
     // Rock Throw
     // TODO: Larger rock
@@ -73,7 +62,10 @@ a010_636:
     cmd0C 5, 0
     resetbg 39, 0x40001
     waitforchangebg
-    end
 
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
+    end
 
 .close

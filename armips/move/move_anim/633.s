@@ -14,6 +14,9 @@
 // Tectonic Rage
 
 a010_633:
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, TRUE
+
     // Z-Move name
     loadparticlefromspa 1, SPA_TECTONIC_RAGE
     addparticle 1, 0, 0
@@ -69,7 +72,10 @@ a010_633:
     cmd0C 4, 0
     resetbg 53, 0x1000001
     waitforchangebg
-    end
 
+    Func_HideBattler BATTLE_ANIM_ATTACKER_PARTNER, FALSE
+    Func_HideBattler BATTLE_ANIM_DEFENDER_PARTNER, FALSE
+
+    end
 
 .close
