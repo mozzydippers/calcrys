@@ -570,8 +570,8 @@ u32 IsPlayerOnIce(u32 collision) // run to determine if the player is on ice
     return FALSE;
 }
 
-#if defined(DEBUG_BATTLE_SCENARIOS) || defined(DEBUG_AUTO_QUEUE_SCRIPT)
-u32 queueUpAutoBattleScript = 0;
+#ifdef DEBUG_BATTLE_SCENARIOS
+u8 queueUpAutoBattleScript = 0;
 u8 pendingNextTest = 0;
 #endif
 
@@ -581,17 +581,11 @@ BOOL IsPlayerOnLadder(void)
         return TRUE;
     u32 collision = GetMetatileBehaviorAt(gFieldSysPtr, gFieldSysPtr->location->x, gFieldSysPtr->location->z);
     u32 mapId = gFieldSysPtr->location->mapId;
-#if defined(DEBUG_AUTO_QUEUE_SCRIPT)
-    queueUpAutoBattleScript++;
-    if (queueUpAutoBattleScript == 30) {
+#ifdef DEBUG_BATTLE_SCENARIOS
+    if (queueUpAutoBattleScript == 0) {
         EventSet_Script(gFieldSysPtr, 2073, NULL);
-        queueUpAutoBattleScript = 31;
-    }
-#elif defined(DEBUG_BATTLE_SCENARIOS)
-    queueUpAutoBattleScript++;
-    if (queueUpAutoBattleScript == 30) {
-        EventSet_Script(gFieldSysPtr, 2073, NULL);
-        queueUpAutoBattleScript = 31;
+        TestBattle_QueueNextTest();
+        queueUpAutoBattleScript = 1;
     } else if (pendingNextTest >= 20) {
         // delay some frames to give time for memory to clean up
         EventSet_Script(gFieldSysPtr, 2073, NULL);

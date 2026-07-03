@@ -2,10 +2,9 @@
 #define SAVE_H
 
 #include "config.h"
-#include "pokemon.h"
-#include "rtc.h"
-#include "constants/game_stats.h"
 #include "constants/save.h"
+#include "rtc.h"
+#include "pokemon.h"
 
 #define OT_ID_PRESET 1
 
@@ -287,14 +286,6 @@ typedef struct SaveData {
 struct SaveSlotCheck {
     BOOL valid;
     u32 count;
-};
-
-struct GameStats {
-    u32 statsWords[NUM_GAME_STATS_WORD];
-    u16 statsHalf[77];
-    u16 dummy;
-    u16 unk_1BC;
-    u16 unk_1BE;
 };
 
 extern SaveData *sSaveDataPtr;
