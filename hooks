@@ -315,6 +315,9 @@ arm9 WindowClose 02041190 0
 
 arm9 GrabCryNumSpeciesForm 02006A0C 2
 
+# hopefully this is ok to leave on?
+0012 KeepPlayerPaletteIntact 022607BC 1
+
 #ifdef IMPLEMENT_WILD_DOUBLE_BATTLES
 
 # r0 isn't used, can be burned
@@ -323,7 +326,6 @@ arm9 GrabCryNumSpeciesForm 02006A0C 2
 # can't modify SetFieldBattleParam since it is used for sweet scent and fishing and such
 #0002 TryTriggerWildDoubleBattle 02248284 0
 0002 TryTriggerWildDoubleBattle 02246E0E 0
-0012 KeepPlayerPaletteIntact 022607BC 1
 0012 MakeSureDoublesBitIsSet 0226328E 0
 0008 ReleaseDoubleBattleWhenOnlyOneMon 02222CBC 1
 
