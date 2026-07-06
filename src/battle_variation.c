@@ -94,3 +94,8 @@ void LONG_CALL ClearBattleVariationInfo() {
     sBattleVariationInfo.battleVariationType = 0;
     sBattleVariationInfo.slot = 0;
 }
+
+BOOL LONG_CALL IsWildDoubleBattle(struct BattleSystem *bsys)
+{
+    return (bsys->battleSpecial & (BATTLE_VARIATION_TYPE_TERA_RAID | BATTLE_VARIATION_TYPE_MAX_RAID)) > 0;
+}

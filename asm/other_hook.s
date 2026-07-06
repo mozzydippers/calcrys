@@ -462,11 +462,8 @@ cmp r1, #0
 bne return_to_022607C4_pop
 
 ldr r0, [r4]
-ldr r2, =0x0223B514 | 1 // BattleSystem_GetBattleSpecial
-bl bx_r2
-mov r1, #3
-lsl r1, r1, #12 // BATTLE_SPECIAL_ROGUE_MEGA | BATTLE_SPECIAL_TRIAL_RAID
-tst r0, r1
+bl IsWildDoubleBattle
+cmp r0, #0
 bne return_to_022607C4_pop
 
 return_to_022607DA:
