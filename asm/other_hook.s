@@ -455,16 +455,29 @@ bx r0
 // r0 is fight_type, need to check gTriggerDouble above and see if the player palette should be overwritten as the multi battle param would stipulate
 .global KeepPlayerPaletteIntact
 KeepPlayerPaletteIntact:
+push {r0}
 ldr r1, =gTriggerDouble
 ldr r1, [r1]
 cmp r1, #0
-bne return_to_022607C4
+bne return_to_022607C4_pop
+
+ldr r0, [r4]
+ldr r2, =0x0223B514 | 1 // BattleSystem_GetBattleSpecial
+bl bx_r2
+mov r1, #3
+lsl r1, r1, #12 // BATTLE_SPECIAL_ROGUE_MEGA | BATTLE_SPECIAL_TRIAL_RAID
+tst r0, r1
+bne return_to_022607C4_pop
 
 return_to_022607DA:
+pop {r0}
 cmp r0, #0x4A
 beq return_to_022607C4
 ldr r2, =0x022607DA|1
 bx r2
+
+return_to_022607C4_pop:
+pop {r0}
 
 return_to_022607C4:
 mov r0, r7

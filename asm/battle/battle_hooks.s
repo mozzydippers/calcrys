@@ -511,6 +511,33 @@ bx r4
 .pool
 
 
+.global ov12_022612A4_SkipInvalid
+ov12_022612A4_SkipInvalid:
+push {r3, lr}
+mov r0, r7
+ldr r1, [sp, #0x58]
+bl IsBattlerSlotValid
+cmp r0, #0
+beq _hideMonShadow
+ldr r2, [sp, #0x54]
+b _callSetAttr
+
+_hideMonShadow:
+mov r2, #0
+
+_callSetAttr:
+add r0, r4, #0
+mov r1, #0x2e
+bl 0x020087A4 | 1 // Pokepic_SetAttr
+pop {r3}
+pop {r1}
+mov lr, r1
+ldr r3, =0x0226135C | 1
+bx r3
+
+.pool
+
+
 .global CT_PokemonEncountAppearSet_SkipInvalid_02259D10
 CT_PokemonEncountAppearSet_SkipInvalid_02259D10:
 push {r0-r3}
