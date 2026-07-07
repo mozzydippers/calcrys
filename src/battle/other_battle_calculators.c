@@ -2049,7 +2049,7 @@ BOOL LONG_CALL CantEscape(void *bw, struct BattleStruct *sp, int battlerId, Batt
     battlerIdAbility = CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_ARENA_TRAP);
     if (battlerIdAbility) {
         if (!(sp->field_condition & FIELD_STATUS_GRAVITY) && item != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
-            if (GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE 
+            if (GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE
                 && GetBattlerAbility(sp, battlerId) != ABILITY_EELEVATE
                 && !sp->battlemon[battlerId].moveeffect.magnetRiseTurns && !HasType(sp, battlerId, TYPE_FLYING)) {
                 if (msg == NULL) {
@@ -2123,7 +2123,7 @@ BOOL BattlerCantSwitch(void *bw, struct BattleStruct *sp, int battlerId)
         ret = TRUE;
     }
 
-    if (((GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE 
+    if (((GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE
         && GetBattlerAbility(sp, battlerId) != ABILITY_EELEVATE
              && sp->battlemon[battlerId].moveeffect.magnetRiseTurns == 0
              && !HasType(sp, battlerId, TYPE_FLYING))
@@ -4467,6 +4467,10 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
             // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
             ctx->add_status_flag_direct = 0;
 
+            ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+            ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+            ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+
             switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].actionType) {
             case ADDITIONAL_MOVE:
                 // debug_printf("In ADDITIONAL_MOVE\n");
@@ -4487,10 +4491,6 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
                     ctx->defence_client = BATTLER_OPPONENT(ctx->attack_client);
                     break;
                 }
-
-                ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
-                ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
-                ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
 
                 ctx->moveContext.hitFoesCount = 0;
                 CopyBattleMonToPartyMon(battleSystem, ctx, ctx->attack_client);
