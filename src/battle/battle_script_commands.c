@@ -10,6 +10,7 @@
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
 #include "../../include/constants/weather_numbers.h"
+#include "../../include/constants/system_control.h"
 #include "../../include/debug.h"
 #include "../../include/mega.h"
 #include "../../include/message.h"
@@ -132,7 +133,8 @@ BOOL btl_scr_cmd_120_DivideVarByValueRoundUp(void *bsys, struct BattleStruct *ct
 BOOL btl_scr_cmd_121_IsPursuitActive(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_122_GoBackToBeforeMove(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_124_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_124_GetMonByCottonDownOrder(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_125_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -154,6 +156,7 @@ BOOL BtlCmd_CheckToxicSpikes(struct BattleSystem *bsys, struct BattleStruct *ctx
 BOOL BtlCmd_TryConversion2(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_Transform(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx);
+BOOL BtlCmd_MagicCoat(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL LONG_CALL BtlCmd_PrintMessage(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL LONG_CALL BtlCmd_PrintAttackMessage(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL LONG_CALL BtlCmd_PrintGlobalMessage(struct BattleSystem *bsys, struct BattleStruct *ctx);
@@ -466,6 +469,7 @@ const u8 *BattleScrCmdNames[] = {
     "IsPursuitActive",
     "GoBackToBeforeMove",
     "SetAuraBoost",
+    "GetMonByCottonDownOrder",
     "CheckTrainerGimmickMessage",
     // "YourCustomCommand",
 };
@@ -545,7 +549,8 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x121 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_121_IsPursuitActive,
     [0x122 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_122_GoBackToBeforeMove,
     [0x123 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_123_SetAuraBoost,
-    [0x124 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_124_CheckTrainerGimmickMessage,
+    [0x124 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_124_GetMonByCottonDownOrder,
+    [0x125 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_125_CheckTrainerGimmickMessage,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -2414,7 +2419,7 @@ BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, client_no);
 
-    if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE 
+    if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE
         && sp->battlemon[client_no].ability != ABILITY_EELEVATE
         && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
             && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, client_no, TYPE_FLYING))
@@ -5538,7 +5543,7 @@ BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx)
     return FALSE;
 }
 
-BOOL btl_scr_cmd_124_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
+BOOL btl_scr_cmd_125_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
@@ -5652,6 +5657,79 @@ BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx)
         }
         */
     }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_124_GetMonByCottonDownOrder(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+    int endloop = read_battle_script_param(ctx);
+
+    if (ctx->clientLoopForAbility == SPREAD_ABILITY_LOOP_MAX) {
+        IncrementBattleScriptPtr(ctx, endloop);
+        ctx->clientLoopForAbility = 0;
+        return FALSE;
+    }
+
+    switch (ctx->clientLoopForAbility) {
+    case SPREAD_ABILITY_LOOP_OPPONENT_LEFT:
+        ctx->clientLoopForAbility++;
+        int leftSide = BATTLER_OPPONENT_SIDE_LEFT(ctx->defence_client);
+        if (ctx->battlemon[leftSide].species
+            && (ctx->battlemon[leftSide].condition2 & STATUS2_SUBSTITUTE) == 0) {
+            ctx->state_client = leftSide;
+            ctx->battlerIdTemp = ctx->defence_client;
+            return FALSE;
+        }
+        FALLTHROUGH;
+    case SPREAD_ABILITY_LOOP_OPPONENT_RIGHT:
+        ctx->clientLoopForAbility++;
+        int rightSide = BATTLER_OPPONENT_SIDE_RIGHT(ctx->defence_client);
+        if (ctx->battlemon[rightSide].species
+            && (ctx->battlemon[rightSide].condition2 & STATUS2_SUBSTITUTE) == 0) {
+            ctx->state_client = rightSide;
+            ctx->battlerIdTemp = ctx->defence_client;
+            return FALSE;
+        }
+        FALLTHROUGH;
+    case SPREAD_ABILITY_LOOP_ALLY:
+        ctx->clientLoopForAbility++;
+        int ally = BATTLER_ALLY(ctx->defence_client);
+        if (ctx->battlemon[ally].species
+            && (ctx->battlemon[ally].condition2 & STATUS2_SUBSTITUTE) == 0) {
+            ctx->state_client = ally;
+            ctx->battlerIdTemp = ctx->defence_client;
+            return FALSE;
+        }
+        FALLTHROUGH;
+    default:
+        IncrementBattleScriptPtr(ctx, endloop);
+        break;
+    }
+
+    ctx->clientLoopForAbility = 0;
+    return FALSE;
+}
+
+BOOL BtlCmd_MagicCoat(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    ctx->magicBounceContext.isActive = TRUE;
+    ctx->attack_client = ctx->magicBounceContext.bounceClients[ctx->magicBounceContext.bounceCounter];
+    ctx->magicBounceContext.bounceCounter++;
+    ctx->defence_client = ctx->magicBounceContext.originalAttacker;
+
+    ov12_02252D14(bsys, ctx);
+    for (int i = 0; i < BattleWorkClientSetMaxGet(bsys); i++) {
+        ctx->moveStatusFlagForSpreadMoves[i] = 0;
+        ctx->moveStatusFlagForSpreadMoves2[i] = 0;
+    }
+    ctx->clientLoopForSpreadMoves = 0;
+    ctx->movePerformanceSubstep = 0;
+
+    ctx->waza_out_check_on_off |= (SYSCTL_SKIP_STATUS_CHECK | SYSCTL_SKIP_OBEDIENCE_CHECK | SYSCTL_SKIP_PP_DECREMENT);
 
     return FALSE;
 }

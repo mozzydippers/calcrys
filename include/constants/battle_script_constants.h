@@ -518,12 +518,13 @@
 #define SUB_SEQ_CLEAR_AFTER_PURSUIT                    (509)
 #define SUB_SEQ_SOUL_HEART                             (510)
 #define SUB_SEQ_UNSEEN_FIST                            (511)
-#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (512)
-#define SUB_SEQ_AURA_FLARED_TO_LIFE                    (513)
-#define SUB_SEQ_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (514)
-#define SUB_SEQ_TERA_RAID_NULLIFY_STAT_CHANGES         (515)
+#define SUB_SEQ_COTTON_DOWN                            (512)
+#define SUB_SEQ_HANDLE_Z_DANCE_AND_EFFECT              (513)
+#define SUB_SEQ_AURA_FLARED_TO_LIFE                    (514)
+#define SUB_SEQ_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (515)
+#define SUB_SEQ_TERA_RAID_NULLIFY_STAT_CHANGES         (516)
 
-#define MAX_BASE_SUBSCRIPT_NUM 515
+#define MAX_BASE_SUBSCRIPT_NUM 516
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
