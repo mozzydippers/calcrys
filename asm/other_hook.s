@@ -462,7 +462,7 @@ cmp r1, #0
 bne return_to_022607C4_pop
 
 ldr r0, [r4]
-bl IsWildDoubleBattle
+bl IsWildDoubleBattleWithOneOpponent
 cmp r0, #0
 bne return_to_022607C4_pop
 

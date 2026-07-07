@@ -95,7 +95,7 @@ void LONG_CALL ClearBattleVariationInfo() {
     sBattleVariationInfo.slot = 0;
 }
 
-BOOL LONG_CALL IsWildDoubleBattle(struct BattleSystem *bsys)
+BOOL LONG_CALL IsWildDoubleBattleWithOneOpponent(struct BattleSystem *bsys)
 {
-    return (bsys->battleSpecial & (BATTLE_SPECIAL_MAX_RAID | BATTLE_SPECIAL_TERA_RAID)) > 0;
+    return bsys->sp->battlemon[3].species == SPECIES_NONE;
 }
