@@ -61,6 +61,45 @@ void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 bat
     CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
 }
 
+// Pokemon generated will be illegal
+void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
+{
+    struct BATTLE_PARAM *setup;
+
+    struct MaxRaidBattle battleData;
+
+    int originalValue = 0, multiplier = 0, newValue = 0;
+
+    ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
+
+    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLE);
+
+    setup->battleSpecial |= (BATTLE_SPECIAL_MAX_RAID | BATTLE_SPECIAL_NO_RUNNING);
+
+    struct PartyPokemon *mon = InitialiseBattleVariationEnemy(taskManager, (struct BattleSetup *)setup, &battleData.battleVariationBase);
+
+    originalValue = GetMonData(mon, MON_DATA_MAXHP, 0);
+    multiplier = battleData.multipliers[0];
+
+    newValue = originalValue * multiplier;
+    if (newValue > 0) {
+        sBattleVariationInfo.originalHP = originalValue;
+        SetMonData(mon, MON_DATA_MAXHP, &newValue);
+        SetMonData(mon, MON_DATA_HP, &newValue);
+    }
+
+    for (int i = 0; i < 5; i++) {
+        originalValue = GetMonData(mon, MON_DATA_ATTACK + i, 0);
+        multiplier = battleData.multipliers[i + 1];
+        newValue = originalValue * multiplier;
+        if (newValue > 0) {
+            SetMonData(mon, MON_DATA_ATTACK + i, &newValue);
+        }
+    }
+
+    CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
+}
+
 BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
 {
     // debug_printf("In ScrCmd_BattleVariation\n");

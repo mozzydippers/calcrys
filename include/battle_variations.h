@@ -115,6 +115,7 @@ union BattleVariationUnion {
 typedef struct BattleVariationInfo {
     enum BattleVariationType battleVariationType;
     u32 slot;
+    u32 originalHP;
 } BattleVariationInfo;
 
 struct BattleVariationInfo* LONG_CALL GetBattleVariationInfo();

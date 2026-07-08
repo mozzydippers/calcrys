@@ -1366,6 +1366,7 @@ typedef struct RaidContext {
     BOOL isAbilityNullifyActive;
     u8 extraActionCount;
     ExtraAction extraActions[MAX_EXTRA_ACTIONS];
+    u32 originalHP;
 } RaidContext;
 
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
@@ -1617,6 +1618,7 @@ struct BattleStruct {
     PursuitContext pursuitContext;
     DancerContext dancerContext;
     MagicBounceContext magicBounceContext;
+    u32 originalHP[CLIENT_MAX];
 };
 
 enum {
