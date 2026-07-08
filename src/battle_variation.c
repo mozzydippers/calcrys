@@ -44,6 +44,29 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct Ba
     return mon;
 }
 
+void ApplyRaidMultipliers(struct PartyPokemon *mon, u8 multipliers[6]) {
+    int originalValue = 0, multiplier = 0, newValue = 0;
+
+    originalValue = GetMonData(mon, MON_DATA_MAXHP, 0);
+    multiplier = multipliers[0];
+
+    newValue = originalValue * multiplier;
+    if (newValue > 0) {
+        sBattleVariationInfo.originalHP = originalValue;
+        SetMonData(mon, MON_DATA_MAXHP, &newValue);
+        SetMonData(mon, MON_DATA_HP, &newValue);
+    }
+
+    for (int i = 0; i < 5; i++) {
+        originalValue = GetMonData(mon, MON_DATA_ATTACK + i, 0);
+        multiplier = multipliers[i + 1];
+        newValue = originalValue * multiplier;
+        if (newValue > 0) {
+            SetMonData(mon, MON_DATA_ATTACK + i, &newValue);
+        }
+    }
+}
+
 void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 battleID)
 {
     struct BATTLE_PARAM *setup;
@@ -68,8 +91,6 @@ void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
 
     struct MaxRaidBattle battleData;
 
-    int originalValue = 0, multiplier = 0, newValue = 0;
-
     ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
 
     setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLE);
@@ -78,24 +99,7 @@ void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
 
     struct PartyPokemon *mon = InitialiseBattleVariationEnemy(taskManager, (struct BattleSetup *)setup, &battleData.battleVariationBase);
 
-    originalValue = GetMonData(mon, MON_DATA_MAXHP, 0);
-    multiplier = battleData.multipliers[0];
-
-    newValue = originalValue * multiplier;
-    if (newValue > 0) {
-        sBattleVariationInfo.originalHP = originalValue;
-        SetMonData(mon, MON_DATA_MAXHP, &newValue);
-        SetMonData(mon, MON_DATA_HP, &newValue);
-    }
-
-    for (int i = 0; i < 5; i++) {
-        originalValue = GetMonData(mon, MON_DATA_ATTACK + i, 0);
-        multiplier = battleData.multipliers[i + 1];
-        newValue = originalValue * multiplier;
-        if (newValue > 0) {
-            SetMonData(mon, MON_DATA_ATTACK + i, &newValue);
-        }
-    }
+    ApplyRaidMultipliers(mon, battleData.multipliers);
 
     CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
 }
@@ -115,6 +119,7 @@ BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
         SetupAndStartTotemBattle(ctx->taskman, winFlag, raidID);
         break;
     case BATTLE_VARIATION_TYPE_MAX_RAID:
+        SetupAndStartMaxRaid(ctx->taskman, winFlag, raidID);
         break;
     case BATTLE_VARIATION_TYPE_TERA_RAID:
         break;
