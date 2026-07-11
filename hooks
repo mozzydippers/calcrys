@@ -643,3 +643,9 @@ arm9 EncounterSlot_WildMonSlotRoll_RockSmash 0224779C 0
 arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 
 0012 BattleControllerPlayer_PokemonAppear 022487C8
+# TODO fix names
+# BattleAnimScriptCmd_AddPokemonSprite
+0007 ov07_0221D874_TrialRaidAddPokemonSpriteScale 0221D97A 3
+0007 ov07_0221FB90_TrialRaidCloneScale 0221FD54 2
+# plat's ov12_022234F8
+0012 ov12_0225B7B8_TrialRaidPostSlideScale 0225B908 0

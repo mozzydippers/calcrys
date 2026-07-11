@@ -529,6 +529,10 @@ _callSetAttr:
 add r0, r4, #0
 mov r1, #0x2e
 bl 0x020087A4 | 1 // Pokepic_SetAttr
+add r0, r4, #0
+add r1, r7, #0
+ldr r2, [sp, #0x58]
+bl Raid_ScaleSpriteForBattler
 pop {r3}
 pop {r1}
 mov lr, r1
@@ -776,3 +780,69 @@ mov r3, r4
 bl BattleSystem_GrabIllusionBoxMonNameForHpBar // (struct BattleSystem *battleSystem, int client, int partyIndex, MessageFormat *msgFormat)
 ldr r1, =0x022651C0 | 1
 bx r1
+
+
+.global ov12_02239810_RaidWrapper
+ov12_02239810_RaidWrapper:
+push {r0-r4, lr}
+mov r0, r1
+bl Raid_ScaleSpriteForEnemy
+pop {r0-r4}
+pop {r3}
+mov lr, r3
+ldr r3, =0x02239810 | 1
+bx r3
+
+.pool
+
+.global ov07_0221D874_TrialRaidAddPokemonSpriteScale
+ov07_0221D874_TrialRaidAddPokemonSpriteScale:
+bl   0x0200D734 | 1 // SpriteSystem_NewSprite
+add  r7, r0, #0
+
+add  r0, r7, #0
+add  r1, r6, #0
+bl   Raid_SyncManagedSpriteScale
+
+add  r0, r7, #0
+cmp  r6, #0
+ldr  r1, =0x0221D982 | 1
+bx   r1
+
+.pool
+
+.global ov12_0225B7B8_TrialRaidPostSlideScale
+ ov12_0225B7B8_TrialRaidPostSlideScale:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #4]
+add  r2, r5, #0
+add  r3, sp, #0x18
+bl   0x02261B80 | 1
+
+ldr  r0, [r4, #8]      // param_2[2] = Pokepic *
+add  r1, r4, #0
+ldrb r2, [r1, #0x11]   // battler id from task struct
+ldr  r1, [r4, #0]      // BattleSystem *
+bl   Raid_ScaleSpriteForBattler
+
+ldr  r0, =0x0225B914 | 1
+bx   r0
+
+.pool
+
+.global ov07_0221FB90_TrialRaidCloneScale
+ov07_0221FB90_TrialRaidCloneScale:
+add  r2, sp, #0x34
+bl   0x0200D734 | 1 // SpriteSystem_NewSprite
+add  r6, r0, #0
+
+add  r0, r6, #0
+add  r1, r5, #0
+bl   Raid_HideSlideInClone
+
+add  r0, r6, #0
+
+ldr  r3, =0x0221FD5C | 1
+bx   r3
+
+.pool
