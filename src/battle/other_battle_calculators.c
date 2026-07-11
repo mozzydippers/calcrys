@@ -15,6 +15,7 @@
 #include "../../include/q412.h"
 #include "../../include/types.h"
 #include "../../include/z_moves.h"
+#include "../../include/dynamax.h"
 
 typedef struct
 {
@@ -1441,6 +1442,8 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
             } else {
                 if (newBS.needZMove[client]) {
                     move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                } else if (newBS.SideMaxMoveBaseMove[client]) {
+                    move = GetMaxMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
                 } else {
                     move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
                 }
@@ -1856,7 +1859,7 @@ int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int 
 
     move_type = GetAdjustedMoveType(sp, attack_client, move_no); // new normalize checks
 
-    if (newBS.SideZMoveBaseMove[attack_client]) {
+    if (newBS.SideZMoveBaseMove[attack_client] || newBS.SideMaxMoveBaseMove[attack_client]) {
         // It does not matter
         base_power = 1;
     } else {

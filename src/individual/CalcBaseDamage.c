@@ -97,6 +97,10 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         movepower = GetZMovePower(sp, newBS.SideZMoveBaseMove[sp->attack_client], sp->attack_client);
     }
 
+    if (MoveIsMaxMove(moveno)) {
+        movepower = GetZMovePower(sp, newBS.SideMaxMoveBaseMove[sp->attack_client], sp->attack_client);
+    }
+
     switch (moveno) {
     // Speed-based
     case MOVE_GYRO_BALL:

@@ -38,6 +38,10 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
             return FALSE;
         }
 
+        if (MoveIsZMove(moveID) || moveID == MOVE_STRUGGLE) {
+            return FALSE;
+        }
+
         BOOL canUseZMove = FALSE;
         if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
         || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
@@ -297,7 +301,7 @@ int LONG_CALL GetZMovePower(struct BattleStruct *battle, int baseMove, int clien
 
     // When hacked into normal move slots, damaging Z-moves (Hydro Vortex, Bloom Doom, etc) becomes 1 BP / -- Accuracy moves of their respective types. Special Z-moves (Catastropika, pulverizing Pancake, etc) function normally with their actual Base Powers and effects. All normal move slot Z-Moves have 1 PP ( PP Ups don't work). You can use as many normal move slot Z-Moves as you want in a battle. You cannot power up a normal slot Z-Move with a Z-Crystal (it won't recognize the move as that typing at all). (UltiMario) Their PP can be restored with a Leppa Berry. (UltiMario)
     // "Crystal-Free Z-Moves"
-    if (baseMove == MOVE_NONE) {
+    if (MoveIsZMove(baseMove)) {
         return 1;
     }
 

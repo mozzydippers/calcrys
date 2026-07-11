@@ -88,6 +88,10 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
         newBS.needZMove[ctx->attack_client] = FALSE;
         newBS.SideZMoveBaseMove[ctx->attack_client] = MOVE_NONE;
 
+        // Reset Dynamax flags
+        newBS.needDynamax[ctx->attack_client] = FALSE;
+        newBS.SideMaxMoveBaseMove[ctx->attack_client] = MOVE_NONE;
+
         script = SwitchInAbilityCheck(bsys, ctx);
         if (script) {
             LoadBattleSubSeqScript(ctx, 1, script);

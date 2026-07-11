@@ -1144,6 +1144,13 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     if (sp->battlemon[client].species == SPECIES_XERNEAS) {
         sp->battlemon[client].form_no = 1;
     }
+
+    struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
+
+    if (battleVariationInfo.battleVariationType == BATTLE_VARIATION_TYPE_MAX_RAID && client == 1) {
+        debug_printf("Here\n");
+        sp->battlemon[client].is_currently_dynamaxed = 1;
+    }
 }
 
 /**

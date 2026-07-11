@@ -1871,6 +1871,12 @@ struct PACKED newBattleStruct {
     u8 playerWantZMove;
     u8 ZIconLight;
 
+    int SideMaxMoveBaseMove[4];
+    u8 SideDynamax[4];
+    u8 needDynamax[4];
+    u8 playerWantDynamax;
+    u8 DynamaxIconLight;
+
     CATS_ACT_PTR MegaOAM;
     CATS_ACT_PTR MegaButton;
     CATS_ACT_PTR WeatherOAM;

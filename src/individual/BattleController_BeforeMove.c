@@ -2,6 +2,7 @@
 #include "../../include/item.h"
 #include "../../include/mega.h"
 #include "../../include/z_moves.h"
+#include "../../include/dynamax.h"
 #include "../../include/config.h"
 #include "../../include/constants/ability.h"
 #include "../../include/constants/battle_message_constants.h"
@@ -243,6 +244,11 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         // ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag = 0;
 
         // debug_printf("quickClawFlag: %d\n", ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag);
+
+        if (ctx->battlemon[ctx->attack_client].is_currently_dynamaxed) {
+            ctx->current_move_index = GetMaxMoveToBeUsed(ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
+        }
+
         ctx->wb_seq_no++;
         return;
     }
@@ -716,7 +722,7 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         }
         FALLTHROUGH;
     }
-    // TODO: modernise ServerWazaKoyuuCheck 
+    // TODO: modernise ServerWazaKoyuuCheck
     case BEFORE_MOVE_STATE_CHECK_STOLEN_BY_SNATCH: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
         debug_printf("In BEFORE_MOVE_STATE_CHECK_STOLEN_BY_SNATCH\n");
