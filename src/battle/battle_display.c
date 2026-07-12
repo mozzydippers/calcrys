@@ -134,7 +134,7 @@ void LONG_CALL Raid_ScaleSpriteForBattler(Pokepic *pokepic, struct BattleSystem 
     if (battleSystem == NULL || pokepic == NULL || !pokepic->active) {
         return;
     }
-    if (!(battleSystem->battleSpecial & BATTLE_SPECIAL_TRIAL_RAID)) {
+    if (!(battleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
         return;
     }
     if (battler != BATTLER_ENEMY) {
