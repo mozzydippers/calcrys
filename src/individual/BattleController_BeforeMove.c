@@ -245,7 +245,7 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
 
         // debug_printf("quickClawFlag: %d\n", ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag);
 
-        if (ctx->battlemon[ctx->attack_client].is_currently_dynamaxed) {
+        if (ctx->battlemon[ctx->attack_client].is_currently_dynamaxed && newBS.SideMaxMoveBaseMove[ctx->attack_client]) {
             ctx->current_move_index = GetMaxMoveToBeUsed(ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
         }
 

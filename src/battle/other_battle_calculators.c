@@ -4501,8 +4501,9 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
                 ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
                 ctx->server_seq_no = CONTROLLER_COMMAND_23;
                 break;
-            case SHIELD:
-            case REMOVAL_OF_NEGATIVE_EFFECTS:
+            case TERA_RAID_SHIELD:
+                break;
+            case TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS:
                 ctx->attack_client = BATTLER_ENEMY;
                 for (int stat = 0; stat < 8; stat++) {
                     if (ctx->battlemon[BATTLER_ENEMY].states[stat] < 6) {
@@ -4513,7 +4514,7 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
                 break;
-            case REMOVAL_OF_POSITIVE_EFFECTS:
+            case TERA_RAID_REMOVAL_OF_POSITIVE_EFFECTS:
                 ctx->attack_client = BATTLER_ENEMY;
                 ctx->raidContext.isAbilityNullifyActive = TRUE;
                 for (int stat = 0; stat < 8; stat++) {
@@ -4529,6 +4530,7 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
                 break;
             case TERA_ORB_CHARGE_STEALING:
+                break;
             case DOUBLE_ACTION_PHASE:
                 break;
             }
