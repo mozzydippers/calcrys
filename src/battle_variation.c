@@ -141,5 +141,5 @@ void LONG_CALL ClearBattleVariationInfo() {
 
 BOOL LONG_CALL IsWildDoubleBattleWithOneOpponent(struct BattleSystem *bsys)
 {
-    return bsys->sp->battlemon[3].species == SPECIES_NONE;
+    return (bsys->sp->battlemon[3].species == SPECIES_NONE) && (BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLE);
 }
