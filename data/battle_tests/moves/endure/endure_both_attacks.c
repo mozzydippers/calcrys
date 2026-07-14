@@ -1,4 +1,4 @@
-// Test: Pastel Veil - ignored by Moldbreaker, Heal
+// Test: Endure - Endure both attacks
 #include "../../battle_tests.h"
 BEGIN_TEST
 {
@@ -8,24 +8,24 @@ BEGIN_TEST
     .terrain = TERRAIN_NONE,
     .playerParty = {
         {
-            .species = SPECIES_PONYTA,
+            .species = SPECIES_WARTORTLE,
             .level = 50,
-            .form = 1,
-            .ability = ABILITY_PASTEL_VEIL,
+            .form = 0,
+            .ability = ABILITY_TORRENT,
             .item = ITEM_NONE,
-            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .moves = { MOVE_WATERFALL, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,
             .moveEffectFlags = 0,
         },
         {
-            .species = SPECIES_SNOM,
+            .species = SPECIES_BLASTOISE,
             .level = 50,
-            .form = 1,
-            .ability = ABILITY_ICE_SCALES,
+            .form = 0,
+            .ability = ABILITY_TORRENT,
             .item = ITEM_NONE,
-            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .moves = { MOVE_WATERFALL, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,
@@ -37,24 +37,24 @@ BEGIN_TEST
         { .species = SPECIES_NONE }
     },
     .enemyParty = { {
-                        .species = SPECIES_VILEPLUME,
-                        .level = 50,
+                        .species = SPECIES_CRUSTLE,
+                        .level = 30,
                         .form = 0,
-                        .ability = ABILITY_MOLD_BREAKER,
-                        .item = ITEM_NONE,
-                        .moves = { MOVE_TOXIC, MOVE_NONE, MOVE_NONE, MOVE_NONE },
-                        .hp = FULL_HP,
+                        .ability = ABILITY_WEAK_ARMOR,
+                        .item = ITEM_AIR_BALLOON,
+                        .moves = { MOVE_ENDURE, MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE },
+                        .hp = 1,
                         .status = 0,
                         .condition2 = 0,
                         .moveEffectFlags = 0,
                     },
         {
-            .species = SPECIES_ODDISH,
-            .level = 50,
+            .species = SPECIES_DWEBBLE,
+            .level = 30,
             .form = 0,
-            .ability = ABILITY_CHLOROPHYLL,
-            .item = ITEM_NONE,
-            .moves = { MOVE_TOXIC, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .ability = ABILITY_WEAK_ARMOR,
+            .item = ITEM_KEE_BERRY,
+            .moves = { MOVE_ENDURE, MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,
@@ -85,7 +85,7 @@ BEGIN_TEST
             { ACTION_NONE, 0 },
         } },
     .enemyScript = { {
-                         { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+                         { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST},
                          { ACTION_NONE, 0 },
                          { ACTION_NONE, 0 },
                          { ACTION_NONE, 0 },
@@ -95,7 +95,7 @@ BEGIN_TEST
                          { ACTION_NONE, 0 },
                      },
         {
-            { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+            { ACTION_MOVE_SLOT_2, BATTLER_PLAYER_FIRST },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
@@ -105,11 +105,14 @@ BEGIN_TEST
             { ACTION_NONE, 0 },
         } },
     .expectations = {
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Ponyta was badly poisoned!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Ponyta's Pastel Veil" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Ponyta was cured of its poisoning!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Ponyta's Pastel Veil" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It doesn't affect Ponyta..." },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Crustle braced itself!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Crustle endured the hit!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Crustle's Weak Armor" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Crustle's Air Balloon popped!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Crustle endured the hit!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Crustle's Weak Armor" },
     }
 }
 END_TEST

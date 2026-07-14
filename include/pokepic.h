@@ -55,7 +55,6 @@ typedef struct PokepicDrawParam {
     u32 filler_30_11 : 15;
 } PokepicDrawParam;
 
-struct Pokepic;
 typedef void (*PokepicCallback)(struct Pokepic *, PokepicDrawParam *);
 
 typedef struct PokepicShadow {

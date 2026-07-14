@@ -1,19 +1,31 @@
-// Test: Feint - hit through Protect
+// Test: Oblivious - ignored by Moldbreaker, Heal
 #include "../../battle_tests.h"
 BEGIN_TEST
 {
-    .battleType = BATTLE_TYPE_SINGLE,
+    .battleType = BATTLE_TYPE_DOUBLE,
     .weather = WEATHER_NONE,
     .fieldCondition = 0,
     .terrain = TERRAIN_NONE,
     .playerParty = {
         {
-            .species = SPECIES_MEDICHAM,
+            .species = SPECIES_SLOWPOKE,
             .level = 50,
             .form = 0,
-            .ability = ABILITY_HUGE_POWER,
+            .ability = ABILITY_OBLIVIOUS,
             .item = ITEM_NONE,
-            .moves = { MOVE_FEINT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .hp = FULL_HP,
+            .status = 0,
+            .condition2 = 0,
+            .moveEffectFlags = 0,
+        },
+        {
+            .species = SPECIES_SNOM,
+            .level = 50,
+            .form = 0,
+            .ability = ABILITY_ICE_SCALES,
+            .item = ITEM_NONE,
+            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,
@@ -22,22 +34,32 @@ BEGIN_TEST
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
         { .species = SPECIES_NONE }
     },
     .enemyParty = { {
-                        .species = SPECIES_INCINEROAR,
+                        .species = SPECIES_MEW,
                         .level = 50,
                         .form = 0,
-                        .ability = ABILITY_BLAZE,
-                        .item = ITEM_ROCKY_HELMET,
-                        .moves = { MOVE_PROTECT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                        .ability = ABILITY_MOLD_BREAKER,
+                        .item = ITEM_NONE,
+                        .moves = { MOVE_TAUNT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                         .hp = FULL_HP,
                         .status = 0,
                         .condition2 = 0,
                         .moveEffectFlags = 0,
                     },
-        { .species = SPECIES_NONE },
+        {
+            .species = SPECIES_MEWTWO,
+            .level = 50,
+            .form = 0,
+            .ability = ABILITY_PRESSURE,
+            .item = ITEM_NONE,
+            .moves = { MOVE_TAUNT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .hp = FULL_HP,
+            .status = 0,
+            .condition2 = 0,
+            .moveEffectFlags = 0,
+        },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
@@ -53,7 +75,7 @@ BEGIN_TEST
                           { ACTION_NONE, 0 },
                       },
         {
-            { ACTION_NONE, 0 },
+            { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
@@ -73,7 +95,7 @@ BEGIN_TEST
                          { ACTION_NONE, 0 },
                      },
         {
-            { ACTION_NONE, 0 },
+            { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
@@ -83,9 +105,11 @@ BEGIN_TEST
             { ACTION_NONE, 0 },
         } },
     .expectations = {
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar protected itself!" },
-        { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 17, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 20, 20, 20, 20, 21 } },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar fell for the feint!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Slowpoke's Oblivious" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It doesn't affect Slowpoke..." },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Slowpoke fell for the taunt!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Slowpoke's Oblivious" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Slowpoke shook off the taunt!" },
     }
 }
 END_TEST

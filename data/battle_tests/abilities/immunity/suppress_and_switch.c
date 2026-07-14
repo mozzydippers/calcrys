@@ -1,4 +1,4 @@
-// Test: Feint - hit through Protect
+// Test: Immunity - Heal on switch-in, don't heal on switch-out if ability is suppressed
 #include "../../battle_tests.h"
 BEGIN_TEST
 {
@@ -8,12 +8,12 @@ BEGIN_TEST
     .terrain = TERRAIN_NONE,
     .playerParty = {
         {
-            .species = SPECIES_MEDICHAM,
+            .species = SPECIES_ROSERADE,
             .level = 50,
             .form = 0,
-            .ability = ABILITY_HUGE_POWER,
+            .ability = ABILITY_NATURAL_CURE,
             .item = ITEM_NONE,
-            .moves = { MOVE_FEINT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .moves = { MOVE_GASTRO_ACID, MOVE_TOXIC, MOVE_SLEEP_TALK, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,
@@ -26,27 +26,38 @@ BEGIN_TEST
         { .species = SPECIES_NONE }
     },
     .enemyParty = { {
-                        .species = SPECIES_INCINEROAR,
+                        .species = SPECIES_SNORLAX,
                         .level = 50,
                         .form = 0,
-                        .ability = ABILITY_BLAZE,
-                        .item = ITEM_ROCKY_HELMET,
-                        .moves = { MOVE_PROTECT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+                        .ability = ABILITY_IMMUNITY,
+                        .item = ITEM_NONE,
+                        .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
                         .hp = FULL_HP,
                         .status = 0,
                         .condition2 = 0,
                         .moveEffectFlags = 0,
                     },
-        { .species = SPECIES_NONE },
+        {
+            .species = SPECIES_MUNCHLAX,
+            .level = 50,
+            .form = 0,
+            .ability = ABILITY_IMMUNITY,
+            .item = ITEM_NONE,
+            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .hp = FULL_HP,
+            .status = STATUS_POISON,
+            .condition2 = 0,
+            .moveEffectFlags = 0,
+        },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE } },
     .playerScript = { {
                           { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
-                          { ACTION_NONE, 0 },
-                          { ACTION_NONE, 0 },
-                          { ACTION_NONE, 0 },
+                          { ACTION_MOVE_SLOT_2, BATTLER_ENEMY_FIRST },
+                          { ACTION_MOVE_SLOT_3, BATTLER_ENEMY_FIRST },
+                          { ACTION_MOVE_SLOT_3, BATTLER_ENEMY_FIRST },
                           { ACTION_NONE, 0 },
                           { ACTION_NONE, 0 },
                           { ACTION_NONE, 0 },
@@ -64,9 +75,9 @@ BEGIN_TEST
         } },
     .enemyScript = { {
                          { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
-                         { ACTION_NONE, 0 },
-                         { ACTION_NONE, 0 },
-                         { ACTION_NONE, 0 },
+                         { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
+                         { ACTION_SWITCH_SLOT_1, 0 },
+                         { ACTION_SWITCH_SLOT_0, 0 },
                          { ACTION_NONE, 0 },
                          { ACTION_NONE, 0 },
                          { ACTION_NONE, 0 },
@@ -83,9 +94,14 @@ BEGIN_TEST
             { ACTION_NONE, 0 },
         } },
     .expectations = {
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar protected itself!" },
-        { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 17, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 20, 20, 20, 20, 21 } },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar fell for the feint!" },
-    }
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Snorlax's Ability was suppressed!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE_CONTAINS, .expectationValue.message = "sent out Munchlax!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Munchlax's Immunity" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Munchlax was cured of its poisoning!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE_CONTAINS, .expectationValue.message = "sent out Snorlax!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Snorlax's Immunity" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Snorlax was cured of its poisoning!" },
+    },
+    .knownFailing = TRUE,
 }
 END_TEST

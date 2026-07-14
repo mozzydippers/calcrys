@@ -24,6 +24,26 @@ struct TCATS_ACT {
 
 typedef struct TCATS_ACT *CATS_ACT_PTR;
 
+typedef struct ManagedSprite {
+    void *sprite;
+    void *spriteResourcesHeader;
+    void *spriteResourceHeaderList;
+    int vramTransfer;
+} ManagedSprite;
+
+typedef struct ManagedSpriteTemplate {
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 animation;
+    int drawPriority;
+    int pal;
+    int vram;
+    int resIdList[6];
+    int bgPriority;
+    int vramTransfer;
+} ManagedSpriteTemplate;
+
 typedef struct
 {
     u8 top; // 上（もしくは特殊コード）
@@ -164,6 +184,9 @@ void *LONG_CALL ArcUtil_ScrnDataGet(u32 fileIdx, u32 dataIdx, BOOL compressedFla
 void LONG_CALL BG_LoadScreenTilemapData(void *bgl, u32 bg_id, u16 *scrn_buf, int size);
 void LONG_CALL ScheduleBgTilemapBufferTransfer(void *bgl, int bg_id);
 void LONG_CALL OAM_ObjectAnimeSeqSetCap(void *, int anim_no);
+void LONG_CALL Sprite_SetDrawFlag(void *sprite, BOOL flag);
+void LONG_CALL Sprite_SetPositionXYWithSubscreenOffset(void *sprite, s16 x, s16 y, fx32 yOffset);
+void LONG_CALL TextOBJ_SetSpritesDrawFlag(void *textObj, BOOL draw);
 u32 LONG_CALL GfGfxLoader_LoadCharData(u32 narcId, s32 memberNo, void *bgConfig, u32 layer, u32 tileStart, u32 szByte, BOOL isCompressed, u32 heapId);
 void LONG_CALL PaletteData_LoadNarc(void *data, u32 narcID, s32 memberNo, u32 heapID, u32 bufferID, u32 size, u16 pos);
 void LONG_CALL DrawFrameAndWindow2(void *window, BOOL dont_copy_to_vram, u16 baseTile, u8 palette_num);
