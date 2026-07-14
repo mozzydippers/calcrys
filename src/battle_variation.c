@@ -4,7 +4,7 @@
 #include "../include/pokemon.h"
 #include "../include/types.h"
 
-static struct BattleVariationInfo sBattleVariationInfo = {0};
+static struct BattleVariationInfo sBattleVariationInfo = { 0 };
 
 // Pokemon generated will be illegal
 struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BattleSetup *setup, struct BattleVariationBase *battleVariationBase)
@@ -16,9 +16,13 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct Ba
 
     struct PartyPokemon *mon = Party_GetMonByIndex(setup->party[BATTLER_ENEMY], 0);
 
-    u32 personality = ChangePersonalityToNatureGenderAndAbility(42, battleVariationBase->mainPokemon.species, battleVariationBase->mainPokemon.nature, battleVariationBase->mainPokemon.gender, battleVariationBase->mainPokemon.abilitySlot, 0);
+    if (!battleVariationBase->mainPokemon.forceShiny) {
+        u32 personality = ChangePersonalityToNatureGenderAndAbility(42, battleVariationBase->mainPokemon.species, battleVariationBase->mainPokemon.nature, battleVariationBase->mainPokemon.gender, battleVariationBase->mainPokemon.abilitySlot, 0);
 
-    SetMonPersonality(mon, personality);
+        SetMonPersonality(mon, personality);
+    } else {
+        SET_MON_NATURE_OVERRIDE(mon, battleVariationBase->mainPokemon.nature);
+    }
 
     SetMonData(mon, MON_DATA_HELD_ITEM, &battleVariationBase->mainPokemon.heldItem);
 
@@ -44,7 +48,8 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct Ba
     return mon;
 }
 
-void ApplyRaidMultipliers(struct PartyPokemon *mon, u8 multipliers[6]) {
+void ApplyRaidMultipliers(struct PartyPokemon *mon, u8 multipliers[6])
+{
     int originalValue = 0, multiplier = 0, newValue = 0;
 
     originalValue = GetMonData(mon, MON_DATA_MAXHP, 0);
@@ -130,11 +135,13 @@ BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
     return TRUE;
 }
 
-struct BattleVariationInfo* LONG_CALL GetBattleVariationInfo() {
+struct BattleVariationInfo *LONG_CALL GetBattleVariationInfo()
+{
     return &sBattleVariationInfo;
 }
 
-void LONG_CALL ClearBattleVariationInfo() {
+void LONG_CALL ClearBattleVariationInfo()
+{
     sBattleVariationInfo.battleVariationType = 0;
     sBattleVariationInfo.slot = 0;
 }
