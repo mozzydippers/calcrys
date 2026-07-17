@@ -348,7 +348,6 @@ void ov12_0226604C(BgConfig *config);
 void ov12_022660A8(BgConfig *config);
 BattleInput *BattleInput_New(void);
 BOOL LONG_CALL BattleInput_CheckFeedbackDone(BattleInput *battleInput);
-void BattleInfoHint_LoadResources(struct BI_PARAM *bip);
 void BattleInfoHint_FreeResources(struct BI_PARAM *bip);
 void BattleInfoHint_LoadSprite(struct BI_PARAM *bip);
 void ov12_022698C4(SysTask *task, void *data);

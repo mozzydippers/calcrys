@@ -224,6 +224,7 @@ PokeIconAnmCellArcIndexGet = 0x02074498 | 1;
 PokeIconAnmCellAnmArcIndexGet = 0x020744A4 | 1;
 Sprite_SetDrawFlag = 0x02024830 | 1;
 Sprite_SetPositionXYWithSubscreenOffset = 0x0200DDC4 | 1;
+Sprite_SetPalIndexRespectVramOffset = 0x02024A48 | 1;
 BattleInput_DeleteTextObjects = 0x02268684 | 1;
 FontID_String_GetWidth = 0x02002F30 | 1;
 TextOBJ_SetSpritesDrawFlag = 0x020137C0 | 1;

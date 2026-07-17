@@ -127,23 +127,23 @@ BOOL BattleHpBarPct_IsEnemyHpBarType(u8 type)
 
 BOOL BattleHpBarPct_CalcPercent(BattleHpBar *hpBar, u8 *percentOut)
 {
-    u32 hp;
-    u32 maxHp;
-    u32 percent;
-
     if (hpBar == NULL || percentOut == NULL || !BattleHpBarPct_IsEnemyHpBarType(hpBar->type)) {
         return FALSE;
     }
 
-    maxHp = (hpBar->maxHp > 0) ? (u32)hpBar->maxHp : 0;
+    u32 maxHp = (hpBar->maxHp > 0) ? (u32)hpBar->maxHp : 0;
     if (maxHp == 0) {
         return FALSE;
     }
 
-    hp = (hpBar->hp > 0) ? (u32)hpBar->hp : 0;
-    percent = (hp * 100U) / maxHp;
+    u32 hp = (hpBar->hp > 0) ? (u32)hpBar->hp : 0;
+    u32 percent = (hp * 100U) / maxHp;
     if (percent > 100U) {
         percent = 100U;
+    }
+
+    if (percent <= 0U && hp > 0U) {
+        percent = 1U;
     }
 
     *percentOut = (u8)percent;
@@ -223,23 +223,16 @@ static void BattleHpBarPct_DestroyTextObj(EnemyHpPercentOverlay *overlay)
 
 static BOOL BattleHpBarPct_CreateTextObj(BattleHpBar *hpBar, EnemyHpPercentOverlay *overlay, u8 percent, s16 xOffset, s16 yOffset)
 {
-    void *spriteManager;
-    void *bgConfig;
-    String *string;
     EnemyHpPercentTextObjTemplate template;
     struct Window window;
     u16 textBuffer[5];
-    int width;
-    int textLen;
-    int textX;
-    u32 size;
 
     if (hpBar == NULL || overlay == NULL) {
         return FALSE;
     }
 
-    spriteManager = BattleSystem_GetSpriteManager(hpBar->battleSystem);
-    bgConfig = BattleSystem_GetBgConfig(hpBar->battleSystem);
+    void *spriteManager = BattleSystem_GetSpriteManager(hpBar->battleSystem);
+    void *bgConfig = BattleSystem_GetBgConfig(hpBar->battleSystem);
     if (spriteManager == NULL || bgConfig == NULL || hpBar->boxObj == NULL || hpBar->boxObj->sprite == NULL) {
         return FALSE;
     }
@@ -251,16 +244,16 @@ static BOOL BattleHpBarPct_CreateTextObj(BattleHpBar *hpBar, EnemyHpPercentOverl
         }
     }
 
-    string = String_New(8, HEAPID_BATTLE_HEAP);
+    String *string = String_New(8, HEAPID_BATTLE_HEAP);
     if (string == NULL) {
         return FALSE;
     }
 
-    textLen = BattleHpBarPct_BuildString(textBuffer, percent);
+    int textLen = BattleHpBarPct_BuildString(textBuffer, percent);
     CopyU16ArrayToString(string, textBuffer);
 
-    width = 4;
-    textX = (width - textLen) * 6;
+    int width = 4;
+    int textX = (width - textLen) * 6;
 
     InitWindow(&window);
     AddTextWindowTopLeftCorner(bgConfig, &window, width, 2, 0, 0);
@@ -273,7 +266,7 @@ static BOOL BattleHpBarPct_CreateTextObj(BattleHpBar *hpBar, EnemyHpPercentOverl
         return FALSE;
     }
 
-    size = sub_02013948(overlay->textObjRenderer, NNS_G2D_VRAM_TYPE_2DMAIN);
+    u32 size = sub_02013948(overlay->textObjRenderer, NNS_G2D_VRAM_TYPE_2DMAIN);
     if (!sub_02021AC8(size, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, &overlay->transfer)) {
         sub_02013938(overlay->textObjRenderer);
         overlay->textObjRenderer = NULL;
@@ -321,13 +314,11 @@ static BOOL BattleHpBarPct_CreateTextObj(BattleHpBar *hpBar, EnemyHpPercentOverl
 
 static void BattleHpBarPct_DestroyOverlay(int battlerId)
 {
-    EnemyHpPercentOverlay *overlay;
-
     if (battlerId < 0 || battlerId >= (int)NELEMS(sEnemyHpPercentOverlays)) {
         return;
     }
 
-    overlay = &sEnemyHpPercentOverlays[battlerId];
+    EnemyHpPercentOverlay *overlay = &sEnemyHpPercentOverlays[battlerId];
     if (!overlay->active || sEnemyHpPercentOverlayOwner == NULL) {
         return;
     }
@@ -338,9 +329,7 @@ static void BattleHpBarPct_DestroyOverlay(int battlerId)
 
 void BattleHpBarPct_DestroyAll()
 {
-    int battlerId;
-
-    for (battlerId = 0; battlerId < (int)NELEMS(sEnemyHpPercentOverlays); battlerId++) {
+    for (int battlerId = 0; battlerId < (int)NELEMS(sEnemyHpPercentOverlays); battlerId++) {
         BattleHpBarPct_DestroyOverlay(battlerId);
     }
 
@@ -349,7 +338,6 @@ void BattleHpBarPct_DestroyAll()
 
 static void BattleHpBarPct_UpdateOverlay(BattleHpBar *hpBar, struct BattleStruct *ctx)
 {
-    EnemyHpPercentOverlay *overlay;
     u8 percent;
     s16 xOffset;
     s16 yOffset;
@@ -361,7 +349,7 @@ static void BattleHpBarPct_UpdateOverlay(BattleHpBar *hpBar, struct BattleStruct
         return;
     }
 
-    overlay = &sEnemyHpPercentOverlays[hpBar->battlerId];
+    EnemyHpPercentOverlay *overlay = &sEnemyHpPercentOverlays[hpBar->battlerId];
     if (overlay->active
         && (overlay->type != hpBar->type
             || overlay->sprite != hpBar->boxObj->sprite
@@ -396,8 +384,6 @@ static void BattleHpBarPct_UpdateOverlay(BattleHpBar *hpBar, struct BattleStruct
 
 void BattleHpBarPct_UpdateAll(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
-    int battlerId;
-
     if (bsys == NULL) {
         return;
     }
@@ -407,7 +393,7 @@ void BattleHpBarPct_UpdateAll(struct BattleSystem *bsys, struct BattleStruct *ct
     }
     sEnemyHpPercentOverlayOwner = bsys;
 
-    for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
+    for (int battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
         BattleHpBarPct_UpdateOverlay(BattleSystem_GetHpBar(bsys, battlerId), ctx);
     }
 }

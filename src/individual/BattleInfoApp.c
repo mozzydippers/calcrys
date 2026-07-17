@@ -247,7 +247,7 @@ static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *
 static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app);
 static void BattleInfo_ClosePageContents(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_StopTask(SysTask *task, BattleInfoApp *app, BattleInput *battleInput);
-static int BattleInfo_CheckTouchAction(void);
+static int BattleInfo_CheckTouchAction();
 static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleInput);
 static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_CreateShellPanels(BattleInfoApp *app, BattleInput *battleInput);
@@ -277,7 +277,7 @@ __attribute__((section(".init"))) int BattleInfoOverlayEntry(int command, void *
     }
 }
 
-static BattleInfoApp *BattleInfo_AppNew(void)
+static BattleInfoApp *BattleInfo_AppNew()
 {
     BattleInfoApp *app = sys_AllocMemory(HEAPID_BATTLE_HEAP, sizeof(BattleInfoApp));
 
@@ -335,17 +335,14 @@ static void BattleInfo_DestroyBattlerIcon(BattleInfoApp *app, BattleInput *battl
 
 static void BattleInfo_LoadBattlerIconResources(BattleInput *battleInput)
 {
-    void *csp;
-    void *crp;
-    void *pfd;
 
     if (battleInput == NULL) {
         return;
     }
 
-    csp = BattleWorkCATS_SYS_PTRGet(battleInput->battleSystem);
-    crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
-    pfd = BattleWorkPfdGet(battleInput->battleSystem);
+    void *csp = BattleWorkCATS_SYS_PTRGet(battleInput->battleSystem);
+    void *crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
+    void *pfd = BattleWorkPfdGet(battleInput->battleSystem);
     if (csp == NULL || crp == NULL || pfd == NULL) {
         return;
     }
@@ -367,13 +364,11 @@ static void BattleInfo_LoadBattlerIconResources(BattleInput *battleInput)
 
 static void BattleInfo_FreeBattlerIconResources(BattleInput *battleInput)
 {
-    void *crp;
-
     if (battleInput == NULL) {
         return;
     }
 
-    crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
+    void *crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
     if (crp == NULL) {
         return;
     }
@@ -385,14 +380,7 @@ static void BattleInfo_FreeBattlerIconResources(BattleInput *battleInput)
 
 static void BattleInfo_CreateBattlerIcon(BattleInfoApp *app, BattleInput *battleInput)
 {
-    void *csp;
-    void *crp;
-    struct PartyPokemon *partyMon;
     OAMSpriteTemplate iconTemplate;
-    u32 iconIndex;
-    u32 species;
-    u32 isEgg;
-    u32 formNo;
 
     if (app == NULL || battleInput == NULL || app->taskData.bsys == NULL) {
         return;
@@ -400,22 +388,22 @@ static void BattleInfo_CreateBattlerIcon(BattleInfoApp *app, BattleInput *battle
 
     BattleInfo_DestroyBattlerIcon(app, battleInput);
 
-    partyMon = BattleSystem_GetPartyMon(app->taskData.bsys, app->battlerId, app->partySlot);
+    struct PartyPokemon *partyMon = BattleSystem_GetPartyMon(app->taskData.bsys, app->battlerId, app->partySlot);
     if (partyMon == NULL) {
         return;
     }
 
-    species = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
-    isEgg = GetMonData(partyMon, MON_DATA_IS_EGG, NULL);
-    formNo = GetMonData(partyMon, MON_DATA_FORM, NULL);
+    u32 species = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
+    u32 isEgg = GetMonData(partyMon, MON_DATA_IS_EGG, NULL);
+    u32 formNo = GetMonData(partyMon, MON_DATA_FORM, NULL);
 
-    csp = BattleWorkCATS_SYS_PTRGet(battleInput->battleSystem);
-    crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
+    void *csp = BattleWorkCATS_SYS_PTRGet(battleInput->battleSystem);
+    void *crp = BattleWorkCATS_RES_PTRGet(battleInput->battleSystem);
     if (csp == NULL || crp == NULL) {
         return;
     }
 
-    iconIndex = PokeIconIndexGetByMonsNumber(species, isEgg, formNo);
+    u32 iconIndex = PokeIconIndexGetByMonsNumber(species, isEgg, formNo);
     iconTemplate = sBattleInfoIconTemplate;
     iconTemplate.pal = GetMonIconPalette(species, formNo, isEgg);
     OAM_LoadResourceCharArc(csp, crp, ARC_POKEICON, iconIndex, FALSE, NNS_G2D_VRAM_TYPE_2DSUB, BATTLE_INFO_ICON_CHAR_TAG);
@@ -429,13 +417,11 @@ static void BattleInfo_CreateBattlerIcon(BattleInfoApp *app, BattleInput *battle
 
 static void BattleInfo_DestroyTypeIcons(BattleInfoApp *app)
 {
-    int i;
-
     if (app == NULL) {
         return;
     }
 
-    for (i = 0; i < (int)NELEMS(app->typeIcons); i++) {
+    for (int i = 0; i < (int)NELEMS(app->typeIcons); i++) {
         if (app->typeIcons[i] != NULL) {
             thunk_ManagedSprite_DeleteAndFreeResources(app->typeIcons[i]);
             app->typeIcons[i] = NULL;
@@ -454,25 +440,21 @@ static u32 BattleInfo_MapToNativeTypeIconId(u32 type)
 
 static void BattleInfo_CreateTypeIcon(BattleInfoApp *app, BattleInput *battleInput, int slot, u32 type, int x, int y)
 {
-    ManagedSpriteTemplate template;
-    void *spriteSystem;
-    void *spriteManager;
-    u32 nativeType;
-
     if (app == NULL || battleInput == NULL || slot < 0 || slot >= (int)NELEMS(app->typeIcons)) {
         return;
     }
 
-    spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
-    spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
+    void *spriteSystem = BattleSystem_GetSpriteSystem(battleInput->battleSystem);
+    void *spriteManager = BattleSystem_GetSpriteManager(battleInput->battleSystem);
     if (spriteSystem == NULL || spriteManager == NULL) {
         return;
     }
 
-    nativeType = BattleInfo_MapToNativeTypeIconId(type);
+    u32 nativeType = BattleInfo_MapToNativeTypeIconId(type);
     sub_020777A4(spriteManager, BATTLE_INFO_TYPE_ICON_CHAR_TAG + slot);
     sub_020776B8(spriteSystem, spriteManager, NNS_G2D_VRAM_TYPE_2DSUB, nativeType, BATTLE_INFO_TYPE_ICON_CHAR_TAG + slot);
 
+    ManagedSpriteTemplate template;
     template = sBattleInfoTypeIconTemplate;
     template.x = x;
     template.y = y;
@@ -548,31 +530,26 @@ static int BattleInfo_GetFocusEntries(struct BattleSystem *bsys, struct BattleSt
     }
 
     for (battlerId = 0; battlerId < maxBattlers && count < entriesMax; battlerId++) {
-        int partyCount;
-        int slot;
-        u32 teamKey;
-
         if (!IsClientEnemy(bsys, battlerId)) {
             continue;
         }
 
-        teamKey = SanitizeClientForTeamAccess(bsys, battlerId);
+        u32 teamKey = SanitizeClientForTeamAccess(bsys, battlerId);
         if (seenEnemyTeams[teamKey]) {
             continue;
         }
         seenEnemyTeams[teamKey] = TRUE;
-        partyCount = BattleWorkPokeCountGet(bsys, battlerId);
+        int partyCount = BattleWorkPokeCountGet(bsys, battlerId);
 
-        for (slot = 0; slot < partyCount && count < entriesMax; slot++) {
+        for (int slot = 0; slot < partyCount && count < entriesMax; slot++) {
             struct PartyPokemon *partyMon = BattleSystem_GetPartyMon(bsys, battlerId, slot);
-            int activeBattlerId;
             BOOL slotIsActive = FALSE;
 
             if (partyMon == NULL || !IsMonValidAndHealthy(partyMon)) {
                 continue;
             }
 
-            for (activeBattlerId = 0; activeBattlerId < maxBattlers; activeBattlerId++) {
+            for (int activeBattlerId = 0; activeBattlerId < maxBattlers; activeBattlerId++) {
                 if (activePartySlots[activeBattlerId] < 0) {
                     continue;
                 }
@@ -599,9 +576,8 @@ static int BattleInfo_FindFocusEntryIndex(struct BattleSystem *bsys, struct Batt
 {
     BattleInfoFocusEntry entries[16];
     int entryCount = BattleInfo_GetFocusEntries(bsys, ctx, entries, NELEMS(entries));
-    int i;
 
-    for (i = 0; i < entryCount; i++) {
+    for (int i = 0; i < entryCount; i++) {
         if (entries[i].battlerId == battlerId && entries[i].partySlot == partySlot) {
             return i;
         }
@@ -657,20 +633,10 @@ static void BattleInfo_BackupReturnFooterPalette(BattleInfoApp *app, BattleInput
 
 static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleInput)
 {
-    void *bgl;
-    void *charRaw;
-    void *screenRaw;
-    void *palRaw;
     NNSG2dCharacterData *charData;
     NNSG2dScreenData *screenData;
     NNSG2dPaletteData *palData;
-    const u8 *charTiles;
-    const u16 *screenTiles;
-    const u16 *palette;
-    u16 *subBgPalette;
     u16 shellEntries[BATTLE_INFO_SHELL_TILEMAP_TILE_MAX];
-    u16 *tileMap;
-    u8 *tileBuffer;
     u8 usedTiles[BATTLE_INFO_SUB_BG_TILE_LIMIT];
     int usedCount = 0;
     int i;
@@ -679,7 +645,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
         return TRUE;
     }
 
-    bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
+    void *bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
     if (bgl == NULL) {
         return FALSE;
     }
@@ -687,20 +653,20 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     charData = NULL;
     screenData = NULL;
     palData = NULL;
-    charRaw = GfGfxLoader_GetCharData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
-    screenRaw = GfGfxLoader_GetScrnData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
-    palRaw = GfGfxLoader_GetPlttData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCLR, &palData, HEAPID_BATTLE_HEAP);
-    charTiles = charData != NULL ? charData->pRawData : NULL;
-    screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
-    palette = palData != NULL ? palData->pRawData : NULL;
+    void *charRaw = GfGfxLoader_GetCharData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    void *screenRaw = GfGfxLoader_GetScrnData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
+    void *palRaw = GfGfxLoader_GetPlttData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCLR, &palData, HEAPID_BATTLE_HEAP);
+    const u8 *charTiles = charData != NULL ? charData->pRawData : NULL;
+    const u16 *screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
+    const u16 *palette = palData != NULL ? palData->pRawData : NULL;
 
     if (charRaw == NULL || screenRaw == NULL || palRaw == NULL || charTiles == NULL || screenTiles == NULL || palette == NULL) {
         BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
-    tileMap = sys_AllocMemory(HEAPID_BATTLE_HEAP, 1024 * sizeof(u16));
-    tileBuffer = sys_AllocMemory(HEAPID_BATTLE_HEAP, BATTLE_INFO_SHELL_TILE_BYTES);
+    u16 *tileMap = sys_AllocMemory(HEAPID_BATTLE_HEAP, 1024 * sizeof(u16));
+    u8 *tileBuffer = sys_AllocMemory(HEAPID_BATTLE_HEAP, BATTLE_INFO_SHELL_TILE_BYTES);
     if (tileMap == NULL || tileBuffer == NULL) {
         if (tileMap != NULL) {
             sys_FreeMemoryEz(tileMap);
@@ -722,12 +688,10 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
             BATTLE_INFO_SUB_BG_SCREEN_2_BASE,
             BATTLE_INFO_SUB_BG_SCREEN_3_BASE,
         };
-        int screenId;
 
-        for (screenId = 0; screenId < (int)NELEMS(screenBases); screenId++) {
-            int tileIndex;
+        for (int screenId = 0; screenId < (int)NELEMS(screenBases); screenId++) {
 
-            for (tileIndex = 0; tileIndex < BATTLE_INFO_BG_TILEMAP_ENTRIES; tileIndex++) {
+            for (int tileIndex = 0; tileIndex < BATTLE_INFO_BG_TILEMAP_ENTRIES; tileIndex++) {
                 u16 tile = screenBases[screenId][tileIndex] & 0x3FF;
 
                 if (tile < BATTLE_INFO_SUB_BG_TILE_LIMIT) {
@@ -763,9 +727,8 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     if (usedCount > 0) {
         int runStart = -1;
         int runLength = 0;
-        u16 targetTile;
 
-        for (targetTile = 0; targetTile < BATTLE_INFO_SUB_BG_TILE_LIMIT; targetTile++) {
+        for (u16 targetTile = 0; targetTile < BATTLE_INFO_SUB_BG_TILE_LIMIT; targetTile++) {
             if (!usedTiles[targetTile]) {
                 if (runLength == 0) {
                     runStart = targetTile;
@@ -802,7 +765,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
             app->shellTileBase);
     }
 
-    subBgPalette = PaletteData_GetUnfadedBuf(BattleSystem_GetPaletteData(battleInput->battleSystem), BATTLE_INFO_SUB_BG_PLTTBUF);
+    u16 *subBgPalette = PaletteData_GetUnfadedBuf(BattleSystem_GetPaletteData(battleInput->battleSystem), BATTLE_INFO_SUB_BG_PLTTBUF);
     if (subBgPalette != NULL) {
         memcpy(
             subBgPalette + (BATTLE_INFO_SHELL_PAL_BANK * 16),
@@ -834,19 +797,9 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
 
 static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput *battleInput)
 {
-    void *charRaw;
-    void *screenRaw;
-    void *palRaw;
     NNSG2dCharacterData *charData;
     NNSG2dScreenData *screenData;
     NNSG2dPaletteData *palData;
-    const u8 *charTiles;
-    const u16 *screenTiles;
-    const u16 *palette;
-    u16 *subBgPalette;
-    void *bgl;
-    u16 *tileMap;
-    u8 *tileBuffer;
     u8 usedTiles[BATTLE_INFO_SUB_BG_TILE_LIMIT];
     int usedCount = 0;
     int i;
@@ -863,7 +816,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
         return TRUE;
     }
 
-    bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
+    void *bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
     if (bgl == NULL) {
         return FALSE;
     }
@@ -871,20 +824,20 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
     charData = NULL;
     screenData = NULL;
     palData = NULL;
-    charRaw = GfGfxLoader_GetCharData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
-    screenRaw = GfGfxLoader_GetScrnData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
-    palRaw = GfGfxLoader_GetPlttData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCLR, &palData, HEAPID_BATTLE_HEAP);
-    charTiles = charData != NULL ? charData->pRawData : NULL;
-    screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
-    palette = palData != NULL ? palData->pRawData : NULL;
+    void *charRaw = GfGfxLoader_GetCharData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    void *screenRaw = GfGfxLoader_GetScrnData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
+    void *palRaw = GfGfxLoader_GetPlttData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCLR, &palData, HEAPID_BATTLE_HEAP);
+    const u8 *charTiles = charData != NULL ? charData->pRawData : NULL;
+    const u16 *screenTiles = screenData != NULL ? (const u16 *)screenData->rawData : NULL;
+    const u16 *palette = palData != NULL ? palData->pRawData : NULL;
 
     if (charRaw == NULL || screenRaw == NULL || palRaw == NULL || charTiles == NULL || screenTiles == NULL || palette == NULL) {
         BattleInfo_FreeLoadedGfx(charRaw, screenRaw, palRaw);
         return FALSE;
     }
 
-    tileMap = sys_AllocMemory(HEAPID_BATTLE_HEAP, 1024 * sizeof(u16));
-    tileBuffer = sys_AllocMemory(HEAPID_BATTLE_HEAP, BATTLE_INFO_FOOTER_TILE_BYTES);
+    u16 *tileMap = sys_AllocMemory(HEAPID_BATTLE_HEAP, 1024 * sizeof(u16));
+    u8 *tileBuffer = sys_AllocMemory(HEAPID_BATTLE_HEAP, BATTLE_INFO_FOOTER_TILE_BYTES);
     if (tileMap == NULL || tileBuffer == NULL) {
         if (tileMap != NULL) {
             sys_FreeMemoryEz(tileMap);
@@ -906,12 +859,9 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
             BATTLE_INFO_SUB_BG_SCREEN_2_BASE,
             BATTLE_INFO_SUB_BG_SCREEN_3_BASE,
         };
-        int screenId;
 
-        for (screenId = 0; screenId < (int)NELEMS(screenBases); screenId++) {
-            int tileIndex;
-
-            for (tileIndex = 0; tileIndex < BATTLE_INFO_BG_TILEMAP_ENTRIES; tileIndex++) {
+        for (int screenId = 0; screenId < (int)NELEMS(screenBases); screenId++) {
+            for (int tileIndex = 0; tileIndex < BATTLE_INFO_BG_TILEMAP_ENTRIES; tileIndex++) {
                 u16 tile = screenBases[screenId][tileIndex] & 0x3FF;
 
                 if (tile < BATTLE_INFO_SUB_BG_TILE_LIMIT) {
@@ -969,9 +919,8 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
     if (usedCount > 0) {
         int runStart = -1;
         int runLength = 0;
-        u16 targetTile;
 
-        for (targetTile = 0; targetTile < BATTLE_INFO_SUB_BG_TILE_LIMIT; targetTile++) {
+        for (u16 targetTile = 0; targetTile < BATTLE_INFO_SUB_BG_TILE_LIMIT; targetTile++) {
             if (!usedTiles[targetTile]) {
                 if (runLength == 0) {
                     runStart = targetTile;
@@ -997,12 +946,8 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
         app->footerTileCount = (u8)(usedCount + 1);
 
         for (i = 0; i < BATTLE_INFO_TOUCH_TOTAL; i++) {
-            int state;
-
-            for (state = 0; state < 2; state++) {
-                int idx;
-
-                for (idx = 0; idx < (BATTLE_INFO_BUTTON_W_TILES * BATTLE_INFO_BUTTON_H_TILES); idx++) {
+            for (int state = 0; state < 2; state++) {
+                for (int idx = 0; idx < (BATTLE_INFO_BUTTON_W_TILES * BATTLE_INFO_BUTTON_H_TILES); idx++) {
                     u16 entry = app->footerStates[i][state][idx];
                     u16 relTile = entry & 0x3FF;
 
@@ -1019,7 +964,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
             app->footerTileBase);
     }
 
-    subBgPalette = PaletteData_GetUnfadedBuf(BattleSystem_GetPaletteData(battleInput->battleSystem), BATTLE_INFO_SUB_BG_PLTTBUF);
+    u16 *subBgPalette = PaletteData_GetUnfadedBuf(BattleSystem_GetPaletteData(battleInput->battleSystem), BATTLE_INFO_SUB_BG_PLTTBUF);
     if (subBgPalette != NULL) {
         memcpy(
             subBgPalette + (BATTLE_INFO_FOOTER_BUTTON_PAL_BANK * 16),
@@ -1051,14 +996,13 @@ static void BattleInfo_BackupFooterTilemap(BattleInfoApp *app)
 
 static void BattleInfo_WriteFooterButtonState(BattleInfoApp *app, BattleInput *battleInput, int buttonId, BOOL pressed)
 {
-    void *bgl;
     int tileX;
 
     if (battleInput == NULL || app == NULL || !app->footerReady) {
         return;
     }
 
-    bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
+    void *bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
     if (bgl == NULL) {
         return;
     }
@@ -1138,13 +1082,11 @@ static void BattleInfo_CreateFooterButtons(BattleInfoApp *app, BattleInput *batt
 
 static void BattleInfo_DestroyFooterButtons(BattleInfoApp *app, BattleInput *battleInput)
 {
-    void *bgl;
-
     if (battleInput == NULL || app == NULL || !app->footerReady) {
         return;
     }
 
-    bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
+    void *bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
 
     PaletteData_LoadPalette(
         BattleSystem_GetPaletteData(battleInput->battleSystem),
@@ -1171,13 +1113,11 @@ static void BattleInfo_DestroyFooterButtons(BattleInfoApp *app, BattleInput *bat
 
 static void BattleInfo_DestroyShellPanels(BattleInfoApp *app, BattleInput *battleInput)
 {
-    void *bgl;
-
     if (battleInput == NULL || app == NULL || !app->shellReady) {
         return;
     }
 
-    bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
+    void *bgl = BattleWorkGF_BGL_INIGet(battleInput->battleSystem);
     if (bgl == NULL) {
         return;
     }
@@ -1216,14 +1156,12 @@ static void BattleInfo_SetFooterButtonVisual(BattleInfoApp *app, BattleInput *ba
 
 static void BattleInfo_DestroyTextRows(BattleInfoApp *app, BattleInput *battleInput)
 {
-    int slot;
-
     if (app == NULL) {
         return;
     }
 
     if (battleInput != NULL) {
-        for (slot = 0; slot < BATTLE_INFO_TEXT_SLOT_COUNT; slot++) {
+        for (int slot = 0; slot < BATTLE_INFO_TEXT_SLOT_COUNT; slot++) {
             BattleInfoTextSlot *textSlot = BattleInfo_GetTextSlot(app, slot);
 
             if (textSlot == NULL) {
@@ -1284,7 +1222,6 @@ static void BattleInfo_CopyU16Text(u16 *dst, int dstCount, const u16 *src)
 static void BattleInfo_AppendU16Text(u16 *dst, int dstCount, const u16 *src)
 {
     int i;
-    int j;
 
     if (dst == NULL || src == NULL || dstCount <= 0) {
         return;
@@ -1293,7 +1230,7 @@ static void BattleInfo_AppendU16Text(u16 *dst, int dstCount, const u16 *src)
     for (i = 0; i < dstCount - 1 && dst[i] != BATTLE_INFO_EOS; i++) {
     }
 
-    for (j = 0; i < dstCount - 1 && src[j] != BATTLE_INFO_EOS; i++, j++) {
+    for (int j = 0; i < dstCount - 1 && src[j] != BATTLE_INFO_EOS; i++, j++) {
         dst[i] = src[j];
     }
 
@@ -1303,11 +1240,10 @@ static void BattleInfo_AppendU16Text(u16 *dst, int dstCount, const u16 *src)
 static void BattleInfo_AppendStageDeltaText(u16 *dst, int dstCount, int stageDelta)
 {
     u16 valueText[4];
-    int absStageDelta;
 
     valueText[0] = BATTLE_INFO_CHAR_SPACE;
     valueText[1] = (stageDelta < 0) ? BATTLE_INFO_CHAR_MINUS : BATTLE_INFO_CHAR_PLUS;
-    absStageDelta = (stageDelta < 0) ? -stageDelta : stageDelta;
+    int absStageDelta = (stageDelta < 0) ? -stageDelta : stageDelta;
     valueText[2] = BattleInfo_DigitChar((u32)absStageDelta);
     valueText[3] = BATTLE_INFO_EOS;
     BattleInfo_AppendU16Text(dst, dstCount, valueText);
@@ -1315,14 +1251,8 @@ static void BattleInfo_AppendStageDeltaText(u16 *dst, int dstCount, int stageDel
 
 static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, String *text, int x, int y)
 {
-    BattleInfoTextSlot *textSlot;
     BattleInfoTextObjTemplate textObjTemplate;
     struct Window window;
-    void *spriteManager;
-    void *bgConfig;
-    int fontLength;
-    int charLength;
-    int size;
 
     if (app == NULL || bsys == NULL || battleInput == NULL || text == NULL) {
         return FALSE;
@@ -1333,19 +1263,19 @@ static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *
     }
 
     BattleInfo_ResetTextSlot(app, battleInput, slot);
-    textSlot = BattleInfo_GetTextSlot(app, slot);
+    BattleInfoTextSlot *textSlot = BattleInfo_GetTextSlot(app, slot);
     if (textSlot == NULL) {
         return FALSE;
     }
 
-    spriteManager = BattleSystem_GetSpriteManager(bsys);
-    bgConfig = BattleSystem_GetBgConfig(bsys);
+    void *spriteManager = BattleSystem_GetSpriteManager(bsys);
+    void *bgConfig = BattleSystem_GetBgConfig(bsys);
     if (spriteManager == NULL || bgConfig == NULL) {
         return FALSE;
     }
 
-    fontLength = FontID_String_GetWidth(1, text, 0);
-    charLength = fontLength / 8;
+    int fontLength = FontID_String_GetWidth(1, text, 0);
+    int charLength = fontLength / 8;
     if ((fontLength % 8) != 0) {
         charLength++;
     }
@@ -1357,7 +1287,7 @@ static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *
     AddTextWindowTopLeftCorner(bgConfig, &window, charLength, 2, 0, 0);
     AddTextPrinterParameterizedWithColorAndSpacing(&window, 1, text, 0, 0, 0xFF, 0x00020F00, 0, 0, NULL);
 
-    size = sub_02013688(&window, NNS_G2D_VRAM_TYPE_2DSUB, 5);
+    int size = sub_02013688(&window, NNS_G2D_VRAM_TYPE_2DSUB, 5);
     if (!sub_02021AC8(size, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, &textSlot->transfer)) {
         RemoveWindow(&window);
         return FALSE;
@@ -1392,13 +1322,11 @@ static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *
 
 static void BattleInfo_ResetTextSlot(BattleInfoApp *app, BattleInput *battleInput, int slot)
 {
-    BattleInfoTextSlot *textSlot;
-
     if (battleInput == NULL || app == NULL || slot < 0 || slot >= BATTLE_INFO_TEXT_SLOT_COUNT) {
         return;
     }
 
-    textSlot = BattleInfo_GetTextSlot(app, slot);
+    BattleInfoTextSlot *textSlot = BattleInfo_GetTextSlot(app, slot);
     if (textSlot == NULL) {
         return;
     }
@@ -1414,20 +1342,18 @@ static void BattleInfo_ResetTextSlot(BattleInfoApp *app, BattleInput *battleInpu
 
 static void BattleInfo_CreateStatRow(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, int stat, int stageDelta, u8 left, int y)
 {
-    String *line;
     u16 rowText[48];
-    MessageFormat *msgFormat;
 
     if (app == NULL || bsys == NULL || battleInput == NULL) {
         return;
     }
 
-    msgFormat = app->msgFormat != NULL ? app->msgFormat : bsys->msgFormat;
+    MessageFormat *msgFormat = app->msgFormat != NULL ? app->msgFormat : bsys->msgFormat;
     if (msgFormat == NULL) {
         return;
     }
 
-    line = String_New(48, HEAPID_BATTLE_HEAP);
+    String *line = String_New(48, HEAPID_BATTLE_HEAP);
     if (line == NULL) {
         return;
     }
@@ -1476,20 +1402,18 @@ static void BattleInfo_AppendLayerSuffix(u16 *rowText, int rowTextCount, u32 lay
 
 static BOOL BattleInfo_CreateConditionRowFromMove(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, u32 moveId, u32 current, u32 max, BOOL showCounter)
 {
-    String *line;
-    String *moveName;
     u16 rowText[64];
 
     if (bsys == NULL || battleInput == NULL) {
         return FALSE;
     }
 
-    moveName = GetMoveName(moveId, HEAPID_BATTLE_HEAP);
+    String *moveName = GetMoveName(moveId, HEAPID_BATTLE_HEAP);
     if (moveName == NULL) {
         return FALSE;
     }
 
-    line = String_New(64, HEAPID_BATTLE_HEAP);
+    String *line = String_New(64, HEAPID_BATTLE_HEAP);
     if (line == NULL) {
         String_Delete(moveName);
         return FALSE;
@@ -1516,42 +1440,36 @@ static BOOL BattleInfo_CreateConditionRowFromMove(BattleInfoApp *app, struct Bat
 
 static String *BattleInfo_ReadArchiveString(u32 fileId, u32 msgId)
 {
-    MsgData *msgData;
-    String *string;
-
-    msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, fileId, HEAPID_BATTLE_HEAP);
+    MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, fileId, HEAPID_BATTLE_HEAP);
     if (msgData == NULL) {
         return NULL;
     }
 
-    string = NewString_ReadMsgData(msgData, msgId);
+    String *string = NewString_ReadMsgData(msgData, msgId);
     DestroyMsgData(msgData);
     return string;
 }
 
 static void BattleInfo_CreateMoveRows(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, struct PartyPokemon *partyMon)
 {
-    int i;
-
     const int baseY = (BATTLE_INFO_MOVES_WINDOW_Y * 8) + BATTLE_INFO_MOVES_WINDOW_Y_PX;
 
     if (bsys == NULL || battleInput == NULL || partyMon == NULL) {
         return;
     }
 
-    for (i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         int slot = BATTLE_INFO_TEXT_SLOT_MOVE_BASE + i;
 
         BattleInfo_ResetTextSlot(app, battleInput, slot);
 
         u32 moveId = GetMonData(partyMon, MON_DATA_MOVE1 + i, NULL);
-        String *moveName;
 
         if (moveId == MOVE_NONE) {
             continue;
         }
 
-        moveName = GetMoveName(moveId, HEAPID_BATTLE_HEAP);
+        String *moveName = GetMoveName(moveId, HEAPID_BATTLE_HEAP);
         if (moveName == NULL) {
             continue;
         }
@@ -1570,14 +1488,13 @@ static void BattleInfo_CreateMoveRows(BattleInfoApp *app, struct BattleSystem *b
 
 static BOOL BattleInfo_CreateConditionRowFromString(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, String *label, u32 current, u32 max, BOOL showCounter)
 {
-    String *line;
     u16 rowText[64];
 
     if (bsys == NULL || battleInput == NULL || label == NULL) {
         return FALSE;
     }
 
-    line = String_New(64, HEAPID_BATTLE_HEAP);
+    String *line = String_New(64, HEAPID_BATTLE_HEAP);
     if (line == NULL) {
         return FALSE;
     }
@@ -1603,13 +1520,11 @@ static BOOL BattleInfo_CreateConditionRowFromString(BattleInfoApp *app, struct B
 
 static BOOL BattleInfo_CreateConditionRowRaw(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, const u16 *rowText)
 {
-    String *line;
-
     if (bsys == NULL || battleInput == NULL || rowText == NULL) {
         return FALSE;
     }
 
-    line = String_New(64, HEAPID_BATTLE_HEAP);
+    String *line = String_New(64, HEAPID_BATTLE_HEAP);
     if (line == NULL) {
         return FALSE;
     }
@@ -1629,13 +1544,11 @@ static BOOL BattleInfo_CreateConditionRowRaw(BattleInfoApp *app, struct BattleSy
 
 static BOOL BattleInfo_TryAppendConditionMoveRow(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int *rowCount, u32 moveId, u32 current, u32 max, BOOL showCounter)
 {
-    int slot;
-
     if (*rowCount >= BATTLE_INFO_STATUS_ROW_MAX) {
         return FALSE;
     }
 
-    slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
+    int slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
     if (!BattleInfo_CreateConditionRowFromMove(app, bsys, battleInput, slot, moveId, current, max, showCounter)) {
         return FALSE;
     }
@@ -1646,13 +1559,11 @@ static BOOL BattleInfo_TryAppendConditionMoveRow(BattleInfoApp *app, struct Batt
 
 static BOOL BattleInfo_TryAppendConditionRawRow(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int *rowCount, const u16 *rowText)
 {
-    int slot;
-
     if (*rowCount >= BATTLE_INFO_STATUS_ROW_MAX) {
         return FALSE;
     }
 
-    slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
+    int slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
     if (!BattleInfo_CreateConditionRowRaw(app, bsys, battleInput, slot, rowText)) {
         return FALSE;
     }
@@ -1663,16 +1574,13 @@ static BOOL BattleInfo_TryAppendConditionRawRow(BattleInfoApp *app, struct Battl
 
 static BOOL BattleInfo_TryAppendConditionArchiveRow(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int *rowCount, String *label, u32 current, u32 max, BOOL showCounter)
 {
-    int slot;
-    BOOL ok;
-
     if (*rowCount >= BATTLE_INFO_STATUS_ROW_MAX) {
         String_Delete(label);
         return FALSE;
     }
 
-    slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
-    ok = BattleInfo_CreateConditionRowFromString(app, bsys, battleInput, slot, label, current, max, showCounter);
+    int slot = BATTLE_INFO_TEXT_SLOT_STATUS_BASE + *rowCount;
+    BOOL ok = BattleInfo_CreateConditionRowFromString(app, bsys, battleInput, slot, label, current, max, showCounter);
     String_Delete(label);
     if (!ok) {
         return FALSE;
@@ -1685,9 +1593,6 @@ static BOOL BattleInfo_TryAppendConditionArchiveRow(BattleInfoApp *app, struct B
 static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput)
 {
     int rowCount = 0;
-    int side;
-    u32 sideCondition;
-    const struct side_condition_work *scw;
 
     if (bsys == NULL || ctx == NULL || battleInput == NULL || app == NULL) {
         return;
@@ -1699,9 +1604,9 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
 
     rowCount = 0;
 
-    side = IsClientEnemy(bsys, app->battlerId);
-    sideCondition = ctx->side_condition[side];
-    scw = &ctx->scw[side];
+    int side = IsClientEnemy(bsys, app->battlerId);
+    u32 sideCondition = ctx->side_condition[side];
+    const struct side_condition_work *scw = &ctx->scw[side];
 
     if (sideCondition & SIDE_STATUS_REFLECT) {
         BattleInfo_TryAppendConditionMoveRow(app, bsys, battleInput, &rowCount, MOVE_REFLECT, scw->reflectCount, 5, TRUE);
@@ -1830,54 +1735,32 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
 
 static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput)
 {
-    struct PartyPokemon *partyMon;
-    MsgData *msgData;
-    u32 ability;
-    u32 gender;
-    u32 type1;
-    u32 type2;
-    int partySlot;
-    u32 heldItem;
     u16 nickname[16];
     u32 nicknameLen;
-    String *line;
-    String *abilityLine;
-    String *itemLine;
-    int atkStage;
-    int defStage;
-    int spatkStage;
-    int spdefStage;
-    int speedStage;
-    int accStage;
-    int evaStage;
     const int topBaseY = 10;
-    BOOL isActiveFocus;
-    int activePartySlot;
-    int slot;
-    MessageFormat *msgFormat;
 
     if (battleInput == NULL || app == NULL) {
         return;
     }
 
-    msgFormat = app->msgFormat != NULL ? app->msgFormat : bsys->msgFormat;
+    MessageFormat *msgFormat = app->msgFormat != NULL ? app->msgFormat : bsys->msgFormat;
     if (msgFormat == NULL) {
         return;
     }
 
-    partySlot = app->partySlot;
-    partyMon = BattleSystem_GetPartyMon(bsys, app->battlerId, partySlot);
+    int partySlot = app->partySlot;
+    struct PartyPokemon *partyMon = BattleSystem_GetPartyMon(bsys, app->battlerId, partySlot);
     if (partyMon == NULL) {
         return;
     }
 
-    ability = GetMonData(partyMon, MON_DATA_ABILITY, NULL);
-    gender = GetMonData(partyMon, MON_DATA_GENDER, NULL);
-    type1 = GetMonData(partyMon, MON_DATA_TYPE_1, NULL);
-    type2 = GetMonData(partyMon, MON_DATA_TYPE_2, NULL);
-    heldItem = GetMonData(partyMon, MON_DATA_HELD_ITEM, NULL);
-    activePartySlot = BattleInfo_GetActivePartySlot(bsys, app->battlerId);
-    isActiveFocus = (partySlot == activePartySlot && ctx->battlemon[app->battlerId].hp != 0);
+    u32 ability = GetMonData(partyMon, MON_DATA_ABILITY, NULL);
+    u32 gender = GetMonData(partyMon, MON_DATA_GENDER, NULL);
+    u32 type1 = GetMonData(partyMon, MON_DATA_TYPE_1, NULL);
+    u32 type2 = GetMonData(partyMon, MON_DATA_TYPE_2, NULL);
+    u32 heldItem = GetMonData(partyMon, MON_DATA_HELD_ITEM, NULL);
+    int activePartySlot = BattleInfo_GetActivePartySlot(bsys, app->battlerId);
+    BOOL isActiveFocus = (partySlot == activePartySlot && ctx->battlemon[app->battlerId].hp != 0);
     BattleInfo_CreateBattlerIcon(app, battleInput);
     GetMonData(partyMon, MON_DATA_NICKNAME, nickname);
     for (nicknameLen = 0; nicknameLen < NELEMS(nickname); nicknameLen++) {
@@ -1895,18 +1778,18 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
         }
         nickname[nicknameLen] = 0xFFFF;
     }
-    line = String_New(32, HEAPID_BATTLE_HEAP);
+    String *line = String_New(32, HEAPID_BATTLE_HEAP);
     if (line == NULL) {
         return;
     }
 
-    abilityLine = String_New(48, HEAPID_BATTLE_HEAP);
+    String *abilityLine = String_New(48, HEAPID_BATTLE_HEAP);
     if (abilityLine == NULL) {
         String_Delete(line);
         return;
     }
 
-    itemLine = String_New(48, HEAPID_BATTLE_HEAP);
+    String *itemLine = String_New(48, HEAPID_BATTLE_HEAP);
     if (itemLine == NULL) {
         String_Delete(abilityLine);
         String_Delete(line);
@@ -1922,7 +1805,7 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
         BufferItemName(msgFormat, 0, heldItem);
         CopyU16ArrayToString(itemLine, msgFormat->buffer->data);
     } else {
-        msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, 6, HEAPID_BATTLE_HEAP);
+        MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, 6, HEAPID_BATTLE_HEAP);
         if (msgData != NULL) {
             String *noItem = NewString_ReadMsgData(msgData, 20);
             if (noItem != NULL) {
@@ -1933,13 +1816,13 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
         }
     }
 
-    atkStage = ctx->battlemon[app->battlerId].states[STAT_ATTACK] - 6;
-    defStage = ctx->battlemon[app->battlerId].states[STAT_DEFENSE] - 6;
-    spatkStage = ctx->battlemon[app->battlerId].states[STAT_SPATK] - 6;
-    spdefStage = ctx->battlemon[app->battlerId].states[STAT_SPDEF] - 6;
-    speedStage = ctx->battlemon[app->battlerId].states[STAT_SPEED] - 6;
-    accStage = ctx->battlemon[app->battlerId].states[STAT_ACCURACY] - 6;
-    evaStage = ctx->battlemon[app->battlerId].states[STAT_EVASION] - 6;
+    int atkStage = ctx->battlemon[app->battlerId].states[STAT_ATTACK] - 6;
+    int defStage = ctx->battlemon[app->battlerId].states[STAT_DEFENSE] - 6;
+    int spatkStage = ctx->battlemon[app->battlerId].states[STAT_SPATK] - 6;
+    int spdefStage = ctx->battlemon[app->battlerId].states[STAT_SPDEF] - 6;
+    int speedStage = ctx->battlemon[app->battlerId].states[STAT_SPEED] - 6;
+    int accStage = ctx->battlemon[app->battlerId].states[STAT_ACCURACY] - 6;
+    int evaStage = ctx->battlemon[app->battlerId].states[STAT_EVASION] - 6;
 
     BattleInfo_CreateTextRowPx(app, bsys, battleInput, 0, line, 48, topBaseY);
     BattleInfo_CreateTypeIcons(app, battleInput, type1, type2);
@@ -1957,6 +1840,7 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 6, STAT_EVASION, evaStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 6));
         BattleInfo_CreateConditionRows(app, bsys, ctx, battleInput);
     } else {
+        int slot;
         for (slot = 0; slot < 7; slot++) {
             BattleInfo_ResetTextSlot(app, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + slot);
         }
@@ -1981,7 +1865,6 @@ static BOOL BattleInfo_GetInitialFocus(struct BattleSystem *bsys, struct BattleS
 {
     BattleInfoFocusEntry entries[16];
     int entryCount = BattleInfo_GetFocusEntries(bsys, ctx, entries, NELEMS(entries));
-    int i;
 
     if (entry == NULL || entryCount == 0) {
         return FALSE;
@@ -1990,7 +1873,7 @@ static BOOL BattleInfo_GetInitialFocus(struct BattleSystem *bsys, struct BattleS
     if (battleInput != NULL) {
         u8 commandBattlerId = battleInput->menu.main.battlerId;
 
-        for (i = 0; i < entryCount; i++) {
+        for (int i = 0; i < entryCount; i++) {
             if (entries[i].battlerId == commandBattlerId) {
                 *entry = entries[i];
                 return TRUE;
@@ -2004,8 +1887,6 @@ static BOOL BattleInfo_GetInitialFocus(struct BattleSystem *bsys, struct BattleS
 
 static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app)
 {
-    BattleSelectState state;
-
     if (app == NULL || app->ctx == NULL || app->returnMenu.battlerId >= CLIENT_MAX) {
         return FALSE;
     }
@@ -2014,7 +1895,7 @@ static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app)
         return FALSE;
     }
 
-    state = app->ctx->com_seq_no[app->returnMenu.battlerId];
+    BattleSelectState state = app->ctx->com_seq_no[app->returnMenu.battlerId];
     if (app->ctx->battleInfoActive && state == SSI_STATE_1) {
         return TRUE;
     }
@@ -2022,7 +1903,7 @@ static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app)
     return FALSE;
 }
 
-static void BattleInfo_ConsumeKeys(void)
+static void BattleInfo_ConsumeKeys()
 {
     gSystem.newKeysRaw &= ~PAD_BUTTON_X;
     gSystem.newAndRepeatedKeysRaw &= ~PAD_BUTTON_X;
@@ -2032,7 +1913,7 @@ static void BattleInfo_ConsumeKeys(void)
     gSystem.heldKeys &= ~PAD_BUTTON_X;
 }
 
-static int BattleInfo_CheckTouchAction(void)
+static int BattleInfo_CheckTouchAction()
 {
     int rectHit = TouchscreenHitbox_FindRectAtTouchNew(sBattleInfoFooterTouchscreenRects);
 
@@ -2043,7 +1924,7 @@ static int BattleInfo_CheckTouchAction(void)
     return rectHit;
 }
 
-static void BattleInfo_SuppressInput(void)
+static void BattleInfo_SuppressInput()
 {
     int blocked = PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_L | PAD_BUTTON_R
         | PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT;
@@ -2059,19 +1940,17 @@ static void BattleInfo_SuppressInput(void)
 static void BattleInfo_CycleFocus(BattleInfoApp *app, struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput, int direction)
 {
     BattleInfoFocusEntry entries[16];
-    int entryCount;
-    int currentIndex;
 
     if (direction == 0 || battleInput == NULL || ctx == NULL || app == NULL) {
         return;
     }
 
-    entryCount = BattleInfo_GetFocusEntries(bsys, ctx, entries, NELEMS(entries));
+    int entryCount = BattleInfo_GetFocusEntries(bsys, ctx, entries, NELEMS(entries));
     if (entryCount < 2) {
         return;
     }
 
-    currentIndex = BattleInfo_FindFocusEntryIndex(bsys, ctx, app->battlerId, app->partySlot);
+    int currentIndex = BattleInfo_FindFocusEntryIndex(bsys, ctx, app->battlerId, app->partySlot);
     if (currentIndex < 0) {
         currentIndex = 0;
     }
@@ -2086,13 +1965,11 @@ static void BattleInfo_CycleFocus(BattleInfoApp *app, struct BattleSystem *bsys,
 
 static void BattleInfo_BeginSubscreenFade(BattleInfoApp *app, u8 cur, u8 end)
 {
-    void *paletteData;
-
     if (app == NULL || app->taskData.bsys == NULL) {
         return;
     }
 
-    paletteData = BattleSystem_GetPaletteData(app->taskData.bsys);
+    void *paletteData = BattleSystem_GetPaletteData(app->taskData.bsys);
     if (paletteData == NULL) {
         return;
     }
@@ -2109,13 +1986,11 @@ static void BattleInfo_BeginSubscreenFade(BattleInfoApp *app, u8 cur, u8 end)
 
 static BOOL BattleInfo_IsSubscreenFadeActive(BattleInfoApp *app)
 {
-    void *paletteData;
-
     if (app == NULL || app->taskData.bsys == NULL) {
         return FALSE;
     }
 
-    paletteData = BattleSystem_GetPaletteData(app->taskData.bsys);
+    void *paletteData = BattleSystem_GetPaletteData(app->taskData.bsys);
     if (paletteData == NULL) {
         return FALSE;
     }
@@ -2169,7 +2044,6 @@ static void BattleInfo_CreatePageObjects(BattleInfoApp *app, BattleInput *battle
 static BOOL BattleInfo_ChangeToClientPage(BattleInput *battleInput, int menuId, const BattleInputMenu *menuState)
 {
     BattleInputMenu menu;
-    NARC *objNarc;
 
     if (battleInput == NULL) {
         return FALSE;
@@ -2181,7 +2055,7 @@ static BOOL BattleInfo_ChangeToClientPage(BattleInput *battleInput, int menuId, 
         menu = battleInput->menu;
     }
 
-    objNarc = NARC_ctor(8, HEAPID_BATTLE_HEAP);
+    NARC *objNarc = NARC_ctor(8, HEAPID_BATTLE_HEAP);
     if (objNarc == NULL) {
         return FALSE;
     }
@@ -2205,20 +2079,16 @@ static void BattleInfo_ClearNativeMenuCursor(BattleInput *battleInput)
 void BattleInfo_Task(SysTask *task, void *data)
 {
     BattleInfoApp *app = data;
-    BattleInfoTaskData *taskData;
-    BattleInput *battleInput;
-    BattleInput *pageOwner;
-    struct BattleSystem *bsys;
 
     if (app == NULL) {
         DestroySysTask(task);
         return;
     }
 
-    taskData = &app->taskData;
-    bsys = taskData->bsys;
-    battleInput = app->bip;
-    pageOwner = battleInput;
+    BattleInfoTaskData *taskData = &app->taskData;
+    struct BattleSystem *bsys = taskData->bsys;
+    BattleInput *battleInput = app->bip;
+    BattleInput *pageOwner = battleInput;
 
     if (bsys == NULL || app->ctx == NULL) {
         BattleInfo_StopTask(task, app, battleInput);
@@ -2373,7 +2243,6 @@ void BattleInfo_Task(SysTask *task, void *data)
 
 static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput)
 {
-    BattleInfoApp *app;
     BattleInfoFocusEntry focus;
 
     if (battleInput == NULL) {
@@ -2388,7 +2257,7 @@ static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *
         return FALSE;
     }
 
-    app = BattleInfo_AppNew();
+    BattleInfoApp *app = BattleInfo_AppNew();
     if (app == NULL) {
         return FALSE;
     }
@@ -2404,11 +2273,13 @@ static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *
     app->taskData.cycleDirection = 0;
     app->ctx = ctx;
     app->bip = battleInput;
+
     app->msgFormat = MessageFormat_New_Custom(8, 64, HEAPID_BATTLE_HEAP);
     if (app->msgFormat == NULL) {
         BattleInfo_AppDelete(app);
         return FALSE;
     }
+
     ctx->battleInfoApp = app;
     if (CreateSysTask(BattleInfo_Task, app, 0x3E8) == NULL) {
         ctx->battleInfoApp = NULL;
@@ -2417,5 +2288,6 @@ static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *
     }
     BattleInfo_ConsumeKeys();
     BattleInfo_SuppressInput();
+
     return TRUE;
 }

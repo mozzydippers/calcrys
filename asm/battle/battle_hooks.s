@@ -47,7 +47,17 @@ push {r0-r3}
 mov r0, r5
 bl LoadMegaIcon
 pop {r0-r3}
-ldr r2, =0x2F8A4 + 0x022378C0|1
+mov r2, r7
+str r0, [sp, #0x4]
+ldrsh r3, [r6, r3]
+mov r0, r5
+bl 0x022682BC // BattleInput_SetPokemonIcon
+mov r6, r0
+push {r0-r3}
+mov r0, r5
+bl BattleInfoHint_LoadSprite
+pop {r0-r3}
+ldr r2, =0x02267172 | 1
 bx r2
 
 //0802FBFC
