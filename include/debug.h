@@ -75,7 +75,7 @@
 // #define DEBUG_Z_MOVE_LOGIC
 
 // DEBUG_DYNAMAX_LOGIC turns on a number of debug prints related to the Z-Move logic
-#define DEBUG_DYNAMAX_LOGIC
+// #define DEBUG_DYNAMAX_LOGIC
 
 // DEBUG_MOVE_PERFORMANCE_LOGIC turns on a number of debug prints related to the move-performance logic
 // #define DEBUG_MOVE_PERFORMANCE_LOGIC
