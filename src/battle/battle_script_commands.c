@@ -5569,7 +5569,8 @@ BOOL btl_scr_cmd_125_CheckTrainerGimmickMessage(void *bsys UNUSED, struct Battle
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (newBS.needMega[ctx->battlerIdTemp] == MEGA_CHECK_APPER && ctx->battlemon[ctx->battlerIdTemp].hp && ctx->battlerIdTemp == BATTLER_ENEMY) {
+    if (newBS.needMega[ctx->battlerIdTemp] == MEGA_CHECK_APPER && ctx->battlemon[ctx->battlerIdTemp].hp
+    && ctx->battlerIdTemp == BATTLER_ENEMY && !(BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLE)) {
         ctx->msg_work = TEXT_MEGA_EVOLVE;
         SkillSequenceGosub(ctx, 1, SUB_SEQ_TRAINER_MESSAGE);
     }
