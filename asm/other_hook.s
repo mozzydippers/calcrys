@@ -908,3 +908,19 @@ ldr r3, =0x021E70A0 | 1
 bx r3
 
 .pool
+
+.global PokepicManager_BufferPlttData_RaidTint
+PokepicManager_BufferPlttData_RaidTint:
+ldr  r0, [sp, #0x10]
+bl   0x0201AB0C | 1 // FreeToHeap
+
+add  r0, r5, #0
+add  r1, r4, #0
+ldr  r2, [sp, #8]
+bl   Raid_ApplyTintAfterPaletteLoad
+
+add  r0, r4, #0
+ldr  r3, =0x020099CC | 1
+bx   r3
+
+.pool

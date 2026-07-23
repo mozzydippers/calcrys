@@ -644,9 +644,10 @@ arm9 EncounterSlot_WildMonSlotRoll_RockSmash 0224779C 0
 arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 
 0012 BattleControllerPlayer_PokemonAppear 022487C8
-# TODO fix names
-# BattleAnimScriptCmd_AddPokemonSprite
-0007 ov07_0221D874_TrialRaidAddPokemonSpriteScale 0221D97A 3
-0007 ov07_0221FB90_TrialRaidCloneScale 0221FD54 2
-# plat's ov12_022234F8
-0012 ov12_0225B7B8_TrialRaidPostSlideScale 0225B908 0
+
+# Raid hooks
+0007 ov07_0221D874_RaidAddPokemonSpriteScale 0221D97A 3
+0007 ov07_0221FB90_RaidCloneScale 0221FD54 2
+0012 ov12_0225B7B8_RaidPostSlideScale 0225B908 0
+0007 ov07_0221D874_RaidTint 0221D9F4 0
+arm9 PokepicManager_BufferPlttData_RaidTint 020099C4 0

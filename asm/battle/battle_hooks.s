@@ -795,8 +795,8 @@ bx r3
 
 .pool
 
-.global ov07_0221D874_TrialRaidAddPokemonSpriteScale
-ov07_0221D874_TrialRaidAddPokemonSpriteScale:
+.global ov07_0221D874_RaidAddPokemonSpriteScale
+ov07_0221D874_RaidAddPokemonSpriteScale:
 bl   0x0200D734 | 1 // SpriteSystem_NewSprite
 add  r7, r0, #0
 
@@ -811,8 +811,8 @@ bx   r1
 
 .pool
 
-.global ov12_0225B7B8_TrialRaidPostSlideScale
- ov12_0225B7B8_TrialRaidPostSlideScale:
+.global ov12_0225B7B8_RaidPostSlideScale
+ ov12_0225B7B8_RaidPostSlideScale:
 ldr  r0, [r4, #0]
 ldr  r1, [r4, #4]
 add  r2, r5, #0
@@ -830,8 +830,8 @@ bx   r0
 
 .pool
 
-.global ov07_0221FB90_TrialRaidCloneScale
-ov07_0221FB90_TrialRaidCloneScale:
+.global ov07_0221FB90_RaidCloneScale
+ov07_0221FB90_RaidCloneScale:
 add  r2, sp, #0x34
 bl   0x0200D734 | 1 // SpriteSystem_NewSprite
 add  r6, r0, #0
@@ -843,6 +843,30 @@ bl   Raid_HideSlideInClone
 add  r0, r6, #0
 
 ldr  r3, =0x0221FD5C | 1
+bx   r3
+
+.pool
+
+.global ov07_0221D874_RaidTint
+ov07_0221D874_RaidTint:
+add  r0, r4, #0
+add  r0, #0xC8
+ldr  r0, [r0]
+ldr  r1, [sp, #0x18]
+ldr  r2, [sp, #0x14]
+ldr  r3, [r4, #0]
+bl   0x02003200 | 1 // PaletteData_LoadNarc
+
+add  r0, r4, #0
+add  r0, #0xC8
+ldr  r0, [r0]
+ldr  r1, [sp, #8]
+add  r2, r6, #0
+bl   Raid_ApplyTintSlideIn
+
+ldr  r0, [sp, #0xC]
+lsl  r5, r0, #2
+ldr  r3, =0x0221D9FC | 1
 bx   r3
 
 .pool

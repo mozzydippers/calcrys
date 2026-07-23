@@ -1,4 +1,5 @@
 #include "../../include/battle.h"
+#include "../../include/battle_info.h"
 #include "../../include/battle_variations.h"
 #include "../../include/config.h"
 #include "../../include/constants/file.h"
@@ -8,7 +9,16 @@
 #include "../../include/sound.h"
 
 #define POKEPIC_SCALE_NORMAL 0x100
-#define MAX_RAID_POKEPIC_SCALE_PERCENT 160
+#define RAID_POKEPIC_SCALE_PERCENT 160
+#define PLTT_COLORS 16
+
+#define TINT_RATIO_MAX  8
+#define TINT_RED        7
+#define TINT_GREEN      0
+#define TINT_BLUE       0
+#define TINT_STRENGTH   5
+
+u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *paletteData, u32 bufferId);
 
 typedef struct FaintingSequenceData {
     struct BattleSystem *battleSys;
@@ -151,8 +161,6 @@ void LONG_CALL Raid_HideSlideInClone(ManagedSprite *managedSprite, Pokepic *sour
 
 void LONG_CALL Raid_ScaleSpriteForBattler(Pokepic *pokepic, struct BattleSystem *battleSystem, int battler)
 {
-    PokepicDrawParam *drawParam;
-
     if (battleSystem == NULL || pokepic == NULL || !pokepic->active) {
         return;
     }
@@ -163,10 +171,10 @@ void LONG_CALL Raid_ScaleSpriteForBattler(Pokepic *pokepic, struct BattleSystem 
         return;
     }
 
-    drawParam = &pokepic->drawParam;
+    PokepicDrawParam *drawParam = &pokepic->drawParam;
     drawParam->visible = FALSE;
-    drawParam->affineWidth = POKEPIC_SCALE_NORMAL * MAX_RAID_POKEPIC_SCALE_PERCENT / 100;
-    drawParam->affineHeight = POKEPIC_SCALE_NORMAL * MAX_RAID_POKEPIC_SCALE_PERCENT / 100;
+    drawParam->affineWidth = POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100;
+    drawParam->affineHeight = POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100;
     drawParam->xOffset = -25;
     drawParam->yOffset = -15;
 }
@@ -176,4 +184,19 @@ void LONG_CALL Raid_ScaleSpriteForEnemy(struct BattleSystem *battleSystem)
     PokepicManager *monSpriteMan = BattleSystem_GetPokepicManager(battleSystem);
     Pokepic *pokepic = &monSpriteMan->pics[BATTLER_ENEMY];
     Raid_ScaleSpriteForBattler(pokepic, battleSystem, BATTLER_ENEMY);
+}
+
+void LONG_CALL Raid_ApplyTintSlideIn(void *paletteData, u16 palettePosition, Pokepic *sourcePokepic)
+{
+    if (paletteData == NULL || sourcePokepic == NULL || !sourcePokepic->active) {
+        return;
+    }
+    if (gBattleSystem == NULL ||!(gBattleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
+        return;
+    }
+
+    u16 *palette = PaletteData_GetUnfadedBuf(paletteData, 2) + palettePosition;
+    Raid_TintPalette(palette);
+
+    PaletteData_LoadPalette(paletteData, palette, 2, palettePosition, PLTT_COLORS * sizeof(u16));
 }
