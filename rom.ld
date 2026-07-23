@@ -602,6 +602,8 @@ CheckMoveCallsOtherMove = 0x02252698 | 1;
 
 GfGfxLoader_LoadCharData = 0x020078F0 | 1;
 PaletteData_LoadNarc = 0x02003200 | 1;
+PaletteData_LoadPalette = 0x0200316C | 1;
+PaletteData_GetUnfadedBuf = 0x0200335C | 1;
 Ground_ActorResourceSet = 0x02265FD4 | 1;
 BattleWorkGroundBGChg = 0x0223B874 | 1;
 GrabTimeOfDayFileAdjustment = 0x0223B52C | 1;

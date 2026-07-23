@@ -1,5 +1,4 @@
 #include "../../include/battle.h"
-#include "../../include/battle_info.h"
 #include "../../include/battle_variations.h"
 #include "../../include/config.h"
 #include "../../include/constants/file.h"
