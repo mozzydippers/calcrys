@@ -1173,7 +1173,6 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
 
     if (battleVariationInfo.battleVariationType == BATTLE_VARIATION_TYPE_MAX_RAID && client == 1) {
-        debug_printf("Here\n");
         sp->battlemon[client].is_currently_dynamaxed = 1;
     }
 }
