@@ -470,7 +470,7 @@ void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferI
     }
     BufferBoxMonNickname(battleSystem->msgFormat, bufferIndex, &mon->box);
     // yes i am currently restricting totems to be client 1, whatever
-    if ((battleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID) && client == 1) {
+    if ((battleSystem->battleSpecial & BATTLE_SPECIAL_TOTEM) && client == 1) {
         String *name = battleSystem->msgFormat->fields[bufferIndex].msg;
         //debug_printf("name's maxsize is %d with a current size of %d\n", name->maxsize, name->size);
         // 6 is NELEMS("Totem ")
