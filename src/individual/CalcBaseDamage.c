@@ -12,11 +12,12 @@
 #include "../../include/pokemon.h"
 #include "../../include/q412.h"
 #include "../../include/types.h"
-#include "../../include/z_moves.h"
 
+int GetZMovePower(struct BattleStruct *battle, int baseMove, int client);
+int GetMaxMovePower(struct BattleStruct *battle, int baseMove, int client);
 
 // int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond UNUSED,u32 field_cond, u16 pow UNUSED, u8 type UNUSED, u8 attacker, u8 defender, u8 critical) {
-int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *sp, struct DamageCalcStruct *damageCalc)
+int __attribute__((section (".init"))) UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *sp, struct DamageCalcStruct *damageCalc)
 {
     u32 i = 0;
     u32 attack;
@@ -1602,4 +1603,292 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
     //=====End of Step 5=====
 
     return baseDamage;
+}
+
+int GetZMovePower(struct BattleStruct *battle, int baseMove, int client) {
+    int species = battle->battlemon[client].species;
+
+    int form = battle->battlemon[client].form_no;
+
+    int item = battle->battlemon[client].item;
+
+    if (baseMove == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0) {
+        return 210; // MOVE_CATASTROPIKA
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14) {
+        return 195; // MOVE_10_000_000_VOLT_THUNDERBOLT
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1) {
+        return 175; // MOVE_STOKED_SPARKSURFER
+    }
+    if (baseMove == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE) {
+        // Should not enter damage calculation
+        GF_ASSERT_INTERNAL(); // MOVE_EXTREME_EVOBOOST
+        return 0;
+    }
+    if (baseMove == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX) {
+        return 210; // MOVE_PULVERIZING_PANCAKE
+    }
+    if (baseMove == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW) {
+        return 185; // MOVE_GENESIS_SUPERNOVA
+    }
+    if (baseMove == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE) {
+        return 180; // MOVE_SINISTER_ARROW_RAID
+    }
+    if (baseMove == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR) {
+        return 180; // MOVE_MALICIOUS_MOONSAULT
+    }
+    if (baseMove == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA) {
+        return 195; // MOVE_OCEANIC_OPERETTA
+    }
+    if (baseMove == MOVE_STONE_EDGE && item == ITEM_LYCANIUM_Z_ITEM && species == SPECIES_LYCANROC) {
+        return 190; // MOVE_SPLINTERED_STORMSHARDS
+    }
+    if (baseMove == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU) {
+        return 190; // MOVE_LETS_SNUGGLE_FOREVER
+    }
+    if (baseMove == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O) {
+        return 185; // MOVE_CLANGOROUS_SOULBLAZE
+    }
+    if (baseMove == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI)) {
+        // Should not enter damage calculation
+        GF_ASSERT_INTERNAL(); // MOVE_GUARDIAN_OF_ALOLA
+        return 0;
+    }
+    if (baseMove == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1))) {
+        return 200; // MOVE_SEARING_SUNRAZE_SMASH
+    }
+    if (baseMove == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2))) {
+        return 200; // MOVE_MENACING_MOONRAZE_MAELSTROM
+    }
+    if (baseMove == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4))) {
+        return 200; // MOVE_LIGHT_THAT_BURNS_THE_SKY
+    }
+    if (baseMove == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW) {
+        return 195; // MOVE_SOUL_STEALING_7_STAR_STRIKE
+    }
+
+    // When hacked into normal move slots, damaging Z-moves (Hydro Vortex, Bloom Doom, etc) becomes 1 BP / -- Accuracy moves of their respective types. Special Z-moves (Catastropika, pulverizing Pancake, etc) function normally with their actual Base Powers and effects. All normal move slot Z-Moves have 1 PP ( PP Ups don't work). You can use as many normal move slot Z-Moves as you want in a battle. You cannot power up a normal slot Z-Move with a Z-Crystal (it won't recognize the move as that typing at all). (UltiMario) Their PP can be restored with a Leppa Berry. (UltiMario)
+    // "Crystal-Free Z-Moves"
+    if (MoveIsZMove(baseMove)) {
+        return 1;
+    }
+
+    switch (baseMove) {
+        case MOVE_MEGA_DRAIN:
+            return 120;
+            break;
+        case MOVE_WEATHER_BALL:
+        case MOVE_HEX:
+            return 160;
+            break;
+        case MOVE_V_CREATE:
+            return 220;
+            break;
+        case MOVE_FLYING_PRESS:
+            return 170;
+            break;
+        case MOVE_CORE_ENFORCER:
+            return 140;
+            break;
+
+        default:
+            break;
+    }
+
+    if (battle->moveTbl[baseMove].effect == MOVE_EFFECT_ONE_HIT_KO) {
+        return 180;
+    }
+
+    int power = battle->moveTbl[baseMove].power;
+
+    switch (power) {
+        case 0 ... 55:
+            return 100;
+            break;
+        case 60 ... 65:
+            return 120;
+            break;
+        case 70 ... 75:
+            return 140;
+            break;
+        case 80 ... 85:
+            return 160;
+            break;
+        case 90 ... 95:
+            return 175;
+            break;
+        case 100:
+            return 180;
+            break;
+        case 110:
+            return 185;
+            break;
+        case 120 ... 125:
+            return 190;
+            break;
+        case 130:
+            return 195;
+            break;
+
+        default:
+            if (power >= 140) {
+                return 200;
+            }
+            GF_ASSERT_INTERNAL();
+            break;
+    }
+
+    GF_ASSERT_INTERNAL();
+    return 0;
+}
+
+// TODO: switch to table to save code space
+int GetMaxMovePower(struct BattleStruct *battle, int baseMove, int client)
+{
+    int species = battle->battlemon[client].species;
+
+    int form = battle->battlemon[client].form_no;
+
+    u32 type = GetAdjustedMoveType(battle, client, baseMove);
+
+    BOOL weakerPower = (type == TYPE_FIGHTING || type == TYPE_POISON || baseMove == MOVE_MULTI_ATTACK);
+
+    switch (baseMove) {
+    case MOVE_STRUGGLE:
+        return 1;
+    // Variable number of strikes
+    case MOVE_ARM_THRUST:
+        return 70;
+    // case MOVE_BARRAGE:
+    //     return 0;
+    case MOVE_BONE_RUSH:
+        return 130;
+    case MOVE_BULLET_SEED:
+        return 130;
+    // case MOVE_COMET_PUNCH:
+    //     return 0;
+    // case MOVE_DOUBLE_SLAP:
+    //     return 0;
+    case MOVE_FURY_ATTACK:
+        return 90;
+    case MOVE_FURY_SWIPES:
+        return 100;
+    case MOVE_ICICLE_SPEAR:
+        return 100;
+    case MOVE_PIN_MISSILE:
+        return 130;
+    case MOVE_ROCK_BLAST:
+        return 130;
+    case MOVE_SCALE_SHOT:
+        return 130;
+    // case MOVE_SPIKE_CANNON:
+    //     return 0;
+    case MOVE_TAIL_SLAP:
+        return 130;
+    case MOVE_WATER_SHURIKEN:
+        return 90;
+    // Fixed number of multiple strikes
+    case MOVE_BONEMERANG:
+        return 130;
+    case MOVE_DOUBLE_HIT:
+        return 120;
+    case MOVE_DOUBLE_IRON_BASH:
+        return 140;
+    case MOVE_DOUBLE_KICK:
+        return 80;
+    case MOVE_DRAGON_DARTS:
+        return 130;
+    case MOVE_DUAL_CHOP:
+        return 130;
+    case MOVE_DUAL_WINGBEAT:
+        return 130;
+    case MOVE_GEAR_GRIND:
+        return 130;
+    case MOVE_SURGING_STRIKES:
+        return 130;
+    // case MOVE_TRIPLE_DIVE:
+    //     return 0;
+    // case MOVE_TWIN_BEAM:
+    //     return 0;
+    // case MOVE_TWINEEDLE:
+    //     return 0;
+    // Accuracy-dependent multiple strikes
+    case MOVE_TRIPLE_AXEL:
+        return 140;
+    case MOVE_TRIPLE_KICK:
+        return 80;
+    // case MOVE_POPULATION_BOMB:
+    //     return 0;
+    // Party-dependent multiple strikes
+    case MOVE_BEAT_UP:
+        return 100;
+
+    case MOVE_ELECTRO_BALL:
+    case MOVE_TERRAIN_PULSE:
+        return weakerPower ? 75 : 100;
+    case MOVE_STORED_POWER:
+        return 130;
+    }
+
+    switch (battle->moveTbl[baseMove].effect) {
+    case MOVE_EFFECT_HALVE_HP:
+    case MOVE_EFFECT_LEVEL_DAMAGE_FLAT:
+    case MOVE_EFFECT_COUNTER:
+    case MOVE_EFFECT_MIRROR_COAT:
+    case MOVE_EFFECT_METAL_BURST:
+    case MOVE_EFFECT_RANDOM_DAMAGE_1_TO_150_LEVEL:
+    case MOVE_EFFECT_RANDOM_POWER_MAYBE_HEAL:
+    case MOVE_EFFECT_BEAT_UP:
+    case MOVE_EFFECT_CHANGE_TYPE_WITH_WEATHER:
+    case MOVE_EFFECT_FLING:
+    case MOVE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP:
+    case MOVE_EFFECT_HIGHER_POWER_WHEN_LOW_PP:
+    case MOVE_EFFECT_10_DAMAGE_FLAT:
+    case MOVE_EFFECT_40_DAMAGE_FLAT:
+    case MOVE_EFFECT_SPIT_UP:
+    case MOVE_EFFECT_NATURAL_GIFT:
+    case MOVE_EFFECT_FINAL_GAMBIT:
+        return weakerPower ? 75 : 100;
+    case MOVE_EFFECT_ONE_HIT_KO:
+    case MOVE_EFFECT_POWER_BASED_ON_FRIENDSHIP:
+    case MOVE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP:
+    case MOVE_EFFECT_HEAVY_SLAM:
+        return weakerPower ? 90 : 130;
+    case MOVE_EFFECT_RANDOM_POWER_10_CASES:
+    case MOVE_EFFECT_INCREASE_POWER_WITH_MORE_HP:
+        return weakerPower ? 95 : 140;
+    case MOVE_EFFECT_INCREASE_POWER_WITH_LESS_HP:
+    case MOVE_EFFECT_INCREASE_POWER_WITH_WEIGHT:
+        return weakerPower ? 100 : 130;
+    }
+
+    // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-8467857
+    // - GMax Moves and Max Moves derived from hacked Max moves all end up with "---" base power (including Max Flare which has BP 100).
+    if (MoveIsMaxMove(baseMove)) {
+        return 1;
+    }
+
+    int power = battle->moveTbl[baseMove].power;
+
+    switch (power) {
+    case 0 ... 40:
+        return weakerPower ? 70 : 90;
+    case 45 ... 50:
+        return weakerPower ? 75 : 100;
+    case 55 ... 60:
+        return weakerPower ? 80 : 110;
+    case 65 ... 70:
+        return weakerPower ? 85 : 120;
+    case 75 ... 100:
+        return weakerPower ? 90 : 130;
+    case 110 ... 140:
+        return weakerPower ? 95 : 140;
+    case 150 ... 250:
+    default:
+        return weakerPower ? 100 : 150;
+    }
+
+    GF_ASSERT_INTERNAL();
+    return 0;
 }
