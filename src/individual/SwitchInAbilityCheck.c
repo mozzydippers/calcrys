@@ -57,8 +57,11 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     switch (BattleWorkWeatherGet(bw)) {
                         case WEATHER_SYS_RAIN:
                         case WEATHER_SYS_HEAVY_RAIN:
-                        case WEATHER_SYS_THUNDER:
                             scriptnum = SUB_SEQ_OVERWORLD_RAIN;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case WEATHER_SYS_THUNDER:
+                            scriptnum = SUB_SEQ_OVERWORLD_THUNDERSTORM;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_SNOW:
