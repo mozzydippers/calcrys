@@ -78,7 +78,7 @@ void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 bat
 
     struct TotemBattle battleData;
 
-    ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleID * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
+    ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleID * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
 
     setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_SINGLE);
 
@@ -96,7 +96,7 @@ void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
 
     struct MaxRaidBattle battleData;
 
-    ArchiveDataLoadOfs(&battleData, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
+    ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
 
     setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLE);
 

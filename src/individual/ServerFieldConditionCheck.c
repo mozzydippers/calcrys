@@ -1664,6 +1664,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp) {
                                         sp->item_work = sp->recycle_item[battlerId];
                                         sp->recycle_item[battlerId] = 0;
                                         sp->battlemon[battlerId].item = sp->item_work;
+                                        sp->battlerIdTemp = battlerId;
                                         seq_no = SUB_SEQ_HANDLE_HARVEST;
                                         ret = TRUE;
                                     }

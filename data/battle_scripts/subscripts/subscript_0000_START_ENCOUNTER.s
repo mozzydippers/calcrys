@@ -53,7 +53,7 @@ _079:
 
 // Custom encounter messages go below
 _Totem:
-    // You are challenged by Totem {0}!
+    // You are challenged by {0}!
     PrintGlobalMessage BATTLE_MSG_CHALLENGED_BY_TOTEM, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
     Wait
     WaitButtonABTime 30

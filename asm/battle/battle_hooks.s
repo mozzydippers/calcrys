@@ -870,3 +870,12 @@ ldr  r3, =0x0221D9FC | 1
 bx   r3
 
 .pool
+
+.global PlayerTrainerVictoryBGM_hook
+PlayerTrainerVictoryBGM_hook:
+// No need to preserve original instructions since we are replicating the switch case in C.
+bl PlayTrainerVictoryBGM // (trainer)
+ldr r0, =0x0224DB3C | 1 // Immediately after the switch case. No registers are in use.
+bx r0
+
+.pool

@@ -51,7 +51,7 @@ struct BattleStruct *ServerInit(struct BattleSystem *bw) {
     switch (battleVariationInfo.battleVariationType) {
     case BATTLE_VARIATION_TYPE_TOTEM:
     case BATTLE_VARIATION_TYPE_MAX_RAID:
-        ArchiveDataLoadOfs(&battleData.maxRaidBattle, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
+        ReadFromNarcMemberByIdPair(&battleData.maxRaidBattle, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
 
         memcpy(sp->raidContext.extraActions, battleData.maxRaidBattle.extraActions, sizeof(sp->raidContext.extraActions[0]) * MAX_EXTRA_ACTIONS);
 

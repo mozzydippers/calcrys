@@ -17,6 +17,10 @@
 #include "../../include/z_moves.h"
 #include "../../include/dynamax.h"
 
+#include "../../include/trainer_data.h"
+#include "../../include/constants/sndseq.h"
+#include "../../include/constants/trainerclass.h"
+
 typedef struct
 {
     u8 numerator;
@@ -626,6 +630,10 @@ BOOL LONG_CALL CalcAccuracy(void *bw, struct BattleStruct *sp, int attacker, int
     // 4. Look up the move's "base accuracy". For example, Fire Blast's base accuracy is 85.
 
     accuracy = sp->moveTbl[move_no].accuracy;
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+    accuracy = 100;
+#endif // DEBUG_BATTLE_SCENARIOS
 
     if (accuracy == 0) {
         return FALSE;
@@ -2840,6 +2848,8 @@ int LONG_CALL IsMoveSpreadMove(struct BattleSystem *bsys, struct BattleStruct *c
 {
     if ((ctx->moveTbl[move].target == RANGE_ADJACENT_OPPONENTS)
         || (ctx->moveTbl[move].target == RANGE_ALL_ADJACENT)
+        || (move == MOVE_HOWL)
+        || (move == MOVE_LIFE_DEW)
         || (move == MOVE_EXPANDING_FORCE
             && ctx->terrainOverlay.numberOfTurnsLeft > 0
             && ctx->terrainOverlay.type == PSYCHIC_TERRAIN
@@ -2852,6 +2862,13 @@ int LONG_CALL IsMoveSpreadMove(struct BattleSystem *bsys, struct BattleStruct *c
 int LONG_CALL IsTargetFoesAndAlly(struct BattleSystem *bsys, struct BattleStruct *ctx, int move)
 {
     if (ctx->moveTbl[move].target == RANGE_ALL_ADJACENT) {
+        return BattleTypeGet(bsys) & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI);
+    }
+    return FALSE;
+}
+int LONG_CALL IsTargetSelfAndAlly(struct BattleSystem *bsys, struct BattleStruct *ctx UNUSED, int move)
+{
+    if (move == MOVE_HOWL || move == MOVE_LIFE_DEW) {
         return BattleTypeGet(bsys) & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI);
     }
     return FALSE;
@@ -2875,21 +2892,24 @@ int LONG_CALL CanGetNextDefender(struct BattleSystem *bsys, struct BattleStruct 
         switch (ctx->clientLoopForSpreadMoves) {
         case SPREAD_MOVE_LOOP_ALLY:
             ctx->clientLoopForSpreadMoves++;
-            if (IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {
+            if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index))
+                && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {
                 ctx->defence_client = BATTLER_ALLY(ctx->attack_client);
                 return TRUE;
             }
             FALLTHROUGH;
         case SPREAD_MOVE_LOOP_OPPONENT_LEFT:
             ctx->clientLoopForSpreadMoves++;
-            if (IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {
+            if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index)) 
+                && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {
                 ctx->defence_client = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);
                 return TRUE;
             }
             FALLTHROUGH;
         case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:
             ctx->clientLoopForSpreadMoves++;
-            if (IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {
+            if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index)) 
+                && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {
                 ctx->defence_client = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);
                 return TRUE;
             }
@@ -2910,7 +2930,7 @@ void LONG_CALL SetupCurrentMoveContext(struct BattleSystem *bsys, struct BattleS
             int oppRight = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);
             int ally = BATTLER_ALLY(ctx->attack_client);
 
-            if (IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index)
+            if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index))
                 && IsValidMoveTarget(ctx, ally)) {
                 if (CheckSubstitute(ctx, ally) == TRUE) {
                     ctx->moveContext.hitSubstitute[ctx->moveContext.hitSubstituteCount] = ally;
@@ -2920,7 +2940,8 @@ void LONG_CALL SetupCurrentMoveContext(struct BattleSystem *bsys, struct BattleS
                 }
             }
 
-            if (IsValidMoveTarget(ctx, oppLeft)) {
+            if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index)) 
+                && IsValidMoveTarget(ctx, oppLeft)) {
                 if (CheckSubstitute(ctx, oppLeft) == TRUE) {
                     ctx->moveContext.hitSubstitute[ctx->moveContext.hitSubstituteCount] = oppLeft;
                     ctx->moveContext.hitSubstituteCount++;
@@ -2930,7 +2951,8 @@ void LONG_CALL SetupCurrentMoveContext(struct BattleSystem *bsys, struct BattleS
                 }
             }
 
-            if (IsValidMoveTarget(ctx, oppRight)) {
+            if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index)) 
+                && IsValidMoveTarget(ctx, oppRight)) {
                 if (CheckSubstitute(ctx, oppRight) == TRUE) {
                     ctx->moveContext.hitSubstitute[ctx->moveContext.hitSubstituteCount] = oppRight;
                     ctx->moveContext.hitSubstituteCount++;
@@ -3435,35 +3457,45 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
 }
 
 const u16 HealBlockUnusableMoves[] = {
-    MOVE_RECOVER,
-    MOVE_SOFT_BOILED,
-    MOVE_REST,
-    MOVE_MILK_DRINK,
-    MOVE_MORNING_SUN,
-    MOVE_SYNTHESIS,
-    MOVE_MOONLIGHT,
-    MOVE_SWALLOW,
-    MOVE_HEAL_ORDER,
-    MOVE_SLACK_OFF,
-    MOVE_ROOST,
-    MOVE_LUNAR_DANCE,
-    MOVE_HEALING_WISH,
-    MOVE_WISH,
-    MOVE_HEAL_PULSE,
     MOVE_FLORAL_HEALING,
-    MOVE_LIFE_DEW,
     MOVE_LUNAR_BLESSING,
-    //  MOVE_POLLEN_PUFF, should be here but can also target enemies when heal blocked so
+};
+
+const u16 HealBlockUnusableMoveEffects[] = {
+    MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT, //Absorb, etc
+    MOVE_EFFECT_RECOVER_THREE_QUARTERS_DAMAGE_DEALT, //draining kiss, Oblivion Wing
+    MOVE_EFFECT_RECOVER_FULL_DAMAGE_DEALT, //bouncy bubble
+    MOVE_EFFECT_RECOVER_DAMAGE_SLEEP, //dream eater
+    MOVE_EFFECT_RECOVER_HALF_DAMAGE_DEALT_BURN_HIT, //matcha gotcha
+    MOVE_EFFECT_RESTORE_HALF_HP, //recover, etc
+    MOVE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE, //roost
+    MOVE_EFFECT_HEAL_HALF_DIFFERENT_IN_WEATHER, //synthesis, etc
+    MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP, //rest
+    MOVE_EFFECT_SWALLOW,
+    MOVE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, //Luna Dance
+    MOVE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON, //healing wish
+    MOVE_EFFECT_HEAL_IN_3_TURNS, //wish
+    MOVE_EFFECT_HEAL_TARGET, //heal pulse
+    MOVE_EFFECT_LIFE_DEW,
+    // TODO Lunar Blessing, Floral Healing
 };
 
 BOOL LONG_CALL BattleContext_CheckMoveHealBlocked(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx, int battlerId, int moveNo)
 {
     u32 i;
     BOOL ret = FALSE;
+    int effect = ctx->moveTbl[moveNo].effect;
 
     if (ctx->battlemon[battlerId].moveeffect.healBlockTurns) {
         for (i = 0; i < NELEMS(HealBlockUnusableMoves); i++) {
-            if (HealBlockUnusableMoves[i] == moveNo) {
+            if (HealBlockUnusableMoves[i] == moveNo) { //TODO: remove once moves are implemented
+                ret = TRUE;
+                break;
+            }
+        }
+
+        for (i = 0; i < NELEMS(HealBlockUnusableMoveEffects); i++) {
+            if (HealBlockUnusableMoveEffects[i] == effect) {
                 ret = TRUE;
                 break;
             }
@@ -4563,5 +4595,44 @@ void LONG_CALL BattleControllerPlayer_PokemonAppear(struct BattleSystem *battleS
         SortMonsBySpeed(battleSystem, ctx);
         ov12_0223C0C4(battleSystem);
         ctx->server_seq_no = CONTROLLER_COMMAND_SELECTION_SCREEN_INIT;
+    }
+}
+
+// Modifying this switch case allows you to assign any music to victory over a specific trainer class.
+void LONG_CALL PlayTrainerVictoryBGM(struct TrainerData *trainer) {
+    switch (trainer->data.trainerClass) {
+        case TRAINERCLASS_LEADER_FALKNER:
+        case TRAINERCLASS_LEADER_BUGSY:
+        case TRAINERCLASS_LEADER_WHITNEY:
+        case TRAINERCLASS_LEADER_MORTY:
+        case TRAINERCLASS_LEADER_PRYCE:
+        case TRAINERCLASS_LEADER_JASMINE:
+        case TRAINERCLASS_LEADER_CHUCK:
+        case TRAINERCLASS_LEADER_CLAIR:
+        case TRAINERCLASS_CHAMPION:
+        case TRAINERCLASS_ELITE_FOUR_WILL:
+        case TRAINERCLASS_ELITE_FOUR_KAREN:
+        case TRAINERCLASS_ELITE_FOUR_KOGA:
+        case TRAINERCLASS_ELITE_FOUR_BRUNO:
+        case TRAINERCLASS_LEADER_BROCK:
+        case TRAINERCLASS_LEADER_MISTY:
+        case TRAINERCLASS_LEADER_LT_SURGE:
+        case TRAINERCLASS_LEADER_ERIKA:
+        case TRAINERCLASS_LEADER_JANINE:
+        case TRAINERCLASS_LEADER_SABRINA:
+        case TRAINERCLASS_LEADER_BLAINE:
+        case TRAINERCLASS_LEADER_BLUE:
+            PlayBGM(SEQ_GS_WIN3);
+            break;
+        case TRAINERCLASS_TOWER_TYCOON:
+        case TRAINERCLASS_HALL_MATRON:
+        case TRAINERCLASS_FACTORY_HEAD:
+        case TRAINERCLASS_ARCADE_STAR:
+        case TRAINERCLASS_CASTLE_VALET:
+            PlayBGM(SEQ_GS_WINBRAIN);
+            break;
+        default:
+            PlayBGM(SEQ_GS_WIN1);
+            break;
     }
 }
