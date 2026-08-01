@@ -140,7 +140,7 @@ void *LONG_CALL AllocAndReadFromNarcMemberByIdPair(int narcID, int fileID, int h
 void LONG_CALL ReadFromNarcMemberByIdPair(void *data, int narcID, int fileID, int ofs, int size);
 
 void *LONG_CALL sys_AllocMemoryLo(u32 heap_id, u32 size);
-void *LONG_CALL NARC_ctor(u32 narc_id, u32 heap_id);
+void *LONG_CALL NARC_New(u32 narc_id, u32 heap_id);
 void LONG_CALL NARC_Delete(void *narc); // NARC_dtor
 
 void LONG_CALL MIi_CpuClearFast(u32 value, void *dest, u32 size);
