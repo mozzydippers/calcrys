@@ -1,13 +1,15 @@
 #ifndef POKEHEARTGOLD_BAG_H
 #define POKEHEARTGOLD_BAG_H
 
-#include "types.h"
 #include "constants/item.h"
-//#include "item.h"
-//#include "save.h"
-//#include "heap.h"
-//#include "bag_view.h"
-//#include "bag_cursor.h"
+
+#include "message.h"
+#include "types.h"
+// #include "item.h"
+// #include "save.h"
+// #include "heap.h"
+// #include "bag_view.h"
+// #include "bag_cursor.h"
 
 // file is largely just from pokeheartgold
 
@@ -27,8 +29,8 @@ typedef enum RegisterItemResult {
  * Quantity must be no more than 99 for a TM/HM, or 999 in general.
  */
 typedef struct ItemSlot {
-    u16 id;          // from constants/items.h
-    u16 quantity;    // quantity of that item
+    u16 id; // from constants/items.h
+    u16 quantity; // quantity of that item
 } ITEM_SLOT;
 
 /*
@@ -38,15 +40,15 @@ typedef struct ItemSlot {
  * configured in constants/item.h
  */
 typedef struct BagData {
-    ITEM_SLOT items[NUM_BAG_ITEMS];                // General items
-    ITEM_SLOT keyItems[NUM_BAG_KEY_ITEMS];         // Key items
-    ITEM_SLOT TMsHMs[NUM_BAG_TMS_HMS];             // Move machines
-    ITEM_SLOT mail[NUM_BAG_MAIL];                  // Mail items
-    ITEM_SLOT medicine[NUM_BAG_MEDICINE];          // Healing items
-    ITEM_SLOT berries[NUM_BAG_BERRIES];            // Berries
-    ITEM_SLOT balls[NUM_BAG_BALLS];                // Balls
-    ITEM_SLOT battleItems[NUM_BAG_BATTLE_ITEMS];   // Battle-only items
-    u16 registeredItems[2];                        // IDs of registered key items
+    ITEM_SLOT items[NUM_BAG_ITEMS]; // General items
+    ITEM_SLOT keyItems[NUM_BAG_KEY_ITEMS]; // Key items
+    ITEM_SLOT TMsHMs[NUM_BAG_TMS_HMS]; // Move machines
+    ITEM_SLOT mail[NUM_BAG_MAIL]; // Mail items
+    ITEM_SLOT medicine[NUM_BAG_MEDICINE]; // Healing items
+    ITEM_SLOT berries[NUM_BAG_BERRIES]; // Berries
+    ITEM_SLOT balls[NUM_BAG_BALLS]; // Balls
+    ITEM_SLOT battleItems[NUM_BAG_BATTLE_ITEMS]; // Battle-only items
+    u16 registeredItems[2]; // IDs of registered key items
 } BAG_DATA;
 
 typedef struct BagContext {
@@ -264,5 +266,9 @@ BAG_DATA *LONG_CALL Sav2_Bag_get(void *saveData);
 // fuck BAG_VIEW
 void *LONG_CALL BagView_New(u8 heap_id);
 void LONG_CALL BagView_SetItem(void *bagView, ITEM_SLOT *slots, u8 pocketId, u8 position);
+// param1 is likely BagController (BAG_VIEW?)
+String *LONG_CALL BagApp_SetFlute(void *param1, int param2);
+String *LONG_CALL BagApp_TryUseRepel(int param1, u16 itemId);
+String *LONG_CALL BagApp_ToggleGBSounds(void *param1, int itemId);
 
-#endif //POKEHEARTGOLD_BAG_H
+#endif // POKEHEARTGOLD_BAG_H

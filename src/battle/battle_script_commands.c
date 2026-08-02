@@ -9,8 +9,8 @@
 #include "../../include/constants/move_effects.h"
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
-#include "../../include/constants/weather_numbers.h"
 #include "../../include/constants/system_control.h"
+#include "../../include/constants/weather_numbers.h"
 #include "../../include/debug.h"
 #include "../../include/mega.h"
 #include "../../include/message.h"
@@ -106,8 +106,8 @@ BOOL btl_scr_cmd_107_clearauroraveil(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_108_strengthsapcalc(void *bw, struct BattleStruct *sp);
 BOOL btl_scr_cmd_109_checktargetispartner(void *bw, struct BattleStruct *sp);
 BOOL btl_scr_cmd_10A_clearsmog(void *bsys UNUSED, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_10B_ifthirdtype(void* bw, struct BattleStruct* sp);
-BOOL btl_scr_cmd_10C_ifterastallized(void* bw, struct BattleStruct* sp);
+BOOL btl_scr_cmd_10B_ifthirdtype(void *bw, struct BattleStruct *sp);
+BOOL btl_scr_cmd_10C_ifterastallized(void *bw, struct BattleStruct *sp);
 BOOL btl_scr_cmd_10D_HandleRoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_10E_HandleSoak(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_10F_HandleMagicPowder(void *bsys UNUSED, struct BattleStruct *ctx);
@@ -1508,6 +1508,21 @@ u8 ALIGN4 scratchpad[4] = { 0, 0, 0, 0 };
 #define monCountFromItem     scratchpad[1]
 #define trackPartyExperience scratchpad[2]
 
+// fakes the party mons having an exp share held item
+int Task_GetExp_HandleExpShare(struct EXP_CALCULATOR *data, struct PartyPokemon *mon, int slot, int itemEffect)
+{
+    int side = (data->sp->fainting_client >> 1) & 1;
+
+    if (itemEffect != HOLD_EFFECT_EXP_SHARE
+        && CheckScriptFlag(FLAG_EXP_SHARE_ENABLED)
+        && GetMonData(mon, MON_DATA_HP, NULL)
+        && !(data->sp->obtained_exp_right_flag[side] & No2Bit(slot))) {
+        itemEffect = HOLD_EFFECT_EXP_SHARE;
+    }
+
+    return itemEffect;
+}
+
 /**
  *  @brief task to distribute experience
  *
@@ -1524,6 +1539,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
     struct EXP_CALCULATOR *expcalc = work;
     int exp_client_no = 0;
     struct BattleStruct *sp = expcalc->sp;
+    BOOL expShareEnabled = CheckScriptFlag(FLAG_EXP_SHARE_ENABLED);
 
     client_no = (sp->fainting_client >> 1) & 1;
 
@@ -1537,7 +1553,11 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
             item = GetMonData(pp, MON_DATA_HELD_ITEM, NULL);
             eqp = GetItemData(item, ITEM_PARAM_HOLD_EFFECT, 5);
 
-            if ((eqp == HOLD_EFFECT_EXP_SHARE) || (sp->obtained_exp_right_flag[client_no] & No2Bit(sel_mons_no))) {
+            if (expShareEnabled) {
+                if (GetMonData(pp, MON_DATA_SPECIES, NULL) && GetMonData(pp, MON_DATA_HP, NULL)) {
+                    break;
+                }
+            } else if ((eqp == HOLD_EFFECT_EXP_SHARE) || (sp->obtained_exp_right_flag[client_no] & No2Bit(sel_mons_no))) {
                 break;
             }
         }
@@ -1563,7 +1583,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
                 item = GetMonData(pploop, MON_DATA_HELD_ITEM, NULL);
                 eqp = BattleItemDataGet(sp, item, 1);
 
-                if (eqp == HOLD_EFFECT_EXP_SHARE) {
+                if (!expShareEnabled && eqp == HOLD_EFFECT_EXP_SHARE) {
                     monCountFromItem++;
                 }
             }
@@ -1601,7 +1621,13 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
 
             // debug_printf("[Task_DistributeExp_Extend] L = %d, Lp = %d, b = %d, top = %d, bottom = %d, exp = %d\n", level, Lp, base, top, bottom, totalexp);
 
-            if (monCountFromItem) {
+            if (expShareEnabled) {
+                sp->obtained_exp = totalexp;
+                sp->exp_share_obtained_exp = totalexp / 2;
+                if (sp->exp_share_obtained_exp == 0) {
+                    sp->exp_share_obtained_exp = 1;
+                }
+            } else if (monCountFromItem) {
                 sp->obtained_exp = (totalexp / 2) / monCount;
                 if (sp->obtained_exp == 0) {
                     sp->obtained_exp = 1;
@@ -1650,7 +1676,7 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
                     item = GetMonData(pploop, MON_DATA_HELD_ITEM, NULL);
                     eqp = BattleItemDataGet(sp, item, 1);
 
-                    if (eqp == HOLD_EFFECT_EXP_SHARE) {
+                    if (!expShareEnabled && eqp == HOLD_EFFECT_EXP_SHARE) {
                         monCountFromItem++;
                     }
                 }
@@ -1659,7 +1685,13 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
         // multiply by 255/390 (map audino to 255) to not get massively inflated experience rates
         totalexp = 255 * GetSpeciesBaseExp(sp->battlemon[sp->fainting_client].species, sp->battlemon[sp->fainting_client].form_no) / 390; // PokePersonalParaGet(sp->battlemon[sp->fainting_client].species, PERSONAL_EXP_YIELD);
         totalexp = (totalexp * sp->battlemon[sp->fainting_client].level) / 7;
-        if (monCountFromItem) {
+        if (expShareEnabled) {
+            sp->obtained_exp = totalexp;
+            sp->exp_share_obtained_exp = totalexp / 2;
+            if (sp->exp_share_obtained_exp == 0) {
+                sp->exp_share_obtained_exp = 1;
+            }
+        } else if (monCountFromItem) {
             sp->obtained_exp = (totalexp / 2) / monCount;
             if (sp->obtained_exp == 0) {
                 sp->obtained_exp = 1;
@@ -1720,6 +1752,7 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
     BOOL ret = FALSE;
     u32 original_work_params[NELEMS(store_work_params)];
     struct EXP_CALCULATOR *expcalc = work;
+    BOOL expShareEnabled = CheckScriptFlag(FLAG_EXP_SHARE_ENABLED);
 
     if (BattleTypeGet(expcalc->bw) & BATTLE_TYPE_NO_EXPERIENCE) {
         return TRUE;
@@ -1757,7 +1790,9 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
                 item = GetMonData(pp, MON_DATA_HELD_ITEM, NULL);
                 eqp = GetItemData(item, ITEM_PARAM_HOLD_EFFECT, 5);
 
-                if ((eqp == HOLD_EFFECT_EXP_SHARE) || (expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1] & No2Bit(sel_mons_no))) {
+                if ((expShareEnabled && GetMonData(pp, MON_DATA_SPECIES, NULL) && GetMonData(pp, MON_DATA_HP, NULL))
+                    || (eqp == HOLD_EFFECT_EXP_SHARE)
+                    || (expcalc->sp->obtained_exp_right_flag[(expcalc->sp->fainting_client >> 1) & 1] & No2Bit(sel_mons_no))) {
                     expcalc->work[6] = sel_mons_no;
                     trackPartyExperience |= No2Bit(sel_mons_no);
                     break;
@@ -2437,9 +2472,9 @@ BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, client_no);
 
-    if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE 
-        && sp->battlemon[client_no].ability != ABILITY_EELEVATE
-        && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
+    if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE
+            && sp->battlemon[client_no].ability != ABILITY_EELEVATE
+            && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
             && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, client_no, TYPE_FLYING))
         || (holdeffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED // holding Iron Ball
             || (sp->battlemon[client_no].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) // is Ingrained
@@ -5464,7 +5499,7 @@ BOOL BtlCmd_Transform(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-	HandleTransform(ctx);
+    HandleTransform(ctx);
 
     return FALSE;
 }
@@ -5489,12 +5524,12 @@ BOOL btl_scr_cmd_122_GoBackToBeforeMove(void *bsys UNUSED, struct BattleStruct *
     // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_DIRECT
     ctx->add_status_flag_indirect = 0;
     // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
-ctx->add_status_flag_direct = 0;
+    ctx->add_status_flag_direct = 0;
 
-ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
-ctx->server_seq_no = CONTROLLER_COMMAND_23;
+    ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
+    ctx->server_seq_no = CONTROLLER_COMMAND_23;
 
-return FALSE;
+    return FALSE;
 }
 
 BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx)
@@ -5532,8 +5567,7 @@ BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx)
                        ctx->battlemon[battlerId].movePPCur[moveIndex]--;
                    }
                    */
-                    if (ctx->pursuitContext.isActive == FALSE)
-                    {
+                    if (ctx->pursuitContext.isActive == FALSE) {
                         ctx->pursuitContext.originalAttacker = ctx->attack_client;
                         ctx->pursuitContext.originalDefender = ctx->defence_client;
                     }
@@ -5576,22 +5610,22 @@ BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx)
 }
 
 u16 TotemSpecies[][STAT_MAX] = // Species, stat stage increases
-{
-    { SPECIES_RATICATE_ALOLAN_LARGE, 0, 1, 0, 0, 0, 0, 0 },  // +1 Defense
-    { SPECIES_MAROWAK_ALOLAN_LARGE,  0, 0, 2, 0, 0, 0, 0 },  // +2 Speed
-    { SPECIES_GUMSHOOS_LARGE,        0, 1, 0, 0, 0, 0, 0 },  // +1 Defense
-    { SPECIES_VIKAVOLT_LARGE,        1, 1, 1, 1, 1, 0, 0 },  // +1 Omni-boost
-    { SPECIES_RIBOMBEE_LARGE,        2, 2, 2, 2, 2, 0, 0 },  // +2 Omni-boost
-    { SPECIES_ARAQUANID_LARGE,       0, 0, 1, 0, 0, 0, 0 },  // +1 Speed
-    { SPECIES_LURANTIS_LARGE,        0, 0, 2, 0, 0, 0, 0 },  // +2 Speed
-    { SPECIES_SALAZZLE_LARGE,        0, 0, 0, 0, 1, 0, 0 },  // +1 Special Defense
-    { SPECIES_TOGEDEMARU_LARGE,      0, 2, 0, 0, 0, 0, 0 },  // +2 Defense
-    { SPECIES_MIMIKYU_LARGE,         1, 1, 1, 1, 1, 0, 0 },  // +1 Omni-boost
-    { SPECIES_MIMIKYU_BUSTED_LARGE,  0, 0, 0, 0, 0, 0, 0 },
-    { SPECIES_KOMMO_O_LARGE,         1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
-    // Add your Totem species here.
-    // Don't bother making a custom form unless you plan for it to be caught.
-};
+    {
+        { SPECIES_RATICATE_ALOLAN_LARGE, 0, 1, 0, 0, 0, 0, 0 }, // +1 Defense
+        { SPECIES_MAROWAK_ALOLAN_LARGE, 0, 0, 2, 0, 0, 0, 0 }, // +2 Speed
+        { SPECIES_GUMSHOOS_LARGE, 0, 1, 0, 0, 0, 0, 0 }, // +1 Defense
+        { SPECIES_VIKAVOLT_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
+        { SPECIES_RIBOMBEE_LARGE, 2, 2, 2, 2, 2, 0, 0 }, // +2 Omni-boost
+        { SPECIES_ARAQUANID_LARGE, 0, 0, 1, 0, 0, 0, 0 }, // +1 Speed
+        { SPECIES_LURANTIS_LARGE, 0, 0, 2, 0, 0, 0, 0 }, // +2 Speed
+        { SPECIES_SALAZZLE_LARGE, 0, 0, 0, 0, 1, 0, 0 }, // +1 Special Defense
+        { SPECIES_TOGEDEMARU_LARGE, 0, 2, 0, 0, 0, 0, 0 }, // +2 Defense
+        { SPECIES_MIMIKYU_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
+        { SPECIES_MIMIKYU_BUSTED_LARGE, 0, 0, 0, 0, 0, 0, 0 },
+        { SPECIES_KOMMO_O_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
+        // Add your Totem species here.
+        // Don't bother making a custom form unless you plan for it to be caught.
+    };
 
 BOOL btl_scr_cmd_123_MakeTotem(void *bsys UNUSED, struct BattleStruct *ctx)
 {
@@ -5602,19 +5636,16 @@ BOOL btl_scr_cmd_123_MakeTotem(void *bsys UNUSED, struct BattleStruct *ctx)
     // Grab totem ID.
     u32 totemID;
     u32 adjustedSpecies = PokeOtherFormMonsNoGet(ctx->battlemon[battlerID].species, ctx->battlemon[battlerID].form_no);
-    for (totemID = 0; totemID < NELEMS(TotemSpecies); totemID++)
-    {
-        if (adjustedSpecies == TotemSpecies[totemID][0])
-        {
+    for (totemID = 0; totemID < NELEMS(TotemSpecies); totemID++) {
+        if (adjustedSpecies == TotemSpecies[totemID][0]) {
             break;
         }
     }
     // no weight increase because each form has its own weight + wishiwashi doesn't gain weight anyway
     // ctx->battlemon[battlerID].weight *= 2;
 
-    // if not defined in above table, should skip playing stat animation because it can not be found  
-    if (totemID == NELEMS(TotemSpecies))
-    {
+    // if not defined in above table, should skip playing stat animation because it can not be found
+    if (totemID == NELEMS(TotemSpecies)) {
         IncrementBattleScriptPtr(ctx, failAddr);
         return FALSE;
     }
@@ -5623,25 +5654,20 @@ BOOL btl_scr_cmd_123_MakeTotem(void *bsys UNUSED, struct BattleStruct *ctx)
     u8 totalStatBoosts = 0;
     u8 raisedStat = 0;
     u8 stat;
-    for (stat = STAT_ATTACK; stat < STAT_MAX; stat++)
-    {
-        if (TotemSpecies[totemID][stat] > 0)
-        {
+    for (stat = STAT_ATTACK; stat < STAT_MAX; stat++) {
+        if (TotemSpecies[totemID][stat] > 0) {
             ctx->battlemon[battlerID].states[stat] += TotemSpecies[totemID][stat];
             raisedStat = stat;
             totalStatBoosts++;
         }
     }
 
-    if (totalStatBoosts == 1)
-    {
+    if (totalStatBoosts == 1) {
         ctx->mp.id = BATTLE_MSG_TOTEM_AURA_SINGLE_STAT; // {0}’s aura flared to life! Its {1} rose!
         ctx->mp.tag = TAG_NICKNAME_STAT;
         ctx->mp.param[0] = CreateNicknameTag(ctx, battlerID);
         ctx->mp.param[1] = raisedStat;
-    }
-    else if (totalStatBoosts > 1)
-    {
+    } else if (totalStatBoosts > 1) {
         ctx->mp.id = BATTLE_MSG_TOTEM_AURA_MULTI_STAT; // {0}’s aura flared to life! Its stats rose!
         ctx->mp.tag = TAG_NICKNAME;
         ctx->mp.param[0] = CreateNicknameTag(ctx, battlerID);
@@ -5723,15 +5749,14 @@ BOOL BtlCmd_MagicCoat(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx
     return FALSE;
 }
 
-BOOL BtlCmd_TryFeint(struct BattleSystem* bsys UNUSED, struct BattleStruct* ctx)
+BOOL BtlCmd_TryFeint(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
     int adrs = read_battle_script_param(ctx);
     int ally = BATTLER_ALLY(ctx->defence_client);
 
-    if (ctx->oneTurnFlag[ctx->defence_client].protectFlag)
-    {
+    if (ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
         ctx->oneTurnFlag[ctx->defence_client].protectFlag = FALSE;
 
         if (ctx->oneTurnFlag[ctx->defence_client].gainedProtectFlagFromAlly) {
@@ -5753,8 +5778,7 @@ BOOL BtlCmd_TryFeint(struct BattleSystem* bsys UNUSED, struct BattleStruct* ctx)
         case MOVE_WIDE_GUARD:
         case MOVE_MAT_BLOCK:
         case MOVE_CRAFTY_SHIELD:
-            if (ctx->oneTurnFlag[BATTLER_ALLY(ctx->defence_client)].gainedProtectFlagFromAlly)
-            {
+            if (ctx->oneTurnFlag[BATTLER_ALLY(ctx->defence_client)].gainedProtectFlagFromAlly) {
                 ctx->oneTurnFlag[BATTLER_ALLY(ctx->defence_client)].gainedProtectFlagFromAlly = FALSE;
                 ctx->oneTurnFlag[BATTLER_ALLY(ctx->defence_client)].protectFlag = FALSE;
             }
@@ -5767,7 +5791,6 @@ BOOL BtlCmd_TryFeint(struct BattleSystem* bsys UNUSED, struct BattleStruct* ctx)
     }
     return FALSE;
 }
-
 
 BOOL BtlCmd_TryPerishSong(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
@@ -5782,14 +5805,13 @@ BOOL BtlCmd_TryPerishSong(struct BattleSystem *bsys, struct BattleStruct *ctx)
 
     for (int battlerId = 0; battlerId < maxBattlers; battlerId++) {
         if (ctx->battlemon[battlerId].effect_of_moves & MOVE_EFFECT_FLAG_PERISH_SONG_ACTIVE
-            || ctx->battlemon[battlerId].hp == 0 
+            || ctx->battlemon[battlerId].hp == 0
             || (ctx->addeffect_type != ADD_EFFECT_ABILITY && MoldBreakerAbilityCheck(ctx, ctx->attack_client, battlerId, ABILITY_SOUNDPROOF) == TRUE)) {
             cnt++;
         } else {
             if (ctx->addeffect_type == ADD_EFFECT_ABILITY
                 && battlerId != ctx->attack_client
-                && battlerId != ctx->defence_client)
-            {
+                && battlerId != ctx->defence_client) {
                 continue;
             }
             ctx->battlemon[battlerId].effect_of_moves |= MOVE_EFFECT_FLAG_PERISH_SONG_ACTIVE;

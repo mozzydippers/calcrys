@@ -4,6 +4,7 @@
 #include "script.h"
 #include "task.h"
 #include "types.h"
+#include "window.h"
 
 /*
  * Bit array describing the effects of using the item on a
@@ -117,6 +118,13 @@ struct ItemMenuUseData {
     TaskManager *taskManager;
     u16 itemId;
     u8 unk6;
+};
+
+struct RegisteredKeyItemUseMessagePrintTaskData {
+    struct Window window;
+    String *strbuf;
+    u16 printerId;
+    u16 state;
 };
 
 struct BagViewAppWork {
