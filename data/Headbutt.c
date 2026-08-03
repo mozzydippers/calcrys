@@ -6722,7 +6722,7 @@ const HeadbuttArchiveData __data =
             { SPECIES_PANSEAR, 23, 25 },
             { SPECIES_PANPOUR, 23, 25 },
             { SPECIES_VENONAT, 23, 25 },
-            { 2148, 23, 25 },
+            { MON_WITH_FORM(SPECIES_VOLTORB, 1), 23, 25 },
         },
         .specialSlots =
         {

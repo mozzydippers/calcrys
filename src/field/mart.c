@@ -55,11 +55,7 @@ u16 sAzaleaCityMart[] = {
 };
 
 u16 sGoldenrodDepartmentUpper2F[] = { // your travel companion
-    ITEM_FIRE_STONE, ITEM_THUNDER_STONE, ITEM_WATER_STONE, ITEM_LEAF_STONE, 
-    ITEM_MOON_STONE, ITEM_SUN_STONE,
-    ITEM_SHINY_STONE, ITEM_DUSK_STONE,
-    ITEM_ICE_STONE,
-    0xFFFF
+    ITEM_FIRE_STONE, ITEM_THUNDER_STONE, ITEM_WATER_STONE, ITEM_LEAF_STONE, ITEM_MOON_STONE, ITEM_SUN_STONE, 0xFFFF
 };
 
 u16 sGoldenrodDepartmentLower2F[] = { // your travel companion
@@ -87,9 +83,9 @@ u16 sGoldenrodDepartment4F[] = { // let us pump up your pokémon
 };
 
 u16 sGoldenrodDepartment5F[] = { // customize your pokémon
-    ITEM_TM070, ITEM_TM017, ITEM_TM054, ITEM_TM083, ITEM_TM016,
-    ITEM_TM033, ITEM_TM022, ITEM_TM052, ITEM_TM038, ITEM_TM025,
-    ITEM_TM014, ITEM_TM015, 0xFFFF
+    ITEM_TM015, ITEM_TM038, ITEM_TM142, ITEM_TM022, ITEM_TM025, ITEM_TM052, 
+    ITEM_TM054, ITEM_TM083, ITEM_TM144, ITEM_TM145, ITEM_TM146, ITEM_TM131, 
+    0xFFFF
 };
 
 u16 sGoldenrodHerbs[] = {

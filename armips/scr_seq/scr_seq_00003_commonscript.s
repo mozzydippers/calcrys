@@ -24,7 +24,7 @@ scrdef scr_seq_0003_006
 scrdef scr_seq_0003_007
 scrdef scr_seq_0003_008
 scrdef scr_seq_0003_009
-scrdef scr_seq_0003_010
+scrdef scr_seq_0003_010 // pc
 scrdef scr_seq_0003_011
 scrdef scr_seq_0003_012
 scrdef scr_seq_0003_013
@@ -762,8 +762,15 @@ scr_seq_0003_010:
     play_se SEQ_SE_DP_PC_ON
     call _0A18
     buffer_players_name 0
+    goto_if_set 0x18F, _boxlinkmessage
     npc_msg 33
     touchscreen_menu_hide
+    goto _0A2E
+
+_boxlinkmessage:
+    npc_msg 122
+    touchscreen_menu_hide
+    goto_if_set 0x18F, _boxlinkwwyltd
     goto _0A2E
 
 _0A18:
@@ -780,9 +787,14 @@ _0A23:
     scrcmd_309 90
     return
 
+_boxlinkwwyltd:
+    buffer_players_name 0
+    npc_msg 123
+    goto _menuinit
 _0A2E:
     buffer_players_name 0
     npc_msg 34
+_menuinit:
     menu_init_std_gmm 1, 1, 0, 1, VAR_SPECIAL_x8006
     call_if_unset FLAG_SYS_MET_BILL, _0A78
     call_if_set FLAG_SYS_MET_BILL, _0A82
@@ -801,6 +813,7 @@ _0A82:
 
 _0A8C:
     menu_item_add 64, 255, 2
+    goto_if_set 0x18F, _healpartybutton
     menu_item_add 66, 255, 3
     menu_exec
     switch VAR_SPECIAL_x8006
@@ -809,7 +822,45 @@ _0A8C:
     case 2, _0DBA
     goto _0DF0
 
+_healpartybutton:
+    menu_item_add 477, 255, 3
+    menu_item_add 66, 255, 4
+    menu_exec
+    switch VAR_SPECIAL_x8006
+    case 0, _0B01
+    case 1, _0C23
+    case 2, _0DBA
+    case 3, _healpokemon
+    goto _0DF0
+
+_healpokemon:
+    closemsg
+    play_fanfare SEQ_ME_ASA
+	wait_fanfare
+    GetFirstAlivePokemonSlot VAR_TEMP_x4000
+    heal_party
+    npc_msg 45
+    wait_button_or_walk_away
+    compare VAR_TEMP_x4000, 0
+    goto_if_ne _resetfollower 
+    goto _0DF0
+
+_resetfollower:
+    wait 15, VAR_SPECIAL_x800A
+    fade_screen 6, 1, 0, RGB_BLACK
+    wait_fade
+    closemsg
+    scrcmd_436
+    scrcmd_150
+    fade_screen 6, 1, 1, RGB_BLACK
+    wait_fade
+    get_party_lead_alive VAR_SPECIAL_x8009
+    bufferpartymonnick 0, VAR_SPECIAL_x8009
+    npc_msg 102
+    goto _0DF0
+
 _0AD1:
+    goto_if_set 0x18F, _healpartybutton
     menu_item_add 66, 255, 2
     menu_exec
     switch VAR_SPECIAL_x8006

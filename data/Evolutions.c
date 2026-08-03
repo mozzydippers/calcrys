@@ -2341,7 +2341,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_CYNDAQUIL] = {
         .entries = {
-            { EVO_LEVEL, 16, SPECIES_QUILAVA },
+            { EVO_LEVEL, 14, SPECIES_QUILAVA },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -2356,8 +2356,8 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_QUILAVA] = {
         .entries = {
-            { EVO_LEVEL, 36, SPECIES_TYPHLOSION },
-            { EVO_LEVEL_NIGHT, 36, MON_WITH_FORM(SPECIES_TYPHLOSION, 1) },
+            { EVO_LEVEL_NIGHT, 30, MON_WITH_FORM(SPECIES_TYPHLOSION, 1) },
+            { EVO_LEVEL, 30, SPECIES_TYPHLOSION },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -21297,6 +21297,776 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
             { EVO_NONE, 0, SPECIES_NONE },
         },
         .terminator = 0,
+    },
+
+    [SPECIES_GIGANTAMAX_CENTISKORCH] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_HATTERENE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_GRIMMSNARL] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_ALCREMIE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_COPPERAJAH] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_DURALUDON] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_URSHIFU] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_GIGANTAMAX_URSHIFU_RAPID_STRIKE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_RAICHU_X] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_RAICHU_Y] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_CLEFABLE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_VICTREEBEL] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_STARMIE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_DRAGONITE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MEGANIUM] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_FERALIGATR] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_SKARMORY] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_CHIMECHO] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_ABSOL_Z] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_STARAPTOR] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_GARCHOMP_Z] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_LUCARIO_Z] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_FROSLASS] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_HEATRAN] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_DARKRAI] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_EMBOAR] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_EXCADRILL] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_SCOLIPEDE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_SCRAFTY] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_EELEKTROSS] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_CHANDELURE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_GOLURK] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_CHESNAUGHT] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_DELPHOX] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_GRENINJA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_PYROAR] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_FLOETTE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MEOWSTIC] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MEOWSTIC_FEMALE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MALAMAR] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_BARBARACLE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_DRAGALGE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_HAWLUCHA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_ZYGARDE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_CRABOMINABLE] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_GOLISOPOD] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_DRAMPA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MAGEARNA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_MAGEARNA_ORIGINAL] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_ZERAORA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_FALINKS] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_SCOVILLAIN] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_GLIMMORA] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_TATSUGIRI] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
+    },
+
+    [SPECIES_MEGA_TATSUGIRI_DROOPY] = {
+        .entries = {
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+            { EVO_NONE, 0, SPECIES_NONE },
+        },
     },
 
 };

@@ -35,7 +35,7 @@ Too bad!\nThe Bag is full...
 Which PC should be accessed? {YESNO 0}
 The Pokémon Storage System\nwas accessed.\r
 Accessed {STRVAR_1 3, 0, 0}’s PC.\r
-Oak’s words echoed...\n{STRVAR_1 3, 0, 0}! There’s a time and\fplace for everything! But not now.
+Oak’s words echoed... {STRVAR_1 3, 0, 0}!\nThere’s a time and place for everything!\fBut not now.
 Welcome!\nWhat do you need?
 
 There! All happy and healthy!\nGood luck and take care!
@@ -119,3 +119,6 @@ NOT TELLING
 The repellent’s effect wore off!\nWould you like to use another one?
 You used the {STRVAR_1 8, 1, 0}.
 Begin auto-battle.
+
+{STRVAR_1 3, 0, 0} booted up the Box Link.\r
+What would you like to do? {YESNO 0}

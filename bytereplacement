@@ -533,7 +533,7 @@ arm9 020436DA 28 1C F8 F7 52 F9 80 34 01 1C 20 68 40 68 C0 68
 arm9 02043720 01 20 38 BD
 
 # changing tile behavior flag for snow
-arm9 020FCB15 02
+arm9 020FCB1C 02
 
 # UseItemOnPokemon_hook setup (for cap candy iirc)
 arm9 020902D0 60 B4 C0 46

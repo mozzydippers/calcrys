@@ -21,7 +21,7 @@
     { .tag = NEW_NPC_TAG_START + num, .gfx = NEW_NPC_GFX_START + num, .callback_params = 0 },
 
 // adjust this depending on the amount of new npc's that you have added
-#define MON_OVERWORLD_GFX_START (297)
+#define MON_OVERWORLD_GFX_START (297 + 6)
 
 #define MON_FOLLOWER_ENTRY(species, cbparams) \
     { .tag = MON_OVERWORLD_TAG_START + species, .gfx = MON_OVERWORLD_GFX_START + species, .callback_params = cbparams },
@@ -366,6 +366,23 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
         { .tag = 1047, .gfx = MON_OVERWORLD_GFX_START + SPECIES_MEGANIUM, .callback_params = OVERWORLD_SIZE_SMALL },
         { .tag = 1048, .gfx = MON_OVERWORLD_GFX_START + SPECIES_TYPHLOSION, .callback_params = OVERWORLD_SIZE_SMALL },
         { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
+
+        { .tag = NEW_NPC_TAG_START, .gfx = NEW_NPC_GFX_START, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 1, .gfx = MON_OVERWORLD_GFX_START + SPECIES_CELEBI, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 2, .gfx = NEW_NPC_GFX_START + 2, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 3, .gfx = NEW_NPC_GFX_START + 3, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 4, .gfx = NEW_NPC_GFX_START + 4, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 5, .gfx = MON_OVERWORLD_GFX_START + SPECIES_AZUMARILL, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 6, .gfx = MON_OVERWORLD_GFX_START + SPECIES_ARCANINE_HISUIAN, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 7, .gfx = NEW_NPC_GFX_START + 5, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 8, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FLAAFFY, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 9, .gfx = NEW_NPC_GFX_START + 6, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 10, .gfx = MON_OVERWORLD_GFX_START + SPECIES_GARCHOMP, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 11, .gfx = MON_OVERWORLD_GFX_START + SPECIES_NIDOKING, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 12, .gfx = MON_OVERWORLD_GFX_START + SPECIES_GYARADOS, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 13, .gfx = MON_OVERWORLD_GFX_START + SPECIES_SENTRET, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 14, .gfx = MON_OVERWORLD_GFX_START + SPECIES_HOOTHOOT, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 15, .gfx = MON_OVERWORLD_GFX_START + SPECIES_NOCTOWL, .callback_params = OVERWORLD_SIZE_SMALL },
 
         // pokémon follower specific overworlds start here... left off on gfx 1451 - galarian stunfisk which was inserted after all the others
 

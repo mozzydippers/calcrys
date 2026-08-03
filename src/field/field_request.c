@@ -74,7 +74,18 @@ void CheckOverworldRequestFlags(OVERWORLD_REQUEST_FLAGS *req, FieldSystem *fsys)
     // Don't allow the PC at all if flag 2565 hasn't been set
     if (req->OpenPCCheck && CheckScriptFlag(2564)) 
     {
-        if (CheckScriptFlag(2565)) 
+        u32 location = fsys->location->mapId;
+        if ((CheckScriptFlag(2565)) || 
+            (
+            // azalea gym
+            location == 136 || location == 180
+            // goldenrod radio tower peak
+            || location == 190
+            // victory road
+            || location == 124 || location == 178 || location == 179
+            // league
+            || (location >= 301 && location <= 306)
+            ))
         {
             EventSet_Script(fsys, 2075, NULL); // set up script
         } 
