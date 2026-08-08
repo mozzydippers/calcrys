@@ -1,17 +1,17 @@
-#include "../../include/battle.h"
-#include "../../include/config.h"
-#include "../../include/constants/ability.h"
-#include "../../include/constants/file.h"
-#include "../../include/constants/hold_item_effects.h"
-#include "../../include/constants/item.h"
-#include "../../include/constants/move_effects.h"
-#include "../../include/constants/moves.h"
-#include "../../include/constants/species.h"
-#include "../../include/debug.h"
-#include "../../include/overlay.h"
-#include "../../include/pokemon.h"
-#include "../../include/q412.h"
-#include "../../include/types.h"
+#include "battle.h"
+#include "config.h"
+#include "constants/ability.h"
+#include "constants/file.h"
+#include "constants/hold_item_effects.h"
+#include "constants/item.h"
+#include "constants/move_effects.h"
+#include "constants/moves.h"
+#include "constants/species.h"
+#include "debug.h"
+#include "overlay.h"
+#include "pokemon.h"
+#include "q412.h"
+#include "types.h"
 
 // int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond UNUSED,u32 field_cond, u16 pow UNUSED, u8 type UNUSED, u8 attacker, u8 defender, u8 critical) {
 int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *sp, struct DamageCalcStruct *damageCalc)
@@ -269,7 +269,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
     case MOVE_GUST:
     case MOVE_TWISTER:
         // TODO: handle charging turn of Sky Drop
-        if (DefendingMon.effectOfMoves & MOVE_EFFECT_FLAG_FLYING_IN_AIR) {
+        if (DefendingMon.effectOfMoves & MOVE_EFFECT_FLAG_FLY) {
             movepower *= 2;
         }
         break;
@@ -305,7 +305,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         break;
     case MOVE_WEATHER_BALL:
         if ((weather & FIELD_CONDITION_WEATHER)
-            && !(weather & (WEATHER_STRONG_WINDS | WEATHER_SNOW_ANY))) {
+            && !(weather & (FIELD_CONDITION_STRONG_WINDS | FIELD_CONDITION_SNOW_ALL))) {
             movepower *= 2;
         }
         break;
@@ -475,7 +475,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         break;
     case MOVE_GRAV_APPLE:
         // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-8870357
-        if (field_cond & FIELD_STATUS_GRAVITY) {
+        if (field_cond & FIELD_CONDITION_GRAVITY) {
             basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_5);
         }
         break;
@@ -527,7 +527,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
 
     // Field effects (weather conditions, Terrains, Imprison, Ion Deluge, Magic Room, Gravity, etc.):
 
-    if ((weather & (FIELD_STATUS_FOG | WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY | WEATHER_SNOW_ANY))
+    if ((weather & (FIELD_CONDITION_FOG | FIELD_CONDITION_HAIL_ALL | FIELD_CONDITION_SANDSTORM_ALL | FIELD_CONDITION_RAIN_ALL | FIELD_CONDITION_SNOW_ALL))
         && (moveno == MOVE_SOLAR_BEAM || moveno == MOVE_SOLAR_BLADE)) {
         basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__0_5);
     }
@@ -715,7 +715,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
 
             // Sand Force boosts damage in sand for certain move types
             if ((AttackingMon.ability == ABILITY_SAND_FORCE)
-                && (weather & WEATHER_SANDSTORM_ANY)
+                && (weather & FIELD_CONDITION_SANDSTORM_ALL)
                 && (movetype == TYPE_GROUND || movetype == TYPE_ROCK || movetype == TYPE_STEEL)) {
                 basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_3);
                 continue;
@@ -1088,14 +1088,14 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             }
 
             // handle weather boosts
-            if ((weather & WEATHER_SUNNY_ANY)
+            if ((weather & FIELD_CONDITION_SUN_ALL)
                 && (AttackingMon.ability == ABILITY_SOLAR_POWER)
                 && (movesplit == SPLIT_SPECIAL)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_5);
             }
             // calcrys custom, boosts both
             if ((!flowerGiftAppliedForAttackModifier)
-                && (weather & WEATHER_SUNNY_ANY)
+                && (weather & FIELD_CONDITION_SUN_ALL)
                 && (AttackingMon.ability == ABILITY_FLOWER_GIFT)
                 /* && (movesplit == SPLIT_PHYSICAL) */ ) {
                 flowerGiftAppliedForAttackModifier = TRUE;
@@ -1104,7 +1104,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Orichalcum Pulse
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((AttackingMon.ability == ABILITY_ORICHALCUM_PULSE)
-                && (weather & WEATHER_SUNNY_ANY)
+                && (weather & FIELD_CONDITION_SUN_ALL)
                 // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9426805
                 // TODO: For Orichalcum Pulse itself - still shows "sending its ancient pulse into a frenzy!" message even with Utility Umbrella disabling the attack boost.
                 && !(AttackingMon.item_held_effect == HOLD_EFFECT_UNAFFECTED_BY_RAIN_OR_SUN)
@@ -1194,7 +1194,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Protosynthesis and Quark Drive
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((AttackingMon.ability == ABILITY_PROTOSYNTHESIS || AttackingMon.ability == ABILITY_QUARK_DRIVE)
-                && ((movesplit == SPLIT_PHYSICAL && AttackingMon.paradoxBoostedStat == STAT_ATTACK) || (movesplit == SPLIT_SPECIAL && AttackingMon.paradoxBoostedStat == STAT_SPATK))) {
+                && ((movesplit == SPLIT_PHYSICAL && AttackingMon.paradoxBoostedStat == STAT_ATTACK) || (movesplit == SPLIT_SPECIAL && AttackingMon.paradoxBoostedStat == STAT_SPECIAL_ATTACK))) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_3);
             }
 
@@ -1218,7 +1218,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle weather boosts
             // calcrys custom, boosts both
             if ((!flowerGiftAppliedForAttackModifier)
-                && (weather & WEATHER_SUNNY_ANY)
+                && (weather & FIELD_CONDITION_SUN_ALL)
                 && (AttackingMonAlly.ability == ABILITY_FLOWER_GIFT)
                 /* && (movesplit == SPLIT_PHYSICAL) */) {
                 flowerGiftAppliedForAttackModifier = TRUE;
@@ -1278,7 +1278,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             if ((AttackingMon.item_held_effect == HOLD_EFFECT_CLAMPERL_SPATK)
                 && (AttackingMon.species == SPECIES_CLAMPERL)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
-                && !(AttackingMon.condition2 & STATUS2_TRANSFORMED)
+                && !(AttackingMon.condition2 & STATUS2_TRANSFORM)
                 && (movesplit == SPLIT_SPECIAL)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__2_0);
             }
@@ -1287,7 +1287,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             if ((AttackingMon.item_held_effect == HOLD_EFFECT_PIKA_SPATK_UP)
                 && (AttackingMon.species == SPECIES_PIKACHU)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
-                && !(AttackingMon.condition2 & STATUS2_TRANSFORMED)) {
+                && !(AttackingMon.condition2 & STATUS2_TRANSFORM)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__2_0);
             }
         }
@@ -1418,11 +1418,11 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
 #endif
 
     // Step 4.7. Sandstorm + Rock-type
-    if ((weather & WEATHER_SANDSTORM_ANY)
+    if ((weather & FIELD_CONDITION_SANDSTORM_ALL)
         && HasType(sp, defender, TYPE_ROCK)) {
         sp_defense = QMul_RoundDown(sp_defense, UQ412__1_5);
     }
-    if ((weather & WEATHER_SNOW_ANY)
+    if ((weather & FIELD_CONDITION_SNOW_ALL)
         && HasType(sp, defender, TYPE_ICE)) {
         defense = QMul_RoundDown(defense, UQ412__1_5);
     }
@@ -1455,7 +1455,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // calcrys custom, no longer boosts def
             // handle weather boosts
             /* if ((!flowerGiftAppliedForDefenseModifier)
-                && (weather & WEATHER_SUNNY_ANY)
+                && (weather & FIELD_CONDITION_SUN_ALL)
                 && (MoldBreakerAbilityCheck(sp, attack, defender, ABILITY_FLOWER_GIFT))
                 && (movesplit == SPLIT_SPECIAL)) {
                 flowerGiftAppliedForDefenseModifier = TRUE;
@@ -1485,7 +1485,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             // handle Protosynthesis and Quark Drive
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-20#post-9423025
             if ((DefendingMon.ability == ABILITY_PROTOSYNTHESIS || DefendingMon.ability == ABILITY_QUARK_DRIVE)
-                && ((movesplit == SPLIT_PHYSICAL && DefendingMon.paradoxBoostedStat == STAT_DEFENSE) || (movesplit == SPLIT_SPECIAL && DefendingMon.paradoxBoostedStat == STAT_SPDEF))) {
+                && ((movesplit == SPLIT_PHYSICAL && DefendingMon.paradoxBoostedStat == STAT_DEFENSE) || (movesplit == SPLIT_SPECIAL && DefendingMon.paradoxBoostedStat == STAT_SPECIAL_DEFENSE))) {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__1_3);
             }
         }
@@ -1494,7 +1494,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
         /* if (BATTLER_ALLY(defender) == sp->rawSpeedNonRNGClientOrder[i]) {
             // handle weather boosts
             if ((!flowerGiftAppliedForDefenseModifier)
-                && (weather & WEATHER_SUNNY_ANY)
+                && (weather & FIELD_CONDITION_SUN_ALL)
                 && (MoldBreakerAbilityCheck(sp, attacker, BATTLER_ALLY(defender), ABILITY_FLOWER_GIFT))
                 && (movesplit == SPLIT_SPECIAL)) {
                 flowerGiftAppliedForDefenseModifier = TRUE;
@@ -1533,7 +1533,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             if ((DefendingMon.item_held_effect == HOLD_EFFECT_CLAMPERL_SPDEF)
                 && (DefendingMon.species == SPECIES_CLAMPERL)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
-                && !(AttackingMon.condition2 & STATUS2_TRANSFORMED)
+                && !(AttackingMon.condition2 & STATUS2_TRANSFORM)
                 && (movesplit == SPLIT_SPECIAL)) {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
@@ -1542,8 +1542,8 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
             if ((DefendingMon.item_held_effect == HOLD_EFFECT_DITTO_DEF_UP)
                 && (DefendingMon.species == SPECIES_DITTO)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
-                /* && !(AttackingMon.condition2 & STATUS2_TRANSFORMED) */ 
-                /* && (movesplit == SPLIT_PHYSICAL) */) {
+                /* && !(AttackingMon.condition2 & STATUS2_TRANSFORM)
+                && (movesplit == SPLIT_PHYSICAL))*/  {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
         }
