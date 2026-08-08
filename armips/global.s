@@ -22,7 +22,6 @@
 .include "armips/asm/no_partner_double_battles.s" // allows no partner double battles
 
 // custom
-.include "armips/asm/custom/encounter_rates.s"
 .include "armips/asm/custom/remove_obedience_check.s"
 .include "armips/asm/custom/smashable_rock_items.s"
 .include "armips/asm/custom/title_screen_cry.s"
