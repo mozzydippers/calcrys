@@ -527,6 +527,7 @@
 #define SUB_SEQ_TERA_RAID_NULLIFY_STAT_CHANGES         (518)
 #define SUB_SEQ_OVERWORLD_THUNDERSTORM                 (519)
 #define SUB_SEQ_OVERWORLD_SNOW                         (520)
+#define SUB_SEQ_STANCE_CHANGE                          (521)
 
 #define MAX_BASE_SUBSCRIPT_NUM 520
 
