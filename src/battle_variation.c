@@ -42,6 +42,7 @@ struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct Ba
     }
 
     RecalcPartyPokemonStats(mon);
+    ResetPartyPokemonAbility(mon);
 
     GameStats_Inc(Save_GameStats_Get(fieldSystem->savedata), 8);
 
