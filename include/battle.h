@@ -4244,6 +4244,7 @@ BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type);
 BOOL LONG_CALL AbilityCantSupress(int ability);
 
 void LONG_CALL BattleMessage_BufferNickname(struct BattleSystem *bsys, int bufferIndex, int param);
+void LONG_CALL BattleMessage_BufferNicknameDoNotConsiderPrefix(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferMove(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferItem(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferNumber(struct BattleSystem *bsys, int bufferIndex, int param);

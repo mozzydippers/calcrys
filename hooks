@@ -649,6 +649,8 @@ arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 
 0012 BattleControllerPlayer_PokemonAppear 022487C8
 
+0012 BattleSystem_AdjustMessageForSide 0223C558 2
+
 # Raid hooks
 0007 ov07_0221D874_RaidAddPokemonSpriteScale 0221D97A 3
 0007 ov07_0221FB90_RaidCloneScale 0221FD54 2

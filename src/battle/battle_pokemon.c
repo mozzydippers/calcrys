@@ -458,7 +458,7 @@ int MessageParam_GetNickname(struct BattleSystem *bw, struct BattleStruct *sp, i
     return ret;
 }
 
-void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferIndex, int param) {
+void BattleMessage_BufferNicknameDoNotConsiderPrefix(struct BattleSystem *battleSystem, int bufferIndex, int param) {
     int partyIndex = (param & 0xFF00) >> 8;
     int client = param & 0xFF;
     struct Party *party = BattleWorkPokePartyGet(battleSystem, client);
@@ -469,6 +469,11 @@ void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferI
         mon = Party_GetMonByIndex(party, Party_GetIllusionImitatedIndex(party, ctx->sel_mons_no[client]));
     }
     BufferBoxMonNickname(battleSystem->msgFormat, bufferIndex, &mon->box);
+}
+
+void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferIndex, int param) {
+    int client = param & 0xFF;
+    BattleMessage_BufferNicknameDoNotConsiderPrefix(battleSystem, bufferIndex, param);
     // yes i am currently restricting totems to be client 1, whatever
     if ((battleSystem->battleSpecial & BATTLE_SPECIAL_TOTEM) && client == 1) {
         String *name = battleSystem->msgFormat->fields[bufferIndex].msg;
@@ -519,6 +524,143 @@ void BattleSystem_GrabIllusionBoxMonNameForHpBar(struct BattleSystem *battleSyst
         mon = Party_GetMonByIndex(party, Party_GetIllusionImitatedIndex(party, ctx->sel_mons_no[client]));
     }
     BufferBoxMonNickname(msgFormat, 0, &mon->box);
+}
+
+void BattleSystem_AdjustMessageForSide(struct BattleSystem *battleSystem, struct BattleMessage *msg)
+{
+    u32 battleType = BattleTypeGet(battleSystem);
+
+    BOOL battlerIsTotem = ((battleSystem->battleSpecial & BATTLE_SPECIAL_TOTEM) && (msg->param[0] & 0xFF) == 1);
+    BOOL messageNeedsTotemPrefix = battlerIsTotem && !((msg->id == BATTLE_MSG_ABILITY_POPUP) || (msg->id == BATTLE_MSG_CALLED_FOR_HELP));
+
+    // Do not adjust message ID if Totem prefix is needed
+    if (msg->tag & 0x80 || messageNeedsTotemPrefix) {
+        return;
+    }
+
+    if (msg->tag & 0x40) {
+        if (IsClientEnemy(battleSystem, msg->battlerId)) {
+            msg->id++;
+        }
+        return;
+    }
+
+    switch (msg->tag & 0x3F) {
+    case TAG_NONE:
+    case TAG_MOVE:
+    case TAG_STAT:
+    case TAG_ITEM:
+    case TAG_NUMBER:
+    case TAG_NUMBERS:
+    case TAG_TRNAME:
+    case TAG_MOVE_MOVE:
+    case TAG_ITEM_MOVE:
+    case TAG_NUMBER_NUMBER:
+    case TAG_TRNAME_TRNAME:
+    case TAG_TRNAME_NICKNAME:
+    case TAG_TRNAME_ITEM:
+    case TAG_TRNAME_NUM:
+    case TAG_TRCLASS_TRNAME:
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_ITEM:
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
+        break;
+    case TAG_NONE_SIDE:
+        if (IsClientEnemy(battleSystem, msg->param[0] & 0xFF)) {
+            msg->id++;
+        }
+        break;
+    case TAG_NICKNAME:
+    case TAG_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY:
+    case TAG_NICKNAME_STAT:
+    case TAG_NICKNAME_TYPE:
+    case TAG_NICKNAME_POKE:
+    case TAG_NICKNAME_ITEM:
+    case TAG_NICKNAME_POFFIN:
+    case TAG_NICKNAME_NUM:
+    case TAG_NICKNAME_TRNAME:
+    case TAG_NICKNAME_BOX:
+    case TAG_NICKNAME_MOVE_MOVE:
+    case TAG_NICKNAME_MOVE_NUMBER:
+    case TAG_NICKNAME_ABILITY_MOVE:
+    case TAG_NICKNAME_ABILITY_ITEM:
+    case TAG_NICKNAME_ABILITY_STAT:
+    case TAG_NICKNAME_ABILITY_TYPE:
+    case TAG_NICKNAME_ABILITY_STATUS:
+    case TAG_NICKNAME_ABILITY_NUMBER:
+    case TAG_NICKNAME_ITEM_MOVE:
+    case TAG_NICKNAME_ITEM_STAT:
+    case TAG_NICKNAME_ITEM_STATUS:
+    case TAG_NICKNAME_BOX_BOX:
+        if (IsClientEnemy(battleSystem, msg->param[0] & 0xFF)) {
+            msg->id++;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id++;
+            }
+        }
+        break;
+    case TAG_MOVE_SIDE:
+        if (IsClientEnemy(battleSystem, msg->param[1] & 0xFF)) {
+            msg->id++;
+        }
+        break;
+    case TAG_MOVE_NICKNAME:
+    case TAG_ABILITY_NICKNAME:
+    case TAG_ITEM_NICKNAME_FLAVOR:
+        if (IsClientEnemy(battleSystem, msg->param[1] & 0xFF)) {
+            msg->id++;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id++;
+            }
+        }
+        break;
+    case TAG_NICKNAME_NICKNAME:
+    case TAG_NICKNAME_NICKNAME_MOVE:
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+    case TAG_NICKNAME_NICKNAME_ITEM:
+        if (IsClientEnemy(battleSystem, msg->param[0] & 0xFF)) {
+            msg->id += 3;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id += 2;
+            }
+            if (IsClientEnemy(battleSystem, msg->param[1] & 0xFF)) {
+                msg->id++;
+            }
+        } else if (IsClientEnemy(battleSystem, msg->param[1] & 0xFF)) {
+            msg->id++;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id++;
+            }
+        }
+        break;
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+    case TAG_NICKNAME_ITEM_NICKNAME:
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+        if (IsClientEnemy(battleSystem, msg->param[0] & 0xFF)) {
+            msg->id += 3;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id += 2;
+            }
+            if (IsClientEnemy(battleSystem, msg->param[2] & 0xFF)) {
+                msg->id++;
+            }
+        } else if (IsClientEnemy(battleSystem, msg->param[2] & 0xFF)) {
+            msg->id++;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                msg->id++;
+            }
+        }
+        break;
+    }
 }
 
 /**

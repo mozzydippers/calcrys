@@ -5489,8 +5489,7 @@ BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx)
 
     ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleVariationInfo.slot * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
 
-    // Why is it -2???
-    ctx->mp.id = BATTLE_MSG_AURA_FLARED_TO_LIFE_START - 2 + battleData.auraType;
+    ctx->mp.id = BATTLE_MSG_AURA_FLARED_TO_LIFE_START - 1 + battleData.auraType;
     ctx->mp.tag = TAG_NICKNAME;
     ctx->mp.param[0] = CreateNicknameTag(ctx, battlerId);
 

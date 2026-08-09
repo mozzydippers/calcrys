@@ -204,7 +204,11 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg) {
         BattleMessage_BufferMove(bsys, 1, msg->param[1]);
         break;
     case TAG_NICKNAME_ABILITY:
-        BattleMessage_BufferNickname(bsys, 0, msg->param[0]);
+        if (msg->id == BATTLE_MSG_ABILITY_POPUP) {
+            BattleMessage_BufferNicknameDoNotConsiderPrefix(bsys, 0, msg->param[0]);
+        } else {
+            BattleMessage_BufferNickname(bsys, 0, msg->param[0]);
+        }
         BattleMessage_BufferAbility(bsys, 1, msg->param[1]);
         break;
     case TAG_NICKNAME_STAT:
