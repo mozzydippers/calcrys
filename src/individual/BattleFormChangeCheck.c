@@ -44,8 +44,8 @@ BOOL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq_no)
             if ((CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_CLOUD_NINE) == 0)
              && (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_AIR_LOCK) == 0))
             {
-                // Snow does not affect Castform in SV, since it cannot enter Paldea, Kitakami nor Blueberry Academy there is no way to confirm
-                if (((sp->field_condition & (WEATHER_RAIN_ANY | WEATHER_SUNNY_ANY | WEATHER_HAIL_ANY)) == 0)
+                // Snow affects Castform in Champions
+                if (((sp->field_condition & (WEATHER_RAIN_ANY | WEATHER_SUNNY_ANY | WEATHER_HAIL_ANY | WEATHER_SNOW_ANY)) == 0)
                  && (sp->battlemon[client].form_no != 0))
                 {
                     sp->battlemon[client].form_no = 0;
@@ -72,7 +72,7 @@ BOOL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq_no)
                     ret = TRUE;
                     break;
                 }
-                else if ((sp->field_condition & WEATHER_HAIL_ANY)
+                else if ((sp->field_condition & (WEATHER_HAIL_ANY | WEATHER_SNOW_ANY))
                       && (sp->battlemon[client].form_no != 3))
                 {
                     sp->battlemon[client].form_no = 3;

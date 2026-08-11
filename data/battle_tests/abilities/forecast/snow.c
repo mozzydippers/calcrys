@@ -1,5 +1,5 @@
-// Test: Z-Move - Stance Change interaction
-#include "../battle_tests.h"
+// Test: Forecast - Snow interaction
+#include "../../battle_tests.h"
 BEGIN_TEST {
     .battleType = BATTLE_TYPE_SINGLE,
     .weather = WEATHER_NONE,
@@ -7,10 +7,10 @@ BEGIN_TEST {
     .terrain = TERRAIN_NONE,
     .playerParty = {
         {
-            .species = SPECIES_AUDINO,
-            .level = 60,
+            .species = SPECIES_CASTFORM,
+            .level = 50,
             .form = 0,
-            .ability = ABILITY_REGENERATOR,
+            .ability = ABILITY_FORECAST,
             .item = ITEM_NONE,
             .moves = { MOVE_SNOWSCAPE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
@@ -18,18 +18,7 @@ BEGIN_TEST {
             .condition2 = 0,
             .moveEffectFlags = 0,
         },
-        {
-            .species = SPECIES_AUDINO,
-            .level = 60,
-            .form = 0,
-            .ability = ABILITY_REGENERATOR,
-            .item = ITEM_NONE,
-            .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
-            .hp = FULL_HP,
-            .status = 0,
-            .condition2 = 0,
-            .moveEffectFlags = 0,
-        },
+        { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
@@ -37,22 +26,10 @@ BEGIN_TEST {
     },
     .enemyParty = {
         {
-            .species = SPECIES_AEGISLASH,
+            .species = SPECIES_AUDINO,
             .level = 50,
             .form = 0,
             .ability = ABILITY_STANCE_CHANGE,
-            .item = ITEM_DARKINIUM_Z_HELD,
-            .moves = { MOVE_DARK_PULSE, MOVE_NONE, MOVE_NONE, MOVE_NONE },
-            .hp = FULL_HP,
-            .status = 0,
-            .condition2 = 0,
-            .moveEffectFlags = 0,
-        },
-        {
-            .species = SPECIES_AUDINO,
-            .level = 60,
-            .form = 0,
-            .ability = ABILITY_REGENERATOR,
             .item = ITEM_NONE,
             .moves = { MOVE_SLEEP_TALK, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
@@ -60,6 +37,7 @@ BEGIN_TEST {
             .condition2 = 0,
             .moveEffectFlags = 0,
         },
+        { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
         { .species = SPECIES_NONE },
@@ -90,11 +68,9 @@ BEGIN_TEST {
         },
     },
     .expectations = {
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Audino used Sleep Talk!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Aegislash surrounded itself with its Z-Power!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Aegislash unleashes its full-force Z-Move!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Aegislash's StanceChange" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Changed to Blade Forme!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Castform used Snowscape!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It started to snow!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Castform's Forecast" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Castform transformed!" },
     },
 } END_TEST

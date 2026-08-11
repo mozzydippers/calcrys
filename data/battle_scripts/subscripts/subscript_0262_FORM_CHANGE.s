@@ -3,33 +3,34 @@
 .data
 
 _000:
+    AbilityPopup BATTLER_CATEGORY_MSG_TEMP
     CompareMonDataToValue OPCODE_FLAG_NOT, BATTLER_CATEGORY_MSG_TEMP, BMON_DATA_STATUS2, STATUS2_SUBSTITUTE, _016
     PlayBattleAnimation BATTLER_CATEGORY_MSG_TEMP, BATTLE_ANIMATION_SUB_OUT
-    Wait 
+    Wait
     RestoreSprite BATTLER_CATEGORY_MSG_TEMP
-    Wait 
+    Wait
     PlayBattleAnimation BATTLER_CATEGORY_MSG_TEMP, BATTLE_ANIMATION_SUB_IN
-    Wait 
+    Wait
 
 _016:
     PlaySound BATTLER_CATEGORY_MSG_TEMP, 1980
     SetMosaic BATTLER_CATEGORY_MSG_TEMP, 8, 1
-    Wait 
+    Wait
     ChangeForm BATTLER_CATEGORY_MSG_TEMP
     PlaySound BATTLER_CATEGORY_MSG_TEMP, 1984
     SetMosaic BATTLER_CATEGORY_MSG_TEMP, 0, 1
-    Wait 
+    Wait
     // {0} transformed!
     PrintMessage 721, TAG_NICKNAME, BATTLER_CATEGORY_MSG_TEMP
-    Wait 
+    Wait
     WaitButtonABTime 30
     CompareMonDataToValue OPCODE_FLAG_NOT, BATTLER_CATEGORY_MSG_TEMP, BMON_DATA_STATUS2, STATUS2_SUBSTITUTE, _058
     PlayBattleAnimation BATTLER_CATEGORY_MSG_TEMP, BATTLE_ANIMATION_SUB_OUT
-    Wait 
+    Wait
     RefreshSprite BATTLER_CATEGORY_MSG_TEMP
-    Wait 
+    Wait
     PlayBattleAnimation BATTLER_CATEGORY_MSG_TEMP, BATTLE_ANIMATION_SUB_IN
-    Wait 
+    Wait
 
 _058:
-    End 
+    End
