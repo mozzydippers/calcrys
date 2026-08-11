@@ -2,7 +2,6 @@
 #define POKEHEARTGOLD_UNK_0200E320_H
 
 #include "types.h"
-
 #include "trainer_data.h"
 
 typedef struct SysTaskQueue SysTaskQueue;
@@ -39,7 +38,7 @@ typedef struct SysTaskQueue {
     SysTask *nextTask;
 } SysTaskQueue;
 
-struct TaskManager { // declared in field_system.h
+struct TaskManager { //declared in field_system.h
     TaskManager *prev;
     TaskFunc func;
     u32 state;

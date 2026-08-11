@@ -1,7 +1,5 @@
+#include "battle.h"
 #include "config.h"
-#include "debug.h"
-#include "types.h"
-
 #include "constants/ability.h"
 #include "constants/battle_message_constants.h"
 #include "constants/battle_script_constants.h"
@@ -11,10 +9,10 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 #include "constants/weather_numbers.h"
-
-#include "battle.h"
+#include "debug.h"
 #include "pokemon.h"
 #include "save.h"
+#include "types.h"
 
 /**
  *  @brief script command to set up the stat boost animation/message
@@ -218,10 +216,11 @@ BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
         }
         // debug_printf("sp->addeffect_flag: %d\n", sp->addeffect_flag);
         if ((sp->addeffect_flag & SIDE_EFFECT_NO_ABILITY) == 0) {
-            // debug_printf("move check\n");
+             // debug_printf("move check\n");
             if (sp->attack_client != sp->state_client
                 && sp->addeffect_type != SIDE_EFFECT_TYPE_ABILITY
-                && sp->addeffect_type != SIDE_EFFECT_TYPE_PRINT_WORK_ABILITY) {
+                && sp->addeffect_type != SIDE_EFFECT_TYPE_PRINT_WORK_ABILITY
+                ) {
                 // infiltrator bypasses mist
                 if (sp->scw[IsClientEnemy(bw, sp->state_client)].mistCount && GetBattlerAbility(sp, sp->attack_client) != ABILITY_INFILTRATOR) {
                     sp->mp.id = BATTLE_MSG_PROTECTED_BY_MIST;
@@ -331,13 +330,13 @@ BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
             }
         }
         if (sp->addeffect_type == SIDE_EFFECT_TYPE_ABILITY && sp->battlerIdTemp == sp->state_client) {
-            // debug_printf("in self stat drop check\n");
+            //debug_printf("in self stat drop check\n");
             sp->mp.id = BATTLE_MSG_STAT_FELL;
             sp->mp.tag = TAG_NICKNAME_STAT;
             sp->mp.param[0] = CreateNicknameTag(sp, sp->battlerIdTemp);
             sp->mp.param[1] = STAT_ATTACK + stattochange;
         } else {
-            // debug_printf("in ability checks\n");
+            //debug_printf("in ability checks\n");
 
             if (sp->addeffect_type == SIDE_EFFECT_TYPE_ABILITY || sp->addeffect_type == SIDE_EFFECT_TYPE_PRINT_WORK_ABILITY) {
                 BOOL prevented = FALSE;

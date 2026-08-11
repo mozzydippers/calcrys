@@ -1,11 +1,9 @@
-#include "debug.h"
-#include "types.h"
-
 #include "constants/item.h"
-
+#include "debug.h"
 #include "pokemon.h"
 #include "save.h"
 #include "script.h"
+#include "types.h"
 
 #ifdef MART_EXPANSION
 

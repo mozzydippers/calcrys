@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-#include "battle.h"
-
 BOOL LONG_CALL CheckCanMega(struct BattleStruct *battle, int client);
 BOOL CheckCanDrawMegaButton(struct BI_PARAM *bip);
 BOOL CheckIsMega(struct BI_PARAM *bip);

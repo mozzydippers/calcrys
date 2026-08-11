@@ -1,8 +1,6 @@
 #ifndef POKEHEARTGOLD_ROAMER_H
 #define POKEHEARTGOLD_ROAMER_H
 
-#include "types.h"
-
 #include "constants/roamer.h"
 
 #include "item.h"
@@ -10,6 +8,7 @@
 #include "save.h"
 #include "sprite.h"
 #include "task.h"
+#include "types.h"
 
 enum RoamerDataParam {
     ROAMER_DATA_MET_LOCATION = 1,

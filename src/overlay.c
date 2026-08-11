@@ -1,30 +1,31 @@
-#include "debug.h"
-#include "types.h"
+#include "../include/types.h"
+#include "../include/debug.h"
+#include "../include/overlay.h"
+#include "../include/save.h"
+#include "../include/constants/file.h"
 
-#include "overlay.h"
 
-#include "constants/file.h"
-
-#include "save.h"
-
-struct LinkedOverlayList gLinkedOverlayList[] = {
-    { OVERLAY_BATTLE, OVERLAY_BATTLE_EXTENSION },
-    { OVERLAY_FIELD, OVERLAY_FIELD_EXTENSION },
-    { OVERLAY_HALL_OF_FAME, OVERLAY_FIELD_EXTENSION },
-    { OVERLAY_HALL_OF_FAME_PC, OVERLAY_FIELD_EXTENSION },
-    { OVERLAY_POKEATHLON, OVERLAY_FIELD_EXTENSION },
-    { OVERLAY_POKEWALKER, OVERLAY_FIELD_EXTENSION },
-    { OVERLAY_POKEDEX, OVERLAY_POKEDEX_EXTENSION },
+struct LinkedOverlayList gLinkedOverlayList[] =
+{
+    {OVERLAY_BATTLE, OVERLAY_BATTLE_EXTENSION},
+    {OVERLAY_FIELD, OVERLAY_FIELD_EXTENSION},
+    {OVERLAY_HALL_OF_FAME, OVERLAY_FIELD_EXTENSION},
+    {OVERLAY_HALL_OF_FAME_PC, OVERLAY_FIELD_EXTENSION},
+    {OVERLAY_POKEATHLON, OVERLAY_FIELD_EXTENSION},
+    {OVERLAY_POKEWALKER, OVERLAY_FIELD_EXTENSION},
+    {OVERLAY_POKEDEX, OVERLAY_POKEDEX_EXTENSION},
 };
 
 // entirely clean up overlays if the first one is being unloaded
-u8 gCleanupOverlayList[][4] = {
-    { OVERLAY_BATTLE_EXTENSION, OVERLAY_BATTLECONTROLLER_BEFOREMOVE, OVERLAY_SERVERBEFOREACT, OVERLAY_BATTLECONTROLLER_MOVEEND },
+u8 gCleanupOverlayList[][4] =
+{
+    {OVERLAY_BATTLE_EXTENSION, OVERLAY_BATTLECONTROLLER_BEFOREMOVE, OVERLAY_SERVERBEFOREACT, OVERLAY_BATTLECONTROLLER_MOVEEND},
 };
 
 // if the first one is being loaded, attempt to unload the remaining ones first.  the first one takes priority over the others.
-u8 gOverlayPriorityList[][2] = {
-    { OVERLAY_POKEDEX, OVERLAY_BATTLECONTROLLER_BEFOREMOVE },
+u8 gOverlayPriorityList[][2] =
+{
+    {OVERLAY_POKEDEX, OVERLAY_BATTLECONTROLLER_BEFOREMOVE},
 };
 
 #ifdef DEBUG_PRINT_OVERLAY_LOADS
@@ -35,8 +36,10 @@ inline static void PrintLoadedOverlays(u32 ovyId)
     overlayRegion = GetOverlayLoadDestination(ovyId);
     loadedOverlays = GetLoadedOverlaysInRegion(overlayRegion);
     debug_printf("    Loaded overlays: ");
-    for (int i = 0; i < MAX_ACTIVE_OVERLAYS; i++) {
-        if (loadedOverlays[i].active == TRUE) {
+    for (int i = 0; i < MAX_ACTIVE_OVERLAYS; i++)
+    {
+        if (loadedOverlays[i].active == TRUE)
+        {
             debug_printf(i == 0 ? "%04d" : ", %04d", loadedOverlays[i].id);
         }
     }
@@ -44,8 +47,8 @@ inline static void PrintLoadedOverlays(u32 ovyId)
 }
 #endif
 
-void LONG_CALL UnloadOverlayByID(u32 ovyId)
-{
+
+void LONG_CALL UnloadOverlayByID(u32 ovyId) {
     u32 i, j = 0, k = 1;
     BOOL cleanupMode = FALSE;
     PMiLoadedOverlay *table;
@@ -63,8 +66,10 @@ unloadSecond:
     debug_printf("Freed overlay %d.\n", ovyId);
 #endif // DEBUG_PRINT_OVERLAY_LOADS
 
-    for (i = 0; i < NELEMS(gLinkedOverlayList); i++) {
-        if (gLinkedOverlayList[i].first_id == ovyId) {
+    for (i = 0; i < NELEMS(gLinkedOverlayList); i++)
+    {
+        if (gLinkedOverlayList[i].first_id == ovyId)
+        {
             ovyId = gLinkedOverlayList[i].ext_id;
             goto unloadSecond;
         }
@@ -93,8 +98,8 @@ unloadSecond:
     }
 }
 
-u32 LONG_CALL HandleLoadOverlay(u32 ovyId, u32 loadType)
-{
+
+u32 LONG_CALL HandleLoadOverlay(u32 ovyId, u32 loadType) {
     u32 result;
     u32 dmaBak = FS_DMA_NOT_USE;
     u32 overlayRegion;
@@ -105,9 +110,12 @@ u32 LONG_CALL HandleLoadOverlay(u32 ovyId, u32 loadType)
 #endif // DEBUG_PRINT_OVERLAY_LOADS
 
 loadExtension:
-    for (i = 0; i < NELEMS(gOverlayPriorityList); i++) {
-        if (gOverlayPriorityList[i][0] == ovyId) {
-            for (u32 j = 1; j < NELEMS(gOverlayPriorityList[0]); j++) {
+    for (i = 0; i < NELEMS(gOverlayPriorityList); i++)
+    {
+        if (gOverlayPriorityList[i][0] == ovyId)
+        {
+            for (u32 j = 1; j < NELEMS(gOverlayPriorityList[0]); j++)
+            {
 #ifdef DEBUG_PRINT_OVERLAY_LOADS
                 debug_printf("Overlay %d has priority over overlay %d--unloading the latter...\n", ovyId, gOverlayPriorityList[0][j]);
 #endif // DEBUG_PRINT_OVERLAY_LOADS
@@ -138,7 +146,8 @@ loadExtension:
 
 #ifdef DEBUG_PRINT_OVERLAY_LOADS
     {
-        for (int j = 0; j < MAX_ACTIVE_OVERLAYS; j++) {
+        for (int j = 0; j < MAX_ACTIVE_OVERLAYS; j++)
+        {
             countActive += loadedOverlays[j].active == TRUE;
         }
     }
@@ -184,8 +193,10 @@ loadExtension:
         return FALSE;
     }
 
-    for (i = 0; i < NELEMS(gLinkedOverlayList); i++) {
-        if (gLinkedOverlayList[i].first_id == ovyId) {
+    for (i = 0; i < NELEMS(gLinkedOverlayList); i++)
+    {
+        if (gLinkedOverlayList[i].first_id == ovyId)
+        {
             ovyId = gLinkedOverlayList[i].ext_id;
             loadType = 2;
 #ifdef DEBUG_PRINT_OVERLAY_LOADS
@@ -197,6 +208,7 @@ loadExtension:
 
     return TRUE;
 }
+
 
 u32 LONG_CALL IsOverlayLoaded(u32 ovyId)
 {
