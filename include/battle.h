@@ -657,51 +657,51 @@
 // trainer text types
 
 // Overworld
-#define TEXT_NOTICE_IN_OVERWORLD                         0
-#define TEXT_DEFEATED_IN_BATTLE                          1
-#define TEXT_DEFEATED_IN_OVERWORLD                       2
-#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1                3
-#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_1                 4
-#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1              5
-#define TEXT_DOUBLE_ONLY_1_POKEMON_1                     6
-#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2                7
-#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_2                 8
-#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2              9
-#define TEXT_DOUBLE_ONLY_1_POKEMON_2                    10
-#define TEXT_ONLY_FIGHT_NOON_REMATCH_OVERWORLD          11
-#define TEXT_ONLY_FIGHT_NIGHT_REMATCH_OVERWORLD         12
+#define TEXT_NOTICE_IN_OVERWORLD                0
+#define TEXT_DEFEATED_IN_BATTLE                 1
+#define TEXT_DEFEATED_IN_OVERWORLD              2
+#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1       3
+#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_1        4
+#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1     5
+#define TEXT_DOUBLE_ONLY_1_POKEMON_1            6
+#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2       7
+#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_2        8
+#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2     9
+#define TEXT_DOUBLE_ONLY_1_POKEMON_2            10
+#define TEXT_ONLY_FIGHT_NOON_REMATCH_OVERWORLD  11
+#define TEXT_ONLY_FIGHT_NIGHT_REMATCH_OVERWORLD 12
 // Battle
-#define TEXT_HIT_POKEMON_FIRST_TIME                     13
-#define TEXT_CURRENT_MON_CRITICAL                       14
-#define TEXT_LAST_MON_SENT_OUT                          15
-#define TEXT_LAST_MON_CRITICAL                          16
-#define TEXT_REMATCH_IN_OVERWORLD                       17 // 17
-#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_1              18 // 18
-#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_2              19 // 19
-#define TEXT_PLAYER_LOSES                               20
-#define TEXT_FIRST_MON_SENT_OUT_1                       21 // After sending out first Pokémon (1)
-#define TEXT_FIRST_MON_SENT_OUT_2                       22 // After sending out first Pokémon (2)
-#define TEXT_PLAYER_MOVE_SUPER_EFFECTIVE                23 // After the player first lands a supereffective move
-#define TEXT_PLAYER_MOVE_NOT_VERY_EFFECTIVE             24 // After the player first lands a not very effective move
-#define TEXT_PLAYER_MOVE_CRITICAL_HIT                   25 // After the player first lands a critical hit
-#define TEXT_MOVE_SUPER_EFFECTIVE                       26 // After first landing a supereffective move on the player's Pokémon
-#define TEXT_MOVE_NO_EFFECT                             27 // After first using a move that has no effect on the player's Pokémon
-#define TEXT_MOVE_CRITICAL_HIT                          28 // After first landing a critical hit on the player's Pokémon
-#define TEXT_USE_SPECIFIED_MOVE                         29 // Upon first using his first partner Pokémon's same-type move / Upon first using his first partner Pokémon's signature move, etc.
-#define TEXT_FIRST_MON_DEFEATED                         30 // After first Pokémon is defeated
-#define TEXT_SECOND_MON_DEFEATED                        31 // After second Pokémon is defeated
-#define TEXT_THIRD_MON_DEFEATED                         32 // After third Pokémon is defeated
-#define TEXT_FORTH_MON_DEFEATED                         33 // After fourth Pokémon is defeated
-#define TEXT_FIFTH_MON_DEFEATED                         34 // After fifth Pokémon is defeated
-#define TEXT_DYNAMAX                                    35 // Upon Dynamaxing / Upon Gigantamaxing
-#define TEXT_TERASTALLIZE                               36 // Upon Terastallizing
-#define TEXT_AFTER_TERASTALLIZING                       37 // After Terastallizing
-#define TEXT_TERASTALLIZED_MON_MOVE_NOT_VERY_EFFECTIVE  38 // After attacking the player's Pokémon with a not very effective move while Terastallized
-#define TEXT_TERASTALLIZED_MON_MOVE_SUPER_EFFECTIVE     39 // After attacking the player's Pokémon with a supereffective move while Terastallized
-#define TEXT_AFTER_FIRST_MOVE                           40 // After first using a move against the player's Pokémon
-#define TEXT_PLAYER_SENT_OUT_PARTICULAR_SPECIES         41 // If the player sends out Ogerpon
-#define TEXT_CHANGED_FORM                               42 // Upon Terapagos changing form
-#define TEXT_MEGA_EVOLVE                                43
+#define TEXT_HIT_POKEMON_FIRST_TIME                    13
+#define TEXT_CURRENT_MON_CRITICAL                      14
+#define TEXT_LAST_MON_SENT_OUT                         15
+#define TEXT_LAST_MON_CRITICAL                         16
+#define TEXT_REMATCH_IN_OVERWORLD                      17 // 17
+#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_1             18 // 18
+#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_2             19 // 19
+#define TEXT_PLAYER_LOSES                              20
+#define TEXT_FIRST_MON_SENT_OUT_1                      21 // After sending out first Pokémon (1)
+#define TEXT_FIRST_MON_SENT_OUT_2                      22 // After sending out first Pokémon (2)
+#define TEXT_PLAYER_MOVE_SUPER_EFFECTIVE               23 // After the player first lands a supereffective move
+#define TEXT_PLAYER_MOVE_NOT_VERY_EFFECTIVE            24 // After the player first lands a not very effective move
+#define TEXT_PLAYER_MOVE_CRITICAL_HIT                  25 // After the player first lands a critical hit
+#define TEXT_MOVE_SUPER_EFFECTIVE                      26 // After first landing a supereffective move on the player's Pokémon
+#define TEXT_MOVE_NO_EFFECT                            27 // After first using a move that has no effect on the player's Pokémon
+#define TEXT_MOVE_CRITICAL_HIT                         28 // After first landing a critical hit on the player's Pokémon
+#define TEXT_USE_SPECIFIED_MOVE                        29 // Upon first using his first partner Pokémon's same-type move / Upon first using his first partner Pokémon's signature move, etc.
+#define TEXT_FIRST_MON_DEFEATED                        30 // After first Pokémon is defeated
+#define TEXT_SECOND_MON_DEFEATED                       31 // After second Pokémon is defeated
+#define TEXT_THIRD_MON_DEFEATED                        32 // After third Pokémon is defeated
+#define TEXT_FORTH_MON_DEFEATED                        33 // After fourth Pokémon is defeated
+#define TEXT_FIFTH_MON_DEFEATED                        34 // After fifth Pokémon is defeated
+#define TEXT_DYNAMAX                                   35 // Upon Dynamaxing / Upon Gigantamaxing
+#define TEXT_TERASTALLIZE                              36 // Upon Terastallizing
+#define TEXT_AFTER_TERASTALLIZING                      37 // After Terastallizing
+#define TEXT_TERASTALLIZED_MON_MOVE_NOT_VERY_EFFECTIVE 38 // After attacking the player's Pokémon with a not very effective move while Terastallized
+#define TEXT_TERASTALLIZED_MON_MOVE_SUPER_EFFECTIVE    39 // After attacking the player's Pokémon with a supereffective move while Terastallized
+#define TEXT_AFTER_FIRST_MOVE                          40 // After first using a move against the player's Pokémon
+#define TEXT_PLAYER_SENT_OUT_PARTICULAR_SPECIES        41 // If the player sends out Ogerpon
+#define TEXT_CHANGED_FORM                              42 // Upon Terapagos changing form
+#define TEXT_MEGA_EVOLVE                               43
 
 // Bug Bite/Pluck/Fling effects:
 #define STEAL_EFFECT_CURE_PARALYSIS     1
@@ -1322,7 +1322,7 @@ typedef struct PursuitContext {
 
 enum ActionType {
     ADDITIONAL_MOVE = 1,
-    MAX_RAID_REMOVAL_OF_POSITIVE_EFFECTS,   // Shockwave
+    MAX_RAID_REMOVAL_OF_POSITIVE_EFFECTS, // Shockwave
     MAX_RAID_MORE_AGGRESIVE_BARRIER,
     TERA_RAID_SHIELD,
     TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS,
@@ -1363,7 +1363,6 @@ typedef struct MagicBounceContext {
     u8 bounceCounter;
     u8 bounceMaxCounter;
 } MagicBounceContext;
-
 
 typedef struct RaidContext {
     BOOL isExtraActionActive;
@@ -1703,7 +1702,7 @@ struct BattleSystem {
     void *storage;
     struct Party *trainerParty[4];
     void *chatotVoice[4];
-    u32 *unk88;
+    PokepicManager *pokepicManager;
     u32 *unk8C;
     void *unk90;
     void *unk94;
@@ -1892,17 +1891,16 @@ struct PACKED newBattleStruct {
 };
 
 // BattleSetup
-struct PACKED BATTLE_PARAM
-{
-    /*0x0000*/  u32 fight_type;
-    /*0x0004*/  struct Party *poke_party[4];
-    /*0x0014*/  int win_lose_flag;
-    /*0x0018*/  int trainer_id[4];
-    /*0x0028*/  TRAINER_DATA trainer_data[4]; //0xD0 bytes
-    /*0x00F8*/  u8 fillF8[0x18C-0xF8];
-    /*0x018C*/  u32 battleSpecial;
-    /*0x0190*/  u8 fill190[0x1C0-0x190];
-    /*0x01C0*/  void* savedata;
+struct PACKED BATTLE_PARAM {
+    /*0x0000*/ u32 fight_type;
+    /*0x0004*/ struct Party *poke_party[4];
+    /*0x0014*/ int win_lose_flag;
+    /*0x0018*/ int trainer_id[4];
+    /*0x0028*/ TRAINER_DATA trainer_data[4]; // 0xD0 bytes
+    /*0x00F8*/ u8 fillF8[0x18C - 0xF8];
+    /*0x018C*/ u32 battleSpecial;
+    /*0x0190*/ u8 fill190[0x1C0 - 0x190];
+    /*0x01C0*/ void *savedata;
 };
 
 struct PACKED FULL_TRAINER_MON_DATA_STRUCTURE // structure isn't actually used as the structure is iterated through conditionally
@@ -3977,225 +3975,225 @@ u8 LONG_CALL ov12_02261258(struct CLIENT_PARAM *opponentData);
 
 void LONG_CALL ov12_02252D14(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
-#define LoopCheckFunctionForSpreadMove(bsys, ctx, functionToBeCalled)                                                                        \
-    {                                                                                                                                        \
-        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                          \
-            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                  \
-                switch (ctx->clientLoopForSpreadMoves) {                                                                                     \
-                case SPREAD_MOVE_LOOP_ALLY:                                                                                                  \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
+#define LoopCheckFunctionForSpreadMove(bsys, ctx, functionToBeCalled)                                                                       \
+    {                                                                                                                                       \
+        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                         \
+            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                 \
+                switch (ctx->clientLoopForSpreadMoves) {                                                                                    \
+                case SPREAD_MOVE_LOOP_ALLY:                                                                                                 \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
                     if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index) \
                             || BATTLER_ALLY(ctx->attack_client) == ctx->defence_client)                                                     \
-                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                       \
-                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                               \
-                        if (functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client))) {                                               \
-                            return;                                                                                                          \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                         \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                         \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                 \
-                        if (functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                 \
-                            return;                                                                                                          \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                        \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                        \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                                \
-                        if (functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                \
-                            return;                                                                                                          \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-        } else {                                                                                                                             \
-            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                     \
-                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                    \
-                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                           \
-                    if (functionToBeCalled(bsys, ctx, ctx->defence_client)) {                                                                \
-                        ctx->wb_seq_no++;                                                                                                    \
-                        return;                                                                                                              \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-        }                                                                                                                                    \
-        ctx->clientLoopForSpreadMoves = 0;                                                                                                   \
+                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                      \
+                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                              \
+                        if (functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client))) {                                              \
+                            return;                                                                                                         \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                        \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                        \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                \
+                        if (functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                \
+                            return;                                                                                                         \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                       \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                       \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                               \
+                        if (functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                               \
+                            return;                                                                                                         \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+        } else {                                                                                                                            \
+            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                    \
+                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                   \
+                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                          \
+                    if (functionToBeCalled(bsys, ctx, ctx->defence_client)) {                                                               \
+                        ctx->wb_seq_no++;                                                                                                   \
+                        return;                                                                                                             \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+        }                                                                                                                                   \
+        ctx->clientLoopForSpreadMoves = 0;                                                                                                  \
     }
 
 // if all clients fail, then print fail message, otherwise no message is shown
-#define LoopCheckFunctionForSpreadMove_StatFailureSuccessCheck(bsys, ctx, functionToBeCalled)                                                \
-    {                                                                                                                                        \
-        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                          \
-            BOOL numClientsChecked = 0;                                                                                                      \
-            BOOL numClientsFailed = 0;                                                                                                       \
-            int failureSubscriptToRun = 0;                                                                                                   \
-            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                  \
-                switch (ctx->clientLoopForSpreadMoves) {                                                                                     \
-                case SPREAD_MOVE_LOOP_ALLY:                                                                                                  \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index)  \
-                            || BATTLER_ALLY(ctx->attack_client) == ctx->defence_client)                                                      \
-                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                       \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                               \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client));                             \
-                        if (failureSubscriptToRun) {                                                                                         \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_ALLY(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;                   \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                         \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                         \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                 \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client));               \
-                        if (failureSubscriptToRun) {                                                                                         \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;     \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                        \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                        \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                                \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client));              \
-                        if (failureSubscriptToRun) {                                                                                         \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;    \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-            if (numClientsChecked == 1 && numClientsFailed == numClientsChecked) {                                                           \
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                                      \
-                ctx->next_server_seq_no = ctx->server_seq_no;                                                                                \
-                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                          \
-                return;                                                                                                                      \
-            }                                                                                                                                \
-            if (numClientsFailed > 0 && numClientsFailed == numClientsChecked) {                                                             \
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_BUT_IT_FAILED_SPREAD);                                               \
-                ctx->next_server_seq_no = ctx->server_seq_no;                                                                                \
-                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                          \
-                return;                                                                                                                      \
-            }                                                                                                                                \
-        } else {                                                                                                                             \
-            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                     \
-                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                    \
-                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                           \
-                    int failureSubscriptToRun = functionToBeCalled(bsys, ctx, ctx->defence_client);                                          \
-                    if (failureSubscriptToRun) {                                                                                             \
-                        ctx->battlerIdTemp = ctx->defence_client;                                                                            \
-                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                              \
-                        ctx->next_server_seq_no = ctx->server_seq_no;                                                                        \
-                        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                  \
-                        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_FLAG_FAILED;                                    \
-                        return;                                                                                                              \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-        }                                                                                                                                    \
-        ctx->clientLoopForSpreadMoves = 0;                                                                                                   \
+#define LoopCheckFunctionForSpreadMove_StatFailureSuccessCheck(bsys, ctx, functionToBeCalled)                                               \
+    {                                                                                                                                       \
+        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                         \
+            BOOL numClientsChecked = 0;                                                                                                     \
+            BOOL numClientsFailed = 0;                                                                                                      \
+            int failureSubscriptToRun = 0;                                                                                                  \
+            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                 \
+                switch (ctx->clientLoopForSpreadMoves) {                                                                                    \
+                case SPREAD_MOVE_LOOP_ALLY:                                                                                                 \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index) \
+                            || BATTLER_ALLY(ctx->attack_client) == ctx->defence_client)                                                     \
+                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                      \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                              \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client));                            \
+                        if (failureSubscriptToRun) {                                                                                        \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_ALLY(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;                  \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                        \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                        \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client));              \
+                        if (failureSubscriptToRun) {                                                                                        \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;    \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                       \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                       \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                               \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client));             \
+                        if (failureSubscriptToRun) {                                                                                        \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;   \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+            if (numClientsChecked == 1 && numClientsFailed == numClientsChecked) {                                                          \
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                                     \
+                ctx->next_server_seq_no = ctx->server_seq_no;                                                                               \
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                         \
+                return;                                                                                                                     \
+            }                                                                                                                               \
+            if (numClientsFailed > 0 && numClientsFailed == numClientsChecked) {                                                            \
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_BUT_IT_FAILED_SPREAD);                                              \
+                ctx->next_server_seq_no = ctx->server_seq_no;                                                                               \
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                         \
+                return;                                                                                                                     \
+            }                                                                                                                               \
+        } else {                                                                                                                            \
+            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                    \
+                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                   \
+                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                          \
+                    int failureSubscriptToRun = functionToBeCalled(bsys, ctx, ctx->defence_client);                                         \
+                    if (failureSubscriptToRun) {                                                                                            \
+                        ctx->battlerIdTemp = ctx->defence_client;                                                                           \
+                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                             \
+                        ctx->next_server_seq_no = ctx->server_seq_no;                                                                       \
+                        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                 \
+                        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_FLAG_FAILED;                                   \
+                        return;                                                                                                             \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+        }                                                                                                                                   \
+        ctx->clientLoopForSpreadMoves = 0;                                                                                                  \
     }
 
 // if it's a spread move, same as above, otherwise go straight to effect and have statbuffchange do the fail message stuff instead
-#define LoopCheckFunctionForSpreadMove_StatFailureSuccessCheck_StatChanges(bsys, ctx, functionToBeCalled)                                    \
-    {                                                                                                                                        \
-        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                          \
-            BOOL numClientsChecked = 0;                                                                                                      \
-            BOOL numClientsFailed = 0;                                                                                                       \
-            int failureSubscriptToRun = 0;                                                                                                   \
-            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                  \
-                switch (ctx->clientLoopForSpreadMoves) {                                                                                     \
-                case SPREAD_MOVE_LOOP_ALLY:                                                                                                  \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index)  \
-                        || BATTLER_ALLY(ctx->attack_client) == ctx->defence_client)                                                          \
-                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                       \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                               \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client));                             \
-                        if (failureSubscriptToRun != 0) {                                                                                    \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_ALLY(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;                   \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                         \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                         \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                 \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client));               \
-                        if (failureSubscriptToRun != 0) {                                                                                    \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;     \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                    FALLTHROUGH;                                                                                                             \
-                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                        \
-                    ctx->clientLoopForSpreadMoves++;                                                                                         \
-                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))        \
-                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                        \
-                        numClientsChecked++;                                                                                                 \
-                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                                \
-                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client));              \
-                        if (failureSubscriptToRun != 0) {                                                                                    \
-                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;    \
-                            numClientsFailed++;                                                                                              \
-                        }                                                                                                                    \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-            if (numClientsChecked == 1 && numClientsFailed == numClientsChecked) {                                                           \
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_MOVE_SEQ, ctx->current_move_index);                                                   \
-                ctx->server_seq_no = CONTROLLER_COMMAND_24;                                                                                  \
-                ST_ServerTotteokiCountCalc(bsys, ctx);                                                                                       \
-                return;                                                                                                                      \
-            }                                                                                                                                \
-            if (numClientsFailed > 0 && numClientsFailed == numClientsChecked) {                                                             \
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_BUT_IT_FAILED_SPREAD);                                               \
-                ctx->next_server_seq_no = ctx->server_seq_no;                                                                                \
-                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                          \
-                return;                                                                                                                      \
-            }                                                                                                                                \
-        } else {                                                                                                                             \
-            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                     \
-                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                    \
-                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                           \
-                    int failureSubscriptToRun = functionToBeCalled(bsys, ctx, ctx->defence_client);                                          \
-                    if (failureSubscriptToRun == 1) {                                                                                        \
-                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_MOVE_SEQ, ctx->current_move_index);                                           \
-                        ctx->server_seq_no = CONTROLLER_COMMAND_24;                                                                          \
-                        ST_ServerTotteokiCountCalc(bsys, ctx);                                                                               \
-                        return;                                                                                                              \
-                    }                                                                                                                        \
-                    if (failureSubscriptToRun > 1) {                                                                                         \
-                        ctx->oneTurnFlag[ctx->attack_client].parental_bond_flag = 0;                                                         \
-                        ctx->oneTurnFlag[ctx->attack_client].parental_bond_is_active = FALSE;                                                \
-                        ctx->msg_work = ctx->defence_client;                                                                                 \
-                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                              \
-                        ctx->next_server_seq_no = ctx->server_seq_no;                                                                        \
-                        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                  \
-                        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_NO_MORE_WORK;                                   \
-                        return;                                                                                                              \
-                    }                                                                                                                        \
-                }                                                                                                                            \
-            }                                                                                                                                \
-        }                                                                                                                                    \
-        ctx->clientLoopForSpreadMoves = 0;                                                                                                   \
+#define LoopCheckFunctionForSpreadMove_StatFailureSuccessCheck_StatChanges(bsys, ctx, functionToBeCalled)                                   \
+    {                                                                                                                                       \
+        if (IsMoveSpreadMove(bsys, ctx, ctx->current_move_index)) {                                                                         \
+            BOOL numClientsChecked = 0;                                                                                                     \
+            BOOL numClientsFailed = 0;                                                                                                      \
+            int failureSubscriptToRun = 0;                                                                                                  \
+            while (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                 \
+                switch (ctx->clientLoopForSpreadMoves) {                                                                                    \
+                case SPREAD_MOVE_LOOP_ALLY:                                                                                                 \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index) || IsTargetSelfAndAlly(bsys, ctx, ctx->current_move_index) \
+                            || BATTLER_ALLY(ctx->attack_client) == ctx->defence_client)                                                     \
+                        && IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {                                                      \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_ALLY(ctx->attack_client);                                                              \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_ALLY(ctx->attack_client));                            \
+                        if (failureSubscriptToRun != 0) {                                                                                   \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_ALLY(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;                  \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_LEFT:                                                                                        \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {                                        \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client);                                                \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client));              \
+                        if (failureSubscriptToRun != 0) {                                                                                   \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;    \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                    FALLTHROUGH;                                                                                                            \
+                case SPREAD_MOVE_LOOP_OPPONENT_RIGHT:                                                                                       \
+                    ctx->clientLoopForSpreadMoves++;                                                                                        \
+                    if ((IsTargetFoes(bsys, ctx, ctx->current_move_index) || IsTargetFoesAndAlly(bsys, ctx, ctx->current_move_index))       \
+                        && IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {                                       \
+                        numClientsChecked++;                                                                                                \
+                        ctx->battlerIdTemp = BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client);                                               \
+                        failureSubscriptToRun = functionToBeCalled(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client));             \
+                        if (failureSubscriptToRun != 0) {                                                                                   \
+                            ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client)] = MOVE_STATUS_FLAG_FAILED;   \
+                            numClientsFailed++;                                                                                             \
+                        }                                                                                                                   \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+            if (numClientsChecked == 1 && numClientsFailed == numClientsChecked) {                                                          \
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_MOVE_SEQ, ctx->current_move_index);                                                  \
+                ctx->server_seq_no = CONTROLLER_COMMAND_24;                                                                                 \
+                ST_ServerTotteokiCountCalc(bsys, ctx);                                                                                      \
+                return;                                                                                                                     \
+            }                                                                                                                               \
+            if (numClientsFailed > 0 && numClientsFailed == numClientsChecked) {                                                            \
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_BUT_IT_FAILED_SPREAD);                                              \
+                ctx->next_server_seq_no = ctx->server_seq_no;                                                                               \
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                         \
+                return;                                                                                                                     \
+            }                                                                                                                               \
+        } else {                                                                                                                            \
+            if (ctx->clientLoopForSpreadMoves <= SPREAD_MOVE_LOOP_MAX) {                                                                    \
+                ctx->clientLoopForSpreadMoves = SPREAD_MOVE_LOOP_MAX + 1;                                                                   \
+                if (IsValidMoveTarget(ctx, ctx->defence_client)) {                                                                          \
+                    int failureSubscriptToRun = functionToBeCalled(bsys, ctx, ctx->defence_client);                                         \
+                    if (failureSubscriptToRun == 1) {                                                                                       \
+                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_MOVE_SEQ, ctx->current_move_index);                                          \
+                        ctx->server_seq_no = CONTROLLER_COMMAND_24;                                                                         \
+                        ST_ServerTotteokiCountCalc(bsys, ctx);                                                                              \
+                        return;                                                                                                             \
+                    }                                                                                                                       \
+                    if (failureSubscriptToRun > 1) {                                                                                        \
+                        ctx->oneTurnFlag[ctx->attack_client].parental_bond_flag = 0;                                                        \
+                        ctx->oneTurnFlag[ctx->attack_client].parental_bond_is_active = FALSE;                                               \
+                        ctx->msg_work = ctx->defence_client;                                                                                \
+                        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, failureSubscriptToRun);                                             \
+                        ctx->next_server_seq_no = ctx->server_seq_no;                                                                       \
+                        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;                                                                 \
+                        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_NO_MORE_WORK;                                  \
+                        return;                                                                                                             \
+                    }                                                                                                                       \
+                }                                                                                                                           \
+            }                                                                                                                               \
+        }                                                                                                                                   \
+        ctx->clientLoopForSpreadMoves = 0;                                                                                                  \
     }
 
 #define LoopCheckFunctionForSpreadMove_RawSpeedWithNonRNGTie(bsys, ctx, functionToBeCalled)                                       \
@@ -4359,7 +4357,6 @@ BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *bw, struct BattleStruct 
 
 int LONG_CALL Party_GetCount(struct Party *party);
 BOOL LONG_CALL TrainerMessageWithIdPairExists(u32 trainer_idx, u32 msg_id, int heapID);
-
 
 BOOL LONG_CALL MoveHitAttackerAbilityCheck(void *bw, struct BattleStruct *sp, int *seq_no);
 BOOL LONG_CALL ServerFlinchCheck(void *bw, struct BattleStruct *sp);

@@ -1,7 +1,7 @@
 #ifndef POKEPIC_H
 #define POKEPIC_H
 
-#define POKEPIC_SCALE_NORMAL 0x100
+#define POKEPIC_SCALE_NORMAL       0x100
 #define RAID_POKEPIC_SCALE_PERCENT 160
 
 typedef struct PokepicTemplate {
@@ -224,9 +224,5 @@ void LONG_CALL Pokepic_StartAnim(Pokepic *pokepic);
 void LONG_CALL sub_0207294C(void *narc, void *a1, void *a2, u16 a3, int a4, int a5, int a6);
 void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);
-
-u16 LONG_CALL Raid_TintColorRed(u16 color);
-void LONG_CALL Raid_TintPalette(u16 *palette);
-void LONG_CALL Raid_ApplyTintAfterPaletteLoad(PokepicManager *pokepicManager, Pokepic *sourcePokepic, u32 paletteOffset);
 
 #endif // POKEPIC_H

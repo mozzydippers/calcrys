@@ -652,10 +652,17 @@ arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 0012 BattleSystem_AdjustMessageForSide 0223C558 2
 
 # Raid hooks
-0007 ov07_0221D874_RaidAddPokemonSpriteScale 0221D97A 3
-0007 ov07_0221FB90_RaidCloneScale 0221FD54 2
-0012 ov12_0225B7B8_RaidPostSlideScale 0225B908 0
+0007 ov07_0221D874_RaidApplyAppearance 0221D97A 3
+0007 ov07_0221FB90_RaidApplyAppearance 0221FD5A 3
+0007 ov07_0221FB90_RaidTint 0221FDDC 3
+0012 ov12_0225B7B8_RaidApplyAppearanceAfterSlide 0225B908 0
+arm9 sub_020174BC_RaidRestoreScaleX 020174E8 3
+arm9 sub_020174BC_RaidRestoreScaleY 020174F4 3
+arm9 sub_020174BC_RaidRestorePositionX 020174C0 3
+arm9 sub_020179D4_RaidApplyPositionXFlipped 020179E4 3
+arm9 sub_020179D4_RaidApplyPositionX 020179F6 3
+arm9 sub_02017A1C_RaidApplyScaleX 02017A20 3
+arm9 sub_02017A1C_RaidApplyScaleY 02017A30 3
 0007 ov07_0221D874_RaidTint 0221D9F4 0
-arm9 PokepicManager_BufferPlttData_RaidTint 020099C4 0
 
 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
