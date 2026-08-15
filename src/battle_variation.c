@@ -81,7 +81,7 @@ void LONG_CALL SetupAndStartTotemBattle(void *taskManager, u32 *winFlag, u16 bat
 
     ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleID * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
 
-    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_SINGLE);
+    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_TRAINER);
 
     setup->battleSpecial |= (BATTLE_SPECIAL_TOTEM | BATTLE_SPECIAL_NO_RUNNING);
 
@@ -99,7 +99,7 @@ void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
 
     ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
 
-    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLE);
+    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLES);
 
     setup->battleSpecial |= (BATTLE_SPECIAL_MAX_RAID | BATTLE_SPECIAL_NO_RUNNING);
 
@@ -149,5 +149,5 @@ void LONG_CALL ClearBattleVariationInfo()
 
 BOOL LONG_CALL IsWildDoubleBattleWithOneOpponent(struct BattleSystem *bsys)
 {
-    return (bsys->sp->battlemon[3].species == SPECIES_NONE) && (BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLE);
+    return (bsys->sp->battlemon[3].species == SPECIES_NONE) && (BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES);
 }

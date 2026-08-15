@@ -1,0 +1,23 @@
+#include "constants/battle_constants.h"
+#include "constants/battle_message_constants.h"
+.include "battle_commands.inc"
+
+.data
+
+_000:
+    PlayBattleAnimation BATTLER_CATEGORY_ENEMY_SLOT_1, BATTLE_ANIMATION_TERA_RAID_REMOVE_NEGATIVE_EFFECTS
+    Wait
+    TryPartyStatusRefresh
+    // {0} removed negative effects from itself!
+    PrintGlobalMessage BATTLE_MSG_TERA_RAID_REMOVE_NEGATIVE_EFFECTS, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY_SLOT_1
+    Wait
+    WaitButtonABTime 120
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_CALC_TEMP, 0x00000004, _067
+    SetHealthbarStatus BATTLER_CATEGORY_ATTACKER, BATTLE_ANIMATION_NONE
+
+_067:
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_CALC_TEMP, 0x00000008, _075
+    SetHealthbarStatus BATTLER_CATEGORY_ATTACKER_PARTNER, BATTLE_ANIMATION_NONE
+
+_075:
+    End

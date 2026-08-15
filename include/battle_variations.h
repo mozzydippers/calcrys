@@ -10,20 +10,6 @@
 #include "sprite.h"
 #include "types.h"
 
-// Battle Special Flags
-#define BATTLE_SPECIAL_FIRST_RIVAL      (1 << 0)
-#define BATTLE_SPECIAL_HONEY_TREE       (1 << 1)
-#define BATTLE_SPECIAL_NO_RUNNING       (1 << 2)
-#define BATTLE_SPECIAL_LEGENDARY        (1 << 3)
-#define BATTLE_SPECIAL_RECORDING        (1 << 4)
-#define BATTLE_SPECIAL_RECORDED         (1 << 5)
-#define BATTLE_SPECIAL_GIRATINA         (1 << 6)
-#define BATTLE_SPECIAL_DISTORTION_WORLD (1 << 7)
-#define BATTLE_SPECIAL_TOTEM            (1 << 8)
-#define BATTLE_SPECIAL_MAX_RAID         (1 << 9)
-#define BATTLE_SPECIAL_TITAN            (1 << 10)
-#define BATTLE_SPECIAL_TERA_RAID        (1 << 11)
-#define BATTLE_SPECIAL_NO_ITEMS         (BATTLE_SPECIAL_TOTEM)
 
 enum BattleVariationType {
     BATTLE_VARIATION_TYPE_TOTEM = 1,
