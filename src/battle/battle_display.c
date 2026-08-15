@@ -3,19 +3,17 @@
 #include "../../include/config.h"
 #include "../../include/constants/file.h"
 #include "../../include/pokepic.h"
+#include "../../include/sound.h"
 #include "../../include/task.h"
 #include "../../include/types.h"
-#include "../../include/sound.h"
 
-#define POKEPIC_SCALE_NORMAL 0x100
+#define POKEPIC_SCALE_NORMAL       0x100
 #define RAID_POKEPIC_SCALE_PERCENT 160
-#define PLTT_COLORS 16
-
-#define TINT_RATIO_MAX  8
-#define TINT_RED        7
-#define TINT_GREEN      0
-#define TINT_BLUE       0
-#define TINT_STRENGTH   5
+#define PLTT_COLORS                16
+#define RAID_TINT_RED              31
+#define RAID_TINT_GREEN            16
+#define RAID_TINT_BLUE             16
+#define RAID_POKEPIC_AFFINE_SCALE  (POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100)
 
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *paletteData, u32 bufferId);
 
@@ -122,78 +120,109 @@ void Task_PlayFaintingSequence_WithVictoryPose(SysTask *task, void *data)
     ov12_022600F0(task, data);
 }
 
-void LONG_CALL Raid_SyncManagedSpriteScale(ManagedSprite *managedSprite, Pokepic *sourcePokepic)
+static BOOL IsRaidMonPokepic(const Pokepic *pokepic)
 {
-    VecFx32 *scale;
-
-    if (managedSprite == NULL || sourcePokepic == NULL || !sourcePokepic->active) {
-        return;
+    if (gBattleSystem == NULL || !(gBattleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
+        return FALSE;
     }
-
-    if (sourcePokepic->drawParam.affineWidth == POKEPIC_SCALE_NORMAL && sourcePokepic->drawParam.affineHeight == POKEPIC_SCALE_NORMAL) {
-        return;
-    }
-
-    scale = (VecFx32 *)((u8 *)managedSprite->sprite + 0x18);
-    scale->x = (sourcePokepic->drawParam.affineWidth << FX32_SHIFT) / POKEPIC_SCALE_NORMAL;
-    scale->y = (sourcePokepic->drawParam.affineHeight << FX32_SHIFT) / POKEPIC_SCALE_NORMAL;
+    return pokepic != NULL && gBattleSystem->pokepicManager != NULL && pokepic == &gBattleSystem->pokepicManager->pics[BATTLER_ENEMY];
 }
 
-void LONG_CALL Raid_HideSlideInClone(ManagedSprite *managedSprite, Pokepic *sourcePokepic)
+void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
 {
-    if (managedSprite == NULL || sourcePokepic == NULL || !sourcePokepic->active) {
-        return;
-    }
-
-    if (sourcePokepic->drawParam.affineWidth == POKEPIC_SCALE_NORMAL && sourcePokepic->drawParam.affineHeight == POKEPIC_SCALE_NORMAL) {
-        return;
-    }
-
-    if (managedSprite->sprite == NULL) {
-        return;
-    }
-
-    Sprite_SetDrawFlag(managedSprite->sprite, FALSE);
-}
-
-void LONG_CALL Raid_ScaleSpriteForBattler(Pokepic *pokepic, struct BattleSystem *battleSystem, int battler)
-{
-    if (battleSystem == NULL || pokepic == NULL || !pokepic->active) {
-        return;
-    }
-    if (!(battleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
-        return;
-    }
-    if (battler != BATTLER_ENEMY) {
+    if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
         return;
     }
 
     PokepicDrawParam *drawParam = &pokepic->drawParam;
+    drawParam->affineWidth = RAID_POKEPIC_AFFINE_SCALE;
+    drawParam->affineHeight = RAID_POKEPIC_AFFINE_SCALE;
     drawParam->visible = FALSE;
-    drawParam->affineWidth = POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100;
-    drawParam->affineHeight = POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100;
-    drawParam->xOffset = -25;
     drawParam->yOffset = -15;
+    drawParam->diffuseR = RAID_TINT_RED;
+    drawParam->diffuseG = RAID_TINT_GREEN;
+    drawParam->diffuseB = RAID_TINT_BLUE;
 }
 
-void LONG_CALL Raid_ScaleSpriteForEnemy(struct BattleSystem *battleSystem)
+void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic)
 {
-    PokepicManager *monSpriteMan = BattleSystem_GetPokepicManager(battleSystem);
-    Pokepic *pokepic = &monSpriteMan->pics[BATTLER_ENEMY];
-    Raid_ScaleSpriteForBattler(pokepic, battleSystem, BATTLER_ENEMY);
-}
-
-void LONG_CALL Raid_ApplyTintSlideIn(void *paletteData, u16 palettePosition, Pokepic *sourcePokepic)
-{
-    if (paletteData == NULL || sourcePokepic == NULL || !sourcePokepic->active) {
+    if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
         return;
     }
-    if (gBattleSystem == NULL ||!(gBattleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
+
+    pokepic->drawParam.xOffset = -25;
+    Raid_ApplyMainAppearance(pokepic);
+}
+
+int LONG_CALL Raid_AdjustAnimationScale(Pokepic *pokepic, int scale)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return scale;
+    }
+
+    return scale * RAID_POKEPIC_SCALE_PERCENT / 100;
+}
+
+int LONG_CALL Raid_AdjustAnimationX(Pokepic *pokepic, int x)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return x;
+    }
+
+    return x - 25;
+}
+
+int LONG_CALL Raid_RestoreAnimationX(Pokepic *pokepic, int x)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return x;
+    }
+
+    pokepic->drawParam.xOffset = 0;
+    return x - 25;
+}
+
+void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic)
+{
+    if (managedSprite != NULL && IsRaidMonPokepic(pokepic)) {
+        float scale = (float)RAID_POKEPIC_AFFINE_SCALE / POKEPIC_SCALE_NORMAL;
+        s16 x;
+        s16 y;
+
+        Raid_ApplyMainAppearance(pokepic);
+        ManagedSprite_SetAffineOverwriteMode(managedSprite, 2);
+        ManagedSprite_SetAffineScale(managedSprite, scale, scale);
+        ManagedSprite_GetPositionXY(managedSprite, &x, &y);
+        // why the fuck is it + 1?
+        ManagedSprite_SetPositionXY(managedSprite, x + pokepic->drawParam.xOffset + 1, y + pokepic->drawParam.yOffset + 1);
+    }
+}
+
+static u16 Raid_TintColor(u16 color)
+{
+    u32 red = color & 0x1F;
+    u32 green = (color >> 5) & 0x1F;
+    u32 blue = (color >> 10) & 0x1F;
+
+    red = (red * RAID_TINT_RED + 15) / 31;
+    green = (green * RAID_TINT_GREEN + 15) / 31;
+    blue = (blue * RAID_TINT_BLUE + 15) / 31;
+    return red | (green << 5) | (blue << 10);
+}
+
+void LONG_CALL Raid_ApplyObjPaletteAppearance(void *paletteData, u16 palettePosition, Pokepic *pokepic)
+{
+    if (paletteData == NULL || !IsRaidMonPokepic(pokepic)) {
+        return;
+    }
+    if ((palettePosition % PLTT_COLORS) != 0 || palettePosition > 256 - PLTT_COLORS) {
         return;
     }
 
     u16 *palette = PaletteData_GetUnfadedBuf(paletteData, 2) + palettePosition;
-    Raid_TintPalette(palette);
+    for (u32 color = 1; color < PLTT_COLORS; color++) {
+        palette[color] = Raid_TintColor(palette[color]);
+    }
 
     PaletteData_LoadPalette(paletteData, palette, 2, palettePosition, PLTT_COLORS * sizeof(u16));
 }

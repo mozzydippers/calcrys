@@ -525,7 +525,7 @@ bl 0x020087A4 | 1 // Pokepic_SetAttr
 add r0, r4, #0
 add r1, r7, #0
 ldr r2, [sp, #0x58]
-bl Raid_ScaleSpriteForBattler
+bl Raid_InitializeMainAppearance
 pop {r3}
 pop {r1}
 mov lr, r1
@@ -775,37 +775,129 @@ ldr r1, =0x022651C0 | 1
 bx r1
 
 
-.global ov12_02239810_RaidWrapper
-ov12_02239810_RaidWrapper:
-push {r0-r4, lr}
-mov r0, r1
-bl Raid_ScaleSpriteForEnemy
-pop {r0-r4}
-pop {r3}
-mov lr, r3
-ldr r3, =0x02239810 | 1
-bx r3
-
-.pool
-
-.global ov07_0221D874_RaidAddPokemonSpriteScale
-ov07_0221D874_RaidAddPokemonSpriteScale:
+.global ov07_0221D874_RaidApplyAppearance
+ov07_0221D874_RaidApplyAppearance:
 bl   0x0200D734 | 1 // SpriteSystem_NewSprite
 add  r7, r0, #0
 
 add  r0, r7, #0
 add  r1, r6, #0
-bl   Raid_SyncManagedSpriteScale
+bl   Raid_ApplyManagedSpriteAppearance
 
 add  r0, r7, #0
 cmp  r6, #0
-ldr  r1, =0x0221D982 | 1
+beq  _ov07_0221D874_RaidContinueHidden
+ldr  r1, =0x0221D98D | 1
+bx   r1
+
+_ov07_0221D874_RaidContinueHidden:
+ldr  r1, =0x0221D985 | 1
 bx   r1
 
 .pool
 
-.global ov12_0225B7B8_RaidPostSlideScale
- ov12_0225B7B8_RaidPostSlideScale:
+.global sub_020174BC_RaidRestoreScaleX
+sub_020174BC_RaidRestoreScaleX:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x020174F5 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestorePositionX
+sub_020174BC_RaidRestorePositionX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x58]
+bl   Raid_RestoreAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x020174CB | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionXFlipped
+sub_020179D4_RaidApplyPositionXFlipped:
+ldr  r3, [r4, #0x60]
+ldr  r2, [r4, #0x68]
+ldr  r1, [r4, #0x58]
+add  r2, r3, r2
+sub  r1, r1, r2
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionX
+sub_020179D4_RaidApplyPositionX:
+ldr  r1, [r4, #0x58]
+ldr  r2, [r4, #0x60]
+ldr  r3, [r4, #0x68]
+add  r1, r1, r2
+add  r1, r1, r3
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestoreScaleY
+sub_020174BC_RaidRestoreScaleY:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017501 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleX
+sub_02017A1C_RaidApplyScaleX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x70]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A31 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleY
+sub_02017A1C_RaidApplyScaleY:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x74]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A41 | 1
+bx   r3
+
+.pool
+
+.global ov12_0225B7B8_RaidApplyAppearanceAfterSlide
+ov12_0225B7B8_RaidApplyAppearanceAfterSlide:
 ldr  r0, [r4, #0]
 ldr  r1, [r4, #4]
 add  r2, r5, #0
@@ -816,26 +908,27 @@ ldr  r0, [r4, #8]      // param_2[2] = Pokepic *
 add  r1, r4, #0
 ldrb r2, [r1, #0x11]   // battler id from task struct
 ldr  r1, [r4, #0]      // BattleSystem *
-bl   Raid_ScaleSpriteForBattler
+bl   Raid_ApplyMainAppearance
 
 ldr  r0, =0x0225B914 | 1
 bx   r0
 
 .pool
 
-.global ov07_0221FB90_RaidCloneScale
-ov07_0221FB90_RaidCloneScale:
-add  r2, sp, #0x34
-bl   0x0200D734 | 1 // SpriteSystem_NewSprite
+.global ov07_0221FB90_RaidApplyAppearance
+ov07_0221FB90_RaidApplyAppearance:
 add  r6, r0, #0
 
 add  r0, r6, #0
-add  r1, r5, #0
-bl   Raid_HideSlideInClone
+bl   0x0200DC18 | 1 // ManagedSprite_TickFrame
+str  r6, [r7, #0x24]
 
 add  r0, r6, #0
+add  r1, r5, #0
+bl   Raid_ApplyManagedSpriteAppearance
 
-ldr  r3, =0x0221FD5C | 1
+cmp  r5, #0
+ldr  r3, =0x0221FD65 | 1
 bx   r3
 
 .pool
@@ -855,11 +948,39 @@ add  r0, #0xC8
 ldr  r0, [r0]
 ldr  r1, [sp, #8]
 add  r2, r6, #0
-bl   Raid_ApplyTintSlideIn
+bl   Raid_ApplyObjPaletteAppearance
 
 ldr  r0, [sp, #0xC]
 lsl  r5, r0, #2
 ldr  r3, =0x0221D9FC | 1
+bx   r3
+
+.pool
+
+.global ov07_0221FB90_RaidTint
+ov07_0221FB90_RaidTint:
+ldr  r0, [sp, #0x2C]
+ldr  r1, [r4, #4]
+cmp  r0, r1
+beq  _ov07_0221FB90_RaidTintCurrent
+cmp  r1, #0xFF
+bne  _ov07_0221FB90_RaidTintContinue
+
+_ov07_0221FB90_RaidTintCurrent:
+ldr  r2, [r7, #0x48]
+cmp  r2, #0
+beq  _ov07_0221FB90_RaidTintContinue
+ldr  r0, [r4, #0x10]
+ldr  r1, [sp, #8]
+bl   Raid_ApplyObjPaletteAppearance
+
+_ov07_0221FB90_RaidTintContinue:
+ldr  r0, [sp, #0x2C]
+add  r7, r7, #4
+add  r0, r0, #1
+str  r0, [sp, #0x2C]
+cmp  r0, #4
+ldr  r3, =0x0221FDE7 | 1
 bx   r3
 
 .pool

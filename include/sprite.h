@@ -185,6 +185,10 @@ void LONG_CALL BG_LoadScreenTilemapData(void *bgl, u32 bg_id, u16 *scrn_buf, int
 void LONG_CALL ScheduleBgTilemapBufferTransfer(void *bgl, int bg_id);
 void LONG_CALL OAM_ObjectAnimeSeqSetCap(void *, int anim_no);
 void LONG_CALL Sprite_SetDrawFlag(void *sprite, BOOL flag);
+void LONG_CALL ManagedSprite_SetAffineScale(ManagedSprite *managedSprite, float x, float y);
+void LONG_CALL ManagedSprite_SetAffineOverwriteMode(ManagedSprite *managedSprite, u8 a1);
+void LONG_CALL ManagedSprite_SetPositionXY(ManagedSprite *managedSprite, s16 x, s16 y);
+void LONG_CALL ManagedSprite_GetPositionXY(ManagedSprite *managedSprite, s16 *x, s16 *y);
 void LONG_CALL Sprite_SetPositionXYWithSubscreenOffset(void *sprite, s16 x, s16 y, fx32 yOffset);
 void LONG_CALL TextOBJ_SetSpritesDrawFlag(void *textObj, BOOL draw);
 u32 LONG_CALL GfGfxLoader_LoadCharData(u32 narcId, s32 memberNo, void *bgConfig, u32 layer, u32 tileStart, u32 szByte, BOOL isCompressed, u32 heapId);

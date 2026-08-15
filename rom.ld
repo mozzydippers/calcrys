@@ -176,6 +176,10 @@ BG_LoadScreenTilemapData = 0x0201C0A8 | 1;
 ScheduleBgTilemapBufferTransfer = 0x0201EFBC | 1;
 ArcUtil_ScrnDataGet = 0x020079D8 | 1;
 Sprite_SetDrawFlag = 0x02024830 | 1;
+ManagedSprite_SetAffineScale = 0x0200E024 | 1;
+ManagedSprite_SetAffineOverwriteMode = 0x0200DF98 | 1;
+ManagedSprite_SetPositionXY = 0x0200DDB8 | 1;
+ManagedSprite_GetPositionXY = 0x0200DE44 | 1;
 
 /*BATTLE_OAM*/
 BGCallback_FightOnly = 0x2FADC + 0x022378C1;
