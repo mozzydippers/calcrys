@@ -3,6 +3,7 @@
 
 #define POKEPIC_SCALE_NORMAL       0x100
 #define RAID_POKEPIC_SCALE_PERCENT 160
+typedef struct Pokepic Pokepic;
 
 typedef struct PokepicTemplate {
     u16 narcID;
@@ -58,7 +59,7 @@ typedef struct PokepicDrawParam {
     u32 filler_30_11 : 15;
 } PokepicDrawParam;
 
-typedef void (*PokepicCallback)(struct Pokepic *, PokepicDrawParam *);
+typedef void (*PokepicCallback)(Pokepic *, PokepicDrawParam *);
 
 typedef struct PokepicShadow {
     u16 palSlot : 2;
@@ -91,7 +92,7 @@ typedef struct PokepicAnim {
     PokepicAnimScript *animScript;
 } PokepicAnim;
 
-typedef struct Pokepic {
+struct Pokepic {
     u32 active : 1;
     u32 polygonId : 6;
     u32 needReloadChar : 1;
@@ -110,7 +111,7 @@ typedef struct Pokepic {
     PokepicShadow shadow;
     PokepicShadow shadowBak;
     PokepicAnimScript animScript[10];
-} Pokepic; // size: 0xAC
+}; // size: 0xAC
 
 typedef struct NNSG2dVRamLocation {
     u32 baseAddrOfVram[3];

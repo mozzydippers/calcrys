@@ -19,7 +19,9 @@ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
     BattleMessage mp;
     int battlerId;
+#ifdef DISABLE_ITEMS_IN_TRAINER_BATTLE
     u32 fight_type = BattleTypeGet(bsys);
+#endif
     u32 battleVariation = bsys->battleSpecial;
 
     for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {

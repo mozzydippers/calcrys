@@ -1247,7 +1247,7 @@ void BattleController_CheckRecharge(struct BattleSystem *bsys, struct BattleStru
 {
     if (ctx->battlemon[ctx->attack_client].condition2 & STATUS2_RECHARGE) {
         ctx->battlemon[ctx->attack_client].condition2 &= ~STATUS2_RECHARGE;
-        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_RECHARGE_TURN);
+        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_RECHARGING);
         ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         ctx->next_server_seq_no = CONTROLLER_COMMAND_39;
         ctx->wb_seq_no = BEFORE_MOVE_START;
@@ -2504,7 +2504,7 @@ BOOL BattleController_CheckSemiInvulnerability(struct BattleSystem *bsys UNUSED,
 
 BOOL CanHitThroughProtect(struct BattleStruct *ctx, int attacker, int defender)
 {
-    u32 moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
+    // u32 moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
     u32 flag = ctx->moveTbl[ctx->current_move_index].flag;
     u32 ability = GetBattlerAbility(ctx, attacker);
     if (!(flag & FLAG_PROTECT)

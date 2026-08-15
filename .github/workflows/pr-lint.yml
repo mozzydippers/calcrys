@@ -2,11 +2,9 @@ name: pr-lint
 
 on:
   pull_request:
-    branches: [main, move-dev, sprite-dev, item-dev]
     paths:
       - 'src/**/*.c'
       - 'include/**/*.h'
-  workflow_dispatch: {}
 
 jobs:
   pr-lint:

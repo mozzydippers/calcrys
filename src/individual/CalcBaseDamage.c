@@ -1749,10 +1749,6 @@ int GetZMovePower(struct BattleStruct *battle, int baseMove, int client)
 // TODO: switch to table to save code space
 int GetMaxMovePower(struct BattleStruct *battle, int baseMove, int client)
 {
-    int species = battle->battlemon[client].species;
-
-    int form = battle->battlemon[client].form_no;
-
     u32 type = GetAdjustedMoveType(battle, client, baseMove);
 
     BOOL weakerPower = (type == TYPE_FIGHTING || type == TYPE_POISON || baseMove == MOVE_MULTI_ATTACK);

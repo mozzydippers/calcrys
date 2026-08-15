@@ -2065,7 +2065,7 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
 int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int move_no, int move_type, int attack_client, int defence_client, int damage, u32 *flag)
 {
     int typeTableEntryNo = 0;
-    int modifier;
+    int modifier UNUSED;
     u32 base_power;
     u8 eqp_d UNUSED;
     u8 atk_d UNUSED; // not currently used but will be
@@ -4772,6 +4772,10 @@ BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct Ba
 
                 ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
                 ctx->server_seq_no = CONTROLLER_COMMAND_23;
+                break;
+            case MAX_RAID_REMOVAL_OF_POSITIVE_EFFECTS:
+                break;
+            case MAX_RAID_MORE_AGGRESIVE_BARRIER:
                 break;
             case TERA_RAID_SHIELD:
                 break;

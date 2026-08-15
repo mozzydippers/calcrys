@@ -64,12 +64,14 @@ BOOL AnimCmd_PlayCryEdit(u32 client)
     return form != 0;
 }
 
+#ifdef DEBUG_BATTLE_SCENARIOS
+BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *battleSystem UNUSED, struct BattleStruct *ctx UNUSED)
+{
+    return FALSE;
+}
+#else
 BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
 {
-
-#ifdef DEBUG_BATTLE_SCENARIOS
-    return FALSE;
-#else
     int state = BattleTypeGet(battleSystem); // note: this should be battleType for the following three if statements, but it won't match if an additional variable is used
     int trainerIndex;
 
@@ -81,7 +83,7 @@ BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *battleSystem, struct Bat
         return FALSE;
     }
 
-    if (state & BATTLE_TYPE_DOUBLE) {
+    if (state & BATTLE_TYPE_DOUBLES) {
         return FALSE;
     }
 
@@ -160,5 +162,5 @@ BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *battleSystem, struct Bat
     } while (state != 4);
 
     return FALSE;
-#endif // DEBUG_BATTLE_SCENARIOS
 }
+#endif // DEBUG_BATTLE_SCENARIOS

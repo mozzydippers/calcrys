@@ -34,6 +34,7 @@ typedef struct FaintingSequenceData {
     u16 isTransformed;
 } FaintingSequenceData;
 
+#ifdef PLAY_MON_VICTORY_POSE
 static BOOL ShouldPlayVictoryPoseForBattler(struct BattleSystem *battleSystem, struct BattleStruct *battleCtx, u32 battler)
 {
     if (!IsBattlerSlotValid(battleSystem, battler)) {
@@ -42,12 +43,12 @@ static BOOL ShouldPlayVictoryPoseForBattler(struct BattleSystem *battleSystem, s
 
     return !(battleCtx->no_reshuffle_client & No2Bit(battler));
 }
+#endif // PLAY_MON_VICTORY_POSE
 
 void Task_PlayFaintingSequence_WithVictoryPose(SysTask *task, void *data)
 {
-    FaintingSequenceData *faintingSequenceData = data;
-
 #ifdef PLAY_MON_VICTORY_POSE
+    FaintingSequenceData *faintingSequenceData = data;
     // hijack the normal clean-up state to play the victory dance
     if (faintingSequenceData->state == 10) {
         struct BattleSystem *battleSystem = faintingSequenceData->battleSys;
@@ -91,7 +92,7 @@ void Task_PlayFaintingSequence_WithVictoryPose(SysTask *task, void *data)
             }
         }
 
-        NARC_Delete(narc); // NARC_dtor
+        NARC_Delete(narc);
         faintingSequenceData->state++;
         // early return to avoid running the original task til the next frame
         return;

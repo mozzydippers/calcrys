@@ -62,8 +62,6 @@ int LONG_CALL GetMaxMoveToBeUsed(struct BattleStruct *battle, int baseMove, int 
     debug_printf("In GetMaxMoveToBeUsed\n");
 #endif
 
-    int maxMove = 0;
-
     int species = battle->battlemon[client].species;
 
     int form = battle->battlemon[client].form_no;
@@ -185,7 +183,7 @@ int LONG_CALL GetMaxMoveToBeUsed(struct BattleStruct *battle, int baseMove, int 
 #endif
 
     if (baseMove == MOVE_HIDDEN_POWER || baseMove == MOVE_JUDGMENT) {
-        maxMove = MOVE_MAX_STRIKE;
+        return MOVE_MAX_STRIKE;
     } else {
         switch (type) {
         case TYPE_NORMAL:
