@@ -1,5 +1,7 @@
-#include "battle.h"
 #include "config.h"
+#include "debug.h"
+#include "types.h"
+
 #include "constants/ability.h"
 #include "constants/file.h"
 #include "constants/hold_item_effects.h"
@@ -7,17 +9,17 @@
 #include "constants/move_effects.h"
 #include "constants/moves.h"
 #include "constants/species.h"
-#include "debug.h"
+
+#include "battle.h"
 #include "overlay.h"
 #include "pokemon.h"
 #include "q412.h"
-#include "types.h"
 
 int GetZMovePower(struct BattleStruct *battle, int baseMove, int client);
 int GetMaxMovePower(struct BattleStruct *battle, int baseMove, int client);
 
 // int UNUSED CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond UNUSED,u32 field_cond, u16 pow UNUSED, u8 type UNUSED, u8 attacker, u8 defender, u8 critical) {
-int __attribute__((section (".init"))) UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *sp, struct DamageCalcStruct *damageCalc)
+int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *sp, struct DamageCalcStruct *damageCalc)
 {
     u32 i = 0;
     u32 attack;
@@ -1190,8 +1192,8 @@ int __attribute__((section (".init"))) UNUSED CalcBaseDamageInternal(struct Batt
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_3333);
             }
 
-            //TODO: check place after tests are done
-            // handle Fire Mane
+            // TODO: check place after tests are done
+            //  handle Fire Mane
             if (AttackingMon.ability == ABILITY_FIRE_MANE && (movetype == TYPE_FIRE)) {
                 attackModifier = QMul_RoundUp(attackModifier, UQ412__1_5);
             }
@@ -1605,7 +1607,8 @@ int __attribute__((section (".init"))) UNUSED CalcBaseDamageInternal(struct Batt
     return baseDamage;
 }
 
-int GetZMovePower(struct BattleStruct *battle, int baseMove, int client) {
+int GetZMovePower(struct BattleStruct *battle, int baseMove, int client)
+{
     int species = battle->battlemon[client].species;
 
     int form = battle->battlemon[client].form_no;
@@ -1675,25 +1678,25 @@ int GetZMovePower(struct BattleStruct *battle, int baseMove, int client) {
     }
 
     switch (baseMove) {
-        case MOVE_MEGA_DRAIN:
-            return 120;
-            break;
-        case MOVE_WEATHER_BALL:
-        case MOVE_HEX:
-            return 160;
-            break;
-        case MOVE_V_CREATE:
-            return 220;
-            break;
-        case MOVE_FLYING_PRESS:
-            return 170;
-            break;
-        case MOVE_CORE_ENFORCER:
-            return 140;
-            break;
+    case MOVE_MEGA_DRAIN:
+        return 120;
+        break;
+    case MOVE_WEATHER_BALL:
+    case MOVE_HEX:
+        return 160;
+        break;
+    case MOVE_V_CREATE:
+        return 220;
+        break;
+    case MOVE_FLYING_PRESS:
+        return 170;
+        break;
+    case MOVE_CORE_ENFORCER:
+        return 140;
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 
     if (battle->moveTbl[baseMove].effect == MOVE_EFFECT_ONE_HIT_KO) {
@@ -1703,40 +1706,40 @@ int GetZMovePower(struct BattleStruct *battle, int baseMove, int client) {
     int power = battle->moveTbl[baseMove].power;
 
     switch (power) {
-        case 0 ... 55:
-            return 100;
-            break;
-        case 60 ... 65:
-            return 120;
-            break;
-        case 70 ... 75:
-            return 140;
-            break;
-        case 80 ... 85:
-            return 160;
-            break;
-        case 90 ... 95:
-            return 175;
-            break;
-        case 100:
-            return 180;
-            break;
-        case 110:
-            return 185;
-            break;
-        case 120 ... 125:
-            return 190;
-            break;
-        case 130:
-            return 195;
-            break;
+    case 0 ... 55:
+        return 100;
+        break;
+    case 60 ... 65:
+        return 120;
+        break;
+    case 70 ... 75:
+        return 140;
+        break;
+    case 80 ... 85:
+        return 160;
+        break;
+    case 90 ... 95:
+        return 175;
+        break;
+    case 100:
+        return 180;
+        break;
+    case 110:
+        return 185;
+        break;
+    case 120 ... 125:
+        return 190;
+        break;
+    case 130:
+        return 195;
+        break;
 
-        default:
-            if (power >= 140) {
-                return 200;
-            }
-            GF_ASSERT_INTERNAL();
-            break;
+    default:
+        if (power >= 140) {
+            return 200;
+        }
+        GF_ASSERT_INTERNAL();
+        break;
     }
 
     GF_ASSERT_INTERNAL();

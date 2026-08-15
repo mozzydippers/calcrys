@@ -1,11 +1,12 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#include "debug.h"
+
 #include <stdint.h>
 
 #include "constants/buttons.h"
 
-#include "debug.h"
 #include "io_reg.h"
 
 typedef uint8_t u8;
@@ -104,7 +105,7 @@ extern u8 DebugTextBuf[0xAC];
 #define IS_NOT_VALID_EWRAM_POINTER(n) ((u32)(n) >= 0x03000000 || (u32)(n) < 0x02000000)
 
 #define GF_ASSERT(cond) \
-    if (!(cond)) {}
+    if (!(cond)) { }
 // #define GF_ASSERT(cond) (cond) ? 0 : GF_ASSERT_INTERNAL()
 
 struct HeapInfo {

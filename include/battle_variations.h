@@ -1,3 +1,5 @@
+#include "types.h"
+
 #include "constants/ability.h"
 #include "constants/file.h"
 #include "constants/item.h"
@@ -8,8 +10,6 @@
 #include "battle.h"
 #include "pokemon.h"
 #include "sprite.h"
-#include "types.h"
-
 
 enum BattleVariationType {
     BATTLE_VARIATION_TYPE_TOTEM = 1,
@@ -104,6 +104,6 @@ typedef struct BattleVariationInfo {
     u32 originalHP;
 } BattleVariationInfo;
 
-struct BattleVariationInfo* LONG_CALL GetBattleVariationInfo();
+struct BattleVariationInfo *LONG_CALL GetBattleVariationInfo();
 
 void LONG_CALL ClearBattleVariationInfo();

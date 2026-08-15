@@ -1,15 +1,16 @@
-#include "../../include/types.h"
 #include "../../include/battle.h"
-#include "../../include/pokemon.h"
-#include "../../include/constants/move_effects.h"
-#include "../../include/sprite.h"
 #include "../../include/constants/ability.h"
-#include "../../include/constants/item.h"
 #include "../../include/constants/file.h"
+#include "../../include/constants/item.h"
+#include "../../include/constants/move_effects.h"
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
+#include "../../include/pokemon.h"
+#include "../../include/sprite.h"
+#include "../../include/types.h"
 
-BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
+BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client)
+{
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("In AICheckCanUseZMove\n");
 #endif
@@ -26,11 +27,13 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
 
     struct BattleMove move = battle->moveTbl[moveID];
 
-    if (newBS.SideZMove[client])
+    if (newBS.SideZMove[client]) {
         return FALSE;
+    }
 
-    if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND)
+    if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
         return FALSE;
+    }
 
     // No known data for Gen 8+ moves
     if (command == SELECT_FIGHT_COMMAND) {
@@ -44,43 +47,43 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
 
         BOOL canUseZMove = FALSE;
         if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
-        || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
-        || (move.type == TYPE_FLYING && item == ITEM_FLYINIUM_Z_HELD)
-        || (move.type == TYPE_POISON && item == ITEM_POISONIUM_Z_HELD)
-        || (move.type == TYPE_GROUND && item == ITEM_GROUNDIUM_Z_HELD)
-        || (move.type == TYPE_ROCK && item == ITEM_ROCKIUM_Z_HELD)
-        || (move.type == TYPE_BUG && item == ITEM_BUGINIUM_Z_HELD)
-        || (move.type == TYPE_GHOST && item == ITEM_GHOSTIUM_Z_HELD)
-        || (move.type == TYPE_STEEL && item == ITEM_STEELIUM_Z_HELD)
-        || (move.type == TYPE_FIRE && item == ITEM_FIRIUM_Z_HELD)
-        || (move.type == TYPE_WATER && item == ITEM_WATERIUM_Z_HELD)
-        || (move.type == TYPE_GRASS && item == ITEM_GRASSIUM_Z_HELD)
-        || (move.type == TYPE_ELECTRIC && item == ITEM_ELECTRIUM_Z_HELD)
-        || (move.type == TYPE_PSYCHIC && item == ITEM_PSYCHIUM_Z_HELD)
-        || (move.type == TYPE_ICE && item == ITEM_ICIUM_Z_HELD)
-        || (move.type == TYPE_DRAGON && item == ITEM_DRAGONIUM_Z_HELD)
-        || (move.type == TYPE_DARK && item == ITEM_DARKINIUM_Z_HELD)
-        || (move.type == TYPE_FAIRY && item == ITEM_FAIRIUM_Z_HELD)
-        // Only regular Pikachu can use Catastropika
-        || (moveID == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0)
-        || (moveID == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14)
-        || (moveID == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1)
-        || (moveID == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE)
-        || (moveID == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX)
-        || (moveID == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW)
-        || (moveID == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE)
-        || (moveID == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR)
-        || (moveID == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA)
-        || (moveID == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU)
-        || (moveID == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O)
-        || (moveID == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD
-            && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI))
-        || (moveID == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM
-            && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1)))
-        || (moveID == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM
-            && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2)))
-        || (moveID == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4)))
-        || (moveID == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW)) {
+            || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
+            || (move.type == TYPE_FLYING && item == ITEM_FLYINIUM_Z_HELD)
+            || (move.type == TYPE_POISON && item == ITEM_POISONIUM_Z_HELD)
+            || (move.type == TYPE_GROUND && item == ITEM_GROUNDIUM_Z_HELD)
+            || (move.type == TYPE_ROCK && item == ITEM_ROCKIUM_Z_HELD)
+            || (move.type == TYPE_BUG && item == ITEM_BUGINIUM_Z_HELD)
+            || (move.type == TYPE_GHOST && item == ITEM_GHOSTIUM_Z_HELD)
+            || (move.type == TYPE_STEEL && item == ITEM_STEELIUM_Z_HELD)
+            || (move.type == TYPE_FIRE && item == ITEM_FIRIUM_Z_HELD)
+            || (move.type == TYPE_WATER && item == ITEM_WATERIUM_Z_HELD)
+            || (move.type == TYPE_GRASS && item == ITEM_GRASSIUM_Z_HELD)
+            || (move.type == TYPE_ELECTRIC && item == ITEM_ELECTRIUM_Z_HELD)
+            || (move.type == TYPE_PSYCHIC && item == ITEM_PSYCHIUM_Z_HELD)
+            || (move.type == TYPE_ICE && item == ITEM_ICIUM_Z_HELD)
+            || (move.type == TYPE_DRAGON && item == ITEM_DRAGONIUM_Z_HELD)
+            || (move.type == TYPE_DARK && item == ITEM_DARKINIUM_Z_HELD)
+            || (move.type == TYPE_FAIRY && item == ITEM_FAIRIUM_Z_HELD)
+            // Only regular Pikachu can use Catastropika
+            || (moveID == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0)
+            || (moveID == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14)
+            || (moveID == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1)
+            || (moveID == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE)
+            || (moveID == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX)
+            || (moveID == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW)
+            || (moveID == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE)
+            || (moveID == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR)
+            || (moveID == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA)
+            || (moveID == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU)
+            || (moveID == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O)
+            || (moveID == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD
+                && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI))
+            || (moveID == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM
+                && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1)))
+            || (moveID == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM
+                && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2)))
+            || (moveID == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4)))
+            || (moveID == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW)) {
             canUseZMove = TRUE;
         }
 
@@ -92,7 +95,8 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client) {
     return FALSE;
 }
 
-int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client) {
+int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client)
+{
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("In GetZMoveToBeUsed\n");
 #endif
