@@ -5,7 +5,7 @@
 .data
 
 _000:
-.if FOG_WEATHER_MISTY_TERRAIN == 0
+#ifdef FOG_WEATHER_MISTY_TERRAIN
     PlayBattleAnimation BATTLER_CATEGORY_PLAYER, BATTLE_ANIMATION_WEATHER_FOG
     Wait
     // Fog crept up as thick as soup!
@@ -13,10 +13,10 @@ _000:
     Wait
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BSCRIPT_VAR_FIELD_CONDITION, FIELD_CONDITION_FOG
-.else
+#else
     // Mist swirls around the battlefield!
     PrintMessage BATTLE_MSG_OVERWORLD_MISTY_TERRAIN_START, TAG_NONE
     Wait
     WaitButtonABTime 30
-.endif
+#endif
     End

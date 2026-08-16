@@ -25,7 +25,7 @@ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
     u32 battleVariation = BattleSystem_GetBattleSpecial(bsys);
 
     for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
-        if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_ITEM_INPUT && ctx->com_seq_no[battlerId] == 7) {
+        if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_ITEM_INPUT && ctx->com_seq_no[battlerId] == SSI_STATE_7) {
 #ifdef DISABLE_ITEMS_IN_TRAINER_BATTLE
             if ((fight_type & BATTLE_TYPE_TRAINER) || (battleVariation & BATTLE_SPECIAL_NO_ITEMS))
 #else
