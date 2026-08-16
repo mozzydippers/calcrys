@@ -1,10 +1,10 @@
 #ifndef POKEHEARTGOLD_BAG_H
 #define POKEHEARTGOLD_BAG_H
 
-#include "constants/item.h"
-
-#include "message.h"
 #include "types.h"
+
+#include "constants/item.h"
+#include "message.h"
 // #include "item.h"
 // #include "save.h"
 // #include "heap.h"

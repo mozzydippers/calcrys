@@ -1,8 +1,9 @@
 #ifndef POKEHEARTGOLD_UNK_0200E320_H
 #define POKEHEARTGOLD_UNK_0200E320_H
 
-#include "trainer_data.h"
 #include "types.h"
+
+#include "trainer_data.h"
 
 typedef struct SysTaskQueue SysTaskQueue;
 typedef struct SysTask SysTask;

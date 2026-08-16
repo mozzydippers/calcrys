@@ -3,8 +3,8 @@
 .thumb
 
 .include "asm/include/interop_macros.inc"
-.include "asm/include/hold_item_effects.inc"
-.include "asm/include/moves.inc"
+#include "../../include/constants/moves.h"
+#include "../../include/constants/hold_item_effects.h"
 
 //形态变化恢复
 .global TryRevertFormChange_hook
@@ -446,13 +446,6 @@ bx r0
 
 .pool
 
-
-.global load_max_move_num_metronome
-load_max_move_num_metronome:
-mov r0, r7
-bl RollMetronomeMove
-ldr r1, =0x022408BA|1
-bx r1
 
 
 // Start missingno hooks
