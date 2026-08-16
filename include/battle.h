@@ -3850,6 +3850,8 @@ BOOL LONG_CALL IsBattlerSlotValid(struct BattleSystem *battleSystem, int battler
 BOOL LONG_CALL GetTypeEffectivenessData(struct BattleSystem *bsys, int index, u8 *typeMove, u8 *typeMon, u8 *eff);
 BOOL LONG_CALL IsAttackerOnField(struct BattleStruct *ctx);
 
+u32 LONG_CALL BattleSystem_GetBattleSpecial(struct BattleSystem *bsys);
+
 int LONG_CALL ov12_0223ABB8(struct BattleSystem *bsys, int battlerId, int side);
 
 void LONG_CALL HandleTransform(struct BattleStruct *sp);

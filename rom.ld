@@ -3,6 +3,7 @@ BattlePokemonParamGet = 0x17520 + 0x022378C1;
 BattleWorkMonDataGet = 0x20914 + 0x022378C1;
 BattleItemDataGet = 0x205B4 + 0x022378C1;
 BattleTypeGet = 0x2F20 + 0x022378C1;
+BattleSystem_GetBattleSpecial = 0x0223B514 | 1;
 CheckFieldMoveEffect = 0x1B428 + 0x022378C1;
 CheckNumMonsHit = 0x1A9A0 + 0x022378C1;
 BattleWorkPokemonParamGet = 0x2FC0 + 0x022378C1;
