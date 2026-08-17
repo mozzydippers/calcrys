@@ -978,13 +978,15 @@ bx   r3
 
 .global ov07_0221D874_RaidTint
 ov07_0221D874_RaidTint:
+add  r0, r6, #0
+bl   IsRaidMonPokepic
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
 add  r0, r4, #0
-add  r0, #0xC8
-ldr  r0, [r0]
-ldr  r1, [sp, #0x18]
-ldr  r2, [sp, #0x14]
-ldr  r3, [r4, #0]
-bl   0x02003200 | 1 // PaletteData_LoadNarc
+ldr  r1, [sp, #0x1C]
+bl   0x0221FA48 | 1 // ov07_0221FA48
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
 
 add  r0, r4, #0
 add  r0, #0xC8
@@ -993,9 +995,12 @@ ldr  r1, [sp, #8]
 add  r2, r6, #0
 bl   Raid_ApplyObjPaletteAppearance
 
+_ov07_0221D874_RaidTintContinue:
 ldr  r0, [sp, #0xC]
 lsl  r5, r0, #2
-ldr  r3, =0x0221D9FC | 1
+mov  r0, #0x4F
+lsl  r0, r0, #2
+ldr  r3, =0x0221DA00 | 1
 bx   r3
 
 .pool

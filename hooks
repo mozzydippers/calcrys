@@ -672,6 +672,6 @@ arm9 sub_020179D4_RaidApplyPositionXFlipped 020179E4 3
 arm9 sub_020179D4_RaidApplyPositionX 020179F6 3
 arm9 sub_02017A1C_RaidApplyScaleX 02017A20 3
 arm9 sub_02017A1C_RaidApplyScaleY 02017A30 3
-0007 ov07_0221D874_RaidTint 0221D9F4 0
+0007 ov07_0221D874_RaidTint 0221D9F8 0
 
 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
