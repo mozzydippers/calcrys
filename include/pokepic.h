@@ -222,6 +222,7 @@ typedef struct PokepicManager {
 } PokepicManager; // size: 0x338
 
 void LONG_CALL Pokepic_StartAnim(Pokepic *pokepic);
+BOOL LONG_CALL Pokepic_IsAnimFinished(Pokepic *pokepic);
 void LONG_CALL sub_0207294C(void *narc, void *a1, void *a2, u16 a3, int a4, int a5, int a6);
 void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);

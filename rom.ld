@@ -910,6 +910,7 @@ ov12_0223BB88 = 0x0223BB88 | 1;
 ov12_0223BB94 = 0x0223BB94 | 1;
 ov12_022600F0 = 0x022600F0 | 1;
 Pokepic_StartAnim = 0x02008550 | 1;
+Pokepic_IsAnimFinished = 0x020085DC | 1;
 sStarterChoiceCries = 0x021E7398;
 BufferBoxMonNickname = 0x0200BF8C | 1;
 BufferBoxMonSpeciesName = 0x0200BF1C | 1;

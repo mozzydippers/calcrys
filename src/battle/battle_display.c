@@ -102,14 +102,17 @@ void Task_PlayFaintingSequence_WithVictoryPose(SysTask *task, void *data)
     if (faintingSequenceData->state == 11) {
         struct BattleSystem *battleSystem = faintingSequenceData->battleSys;
         struct BattleStruct *battleCtx = battleSystem->sp;
+        PokepicManager *monSpriteMan = BattleSystem_GetPokepicManager(battleSystem);
         void *monAnimMan = ov12_0223B750(battleSystem);
 
         BOOL side = IsClientEnemy(battleSystem, faintingSequenceData->battler);
         u32 firstBattler = side ? BATTLER_PLAYER : BATTLER_ENEMY;
         for (u32 i = firstBattler; i <= firstBattler + 2; i += 2) {
-            if (ShouldPlayVictoryPoseForBattler(battleSystem, battleCtx, i) && !sub_02017068(monAnimMan, i)) {
-                // if any pending tasks then don't run the original task yet
-                return;
+            if (ShouldPlayVictoryPoseForBattler(battleSystem, battleCtx, i)) {
+                if (!sub_02017068(monAnimMan, i) || Pokepic_IsAnimFinished(&monSpriteMan->pics[i])) {
+                    // if any pending tasks then don't run the original task yet
+                    return;
+                }
             }
         }
 
