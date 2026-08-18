@@ -124,7 +124,7 @@ void Task_PlayFaintingSequence_WithVictoryPose(SysTask *task, void *data)
     ov12_022600F0(task, data);
 }
 
-static BOOL IsRaidMonPokepic(const Pokepic *pokepic)
+BOOL IsRaidMonPokepic(const Pokepic *pokepic)
 {
     if (gBattleSystem == NULL || !(gBattleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
         return FALSE;

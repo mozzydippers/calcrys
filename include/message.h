@@ -53,6 +53,8 @@ typedef struct MessageFormat {
     String *buffer;
 } MessageFormat;
 
+struct PlayerProfile;
+
 MsgData *LONG_CALL NewMsgDataFromNarc(MsgDataLoadType type, u32 narc, s32 fileId, u32 heapId);
 void LONG_CALL ReadMsgDataIntoU16Array(MsgData *msgData, u32 msgno, u16 *dest);
 void LONG_CALL DestroyMsgData(MsgData *msgData);
