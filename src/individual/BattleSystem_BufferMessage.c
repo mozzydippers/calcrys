@@ -423,12 +423,10 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
 
         switch (msg->id) {
         case BATTLE_MSG_OLD_SEND_OUT: // {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
-            if (bsys->sp->printedTrainerSendOutMessage) {
+            if (bsys->sp->printedTrainerSendOutMessage && trainerMessageOffset != GRUNT_TRAINER_CLASS) {
                 msg->id = BATTLE_MSG_NEW_SEND_OUT_START; // {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
             } else {
-                if (trainerMessageOffset != GRUNT_TRAINER_CLASS) {
-                    bsys->sp->printedTrainerSendOutMessage = TRUE;
-                }
+                bsys->sp->printedTrainerSendOutMessage = TRUE;
                 if (trainerMessageOffset) {
                     msg->id = BATTLE_MSG_NEW_SEND_OUT_START + trainerMessageOffset;
                 }
