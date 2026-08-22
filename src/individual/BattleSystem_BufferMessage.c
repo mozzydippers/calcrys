@@ -168,16 +168,28 @@ const u8 TrainerClassClassificationList[] = {
     [TRAINERCLASS_PKMN_TRAINER_DAWN_PT] = DEFAULT_TRAINER_CLASS,
 };
 
+struct TagTrainer tagTrainerList[] = {
+    // { .trainerClass1 = TRAINERCLASS_1, .trainerClass2 = TRAINERCLASS_2, .tagTrainerClass = TRAINERCLASS_TAG_1 }
+};
+
 void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
 {
     // debug_printf("In BattleSystem_BufferMessage (overlay)\n");
     int trainerMessageOffset = 0;
+    u32 trainerClass1 = 0;
+    u32 trainerClass2 = 0;
 
     switch (msg->tag & TAG_NO_DIR_OFF) {
     case TAG_TRCLASS_TRNAME:
     case TAG_TRCLASS_TRNAME_NICKNAME:;
         Trainer *trainer = BattleSystem_GetTrainer(bsys, msg->param[0]);
         trainerMessageOffset = TrainerClassClassificationList[trainer->data.trainerClass];
+        break;
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:;
+        Trainer *trainer1 = BattleSystem_GetTrainer(bsys, msg->param[0]);
+        Trainer *trainer2 = BattleSystem_GetTrainer(bsys, msg->param[2]);
+        trainerClass1 = trainer1->data.trainerClass;
+        trainerClass2 = trainer2->data.trainerClass;
         break;
     default:
         break;
@@ -313,9 +325,9 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
                 msg->id = BATTLE_MSG_NEW_DEFEAT_START - 1 + trainerMessageOffset;
             }
             break;
-        case BATTLE_MSG_OLD_CHALLENEGE: // You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+        case BATTLE_MSG_OLD_CHALLENGE: // You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
             if (trainerMessageOffset) {
-                msg->id = BATTLE_MSG_NEW_CHALLENEGE_START - 1 + trainerMessageOffset;
+                msg->id = BATTLE_MSG_NEW_CHALLENGE_START - 1 + trainerMessageOffset;
             }
             break;
         }
@@ -498,8 +510,28 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
         BattleMessage_BufferNickname(bsys, 2, msg->param[2]);
         BattleMessage_BufferTrainerName(bsys, 3, msg->param[3]);
         break;
-    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
-        BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:;
+        // You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} and\f{STRVAR_1 14, 2, 0} {STRVAR_1 3, 3, 0}!\r
+        BOOL matchFound = FALSE;
+        u32 tagTrainerListLength = NELEMS(tagTrainerList);
+        if (msg->id == BATTLE_MSG_DOUBLE_BATTLE_ENCOUNTER && tagTrainerListLength > 0) {
+            for (u32 i = 0; i < tagTrainerListLength; i++) {
+                if (trainerClass1 == tagTrainerList[i].trainerClass1 && trainerClass2 == tagTrainerList[i].trainerClass2) {
+                    msg->id = BATTLE_MSG_TAG_CHALLENGE;
+                    MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, 730, bsys->msgFormat->heapId);
+                    if (msgData != NULL) {
+                        ReadMsgDataIntoString(msgData, tagTrainerList[i].tagTrainerClass, bsys->msgFormat->buffer);
+                        SetStringAsPlaceholder(bsys->msgFormat, 0, bsys->msgFormat->buffer, NULL);
+                        DestroyMsgData(msgData);
+                    }
+                    matchFound = TRUE;
+                    break;
+                }
+            }
+        }
+        if (!matchFound) {
+            BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
+        }
         BattleMessage_BufferTrainerName(bsys, 1, msg->param[1]);
         BattleMessage_BufferTrainerClass(bsys, 2, msg->param[2]);
         BattleMessage_BufferTrainerName(bsys, 3, msg->param[3]);

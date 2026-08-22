@@ -1326,6 +1326,12 @@ struct ABILITY_POPUP_WORK {
     u8 iconResourcesLoaded;
 };
 
+struct TagTrainer {
+    u16 trainerClass1;
+    u16 trainerClass2;
+    u32 tagTrainerClass;
+};
+
 // Ability Checks - values for flag for CheckSideAbility
 #define CHECK_ABILITY_SAME_SIDE            0
 #define CHECK_ABILITY_SAME_SIDE_HP         1
