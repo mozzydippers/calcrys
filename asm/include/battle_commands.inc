@@ -1598,8 +1598,13 @@
     .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro TryActivateZeroToHero arg_0
     .long 293
+    .long \arg_0
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 294
     .endm
 
     .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 293

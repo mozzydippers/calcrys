@@ -136,7 +136,8 @@ BOOL btl_scr_cmd_121_IsPursuitActive(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_122_GoBackToBeforeMove(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_124_GetMonByCottonDownOrder(void *bsys UNUSED, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_125_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_125_TryActivateZeroToHero(void *bsys, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -474,6 +475,7 @@ const u8 *BattleScrCmdNames[] = {
     "GoBackToBeforeMove",
     "SetAuraBoost",
     "GetMonByCottonDownOrder",
+    "TryActivateZeroToHero",
     "CheckTrainerGimmickMessage",
     // "YourCustomCommand",
 };
@@ -554,7 +556,8 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x122 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_122_GoBackToBeforeMove,
     [0x123 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_123_SetAuraBoost,
     [0x124 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_124_GetMonByCottonDownOrder,
-    [0x125 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_125_CheckTrainerGimmickMessage,
+    [0x125 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_125_TryActivateZeroToHero,
+    [0x126 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_126_CheckTrainerGimmickMessage,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -3464,6 +3467,7 @@ BOOL BtlCmd_TryWish(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx)
     } else {
         ctx->fcc.wish_count[ctx->attack_client] = 2;
         ctx->fcc.wish_sel_mons[ctx->attack_client] = ctx->sel_mons_no[ctx->attack_client];
+        ctx->fcc.wish_heal_amount[ctx->attack_client] = ctx->battlemon[ctx->attack_client].maxhp / 2; // round down
 
         for (int i = 0; i < CLIENT_MAX * FUTURE_CONDITION_MAX; i++) {
             if (ctx->futureConditionQueue[i].conditionType.futureConditionType == FUTURE_CONDITION_NONE) {
@@ -5477,7 +5481,7 @@ BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx)
     return FALSE;
 }
 
-BOOL btl_scr_cmd_125_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
+BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
@@ -5739,6 +5743,27 @@ BOOL BtlCmd_TryPerishSong(struct BattleSystem *bsys, struct BattleStruct *ctx)
     }
     if (cnt == maxBattlers) {
         IncrementBattleScriptPtr(ctx, adrs);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_125_TryActivateZeroToHero(void *bsys, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battler = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+
+    if (ctx->battlemon[battler].species == SPECIES_PALAFIN
+        && ctx->battlemon[battler].form_no == 0
+        && ctx->battlemon[battler].ability == ABILITY_ZERO_TO_HERO
+        && !(ctx->battlemon[battler].condition2 & STATUS2_TRANSFORM)
+        && ctx->battlemon[battler].hp != 0) {
+        struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, battler, ctx->sel_mons_no[battler]);
+        u8 form = 1;
+
+        SetMonData(mon, MON_DATA_FORM, &form);
+        RecalcPartyPokemonStats(mon);
     }
 
     return FALSE;
