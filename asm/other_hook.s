@@ -205,6 +205,106 @@ bx   r3
 
 .pool
 
+.global sub_020174BC_RaidRestoreScaleX
+sub_020174BC_RaidRestoreScaleX:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x020174F5 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestorePositionX
+sub_020174BC_RaidRestorePositionX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x58]
+bl   Raid_RestoreAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x020174CB | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionXFlipped
+sub_020179D4_RaidApplyPositionXFlipped:
+ldr  r3, [r4, #0x60]
+ldr  r2, [r4, #0x68]
+ldr  r1, [r4, #0x58]
+add  r2, r3, r2
+sub  r1, r1, r2
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionX
+sub_020179D4_RaidApplyPositionX:
+ldr  r1, [r4, #0x58]
+ldr  r2, [r4, #0x60]
+ldr  r3, [r4, #0x68]
+add  r1, r1, r2
+add  r1, r1, r3
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestoreScaleY
+sub_020174BC_RaidRestoreScaleY:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017501 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleX
+sub_02017A1C_RaidApplyScaleX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x70]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A31 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleY
+sub_02017A1C_RaidApplyScaleY:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x74]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A41 | 1
+bx   r3
+
+.pool
+
 //02234868
 //08018A48
 .global hook_7_spriteOffsetSpecies

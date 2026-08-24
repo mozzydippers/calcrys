@@ -63,6 +63,44 @@ void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, P
     }
 }
 
+void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic)
+{
+    if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
+        return;
+    }
+
+    pokepic->drawParam.xOffset = -25;
+    Raid_ApplyMainAppearance(pokepic);
+}
+
+int LONG_CALL Raid_AdjustAnimationScale(Pokepic *pokepic, int scale)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return scale;
+    }
+
+    return scale * RAID_POKEPIC_SCALE_PERCENT / 100;
+}
+
+int LONG_CALL Raid_AdjustAnimationX(Pokepic *pokepic, int x)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return x;
+    }
+
+    return x - 25;
+}
+
+int LONG_CALL Raid_RestoreAnimationX(Pokepic *pokepic, int x)
+{
+    if (!IsRaidMonPokepic(pokepic)) {
+        return x;
+    }
+
+    pokepic->drawParam.xOffset = 0;
+    return x - 25;
+}
+
 static u16 Raid_TintColor(u16 color)
 {
     u32 red = color & 0x1F;
