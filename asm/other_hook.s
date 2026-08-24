@@ -109,6 +109,102 @@ bx r5
 
 .pool
 
+.global ov07_0221D874_RaidApplyAppearance
+ov07_0221D874_RaidApplyAppearance:
+bl   0x0200D734 | 1 // SpriteSystem_NewSprite
+add  r7, r0, #0
+
+add  r0, r7, #0
+add  r1, r6, #0
+bl   Raid_ApplyManagedSpriteAppearance
+
+add  r0, r7, #0
+cmp  r6, #0
+beq  _ov07_0221D874_RaidContinueHidden
+ldr  r1, =0x0221D98D | 1
+bx   r1
+
+_ov07_0221D874_RaidContinueHidden:
+ldr  r1, =0x0221D985 | 1
+bx   r1
+
+.pool
+
+.global ov07_0221FB90_RaidApplyAppearance
+ov07_0221FB90_RaidApplyAppearance:
+add  r6, r0, #0
+
+add  r0, r6, #0
+bl   0x0200DC18 | 1 // ManagedSprite_TickFrame
+str  r6, [r7, #0x24]
+
+add  r0, r6, #0
+add  r1, r5, #0
+bl   Raid_ApplyManagedSpriteAppearance
+
+cmp  r5, #0
+ldr  r3, =0x0221FD65 | 1
+bx   r3
+
+.pool
+
+.global ov07_0221D874_RaidTint
+ov07_0221D874_RaidTint:
+add  r0, r6, #0
+bl   IsRaidMonPokepic
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
+add  r0, r4, #0
+ldr  r1, [sp, #0x1C]
+bl   0x0221FA48 | 1 // ov07_0221FA48
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
+
+add  r0, r4, #0
+add  r0, #0xC8
+ldr  r0, [r0]
+ldr  r1, [sp, #8]
+add  r2, r6, #0
+bl   Raid_ApplyObjPaletteAppearance
+
+_ov07_0221D874_RaidTintContinue:
+ldr  r0, [sp, #0xC]
+lsl  r5, r0, #2
+mov  r0, #0x4F
+lsl  r0, r0, #2
+ldr  r3, =0x0221DA00 | 1
+bx   r3
+
+.pool
+
+.global ov07_0221FB90_RaidTint
+ov07_0221FB90_RaidTint:
+ldr  r0, [sp, #0x2C]
+ldr  r1, [r4, #4]
+cmp  r0, r1
+beq  _ov07_0221FB90_RaidTintCurrent
+cmp  r1, #0xFF
+bne  _ov07_0221FB90_RaidTintContinue
+
+_ov07_0221FB90_RaidTintCurrent:
+ldr  r2, [r7, #0x48]
+cmp  r2, #0
+beq  _ov07_0221FB90_RaidTintContinue
+ldr  r0, [r4, #0x10]
+ldr  r1, [sp, #8]
+bl   Raid_ApplyObjPaletteAppearance
+
+_ov07_0221FB90_RaidTintContinue:
+ldr  r0, [sp, #0x2C]
+add  r7, r7, #4
+add  r0, r0, #1
+str  r0, [sp, #0x2C]
+cmp  r0, #4
+ldr  r3, =0x0221FDE7 | 1
+bx   r3
+
+.pool
+
 //02234868
 //08018A48
 .global hook_7_spriteOffsetSpecies

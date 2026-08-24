@@ -17,9 +17,6 @@
 
 void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct);
 
-// need this to change the permanent battle bg properly
-ALIGN4 struct BattleSystem *gBattleSystem = NULL;
-
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
 };

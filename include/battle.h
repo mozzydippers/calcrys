@@ -2667,6 +2667,15 @@ typedef void (*anim_scr_cmd_func)(ANIM_CMD_STRUCT *animCmdStruct);
 extern const anim_scr_cmd_func gAnimScrTable[NUM_VANILLA_ANIM_SCRIPT_COMMANDS];
 extern struct BattleSystem *gBattleSystem;
 
+BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic);
+void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic);
+void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic);
+int LONG_CALL Raid_AdjustAnimationScale(Pokepic *pokepic, int scale);
+int LONG_CALL Raid_AdjustAnimationX(Pokepic *pokepic, int x);
+int LONG_CALL Raid_RestoreAnimationX(Pokepic *pokepic, int x);
+void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic);
+void LONG_CALL Raid_ApplyObjPaletteAppearance(void *paletteData, u16 palettePosition, Pokepic *pokepic);
+
 enum {
     SWITCH_IN_CHECK_WEATHER = 0,
     SWITCH_IN_CHECK_FIELD, // SwSh DLC Psychic Terrain, Toxic Spikes

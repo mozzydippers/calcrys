@@ -3,10 +3,94 @@
 #include "../include/battle.h"
 #include "../include/battle_variations.h"
 #include "../include/constants/file.h"
+#include "../include/overlay.h"
 #include "../include/pokemon.h"
+#include "../include/pokepic.h"
 #include "../include/types.h"
 
+#define POKEPIC_SCALE_NORMAL       0x100
+#define RAID_POKEPIC_SCALE_PERCENT 160
+#define PLTT_COLORS                16
+#define RAID_TINT_RED              31
+#define RAID_TINT_GREEN            16
+#define RAID_TINT_BLUE             16
+#define RAID_POKEPIC_AFFINE_SCALE  (POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100)
+
+ALIGN4 struct BattleSystem *gBattleSystem __attribute__((section(".data"))) = NULL;
+
 static struct BattleVariationInfo sBattleVariationInfo = { 0 };
+
+BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic)
+{
+    if (!IsOverlayLoaded(OVERLAY_BATTLE_EXTENSION)) {
+        return FALSE;
+    }
+    if (gBattleSystem == NULL || !(gBattleSystem->battleSpecial & BATTLE_SPECIAL_MAX_RAID)) {
+        return FALSE;
+    }
+    return pokepic != NULL && gBattleSystem->pokepicManager != NULL && pokepic == &gBattleSystem->pokepicManager->pics[BATTLER_ENEMY];
+}
+
+void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
+{
+    if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
+        return;
+    }
+
+    PokepicDrawParam *drawParam = &pokepic->drawParam;
+    drawParam->affineWidth = RAID_POKEPIC_AFFINE_SCALE;
+    drawParam->affineHeight = RAID_POKEPIC_AFFINE_SCALE;
+    drawParam->visible = FALSE;
+    drawParam->yOffset = -15;
+    drawParam->diffuseR = RAID_TINT_RED;
+    drawParam->diffuseG = RAID_TINT_GREEN;
+    drawParam->diffuseB = RAID_TINT_BLUE;
+}
+
+void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic)
+{
+    if (managedSprite != NULL && IsRaidMonPokepic(pokepic)) {
+        float scale = (float)RAID_POKEPIC_AFFINE_SCALE / POKEPIC_SCALE_NORMAL;
+        s16 x;
+        s16 y;
+
+        Raid_ApplyMainAppearance(pokepic);
+        ManagedSprite_SetAffineOverwriteMode(managedSprite, 2);
+        ManagedSprite_SetAffineScale(managedSprite, scale, scale);
+        ManagedSprite_GetPositionXY(managedSprite, &x, &y);
+        // why the fuck is it + 1?
+        ManagedSprite_SetPositionXY(managedSprite, x + pokepic->drawParam.xOffset + 1, y + pokepic->drawParam.yOffset + 1);
+    }
+}
+
+static u16 Raid_TintColor(u16 color)
+{
+    u32 red = color & 0x1F;
+    u32 green = (color >> 5) & 0x1F;
+    u32 blue = (color >> 10) & 0x1F;
+
+    red = (red * RAID_TINT_RED + 15) / 31;
+    green = (green * RAID_TINT_GREEN + 15) / 31;
+    blue = (blue * RAID_TINT_BLUE + 15) / 31;
+    return red | (green << 5) | (blue << 10);
+}
+
+void LONG_CALL Raid_ApplyObjPaletteAppearance(void *paletteData, u16 palettePosition, Pokepic *pokepic)
+{
+    if (paletteData == NULL || !IsRaidMonPokepic(pokepic)) {
+        return;
+    }
+    if ((palettePosition % PLTT_COLORS) != 0 || palettePosition > 256 - PLTT_COLORS) {
+        return;
+    }
+
+    u16 *palette = PaletteData_GetUnfadedBuf(paletteData, 2) + palettePosition;
+    for (u32 color = 1; color < PLTT_COLORS; color++) {
+        palette[color] = Raid_TintColor(palette[color]);
+    }
+
+    PaletteData_LoadPalette(paletteData, palette, 2, palettePosition, PLTT_COLORS * sizeof(u16));
+}
 
 // Pokemon generated will be illegal
 struct PartyPokemon *InitialiseBattleVariationEnemy(void *taskManager, struct BattleSetup *setup, struct BattleVariationBase *battleVariationBase)
