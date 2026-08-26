@@ -2357,8 +2357,16 @@ int LONG_CALL MovePerformance_Step_10(void *bsys, struct BattleStruct *ctx, int 
 
             FALLTHROUGH;
         case MOVE_PERFORMANCE_SUB_STEP_10_12_PROTECTION_FROM_Z_MOVE:
-            // TODO
+#ifdef DEBUG_MOVE_PERFORMANCE_LOGIC
+            debug_printf("in MOVE_PERFORMANCE_SUB_STEP_10_12_PROTECTION_FROM_Z_MOVE %d\n", ctx->movePerformanceSubstep);
+#endif
             ctx->movePerformanceSubstep++;
+            if ((MoveIsZMove(ctx->current_move_index) || MoveIsMaxMove(ctx->current_move_index)) && ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT);
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                return TRUE;
+            }
             FALLTHROUGH;
         default:
             break;

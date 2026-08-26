@@ -532,8 +532,9 @@
 #define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (523)
 #define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (524)
 #define BATTLE_SUBSCRIPT_STANCE_CHANGE                          (525)
+#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (526)
 
-#define MAX_BASE_SUBSCRIPT_NUM 525
+#define MAX_BASE_SUBSCRIPT_NUM 526
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)

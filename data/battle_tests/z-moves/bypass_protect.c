@@ -72,5 +72,6 @@ BEGIN_TEST {
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Audino surrounded itself with its Z-Power!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Audino unleashes its full-force Z-Move!" },
         { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 13, 13, 13 } },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Audino couldn't fully protect itself and got hurt!" },
     },
 } END_TEST
