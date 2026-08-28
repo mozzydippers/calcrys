@@ -98,7 +98,8 @@
 #define FLAG_TERASTALIZATION_ENABLED 2521
 
 // System flag to enable Exp. Share
-#define FLAG_EXP_SHARE_ENABLED 2522
+#define FLAG_EXP_SHARE_ENABLED 2524
+#define EXP_SHARE_GENERATION   GEN_LATEST
 
 // UPDATE_OVERWORLD_POISON will remove overworld poison if enabled
 // comment the line out below to retain overworld poison

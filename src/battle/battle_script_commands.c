@@ -1312,7 +1312,10 @@ int Task_GetExp_HandleExpShare(struct EXP_CALCULATOR *data, struct PartyPokemon 
     int side = (data->sp->fainting_client >> 1) & 1;
 
     if (itemEffect != HOLD_EFFECT_EXP_SHARE
+#if EXP_SHARE_GENERATION == 6
         && CheckScriptFlag(FLAG_EXP_SHARE_ENABLED)
+#else
+#endif
         && GetMonData(mon, MON_DATA_HP, NULL)
         && !(data->sp->obtained_exp_right_flag[side] & No2Bit(slot))) {
         itemEffect = HOLD_EFFECT_EXP_SHARE;
