@@ -69,7 +69,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_SANDSTORM:
                         case 16:
-                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_SANDSTORM;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_SAND;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case WEATHER_SYS_MIST1:
@@ -78,7 +78,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     //        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case WEATHER_SYS_HIGH_SUN:
                         case 14:
@@ -97,22 +97,22 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         case 20:
                             sp->current_move_index = MOVE_GRASSY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 21:
                             sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 22:
                             sp->current_move_index = MOVE_ELECTRIC_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 23:
                             sp->current_move_index = MOVE_PSYCHIC_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_CREATE_TERRAIN_OVERLAY;
+                            scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 24:
                             sp->current_move_index = MOVE_ELECTRIC_TERRAIN;

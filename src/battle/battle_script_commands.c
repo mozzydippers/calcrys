@@ -2711,33 +2711,27 @@ BOOL btl_scr_cmd_F9_canclearprimalweather(void *bw, struct BattleStruct *sp)
 
     client_set_max = BattleWorkClientSetMaxGet(bw);
 
-/*    u32 currentPrimalWeather = sp->field_condition & (WEATHER_EXTREMELY_HARSH_SUNLIGHT | WEATHER_HEAVY_RAIN | WEATHER_STRONG_WINDS); */
-    u32 currentPrimalWeather = sp->field_condition & (WEATHER_SANDSTORM_PERMANENT | WEATHER_HEAVY_RAIN | WEATHER_STRONG_WINDS);
+    u32 currentPrimalWeather = sp->field_condition & (FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT | FIELD_CONDITION_HEAVY_RAIN | FIELD_CONDITION_STRONG_WINDS);
 
     if (currentPrimalWeather) {
         for (i = 0; i < client_set_max; i++) {
             client_no = sp->turnOrder[i];
             switch (currentPrimalWeather) {
-                case WEATHER_SANDSTORM_ANY:
-                    if (GetBattlerAbility(sp, client_no) == ABILITY_SAND_STREAM && sp->battlemon[client_no].hp != 0) {
-                        count++;
-                    }
-                    break;
-                /* case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
-                    if (GetBattlerAbility(sp, client_no) == ABILITY_DESOLATE_LAND && sp->battlemon[client_no].hp != 0) {
-                        count++;
-                    }
-                    break; */
-                case WEATHER_HEAVY_RAIN:
-                    if (GetBattlerAbility(sp, client_no) == ABILITY_PRIMORDIAL_SEA && sp->battlemon[client_no].hp != 0) {
-                        count++;
-                    }
-                    break; 
-                case WEATHER_STRONG_WINDS:
-                    if (GetBattlerAbility(sp, client_no) == ABILITY_DELTA_STREAM && sp->battlemon[client_no].hp != 0) {
-                        count++;
-                    }
-                    break;
+            case FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT:
+                if (GetBattlerAbility(sp, client_no) == ABILITY_DESOLATE_LAND && sp->battlemon[client_no].hp != 0) {
+                    count++;
+                }
+                break;
+            case FIELD_CONDITION_HEAVY_RAIN:
+                if (GetBattlerAbility(sp, client_no) == ABILITY_PRIMORDIAL_SEA && sp->battlemon[client_no].hp != 0) {
+                    count++;
+                }
+                break;
+            case FIELD_CONDITION_STRONG_WINDS:
+                if (GetBattlerAbility(sp, client_no) == ABILITY_DELTA_STREAM && sp->battlemon[client_no].hp != 0) {
+                    count++;
+                }
+                break;
 
             default:
                 break;
@@ -2754,30 +2748,24 @@ BOOL btl_scr_cmd_F9_canclearprimalweather(void *bw, struct BattleStruct *sp)
         return FALSE;
     } else {
         switch (currentPrimalWeather) {
-            case WEATHER_SANDSTORM_PERMANENT:
-                // sprintf(buf, "WEATHER_EXTREMELY_HARSH_SUNLIGHT\n");
-                // debugsyscall(buf);
-                IncrementBattleScriptPtr(sp, sunAddress);
-                return FALSE;
-                break;
-            /* case WEATHER_EXTREMELY_HARSH_SUNLIGHT:
-                // sprintf(buf, "WEATHER_EXTREMELY_HARSH_SUNLIGHT\n");
-                // debugsyscall(buf);
-                IncrementBattleScriptPtr(sp, sunAddress);
-                return FALSE;
-                break; */
-            case WEATHER_HEAVY_RAIN:
-                // sprintf(buf, "WEATHER_HEAVY_RAIN\n");
-                // debugsyscall(buf);
-                IncrementBattleScriptPtr(sp, rainAddress);
-                return FALSE;
-                break;
-            case WEATHER_STRONG_WINDS:
-                // sprintf(buf, "WEATHER_STRONG_WINDS\n");
-                // debugsyscall(buf);
-                IncrementBattleScriptPtr(sp, windsAddress);
-                return FALSE;
-                break;
+        case FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT:
+            // sprintf(buf, "FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT\n");
+            // debugsyscall(buf);
+            IncrementBattleScriptPtr(sp, sunAddress);
+            return FALSE;
+            break;
+        case FIELD_CONDITION_HEAVY_RAIN:
+            // sprintf(buf, "FIELD_CONDITION_HEAVY_RAIN\n");
+            // debugsyscall(buf);
+            IncrementBattleScriptPtr(sp, rainAddress);
+            return FALSE;
+            break;
+        case FIELD_CONDITION_STRONG_WINDS:
+            // sprintf(buf, "FIELD_CONDITION_STRONG_WINDS\n");
+            // debugsyscall(buf);
+            IncrementBattleScriptPtr(sp, windsAddress);
+            return FALSE;
+            break;
 
         default:
             // sprintf(buf, "Fail?\n");

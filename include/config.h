@@ -103,7 +103,7 @@
 
 // DISABLE_END_OF_TURN_WEATHER_MESSAGE removes the weather messages at the end of the turn.  instead the bottom screen icon can be used
 // uncomment the line out to get this functionality
-#define DISABLE_END_OF_TURN_WEATHER_MESSAGE
+// #define DISABLE_END_OF_TURN_WEATHER_MESSAGE
 
 #define OVERWORLD_ROOM_VARIABLE 0x4200
 

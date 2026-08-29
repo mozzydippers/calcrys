@@ -1545,7 +1545,7 @@ int UNUSED CalcBaseDamageInternal(struct BattleSystem *bw, struct BattleStruct *
                 && (DefendingMon.species == SPECIES_DITTO)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
                 /* && !(AttackingMon.condition2 & STATUS2_TRANSFORM)
-                && (movesplit == SPLIT_PHYSICAL))*/  {
+                && (movesplit == SPLIT_PHYSICAL)*/)  {
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
         }

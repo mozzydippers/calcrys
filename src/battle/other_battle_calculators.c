@@ -1254,7 +1254,7 @@ u8 LONG_CALL CalcSpeed(void *bw, struct BattleStruct *sp, int client1, int clien
     if ((hold_effect2 == HOLD_EFFECT_DITTO_SPEED_UP)
         && (sp->battlemon[client2].species == SPECIES_DITTO)
         // Not transformed
-        /* && !(sp->battlemon[client2].condition2 & STATUS2_TRANSFORMED) */ ) {
+        /* && !(sp->battlemon[client2].condition2 & STATUS2_TRANSFORMED) */) {
         speedModifier2 = QMul_RoundUp(speedModifier2, UQ412__2_0);
     }
 
@@ -2743,7 +2743,7 @@ void LONG_CALL getEquivalentAttackAndDefense(struct BattleStruct *sp, u16 attack
     u8 movetype;
     movetype = GetAdjustedMoveType(sp, sp->attack_client, sp->current_move_index); // new normalize checks
 
-    if (sp->field_condition & WEATHER_SHADOWY_AURA_ANY)
+    if (sp->field_condition & FIELD_CONDITION_SHADOWY_AURA_ALL)
     {
         switch (movetype)
         {

@@ -189,9 +189,9 @@ int MoveCheckDamageNegatingAbilities(struct BattleStruct *sp, int attacker, int 
         if ((movetype == TYPE_FIRE)
             && ((sp->server_status_flag & SERVER_STATUS_FLAG_x20) == 0)
             && (sp->moveTbl[sp->current_move_index].power)
-            && (sp->field_condition & WEATHER_SUNNY_ANY)) {
+            && (sp->field_condition & FIELD_CONDITION_SUN_ALL)) {
             sp->hp_calc_work = BattleDamageDivide(sp->battlemon[defender].maxhp, 4);
-            scriptnum = SUB_SEQ_ABILITY_HP_RESTORE;
+            scriptnum = BATTLE_SUBSCRIPT_ABILITY_HP_RESTORE_GRADUAL;
         }
     }
 

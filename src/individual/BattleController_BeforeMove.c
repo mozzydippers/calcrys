@@ -1567,13 +1567,13 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
         if (ctx->moveTbl[ctx->current_move_index].power == 0 && ctx->battlemon[ctx->attack_client].form_no == 0) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 3;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         } else if (ctx->moveTbl[ctx->current_move_index].power != 0 && ctx->battlemon[ctx->attack_client].form_no == 0) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 1;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }
@@ -1583,14 +1583,14 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
         if ((IsMovePunchingMove(ctx->current_move_index)) && (ctx->battlemon[ctx->attack_client].form_no == 0)) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 1;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }
         else if ((IsMoveSoundBased(ctx->current_move_index)) && (ctx->battlemon[ctx->attack_client].form_no == 1) && (ctx->current_move_index != MOVE_RELIC_SONG)) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 0;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }
@@ -1608,7 +1608,7 @@ void BattleController_CheckDeoxysStanceChange(struct BattleSystem *bsys, struct 
             {
                 ctx->battlemon[ctx->battlerIdTemp].form_no = 2;
                 BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, SUB_SEQ_FORM_CHANGE);
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
             }
