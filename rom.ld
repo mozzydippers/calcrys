@@ -998,6 +998,9 @@ Roamers_GetRoamMonStats = 0x0202DA54 | 1;
 Roamer_GetLocation = 0x0202D9F8 | 1;
 ApplyRoamerLocation = 0x02067914 | 1;
 
+sub_020136B4 = 0x020136B4 | 1;
+GfGfx_EngineBTogglePlanes = 0x02022CC8 | 1;
+
 ov07_02232F60 = 0x02232F60 | 1;
 ov07_02233ECC = 0x02233ECC | 1;
 

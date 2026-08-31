@@ -1,11 +1,11 @@
 #include "../../include/battle.h"
+#include "../../include/battle_info.h"
 #include "../../include/battle_input.h"
 #include "../../include/constants/buttons.h"
 #include "../../include/constants/file.h"
 #include "../../include/constants/item.h"
 #include "../../include/constants/moves.h"
 #include "../../include/message.h"
-#include "../../include/nitro.h"
 #include "../../include/pokemon.h"
 #include "../../include/sprite.h"
 #include "../../include/system.h"
@@ -35,7 +35,6 @@
 #define BATTLE_INFO_STAT_ROW_GAP_PX        12
 #define BATTLE_INFO_STATUS_ROW_MAX         7
 #define BATTLE_INFO_PANEL_BG_LAYER         4
-#define BATTLE_INFO_PAGE_ID                21
 #define BATTLE_INFO_BUTTON_W_TILES         5
 #define BATTLE_INFO_BUTTON_H_TILES         5
 #define BATTLE_INFO_FOOTER_BUTTON_GFX_NARC 71
@@ -46,6 +45,7 @@
 #define BATTLE_INFO_FOOTER_BUTTON_PAL_BANK 11
 #define BATTLE_INFO_SHELL_PAL_BANK         10
 #define BATTLE_INFO_SUB_BG_PLTTBUF         1
+#define BATTLE_INFO_SUB_OBJ_PLANE          (1 << 4)
 #define BATTLE_INFO_SUB_BG_SCR_BASE        ((u16 *)(0x06200000 + (14 * 0x800)))
 #define BATTLE_INFO_FOOTER_BG_SCR_BASE     ((u16 *)(0x06200000 + (15 * 0x800)))
 #define BATTLE_INFO_SUB_BG_SCREEN_0_BASE   ((u16 *)(0x06200000 + (12 * 0x800)))
@@ -66,24 +66,30 @@
 #define PLTTBUF_SUB_OBJ_F                  (1 << 3)
 #define BATTLE_INFO_FADE_BUFFERS           (PLTTBUF_SUB_BG_F | PLTTBUF_SUB_OBJ_F)
 #define BATTLE_INFO_FADE_PALETTES          0xFFFF
-#define BATTLE_INFO_FADE_WAIT              -8
+#define BATTLE_INFO_FADE_WAIT              -2
+#define BATTLE_INFO_OPEN_SETTLE_FRAMES     2
 
-typedef struct NNSG2dCharacterData {
-    u16 H;
-    u16 W;
-    u32 pixelFmt;
-    u32 mappingType;
-    u32 characterFmt;
-    u32 szByte;
-    void *pRawData;
-} NNSG2dCharacterData;
+#define BATTLE_INFO_ICON_CHAR_TAG      20536
+#define BATTLE_INFO_ICON_PLTT_TAG      20522
+#define BATTLE_INFO_ICON_CELL_TAG      20521
+#define BATTLE_INFO_ICON_CELL_ANIM_TAG 20521
+#define BATTLE_INFO_TYPE_ICON_CHAR_TAG 20525
 
-typedef struct NNSG2dPaletteData {
-    u32 fmt;
-    BOOL bExtendedPlt;
-    u32 szByte;
-    void *pRawData;
-} NNSG2dPaletteData;
+typedef enum BattleInfoTaskState {
+    BATTLE_INFO_TASK_STATE_BEGIN_OPEN,
+    BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_OUT,
+    BATTLE_INFO_TASK_STATE_HANDLE_INPUT,
+    BATTLE_INFO_TASK_STATE_BEGIN_CLOSE,
+    BATTLE_INFO_TASK_STATE_WAIT_BUTTON_RELEASE,
+    BATTLE_INFO_TASK_STATE_WAIT_OPEN_SETTLE,
+    BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_IN,
+    BATTLE_INFO_TASK_STATE_RESTORE_MENU,
+    BATTLE_INFO_TASK_STATE_WAIT_MENU_FEEDBACK,
+    BATTLE_INFO_TASK_STATE_WAIT_CLOSE_FADE_IN,
+    BATTLE_INFO_TASK_STATE_CHANGE_FOCUS,
+    BATTLE_INFO_TASK_STATE_WAIT_FOCUS_SETTLE,
+    BATTLE_INFO_TASK_STATE_WAIT_FOCUS_FADE_IN,
+} BattleInfoTaskState;
 
 typedef struct BattleInfoTextObjTemplate {
     void *fontSystem;
@@ -99,52 +105,6 @@ typedef struct BattleInfoTextObjTemplate {
     int vram;
     int heapID;
 } BattleInfoTextObjTemplate;
-
-void *LONG_CALL BattleSystem_GetBattleContext(struct BattleSystem *bsys);
-void *LONG_CALL BattleSystem_GetPaletteData(struct BattleSystem *bsys);
-void LONG_CALL NARC_Delete(NARC *narc);
-void LONG_CALL ToggleBgLayer(u8 bgId, u8 toggle);
-struct PartyPokemon *LONG_CALL BattleSystem_GetPartyMon(struct BattleSystem *bsys, int battlerId, int slot);
-int LONG_CALL ov12_022581D4(struct BattleSystem *bsys, void *battleCtx, int a2, int battlerId);
-void LONG_CALL BufferAbilityName(MessageFormat *msgFmt, u32 fieldno, u32 abilityId);
-void LONG_CALL BufferStatName(MessageFormat *msgFmt, u32 fieldno, u32 statId);
-MessageFormat *LONG_CALL MessageFormat_New_Custom(u32 nstr, u32 len, u32 heapId);
-void LONG_CALL MessageFormat_Delete(MessageFormat *messageFormat);
-String *LONG_CALL GetMoveName(u32 move, u32 heapId);
-void *LONG_CALL sub_02013534(int num, int heapId);
-void LONG_CALL sub_020135AC(void *manager);
-void *LONG_CALL sub_020135D8(const void *textObjTemplate);
-void LONG_CALL sub_02013660(void *textObj);
-int LONG_CALL sub_02013688(struct Window *window, int vramType, int a2);
-void LONG_CALL sub_020138E0(void *textObj, int a1);
-BOOL LONG_CALL sub_02021AC8(u32 size, BOOL atEnd, int vramType, void *transfer);
-void LONG_CALL sub_02021B5C(void *transfer);
-int LONG_CALL FontID_String_GetWidth(int fontId, String *string, int letterSpacing);
-u8 LONG_CALL AddTextPrinterParameterizedWithColorAndSpacing(struct Window *window, int fontId, String *string, u32 x, u32 y, u32 textSpeed, u32 color, u32 letterSpacing, u32 lineSpacing, void *callback);
-int LONG_CALL TouchscreenHitbox_FindRectAtTouchNew(const void *hitboxes);
-void LONG_CALL BattleInput_EnableBallGauge(BattleInput *battleInput);
-void LONG_CALL BattleInput_DisableBallGauge(BattleInput *battleInput);
-void LONG_CALL BattleCursor_Disable(void *cursor);
-void *LONG_CALL BattleSystem_GetSpriteSystem(struct BattleSystem *battleSystem);
-void *LONG_CALL BattleSystem_GetSpriteManager(struct BattleSystem *battleSystem);
-void *LONG_CALL BattleSystem_GetBgConfig(struct BattleSystem *battleSystem);
-void *LONG_CALL SpriteManager_GetSpriteList(void *spriteManager);
-void *LONG_CALL SpriteManager_FindPlttResourceProxy(void *spriteManager, int id);
-void *LONG_CALL GfGfxLoader_GetCharData(u32 narcId, s32 memberNo, BOOL isCompressed, NNSG2dCharacterData **ppCharData, u32 heapId);
-void *LONG_CALL GfGfxLoader_GetScrnData(u32 narcId, s32 memberNo, BOOL isCompressed, NNSG2dScreenData **ppScrnData, u32 heapId);
-void *LONG_CALL GfGfxLoader_GetPlttData(u32 narcId, s32 memberNo, NNSG2dPaletteData **ppPlttData, u32 heapId);
-void LONG_CALL BG_LoadCharTilesData(void *bgl, u8 bgId, const void *data, u32 size, u32 tileStart);
-u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);
-void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
-u8 LONG_CALL PaletteData_BeginPaletteFade(void *data, u16 toSelect, u16 opaqueBit, s8 wait, u8 cur, u8 end, u16 nextRGB);
-u16 LONG_CALL PaletteData_GetSelectedBuffersBitmask(void *data);
-void LONG_CALL InitWindow(void *window);
-void LONG_CALL AddTextWindowTopLeftCorner(void *bgConfig, void *window, u8 width, u8 height, u16 baseTile, u8 paletteNum);
-void LONG_CALL RemoveWindow(void *window);
-void LONG_CALL sub_020776B8(void *spriteSystem, void *spriteManager, int vramType, int type, int tag);
-void LONG_CALL sub_020777A4(void *spriteManager, int tag);
-ManagedSprite *LONG_CALL sub_020777C8(void *spriteSystem, void *spriteManager, int type, void *spriteTemplate);
-void LONG_CALL thunk_ManagedSprite_DeleteAndFreeResources(ManagedSprite *managedSprite);
 
 typedef struct BattleInfoTextSlot {
     void *textObj;
@@ -177,6 +137,7 @@ typedef struct BattleInfoApp {
     BattleInfoTaskData taskData;
     u8 shellReady;
     u8 footerReady;
+    u8 subObjHidden;
     u16 shellTileBase;
     u16 footerTileBase;
     u16 shellTileCount;
@@ -191,12 +152,6 @@ typedef struct BattleInfoApp {
     ManagedSprite *typeIcons[2];
     BattleInfoTextSlot textSlots[BATTLE_INFO_TEXT_SLOT_COUNT];
 } BattleInfoApp;
-
-#define BATTLE_INFO_ICON_CHAR_TAG      20536
-#define BATTLE_INFO_ICON_PLTT_TAG      20522
-#define BATTLE_INFO_ICON_CELL_TAG      20521
-#define BATTLE_INFO_ICON_CELL_ANIM_TAG 20521
-#define BATTLE_INFO_TYPE_ICON_CHAR_TAG 20525
 
 static const ManagedSpriteTemplate sBattleInfoTypeIconTemplate = {
     .x = 0,
@@ -261,12 +216,14 @@ static void BattleInfo_BackupFooterTilemap(BattleInfoApp *app);
 static void BattleInfo_BackupReturnFooterPalette(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_BeginSubscreenFade(BattleInfoApp *app, u8 cur, u8 end);
 static BOOL BattleInfo_IsSubscreenFadeActive(BattleInfoApp *app);
+static void BattleInfo_SetSubObjVisible(BattleInfoApp *app, BOOL visible);
 static void BattleInfo_DestroyBattlerIcon(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_LoadBattlerIconResources(BattleInput *battleInput);
 static void BattleInfo_FreeBattlerIconResources(BattleInput *battleInput);
 static void BattleInfo_CreateBattlerIcon(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_DestroyTypeIcons(BattleInfoApp *app);
 static void BattleInfo_CreateTypeIcons(BattleInfoApp *app, BattleInput *battleInput, u32 type1, u32 type2);
+
 __attribute__((section(".init"))) int BattleInfoOverlayEntry(int command, void *arg0, void *arg1, void *arg2)
 {
     switch ((BattleInfoOverlayCommand)command) {
@@ -472,12 +429,10 @@ static void BattleInfo_CreateTypeIcon(BattleInfoApp *app, BattleInput *battleInp
 static void BattleInfo_CreateTypeIcons(BattleInfoApp *app, BattleInput *battleInput, u32 type1, u32 type2)
 {
     BattleInfo_DestroyTypeIcons(app);
+    BattleInfo_CreateTypeIcon(app, battleInput, 0, type1, 64, 22);
 
     if (type2 != type1 && type2 != TYPE_MYSTERY && type2 < TYPE_TYPELESS) {
-        BattleInfo_CreateTypeIcon(app, battleInput, 0, type1, 64, 22);
-        BattleInfo_CreateTypeIcon(app, battleInput, 1, type2, 96, 22);
-    } else {
-        BattleInfo_CreateTypeIcon(app, battleInput, 0, type1, 64, 22);
+        BattleInfo_CreateTypeIcon(app, battleInput, 1, type2, 97, 22);
     }
 }
 
@@ -653,7 +608,7 @@ static BOOL BattleInfo_LoadShellPanels(BattleInfoApp *app, BattleInput *battleIn
     charData = NULL;
     screenData = NULL;
     palData = NULL;
-    void *charRaw = GfGfxLoader_GetCharData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    void *charRaw = GfGfxLoader_GetCharData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCGR, FALSE, (void **)&charData, HEAPID_BATTLE_HEAP);
     void *screenRaw = GfGfxLoader_GetScrnData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
     void *palRaw = GfGfxLoader_GetPlttData(ARC_BATTLE_GFX, BATTLE_INFO_SHELL_NCLR, &palData, HEAPID_BATTLE_HEAP);
     const u8 *charTiles = charData != NULL ? charData->pRawData : NULL;
@@ -824,7 +779,7 @@ static BOOL BattleInfo_LoadFooterButtonResources(BattleInfoApp *app, BattleInput
     charData = NULL;
     screenData = NULL;
     palData = NULL;
-    void *charRaw = GfGfxLoader_GetCharData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCGR, FALSE, &charData, HEAPID_BATTLE_HEAP);
+    void *charRaw = GfGfxLoader_GetCharData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCGR, FALSE, (void **)&charData, HEAPID_BATTLE_HEAP);
     void *screenRaw = GfGfxLoader_GetScrnData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NSCR, FALSE, &screenData, HEAPID_BATTLE_HEAP);
     void *palRaw = GfGfxLoader_GetPlttData(BATTLE_INFO_FOOTER_BUTTON_GFX_NARC, BATTLE_INFO_FOOTER_BUTTON_NCLR, &palData, HEAPID_BATTLE_HEAP);
     const u8 *charTiles = charData != NULL ? charData->pRawData : NULL;
@@ -1179,6 +1134,18 @@ static void BattleInfo_DestroyTextRows(BattleInfoApp *app, BattleInput *battleIn
     }
 }
 
+static void BattleInfo_SetSubObjVisible(BattleInfoApp *app, BOOL visible)
+{
+    BOOL hidden = !visible;
+
+    if (app == NULL || app->subObjHidden == hidden) {
+        return;
+    }
+
+    GfGfx_EngineBTogglePlanes(BATTLE_INFO_SUB_OBJ_PLANE, visible);
+    app->subObjHidden = hidden;
+}
+
 static BOOL BattleInfo_ResetFontSystem(BattleInfoApp *app, BattleInput *battleInput, int numTextObjs)
 {
     if (app == NULL || battleInput == NULL) {
@@ -1316,6 +1283,7 @@ static BOOL BattleInfo_CreateTextRowPx(BattleInfoApp *app, struct BattleSystem *
     }
 
     sub_020138E0(textSlot->textObj, 1);
+    sub_020136B4(textSlot->textObj, x, y + 264);
     textSlot->fontLength = (u16)fontLength;
     return TRUE;
 }
@@ -1660,7 +1628,7 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
         BattleInfo_TryAppendConditionMoveRow(app, bsys, battleInput, &rowCount, MOVE_LUCKY_CHANT, (sideCondition >> 12) & 0x7, 5, TRUE);
     }
 
-    if ((ctx->field_condition & WEATHER_RAIN_ANY) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
+    if ((ctx->field_condition & FIELD_CONDITION_RAIN_ALL) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
         BattleInfo_TryAppendConditionArchiveRow(
             app,
             bsys,
@@ -1670,7 +1638,7 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
             ctx->fcc.weather_count,
             5,
             ctx->fcc.weather_count != 0 && ctx->fcc.weather_count <= 8);
-    } else if ((ctx->field_condition & WEATHER_SUNNY_ANY) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
+    } else if ((ctx->field_condition & FIELD_CONDITION_SUN_ALL) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
         BattleInfo_TryAppendConditionArchiveRow(
             app,
             bsys,
@@ -1680,7 +1648,7 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
             ctx->fcc.weather_count,
             5,
             ctx->fcc.weather_count != 0 && ctx->fcc.weather_count <= 8);
-    } else if ((ctx->field_condition & WEATHER_SANDSTORM_ANY) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
+    } else if ((ctx->field_condition & FIELD_CONDITION_SANDSTORM_ALL) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
         BattleInfo_TryAppendConditionArchiveRow(
             app,
             bsys,
@@ -1690,9 +1658,9 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
             ctx->fcc.weather_count,
             5,
             ctx->fcc.weather_count != 0 && ctx->fcc.weather_count <= 8);
-    } else if ((ctx->field_condition & WEATHER_HAIL_ANY) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
+    } else if ((ctx->field_condition & FIELD_CONDITION_HAIL_ALL) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
         BattleInfo_TryAppendConditionMoveRow(app, bsys, battleInput, &rowCount, MOVE_HAIL, ctx->fcc.weather_count, 5, ctx->fcc.weather_count != 0 && ctx->fcc.weather_count <= 8);
-    } else if ((ctx->field_condition & WEATHER_SNOW_ANY) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
+    } else if ((ctx->field_condition & FIELD_CONDITION_SNOW_ALL) && rowCount < BATTLE_INFO_STATUS_ROW_MAX) {
         BattleInfo_TryAppendConditionArchiveRow(
             app,
             bsys,
@@ -1704,13 +1672,44 @@ static void BattleInfo_CreateConditionRows(BattleInfoApp *app, struct BattleSyst
             ctx->fcc.weather_count != 0 && ctx->fcc.weather_count <= 8);
     }
 
-    if (ctx->field_condition & FIELD_STATUS_TRICK_ROOM) {
+    if (ctx->terrainOverlay.numberOfTurnsLeft > 0) {
+        u32 terrainMove = MOVE_NONE;
+
+        switch (ctx->terrainOverlay.type) {
+        case GRASSY_TERRAIN:
+            terrainMove = MOVE_GRASSY_TERRAIN;
+            break;
+        case MISTY_TERRAIN:
+            terrainMove = MOVE_MISTY_TERRAIN;
+            break;
+        case ELECTRIC_TERRAIN:
+            terrainMove = MOVE_ELECTRIC_TERRAIN;
+            break;
+        case PSYCHIC_TERRAIN:
+            terrainMove = MOVE_PSYCHIC_TERRAIN;
+            break;
+        }
+
+        if (terrainMove != MOVE_NONE) {
+            BattleInfo_TryAppendConditionMoveRow(
+                app,
+                bsys,
+                battleInput,
+                &rowCount,
+                terrainMove,
+                ctx->terrainOverlay.numberOfTurnsLeft,
+                5,
+                ctx->terrainOverlay.numberOfTurnsLeft < TERRAIN_TURNS_INFINITE);
+        }
+    }
+
+    if (ctx->field_condition & FIELD_CONDITION_TRICK_ROOM) {
         BattleInfo_TryAppendConditionMoveRow(app, bsys, battleInput, &rowCount, MOVE_TRICK_ROOM, (ctx->field_condition >> FIELD_CONDITION_TRICK_ROOM_SHIFT) & 0x7, 5, TRUE);
     }
-    if (ctx->field_condition & FIELD_STATUS_GRAVITY) {
+    if (ctx->field_condition & FIELD_CONDITION_GRAVITY) {
         BattleInfo_TryAppendConditionMoveRow(app, bsys, battleInput, &rowCount, MOVE_GRAVITY, (ctx->field_condition >> FIELD_CONDITION_GRAVITY_SHIFT) & 0x7, 5, TRUE);
     }
-    if (ctx->field_condition & FIELD_STATUS_FOG) {
+    if (ctx->field_condition & FIELD_CONDITION_FOG) {
         BattleInfo_TryAppendConditionArchiveRow(
             app,
             bsys,
@@ -1818,8 +1817,8 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
 
     int atkStage = ctx->battlemon[app->battlerId].states[STAT_ATTACK] - 6;
     int defStage = ctx->battlemon[app->battlerId].states[STAT_DEFENSE] - 6;
-    int spatkStage = ctx->battlemon[app->battlerId].states[STAT_SPATK] - 6;
-    int spdefStage = ctx->battlemon[app->battlerId].states[STAT_SPDEF] - 6;
+    int spatkStage = ctx->battlemon[app->battlerId].states[STAT_SPECIAL_ATTACK] - 6;
+    int spdefStage = ctx->battlemon[app->battlerId].states[STAT_SPECIAL_DEFENSE] - 6;
     int speedStage = ctx->battlemon[app->battlerId].states[STAT_SPEED] - 6;
     int accStage = ctx->battlemon[app->battlerId].states[STAT_ACCURACY] - 6;
     int evaStage = ctx->battlemon[app->battlerId].states[STAT_EVASION] - 6;
@@ -1833,8 +1832,8 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
     if (isActiveFocus) {
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 1, STAT_ATTACK, atkStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 0));
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 2, STAT_DEFENSE, defStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 1));
-        BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 3, STAT_SPATK, spatkStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 2));
-        BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 4, STAT_SPDEF, spdefStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 3));
+        BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 3, STAT_SPECIAL_ATTACK, spatkStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 2));
+        BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 4, STAT_SPECIAL_DEFENSE, spdefStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 3));
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 5, STAT_SPEED, speedStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 4));
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 0, STAT_ACCURACY, accStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 5));
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 6, STAT_EVASION, evaStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 6));
@@ -1903,7 +1902,7 @@ static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app)
     return FALSE;
 }
 
-static void BattleInfo_ConsumeKeys()
+static void BattleInfo_ConsumeKeys(void)
 {
     gSystem.newKeysRaw &= ~PAD_BUTTON_X;
     gSystem.newAndRepeatedKeysRaw &= ~PAD_BUTTON_X;
@@ -1913,7 +1912,7 @@ static void BattleInfo_ConsumeKeys()
     gSystem.heldKeys &= ~PAD_BUTTON_X;
 }
 
-static int BattleInfo_CheckTouchAction()
+static int BattleInfo_CheckTouchAction(void)
 {
     int rectHit = TouchscreenHitbox_FindRectAtTouchNew(sBattleInfoFooterTouchscreenRects);
 
@@ -1924,7 +1923,7 @@ static int BattleInfo_CheckTouchAction()
     return rectHit;
 }
 
-static void BattleInfo_SuppressInput()
+static void BattleInfo_SuppressInput(void)
 {
     int blocked = PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_L | PAD_BUTTON_R
         | PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT;
@@ -2000,6 +1999,8 @@ static BOOL BattleInfo_IsSubscreenFadeActive(BattleInfoApp *app)
 
 static void BattleInfo_StopTask(SysTask *task, BattleInfoApp *app, BattleInput *battleInput)
 {
+    BattleInfo_SetSubObjVisible(app, TRUE);
+
     if (app != NULL && battleInput != NULL) {
         BattleInfo_ClosePageContents(app, battleInput);
     }
@@ -2035,9 +2036,9 @@ static void BattleInfo_CreatePageObjects(BattleInfoApp *app, BattleInput *battle
     if (!BattleInfo_ResetFontSystem(app, battleInput, BATTLE_INFO_TEXT_SLOT_COUNT)) {
         return;
     }
-    BattleInfo_DrawFocusedName(app, app->taskData.bsys, app->ctx, battleInput);
     BattleInfo_CreateShellPanels(app, battleInput);
     BattleInfo_CreateFooterButtons(app, battleInput);
+    BattleInfo_DrawFocusedName(app, app->taskData.bsys, app->ctx, battleInput);
     app->pressedButton = -1;
 }
 
@@ -2055,7 +2056,7 @@ static BOOL BattleInfo_ChangeToClientPage(BattleInput *battleInput, int menuId, 
         menu = battleInput->menu;
     }
 
-    NARC *objNarc = NARC_ctor(8, HEAPID_BATTLE_HEAP);
+    NARC *objNarc = NARC_New(8, HEAPID_BATTLE_HEAP);
     if (objNarc == NULL) {
         return FALSE;
     }
@@ -2095,20 +2096,13 @@ void BattleInfo_Task(SysTask *task, void *data)
         return;
     }
 
-    if (((taskData->state <= 1) || (taskData->state == 5)) && !BattleInfo_IsSelectionOwnerStateValid(app)) {
+    if (!BattleInfo_IsSelectionOwnerStateValid(app)) {
         BattleInfo_StopTask(task, app, battleInput);
         return;
     }
 
-    if ((taskData->state >= 2 && taskData->state <= 4) || (taskData->state >= 7 && taskData->state <= 9)) {
-        if (!BattleInfo_IsSelectionOwnerStateValid(app)) {
-            BattleInfo_StopTask(task, app, battleInput);
-            return;
-        }
-    }
-
     switch (taskData->state) {
-    case 0:
+    case BATTLE_INFO_TASK_STATE_BEGIN_OPEN:
         if (pageOwner == NULL) {
             BattleInfo_StopTask(task, app, battleInput);
             return;
@@ -2116,11 +2110,12 @@ void BattleInfo_Task(SysTask *task, void *data)
         pageOwner->isTouchDisabled = TRUE;
         BattleInput_DisableBallGauge(pageOwner);
         BattleInfo_BeginSubscreenFade(app, 0, 16);
-        taskData->state = 1;
+        taskData->state = BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_OUT;
         return;
-    case 1:
+    case BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_OUT:
         if (!BattleInfo_IsSubscreenFadeActive(app)) {
             app->cycleCooldown = 0;
+            BattleInfo_SetSubObjVisible(app, FALSE);
             BattleInfo_ClearNativeMenuCursor(pageOwner);
             if (!BattleInfo_ChangeToClientPage(pageOwner, BATTLE_INFO_PAGE_ID, NULL)) {
                 BattleInfo_StopTask(task, app, battleInput);
@@ -2130,19 +2125,32 @@ void BattleInfo_Task(SysTask *task, void *data)
             BattleInfo_BackupReturnShellPalette(app, pageOwner);
             BattleInfo_BackupReturnFooterPalette(app, pageOwner);
             BattleInfo_CreatePageObjects(app, pageOwner);
+            BattleInfo_BeginSubscreenFade(app, 16, 16);
+            taskData->timer = 0;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_OPEN_SETTLE;
+        }
+        return;
+    case BATTLE_INFO_TASK_STATE_WAIT_OPEN_SETTLE:
+        taskData->timer++;
+        if (taskData->timer >= BATTLE_INFO_OPEN_SETTLE_FRAMES) {
             BattleInfo_BeginSubscreenFade(app, 16, 0);
-            taskData->state = 5;
+            taskData->timer = 0;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_IN;
         }
         return;
-    case 5:
+    case BATTLE_INFO_TASK_STATE_WAIT_OPEN_FADE_IN:
+        if (taskData->timer == 0) {
+            BattleInfo_SetSubObjVisible(app, TRUE);
+            taskData->timer++;
+        }
         if (!BattleInfo_IsSubscreenFadeActive(app)) {
-            taskData->state = 2;
+            taskData->state = BATTLE_INFO_TASK_STATE_HANDLE_INPUT;
         }
         return;
-    case 2:
+    case BATTLE_INFO_TASK_STATE_HANDLE_INPUT:
         if ((gSystem.newKeys & (PAD_BUTTON_B | PAD_BUTTON_X)) != 0) {
             taskData->timer = 0;
-            taskData->state = 3;
+            taskData->state = BATTLE_INFO_TASK_STATE_BEGIN_CLOSE;
             return;
         }
 
@@ -2152,7 +2160,7 @@ void BattleInfo_Task(SysTask *task, void *data)
                 BattleInfo_SetFooterButtonVisual(app, battleInput, BATTLE_INFO_TOUCH_PREV, TRUE);
                 taskData->cycleDirection = -1;
                 taskData->timer = 0;
-                taskData->state = 4;
+                taskData->state = BATTLE_INFO_TASK_STATE_WAIT_BUTTON_RELEASE;
             }
             return;
         case BATTLE_INFO_TOUCH_NEXT:
@@ -2160,41 +2168,70 @@ void BattleInfo_Task(SysTask *task, void *data)
                 BattleInfo_SetFooterButtonVisual(app, battleInput, BATTLE_INFO_TOUCH_NEXT, TRUE);
                 taskData->cycleDirection = 1;
                 taskData->timer = 0;
-                taskData->state = 4;
+                taskData->state = BATTLE_INFO_TASK_STATE_WAIT_BUTTON_RELEASE;
             }
             return;
         case BATTLE_INFO_TOUCH_BACK:
             BattleInfo_SetFooterButtonVisual(app, battleInput, BATTLE_INFO_TOUCH_BACK, TRUE);
             taskData->timer = 0;
-            taskData->state = 3;
+            taskData->state = BATTLE_INFO_TASK_STATE_BEGIN_CLOSE;
             return;
         }
 
         BattleInfo_SuppressInput();
         BattleInfo_TickCycleCooldown(app);
         return;
-    case 4:
+    case BATTLE_INFO_TASK_STATE_WAIT_BUTTON_RELEASE:
         BattleInfo_SuppressInput();
         taskData->timer++;
         if (taskData->timer > 0) {
             int buttonId = app->pressedButton;
 
-            BattleInfo_CycleFocus(app, bsys, app->ctx, battleInput, taskData->cycleDirection);
             BattleInfo_SetFooterButtonVisual(app, battleInput, buttonId, FALSE);
-            taskData->cycleDirection = 0;
-            taskData->state = 2;
+            BattleInfo_BeginSubscreenFade(app, 0, 16);
+            taskData->state = BATTLE_INFO_TASK_STATE_CHANGE_FOCUS;
         }
         return;
-    case 3: {
+    case BATTLE_INFO_TASK_STATE_CHANGE_FOCUS:
+        BattleInfo_SuppressInput();
+        if (!BattleInfo_IsSubscreenFadeActive(app)) {
+            BattleInfo_SetSubObjVisible(app, FALSE);
+            BattleInfo_CycleFocus(app, bsys, app->ctx, battleInput, taskData->cycleDirection);
+            BattleInfo_BeginSubscreenFade(app, 16, 16);
+            taskData->cycleDirection = 0;
+            taskData->timer = 0;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_FOCUS_SETTLE;
+        }
+        return;
+    case BATTLE_INFO_TASK_STATE_WAIT_FOCUS_SETTLE:
+        BattleInfo_SuppressInput();
+        taskData->timer++;
+        if (taskData->timer >= BATTLE_INFO_OPEN_SETTLE_FRAMES) {
+            BattleInfo_BeginSubscreenFade(app, 16, 0);
+            taskData->timer = 0;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_FOCUS_FADE_IN;
+        }
+        return;
+    case BATTLE_INFO_TASK_STATE_WAIT_FOCUS_FADE_IN:
+        BattleInfo_SuppressInput();
+        if (taskData->timer == 0) {
+            BattleInfo_SetSubObjVisible(app, TRUE);
+            taskData->timer++;
+        }
+        if (!BattleInfo_IsSubscreenFadeActive(app)) {
+            taskData->state = BATTLE_INFO_TASK_STATE_HANDLE_INPUT;
+        }
+        return;
+    case BATTLE_INFO_TASK_STATE_BEGIN_CLOSE: {
         if (gSystem.touchHeld != 0) {
             return;
         }
 
         BattleInfo_BeginSubscreenFade(app, 0, 16);
-        taskData->state = 7;
+        taskData->state = BATTLE_INFO_TASK_STATE_RESTORE_MENU;
         return;
     }
-    case 7:
+    case BATTLE_INFO_TASK_STATE_RESTORE_MENU:
         if (!BattleInfo_IsSubscreenFadeActive(app)) {
             if (pageOwner == NULL) {
                 BattleInfo_StopTask(task, app, battleInput);
@@ -2218,18 +2255,18 @@ void BattleInfo_Task(SysTask *task, void *data)
                 }
             }
             pageOwner->isTouchDisabled = TRUE;
-            taskData->state = 8;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_MENU_FEEDBACK;
             return;
         }
         return;
-    case 8:
+    case BATTLE_INFO_TASK_STATE_WAIT_MENU_FEEDBACK:
         if (BattleInput_CheckFeedbackDone(pageOwner) == TRUE) {
             BattleInput_EnableBallGauge(pageOwner);
             BattleInfo_BeginSubscreenFade(app, 16, 0);
-            taskData->state = 9;
+            taskData->state = BATTLE_INFO_TASK_STATE_WAIT_CLOSE_FADE_IN;
         }
         return;
-    case 9:
+    case BATTLE_INFO_TASK_STATE_WAIT_CLOSE_FADE_IN:
         if (!BattleInfo_IsSubscreenFadeActive(app)) {
             pageOwner->isTouchDisabled = FALSE;
             BattleInfo_StopTask(task, app, battleInput);

@@ -16,6 +16,8 @@
 #include "../../include/system.h"
 #include "../../include/types.h"
 
+#define COMMAND_HINT_SPRITE_TAG 22060
+
 static BattleInfoMenuTemplate sBattleInfoPageTemplate = {
     .unk_00 = 28,
     .paletteId = 246,
@@ -29,6 +31,28 @@ static BattleInfoMenuTemplate sBattleInfoPageTemplate = {
     .funcCreateMenuObjects = NULL,
     .funcTouchCallback = NULL,
 };
+
+static const OAMSpriteTemplate sBattleInfoHintTemplate = {
+    240,
+    108,
+    -1,
+    0,
+    100,
+    0,
+    NNS_G2D_VRAM_TYPE_2DSUB,
+    {
+        COMMAND_HINT_SPRITE_TAG,
+        20023,
+        22052,
+        22053,
+        CLACT_U_HEADER_DATA_NONE,
+        CLACT_U_HEADER_DATA_NONE,
+    },
+    1,
+    0,
+};
+
+typedef int (*BattleInfoOverlayEntry)(int command, void *arg0, void *arg1, void *arg2);
 
 extern BattleInfoMenuTemplate sBattleMenuTemplates[];
 
@@ -183,7 +207,7 @@ void BattleInput_RestoreNativeMenuBgChars(BattleInput *battleInput, int menuId)
     }
 
     battleType = BattleSystem_GetBattleType(battleInput->battleSystem);
-    bgTilesId = (battleType & BATTLE_TYPE_BATTLE_TOWER) ? BATTLE_INFO_FRONTIER_MENU_NCGR : BATTLE_INFO_NATIVE_MENU_NCGR;
+    bgTilesId = (battleType & BATTLE_TYPE_FRONTIER) ? BATTLE_INFO_FRONTIER_MENU_NCGR : BATTLE_INFO_NATIVE_MENU_NCGR;
 
     GfGfxLoader_LoadCharData(
         BATTLE_INFO_NATIVE_MENU_GFX_NARC,
@@ -304,7 +328,7 @@ int LONG_CALL BattleInput_CheckTouch(BattleInput *battleInput)
 
     GF_ASSERT(menuTemplate->touchInput != NULL);
 
-    if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_CATCHING_DEMO) {
+    if (BattleSystem_GetBattleType(battleInput->battleSystem) & BATTLE_TYPE_TUTORIAL) {
         rectHit = BattleInput_CatchingTutorialMain(battleInput);
     } else {
         rectHit = TouchscreenHitbox_FindRectAtTouchNew(menuTemplate->touchscreenRect);
@@ -380,4 +404,36 @@ int BattleInput_CheckCursorInput(BattleInput *battleInput)
     }
 
     return menu->funcCursor(battleInput, FALSE);
+}
+
+void BattleInfoHint_FreeResources(struct BI_PARAM *bip)
+{
+    void *crp = BattleWorkCATS_RES_PTRGet(bip->bw);
+
+    if (newBS.CommandHintOAM != NULL) {
+        CATS_ActorPointerDelete_S(newBS.CommandHintOAM);
+        newBS.CommandHintOAM = NULL;
+        OAM_FreeResourceChar(crp, COMMAND_HINT_SPRITE_TAG);
+    }
+}
+
+void BattleInfoHint_LoadSprite(struct BI_PARAM *bip)
+{
+    if (newBS.CommandHintOAM != NULL || (BattleTypeGet(bip->bw) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_BUG_CONTEST | BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_TUTORIAL))) {
+        return;
+    }
+
+    void *csp = BattleWorkCATS_SYS_PTRGet(bip->bw);
+    void *crp = BattleWorkCATS_RES_PTRGet(bip->bw);
+
+    if (OAM_LoadResourceCharArc(csp, crp, ARC_BATTLE_GFX, BATTLE_GFX_INFO_HINT_NCGR, 0, NNS_G2D_VRAM_TYPE_2DSUB, COMMAND_HINT_SPRITE_TAG)) {
+        newBS.CommandHintOAM = OAM_ObjectAdd_S(csp, crp, &sBattleInfoHintTemplate);
+        if (newBS.CommandHintOAM != NULL) {
+            // info hint reuses palette 6
+            Sprite_SetPalIndexRespectVramOffset(newBS.CommandHintOAM->act, 6);
+            OAM_ObjectUpdate(newBS.CommandHintOAM->act);
+        } else {
+            OAM_FreeResourceChar(crp, COMMAND_HINT_SPRITE_TAG);
+        }
+    }
 }
