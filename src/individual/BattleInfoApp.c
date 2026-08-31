@@ -22,9 +22,6 @@
 #define BATTLE_INFO_TEXT_SLOT_MOVE_BASE    12
 #define BATTLE_INFO_TEXT_SLOT_STATUS_BASE  16
 #define BATTLE_INFO_TEXT_SLOT_COUNT        25
-#define BATTLE_INFO_MOVES_WINDOW_X         18
-#define BATTLE_INFO_MOVES_WINDOW_Y         1
-#define BATTLE_INFO_MOVES_WINDOW_Y_PX      2
 #define BATTLE_INFO_TOP_ROW_GAP_PX         12
 #define BATTLE_INFO_STATUS_WINDOW_X        18
 #define BATTLE_INFO_STATUS_WINDOW_Y        9
@@ -1407,42 +1404,6 @@ static String *BattleInfo_ReadArchiveString(u32 fileId, u32 msgId)
     return string;
 }
 
-static void BattleInfo_CreateMoveRows(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, struct PartyPokemon *partyMon)
-{
-    const int baseY = (BATTLE_INFO_MOVES_WINDOW_Y * 8) + BATTLE_INFO_MOVES_WINDOW_Y_PX;
-
-    if (bsys == NULL || battleInput == NULL || partyMon == NULL) {
-        return;
-    }
-
-    for (int i = 0; i < 4; i++) {
-        int slot = BATTLE_INFO_TEXT_SLOT_MOVE_BASE + i;
-
-        BattleInfo_ResetTextSlot(app, battleInput, slot);
-
-        u32 moveId = GetMonData(partyMon, MON_DATA_MOVE1 + i, NULL);
-
-        if (moveId == MOVE_NONE) {
-            continue;
-        }
-
-        String *moveName = GetMoveName(moveId, HEAPID_BATTLE_HEAP);
-        if (moveName == NULL) {
-            continue;
-        }
-
-        BattleInfo_CreateTextRowPx(
-            app,
-            bsys,
-            battleInput,
-            slot,
-            moveName,
-            BATTLE_INFO_MOVES_WINDOW_X * 8,
-            baseY + (i * BATTLE_INFO_TOP_ROW_GAP_PX));
-        String_Delete(moveName);
-    }
-}
-
 static BOOL BattleInfo_CreateConditionRowFromString(BattleInfoApp *app, struct BattleSystem *bsys, BattleInput *battleInput, int slot, String *label, u32 current, u32 max, BOOL showCounter)
 {
     u16 rowText[64];
@@ -1816,7 +1777,6 @@ static void BattleInfo_DrawFocusedName(BattleInfoApp *app, struct BattleSystem *
     BattleInfo_CreateTypeIcons(app, battleInput, type1, type2);
     BattleInfo_CreateTextRowPx(app, bsys, battleInput, 1, abilityLine, 48, topBaseY + (BATTLE_INFO_TOP_ROW_GAP_PX * 2));
     BattleInfo_CreateTextRowPx(app, bsys, battleInput, 2, itemLine, 48, topBaseY + (BATTLE_INFO_TOP_ROW_GAP_PX * 3));
-    BattleInfo_CreateMoveRows(app, bsys, battleInput, partyMon);
 
     if (isActiveFocus) {
         BattleInfo_CreateStatRow(app, bsys, battleInput, BATTLE_INFO_TEXT_SLOT_STAT_BASE + 1, STAT_ATTACK, atkStage, 2, 72 + (BATTLE_INFO_STAT_ROW_GAP_PX * 0));
