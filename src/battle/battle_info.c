@@ -52,7 +52,7 @@ static const OAMSpriteTemplate sBattleInfoHintTemplate = {
     0,
 };
 
-typedef int (*BattleInfoOverlayEntry)(int command, void *arg0, void *arg1, void *arg2);
+typedef BOOL (*BattleInfoOverlayEntry)(struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput);
 
 extern BattleInfoMenuTemplate sBattleMenuTemplates[];
 
@@ -151,7 +151,7 @@ BOOL LONG_CALL BattleInfo_Launch(struct BattleSystem *bsys, struct BattleStruct 
     }
 
     entry = (BattleInfoOverlayEntry)BATTLE_INFO_OVERLAY_ENTRY_ADDR;
-    opened = entry(BATTLE_INFO_OVERLAY_CMD_MAIN, bsys, ctx, battleInput);
+    opened = entry(bsys, ctx, battleInput);
     ctx->battleInfoActive = opened;
     if (!opened) {
         BattleInfo_UpdateOverlayLifetime(ctx);

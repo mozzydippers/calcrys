@@ -285,10 +285,6 @@ typedef enum BattleInfoTouchInput {
     BATTLE_INFO_TOUCH_TOTAL,
 } BattleInfoTouchInput;
 
-typedef enum BattleInfoOverlayCommand {
-    BATTLE_INFO_OVERLAY_CMD_MAIN = 0,
-} BattleInfoOverlayCommand;
-
 int LONG_CALL BattleInput_CheckTouch(BattleInput *battleInput);
 
 struct BattleInput {

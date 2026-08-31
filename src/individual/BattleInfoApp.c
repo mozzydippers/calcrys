@@ -198,7 +198,6 @@ static BOOL BattleInfo_ChangeToClientPage(BattleInput *battleInput, int menuId, 
 static void *BattleInfo_GetTextSlot(BattleInfoApp *app, int slot);
 static u16 BattleInfo_DigitChar(u32 digit);
 static void BattleInfo_ResetTextSlot(BattleInfoApp *app, BattleInput *battleInput, int slot);
-static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput);
 static BOOL BattleInfo_IsSelectionOwnerStateValid(BattleInfoApp *app);
 static void BattleInfo_ClosePageContents(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_StopTask(SysTask *task, BattleInfoApp *app, BattleInput *battleInput);
@@ -223,16 +222,6 @@ static void BattleInfo_FreeBattlerIconResources(BattleInput *battleInput);
 static void BattleInfo_CreateBattlerIcon(BattleInfoApp *app, BattleInput *battleInput);
 static void BattleInfo_DestroyTypeIcons(BattleInfoApp *app);
 static void BattleInfo_CreateTypeIcons(BattleInfoApp *app, BattleInput *battleInput, u32 type1, u32 type2);
-
-__attribute__((section(".init"))) int BattleInfoOverlayEntry(int command, void *arg0, void *arg1, void *arg2)
-{
-    switch ((BattleInfoOverlayCommand)command) {
-    case BATTLE_INFO_OVERLAY_CMD_MAIN:
-        return BattleInfo_StartApp(arg0, arg1, arg2);
-    default:
-        return 0;
-    }
-}
 
 static BattleInfoApp *BattleInfo_AppNew()
 {
@@ -2278,7 +2267,7 @@ void BattleInfo_Task(SysTask *task, void *data)
     }
 }
 
-static BOOL BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput)
+BOOL __attribute__((section(".init"))) BattleInfo_StartApp(struct BattleSystem *bsys, struct BattleStruct *ctx, BattleInput *battleInput)
 {
     BattleInfoFocusEntry focus;
 
