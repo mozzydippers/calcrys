@@ -99,6 +99,8 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
     }
 
     sPlayerBattleCommands[ctx->server_seq_no](bsys, ctx);
+    BattleHpBarPct_UpdateAll(bsys, ctx);
+    BattleInfo_UpdateOverlayLifetime(ctx);
 #ifdef DEBUG_BATTLE_SCENARIOS
     TestBattle_autoSelectPlayerMoves(bsys, ctx);
 #endif

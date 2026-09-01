@@ -1131,6 +1131,9 @@ struct BattleStruct {
     u8 playerSideHasFaintedTeammateLastTurn : 2;
     u8 enemySideHasFaintedTeammateLastTurn : 2;
 
+    u8 battleInfoActive;
+    void *battleInfoApp;
+
     u8 gemBoostingMove : 1;
     u8 futureSightHitTurn : 1;
     u8 futureSightNoAttacker : 1;
@@ -1418,6 +1421,7 @@ struct PACKED newBattleStruct {
     CATS_ACT_PTR MegaOAM;
     CATS_ACT_PTR MegaButton;
     CATS_ACT_PTR WeatherOAM;
+    CATS_ACT_PTR CommandHintOAM;
     SysTask *weatherUpdateTask;
 
 #ifdef RESTORE_ITEMS_AT_BATTLE_END

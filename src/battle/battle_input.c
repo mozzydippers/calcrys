@@ -8,6 +8,7 @@
 #include "constants/weather_numbers.h"
 
 #include "battle.h"
+#include "battle_info.h"
 #include "mega.h"
 #include "pokemon.h"
 #include "sprite.h"
@@ -261,6 +262,7 @@ void Sub_PokeIconResourceFree(struct BI_PARAM *bip)
         }
         newBS.MegaIconLight = 0;
     }
+    BattleInfoHint_FreeResources(bip);
 
     if (bip->bw->sp->field_condition & WEATHER_ANY_ICONS) {
         if (newBS.WeatherOAM) {

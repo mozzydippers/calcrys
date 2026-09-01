@@ -47,6 +47,11 @@
 #define PRIMAL_REVERSION_ALPHA_GFX     (363)
 #define MEGA_ICON_SELECTED_GFX         (365)
 #define MEGA_ICON_BLANK_GFX            (367)
+#define BATTLE_INFO_SHELL_NCGR         369
+#define BATTLE_INFO_SHELL_NCLR         370
+#define BATTLE_INFO_SHELL_NSCR         371
+#define BATTLE_GFX_INFO_HINT_NCGR      372
+#define BATTLE_GFX_INFO_HINT_NCLR      373
 
 // a028 file indexes
 #define CODE_ADDON_HIDDEN_ABILITY_LIST    7
@@ -152,6 +157,7 @@
 #define OVERLAY_PARTY_HANDLEUSEITEMONMON             149
 #define OVERLAY_INHERITMOVES                         150
 #define OVERLAY_CREATETRADEMON                       151
+#define OVERLAY_BATTLEINFO_PAGE                      152
 
 #define MAX_ACTIVE_OVERLAYS 8
 
