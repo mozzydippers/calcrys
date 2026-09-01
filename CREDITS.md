@@ -50,7 +50,7 @@ MaMe and maple - a lot of mega sprites touched up
 
 Mikelan98 - initial graphics compilation, BDHCAM routine, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle) 
 
-RH-Hideout Team - cries from gen 9
+RH-Hideout Team - cries from gen 9, sprites for particles
 
 Senate - Prize Money, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle) 
 

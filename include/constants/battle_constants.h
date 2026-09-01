@@ -170,6 +170,11 @@ typedef enum BattleBg {
 #define BATTLE_SPECIAL_RECORDED         0x20
 #define BATTLE_SPECIAL_GIRATINA         0x40
 #define BATTLE_SPECIAL_DISTORTION_WORLD 0x80
+#define BATTLE_SPECIAL_TOTEM            (1 << 8)
+#define BATTLE_SPECIAL_MAX_RAID         (1 << 9)
+#define BATTLE_SPECIAL_TITAN            (1 << 10)
+#define BATTLE_SPECIAL_TERA_RAID        (1 << 11)
+#define BATTLE_SPECIAL_NO_ITEMS         (BATTLE_SPECIAL_TOTEM)
 
 /**
  *  @brief battle type flags

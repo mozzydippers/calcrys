@@ -619,7 +619,7 @@ The wild {STRVAR_1 1, 0, 0} can’t use\nits sealed {STRVAR_1 6, 1, 0}!\r
 The opposing {STRVAR_1 1, 0, 0} can’t use\nits sealed {STRVAR_1 6, 1, 0}!\r
 It started to rain!
 You can’t use this move!\r
-(Unused)
+Changed to Blade Forme!
 {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nraised its {STRVAR_1 13, 2, 0}!
 The wild {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} raised its {STRVAR_1 13, 2, 0}!
 The opposing {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} raised its {STRVAR_1 13, 2, 0}!
@@ -1274,9 +1274,9 @@ x{STRVAR_1 51, 0, 0}
 ♀
 {ALN_RIGHT}Lv. {STRVAR_1 52, 1, 0}
 {STRVAR_1 3, 0, 0} got ${STRVAR_1 54, 1, 0} for winning!\nSent some to Mom!\r
-{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nis reacting to the {STRVAR_1 5, 2, 0}!
-The wild {STRVAR_1 1, 0, 0} set its\n{STRVAR_1 5, 1, 0} on its Looplet!
-The opposing {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nis reacting to the {STRVAR_1 5, 2, 0}!
+{STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} is reacting to\fthe {STRVAR_1 5, 2, 0}!
+You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} and {STRVAR_1 3, 3, 0}!\r
+The opposing {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0} is reacting to\fthe {STRVAR_1 5, 2, 0}!
 {STRVAR_1 1, 0, 0}\nhas Mega Evolved into\fMega {STRVAR_1 5, 1, 0}!
 The wild {STRVAR_1 1, 0, 0}\nhas Mega Evolved into\fMega {STRVAR_1 5, 1, 0}!
 The opposing {STRVAR_1 1, 0, 0}\nhas Mega Evolved into\fMega {STRVAR_1 5, 1, 0}!
@@ -1354,8 +1354,8 @@ The wild {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
 The opposing {STRVAR_1 1, 0, 0}’s disguise was\nbusted!
 {STRVAR_1 1, 0, 0}’s\n{STRVAR_1 5, 1, 0}
 (Unused)
-(Unused)
-(Unused)
+You are challenged by\n{STRVAR_1 1, 0, 0}!
+You are challenged by\nthe Titan {STRVAR_1 1, 0, 0}!
 (Unused)
 (Unused)
 You sense the presence of many!
@@ -1468,7 +1468,7 @@ Fog crept up as thick as soup!
 A veil of water restored\n{STRVAR_1 1, 0, 0}’s HP!
 A veil of water restored\nthe wild {STRVAR_1 1, 0, 0}’s HP!
 A veil of water restored\nthe opposing {STRVAR_1 1, 0, 0}’s HP!
-The effects of the weather disappeared.
+The effects of the weather\ndisappeared.
 {STRVAR_1 1, 0, 0}\nis protected by the Psychic Terrain!
 The wild {STRVAR_1 1, 0, 0}\nis protected by the Psychic Terrain!
 The opposing {STRVAR_1 1, 0, 0}\nis protected by the Psychic Terrain!
@@ -1755,14 +1755,14 @@ The wild {STRVAR_1 1, 0, 0} trapped\n{STRVAR_1 1, 1, 0}!
 The wild {STRVAR_1 1, 0, 0} trapped\nthe wild {STRVAR_1 1, 1, 0}!
 The opposing {STRVAR_1 1, 0, 0} trapped\n{STRVAR_1 1, 1, 0}!
 The opposing {STRVAR_1 1, 0, 0} trapped\nthe opposing {STRVAR_1 1, 1, 0}!
-You are challenged by\n{STRVAR_1 1, 0, 0}!
-{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts {STRVAR_1 13, 1, 0} rose!
-The wild {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts {STRVAR_1 13, 1, 0} rose!
-The opposing {STRVAR_1 1, 0, 0}’s aura flared\nto life!\fIts {STRVAR_1 13, 1, 0} rose!
-{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose!
-The wild {STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose!
-The opposing {STRVAR_1 1, 0, 0}’s aura flared\nto life!\fIts stats rose!
-Can’t flee this fight!
+(Placeholder)
+(Placeholder)
+(Placeholder)
+(Placeholder)
+(Placeholder)
+(Placeholder)
+(Placeholder)
+(Placeholder)
 {STRVAR_1 1, 0, 0} couldn’t\nfully protect itself and got hurt!
 The wild {STRVAR_1 1, 0, 0} couldn’t\nfully protect itself and got hurt!
 The opposing {STRVAR_1 1, 0, 0} couldn’t\nfully protect itself and got hurt!
@@ -1778,6 +1778,1006 @@ The opposing {STRVAR_1 1, 0, 0} was cured\nof paralysis!
 {STRVAR_1 1, 0, 0} got over its\ninfatuation.
 The wild {STRVAR_1 1, 0, 0} got over its\ninfatuation.
 The opposing {STRVAR_1 1, 0, 0} got over\nits infatuation.
+{STRVAR_1 1, 0, 0} underwent a heroic\ntransformation!
+The wild {STRVAR_1 1, 0, 0} underwent a\nheroic transformation!
+The opposing {STRVAR_1 1, 0, 0} underwent\na heroic transformation!
+All screens on the field were cleansed!
+{STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+The wild {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+The opposing {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
+{STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+The wild {STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+The opposing {STRVAR_1 1, 0, 0}\nsurrounded itself with its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its critical-hit ratio using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its critical-hit ratio using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its critical-hit ratio\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack using\nits Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness using\nits Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def sharply using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed sharply using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy sharply using\nits Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy\nsharply using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness sharply using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness sharply\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness\nsharply using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Attack drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Attack drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Attack drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Defense drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Defense drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Defense\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Atk drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Atk drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Atk\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Sp. Def drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Sp. Def drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Sp. Def\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its Speed drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its Speed drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its Speed drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its accuracy drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its accuracy drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its accuracy\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its evasiveness drastically using\nits Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its evasiveness drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its evasiveness\ndrastically using its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its stats using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats using its\nZ-Power!
+{STRVAR_1 1, 0, 0} boosted its stats sharply using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats sharply using its\nZ-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats sharply\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} boosted its stats drastically using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} boosted its stats drastically\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} boosted its stats drastically\nusing its Z-Power!
+{STRVAR_1 1, 0, 0} returned its decreased stats to normal\nusing its Z-Power!
+The wild {STRVAR_1 1, 0, 0} returned its decreased stats to\nnormal using its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} returned its decreased stats\nto normal using its Z-Power!
+{STRVAR_1 1, 0, 0} restored its HP using its Z-Power!
+The wild {STRVAR_1 1, 0, 0} restored its HP using its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} restored its HP using its\nZ-Power!
+{STRVAR_1 1, 0, 0} will restore its replacement’s HP using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} will restore its replacement’s HP\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} will restore its replacement’s\nHP using its Z-Power!
+{STRVAR_1 1, 0, 0}’s HP was restored by the Z-Power!
+The wild {STRVAR_1 1, 0, 0}’s HP was restored by the Z-Power!
+The opposing {STRVAR_1 1, 0, 0}’s HP was restored by the\nZ-Power!
+{STRVAR_1 1, 0, 0} became the center of attention using its\nZ-Power!
+The wild {STRVAR_1 1, 0, 0} became the center of attention\nusing its Z-Power!
+The opposing {STRVAR_1 1, 0, 0} became the center of\nattention using its Z-Power!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Metronome to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Metronome to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Metronome to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0} to its\nZ-Move using Mirror Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} to its Z-Move using Mirror Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} to its Z-Move using Mirror Move!
+{STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+The wild {STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+The opposing {STRVAR_1 1, 0, 0}’s Nature Power turned into\n{STRVAR_1 8, 1, 0}!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Assist to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Assist to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Assist to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nit stole using Me First to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} it stole using Me First to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} it stole using Me First to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\nchosen by Sleep Talk to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Sleep Talk to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} chosen by Sleep Talk to its Z-Move!
+{STRVAR_1 1, 0, 0} will change {STRVAR_1 8, 1, 0}\ncopied by Copycat to its Z-Move!
+The wild {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!
+The opposing {STRVAR_1 1, 0, 0} will change\n{STRVAR_1 8, 1, 0} copied by Copycat to its Z-Move!
+You are challenged by\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!\r
+You are challenged by\n{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0}!\r
+You are challenged by\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+You are challenged by\n{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0}!\r
+You are challenged by\nthe {STRVAR_1 14, 0, 0}\fof the {STRVAR_1 3, 1, 0}!
+{STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0} sent\nout {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 3, 1, 0}\nof the {STRVAR_1 14, 0, 0} sent\fout {STRVAR_1 1, 2, 0}!
+{STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+
+You defeated\n{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0}!\r
+You defeated\n{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0}!\r
+You defeated\nthe {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+You defeated\n{STRVAR_1 3, 1, 0} the {STRVAR_1 14, 0, 0}!\r
+You defeated\nthe {STRVAR_1 14, 0, 0}\fof the {STRVAR_1 3, 1, 0}!
+{STRVAR_1 3, 1, 0} of {STRVAR_1 14, 0, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{STRVAR_1 3, 1, 0} of the {STRVAR_1 14, 0, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{STRVAR_1 14, 0, 0} the {STRVAR_1 3, 1, 0} is\nabout to send out {STRVAR_1 1, 2, 0}.\fWill you switch your Pokémon?{YESNO 0}
+{YESNO 0}
+The battlefield is covered with grass!
+Mist swirls around the battlefield!
+An electric current is running across the battlefield!
+The battlefield seems weird!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Attack rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Defense rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Atk rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Sp. Def rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts Speed rose drastically!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose sharply!
+{STRVAR_1 1, 0, 0}’s aura flared to life!\nIts stats rose drastically!
+{STRVAR_1 1, 0, 0} called for help!
+{STRVAR_1 1, 0, 0} called its ally Pokémon!
+...{WAIT 20} ...{WAIT 20} ...{WAIT 20}
+Its help didn’t appear!
+{STRVAR_1 1, 0, 0} appeared!
+The Adrenaline Orb makes the wild Pokémon nervous!
+The mysterious barrier is protecting {STRVAR_1 1, 0, 0} from the impacts\nfrom the move!
+{STRVAR_1 1, 0, 0} nullified the stat changes and Abilities of\nother Pokémon!
+The gathered Dynamax Energy let {STRVAR_1 1, 0, 0} unleash\nanother move!
+The mysterious barrier that was protecting {STRVAR_1 1, 0, 0} disappeared!
+A mysterious barrier appeared in front of {STRVAR_1 1, 0, 0} and is\nprotecting it from all attacks!
+{STRVAR_1 1, 0, 0} is getting desperate!\nIts attacks are growing more aggressive!
+{STRVAR_1 3, 1, 0} can Dynamax now!
+Victory!\n{STRVAR_1 1, 0, 0} was defeated!
+{STRVAR_1 1, 0, 0} is weak!\nThrow a Poké Ball now!
+{STRVAR_1 3, 1, 0} is deciding whether to throw a Poké Ball...
+The storm grew stronger!
+{STRVAR_1 3, 1, 0}’s Pokémon recovered from fainting!
+You can’t use any items!
+Dynamax Energy gathered around {STRVAR_1 3, 1, 0}!
+The storm raging above you is growing stronger!
+The storm is growing even stronger!
+The storm is getting too strong to withstand!
+You and the others were blown out of the cavern!
+{STRVAR_1 1, 0, 0} disappeared somewhere...
+You cheered for your side!
+Your cheering was powered up by all\nthe Dynamax Energy!
+The cheer echoed feebly around the area...
+What a vicious blow!\nIt damaged the mysterious barrier severely!
+{STRVAR_1 1, 0, 0} can’t use any moves due to\na mysterious power.
+{STRVAR_1 1, 0, 0} is storing its energy...
+The move was blocked by the power of Dynamax!
+{STRVAR_1 3, 1, 0}!\nGet the sword out!
+{STRVAR_1 3, 1, 0}!\nGet the shield out!
+You can’t throw a Poké Ball!
+{STRVAR_1 3, 1, 0} cheered for your side!
+{STRVAR_1 3, 1, 0}’s cheering was powered up by all\nthe Dynamax Energy!
+You pepped up all your allies with a cheer of “{STRVAR_1 3, 1, 0}”
+All allies’ Attack and Sp. Atk stats rose!
+All allies’ Defense and Sp. Def stats rose!
+All allies’ HP was restored!
+Energy has begun to gather around {STRVAR_1 1, 0, 0}!
+{STRVAR_1 1, 0, 0} succumbed to the onslaught and broke\nits stance!
+Terastallize your Pokémon to stop {STRVAR_1 1, 0, 0}!
+You can feel a tremendous energy gathering! There isn’t much time left!
+{STRVAR_1 1, 0, 0} released its gathered energy!
+{STRVAR_1 1, 0, 0} removed\nnegative effects from itself!
+{STRVAR_1 1, 0, 0} nullified\nthe stat changes and Abilities affecting\fyour side!
+{STRVAR_1 1, 0, 0} stole some of your Tera Orb’s charge!
+Your Tera Orb lacks the charge it needs to Terastallize your Pokémon!\nAfter {STRVAR_1 50, 0, 0} more attack, you’ll have the energy you need!
+Your Tera Orb lacks the charge it needs to Terastallize your Pokémon!\nAfter {STRVAR_1 50, 0, 0} more attacks, you’ll have the energy you need!
+It’s no good! You can’t find an opening to run away\nfrom such a strong opponent!
+You can’t find an opening to swap Pokémon!
+There’s no way you could run from this opponent!
+Your hands are trembling so badly you can’t pull items out of your Bag!
+You can’t battle without a Pokémon on the field!
+Your Poké Balls are locked! You can’t switch Pokémon!
+Your Poké Balls are locked! You can’t use that item!
+Running away would put everyone else in danger!
+The wild {STRVAR_1 1, 0, 0} was caught off guard and couldn’t move!
+You caught the wild {STRVAR_1 1, 0, 0} off guard!
+Mew is going to go all out against this formidable opponent!
+Terapagos absorbed Terastal energy!
+Terapagos used the power of the Terastal phenomenon to change its type!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2000,3 +3000,6 @@ The opposing {STRVAR_1 1, 0, 0} got over\nits infatuation.
 Radio waves alter the move categories!
 The sandstorm rages on!
 The snow is crashing down!
+Changed to Attack Forme!
+Changed to Defense Forme!
+Changed to Speed Forme!

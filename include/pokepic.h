@@ -1,6 +1,8 @@
 #ifndef POKEPIC_H
 #define POKEPIC_H
 
+#define POKEPIC_SCALE_NORMAL       0x100
+#define RAID_POKEPIC_SCALE_PERCENT 160
 typedef struct Pokepic Pokepic;
 
 typedef struct PokepicTemplate {
@@ -115,7 +117,7 @@ typedef struct NNSG2dVRamLocation {
     u32 baseAddrOfVram[3];
 } NNSG2dVRamLocation; // size: 0xC
 
-typedef enum {
+typedef enum __attribute__((mode(SI))) {
     GX_TEXSIZE_S8 = 0,
     GX_TEXSIZE_S16 = 1,
     GX_TEXSIZE_S32 = 2,
@@ -126,7 +128,7 @@ typedef enum {
     GX_TEXSIZE_S1024 = 7
 } GXTexSizeS;
 
-typedef enum {
+typedef enum __attribute__((mode(SI))) {
     GX_TEXSIZE_T8 = 0,
     GX_TEXSIZE_T16 = 1,
     GX_TEXSIZE_T32 = 2,
@@ -137,7 +139,7 @@ typedef enum {
     GX_TEXSIZE_T1024 = 7
 } GXTexSizeT;
 
-typedef enum {
+typedef enum __attribute__((mode(SI))) {
     GX_TEXFMT_NONE = 0,
     GX_TEXFMT_A3I5 = 1,
     GX_TEXFMT_PLTT4 = 2,
@@ -148,7 +150,7 @@ typedef enum {
     GX_TEXFMT_DIRECT = 7
 } GXTexFmt;
 
-typedef enum {
+typedef enum __attribute__((mode(SI))) {
     GX_TEXPLTTCOLOR0_USE = 0,
     GX_TEXPLTTCOLOR0_TRNS = 1
 } GXTexPlttColor0;
@@ -220,6 +222,9 @@ typedef struct PokepicManager {
 } PokepicManager; // size: 0x338
 
 void LONG_CALL Pokepic_StartAnim(Pokepic *pokepic);
+BOOL LONG_CALL Pokepic_IsAnimFinished(Pokepic *pokepic);
 void LONG_CALL sub_0207294C(void *narc, void *a1, void *a2, u16 a3, int a4, int a5, int a6);
+void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
+u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);
 
 #endif // POKEPIC_H

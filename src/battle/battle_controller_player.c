@@ -15,43 +15,37 @@
 #include "test_battle.h"
 #endif // DEBUG_BATTLE_SCENARIOS
 
-#if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
 void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
 {
-    BattleMessage msg;
+    BattleMessage mp;
     int battlerId;
+#ifdef DISABLE_ITEMS_IN_TRAINER_BATTLE
     u32 fight_type = BattleTypeGet(bsys);
+#endif
+    u32 battleVariation = BattleSystem_GetBattleSpecial(bsys);
 
     for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
         if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_ITEM_INPUT && ctx->com_seq_no[battlerId] == SSI_STATE_7) {
-            if (fight_type & BATTLE_TYPE_TRAINER) {
-                msg.id = BATTLE_MSG_ITEMS_CANT_BE_USED_HERE; // msg.id  = msg_0197_00593; // Items can't be used here
-                msg.tag = TAG_NONE;
-                ov12_022639B8(bsys, battlerId, msg);
+#ifdef DISABLE_ITEMS_IN_TRAINER_BATTLE
+            if ((fight_type & BATTLE_TYPE_TRAINER) || (battleVariation & BATTLE_SPECIAL_NO_ITEMS))
+#else
+            if (battleVariation & BATTLE_SPECIAL_NO_ITEMS)
+#endif
+            {
+                mp.id = BATTLE_MSG_ITEMS_CANT_BE_USED_HERE; // msg.id  = msg_0197_00593; // Items can't be used here
+                mp.tag = TAG_NONE;
+                ov12_022639B8(bsys, battlerId, mp);
                 ctx->com_seq_no[battlerId] = SSI_STATE_15;
                 ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
             }
         }
-    }
-}
-#endif
 
-void overrideRunButton(struct BattleSystem *bsys, struct BattleStruct *ctx)
-{
-    BattleMessage msg;
-    int battlerId;
-    u32 fight_type = BattleTypeGet(bsys);
-
-    for (battlerId = 0; battlerId < bsys->maxBattlers; battlerId++) {
-        if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_RUN_INPUT) {
-            if (ctx->com_seq_no[battlerId] == SSI_STATE_11) {
-                if (fight_type & BATTLE_TYPE_TOTEM) {
-                    msg.id = BATTLE_MSG_CANT_FLEE_THIS_FIGHT; // Can't flee this fight!
-                    msg.tag = TAG_NONE;
-                    ov12_022639B8(bsys, battlerId, msg);
-                    ctx->com_seq_no[battlerId] = SSI_STATE_15;
-                    ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
-                }
+        if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_RUN_INPUT && ctx->com_seq_no[battlerId] == 11) {
+            if (battleVariation & BATTLE_SPECIAL_NO_ITEMS) {
+                mp.id = 779; // empty message
+                mp.tag = TAG_NONE;
+                ctx->com_seq_no[battlerId] = SSI_STATE_15;
+                ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
             }
         }
     }
@@ -111,7 +105,6 @@ BOOL LONG_CALL BattleContext_Main(struct BattleSystem *bsys, struct BattleStruct
 #if defined(DISABLE_ITEMS_IN_TRAINER_BATTLE)
     overrideItemUsage(bsys, ctx);
 #endif
-    overrideRunButton(bsys, ctx);
 
     if (ctx->server_seq_no == CONTROLLER_COMMAND_45) {
         return TRUE;
@@ -206,7 +199,7 @@ void LONG_CALL ov12_0224DD74(struct BattleSystem *bsys UNUSED, struct BattleStru
     int moveType = GetAdjustedMoveType(ctx, ctx->attack_client, ctx->current_move_index);
 
     // Update Mirror Move vars.
-    if (ctx->aiWorkTable.old_moveTbl[ctx->moveNoTemp].flag & FLAG_MIRROR_MOVE
+    if (ctx->moveTbl[ctx->moveNoTemp].flag & FLAG_MIRROR_MOVE
         && !(ctx->server_status_flag & BATTLE_STATUS_NO_MOVE_SET)
         && ctx->defence_client != BATTLER_NONE
         && ctx->server_status_flag2 & BATTLE_STATUS2_DISPLAY_ATTACK_MESSAGE) {
@@ -236,7 +229,7 @@ void LONG_CALL ov12_0224DD74(struct BattleSystem *bsys UNUSED, struct BattleStru
             }
 
             if (ctx->server_status_flag2 & BATTLE_STATUS2_MOVE_SUCCEEDED && !(ctx->waza_status_flag & MOVE_STATUS_FAILED)) {
-                switch (ctx->aiWorkTable.old_moveTbl[ctx->current_move_index].target) {
+                switch (ctx->moveTbl[ctx->current_move_index].target) {
                 case RANGE_USER:
                 case RANGE_USER_SIDE:
                 case RANGE_FIELD:

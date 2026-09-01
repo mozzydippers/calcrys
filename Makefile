@@ -524,6 +524,14 @@ move_narc: $(NARC_FILES)
 	@echo "tutor moves:"
 	cp $(TUTORLEARNSET_BIN) $(TUTORLEARNSET_TARGET)
 
+	@echo "Totem Battles:"
+	cp $(TOTEMBATTLES_BIN) $(TOTEMBATTLES_TARGET)
+
+	@echo "Max Raid Battles:"
+	cp $(MAXRAIDBATTLES_BIN) $(MAXRAIDBATTLES_TARGET)
+
+	@echo "Tera Raid Battles:"
+	cp $(TERARAIDBATTLES_BIN) $(TERARAIDBATTLES_TARGET)
 	@echo "battle tests:"
 	cp $(BATTLETESTS_BIN) $(BATTLETESTS_TARGET)
 
@@ -532,6 +540,9 @@ move_narc: $(NARC_FILES)
 
 	@echo "hidden item params:"
 	cp $(HIDDEN_ITEM_PARAMS_BIN) $(HIDDEN_ITEM_PARAMS_TARGET)
+
+	@echo "ability flag params:"
+	cp $(ABILITY_FLAG_PARAMS_BIN) $(ABILITY_FLAG_PARAMS_TARGET)
 
 update_machine_moves: $(VENV_ACTIVATE)
 	$(PYTHON) scripts/update_machine_moves.py --descriptions --sprites

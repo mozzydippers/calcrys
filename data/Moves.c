@@ -16880,7 +16880,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Breakneck Blitz",
             .capsName = "BREAKNECK BLITZ",
-            .fullName = "Breakneck Blitz",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -16894,7 +16894,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -16907,7 +16907,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Breakneck Blitz",
             .capsName = "BREAKNECK BLITZ",
-            .fullName = "Breakneck Blitz",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -16921,7 +16921,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -16934,7 +16934,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "All-Out Pummel",
             .capsName = "ALL-OUT PUMMEL",
-            .fullName = "All-Out Pummeling",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -16948,7 +16948,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -16961,7 +16961,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "All-Out Pummel",
             .capsName = "ALL-OUT PUMMEL",
-            .fullName = "All-Out Pummeling",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -16975,7 +16975,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -16988,7 +16988,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Super Skystrike",
             .capsName = "SUPER SKYSTRIKE",
-            .fullName = "Supersonic Skystrike",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17002,7 +17002,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17015,7 +17015,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Super Skystrike",
             .capsName = "SUPER SKYSTRIKE",
-            .fullName = "Supersonic Skystrike",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17029,7 +17029,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17042,7 +17042,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Acid Downpour",
             .capsName = "ACID DOWNPOUR",
-            .fullName = "Acid Downpour",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17056,7 +17056,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17069,7 +17069,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Acid Downpour",
             .capsName = "ACID DOWNPOUR",
-            .fullName = "Acid Downpour",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17083,7 +17083,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17096,7 +17096,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Tectonic Rage",
             .capsName = "TECTONIC RAGE",
-            .fullName = "Tectonic Rage",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17110,7 +17110,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17123,7 +17123,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Tectonic Rage",
             .capsName = "TECTONIC RAGE",
-            .fullName = "Tectonic Rage",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17137,7 +17137,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17150,7 +17150,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Continent Crush",
             .capsName = "CONTINENT CRUSH",
-            .fullName = "Continental Crush",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17164,7 +17164,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17177,7 +17177,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Continent Crush",
             .capsName = "CONTINENT CRUSH",
-            .fullName = "Continental Crush",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17191,7 +17191,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17204,7 +17204,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Savage Spin-Out",
             .capsName = "SAVAGE SPIN-OUT",
-            .fullName = "Savage Spin-Out",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17218,7 +17218,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17231,7 +17231,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Savage Spin-Out",
             .capsName = "SAVAGE SPIN-OUT",
-            .fullName = "Savage Spin-Out",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17245,7 +17245,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17258,7 +17258,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "EndlessNitemare",
             .capsName = "ENDLESSNITEMARE",
-            .fullName = "Never-Ending Nightmare",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17272,7 +17272,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17285,7 +17285,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "EndlessNitemare",
             .capsName = "ENDLESSNITEMARE",
-            .fullName = "Never-Ending Nightmare",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17299,7 +17299,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17312,7 +17312,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Corkscrew Crash",
             .capsName = "CORKSCREW CRASH",
-            .fullName = "Corkscrew Crash",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17326,7 +17326,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17339,7 +17339,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Corkscrew Crash",
             .capsName = "CORKSCREW CRASH",
-            .fullName = "Corkscrew Crash",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17353,7 +17353,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17366,7 +17366,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Inferno Drive",
             .capsName = "INFERNO DRIVE",
-            .fullName = "Inferno Overdrive",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17380,7 +17380,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17393,7 +17393,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Inferno Drive",
             .capsName = "INFERNO DRIVE",
-            .fullName = "Inferno Overdrive",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17407,7 +17407,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17420,7 +17420,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Hydro Vortex",
             .capsName = "HYDRO VORTEX",
-            .fullName = "Hydro Vortex",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17434,7 +17434,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17447,7 +17447,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Hydro Vortex",
             .capsName = "HYDRO VORTEX",
-            .fullName = "Hydro Vortex",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17461,7 +17461,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17474,7 +17474,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Bloom Doom",
             .capsName = "BLOOM DOOM",
-            .fullName = "Bloom Doom",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17488,7 +17488,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17501,7 +17501,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Bloom Doom",
             .capsName = "BLOOM DOOM",
-            .fullName = "Bloom Doom",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17515,7 +17515,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17528,7 +17528,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Gigavolt Havoc",
             .capsName = "GIGAVOLT HAVOC",
-            .fullName = "Gigavolt Havoc",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17542,7 +17542,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17555,7 +17555,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Gigavolt Havoc",
             .capsName = "GIGAVOLT HAVOC",
-            .fullName = "Gigavolt Havoc",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17569,7 +17569,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17582,7 +17582,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "ShatteredPsyche",
             .capsName = "SHATTEREDPSYCHE",
-            .fullName = "Shattered Psyche",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17596,7 +17596,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17609,7 +17609,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "ShatteredPsyche",
             .capsName = "SHATTEREDPSYCHE",
-            .fullName = "Shattered Psyche",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17623,7 +17623,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17636,7 +17636,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Subzero Slammer",
             .capsName = "SUBZERO SLAMMER",
-            .fullName = "Subzero Slammer",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17650,7 +17650,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17663,7 +17663,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Subzero Slammer",
             .capsName = "SUBZERO SLAMMER",
-            .fullName = "Subzero Slammer",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17677,7 +17677,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17690,7 +17690,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Ultimate Drake",
             .capsName = "ULTIMATE DRAKE",
-            .fullName = "Devastating Drake",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17704,7 +17704,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17717,7 +17717,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Ultimate Drake",
             .capsName = "ULTIMATE DRAKE",
-            .fullName = "Devastating Drake",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17731,7 +17731,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17744,7 +17744,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Black Eclipse",
             .capsName = "BLACK ECLIPSE",
-            .fullName = "Black Hole Eclipse",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17758,7 +17758,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17771,7 +17771,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Black Eclipse",
             .capsName = "BLACK ECLIPSE",
-            .fullName = "Black Hole Eclipse",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17785,7 +17785,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17798,7 +17798,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Twinkle Tackle",
             .capsName = "TWINKLE TACKLE",
-            .fullName = "Twinkle Tackle",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17812,7 +17812,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17825,7 +17825,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Twinkle Tackle",
             .capsName = "TWINKLE TACKLE",
-            .fullName = "Twinkle Tackle",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17839,7 +17839,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -17852,7 +17852,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Catastropika",
             .capsName = "CATASTROPIKA",
-            .fullName = "Catastropika",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -17866,7 +17866,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -17941,7 +17941,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_POISON,
             .accuracy = 0,
-            .pp = 10,
+            .pp = 5,
             .effectChance = 0,
         },
         .battle = {
@@ -17965,7 +17965,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_PREVENT_ESCAPE_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 80,
+            .power = 90,
             .type = TYPE_GHOST,
             .accuracy = 100,
             .pp = 10,
@@ -18370,7 +18370,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_PREVENT_ESCAPE_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 80,
+            .power = 90,
             .type = TYPE_STEEL,
             .accuracy = 100,
             .pp = 20,
@@ -18451,7 +18451,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_DEFENSE_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 80,
+            .power = 90,
             .type = TYPE_FIRE,
             .accuracy = 100,
             .pp = 15,
@@ -18589,7 +18589,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_POISON,
             .accuracy = 0,
-            .pp = 20,
+            .pp = 5,
             .effectChance = 0,
         },
         .battle = {
@@ -18613,7 +18613,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_SPECIAL,
-            .power = 90,
+            .power = 100,
             .type = TYPE_NORMAL,
             .accuracy = 100,
             .pp = 15,
@@ -18667,7 +18667,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_LOWER_ATTACK_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 70,
+            .power = 85,
             .type = TYPE_GRASS,
             .accuracy = 100,
             .pp = 15,
@@ -18721,10 +18721,10 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 100,
+            .power = 120,
             .type = TYPE_FLYING,
             .accuracy = 100,
-            .pp = 15,
+            .pp = 5,
             .effectChance = 0,
         },
         .battle = {
@@ -18775,7 +18775,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .data = {
             .effect = MOVE_EFFECT_HIT,
             .split = SPLIT_PHYSICAL,
-            .power = 90,
+            .power = 100,
             .type = TYPE_DRAGON,
             .accuracy = 100,
             .pp = 15,
@@ -18851,7 +18851,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Sinister Raid",
             .capsName = "SINISTER RAID",
-            .fullName = "Sinister Arrow Raid",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -18865,7 +18865,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -18878,7 +18878,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Moonsault",
             .capsName = "MOONSAULT",
-            .fullName = "Malicious Moonsault",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -18892,7 +18892,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -18905,7 +18905,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "OceanicOperetta",
             .capsName = "OCEANICOPERETTA",
-            .fullName = "Oceanic Operetta",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -18919,7 +18919,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -18932,7 +18932,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Alolan Guardian",
             .capsName = "ALOLAN GUARDIAN",
-            .fullName = "Guardian of Alola",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_QUARTER_HP,
@@ -18946,7 +18946,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -18959,7 +18959,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "7-Star Strike",
             .capsName = "7-STAR STRIKE",
-            .fullName = "Soul-Stealing 7-Star Strike",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -18973,7 +18973,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -18986,7 +18986,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Sparksurfer",
             .capsName = "SPARKSURFER",
-            .fullName = "Stoked Sparksurfer",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_PARALYZE_HIT,
@@ -19000,7 +19000,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19013,7 +19013,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Pulver-Pancake",
             .capsName = "PULVER-PANCAKE",
-            .fullName = "Pulverizing Pancake",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19027,7 +19027,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -19040,7 +19040,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "ExtremeEvoboost",
             .capsName = "EXTREMEEVOBOOST",
-            .fullName = "Extreme Evoboost",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19054,7 +19054,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_USER,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_MAGIC_COAT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19067,7 +19067,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "OriginSupernova",
             .capsName = "ORIGINSUPERNOVA",
-            .fullName = "Genesis Supernova",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19081,7 +19081,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19102,7 +19102,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 150,
             .type = TYPE_FIRE,
             .accuracy = 100,
-            .pp = 5,
+            .pp = 10,
             .effectChance = 0,
         },
         .battle = {
@@ -19499,7 +19499,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "10,000,000 Bolt",
             .capsName = "10,000,000 BOLT",
-            .fullName = "10,000,000 Volt Thunderbolt",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19513,7 +19513,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19607,7 +19607,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "LightBurnSky",
             .capsName = "LIGHTBURNSKY",
-            .fullName = "Light That Burns the Sky",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19621,7 +19621,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19634,7 +19634,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Sunraze Smash",
             .capsName = "SUNRAZE SMASH",
-            .fullName = "Searing Sunraze Smash",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19648,7 +19648,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -19661,7 +19661,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Moonraze Storm",
             .capsName = "MOONRAZE STORM",
-            .fullName = "Menacing Moonraze Maelstrom",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19675,7 +19675,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,
@@ -19688,7 +19688,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Let’s Snuggle",
             .capsName = "LET’S SNUGGLE",
-            .fullName = "Let’s Snuggle Forever",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19702,7 +19702,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT | FLAG_CONTACT,
+            .flags = FLAG_CONTACT,
         },
         .contest = {
             .appeal = 0,
@@ -19715,7 +19715,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .names = {
             .name = "Stormshards",
             .capsName = "STORMSHARDS",
-            .fullName = "Splintered Stormshards",
+            .fullName = " ",
         },
         .data = {
             .effect = MOVE_EFFECT_HIT,
@@ -19729,7 +19729,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
         .battle = {
             .target = RANGE_SINGLE_TARGET,
             .priority = 0,
-            .flags = FLAG_KEEP_HP_BAR | FLAG_MIRROR_MOVE | FLAG_PROTECT,
+            .flags = 0x00,
         },
         .contest = {
             .appeal = 0,

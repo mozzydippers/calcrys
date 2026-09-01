@@ -23,8 +23,8 @@ A spray-type medicine to wake the\nsleeping. It can be used to rouse a\nPokémon
 A spray-type medicine for treating\nparalysis. It can be used to free a\nPokémon that has been paralyzed.
 A medicine that can be used to fully\nrestore the max HP of a Pokémon and\ncure any status conditions it may have.
 A spray-type medicine for treating\nwounds. It can be used to fully\nrestore the max HP of a Pokémon.
-A spray-type medicine for treating\nwounds. It can be used to restore\n200 HP to a Pokémon.
-A spray-type medicine for treating\nwounds. It can be used to restore\n50 HP to a Pokémon.
+A spray-type medicine for treating\nwounds. It can be used to restore\n120 HP to a Pokémon.
+A spray-type medicine for treating\nwounds. It can be used to restore\n60 HP to a Pokémon.
 A spray-type medicine that is broadly\neffective. It can be used to cure any\nstatus condition a Pokémon may have.
 A medicine that can be used to revive\na Pokémon that has fainted. It also\nrestores half the Pokémon’s max HP.
 A medicine that can be used to revive\na Pokémon that has fainted. It also\nfully restores the Pokémon’s max HP.

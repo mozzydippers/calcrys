@@ -11,6 +11,7 @@
 
 #include "bag.h"
 #include "battle.h"
+#include "battle_variations.h"
 #include "overlay.h"
 #include "pokemon.h"
 
@@ -230,9 +231,7 @@ BOOL LONG_CALL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq
 {
     u32 ovyId, offset;
     BOOL ret;
-    // clang-format off
     BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
-    // clang-format on
 
     UnloadOverlayByID(6); // unload overlay 6 so this can be loaded
 
@@ -460,7 +459,7 @@ int MessageParam_GetNickname(struct BattleSystem *bw, struct BattleStruct *sp, i
     return ret;
 }
 
-void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferIndex, int param)
+void BattleMessage_BufferNicknameDoNotConsiderPrefix(struct BattleSystem *battleSystem, int bufferIndex, int param)
 {
     int partyIndex = (param & 0xFF00) >> 8;
     int client = param & 0xFF;
@@ -472,8 +471,14 @@ void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferI
         mon = Party_GetMonByIndex(party, Party_GetIllusionImitatedIndex(party, ctx->sel_mons_no[client]));
     }
     BufferBoxMonNickname(battleSystem->msgFormat, bufferIndex, &mon->box);
+}
+
+void BattleMessage_BufferNickname(struct BattleSystem *battleSystem, int bufferIndex, int param)
+{
+    int client = param & 0xFF;
+    BattleMessage_BufferNicknameDoNotConsiderPrefix(battleSystem, bufferIndex, param);
     // yes i am currently restricting totems to be client 1, whatever
-    if (BattleTypeGet(battleSystem) & BATTLE_TYPE_TOTEM && client == 1) {
+    if ((battleSystem->battleSpecial & BATTLE_SPECIAL_TOTEM) && client == 1) {
         String *name = battleSystem->msgFormat->fields[bufferIndex].msg;
         // debug_printf("name's maxsize is %d with a current size of %d\n", name->maxsize, name->size);
         //  6 is NELEMS("Totem ")
@@ -528,9 +533,12 @@ void BattleSystem_GrabIllusionBoxMonNameForHpBar(struct BattleSystem *battleSyst
 void BattleSystem_AdjustMessageForSide(struct BattleSystem *battleSystem, struct BattleMessage *msg)
 {
     u32 battleType = BattleTypeGet(battleSystem);
-    // For now, we can cheat needing to do proper Totem prefixes by circumventing this check entirely.
-    // If/when SOS battles are introduced, hooking this func will be a lot more important.
-    if (msg->tag & 0x80 || battleType & BATTLE_TYPE_TOTEM) {
+
+    BOOL battlerIsTotem = ((battleSystem->battleSpecial & BATTLE_SPECIAL_TOTEM) && (msg->param[0] & 0xFF) == 1);
+    BOOL messageNeedsTotemPrefix = battlerIsTotem && !((msg->id == BATTLE_MSG_ABILITY_POPUP) || (msg->id == BATTLE_MSG_CALLED_FOR_HELP));
+
+    // Do not adjust message ID if Totem prefix is needed
+    if (msg->tag & 0x80 || messageNeedsTotemPrefix) {
         return;
     }
 
@@ -1145,6 +1153,8 @@ void BattleEndRevertFormChange(struct BattleSystem *bw)
     }
 
 #endif // DEBUG_BATTLE_SCENARIOS
+
+    ClearBattleVariationInfo();
 }
 
 /**
@@ -1212,6 +1222,12 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     // Xerneas should be in Active Mode when in battle
     if (sp->battlemon[client].species == SPECIES_XERNEAS) {
         sp->battlemon[client].form_no = 1;
+    }
+
+    struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
+
+    if (battleVariationInfo.battleVariationType == BATTLE_VARIATION_TYPE_MAX_RAID && client == 1) {
+        sp->battlemon[client].is_currently_dynamaxed = 1;
     }
 }
 

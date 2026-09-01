@@ -46,7 +46,7 @@ _sand:
     Wait
     WaitTime 30
     // sand msg
-    PrintMessage 2000, TAG_NONE
+    PrintMessage 3000, TAG_NONE
     GoTo _028
 
 _hail:
@@ -55,7 +55,7 @@ _hail:
     Wait
     WaitTime 30
     // hail msg
-    PrintMessage 2001, TAG_NONE
+    PrintMessage 3001, TAG_NONE
     GoTo _028
 
 _028:

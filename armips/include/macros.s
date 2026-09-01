@@ -380,6 +380,10 @@
 	.byte num
 .endmacro
 
+.equ ABILITY_SLOT_1, 0
+.equ ABILITY_SLOT_2, 32
+.equ ABILITY_SLOT_HIDDEN_ABILITY, 2
+
 .macro abilityslot,num
 	.byte num
 .endmacro

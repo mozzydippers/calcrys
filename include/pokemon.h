@@ -1409,8 +1409,6 @@ u32 LONG_CALL TryAppendMonMove(struct PartyPokemon *mon, u16 move);
 void LONG_CALL BufferBoxMonNickname(MessageFormat *messageFormat, u32 fieldno, struct BoxPokemon *boxmon);
 void LONG_CALL BufferBoxMonSpeciesName(MessageFormat *messageFormat, u32 fieldno, struct BoxPokemon *boxmon);
 
-void LONG_CALL BufferBoxMonNickname(MessageFormat *messageFormat, u32 fieldno, struct BoxPokemon *boxmon);
-
 // defined in src/pokemon.c
 
 /**
@@ -1838,6 +1836,25 @@ BOOL Mon_UpdateRotomForm(struct PartyPokemon *mon, int form, int defaultSlot);
 
 BOOL LONG_CALL CanUseItemOnMonInParty(struct Party *party, u16 itemID, s32 partyIdx, s32 moveIdx, u32 heapID);
 
+void LONG_CALL SetupAndStartWildBattle(void *taskManager, u16 species, u8 level, u32 *winFlag, BOOL canFlee, BOOL shiny);
+
+struct BattleSetup LONG_CALL *BattleSetup_New(int heapID, u32 battleFlags);
+
+void LONG_CALL BattleSetup_InitFromFieldSystem(struct BattleSetup *setup, FieldSystem *fieldSystem);
+
+void LONG_CALL ov02_02247F30(FieldSystem *fieldSystem, u16 mon, u8 level, BOOL shiny, struct BattleSetup *setup);
+
+void LONG_CALL *Save_GameStats_Get(void *saveData);
+
+u32 LONG_CALL GameStats_Inc(void *gameStats, int statIdx);
+
+void LONG_CALL CallTask_StartEncounter(void *taskManager, struct BattleSetup *setup, s32 effect, s32 bgm, u32 *winFlag);
+
+int LONG_CALL BattleSetup_GetWildTransitionEffect(struct BattleSetup *setup);
+int LONG_CALL BattleSetup_GetWildBattleMusic(struct BattleSetup *setup);
+
+u32 LONG_CALL ChangePersonalityToNatureGenderAndAbility(u32 pid, u16 species, u8 nature, u8 gender, u8 ability, BOOL gen_mode);
+void LONG_CALL BufferBoxMonNickname(MessageFormat *messageFormat, u32 fieldno, struct BoxPokemon *boxmon);
 u16 LONG_CALL Species_LoadLearnsetTable(u16 species, u16 form, u16 *dest);
 
 u16 LONG_CALL ItemToMachineMove(u16 itemId);

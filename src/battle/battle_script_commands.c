@@ -24,6 +24,8 @@
 #include "system.h"
 #include "window.h"
 
+#include "../../include/battle_variations.h"
+
 #ifdef DEBUG_BATTLE_SCENARIOS
 #include "test_battle.h"
 #endif
@@ -108,8 +110,8 @@ BOOL btl_scr_cmd_107_clearauroraveil(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_108_strengthsapcalc(void *bw, struct BattleStruct *sp);
 BOOL btl_scr_cmd_109_checktargetispartner(void *bw, struct BattleStruct *sp);
 BOOL btl_scr_cmd_10A_clearsmog(void *bsys UNUSED, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_10B_ifthirdtype(void *bw, struct BattleStruct *sp);
-BOOL btl_scr_cmd_10C_ifterastallized(void *bw, struct BattleStruct *sp);
+BOOL btl_scr_cmd_10B_gotoifthirdtype(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_10C_gotoifterastallized(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_10D_HandleRoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_10E_HandleSoak(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_10F_HandleMagicPowder(void *bsys UNUSED, struct BattleStruct *ctx);
@@ -132,8 +134,10 @@ BOOL btl_scr_cmd_11F_BatchEffectivenessMessage(void *bsys, struct BattleStruct *
 BOOL btl_scr_cmd_120_DivideVarByValueRoundUp(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_121_IsPursuitActive(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_122_GoBackToBeforeMove(void *bsys UNUSED, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_123_MakeTotem(void *bsys, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_124_GetMonByCottonDownOrder(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_125_TryActivateZeroToHero(void *bsys, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -469,8 +473,10 @@ const u8 *BattleScrCmdNames[] = {
     "DivideVarByValueRoundUp",
     "IsPursuitActive",
     "GoBackToBeforeMove",
-    "MakeTotem",
+    "SetAuraBoost",
     "GetMonByCottonDownOrder",
+    "TryActivateZeroToHero",
+    "CheckTrainerGimmickMessage",
     // "YourCustomCommand",
 };
 
@@ -478,7 +484,7 @@ u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x11D
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x126
 
 // clang-format off
 const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
@@ -524,8 +530,8 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x108 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_108_strengthsapcalc,
     [0x109 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_109_checktargetispartner,
     [0x10A - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10A_clearsmog,
-    [0x10B - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10B_ifthirdtype,
-    [0x10C - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10C_ifterastallized,
+    [0x10B - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10B_gotoifthirdtype,
+    [0x10C - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10C_gotoifterastallized,
     [0x10D - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10D_HandleRoost,
     [0x10E - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10E_HandleSoak,
     [0x10F - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_10F_HandleMagicPowder,
@@ -548,8 +554,10 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x120 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_120_DivideVarByValueRoundUp,
     [0x121 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_121_IsPursuitActive,
     [0x122 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_122_GoBackToBeforeMove,
-    [0x123 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_123_MakeTotem,
+    [0x123 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_123_SetAuraBoost,
     [0x124 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_124_GetMonByCottonDownOrder,
+    [0x125 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_125_TryActivateZeroToHero,
+    [0x126 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_126_CheckTrainerGimmickMessage,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -1635,9 +1643,7 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
 BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset;
-    // clang-format off
     BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
-    // clang-format on
 
     ovyId = OVERLAY_BTL_SCR_CMD_33_STATBUFFCHANGE;
     offset = 0x023C0400 | 1;
@@ -3771,9 +3777,7 @@ BOOL BtlCmd_CheckSubstitute(void *bsys, struct BattleStruct *ctx)
 u32 CalculateBallShakes(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset, ret;
-    // clang-format off
     BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
-    // clang-format on
 
     ovyId = OVERLAY_CALCULATEBALLSHAKES;
     offset = 0x023C0400 | 1;
@@ -4286,7 +4290,7 @@ BOOL btl_scr_cmd_10A_clearsmog(void *bsys UNUSED, struct BattleStruct *ctx)
     return FALSE;
 }
 
-BOOL btl_scr_cmd_10B_ifthirdtype(void *bsys UNUSED, struct BattleStruct *ctx)
+BOOL btl_scr_cmd_10B_gotoifthirdtype(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
     s32 side = read_battle_script_param(ctx);
@@ -4303,7 +4307,7 @@ BOOL btl_scr_cmd_10B_ifthirdtype(void *bsys UNUSED, struct BattleStruct *ctx)
     return FALSE;
 }
 
-BOOL btl_scr_cmd_10C_ifterastallized(void *bsys UNUSED, struct BattleStruct *ctx)
+BOOL btl_scr_cmd_10C_gotoifterastallized(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
     s32 battlerID = read_battle_script_param(ctx);
@@ -5387,6 +5391,110 @@ BOOL BtlCmd_Transform(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx
     return FALSE;
 }
 
+// ==========
+// Hopefully this comment helps prevent bad auto merge suggestions
+// ==========
+
+BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+
+    struct TotemBattle battleData;
+
+    struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
+
+    ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_TOTEMBATTLES, battleVariationInfo.slot * sizeof(struct TotemBattle), sizeof(struct TotemBattle));
+
+    ctx->mp.id = BATTLE_MSG_AURA_FLARED_TO_LIFE_START - 1 + battleData.auraType;
+    ctx->mp.tag = TAG_NICKNAME;
+    ctx->mp.param[0] = CreateNicknameTag(ctx, battlerId);
+
+    switch (battleData.auraType) {
+    case AURA_TYPE_ATTACK_UP:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 7;
+        break;
+    case AURA_TYPE_ATTACK_UP_2:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 8;
+        break;
+    case AURA_TYPE_ATTACK_UP_3:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 9;
+        break;
+    case AURA_TYPE_DEFENSE_UP:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 7;
+        break;
+    case AURA_TYPE_DEFENSE_UP_2:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 8;
+        break;
+    case AURA_TYPE_DEFENSE_UP_3:
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 9;
+        break;
+    case AURA_TYPE_SP_ATK_UP:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 7;
+        break;
+    case AURA_TYPE_SP_ATK_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 8;
+        break;
+    case AURA_TYPE_SP_ATK_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 9;
+        break;
+    case AURA_TYPE_SP_DEF_UP:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 7;
+        break;
+    case AURA_TYPE_SP_DEF_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 8;
+        break;
+    case AURA_TYPE_SP_DEF_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 9;
+        break;
+    case AURA_TYPE_SPEED_UP:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 7;
+        break;
+    case AURA_TYPE_SPEED_UP_2:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 8;
+        break;
+    case AURA_TYPE_SPEED_UP_3:
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 9;
+        break;
+    case AURA_TYPE_OMNIBOOST:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 7;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 7;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 7;
+        break;
+    case AURA_TYPE_OMNIBOOST_2:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 8;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 8;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 8;
+        break;
+    case AURA_TYPE_OMNIBOOST_3:
+        ctx->battlemon[battlerId].states[STAT_ATTACK] = 9;
+        ctx->battlemon[battlerId].states[STAT_DEFENSE] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_ATTACK] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPECIAL_DEFENSE] = 9;
+        ctx->battlemon[battlerId].states[STAT_SPEED] = 9;
+        break;
+    };
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    if (newBS.needMega[ctx->battlerIdTemp] == MEGA_CHECK_APPER && ctx->battlemon[ctx->battlerIdTemp].hp
+        && ctx->battlerIdTemp == BATTLER_ENEMY && !(BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES)) {
+        ctx->msg_work = TEXT_MEGA_EVOLVE;
+        SkillSequenceGosub(ctx, 1, BATTLE_SUBSCRIPT_TRAINER_MESSAGE);
+    }
+
+    return FALSE;
+}
+
 BOOL btl_scr_cmd_121_IsPursuitActive(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
@@ -5487,73 +5595,6 @@ BOOL BtlCmd_TryPursuit(struct BattleSystem *bsys, struct BattleStruct *ctx)
             ctx->battlemon[ctx->attack_client].unk88.moveNoChoice = moveNo;
         }
         */
-    }
-
-    return FALSE;
-}
-
-u16 TotemSpecies[][STAT_MAX] = // Species, stat stage increases
-    {
-        { SPECIES_RATICATE_ALOLAN_LARGE, 0, 1, 0, 0, 0, 0, 0 }, // +1 Defense
-        { SPECIES_MAROWAK_ALOLAN_LARGE, 0, 0, 2, 0, 0, 0, 0 }, // +2 Speed
-        { SPECIES_GUMSHOOS_LARGE, 0, 1, 0, 0, 0, 0, 0 }, // +1 Defense
-        { SPECIES_VIKAVOLT_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
-        { SPECIES_RIBOMBEE_LARGE, 2, 2, 2, 2, 2, 0, 0 }, // +2 Omni-boost
-        { SPECIES_ARAQUANID_LARGE, 0, 0, 1, 0, 0, 0, 0 }, // +1 Speed
-        { SPECIES_LURANTIS_LARGE, 0, 0, 2, 0, 0, 0, 0 }, // +2 Speed
-        { SPECIES_SALAZZLE_LARGE, 0, 0, 0, 0, 1, 0, 0 }, // +1 Special Defense
-        { SPECIES_TOGEDEMARU_LARGE, 0, 2, 0, 0, 0, 0, 0 }, // +2 Defense
-        { SPECIES_MIMIKYU_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
-        { SPECIES_MIMIKYU_BUSTED_LARGE, 0, 0, 0, 0, 0, 0, 0 },
-        { SPECIES_KOMMO_O_LARGE, 1, 1, 1, 1, 1, 0, 0 }, // +1 Omni-boost
-        // Add your Totem species here.
-        // Don't bother making a custom form unless you plan for it to be caught.
-    };
-
-BOOL btl_scr_cmd_123_MakeTotem(void *bsys UNUSED, struct BattleStruct *ctx)
-{
-    IncrementBattleScriptPtr(ctx, 1);
-    s32 battlerID = read_battle_script_param(ctx);
-    s32 failAddr = read_battle_script_param(ctx);
-
-    // Grab totem ID.
-    u32 totemID;
-    u32 adjustedSpecies = PokeOtherFormMonsNoGet(ctx->battlemon[battlerID].species, ctx->battlemon[battlerID].form_no);
-    for (totemID = 0; totemID < NELEMS(TotemSpecies); totemID++) {
-        if (adjustedSpecies == TotemSpecies[totemID][0]) {
-            break;
-        }
-    }
-    // no weight increase because each form has its own weight + wishiwashi doesn't gain weight anyway
-    // ctx->battlemon[battlerID].weight *= 2;
-
-    // if not defined in above table, should skip playing stat animation because it can not be found
-    if (totemID == NELEMS(TotemSpecies)) {
-        IncrementBattleScriptPtr(ctx, failAddr);
-        return FALSE;
-    }
-
-    // Handle stat boosts.
-    u8 totalStatBoosts = 0;
-    u8 raisedStat = 0;
-    u8 stat;
-    for (stat = STAT_ATTACK; stat < STAT_MAX; stat++) {
-        if (TotemSpecies[totemID][stat] > 0) {
-            ctx->battlemon[battlerID].states[stat] += TotemSpecies[totemID][stat];
-            raisedStat = stat;
-            totalStatBoosts++;
-        }
-    }
-
-    if (totalStatBoosts == 1) {
-        ctx->mp.id = BATTLE_MSG_TOTEM_AURA_SINGLE_STAT; // {0}’s aura flared to life! Its {1} rose!
-        ctx->mp.tag = TAG_NICKNAME_STAT;
-        ctx->mp.param[0] = CreateNicknameTag(ctx, battlerID);
-        ctx->mp.param[1] = raisedStat;
-    } else if (totalStatBoosts > 1) {
-        ctx->mp.id = BATTLE_MSG_TOTEM_AURA_MULTI_STAT; // {0}’s aura flared to life! Its stats rose!
-        ctx->mp.tag = TAG_NICKNAME;
-        ctx->mp.param[0] = CreateNicknameTag(ctx, battlerID);
     }
 
     return FALSE;
@@ -5703,6 +5744,27 @@ BOOL BtlCmd_TryPerishSong(struct BattleSystem *bsys, struct BattleStruct *ctx)
     }
     if (cnt == maxBattlers) {
         IncrementBattleScriptPtr(ctx, adrs);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_125_TryActivateZeroToHero(void *bsys, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battler = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+
+    if (ctx->battlemon[battler].species == SPECIES_PALAFIN
+        && ctx->battlemon[battler].form_no == 0
+        && ctx->battlemon[battler].ability == ABILITY_ZERO_TO_HERO
+        && !(ctx->battlemon[battler].condition2 & STATUS2_TRANSFORM)
+        && ctx->battlemon[battler].hp != 0) {
+        struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, battler, ctx->sel_mons_no[battler]);
+        u8 form = 1;
+
+        SetMonData(mon, MON_DATA_FORM, &form);
+        RecalcPartyPokemonStats(mon);
     }
 
     return FALSE;

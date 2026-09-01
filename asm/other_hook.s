@@ -109,6 +109,202 @@ bx r5
 
 .pool
 
+.global ov07_0221D874_RaidApplyAppearance
+ov07_0221D874_RaidApplyAppearance:
+bl   0x0200D734 | 1 // SpriteSystem_NewSprite
+add  r7, r0, #0
+
+add  r0, r7, #0
+add  r1, r6, #0
+bl   Raid_ApplyManagedSpriteAppearance
+
+add  r0, r7, #0
+cmp  r6, #0
+beq  _ov07_0221D874_RaidContinueHidden
+ldr  r1, =0x0221D98D | 1
+bx   r1
+
+_ov07_0221D874_RaidContinueHidden:
+ldr  r1, =0x0221D985 | 1
+bx   r1
+
+.pool
+
+.global ov07_0221FB90_RaidApplyAppearance
+ov07_0221FB90_RaidApplyAppearance:
+add  r6, r0, #0
+
+add  r0, r6, #0
+bl   0x0200DC18 | 1 // ManagedSprite_TickFrame
+str  r6, [r7, #0x24]
+
+add  r0, r6, #0
+add  r1, r5, #0
+bl   Raid_ApplyManagedSpriteAppearance
+
+cmp  r5, #0
+ldr  r3, =0x0221FD65 | 1
+bx   r3
+
+.pool
+
+.global ov07_0221D874_RaidTint
+ov07_0221D874_RaidTint:
+add  r0, r6, #0
+bl   IsRaidMonPokepic
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
+add  r0, r4, #0
+ldr  r1, [sp, #0x1C]
+bl   0x0221FA48 | 1 // ov07_0221FA48
+cmp  r0, #0
+beq  _ov07_0221D874_RaidTintContinue
+
+add  r0, r4, #0
+add  r0, #0xC8
+ldr  r0, [r0]
+ldr  r1, [sp, #8]
+add  r2, r6, #0
+bl   Raid_ApplyObjPaletteAppearance
+
+_ov07_0221D874_RaidTintContinue:
+ldr  r0, [sp, #0xC]
+lsl  r5, r0, #2
+mov  r0, #0x4F
+lsl  r0, r0, #2
+ldr  r3, =0x0221DA00 | 1
+bx   r3
+
+.pool
+
+.global ov07_0221FB90_RaidTint
+ov07_0221FB90_RaidTint:
+ldr  r0, [sp, #0x2C]
+ldr  r1, [r4, #4]
+cmp  r0, r1
+beq  _ov07_0221FB90_RaidTintCurrent
+cmp  r1, #0xFF
+bne  _ov07_0221FB90_RaidTintContinue
+
+_ov07_0221FB90_RaidTintCurrent:
+ldr  r2, [r7, #0x48]
+cmp  r2, #0
+beq  _ov07_0221FB90_RaidTintContinue
+ldr  r0, [r4, #0x10]
+ldr  r1, [sp, #8]
+bl   Raid_ApplyObjPaletteAppearance
+
+_ov07_0221FB90_RaidTintContinue:
+ldr  r0, [sp, #0x2C]
+add  r7, r7, #4
+add  r0, r0, #1
+str  r0, [sp, #0x2C]
+cmp  r0, #4
+ldr  r3, =0x0221FDE7 | 1
+bx   r3
+
+.pool
+
+.global sub_020174BC_RaidRestoreScaleX
+sub_020174BC_RaidRestoreScaleX:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x020174F5 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestorePositionX
+sub_020174BC_RaidRestorePositionX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x58]
+bl   Raid_RestoreAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x020174CB | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionXFlipped
+sub_020179D4_RaidApplyPositionXFlipped:
+ldr  r3, [r4, #0x60]
+ldr  r2, [r4, #0x68]
+ldr  r1, [r4, #0x58]
+add  r2, r3, r2
+sub  r1, r1, r2
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020179D4_RaidApplyPositionX
+sub_020179D4_RaidApplyPositionX:
+ldr  r1, [r4, #0x58]
+ldr  r2, [r4, #0x60]
+ldr  r3, [r4, #0x68]
+add  r1, r1, r2
+add  r1, r1, r3
+ldr  r0, [r4, #0]
+bl   Raid_AdjustAnimationX
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A07 | 1
+bx   r3
+
+.global sub_020174BC_RaidRestoreScaleY
+sub_020174BC_RaidRestoreScaleY:
+ldr  r0, [r4, #0]
+mov  r1, #0x80
+lsl  r1, r1, #1
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017501 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleX
+sub_02017A1C_RaidApplyScaleX:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x70]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xC
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A31 | 1
+bx   r3
+
+.global sub_02017A1C_RaidApplyScaleY
+sub_02017A1C_RaidApplyScaleY:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #0x74]
+add  r1, #0x80
+add  r1, #0x80
+bl   Raid_AdjustAnimationScale
+add  r2, r0, #0
+ldr  r0, [r4, #0]
+mov  r1, #0xD
+bl   0x020087A4 | 1
+ldr  r3, =0x02017A41 | 1
+bx   r3
+
+.pool
+
 //02234868
 //08018A48
 .global hook_7_spriteOffsetSpecies
@@ -455,16 +651,26 @@ bx r0
 // r0 is fight_type, need to check gTriggerDouble above and see if the player palette should be overwritten as the multi battle param would stipulate
 .global KeepPlayerPaletteIntact
 KeepPlayerPaletteIntact:
+push {r0}
 ldr r1, =gTriggerDouble
 ldr r1, [r1]
 cmp r1, #0
-bne return_to_022607C4
+bne return_to_022607C4_pop
+
+ldr r0, [r4]
+bl IsWildDoubleBattleWithOneOpponent
+cmp r0, #0
+bne return_to_022607C4_pop
 
 return_to_022607DA:
+pop {r0}
 cmp r0, #0x4A
 beq return_to_022607C4
 ldr r2, =0x022607DA|1
 bx r2
+
+return_to_022607C4_pop:
+pop {r0}
 
 return_to_022607C4:
 mov r0, r7

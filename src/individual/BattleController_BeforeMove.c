@@ -13,9 +13,11 @@
 #include "constants/system_control.h"
 
 #include "battle.h"
+#include "dynamax.h"
 #include "item.h"
 #include "mega.h"
 #include "pokemon.h"
+#include "z_moves.h"
 
 /********************************************************************************************************************/
 /********************************************************************************************************************/
@@ -168,22 +170,6 @@ BOOL LONG_CALL AbilityNoReceiver(int ability);
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityNoEntrainment(int ability);
 
-/// @brief Check if ability causes Trace to fail
-/// @param ability
-/// @return `TRUE` or `FALSE`
-BOOL LONG_CALL AbilityNoTrace(int ability);
-
-/// @brief Check if ability causes Skill Swap and Wandering Spirit to fail
-/// @param ability
-/// @return `TRUE` or `FALSE`
-BOOL LONG_CALL AbilityFailSkillSwap(int ability);
-
-/// @brief Check if ability can't be suppressed by Gastro Acid. See notes for DisabledByNeutralizingGas.
-/// @param ability
-/// @ref AbilityDisabledByNeutralizingGas
-/// @return `TRUE` or `FALSE`
-BOOL LONG_CALL AbilityCantSupress(int ability);
-
 /// @brief Check if ability is disabled if user is Transformed
 /// @param ability
 /// @return `TRUE` or `FALSE`
@@ -243,6 +229,11 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         // ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag = 0;
 
         // debug_printf("quickClawFlag: %d\n", ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag);
+
+        if (ctx->battlemon[ctx->attack_client].is_currently_dynamaxed && newBS.SideMaxMoveBaseMove[ctx->attack_client]) {
+            ctx->current_move_index = GetMaxMoveToBeUsed(ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
+        }
+
         ctx->wb_seq_no++;
         return;
     }
@@ -314,14 +305,48 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
         ctx->wb_seq_no++;
         return;
     }
+    case BEFORE_MOVE_STATE_ILLUSION_WEAR_OFF: {
+#ifdef DEBUG_BEFORE_MOVE_LOGIC
+        debug_printf("In BEFORE_MOVE_STATE_ILLUSION_WEAR_OFF\n");
+#endif
+
+        ctx->wb_seq_no++;
+
+        if (newBS.needZMove[ctx->attack_client] && IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, ctx->attack_client)) {
+            gIllusionStruct.isSideInIllusion &= ~No2Bit(SanitizeClientForTeamAccess(bsys, ctx->attack_client));
+            gIllusionStruct.illusionClient[SanitizeClientForTeamAccess(bsys, ctx->attack_client)] = CLIENT_MAX;
+            gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(bsys, ctx->attack_client)] = 6;
+            BattleFormChange(ctx->attack_client, ctx->battlemon[ctx->attack_client].form_no, bsys, ctx, 0);
+            ctx->battlerIdTemp = ctx->attack_client;
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HANDLE_ILLUSION_FADED);
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return;
+        }
+
+        FALLTHROUGH;
+    }
     // TODO implement new mechanics
     case BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
         debug_printf("In BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT\n");
 #endif
-
         ctx->wb_seq_no++;
-        return;
+
+        if (newBS.needZMove[ctx->attack_client]) {
+            newBS.SideZMove[ctx->attack_client] = TRUE;
+            newBS.needZMove[ctx->attack_client] = FALSE;
+            ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
+
+            // TODO
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT);
+            ctx->battlerIdTemp = ctx->attack_client;
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return;
+        }
+
+        FALLTHROUGH;
     }
     case BEFORE_MOVE_STATE_TRUANT: {
 #ifdef DEBUG_BEFORE_MOVE_LOGIC
@@ -1554,26 +1579,26 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
-        } else if (ctx->moveTbl[ctx->current_move_index].power != 0 && ctx->battlemon[ctx->attack_client].form_no == 0) {
+        } else if (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS && ctx->battlemon[ctx->attack_client].form_no == 0) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 1;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }
     }
     if (ctx->battlemon[ctx->attack_client].ability == ABILITY_STANCE_CHANGE && ctx->battlemon[ctx->attack_client].species == SPECIES_DEOXYS) {
         ctx->battlerIdTemp = ctx->attack_client;
-        if (ctx->moveTbl[ctx->current_move_index].power == 0 && ctx->battlemon[ctx->attack_client].form_no == 0) {
+        if (ctx->moveTbl[ctx->current_move_index].split == SPLIT_STATUS && ctx->battlemon[ctx->attack_client].form_no != 3) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 3;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE_SPEED);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
-        } else if (ctx->moveTbl[ctx->current_move_index].power != 0 && ctx->battlemon[ctx->attack_client].form_no == 0) {
+        } else if (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS && ctx->battlemon[ctx->attack_client].form_no != 1) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 1;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE_ATTACK);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }
@@ -1601,14 +1626,14 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
 void BattleController_CheckDeoxysStanceChange(struct BattleSystem *bsys, struct BattleStruct *ctx) {
     if (ctx->battlemon[ctx->defence_client].ability == ABILITY_STANCE_CHANGE && ctx->battlemon[ctx->defence_client].species == SPECIES_DEOXYS) {
         ctx->battlerIdTemp = ctx->attack_client;
-        if (ctx->moveTbl[ctx->current_move_index].power >= 0) 
+        if (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS)
         {
             ctx->battlerIdTemp = ctx->defence_client;
             if (ctx->battlemon[ctx->defence_client].form_no != 2) 
             {
                 ctx->battlemon[ctx->battlerIdTemp].form_no = 2;
                 BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE_DEFENSE);
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
             }
@@ -2524,11 +2549,10 @@ BOOL BattleController_CheckSemiInvulnerability(struct BattleSystem *bsys UNUSED,
 
 BOOL CanHitThroughProtect(struct BattleStruct *ctx, int attacker, int defender)
 {
-    u32 moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
+    // u32 moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
+    u32 flag = ctx->moveTbl[ctx->current_move_index].flag;
     u32 ability = GetBattlerAbility(ctx, attacker);
-    if (moveEffect == MOVE_EFFECT_REMOVE_PROTECT
-        || moveEffect == MOVE_EFFECT_SHADOW_FORCE
-        || moveEffect == MOVE_EFFECT_IGNORE_PROTECT
+    if (!(flag & FLAG_PROTECT)
         || (ctx->current_move_index == MOVE_CURSE && HasType(ctx, attacker, TYPE_GHOST))
         || ((ability == ABILITY_UNSEEN_FIST
                 || ability == ABILITY_PIERCING_DRILL)
@@ -2803,7 +2827,12 @@ BOOL BattleController_CheckAbilityFailures2(struct BattleSystem *bsys UNUSED, st
 
 BOOL CalcDamageAndSetMoveStatusFlags(struct BattleSystem *bsys, struct BattleStruct *ctx, int defender)
 {
-    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE && ctx->moveTbl[ctx->current_move_index].power != 0 && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY) /* && !(ctx->server_status_flag & BATTLE_STATUS_CHARGE_TURN) */) || ctx->current_move_index == MOVE_THUNDER_WAVE) {
+    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
+            && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
+            // Z-Moves and Max Moves do not always have non-zero power
+            && (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS)
+            && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
+        || ctx->current_move_index == MOVE_THUNDER_WAVE) {
         // TODO: Probably wrong?
         u32 temp = ctx->moveStatusFlagForSpreadMoves[defender];
         // TODO: Use GetTypeEffectiveness
@@ -4978,7 +5007,9 @@ BOOL LONG_CALL AbilityDisabledByNeutralizingGas(int ability)
 {
     // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9899131
     // Check both flags and if they are not equal, the ability can be suppressed by Neutralizing Gas. Effectively this is a flag made to keep Neutralizing Gas from disabling Neutralizing Gas.
-    return AbilityCantSupress(ability) != (ability != ABILITY_NEUTRALIZING_GAS);
+    AbilityFlags flags = GetAbilityFlags(ability);
+
+    return flags.disabledByNeutralizingGas != flags.failsSuppress;
 }
 
 /// @brief Check if ability causes Role Play and Doodle to fail
@@ -4986,50 +5017,7 @@ BOOL LONG_CALL AbilityDisabledByNeutralizingGas(int ability)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityFailRolePlay(int ability)
 {
-    switch (ability) {
-    case ABILITY_WONDER_GUARD:
-    case ABILITY_TRACE:
-    case ABILITY_FORECAST:
-    case ABILITY_MULTITYPE:
-    case ABILITY_FLOWER_GIFT:
-    case ABILITY_ILLUSION:
-    case ABILITY_IMPOSTER:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RECEIVER:
-    case ABILITY_POWER_OF_ALCHEMY:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_ICE_FACE:
-    case ABILITY_GULP_MISSILE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_COMMANDER:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-    case ABILITY_TERA_SHELL:
-    case ABILITY_TERAFORM_ZERO:
-    case ABILITY_POISON_PUPPETEER:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsRolePlay;
 }
 
 /// @brief Check if ability causes Receiver and Power of Alchemy to fail
@@ -5037,49 +5025,7 @@ BOOL LONG_CALL AbilityFailRolePlay(int ability)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityNoReceiver(int ability)
 {
-    switch (ability) {
-    case ABILITY_WONDER_GUARD:
-    case ABILITY_TRACE:
-    case ABILITY_FORECAST:
-    case ABILITY_MULTITYPE:
-    case ABILITY_FLOWER_GIFT:
-    case ABILITY_ILLUSION:
-    case ABILITY_IMPOSTER:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RECEIVER:
-    case ABILITY_POWER_OF_ALCHEMY:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_ICE_FACE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_COMMANDER:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-    case ABILITY_TERA_SHELL:
-    case ABILITY_TERAFORM_ZERO:
-    case ABILITY_POISON_PUPPETEER:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsReceiver;
 }
 
 /// @brief Check if ability causes Entrainment to fail
@@ -5087,98 +5033,7 @@ BOOL LONG_CALL AbilityNoReceiver(int ability)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityNoEntrainment(int ability)
 {
-    switch (ability) {
-    case ABILITY_WONDER_GUARD:
-    case ABILITY_TRACE:
-    case ABILITY_FORECAST:
-    case ABILITY_MULTITYPE:
-    case ABILITY_FLOWER_GIFT:
-    case ABILITY_ILLUSION:
-    case ABILITY_IMPOSTER:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RECEIVER:
-    case ABILITY_POWER_OF_ALCHEMY:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_ICE_FACE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_COMMANDER:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-    case ABILITY_TERA_SHELL:
-    case ABILITY_TERAFORM_ZERO:
-    case ABILITY_POISON_PUPPETEER:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
-}
-
-/// @brief Check if ability causes Trace to fail
-/// @param ability
-/// @return `TRUE` or `FALSE`
-BOOL LONG_CALL AbilityNoTrace(int ability)
-{
-    switch (ability) {
-    case ABILITY_TRACE:
-    case ABILITY_FORECAST:
-    case ABILITY_MULTITYPE:
-    case ABILITY_FLOWER_GIFT:
-    case ABILITY_ILLUSION:
-    case ABILITY_IMPOSTER:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RECEIVER:
-    case ABILITY_POWER_OF_ALCHEMY:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_ICE_FACE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_COMMANDER:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-    case ABILITY_TERA_SHELL:
-    case ABILITY_TERAFORM_ZERO:
-    case ABILITY_POISON_PUPPETEER:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsEntrainment;
 }
 
 /// @brief Check if ability causes Skill Swap and Wandering Spirit to fail
@@ -5186,43 +5041,7 @@ BOOL LONG_CALL AbilityNoTrace(int ability)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityFailSkillSwap(int ability)
 {
-    switch (ability) {
-    case ABILITY_WONDER_GUARD:
-    case ABILITY_MULTITYPE:
-    case ABILITY_ILLUSION:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_ICE_FACE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_COMMANDER:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-    case ABILITY_TERA_SHELL:
-    case ABILITY_TERAFORM_ZERO:
-    case ABILITY_POISON_PUPPETEER:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsSwap;
 }
 
 /// @brief Check if ability can't be suppressed by Gastro Acid or affected by Mummy. See notes for DisabledByNeutralizingGas.
@@ -5231,30 +5050,7 @@ BOOL LONG_CALL AbilityFailSkillSwap(int ability)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityCantSupress(int ability)
 {
-    switch (ability) {
-    case ABILITY_MULTITYPE:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_GULP_MISSILE:
-    case ABILITY_ICE_FACE:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_TERA_SHIFT:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsSuppress;
 }
 
 void BattleController_ResetGeneralMoveFailureFlags(struct BattleStruct *ctx, int attack_client, BOOL setsMoveConditionalFailureFlag)

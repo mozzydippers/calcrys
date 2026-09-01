@@ -363,7 +363,7 @@ u32 __attribute__((section(".init"))) CalculateBallShakesInternal(void *bw, stru
     };
 
     struct PlayerProfile *profile = Sav2_PlayerData_GetProfileAddr(SaveBlock2_get());
-    badges = profile->johtoBadges + profile->kantoBadges;
+    badges = PlayerProfile_CountBadges(profile);
     badges = badges > 8 ? 8 : badges;
     missingBadges = 0;
     if (sp->battlemon[sp->defence_client].level + 5 > badgeLevel[badges]) {

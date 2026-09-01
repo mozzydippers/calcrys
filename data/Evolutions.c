@@ -391,6 +391,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_PIKACHU] = {
         .entries = {
+            { EVO_DUMMY, ITEM_THUNDER_STONE, MON_WITH_FORM(SPECIES_RAICHU, 1) },
             { EVO_STONE, ITEM_THUNDER_STONE, SPECIES_RAICHU },
             { EVO_STONE, ITEM_SHINY_STONE, MON_WITH_FORM(SPECIES_RAICHU, 1) },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -1546,6 +1547,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_EXEGGCUTE] = {
         .entries = {
+            { EVO_DUMMY, ITEM_LEAF_STONE, MON_WITH_FORM(SPECIES_EXEGGUTOR, 1) },
             { EVO_STONE, ITEM_LEAF_STONE, SPECIES_EXEGGUTOR },
             { EVO_STONE, ITEM_SUN_STONE, MON_WITH_FORM(SPECIES_EXEGGUTOR, 1) },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -1576,7 +1578,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_CUBONE] = {
         .entries = {
-            { EVO_SPIN_CLOCKWISE_LESS_THAN_5_SECONDS_NIGHT, 28, MON_WITH_FORM(SPECIES_MAROWAK, 1) },
+            { EVO_SINJOH_RUINS, 28, MON_WITH_FORM(SPECIES_MAROWAK, 1) },
             { EVO_LEVEL, 28, SPECIES_MAROWAK },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -1651,8 +1653,8 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_KOFFING] = {
         .entries = {
+            { EVO_DUMMY, 35, MON_WITH_FORM(SPECIES_WEEZING, 1) },
             { EVO_LEVEL, 35, SPECIES_WEEZING },
-            { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -6601,8 +6603,8 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_MIME_JR] = {
         .entries = {
+            { EVO_DUMMY, MOVE_MIMIC, MON_WITH_FORM(SPECIES_MR_MIME, 1) },
             { EVO_HAS_MOVE, MOVE_MIMIC, SPECIES_MR_MIME },
-            { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -8296,7 +8298,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_DEWOTT] = {
         .entries = {
-            { EVO_SPIN_CLOCKWISE_LESS_THAN_5_SECONDS_NIGHT, 36, MON_WITH_FORM(SPECIES_SAMUROTT, 1) },
+            { EVO_SINJOH_RUINS, 36, MON_WITH_FORM(SPECIES_SAMUROTT, 1) },
             { EVO_LEVEL, 36, SPECIES_SAMUROTT },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -8986,6 +8988,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_PETILIL] = {
         .entries = {
+            { EVO_DUMMY, ITEM_SUN_STONE, MON_WITH_FORM(SPECIES_LILLIGANT, 1) },
             { EVO_STONE, ITEM_SUN_STONE, SPECIES_LILLIGANT },
             { EVO_STONE, ITEM_MOON_STONE, MON_WITH_FORM(SPECIES_LILLIGANT, 1) },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -10171,8 +10174,9 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_RUFFLET] = {
         .entries = {
+            { EVO_DUMMY, 54, MON_WITH_FORM(SPECIES_BRAVIARY, 1) },
             { EVO_LEVEL, 54, SPECIES_BRAVIARY },
-            { EVO_SPIN_CLOCKWISE_LESS_THAN_5_SECONDS_NIGHT, 54, MON_WITH_FORM(SPECIES_BRAVIARY, 1) },
+            { EVO_SINJOH_RUINS, 54, MON_WITH_FORM(SPECIES_BRAVIARY, 1) },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -11326,7 +11330,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_GOOMY] = {
         .entries = {
-            { EVO_SPIN_CLOCKWISE_LESS_THAN_5_SECONDS_NIGHT, 40, MON_WITH_FORM(SPECIES_SLIGGOO, 1) },
+            { EVO_SINJOH_RUINS, 40, MON_WITH_FORM(SPECIES_SLIGGOO, 1) },
             { EVO_LEVEL, 40, SPECIES_SLIGGOO },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -11341,8 +11345,8 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_SLIGGOO] = {
         .entries = {
+            { EVO_DUMMY, 50, MON_WITH_FORM(SPECIES_GOODRA, 1) },
             { EVO_LEVEL_RAIN, 50, SPECIES_GOODRA },
-            { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -11446,7 +11450,7 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_BERGMITE] = {
         .entries = {
-            { EVO_SPIN_CLOCKWISE_LESS_THAN_5_SECONDS_NIGHT, 37, MON_WITH_FORM(SPECIES_AVALUGG, 1) },
+            { EVO_SINJOH_RUINS, 37, MON_WITH_FORM(SPECIES_AVALUGG, 1) },
             { EVO_LEVEL, 37, SPECIES_AVALUGG },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
@@ -11611,8 +11615,8 @@ const EvolutionTable __data[MAX_SPECIES_INCLUDING_FORMS + 1] =
 
     [SPECIES_DARTRIX] = {
         .entries = {
+            { EVO_DUMMY, 34, MON_WITH_FORM(SPECIES_DECIDUEYE, 1) },
             { EVO_LEVEL, 34, SPECIES_DECIDUEYE },
-            { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },
             { EVO_NONE, 0, SPECIES_NONE },

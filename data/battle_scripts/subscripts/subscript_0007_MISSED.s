@@ -83,8 +83,8 @@ _157:
     GetCurrentMoveData MOVEATTRIBUTE_RANGE
     CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_CALC_TEMP, RANGE_ADJACENT_OPPONENTS, _175
     CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_CALC_TEMP, RANGE_ALL_ADJACENT, _175
-    // {0}’s attack missed!
-    PrintMessage 12, TAG_NICKNAME, BATTLER_CATEGORY_ATTACKER
+    // {0} avoided the attack!
+    PrintMessage 24, TAG_NICKNAME, BATTLER_CATEGORY_DEFENDER
     GoTo _179
 
 _175:

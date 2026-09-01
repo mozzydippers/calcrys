@@ -4,25 +4,11 @@
 .data
 
 _000:
-_checkAsOne:
-    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_GLASTRIER, _printAsOneMessage
-    CheckAbility CHECK_OPCODE_NOT_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_SPECTRIER, _checkUnnerve
-_printAsOneMessage:
-    // {0} has two Abilities!
-    PrintMessage 1463, TAG_NICKNAME, BATTLER_CATEGORY_SWITCHED_MON
-    Wait
-    WaitButtonABTime 30
-    SetAbilityActivatedFlag BATTLER_CATEGORY_SWITCHED_MON
-_checkUnnerve:
-    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_GLASTRIER, _printUnnerveMessage
-    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_SPECTRIER, _printUnnerveMessage
+    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_GLASTRIER, _checkAsOneUnnerve
+    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_AS_ONE_SPECTRIER, _checkAsOneUnnerve
     CheckAbility CHECK_OPCODE_NOT_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_UNNERVE, _landingPad
-_printUnnerveMessage:
-    // {0}’s {1} makes the opposing team too nervous to eat Berries!
-    PrintMessage 1282, TAG_NICKNAME_ABILITY, BATTLER_CATEGORY_SWITCHED_MON, BATTLER_CATEGORY_SWITCHED_MON
-    Wait
-    WaitButtonABTime 30
-    SetAbilityActivatedFlag BATTLER_CATEGORY_SWITCHED_MON
+_checkAsOneUnnerve:
+    Call BATTLE_SUBSCRIPT_HANDLE_UNNERVE_MESSAGE
 
 _landingPad:
 // convert this to use a sort of queue system
@@ -92,7 +78,7 @@ _checkIfShouldDoStickyWeb:
     CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_SWITCHED_MON, ABILITY_FULL_METAL_BODY, _landingPad
     GotoIfGrounded BATTLER_CATEGORY_SWITCHED_MON, _checkStickyWeb
     GoTo _landingPad
-    
+
 _checkStickyWeb:
     UpdateVarFromVar OPCODE_SET, BSCRIPT_VAR_BATTLER_ATTACKER, BSCRIPT_VAR_BATTLER_SWITCH
     CompareVarToValue OPCODE_FLAG_NOT, BSCRIPT_VAR_SIDE_CONDITION_ATTACKER, SIDE_CONDITION_STICKY_WEB, _landingPad

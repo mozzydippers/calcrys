@@ -86,6 +86,14 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
         // Reset Focus Punch flag
         ctx->oneTurnFlag[ctx->attack_client].pendingFocusPunchFlag = FALSE;
 
+        // Reset Z-Move flags
+        newBS.needZMove[ctx->attack_client] = FALSE;
+        newBS.SideZMoveBaseMove[ctx->attack_client] = MOVE_NONE;
+
+        // Reset Dynamax flags
+        newBS.needDynamax[ctx->attack_client] = FALSE;
+        newBS.SideMaxMoveBaseMove[ctx->attack_client] = MOVE_NONE;
+
         script = SwitchInAbilityCheck(bsys, ctx);
         if (script) {
             LoadBattleSubSeqScript(ctx, 1, script);
@@ -137,6 +145,8 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
     ctx->magicBounceContext.isActive = FALSE;
     ctx->magicBounceContext.bounceCounter = 0;
     ctx->magicBounceContext.bounceMaxCounter = 0;
+
+    // There is execution index and order mutation during a raid extra action, but it does not matter
 
     ctx->playerActions[ctx->executionOrder[ctx->executionIndex]][0] = CONTROLLER_COMMAND_40;
 

@@ -547,6 +547,38 @@ bx r4
 .pool
 
 
+.global ov12_022612A4_SkipInvalid
+ov12_022612A4_SkipInvalid:
+push {r3, lr}
+mov r0, r7
+ldr r1, [sp, #0x58]
+bl IsBattlerSlotValid
+cmp r0, #0
+beq _hideMonShadow
+ldr r2, [sp, #0x54]
+b _callSetAttr
+
+_hideMonShadow:
+mov r2, #0
+
+_callSetAttr:
+add r0, r4, #0
+mov r1, #0x2e
+bl 0x020087A4 | 1 // Pokepic_SetAttr
+add r0, r4, #0
+add r1, r7, #0
+ldr r2, [sp, #0x58]
+ldr r3, =Raid_InitializeMainAppearance
+blx r3
+pop {r3}
+pop {r1}
+mov lr, r1
+ldr r3, =0x0226135C | 1
+bx r3
+
+.pool
+
+
 .global CT_PokemonEncountAppearSet_SkipInvalid_02259D10
 CT_PokemonEncountAppearSet_SkipInvalid_02259D10:
 push {r0-r3}
@@ -786,29 +818,24 @@ bl BattleSystem_GrabIllusionBoxMonNameForHpBar // (struct BattleSystem *battleSy
 ldr r1, =0x022651C0 | 1
 bx r1
 
-.global GetPokemon_CheckIfTrainer_hook
-GetPokemon_CheckIfTrainer_hook:
-ldr r0, [r4]
-bl ShouldPreventMonCapture
-cmp r0, #0
-beq _returnTo02246728
-ldr r0, =0x02246710 | 1
-bx r0
 
-_returnTo02246728:
-ldr r0, =0x02246728 | 1
-bx r0
+.global ov12_0225B7B8_RaidApplyAppearanceAfterSlide
+ov12_0225B7B8_RaidApplyAppearanceAfterSlide:
+ldr  r0, [r4, #0]
+ldr  r1, [r4, #4]
+add  r2, r5, #0
+add  r3, sp, #0x18
+bl   0x02261B80 | 1
 
-.pool
+ldr  r0, [r4, #8]      // param_2[2] = Pokepic *
+add  r1, r4, #0
+ldrb r2, [r1, #0x11]   // battler id from task struct
+ldr  r1, [r4, #0]      // BattleSystem *
+ldr  r3, =Raid_ApplyMainAppearance
+blx  r3
 
-.global GetPokemon_BallBlocked_hook
-GetPokemon_BallBlocked_hook:
-// no need to preserve original instructions since we are rewriting the case entirely
-mov r0, r4 // data is in r4, move to r0 for positional argument into PrintBallBlockedMessage
-bl PrintBallBlockedMessage // (data, msgData)
-ldr r0, [r4, #0x28] // overwrite r0 with our current state, as it has already been set, to prevent it from getting scrambled.
-ldr r5, =0x022470CA | 1 // near end of case. r0 and r4 are still in use
-bx r5
+ldr  r0, =0x0225B914 | 1
+bx   r0
 
 .pool
 

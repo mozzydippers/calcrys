@@ -3,7 +3,6 @@
 
 #include "config.h"
 
-#include "constants/game_stats.h"
 #include "constants/save.h"
 
 #include "pokemon.h"
@@ -286,14 +285,6 @@ struct SaveSlotCheck {
     u32 count;
 };
 
-struct GameStats {
-    u32 statsWords[NUM_GAME_STATS_WORD];
-    u16 statsHalf[77];
-    u16 dummy;
-    u16 unk_1BC;
-    u16 unk_1BE;
-};
-
 extern SaveData *sSaveDataPtr;
 
 BOOL LONG_CALL SaveDetectFlash(void);
@@ -345,6 +336,7 @@ struct SAVE_MISC_DATA *LONG_CALL Sav2_Misc_get(void *saveData);
 struct ScriptState *LONG_CALL SavArray_Flags_get(void *saveData);
 struct PlayerProfile *LONG_CALL Sav2_PlayerData_GetProfileAddr(void *saveData);
 struct Options* LONG_CALL Sav2_PlayerData_GetOptionsAddr(SaveData* saveData);
+s32 LONG_CALL PlayerProfile_CountBadges(struct PlayerProfile *profile);
 u16 LONG_CALL PlayerProfile_GetTrainerID_VisibleHalf(void *profile);
 u8 *LONG_CALL SaveData_GetRepelPtr(void *saveData);
 void *LONG_CALL SaveData_GetEventPtr(void *saveData);

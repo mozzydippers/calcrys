@@ -2,6 +2,7 @@
 .thumb
 
 .include "armips/include/animscriptcmd.s"
+.include "armips/include/constants.s"
 
 .create "build/move/move_sub_anim/1_054", 0
 
@@ -18,7 +19,7 @@ a061_020:
     loadspritemaybe 6, 0, 2, 2
     loadspritemaybe 7, 0, 3, 3
     callfunction 78, 1, 0, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
-    loadparticle 0, 276
+    loadparticle 0, SPA_SNOW
     waitstate
     unloadspriteresource
     resetsprite 0
@@ -28,8 +29,6 @@ a061_020:
     callfunction 33, 5, 0, 1, 0, 12, 0, "NaN", "NaN", "NaN", "NaN", "NaN"
     waitstate
     repeatse 2052, 0, 3, 7
-    addparticle 0, 1, 3
-    addparticle 0, 2, 3
     addparticle 0, 0, 3
     waitparticle
     unloadparticle 0

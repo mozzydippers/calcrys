@@ -522,8 +522,19 @@
 #define BATTLE_SUBSCRIPT_ENDURE_HIT                             (513)
 #define BATTLE_SUBSCRIPT_PERISH_BODY                            (514)
 #define BATTLE_SUBSCRIPT_BATTLE_BOND_BOOST                      (515)
+#define BATTLE_SUBSCRIPT_ZERO_TO_HERO                           (516)
+#define BATTLE_SUBSCRIPT_WANDERING_SPIRIT                       (517)
+#define BATTLE_SUBSCRIPT_SCREEN_CLEANER                         (518)
+#define BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT              (519)
+#define BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE                    (520)
+#define BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (521)
+#define BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES         (522)
+#define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (523)
+#define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (524)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE                          (525)
+#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (526)
 
-#define MAX_BASE_SUBSCRIPT_NUM 515
+#define MAX_BASE_SUBSCRIPT_NUM 526
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
@@ -538,6 +549,10 @@
 #define SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES      (MAX_BASE_SUBSCRIPT_NUM + 8)
 #define SUB_SEQ_OVERWORLD_WATER_SPORT                 (MAX_BASE_SUBSCRIPT_NUM + 9)
 #define SUB_SEQ_OVERWORLD_STRONG_WINDS                (MAX_BASE_SUBSCRIPT_NUM + 10)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE_ATTACK         (MAX_BASE_SUBSCRIPT_NUM + 11)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE_DEFENSE        (MAX_BASE_SUBSCRIPT_NUM + 12)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE_SPEED          (MAX_BASE_SUBSCRIPT_NUM + 13)
+
 
 // add status effect constants--used in battle effect scripts to queue up a subscript through the table in src/moves.c
 
@@ -773,52 +788,56 @@
 #define ADD_STATUS_DOKUBISI    (6)
 #define ADD_STATUS_IGNORE      (7)
 
-#define BATTLE_ANIMATION_NONE               0
-#define BATTLE_ANIMATION_ASLEEP             1
-#define BATTLE_ANIMATION_POISONED           2
-#define BATTLE_ANIMATION_BURNED             3
-#define BATTLE_ANIMATION_FROZEN             4
-#define BATTLE_ANIMATION_PARALYZED          5
-#define BATTLE_ANIMATION_CONFUSED           6
-#define BATTLE_ANIMATION_INFATUATED         7
-#define BATTLE_ANIMATION_LEVEL_UP           8
-#define BATTLE_ANIMATION_BAG_ITEM           9
-#define BATTLE_ANIMATION_HELD_ITEM          10
-#define BATTLE_ANIMATION_SHINY              11
-#define BATTLE_ANIMATION_STAT_BOOST         12
-#define BATTLE_ANIMATION_STAT_DROP          13
-#define BATTLE_ANIMATION_RESTORE_HP         14
-#define BATTLE_ANIMATION_SUB_OUT            15
-#define BATTLE_ANIMATION_SUB_IN             16
-#define BATTLE_ANIMATION_ITEM_ESCAPE        17
-#define BATTLE_ANIMATION_WEATHER_FOG        18
-#define BATTLE_ANIMATION_WEATHER_RAIN       19
-#define BATTLE_ANIMATION_WEATHER_HAIL       20
-#define BATTLE_ANIMATION_WEATHER_SAND       21
-#define BATTLE_ANIMATION_WEATHER_SUN        22
-#define BATTLE_ANIMATION_SUBSTITUTE_IN      0x19
-#define BATTLE_ANIMATION_SUBSTITUTE_OUT     0x1A
-#define BATTLE_ANIMATION_HAPPY              0x1B
-#define BATTLE_ANIMATION_EATING             0x1C
-#define BATTLE_ANIMATION_ANGRY              0x1D
-#define BATTLE_ANIMATION_DAMAGE_CURSE       0x1E
-#define BATTLE_ANIMATION_DAMAGE_NIGHTMARE   0x1F
-#define BATTLE_ANIMATION_DAMAGE_LEECH_SEED  0x20
-#define BATTLE_ANIMATION_DAMAGE_BIND        0x21
-#define BATTLE_ANIMATION_DAMAGE_WRAP        0x22
-#define BATTLE_ANIMATION_DAMAGE_FIRE_SPIN   0x23
-#define BATTLE_ANIMATION_DAMAGE_MAGMA_STORM 0x24
-#define BATTLE_ANIMATION_DAMAGE_CLAMP       0x25
-#define BATTLE_ANIMATION_DAMAGE_WHIRLPOOL   0x26
-#define BATTLE_ANIMATION_DAMAGE_SAND_TOMB   0x27
-#define BATTLE_ANIMATION_DAMAGE_INGRAIN     0x28
-#define BATTLE_ANIMATION_GRASSY_TERRAIN     50
-#define BATTLE_ANIMATION_MISTY_TERRAIN      51
-#define BATTLE_ANIMATION_ELECTRIC_TERRAIN   52
-#define BATTLE_ANIMATION_PSYCHIC_TERRAIN    53
-#define BATTLE_ANIMATION_WEATHER_SNOW       54
-#define BATTLE_ANIMATION_EAT_BERRY          55
-#define BATTLE_ANIMATION_TOXIC_SPIKES       56
+#define BATTLE_ANIMATION_NONE                              0
+#define BATTLE_ANIMATION_ASLEEP                            1
+#define BATTLE_ANIMATION_POISONED                          2
+#define BATTLE_ANIMATION_BURNED                            3
+#define BATTLE_ANIMATION_FROZEN                            4
+#define BATTLE_ANIMATION_PARALYZED                         5
+#define BATTLE_ANIMATION_CONFUSED                          6
+#define BATTLE_ANIMATION_INFATUATED                        7
+#define BATTLE_ANIMATION_LEVEL_UP                          8
+#define BATTLE_ANIMATION_BAG_ITEM                          9
+#define BATTLE_ANIMATION_HELD_ITEM                         10
+#define BATTLE_ANIMATION_SHINY                             11
+#define BATTLE_ANIMATION_STAT_BOOST                        12
+#define BATTLE_ANIMATION_STAT_DROP                         13
+#define BATTLE_ANIMATION_RESTORE_HP                        14
+#define BATTLE_ANIMATION_SUB_OUT                           15
+#define BATTLE_ANIMATION_SUB_IN                            16
+#define BATTLE_ANIMATION_ITEM_ESCAPE                       17
+#define BATTLE_ANIMATION_WEATHER_FOG                       18
+#define BATTLE_ANIMATION_WEATHER_RAIN                      19
+#define BATTLE_ANIMATION_WEATHER_HAIL                      20
+#define BATTLE_ANIMATION_WEATHER_SAND                      21
+#define BATTLE_ANIMATION_WEATHER_SUN                       22
+#define BATTLE_ANIMATION_SUBSTITUTE_IN                     0x19
+#define BATTLE_ANIMATION_SUBSTITUTE_OUT                    0x1A
+#define BATTLE_ANIMATION_HAPPY                             0x1B
+#define BATTLE_ANIMATION_EATING                            0x1C
+#define BATTLE_ANIMATION_ANGRY                             0x1D
+#define BATTLE_ANIMATION_DAMAGE_CURSE                      0x1E
+#define BATTLE_ANIMATION_DAMAGE_NIGHTMARE                  0x1F
+#define BATTLE_ANIMATION_DAMAGE_LEECH_SEED                 0x20
+#define BATTLE_ANIMATION_DAMAGE_BIND                       0x21
+#define BATTLE_ANIMATION_DAMAGE_WRAP                       0x22
+#define BATTLE_ANIMATION_DAMAGE_FIRE_SPIN                  0x23
+#define BATTLE_ANIMATION_DAMAGE_MAGMA_STORM                0x24
+#define BATTLE_ANIMATION_DAMAGE_CLAMP                      0x25
+#define BATTLE_ANIMATION_DAMAGE_WHIRLPOOL                  0x26
+#define BATTLE_ANIMATION_DAMAGE_SAND_TOMB                  0x27
+#define BATTLE_ANIMATION_DAMAGE_INGRAIN                    0x28
+#define BATTLE_ANIMATION_GRASSY_TERRAIN                    50
+#define BATTLE_ANIMATION_MISTY_TERRAIN                     51
+#define BATTLE_ANIMATION_ELECTRIC_TERRAIN                  52
+#define BATTLE_ANIMATION_PSYCHIC_TERRAIN                   53
+#define BATTLE_ANIMATION_WEATHER_SNOW                      54
+#define BATTLE_ANIMATION_EAT_BERRY                         55
+#define BATTLE_ANIMATION_TOXIC_SPIKES                      56
+#define BATTLE_ANIMATION_Z_DANCE                           57
+#define BATTLE_ANIMATION_AURA_FLARED_TO_LIFE               58
+#define BATTLE_ANIMATION_TERA_RAID_REMOVE_NEGATIVE_EFFECTS 59
+#define BATTLE_ANIMATION_TERA_RAID_NULLIFY_STAT_CHANGES    60
 
 #define MOVE_SIDE_EFFECT_BREAK_SCREENS           0x800000
 #define MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE        0x1000000

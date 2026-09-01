@@ -1588,10 +1588,9 @@
     .long 290
     .endm
 
-    .macro MakeTotem arg_0, arg_1
+    .macro SetAuraBoost arg_0
     .long 291
     .long \arg_0
-    .long (((\arg_1 - .) / 4) - 1)
     .endm
 
     .macro GetMonByCottonDownOrder arg_0
@@ -1599,6 +1598,15 @@
     .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 292
+    .macro TryActivateZeroToHero arg_0
+    .long 293
+    .long \arg_0
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 294
+    .endm
+
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 293
 
 .endif

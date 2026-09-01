@@ -109,6 +109,7 @@ changelog
 /include/constants/generated/
 test_logs.txt
 .scratch/
+*.bak
 dumped_armips/
 dumped_c/
 test_filter.txt

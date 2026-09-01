@@ -324,6 +324,9 @@ arm9 WindowClose 02041190 0
 
 arm9 GrabCryNumSpeciesForm 02006A0C 2
 
+# hopefully this is ok to leave on?
+0012 KeepPlayerPaletteIntact 022607BC 1
+
 #ifdef IMPLEMENT_WILD_DOUBLE_BATTLES
 
 # r0 isn't used, can be burned
@@ -332,7 +335,6 @@ arm9 GrabCryNumSpeciesForm 02006A0C 2
 # can't modify SetFieldBattleParam since it is used for sweet scent and fishing and such
 #0002 TryTriggerWildDoubleBattle 02248284 0
 0002 TryTriggerWildDoubleBattle 02246E0E 0
-0012 KeepPlayerPaletteIntact 022607BC 1
 0012 MakeSureDoublesBitIsSet 0226328E 0
 0008 ReleaseDoubleBattleWhenOnlyOneMon 02222CBC 1
 
@@ -581,12 +583,12 @@ arm9 ScrCmd_MartBuy 02048060 1
 0012 BattleContext_CheckMoveHealBlocked 02252DF8 1
 
 arm9 SetupAndStartTutorialBattle 02051334 1
-arm9 ScrCmd_WildBattle 02043E5C 1
 
 # handle missingno in 1vX battles
 0012 BattleControllerPlayer_GetBattleMon 0224873C 2
 0012 BattleController_EmitHealthbarSlideIn_SkipInvalid 02262A5A 3
 0012 ov12_0225D644_SkipInvalid 0225D772 4
+0012 ov12_022612A4_SkipInvalid 02261352 3
 0012 CT_PokemonEncountSet_SkipInvalid 02259B6C 0
 0012 CT_PokemonEncountAppearSet_SkipInvalid_02259D10 02259D10 0
 0012 CT_PokemonEncountAppearSet_SkipInvalid_02259D1E 02259D1E 0
@@ -601,9 +603,12 @@ arm9 ScrCmd_WildBattle 02043E5C 1
 0010 TestBattle_AISelectMove 0221BEF4 2
 0010 TestBattle_AIPickCommand 022205BC 2
 0012 TestBattle_PostKOSwitchIn 02258800 2
+0012 TestBattle_ShowParty 0223E8A0 2
+0012 TestBattle_WaitMonSelection 0223E978 2
 0012 CheckTrainerMessage 02250D4C 2
 0012 BattleMessage_ExpandPlaceholders 0223CEF4
 #endif
+0012 CheckTrainerMessage 02250D4C 2
 
 arm9 GetItemAttr_PreloadedItemData 02077DAC 2
 0012 TryUseHeldItem 0225471C 3
@@ -630,6 +635,7 @@ arm9 PartyMenu_StartContextMenuButtonPressAnim_FromCursorObj 0207CB9C 3
 0012 ov12_0224DD74 0224DD74 3
 0012 GetTypeEffectivenessData 0225260C 3
 
+arm9 ScrCmd_BattleVariation 020489F4 1
 0001 CheckRockSmashItemDrop 02204CF8 2
 0001 DrawRockSmashIdx 02204E8C 1
 
@@ -652,9 +658,23 @@ arm9 EncounterSlot_WildMonSlotRoll_Fishing 02247764 1
 arm9 EncounterSlot_WildMonSlotRoll_RockSmash 0224779C 0
 arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 
-0012 GetPokemon_CheckIfTrainer_hook 2246704 0
-0012 GetPokemon_BallBlocked_hook 02247094 0
+0012 BattleControllerPlayer_PokemonAppear 022487C8
+
 0012 BattleSystem_AdjustMessageForSide 0223C558 2
+
+# Raid hooks
+0007 ov07_0221D874_RaidApplyAppearance 0221D97A 3
+0007 ov07_0221FB90_RaidApplyAppearance 0221FD5A 3
+0007 ov07_0221FB90_RaidTint 0221FDDC 3
+0012 ov12_0225B7B8_RaidApplyAppearanceAfterSlide 0225B908 0
+arm9 sub_020174BC_RaidRestoreScaleX 020174E8 3
+arm9 sub_020174BC_RaidRestoreScaleY 020174F4 3
+arm9 sub_020174BC_RaidRestorePositionX 020174C0 3
+arm9 sub_020179D4_RaidApplyPositionXFlipped 020179E4 3
+arm9 sub_020179D4_RaidApplyPositionX 020179F6 3
+arm9 sub_02017A1C_RaidApplyScaleX 02017A20 3
+arm9 sub_02017A1C_RaidApplyScaleY 02017A30 3
+0007 ov07_0221D874_RaidTint 0221D9F8 0
 
 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
 

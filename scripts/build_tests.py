@@ -131,6 +131,16 @@ def main() -> None:
             print("Could not read file: 'test_filter.txt'")
             raise
 
+    if os.path.exists("test_filter.txt"):
+        try:
+            with open("test_filter.txt", "r") as file:
+                for line in file:
+                    if len(line):
+                        filter_keywords.append(line)
+        except (IOError, UnicodeDecodeError):
+            print("Could not read file: 'test_filter.txt'")
+            raise
+
     if len(filter_keywords) > 0:
         files = list(filter(lambda x: keywords_in_file(str(x), filter_keywords), files))
 

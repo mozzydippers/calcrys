@@ -11,6 +11,7 @@
 #include "constants/system_control.h"
 
 #include "battle.h"
+#include "battle_variations.h"
 #include "item.h"
 #include "mega.h"
 #include "overlay.h"
@@ -44,6 +45,30 @@ struct BattleStruct *ServerInit(struct BattleSystem *bw)
     ServerMoveAIInit(bw, sp);
     DumpMoveTableData(&sp->moveTbl[0]);
     sp->aiWorkTable.item = ItemDataTableLoad(HEAPID_BATTLE_HEAP);
+
+    struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
+
+    int raidID = battleVariationInfo.slot;
+    union BattleVariationUnion battleData;
+
+    switch (battleVariationInfo.battleVariationType) {
+    case BATTLE_VARIATION_TYPE_TOTEM:
+    case BATTLE_VARIATION_TYPE_MAX_RAID:
+        ReadFromNarcMemberByIdPair(&battleData.maxRaidBattle, ARC_CODE_ADDONS, CODE_ADDON_MAXRAIDBATTLES, raidID * sizeof(struct MaxRaidBattle), sizeof(struct MaxRaidBattle));
+
+        memcpy(sp->raidContext.extraActions, battleData.maxRaidBattle.extraActions, sizeof(sp->raidContext.extraActions[0]) * MAX_EXTRA_ACTIONS);
+
+        sp->raidContext.originalHP = battleVariationInfo.originalHP;
+        sp->originalHP[1] = battleVariationInfo.originalHP;
+        // debug_printf("%d\n", sp->originalHP[1]);
+
+        break;
+    case BATTLE_VARIATION_TYPE_TITAN_BATTLE:
+    case BATTLE_VARIATION_TYPE_TERA_RAID:
+        break;
+    default:
+        break;
+    }
 
 #ifdef RESTORE_ITEMS_AT_BATTLE_END
 

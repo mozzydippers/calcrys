@@ -1,17 +1,15 @@
-#include "config.h"
-#include "debug.h"
-#include "types.h"
+#include "../include/save.h"
 
-#include "save.h"
-
-#include "constants/buttons.h"
-
-#include "message.h"
-#include "pokemon.h"
-#include "pokemon_storage_system.h"
-#include "script.h"
-#include "sprite.h"
-#include "task.h"
+#include "../include/config.h"
+#include "../include/constants/buttons.h"
+#include "../include/debug.h"
+#include "../include/message.h"
+#include "../include/pokemon.h"
+#include "../include/pokemon_storage_system.h"
+#include "../include/script.h"
+#include "../include/sprite.h"
+#include "../include/task.h"
+#include "../include/types.h"
 
 // these functions are configured to not hook from hooks directly under ALLOW_SAVE_CHANGES
 // can't get linking to work properly when i strip these

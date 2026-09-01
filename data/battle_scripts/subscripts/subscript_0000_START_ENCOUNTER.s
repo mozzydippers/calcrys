@@ -1,82 +1,90 @@
 #include "constants/battle_constants.h"
+#include "constants/battle_message_constants.h"
 .include "battle_commands.inc"
 
 .data
 
-_Start:
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_TRAINER, _TrainerEncounter
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_SAFARI, _SafariEncounter
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_PAL_PARK, _PalParkEncounter
+_000:
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_TRAINER, _130
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_SAFARI, _227
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_PAL_PARK, _249
     SetPokemonEncounter BATTLER_CATEGORY_ENEMY
     SetTrainerEncounter BATTLER_CATEGORY_PLAYER
     PlayEncounterAnimation
     WaitTime 122
     HealthbarSlideInDelay BATTLER_CATEGORY_ENEMY
     Wait
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_DISTORTION_WORLD, _DistortionWorldMessage
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_LEGENDARY, _LegendaryMessage
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_FIRST_RIVAL, _FirstEncounterMessage
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_HONEY_TREE, _HoneyTreeMessage
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_TOTEM, _TotemEncounter
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _WildDoublesMessage
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_DISTORTION_WORLD, _073
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_LEGENDARY, _067
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_FIRST_RIVAL, _055
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_HONEY_TREE, _061
+    // New battle variations are handled here
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_TOTEM, _Totem
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_MAX_RAID, _067
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_TITAN, _Titan
+    // End of new battle variations
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _079
     // You encountered a wild {0}!
     PrintGlobalMessage 965, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_FirstEncounterMessage:
+_055:
     // Whoa! A wild {0} came charging!
     PrintGlobalMessage 1167, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_HoneyTreeMessage:
+_061:
     // A wild {0} appeared from the tree you slathered with Honey!
     PrintGlobalMessage 968, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_LegendaryMessage:
+_067:
     // {0} appeared!
     PrintGlobalMessage 1246, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_DistortionWorldMessage:
+_073:
     // The Distortion World’s {0} appeared!
     PrintGlobalMessage 1268, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_WildDoublesMessage:
+_079:
     // A wild {0} and {1} appeared!
     PrintGlobalMessage 967, TAG_NICKNAME_NICKNAME, BATTLER_CATEGORY_ENEMY_SLOT_1, BATTLER_CATEGORY_ENEMY_SLOT_2
-    GoTo _SendOutPokemonMessage
+    GoTo _084
 
-_TotemEncounter:
+// Custom encounter messages go below
+_Totem:
     // You are challenged by {0}!
-    PrintGlobalMessage 1757, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
+    PrintGlobalMessage BATTLE_MSG_CHALLENGED_BY_TOTEM, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
     Wait
     WaitButtonABTime 30
-    MakeTotem BATTLER_ENEMY, _SendOutPokemonMessage
-    PlayBattleAnimation BATTLER_CATEGORY_ENEMY, BATTLE_ANIMATION_STAT_BOOST
-    Wait
-    PrintBufferedMessage
-    GoTo _SendOutPokemonMessage
+    Call BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE
+    GoTo _084
 
-_SendOutPokemonMessage:
+_Titan:
+    // You are challenged by the Titan {0}!
+    PrintGlobalMessage BATTLE_MSG_CHALLENGED_BY_TITAN, TAG_NICKNAME, BATTLER_CATEGORY_ENEMY
+    GoTo _084
+
+_084:
     Wait
     WaitButtonABTime 30
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_MULTI, _SendOutPokemonMessage_Multi
-    CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _SendOutPokemonMessage_Doubles
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_MULTI, _110
+    CompareVarToValue OPCODE_EQU, BSCRIPT_VAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _103
     // Go! {0}!
     PrintMessage 979, TAG_NICKNAME, BATTLER_CATEGORY_PLAYER
-    GoTo _SendOutPokemon
+    GoTo _112
 
-_SendOutPokemonMessage_Doubles:
+_103:
     // Go! {0} and {1}!
     PrintMessage 978, TAG_NICKNAME_NICKNAME, BATTLER_CATEGORY_PLAYER_SLOT_1, BATTLER_CATEGORY_PLAYER_SLOT_2
-    GoTo _SendOutPokemon
+    GoTo _112
 
-_SendOutPokemonMessage_Multi:
+_110:
     PrintFirstSendOutMessage BATTLER_CATEGORY_PLAYER
 
-_SendOutPokemon:
+_112:
     SpriteToOAM BATTLER_CATEGORY_ENEMY
     Wait
     ThrowPokeball BATTLER_CATEGORY_PLAYER, BTLSCR_THROW_POKE_BALL
@@ -86,10 +94,10 @@ _SendOutPokemon:
     Wait
     OAMToSprite BATTLER_CATEGORY_ENEMY
     Wait
-    GoTo _Cleanup
+    GoTo _270
 
-_TrainerEncounter:
-    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_RECORDED, _RecordedBattle
+_130:
+    CompareVarToValue OPCODE_FLAG_SET, BSCRIPT_VAR_BATTLE_SYS_STATUS, BATTLE_SPECIAL_RECORDED, _181
     PlayEncounterAnimation
     SetTrainerEncounter BATTLER_CATEGORY_ALL
     WaitTime 96
@@ -114,9 +122,9 @@ _TrainerEncounter:
     HealthbarSlideInDelay BATTLER_CATEGORY_PLAYER
     Wait
     FreePartyGaugeGraphics
-    GoTo _Cleanup
+    GoTo _270
 
-_RecordedBattle:
+_181:
     PlayEncounterAnimation
     SetTrainerEncounter BATTLER_CATEGORY_ALL
     WaitTime 96
@@ -141,9 +149,9 @@ _RecordedBattle:
     HealthbarSlideInDelay BATTLER_CATEGORY_ENEMY
     Wait
     FreePartyGaugeGraphics
-    GoTo _Cleanup
+    GoTo _270
 
-_SafariEncounter:
+_227:
     SetPokemonEncounter BATTLER_CATEGORY_ENEMY
     SetTrainerEncounter BATTLER_CATEGORY_PLAYER
     PlayEncounterAnimation
@@ -156,9 +164,9 @@ _SafariEncounter:
     HealthbarSlideIn BATTLER_CATEGORY_PLAYER
     WaitButtonABTime 7
     Wait
-    GoTo _Cleanup
+    GoTo _270
 
-_PalParkEncounter:
+_249:
     SetPokemonEncounter BATTLER_CATEGORY_ENEMY
     SetTrainerEncounter BATTLER_CATEGORY_PLAYER
     PlayEncounterAnimation
@@ -172,6 +180,6 @@ _PalParkEncounter:
     WaitButtonABTime 7
     Wait
 
-_Cleanup:
+_270:
     SetBattleBackground
     End

@@ -171,7 +171,7 @@ def dump_encounters(narc, is_expanded):
 		encs_armip += f'goodrodrate {enc["good_rod_rate"]}\n'
 		encs_armip += f'superrodrate {enc["super_rod_rate"]}\n'
 		encs_armip += f"walklevels {', '.join(str(value) for key, value in enc.items() if key.startswith('walking_') and key.endswith('_level'))}\n\n"
-		
+
 		encs_armip += "// morning encounter slots\n"
 		for i in range(0,12):
 			encs_armip += f'{get_enc_macro(enc[f"morning_{i}_species_id"], "pokemon", is_expanded)}\n'

@@ -135,6 +135,11 @@
 #define TRAINERCLASS_KURT                   130
 #define TRAINERCLASS_PKMN_TRAINER_WHITNEY   131
 
+#define TRAINERCLASS_TAG_START 256
+
+// Define your tag trainer classes here
+// #define TRAINERCLASS_TAG_1  (TRAINERCLASS_TAG_START + 0)
+
 // Only used to display attributes of phone contacts
 #define TRAINERCLASS_PHONE_MOM               200
 #define TRAINERCLASS_PHONE_POKEMON_PROFESSOR 201

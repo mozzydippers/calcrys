@@ -488,29 +488,52 @@
 .equ DOUBLE_BATTLE, 2
 .equ NO_PARTNER_DOUBLE_BATTLE, 3
 
-// trainer text types
-
-.equ TEXT_NOTICE_IN_OVERWORLD, 0
-.equ TEXT_DEFEATED_IN_BATTLE, 1
-.equ TEXT_DEFEATED_IN_OVERWORLD, 2
-.equ TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1, 3
-.equ TEXT_DOUBLE_DEFEATED_IN_BATTLE_1, 4
-.equ TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1, 5
-.equ TEXT_DOUBLE_ONLY_1_POKEMON_1, 6
-.equ TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2, 7
-.equ TEXT_DOUBLE_DEFEATED_IN_BATTLE_2, 8
-.equ TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2, 9
-.equ TEXT_DOUBLE_ONLY_1_POKEMON_2, 10
-.equ TEXT_ONLY_FIGHT_NOON_REMATCH_OVERWORLD, 11
-.equ TEXT_ONLY_FIGHT_NIGHT_REMATCH_OVERWORLD, 12
-.equ TEXT_HIT_POKEMON_FIRST_TIME, 13
-.equ TEXT_CURRENT_MON_CRITICAL, 14
-.equ TEXT_LAST_MON_SENT_OUT, 15
-.equ TEXT_LAST_MON_CRITICAL, 16
-.equ TEXT_REMATCH_IN_OVERWORLD, 17 // 17
-.equ TEXT_REMATCH_IN_OVERWORLD_DOUBLE_1, 18 // 18
-.equ TEXT_REMATCH_IN_OVERWORLD_DOUBLE_2, 19 // 19
-.equ TEXT_PLAYER_LOSES, 20
+// Overworld
+.equ TEXT_NOTICE_IN_OVERWORLD,                         0
+.equ TEXT_DEFEATED_IN_BATTLE,                          1
+.equ TEXT_DEFEATED_IN_OVERWORLD,                       2
+.equ TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1,                3
+.equ TEXT_DOUBLE_DEFEATED_IN_BATTLE_1,                 4
+.equ TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1,              5
+.equ TEXT_DOUBLE_ONLY_1_POKEMON_1,                     6
+.equ TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2,                7
+.equ TEXT_DOUBLE_DEFEATED_IN_BATTLE_2,                 8
+.equ TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2,              9
+.equ TEXT_DOUBLE_ONLY_1_POKEMON_2,                    10
+.equ TEXT_ONLY_FIGHT_NOON_REMATCH_OVERWORLD,          11
+.equ TEXT_ONLY_FIGHT_NIGHT_REMATCH_OVERWORLD,         12
+// Battle
+.equ TEXT_HIT_POKEMON_FIRST_TIME,                     13
+.equ TEXT_CURRENT_MON_CRITICAL,                       14
+.equ TEXT_LAST_MON_SENT_OUT,                          15
+.equ TEXT_LAST_MON_CRITICAL,                          16
+.equ TEXT_REMATCH_IN_OVERWORLD,                       17 // 17
+.equ TEXT_REMATCH_IN_OVERWORLD_DOUBLE_1,              18 // 18
+.equ TEXT_REMATCH_IN_OVERWORLD_DOUBLE_2,              19 // 19
+.equ TEXT_PLAYER_LOSES,                               20
+.equ TEXT_FIRST_MON_SENT_OUT_1,                       21 // After sending out first Pokémon (1)
+.equ TEXT_FIRST_MON_SENT_OUT_2,                       22 // After sending out first Pokémon (2)
+.equ TEXT_PLAYER_MOVE_SUPER_EFFECTIVE,                23 // After the player first lands a supereffective move
+.equ TEXT_PLAYER_MOVE_NOT_VERY_EFFECTIVE,             24 // After the player first lands a not very effective move
+.equ TEXT_PLAYER_MOVE_CRITICAL_HIT,                   25 // After the player first lands a critical hit
+.equ TEXT_MOVE_SUPER_EFFECTIVE,                       26 // After first landing a supereffective move on the player's Pokémon
+.equ TEXT_MOVE_NO_EFFECT,                             27 // After first using a move that has no effect on the player's Pokémon
+.equ TEXT_MOVE_CRITICAL_HIT,                          28 // After first landing a critical hit on the player's Pokémon
+.equ TEXT_USE_SPECIFIED_MOVE,                         29 // Upon first using his first partner Pokémon's same-type move / Upon first using his first partner Pokémon's signature move, etc.
+.equ TEXT_FIRST_MON_DEFEATED,                         30 // After first Pokémon is defeated
+.equ TEXT_SECOND_MON_DEFEATED,                        31 // After second Pokémon is defeated
+.equ TEXT_THIRD_MON_DEFEATED,                         32 // After third Pokémon is defeated
+.equ TEXT_FORTH_MON_DEFEATED,                         33 // After fourth Pokémon is defeated
+.equ TEXT_FIFTH_MON_DEFEATED,                         34 // After fifth Pokémon is defeated
+.equ TEXT_DYNAMAX,                                    35 // Upon Dynamaxing / Upon Gigantamaxing
+.equ TEXT_TERASTALLIZE,                               36 // Upon Terastallizing
+.equ TEXT_AFTER_TERASTALLIZING,                       37 // After Terastallizing
+.equ TEXT_TERASTALLIZED_MON_MOVE_NOT_VERY_EFFECTIVE,  38 // After attacking the player's Pokémon with a not very effective move while Terastallized
+.equ TEXT_TERASTALLIZED_MON_MOVE_SUPER_EFFECTIVE,     39 // After attacking the player's Pokémon with a supereffective move while Terastallized
+.equ TEXT_AFTER_FIRST_MOVE,                           40 // After first using a move against the player's Pokémon
+.equ TEXT_PLAYER_SENT_OUT_PARTICULAR_SPECIES,         41 // If the player sends out Ogerpon
+.equ TEXT_CHANGED_FORM,                               42 // Upon Terapagos changing form
+.equ TEXT_MEGA_EVOLVE,                                43
 
 // natures
 
@@ -680,3 +703,28 @@
 
 .equ FALSE, (0)
 .equ TRUE, (1)
+
+// TODO: remember to change this
+.equ LAST_MAIN_BRANCH_SPA, (544)
+
+.equ SPA_MEGA                   , (LAST_MAIN_BRANCH_SPA + 1)
+.equ SPA_Z_DANCE                , (LAST_MAIN_BRANCH_SPA + 2)
+.equ SPA_BREAKNECK_BLITZ        , (LAST_MAIN_BRANCH_SPA + 3)
+.equ SPA_ALL_OUT_PUMMELING      , (LAST_MAIN_BRANCH_SPA + 4)
+.equ SPA_SUPERSONIC_SKYSTRIKE   , (LAST_MAIN_BRANCH_SPA + 5)
+.equ SPA_ACID_DOWNPOUR          , (LAST_MAIN_BRANCH_SPA + 6)
+.equ SPA_TECTONIC_RAGE          , (LAST_MAIN_BRANCH_SPA + 7)
+.equ SPA_CONTINENTAL_CRUSH      , (LAST_MAIN_BRANCH_SPA + 8)
+.equ SPA_SAVAGE_SPIN_OUT        , (LAST_MAIN_BRANCH_SPA + 9)
+.equ SPA_NEVER_ENDING_NIGHTMARE , (LAST_MAIN_BRANCH_SPA + 10)
+.equ SPA_CORKSCREW_CRASH        , (LAST_MAIN_BRANCH_SPA + 11)
+.equ SPA_INFERNO_OVERDRIVE      , (LAST_MAIN_BRANCH_SPA + 12)
+.equ SPA_HYDRO_VORTEX           , (LAST_MAIN_BRANCH_SPA + 13)
+.equ SPA_BLOOM_DOOM             , (LAST_MAIN_BRANCH_SPA + 14)
+.equ SPA_GIGAVOLT_HAVOC         , (LAST_MAIN_BRANCH_SPA + 15)
+.equ SPA_SHATTERED_PSYCHE       , (LAST_MAIN_BRANCH_SPA + 16)
+.equ SPA_SUBZERO_SLAMMER        , (LAST_MAIN_BRANCH_SPA + 17)
+.equ SPA_DEVASTATING_DRAKE      , (LAST_MAIN_BRANCH_SPA + 18)
+.equ SPA_BLACK_HOLE_ECLIPSE     , (LAST_MAIN_BRANCH_SPA + 19)
+.equ SPA_TWINKLE_TACKLE         , (LAST_MAIN_BRANCH_SPA + 20)
+.equ SPA_SNOW                   , (LAST_MAIN_BRANCH_SPA + 21)

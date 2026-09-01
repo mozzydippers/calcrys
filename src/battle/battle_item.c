@@ -234,9 +234,7 @@ BOOL LONG_CALL CheckDefenderItemEffectOnHit(void *bw, struct BattleStruct *sp, i
 {
     u32 ovyId, offset;
     BOOL ret;
-    // clang-format off
     BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
-    // clang-format on
 
     ovyId = OVERLAY_CHECKDEFENDERITEMEFFECTONHIT;
     offset = 0x023C0400 | 1;

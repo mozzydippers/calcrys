@@ -27,9 +27,173 @@ static int GetKeyStoneVariantFromTrainerClass(int trainerClass)
     }
 }
 
+enum TrainerClassClassification {
+    DEFAULT_TRAINER_CLASS, // You are challenged by Youngster Alan!
+    ORGANIZATION_TRAINER_CLASS, // You are challenged by Mela of Team Star!
+    THE_ORGANIZATION_TRAINER_CLASS, // You are challenged by Lebanne of the SBC!
+    GRUNT_TRAINER_CLASS, // You are challenged by the Team Star Grunt!
+    THE_TRAINER_CLASS, // You are challenged by Blanca the Artist!
+    REPRESENTATIVE_TRAINER_CLASS, // You are challenged by the representative of the Lumiose Safety Group!
+};
+
+const u8 TrainerClassClassificationList[] = {
+    [TRAINERCLASS_PKMN_TRAINER_ETHAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_LYRA] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_YOUNGSTER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LASS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CAMPER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PICNICKER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BUG_CATCHER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_AROMA_LADY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TWINS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_HIKER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BATTLE_GIRL] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_FISHERMAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CYCLIST_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CYCLIST_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BLACK_BELT] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_ARTIST] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_BREEDER_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_BREEDER_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_COWGIRL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_JOGGER] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_POKEFAN_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_POKEFAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_POKE_KID] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_RIVAL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ACE_TRAINER_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ACE_TRAINER_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_WAITRESS] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_VETERAN] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_NINJA_BOY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_DRAGON_TAMER] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_BIRD_KEEPER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_JUGGLER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_RICH_BOY] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_LADY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_GENTLEMAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SOCIALITE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BEAUTY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_COLLECTOR] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_POLICEMAN] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_RANGER_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_RANGER_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SCIENTIST] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_SWIMMER_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SWIMMER_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TUBER_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TUBER_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SAILOR] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_KIMONO_GIRL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_RUIN_MANIAC] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PSYCHIC_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PSYCHIC_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PI] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_GUITARIST] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ACE_TRAINER_M_GS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ACE_TRAINER_F_GS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TEAM_ROCKET] = GRUNT_TRAINER_CLASS,
+    [TRAINERCLASS_SKIER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ROUGHNECK] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CLOWN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_WORKER] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_SCHOOL_KID_M] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SCHOOL_KID_F] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TEAM_ROCKET_F] = GRUNT_TRAINER_CLASS,
+    [TRAINERCLASS_BURGLAR] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_FIREBREATHER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BIKER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_FALKNER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_BUGSY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_POKE_MANIAC] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_BIRD_KEEPER_GS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_WHITNEY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_RANCHER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_MORTY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_PRYCE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_JASMINE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_CHUCK] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_CLAIR] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TEACHER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SUPER_NERD] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_SAGE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PARASOL_LADY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_WAITER] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_MEDIUM] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CAMERAMAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_REPORTER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_IDOL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CHAMPION] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ELITE_FOUR_WILL] = THE_ORGANIZATION_TRAINER_CLASS,
+    [TRAINERCLASS_ELITE_FOUR_KAREN] = THE_ORGANIZATION_TRAINER_CLASS,
+    [TRAINERCLASS_ELITE_FOUR_KOGA] = THE_ORGANIZATION_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_CHERYL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_RILEY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_MARLEY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_BUCK] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_MIRA] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_FTR_LUCAS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_FTR_DAWN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_TOWER_TYCOON] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_BROCK] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_HALL_MATRON] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_FACTORY_HEAD] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ARCADE_STAR] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_CASTLE_VALET] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_MISTY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_LT_SURGE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_ERIKA] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_JANINE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_SABRINA] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_BLAINE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_RED] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_LEADER_BLUE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ELDER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ELITE_FOUR_BRUNO] = THE_ORGANIZATION_TRAINER_CLASS,
+    [TRAINERCLASS_SCIENTIST_GS] = THE_TRAINER_CLASS,
+    [TRAINERCLASS_EXECUTIVE_ARIANA] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_BOARDER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_EXECUTIVE_ARCHER] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_EXECUTIVE_PROTON] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_EXECUTIVE_PETREL] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PASSERBY] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_MYSTERY_MAN] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_DOUBLE_TEAM] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_YOUNG_COUPLE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_LANCE] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_ROCKET_BOSS] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_LUCAS_DP] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_DAWN_DP] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_LUCAS_PT] = DEFAULT_TRAINER_CLASS,
+    [TRAINERCLASS_PKMN_TRAINER_DAWN_PT] = DEFAULT_TRAINER_CLASS,
+};
+
+struct TagTrainer tagTrainerList[] = {
+    // { .trainerClass1 = TRAINERCLASS_1, .trainerClass2 = TRAINERCLASS_2, .tagTrainerClass = TRAINERCLASS_TAG_1 }
+};
+
 void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
 {
     // debug_printf("In BattleSystem_BufferMessage (overlay)\n");
+    int trainerMessageOffset = 0;
+    u32 trainerClass1 = 0;
+    u32 trainerClass2 = 0;
+
+    switch (msg->tag & TAG_NO_DIR_OFF) {
+    case TAG_TRCLASS_TRNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME:;
+        Trainer *trainer = BattleSystem_GetTrainer(bsys, msg->param[0]);
+        trainerMessageOffset = TrainerClassClassificationList[trainer->data.trainerClass];
+        break;
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:;
+        Trainer *trainer1 = BattleSystem_GetTrainer(bsys, msg->param[0]);
+        Trainer *trainer2 = BattleSystem_GetTrainer(bsys, msg->param[2]);
+        trainerClass1 = trainer1->data.trainerClass;
+        trainerClass2 = trainer2->data.trainerClass;
+        break;
+    default:
+        break;
+    }
 
     // https://github.com/pret/pokeplatinum/blob/main/include/constants/battle/message_tags.h#L7
     switch (msg->tag & TAG_NO_DIR_OFF) {
@@ -67,7 +231,11 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
         BattleMessage_BufferMove(bsys, 1, msg->param[1]);
         break;
     case TAG_NICKNAME_ABILITY:
-        BattleMessage_BufferNickname(bsys, 0, msg->param[0]);
+        if (msg->id == BATTLE_MSG_ABILITY_POPUP) {
+            BattleMessage_BufferNicknameDoNotConsiderPrefix(bsys, 0, msg->param[0]);
+        } else {
+            BattleMessage_BufferNickname(bsys, 0, msg->param[0]);
+        }
         BattleMessage_BufferAbility(bsys, 1, msg->param[1]);
         break;
     case TAG_NICKNAME_STAT:
@@ -150,6 +318,19 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
         break;
     case TAG_TRCLASS_TRNAME:
         BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
+
+        switch (msg->id) {
+        case BATTLE_MSG_OLD_DEFEAT_MESSAGE: // You defeated\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!
+            if (trainerMessageOffset) {
+                msg->id = BATTLE_MSG_NEW_DEFEAT_START - 1 + trainerMessageOffset;
+            }
+            break;
+        case BATTLE_MSG_OLD_CHALLENGE: // You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}!\r
+            if (trainerMessageOffset) {
+                msg->id = BATTLE_MSG_NEW_CHALLENGE_START - 1 + trainerMessageOffset;
+            }
+            break;
+        }
         BattleMessage_BufferTrainerName(bsys, 1, msg->param[1]);
         break;
     case TAG_NICKNAME_NICKNAME_MOVE:
@@ -251,6 +432,28 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
         BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
         BattleMessage_BufferTrainerName(bsys, 1, msg->param[1]);
         BattleMessage_BufferNickname(bsys, 2, msg->param[2]);
+
+        switch (msg->id) {
+        case BATTLE_MSG_OLD_SEND_OUT: // {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+            if (bsys->sp->printedTrainerSendOutMessage && trainerMessageOffset != GRUNT_TRAINER_CLASS) {
+                msg->id = BATTLE_MSG_NEW_SEND_OUT_START; // {STRVAR_1 3, 1, 0} sent\nout {STRVAR_1 1, 2, 0}!
+            } else {
+                bsys->sp->printedTrainerSendOutMessage = TRUE;
+                if (trainerMessageOffset) {
+                    msg->id = BATTLE_MSG_NEW_SEND_OUT_START + trainerMessageOffset;
+                }
+            }
+            break;
+        case BATTLE_MSG_OLD_WITHDRAW: // {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+            if (trainerMessageOffset == GRUNT_TRAINER_CLASS) {
+                msg->id = BATTLE_MSG_GRUNT_WITHDRAW; // The {STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+            } else if (trainerMessageOffset == REPRESENTATIVE_TRAINER_CLASS) {
+                msg->id = BATTLE_MSG_REPRESENTATIVE_WITHDRAW; //
+            } else {
+                msg->id = BATTLE_MSG_NEW_WITHDRAW_START; // {STRVAR_1 3, 1, 0}\nwithdrew {STRVAR_1 1, 2, 0}!
+            }
+            break;
+        }
         break;
     case TAG_TRCLASS_TRNAME_ITEM:
         BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
@@ -307,8 +510,28 @@ void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
         BattleMessage_BufferNickname(bsys, 2, msg->param[2]);
         BattleMessage_BufferTrainerName(bsys, 3, msg->param[3]);
         break;
-    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
-        BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:;
+        // You are challenged by\n{STRVAR_1 14, 0, 0} {STRVAR_1 3, 1, 0} and\f{STRVAR_1 14, 2, 0} {STRVAR_1 3, 3, 0}!\r
+        BOOL matchFound = FALSE;
+        u32 tagTrainerListLength = NELEMS(tagTrainerList);
+        if (msg->id == BATTLE_MSG_DOUBLE_BATTLE_ENCOUNTER && tagTrainerListLength > 0) {
+            for (u32 i = 0; i < tagTrainerListLength; i++) {
+                if (trainerClass1 == tagTrainerList[i].trainerClass1 && trainerClass2 == tagTrainerList[i].trainerClass2) {
+                    msg->id = BATTLE_MSG_TAG_CHALLENGE;
+                    MsgData *msgData = NewMsgDataFromNarc(MSGDATA_LOAD_LAZY, ARC_MSG_DATA, 730, bsys->msgFormat->heapId);
+                    if (msgData != NULL) {
+                        ReadMsgDataIntoString(msgData, tagTrainerList[i].tagTrainerClass, bsys->msgFormat->buffer);
+                        SetStringAsPlaceholder(bsys->msgFormat, 0, bsys->msgFormat->buffer, NULL);
+                        DestroyMsgData(msgData);
+                    }
+                    matchFound = TRUE;
+                    break;
+                }
+            }
+        }
+        if (!matchFound) {
+            BattleMessage_BufferTrainerClass(bsys, 0, msg->param[0]);
+        }
         BattleMessage_BufferTrainerName(bsys, 1, msg->param[1]);
         BattleMessage_BufferTrainerClass(bsys, 2, msg->param[2]);
         BattleMessage_BufferTrainerName(bsys, 3, msg->param[3]);

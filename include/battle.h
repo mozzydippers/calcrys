@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+#include "constants/ability.h"
 #include "constants/battle_constants.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
@@ -189,6 +190,55 @@
 #define STRUGGLE_CHECK_THROAT_CHOPPED  (1 << 13)
 #define STRUGGLE_CHECK_BELCH           (1 << 14)
 #define STRUGGLE_CHECK_STUFF_CHEEKS    (1 << 15)
+
+// trainer text types
+
+// Overworld
+#define TEXT_NOTICE_IN_OVERWORLD                0
+#define TEXT_DEFEATED_IN_BATTLE                 1
+#define TEXT_DEFEATED_IN_OVERWORLD              2
+#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_1       3
+#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_1        4
+#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_1     5
+#define TEXT_DOUBLE_ONLY_1_POKEMON_1            6
+#define TEXT_DOUBLE_NOTICE_IN_OVERWORLD_2       7
+#define TEXT_DOUBLE_DEFEATED_IN_BATTLE_2        8
+#define TEXT_DOUBLE_DEFEATED_IN_OVERWORLD_2     9
+#define TEXT_DOUBLE_ONLY_1_POKEMON_2            10
+#define TEXT_ONLY_FIGHT_NOON_REMATCH_OVERWORLD  11
+#define TEXT_ONLY_FIGHT_NIGHT_REMATCH_OVERWORLD 12
+// Battle
+#define TEXT_HIT_POKEMON_FIRST_TIME                    13
+#define TEXT_CURRENT_MON_CRITICAL                      14
+#define TEXT_LAST_MON_SENT_OUT                         15
+#define TEXT_LAST_MON_CRITICAL                         16
+#define TEXT_REMATCH_IN_OVERWORLD                      17 // 17
+#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_1             18 // 18
+#define TEXT_REMATCH_IN_OVERWORLD_DOUBLE_2             19 // 19
+#define TEXT_PLAYER_LOSES                              20
+#define TEXT_FIRST_MON_SENT_OUT_1                      21 // After sending out first Pokémon (1)
+#define TEXT_FIRST_MON_SENT_OUT_2                      22 // After sending out first Pokémon (2)
+#define TEXT_PLAYER_MOVE_SUPER_EFFECTIVE               23 // After the player first lands a supereffective move
+#define TEXT_PLAYER_MOVE_NOT_VERY_EFFECTIVE            24 // After the player first lands a not very effective move
+#define TEXT_PLAYER_MOVE_CRITICAL_HIT                  25 // After the player first lands a critical hit
+#define TEXT_MOVE_SUPER_EFFECTIVE                      26 // After first landing a supereffective move on the player's Pokémon
+#define TEXT_MOVE_NO_EFFECT                            27 // After first using a move that has no effect on the player's Pokémon
+#define TEXT_MOVE_CRITICAL_HIT                         28 // After first landing a critical hit on the player's Pokémon
+#define TEXT_USE_SPECIFIED_MOVE                        29 // Upon first using his first partner Pokémon's same-type move / Upon first using his first partner Pokémon's signature move, etc.
+#define TEXT_FIRST_MON_DEFEATED                        30 // After first Pokémon is defeated
+#define TEXT_SECOND_MON_DEFEATED                       31 // After second Pokémon is defeated
+#define TEXT_THIRD_MON_DEFEATED                        32 // After third Pokémon is defeated
+#define TEXT_FORTH_MON_DEFEATED                        33 // After fourth Pokémon is defeated
+#define TEXT_FIFTH_MON_DEFEATED                        34 // After fifth Pokémon is defeated
+#define TEXT_DYNAMAX                                   35 // Upon Dynamaxing / Upon Gigantamaxing
+#define TEXT_TERASTALLIZE                              36 // Upon Terastallizing
+#define TEXT_AFTER_TERASTALLIZING                      37 // After Terastallizing
+#define TEXT_TERASTALLIZED_MON_MOVE_NOT_VERY_EFFECTIVE 38 // After attacking the player's Pokémon with a not very effective move while Terastallized
+#define TEXT_TERASTALLIZED_MON_MOVE_SUPER_EFFECTIVE    39 // After attacking the player's Pokémon with a supereffective move while Terastallized
+#define TEXT_AFTER_FIRST_MOVE                          40 // After first using a move against the player's Pokémon
+#define TEXT_PLAYER_SENT_OUT_PARTICULAR_SPECIES        41 // If the player sends out Ogerpon
+#define TEXT_CHANGED_FORM                              42 // Upon Terapagos changing form
+#define TEXT_MEGA_EVOLVE                               43
 
 // Bug Bite/Pluck/Fling effects:
 #define STEAL_EFFECT_CURE_PARALYSIS     1
@@ -751,6 +801,7 @@ typedef struct OnceOnlyAbilityFlags {
     BOOL intrepidSwordFlag;
     BOOL dauntlessShieldFlag;
     BOOL superSweetSyrupFlag;
+    BOOL zeroToHeroFlag;
 } OnceOnlyAbilityFlags;
 
 typedef struct OnceOnlyMoveConditionFlags {
@@ -795,9 +846,30 @@ typedef struct PursuitContext {
     u8 originalAttacker;
 } PursuitContext;
 
+enum ActionType {
+    ADDITIONAL_MOVE = 1,
+    MAX_RAID_REMOVAL_OF_POSITIVE_EFFECTS, // Shockwave
+    MAX_RAID_MORE_AGGRESIVE_BARRIER,
+    TERA_RAID_SHIELD,
+    TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS,
+    TERA_RAID_REMOVAL_OF_POSITIVE_EFFECTS,
+    TERA_ORB_CHARGE_STEALING,
+    DOUBLE_ACTION_PHASE,
+};
+
+enum ThresholdType {
+    THRESHOLD_TIMER = 1,
+    THRESHOLD_HEALTH,
+};
+
+#define MAX_EXTRA_ACTIONS 6
+
 typedef struct ExtraAction {
     u8 attacker;
     u8 defender;
+    enum ActionType actionType;
+    enum ThresholdType thresholdType;
+    u32 threshold;
     u16 type; // unused for now
     u32 moveNumberOrAction;
 } ExtraAction;
@@ -817,6 +889,14 @@ typedef struct MagicBounceContext {
     u8 bounceCounter;
     u8 bounceMaxCounter;
 } MagicBounceContext;
+
+typedef struct RaidContext {
+    BOOL isExtraActionActive;
+    BOOL isAbilityNullifyActive;
+    u8 extraActionCount;
+    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
+    u32 originalHP;
+} RaidContext;
 
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
 
@@ -1063,9 +1143,12 @@ struct BattleStruct {
     u8 paradoxBoostedStat[CLIENT_MAX];
     BOOL boosterEnergyActivated[CLIENT_MAX];
     MovePerformanceContext moveContext;
+    RaidContext raidContext;
+    BOOL printedTrainerSendOutMessage;
     PursuitContext pursuitContext;
     DancerContext dancerContext;
     MagicBounceContext magicBounceContext;
+    u32 originalHP[CLIENT_MAX];
 };
 
 enum {
@@ -1146,7 +1229,7 @@ struct BattleSystem {
     void *storage;
     struct Party *trainerParty[4];
     void *chatotVoice[4];
-    u32 *unk88;
+    PokepicManager *pokepicManager;
     u32 *unk8C;
     void *unk90;
     void *unk94;
@@ -1197,8 +1280,8 @@ struct BattleSystem {
     u8 criticalHpMusicDelay : 3;
     u32 terrain;
     u32 bgId;
-    // int location;
-    // u32 battleSpecial;
+    int location;
+    u32 battleSpecial;
     // int timezone; //might be timeOfDay? unclear
     // int safariBallCnt;
     // u8 unk2418[4];
@@ -1244,6 +1327,12 @@ struct ABILITY_POPUP_WORK {
     u8 frames;
     u8 step;
     u8 iconResourcesLoaded;
+};
+
+struct TagTrainer {
+    u16 trainerClass1;
+    u16 trainerClass2;
+    u32 tagTrainerClass;
 };
 
 // Ability Checks - values for flag for CheckSideAbility
@@ -1314,6 +1403,18 @@ struct PACKED newBattleStruct {
     u8 ChangeBgFlag : 4;
     u8 CanMega : 4;
 
+    int SideZMoveBaseMove[4];
+    u8 SideZMove[4];
+    u8 needZMove[4];
+    u8 playerWantZMove;
+    u8 ZIconLight;
+
+    int SideMaxMoveBaseMove[4];
+    u8 SideDynamax[4];
+    u8 needDynamax[4];
+    u8 playerWantDynamax;
+    u8 DynamaxIconLight;
+
     CATS_ACT_PTR MegaOAM;
     CATS_ACT_PTR MegaButton;
     CATS_ACT_PTR WeatherOAM;
@@ -1324,13 +1425,16 @@ struct PACKED newBattleStruct {
 #endif // RESTORE_ITEMS_AT_BATTLE_END
 };
 
+// BattleSetup
 struct PACKED BATTLE_PARAM {
     /*0x0000*/ u32 fight_type;
     /*0x0004*/ struct Party *poke_party[4];
-    /*0x0008*/ int win_lose_flag;
-    /*0x000C*/ int trainer_id[4];
-    /*0x001C*/ TRAINER_DATA trainer_data[4]; // 0xD0 bytes
-    /*0x00EC*/ u8 fill[0xD4];
+    /*0x0014*/ int win_lose_flag;
+    /*0x0018*/ int trainer_id[4];
+    /*0x0028*/ TRAINER_DATA trainer_data[4]; // 0xD0 bytes
+    /*0x00F8*/ u8 fillF8[0x18C - 0xF8];
+    /*0x018C*/ u32 battleSpecial;
+    /*0x0190*/ u8 fill190[0x1C0 - 0x190];
     /*0x01C0*/ void *savedata;
 };
 
@@ -1528,11 +1632,11 @@ enum {
 };
 
 typedef enum BeforeTurnState {
-    SBA_RESET_DEFIANT = 0,
+    SBA_SET_GIMMICK_REQUEST_STATUS = 0,
+    SBA_RESET_DEFIANT,
     SBA_RESET_FURY_CUTTER,
     SBA_RANDOM_SPEED_ROLL,
     SBA_QUICK_CLAW_CUSTAP_BERRY_O_POWER_ACTIVATION,
-    SBA_SET_GIMMICK_REQUEST_STATUS,
     // This part is inconsistent between Bulbapedia, Victory Road VGC, and Showdown, defaulting to Showdown for now
     SBA_ESCAPING,
     SBA_SWITCHING,
@@ -1555,7 +1659,6 @@ enum {
     BEFORE_MOVE_STATE_SLEEP_OR_FROZEN,
     BEFORE_MOVE_STATE_CHECK_OBEDIENCE,
     BEFORE_MOVE_STATE_CHECK_PP,
-    BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT,
     BEFORE_MOVE_STATE_TRUANT,
     BEFORE_MOVE_STATE_FOCUS_PUNCH_LOSE_FOCUS,
     BEFORE_MOVE_STATE_FLINCH,
@@ -1568,6 +1671,8 @@ enum {
     BEFORE_MOVE_STATE_CONFUSION_SELF_HIT_OR_WEAR_OFF,
     BEFORE_MOVE_STATE_PARALYSIS,
     BEFORE_MOVE_STATE_INFATUATION,
+    BEFORE_MOVE_STATE_ILLUSION_WEAR_OFF,
+    BEFORE_MOVE_STATE_DISPLAY_Z_DANCE_AND_EFFECT,
     // BEFORE_MOVE_STATE_SLEEP_TALK_SNORE_ANNOUNCEMENT,
     BEFORE_MOVE_STATE_ANNOUNCE_SUB_MOVE,
     BEFORE_MOVE_STATE_THAW_OUT_BY_MOVE,
@@ -1794,6 +1899,19 @@ struct PACKED DamageCalcStruct {
     struct sDamageCalc clients[4];
 };
 
+typedef struct AbilityFlags {
+    u16 ignoredByMoldBreaker : 1;
+    u16 disabledWhenTransformed : 1;
+    u16 disabledByNeutralizingGas : 1;
+    u16 failsTrace : 1;
+    u16 failsSwap : 1;
+    u16 failsSuppress : 1;
+    u16 failsReceiver : 1;
+    u16 failsEntrainment : 1;
+    u16 failsRolePlay : 1;
+    u16 unused : 7;
+} AbilityFlags;
+
 extern u8 TypeEffectivenessTable[][3];
 
 extern u8 HeldItemPowerUpTable[36][2];
@@ -1847,6 +1965,10 @@ void LONG_CALL SCIO_LevelUpEffectSet(void *bw, int send_client);
 u32 LONG_CALL BattleWorkPlaceIDGet(void *bw);
 void LONG_CALL Task_DistributeExp(void *arg0, void *work);
 int LONG_CALL BattleWorkPokeCountGet(void *, int);
+BOOL LONG_CALL BattleBuffer_GetNext(struct BattleStruct *ctx, int battlerId);
+void LONG_CALL BattleController_EmitShowMonList(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int forceSwitch, int selectedMon, int blockedMon);
+void LONG_CALL BattleController_EmitShowWaitMessage(struct BattleSystem *bsys, int battlerId);
+void LONG_CALL ov12_0223BDDC(struct BattleSystem *bsys, int battlerId, int selectedMon);
 
 BOOL LONG_CALL ServerCriticalMessage(void *, void *);
 BOOL LONG_CALL ServerWazaStatusMessage(void *, void *);
@@ -1910,17 +2032,6 @@ int LONG_CALL BattleWorkWeatherGet(void *bw);
  *  @return requested client on the enemy side
  */
 int LONG_CALL BattleWorkEnemyClientGet(void *bw, int client, int side);
-
-/**
- *  @brief choose which enemy should be traced
- *
- *  @param bw battle work structure; void * because we haven't defined the battle work structure
- *  @param sp global battle structure
- *  @param def1 one of the enemy clients
- *  @param def2 the other enemy client
- *  @return trace client to act on.  set BattleStruct's defence_client to this to properly act after
- */
-int LONG_CALL TraceClientGet(void *bw, struct BattleStruct *sp, int def1, int def2);
 
 /**
  *  @brief check if client is on enemy side or not.  equivalent to BATTLER_IS_ENEMY(client)
@@ -2557,6 +2668,15 @@ typedef void (*anim_scr_cmd_func)(ANIM_CMD_STRUCT *animCmdStruct);
 
 extern const anim_scr_cmd_func gAnimScrTable[NUM_VANILLA_ANIM_SCRIPT_COMMANDS];
 extern struct BattleSystem *gBattleSystem;
+
+BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic);
+void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic);
+void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic);
+int LONG_CALL Raid_AdjustAnimationScale(Pokepic *pokepic, int scale);
+int LONG_CALL Raid_AdjustAnimationX(Pokepic *pokepic, int x);
+int LONG_CALL Raid_RestoreAnimationX(Pokepic *pokepic, int x);
+void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic);
+void LONG_CALL Raid_ApplyObjPaletteAppearance(void *paletteData, u16 palettePosition, Pokepic *pokepic);
 
 enum {
     SWITCH_IN_CHECK_WEATHER = 0,
@@ -3604,7 +3724,23 @@ BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type);
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityCantSupress(int ability);
 
+/// @brief Read an ability's flags from the expanded ability flags table
+/// @param ability
+/// @return The ability's flags, or zeroed flags if the ability ID is invalid
+AbilityFlags LONG_CALL GetAbilityFlags(int ability);
+
+/// @brief Check if ability causes Trace to fail
+/// @param ability
+/// @return `TRUE` or `FALSE`
+BOOL LONG_CALL AbilityNoTrace(int ability);
+
+/// @brief Check if ability causes Skill Swap and Wandering Spirit to fail
+/// @param ability
+/// @return `TRUE` or `FALSE`
+BOOL LONG_CALL AbilityFailSkillSwap(int ability);
+
 void LONG_CALL BattleMessage_BufferNickname(struct BattleSystem *bsys, int bufferIndex, int param);
+void LONG_CALL BattleMessage_BufferNicknameDoNotConsiderPrefix(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferMove(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferItem(struct BattleSystem *bsys, int bufferIndex, int param);
 void LONG_CALL BattleMessage_BufferNumber(struct BattleSystem *bsys, int bufferIndex, int param);
@@ -3706,8 +3842,6 @@ void LONG_CALL BattleBgExpansionLoader(struct BattleSystem *bsys);
  */
 void LONG_CALL BattleBackgroundCallback(void *unkPtr, UNUSED int unk2, UNUSED int unk3);
 
-void LONG_CALL SetupAndStartWildBattle(TaskManager *taskManager, u16 species, u8 level, u32 *winFlag, BOOL canFlee, BOOL shiny);
-
 void LONG_CALL InitBattleMsgData(struct BattleStruct *sp, BattleMessageData *msgdata);
 void LONG_CALL InitBattleMsg(struct BattleSystem *bw, struct BattleStruct *sp, BattleMessageData *msgdata, BattleMessage *msg);
 void LONG_CALL BattleController_EmitPrintMessage(struct BattleSystem *bw, struct BattleStruct *sp, BattleMessage *msg);
@@ -3716,6 +3850,11 @@ void LONG_CALL BattleController_EmitPrintAttackMessage(struct BattleSystem *bw, 
 void *LONG_CALL BattleScriptGetVarPointer(struct BattleSystem *bw, struct BattleStruct *sp, int var);
 
 void LONG_CALL BattleMon_AddVar(struct BattlePokemon *mon, u32 varId, int data);
+
+BOOL LONG_CALL CheckTrainerMessage(struct BattleSystem *bw, struct BattleStruct *sp);
+
+int LONG_CALL Party_GetCount(struct Party *party);
+BOOL LONG_CALL TrainerMessageWithIdPairExists(u32 trainer_idx, u32 msg_id, int heapID);
 
 BOOL LONG_CALL MoveHitAttackerAbilityCheck(void *bw, struct BattleStruct *sp, int *seq_no);
 BOOL LONG_CALL ServerFlinchCheck(void *bw, struct BattleStruct *sp);
@@ -3751,24 +3890,22 @@ BOOL LONG_CALL IsBattlerSlotValid(struct BattleSystem *battleSystem, int battler
 BOOL LONG_CALL GetTypeEffectivenessData(struct BattleSystem *bsys, int index, u8 *typeMove, u8 *typeMon, u8 *eff);
 BOOL LONG_CALL IsAttackerOnField(struct BattleStruct *ctx);
 
+u32 LONG_CALL BattleSystem_GetBattleSpecial(struct BattleSystem *bsys);
+
 int LONG_CALL ov12_0223ABB8(struct BattleSystem *bsys, int battlerId, int side);
 
 void LONG_CALL HandleTransform(struct BattleStruct *sp);
 
-struct BattleSetup LONG_CALL *BattleSetup_New(u32 heapID, u32 battleFlags);
-void LONG_CALL BattleSetup_InitFromFieldSystem(BattleSetup *setup, FieldSystem *fieldSystem);
-void LONG_CALL ov02_02247F30(FieldSystem *fieldSystem, u16 mon, u8 level, BOOL shiny, BattleSetup *setup);
-int LONG_CALL BattleSetup_GetWildTransitionEffect(struct BattleSetup *setup);
-int LONG_CALL BattleSetup_GetWildBattleMusic(struct BattleSetup *setup);
+void LONG_CALL ov12_0223C0C4(struct BattleSystem *battleSystem);
 
-BOOL LONG_CALL ShouldPreventMonCapture(struct BattleSystem *bsys);
-
-u32 LONG_CALL RollMetronomeMove(struct BattleSystem *bsys);
-BOOL LONG_CALL CheckLegalMetronomeMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo);
+BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct BattleStruct *ctx);
 
 PokepicManager LONG_CALL *BattleSystem_GetPokepicManager(struct BattleSystem *battleSystem);
 BOOL LONG_CALL sub_02017068(void *animManager, int battlerId);
 void LONG_CALL *ov12_0223B750(struct BattleSystem *battleSystem);
 void LONG_CALL ov12_022600F0(SysTask *task, void *data); // Task_PlayFaintingSequence
+
+u32 LONG_CALL RollMetronomeMove(struct BattleSystem *bsys);
+BOOL LONG_CALL CheckLegalMetronomeMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo);
 
 #endif // BATTLE_H

@@ -96,7 +96,7 @@ const struct TestBattleScenario BattleTests[] = {
             } },
         .expectations = {
             { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Dreepy vanished instantly!" },
-            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The attack of the opposing Incineroar missed!" },
+            { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar avoided the attack!" },
             { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Incineroar protected itself!" },
             { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 18, 18, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 21, 21, 22 } },
             { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It broke through the opposing Incineroar's protection!" },

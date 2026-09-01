@@ -13,9 +13,11 @@
 #include "constants/species.h"
 
 #include "battle.h"
+#include "dynamax.h"
 #include "overlay.h"
 #include "pokemon.h"
 #include "q412.h"
+#include "z_moves.h"
 
 #include "../../include/constants/sndseq.h"
 #include "../../include/constants/trainerclass.h"
@@ -1678,7 +1680,13 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
             if (ctx->oneTurnFlag[client].struggle_flag) {
                 move = MOVE_STRUGGLE;
             } else {
-                move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                if (newBS.needZMove[client]) {
+                    move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                } else if (newBS.SideMaxMoveBaseMove[client]) {
+                    move = GetMaxMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                } else {
+                    move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                }
             }
         } else {
             // priority adjustments should not activate if any other command is selected (bag, run, switch)
@@ -2084,7 +2092,7 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
 int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int move_no, int move_type, int attack_client, int defence_client, int damage, u32 *flag)
 {
     int typeTableEntryNo = 0;
-    int modifier;
+    int modifier UNUSED;
     u32 base_power;
     u8 eqp_d UNUSED;
     u8 atk_d UNUSED; // not currently used but will be
@@ -2099,7 +2107,13 @@ int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int 
     atk_d = HeldItemAtkGet(sp, defence_client, ATK_CHECK_NORMAL);
 
     move_type = GetAdjustedMoveType(sp, attack_client, move_no); // new normalize checks
-    base_power = sp->moveTbl[move_no].power;
+
+    if (newBS.SideZMoveBaseMove[attack_client] || newBS.SideMaxMoveBaseMove[attack_client]) {
+        // It does not matter
+        base_power = 1;
+    } else {
+        base_power = sp->moveTbl[move_no].power;
+    }
 
     u8 attacker_type_1 = GetSanitisedType(BattlePokemonParamGet(sp, attack_client, BATTLE_MON_DATA_TYPE1, NULL));
     u8 attacker_type_2 = GetSanitisedType(BattlePokemonParamGet(sp, attack_client, BATTLE_MON_DATA_TYPE2, NULL));
@@ -4247,27 +4261,7 @@ BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityNoTransform(int ability)
 {
-    switch (ability) {
-    case ABILITY_DISGUISE:
-    case ABILITY_GULP_MISSILE:
-    case ABILITY_ICE_FACE:
-    case ABILITY_NEUTRALIZING_GAS:
-    case ABILITY_HUNGER_SWITCH:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_PROTOSYNTHESIS:
-    case ABILITY_QUARK_DRIVE:
-    case ABILITY_EMBODY_ASPECT:
-    case ABILITY_EMBODY_ASPECT_2:
-    case ABILITY_EMBODY_ASPECT_3:
-    case ABILITY_EMBODY_ASPECT_4:
-    case ABILITY_TERA_SHIFT:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).disabledWhenTransformed;
 }
 
 // TODO: Just use this instead of the Mold Breaker one
@@ -4288,10 +4282,26 @@ u32 LONG_CALL GetBattlerAbility(struct BattleStruct *ctx, int battlerId)
         return ABILITY_NONE;
     } else if ((ctx->battlemon[battlerId].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) && ctx->battlemon[battlerId].ability == ABILITY_EELEVATE) {
         return ABILITY_BEAST_BOOST;
-    } else if (AbilityNoTransform(ctx->battlemon[battlerId].ability) && (ctx->battlemon[battlerId].condition2 & STATUS2_TRANSFORM)) {
+    } else if ((ctx->battlemon[battlerId].condition2 & STATUS2_TRANSFORM) && AbilityNoTransform(ctx->battlemon[battlerId].ability)) {
         return ABILITY_NONE;
     }
     return ability;
+}
+
+/// @brief Check if ability causes Trace to fail
+/// @param ability
+/// @return `TRUE` or `FALSE`
+BOOL LONG_CALL AbilityNoTrace(int ability)
+{
+    return GetAbilityFlags(ability).failsTrace;
+}
+
+/// @brief Check if ability causes Skill Swap and Wandering Spirit to fail
+/// @param ability
+/// @return `TRUE` or `FALSE`
+BOOL LONG_CALL AbilityFailSkillSwap(int ability)
+{
+    return GetAbilityFlags(ability).failsSwap;
 }
 
 /// @brief Check if ability can't be suppressed by Gastro Acid or affected by Mummy. See notes for DisabledByNeutralizingGas.
@@ -4300,30 +4310,7 @@ u32 LONG_CALL GetBattlerAbility(struct BattleStruct *ctx, int battlerId)
 /// @return `TRUE` or `FALSE`
 BOOL LONG_CALL AbilityCantSupress(int ability)
 {
-    switch (ability) {
-    case ABILITY_MULTITYPE:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_SCHOOLING:
-    case ABILITY_DISGUISE:
-    case ABILITY_BATTLE_BOND:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_COMATOSE:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_GULP_MISSILE:
-    case ABILITY_ICE_FACE:
-    case ABILITY_AS_ONE_GLASTRIER:
-    case ABILITY_AS_ONE_SPECTRIER:
-    case ABILITY_ZERO_TO_HERO:
-    case ABILITY_TERA_SHIFT:
-        return TRUE;
-        break;
-
-    default:
-        break;
-    }
-    return FALSE;
+    return GetAbilityFlags(ability).failsSuppress;
 }
 
 void BattleSystem_BufferMessage(struct BattleSystem *bsys, BattleMessage *msg)
@@ -4785,28 +4772,126 @@ void LONG_CALL HandleTransform(struct BattleStruct *sp)
     }
 }
 
-BOOL LONG_CALL ShouldPreventMonCapture(struct BattleSystem *bsys)
+BOOL LONG_CALL QueueRaidExtraAction(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
 {
-    return BattleTypeGet(bsys) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_TOTEM);
+    BOOL canActivateExtraAction = FALSE;
+    if (ctx->raidContext.extraActionCount < MAX_EXTRA_ACTIONS) {
+        switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].thresholdType) {
+        case THRESHOLD_TIMER:
+            break;
+        case THRESHOLD_HEALTH:
+            // debug_printf("current threshold: %d, current percentage: %d\n", ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold, (ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp))
+            if ((ctx->battlemon[1].hp * 100 / ctx->battlemon[1].maxhp) <= ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].threshold) {
+                canActivateExtraAction = TRUE;
+            }
+            break;
+        default:
+            break;
+        }
+
+        if (canActivateExtraAction) {
+            // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_DIRECT
+            ctx->add_status_flag_indirect = 0;
+            // BSCRIPT_VAR_SIDE_EFFECT_FLAGS_INDIRECT
+            ctx->add_status_flag_direct = 0;
+
+            ctx->current_move_index = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+            ctx->moveNoTemp = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+            ctx->waza_no_old[ctx->attack_client] = ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].moveNumberOrAction;
+
+            switch (ctx->raidContext.extraActions[ctx->raidContext.extraActionCount].actionType) {
+            case ADDITIONAL_MOVE:
+                // debug_printf("In ADDITIONAL_MOVE\n");
+                ctx->raidContext.isExtraActionActive = TRUE;
+                ctx->attack_client = 1;
+
+                switch (ctx->moveTbl[ctx->current_move_index].target) {
+                case RANGE_USER:
+                case RANGE_USER_SIDE:
+                case RANGE_FIELD:
+                    ctx->defence_client = 1;
+                    break;
+                case RANGE_SINGLE_TARGET:
+                case RANGE_RANDOM_OPPONENT:
+                    ctx->defence_client = gf_rand() & 1 ? BATTLER_OPPONENT(ctx->attack_client) : BATTLER_ACROSS(ctx->attack_client);
+                    break;
+                default:
+                    ctx->defence_client = BATTLER_OPPONENT(ctx->attack_client);
+                    break;
+                }
+
+                ctx->moveContext.hitFoesCount = 0;
+                CopyBattleMonToPartyMon(battleSystem, ctx, ctx->attack_client);
+
+                ctx->next_server_seq_no = CONTROLLER_COMMAND_23;
+                ctx->server_seq_no = CONTROLLER_COMMAND_23;
+                break;
+            case MAX_RAID_REMOVAL_OF_POSITIVE_EFFECTS:
+                break;
+            case MAX_RAID_MORE_AGGRESIVE_BARRIER:
+                break;
+            case TERA_RAID_SHIELD:
+                break;
+            case TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS:
+                ctx->attack_client = BATTLER_ENEMY;
+                for (int stat = 0; stat < 8; stat++) {
+                    if (ctx->battlemon[BATTLER_ENEMY].states[stat] < 6) {
+                        ctx->battlemon[BATTLER_ENEMY].states[stat] = 6;
+                    }
+                }
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS);
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                break;
+            case TERA_RAID_REMOVAL_OF_POSITIVE_EFFECTS:
+                ctx->attack_client = BATTLER_ENEMY;
+                ctx->raidContext.isAbilityNullifyActive = TRUE;
+                for (int stat = 0; stat < 8; stat++) {
+                    if (IsBattlerSlotValid(battleSystem, BATTLER_PLAYER) && ctx->battlemon[BATTLER_PLAYER].states[stat] > 6) {
+                        ctx->battlemon[BATTLER_PLAYER].states[stat] = 6;
+                    }
+                    if (IsBattlerSlotValid(battleSystem, BATTLER_PLAYER2) && ctx->battlemon[BATTLER_PLAYER2].states[stat] > 6) {
+                        ctx->battlemon[BATTLER_PLAYER2].states[stat] = 6;
+                    }
+                }
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES);
+                ctx->next_server_seq_no = ctx->server_seq_no;
+                ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                break;
+            case TERA_ORB_CHARGE_STEALING:
+                break;
+            case DOUBLE_ACTION_PHASE:
+                break;
+            }
+
+            ctx->raidContext.extraActionCount++;
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
-BOOL LONG_CALL ov07_02232F60(void *ballData, s32 ballAnim_Unused);
-void LONG_CALL ov07_02233ECC(void *ballData);
-
-void LONG_CALL PrintBallBlockedMessage(struct tcb_skill_intp_work *data)
+void LONG_CALL BattleControllerPlayer_PokemonAppear(struct BattleSystem *battleSystem, struct BattleStruct *ctx)
 {
-    if (!ov07_02232F60(data->bms, 2)) // BALL_ANIM_DEFLECT
-    {
-        ov07_02233ECC(data->bms);
-        BattleMessage msg;
-        BOOL isTrainerBattle = BattleTypeGet(data->bw) & BATTLE_TYPE_TRAINER;
-        // It dodged your thrown Poké Ball! This Pokémon can’t be caught!
-        msg.id = isTrainerBattle ? BATTLE_MSG_TRAINER_BLOCKED_BALL : BATTLE_MSG_DODGED_THROWN_BALL;
-        msg.tag = TAG_NONE;
-        data->work[0] = BattleMSG_Print(data->bw, BattleWorkFightMsgGet(data->bw), &msg, BattleWorkConfigMsgSpeedGet(data->bw));
-        data->work[1] = 30;
-        data->seq_no = isTrainerBattle ? 27 : 28; // STATE_GET_POKEMON_DONE_NO_STEALING
-        // debug_printf("Case: %d\n", data->seq_no);
+    int script = SwitchInAbilityCheck(battleSystem, ctx);
+
+    if (!script) {
+        if (QueueRaidExtraAction(battleSystem, ctx)) {
+            return;
+        }
+    }
+
+    if (script) {
+        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, script);
+        ctx->next_server_seq_no = ctx->server_seq_no;
+        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+    } else {
+        // debug_printf("Here\n");
+        // ctx->server_status_flag &= ~BATTLE_STATUS_NO_ATTACK_MESSAGE;
+        // ctx->server_status_flag &= ~BATTLE_STATUS_MOVE_ANIMATIONS_OFF;
+        SortMonsBySpeed(battleSystem, ctx);
+        ov12_0223C0C4(battleSystem);
+        ctx->server_seq_no = CONTROLLER_COMMAND_SELECTION_SCREEN_INIT;
     }
 }
 

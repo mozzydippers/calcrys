@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-#include "trainer_data.h"
-
 typedef struct SysTaskQueue SysTaskQueue;
 typedef struct SysTask SysTask;
 typedef void (*SysTaskFunc)(SysTask *task, void *data);
@@ -57,7 +55,5 @@ void LONG_CALL TaskManager_Call(TaskManager *taskman, TaskFunc taskFunc, void *e
 BOOL LONG_CALL Task_TutorialBattle(TaskManager *taskManager);
 TaskManager *LONG_CALL FieldSystem_CreateTask(FieldSystem *fieldSystem, TaskFunc taskFunc, void *env);
 BOOL LONG_CALL Task_PrintRegisteredKeyItemUseMessage(TaskManager *taskManager);
-
-void LONG_CALL CallTask_StartEncounter(TaskManager *taskManager, BattleSetup *setup, s32 effect, s32 bgm, u32 *winFlag);
 
 #endif

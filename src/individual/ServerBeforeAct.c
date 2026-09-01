@@ -12,10 +12,12 @@
 #include "constants/system_control.h"
 
 #include "battle.h"
+#include "dynamax.h"
 #include "item.h"
 #include "mega.h"
 #include "overlay.h"
 #include "pokemon.h"
+#include "z_moves.h"
 
 static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
@@ -116,6 +118,8 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
 #ifdef DEBUG_BATTLE_SCENARIOS
                 newBS.playerWantMega = No2Bit(client_no);
 #endif
+                newBS.needZMove[client_no] = FALSE;
+                newBS.needDynamax[client_no] = FALSE;
                 flag = FALSE;
                 if (sp->playerActions[0][3] != SELECT_ESCAPE_COMMAND && sp->playerActions[2][3] != SELECT_ESCAPE_COMMAND) {
                     if (BattleTypeGet(bw) & BATTLE_TYPE_MULTI) {
@@ -137,6 +141,20 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                                 newBS.SideMega[client_no] = TRUE;
                                 flag = TRUE;
                             }
+
+                            if (AICheckCanUseZMove(sp, client_no)) {
+                                newBS.needZMove[client_no] = TRUE;
+                                newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (AICheckCanDynamax(sp, client_no)) {
+                                newBS.needDynamax[client_no] = TRUE;
+                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (sp->battlemon[client_no].is_currently_dynamaxed) {
+                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
                         }
                     } else {
                         // player requests mega
@@ -155,6 +173,20 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                                 newBS.SideMega[1] = TRUE;
                                 newBS.SideMega[3] = TRUE;
                                 flag = TRUE;
+                            }
+
+                            if (AICheckCanUseZMove(sp, client_no)) {
+                                newBS.needZMove[client_no] = TRUE;
+                                newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (AICheckCanDynamax(sp, client_no)) {
+                                newBS.needDynamax[client_no] = TRUE;
+                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (sp->battlemon[client_no].is_currently_dynamaxed) {
+                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
                         }
                     }

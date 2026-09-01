@@ -9,6 +9,76 @@ enum {
     RAWTEXT_PATH_LENGTH = 128,
 };
 
+const u16 ZMoveList[] = {
+    MOVE_BREAKNECK_BLITZ_PHYSICAL,
+    MOVE_BREAKNECK_BLITZ_SPECIAL,
+    MOVE_ALL_OUT_PUMMELING_PHYSICAL,
+    MOVE_ALL_OUT_PUMMELING_SPECIAL,
+    MOVE_SUPERSONIC_SKYSTRIKE_PHYSICAL,
+    MOVE_SUPERSONIC_SKYSTRIKE_SPECIAL,
+    MOVE_ACID_DOWNPOUR_PHYSICAL,
+    MOVE_ACID_DOWNPOUR_SPECIAL,
+    MOVE_TECTONIC_RAGE_PHYSICAL,
+    MOVE_TECTONIC_RAGE_SPECIAL,
+    MOVE_CONTINENTAL_CRUSH_PHYSICAL,
+    MOVE_CONTINENTAL_CRUSH_SPECIAL,
+    MOVE_SAVAGE_SPIN_OUT_PHYSICAL,
+    MOVE_SAVAGE_SPIN_OUT_SPECIAL,
+    MOVE_NEVER_ENDING_NIGHTMARE_PHYSICAL,
+    MOVE_NEVER_ENDING_NIGHTMARE_SPECIAL,
+    MOVE_CORKSCREW_CRASH_PHYSICAL,
+    MOVE_CORKSCREW_CRASH_SPECIAL,
+    MOVE_INFERNO_OVERDRIVE_PHYSICAL,
+    MOVE_INFERNO_OVERDRIVE_SPECIAL,
+    MOVE_HYDRO_VORTEX_PHYSICAL,
+    MOVE_HYDRO_VORTEX_SPECIAL,
+    MOVE_BLOOM_DOOM_PHYSICAL,
+    MOVE_BLOOM_DOOM_SPECIAL,
+    MOVE_GIGAVOLT_HAVOC_PHYSICAL,
+    MOVE_GIGAVOLT_HAVOC_SPECIAL,
+    MOVE_SHATTERED_PSYCHE_PHYSICAL,
+    MOVE_SHATTERED_PSYCHE_SPECIAL,
+    MOVE_SUBZERO_SLAMMER_PHYSICAL,
+    MOVE_SUBZERO_SLAMMER_SPECIAL,
+    MOVE_DEVASTATING_DRAKE_PHYSICAL,
+    MOVE_DEVASTATING_DRAKE_SPECIAL,
+    MOVE_BLACK_HOLE_ECLIPSE_PHYSICAL,
+    MOVE_BLACK_HOLE_ECLIPSE_SPECIAL,
+    MOVE_TWINKLE_TACKLE_PHYSICAL,
+    MOVE_TWINKLE_TACKLE_SPECIAL,
+    MOVE_CATASTROPIKA,
+    MOVE_10_000_000_VOLT_THUNDERBOLT,
+    MOVE_STOKED_SPARKSURFER,
+    MOVE_EXTREME_EVOBOOST,
+    MOVE_PULVERIZING_PANCAKE,
+    MOVE_GENESIS_SUPERNOVA,
+    MOVE_SINISTER_ARROW_RAID,
+    MOVE_MALICIOUS_MOONSAULT,
+    MOVE_OCEANIC_OPERETTA,
+    MOVE_SPLINTERED_STORMSHARDS,
+    MOVE_LETS_SNUGGLE_FOREVER,
+    MOVE_CLANGOROUS_SOULBLAZE,
+    MOVE_GUARDIAN_OF_ALOLA,
+    MOVE_SEARING_SUNRAZE_SMASH,
+    MOVE_MENACING_MOONRAZE_MAELSTROM,
+    MOVE_LIGHT_THAT_BURNS_THE_SKY,
+    MOVE_SOUL_STEALING_7_STAR_STRIKE,
+};
+
+#define NELEMS(array) (sizeof(array) / sizeof(array[0]))
+
+int MoveIsZMove(u32 moveIndex)
+{
+    u8 output = 0;
+    for (u16 i = 0; i < NELEMS(ZMoveList); i++) {
+        if (moveIndex == ZMoveList[i]) {
+            output = 1;
+            break;
+        }
+    }
+    return output;
+}
+
 static void WriteLe16(uint8_t *dst, uint16_t value) {
     dst[0] = (uint8_t)(value & 0xFF);
     dst[1] = (uint8_t)(value >> 8);
@@ -44,9 +114,13 @@ static void WriteTextFile(const char *dir, int index, const char *text) {
     fclose(file);
 }
 
-static void WriteUsedMoveText(const char *dir, int index, const char *prefix, const char *fullName) {
+static void WriteUsedMoveText(const char *dir, int index, const char *prefix, const char *fullName, int isZMove) {
     char path[RAWTEXT_PATH_LENGTH];
     FILE *file;
+
+    if (isZMove) {
+        prefix = "";
+    }
 
     snprintf(path, sizeof(path), "%s/%04d.txt", dir, index);
     file = fopen(path, "wb");
@@ -57,7 +131,11 @@ static void WriteUsedMoveText(const char *dir, int index, const char *prefix, co
 
     fputs(prefix, file);
     WriteNormalizedText(file, fullName);
-    fputc('!', file);
+    if (isZMove) {
+        fputc(' ', file);
+    } else {
+        fputc('!', file);
+    }
     fclose(file);
 }
 
@@ -123,12 +201,15 @@ int main(int argc, char **argv) {
         WriteMoveMember(membersDir, i, &sMoveSource[i]);
     }
 
+    int isZMove = 0;
+
     for (i = 0; i < NUM_OF_MOVES; i++) {
+        isZMove = MoveIsZMove(i);
         WriteTextFile(namesDir, i, sMoveSource[i].names.name);
         WriteTextFile(capsNamesDir, i, sMoveSource[i].names.capsName);
-        WriteUsedMoveText(usedNamesDir, 3 * i, "{STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName);
-        WriteUsedMoveText(usedNamesDir, 3 * i + 1, "The wild {STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName);
-        WriteUsedMoveText(usedNamesDir, 3 * i + 2, "The opposing {STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName);
+        WriteUsedMoveText(usedNamesDir, 3 * i, "{STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName, isZMove);
+        WriteUsedMoveText(usedNamesDir, 3 * i + 1, "The wild {STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName, isZMove);
+        WriteUsedMoveText(usedNamesDir, 3 * i + 2, "The opposing {STRVAR_1 1, 0, 0} used\\n", sMoveSource[i].names.fullName, isZMove);
         WriteTextFile(descriptionsDir, i, sMoveSource[i].description);
     }
 

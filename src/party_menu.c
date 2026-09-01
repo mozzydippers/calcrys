@@ -260,15 +260,13 @@ void LONG_CALL PartyMonContextMenuAction_QuitToBag(struct PartyMenu *partyMenu, 
 int LONG_CALL PartyMenu_HandleUseItemOnMon(struct PartyMenu *partyMenu)
 {
     u32 ovyId, target, offset;
-    // clang-format off
     u16 (*internalFunc)(struct PartyMenu *);
-    // clang-format on
 
     ovyId = OVERLAY_PARTY_HANDLEUSEITEMONMON;
     offset = 0x023C0400 | 1;
 
     HandleLoadOverlay(ovyId, 2);
-    internalFunc = (u16(*)(struct PartyMenu *))(offset);
+    internalFunc = (u16 (*)(struct PartyMenu *))(offset);
     target = internalFunc(partyMenu);
     UnloadOverlayByID(ovyId);
 
