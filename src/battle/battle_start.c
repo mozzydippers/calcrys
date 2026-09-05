@@ -66,6 +66,15 @@ struct BattleStruct *ServerInit(struct BattleSystem *bw)
     case BATTLE_VARIATION_TYPE_TITAN_BATTLE:
     case BATTLE_VARIATION_TYPE_TERA_RAID:
         break;
+    case BATTLE_VARIATION_TYPE_BOSS_BATTLE:
+        ReadFromNarcMemberByIdPair(&battleData.bossBattle, ARC_CODE_ADDONS, CODE_ADDON_BOSSBATTLES, raidID * sizeof(struct BossBattle), sizeof(struct BossBattle));
+
+        memcpy(sp->raidContext.extraActions, battleData.bossBattle.extraActions, sizeof(sp->raidContext.extraActions[0]) * MAX_EXTRA_ACTIONS);
+
+        sp->raidContext.originalHP = battleVariationInfo.originalHP;
+        sp->originalHP[1] = battleVariationInfo.originalHP;
+        // debug_printf("%d\n", sp->originalHP[1]);
+        break;
     default:
         break;
     }

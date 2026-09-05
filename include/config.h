@@ -179,7 +179,7 @@
 #define REUSABLE_TMS
 
 // DELETABLE_HMS allows HMs to be forgotten, this also makes their quantity reduce, but the infinite TMs change prevents this.
-// #define DELETABLE_HMS
+#define DELETABLE_HMS
 
 // MART_EXPANSION allows for adding and modifying items to the mart inventories
 #define MART_EXPANSION
@@ -252,7 +252,7 @@
 
 // SKIP_TUTORIAL_INFO will skip the tutorial when starting a new game and go straight to Professor Oak greeting you.
 // uncomment the line out to get this functionality
-// #define SKIP_TUTORIAL_INFO
+#define SKIP_TUTORIAL_INFO
 
 // Champions-specific move configurations. Set to 0 to use Scarlet/Violet values.
 #define CHAMPIONS_POWER_CHANGES         1
@@ -281,6 +281,6 @@
 
 // PLAY_MON_VICTORY_POSE enables the victory pose for Pokémon when fainting an opponent.
 // Comment out this define if you want to disable this feature.
-// #define PLAY_MON_VICTORY_POSE
+#define PLAY_MON_VICTORY_POSE
 
 #endif

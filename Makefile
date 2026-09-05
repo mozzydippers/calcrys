@@ -532,6 +532,10 @@ move_narc: $(NARC_FILES)
 
 	@echo "Tera Raid Battles:"
 	cp $(TERARAIDBATTLES_BIN) $(TERARAIDBATTLES_TARGET)
+
+	@echo "Boss Battles:"
+	cp $(BOSSBATTLES_BIN) $(BOSSBATTLES_TARGET)
+
 	@echo "battle tests:"
 	cp $(BATTLETESTS_BIN) $(BATTLETESTS_TARGET)
 

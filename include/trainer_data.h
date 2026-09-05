@@ -73,6 +73,12 @@ typedef uint32_t u32;
 #define TRAINER_POKEMON_ABILITY_HIDDEN 0x02
 #define TRAINER_POKEMON_ABILITY_2      0x20
 
+#define TRAINER_POKEMON_GENDER_MALE                 1
+#define TRAINER_POKEMON_GENDER_FEMALE               2
+#define TRAINER_POKEMON_ABILITY_SLOT_1              16
+#define TRAINER_POKEMON_ABILITY_SLOT_2              32
+#define TRAINER_POKEMON_ABILITY_SLOT_HIDDEN_ABILITY 48
+
 #define TRMSG_INTRO                     0
 #define TRMSG_LOSE                      1
 #define TRMSG_AFTER                     2

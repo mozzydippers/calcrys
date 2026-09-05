@@ -17,6 +17,7 @@ enum BattleVariationType {
     BATTLE_VARIATION_TYPE_TITAN_BATTLE,
     BATTLE_VARIATION_TYPE_TERA_RAID,
     // Custom raids go below
+    BATTLE_VARIATION_TYPE_BOSS_BATTLE,
 };
 
 typedef struct BattleVariationPokemon {
@@ -91,11 +92,18 @@ typedef struct TeraRaidBattle {
     ExtraAction extraActions[6];
 } TeraRaidBattle;
 
+typedef struct BossBattle {
+    BattleVariationBase battleVariationBase;
+    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
+    u8 multipliers[6]; // HP, Attack, Defense, Speed, Special Attack, Special Defense
+} BossBattle;
+
 union BattleVariationUnion {
     struct TotemBattle totemBattle;
     struct MaxRaidBattle maxRaidBattle;
     struct TeraRaidBattle teraRaidBattle;
     // Custom variations go below:
+    struct BossBattle bossBattle;
 };
 
 typedef struct BattleVariationInfo {

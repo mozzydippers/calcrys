@@ -234,6 +234,25 @@ void LONG_CALL SetupAndStartMaxRaid(void *taskManager, u32 *winFlag, u16 raidID)
     CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
 }
 
+void LONG_CALL SetupAndStartBossBattle(void *taskManager, u32 *winFlag, u16 raidID)
+{
+    struct BATTLE_PARAM *setup;
+
+    struct BossBattle battleData;
+
+    ReadFromNarcMemberByIdPair(&battleData, ARC_CODE_ADDONS, CODE_ADDON_BOSSBATTLES, raidID * sizeof(struct BossBattle), sizeof(struct BossBattle));
+
+    setup = (struct BATTLE_PARAM *)BattleSetup_New(HEAPID_WORLD, BATTLE_TYPE_DOUBLES);
+
+    setup->battleSpecial |= (BATTLE_SPECIAL_BOSS_BATTLE | BATTLE_SPECIAL_NO_RUNNING);
+
+    struct PartyPokemon *mon = InitialiseBattleVariationEnemy(taskManager, (struct BattleSetup *)setup, &battleData.battleVariationBase);
+
+    ApplyRaidMultipliers(mon, battleData.multipliers);
+
+    CallTask_StartEncounter(taskManager, (struct BattleSetup *)setup, BattleSetup_GetWildTransitionEffect((struct BattleSetup *)setup), BattleSetup_GetWildBattleMusic((struct BattleSetup *)setup), winFlag);
+}
+
 BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
 {
     // debug_printf("In ScrCmd_BattleVariation\n");
@@ -252,6 +271,9 @@ BOOL LONG_CALL ScrCmd_BattleVariation(SCRIPTCONTEXT *ctx)
         SetupAndStartMaxRaid(ctx->taskman, winFlag, raidID);
         break;
     case BATTLE_VARIATION_TYPE_TERA_RAID:
+        break;
+    case BATTLE_VARIATION_TYPE_BOSS_BATTLE:
+        SetupAndStartBossBattle(ctx->taskman, winFlag, raidID);
         break;
     default:
         break;

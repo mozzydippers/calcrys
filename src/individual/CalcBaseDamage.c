@@ -217,6 +217,8 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
         movepower = QMul_RoundDown(120 * 100, (DefendingMon.hp * 4096) / DefendingMon.maxhp) / 100;
         break;
     // Happiness-based
+    case MOVE_PIKA_PAPOW:
+    case MOVE_VEEVEE_VOLLEY:
     case MOVE_RETURN:
         movepower = AttackingMon.happiness * 10 / 25;
         break;

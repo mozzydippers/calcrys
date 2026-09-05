@@ -530,13 +530,16 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
 		PokeParaSet(mons[i], species, level, pow, 1, rnd, 2, 0);
         SetMonData(mons[i], MON_DATA_FORM, &form_no);
 
+        int genderOverride = abilityslot & 0xF;
+        int abilityOverride = (abilityslot & 0xF0) >> 4;
+
         // set default abilities
         adjustedSpecies = PokeOtherFormMonsNoGet(species, form_no);
         ab1 = PokePersonalParaGet(adjustedSpecies, PERSONAL_ABILITY_1);
         ab2 = PokePersonalParaGet(adjustedSpecies, PERSONAL_ABILITY_2);
-        if (ab2 != 0)
-        {
-            if (abilityslot & 1 || TRAINER_POKEMON_ABILITY_2) {
+        if (ab2 != 0) {
+            if (abilityOverride == 2) // abilityslot 32 gives second slot in vanilla
+            {
                 SetMonData(mons[i], MON_DATA_ABILITY, (u16 *)&ab2);
             } else {
                 SetMonData(mons[i], MON_DATA_ABILITY, (u16 *)&ab1);
@@ -545,8 +548,8 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
             SetMonData(mons[i], MON_DATA_ABILITY, (u16 *)&ab1);
         }
 
-        // if abilityslot is 2 force hidden ability with the bit set.  this specifically to cover darmanitan with zen mode switching between forms and such.
-        if (abilityslot == TRAINER_POKEMON_ABILITY_HIDDEN) {
+        // if abilityslot is 3 force hidden ability with the bit set.  this specifically to cover darmanitan with zen mode switching between forms and such.
+        if (abilityOverride == 3) {
             u16 hiddenability = GetMonHiddenAbility(species, form_no);
             SET_MON_HIDDEN_ABILITY_BIT(mons[i]);
             SetMonData(mons[i], MON_DATA_ABILITY, (u16 *)&hiddenability);
@@ -582,10 +585,15 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
             }
         }
         if (bp->trainer_data[num].data_type & TRAINER_DATA_TYPE_NATURE_SET) {
-            u32 pid = GetMonData(mons[i], MON_DATA_PERSONALITY, NULL);
-            u8 currentNature = pid % 25;
-            pid = pid + nature - currentNature;
-            SetMonData(mons[i], MON_DATA_PERSONALITY, &pid);
+            // Need to use Mints so that gender or ability slot would not be overriden
+            if (genderOverride || abilityOverride) {
+                SET_MON_NATURE_OVERRIDE(mons[i], nature);
+            } else {
+                u32 pid = GetMonData(mons[i], MON_DATA_PERSONALITY, NULL);
+                u8 currentNature = pid % 25;
+                pid = pid + nature - currentNature;
+                SetMonData(mons[i], MON_DATA_PERSONALITY, &pid);
+            }
         }
         if (bp->trainer_data[num].data_type & TRAINER_DATA_TYPE_SHINY_LOCK) {
             u32 pid = GetMonData(mons[i], MON_DATA_PERSONALITY, NULL);
