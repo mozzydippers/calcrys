@@ -2009,9 +2009,9 @@ You caught the wild {STRVAR_1 1, 0, 0} off guard!
 Mew is going to go all out against this formidable opponent!
 Terapagos absorbed Terastal energy!
 Terapagos used the power of the Terastal phenomenon to change its type!
-
-
-
+{STRVAR_1 1, 0, 0}\nfell straight down!
+The wild {STRVAR_1 1, 0, 0}\nfell straight down!
+The opposing {STRVAR_1 1, 0, 0}\nfell straight down!
 
 
 
