@@ -3,6 +3,17 @@
 
 #define POKEPIC_SCALE_NORMAL       0x100
 #define RAID_POKEPIC_SCALE_PERCENT 160
+
+#define MON_SPRITE_X_CENTER   0
+#define MON_SPRITE_Y_CENTER   1
+#define MON_SPRITE_ROTATION_Z 9
+#define MON_SPRITE_X_PIVOT    10
+#define MON_SPRITE_SCALE_X    12
+#define MON_SPRITE_SCALE_Y    13
+
+#define MON_AFFINE_SHIFT    8
+#define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
+
 typedef struct Pokepic Pokepic;
 
 typedef struct PokepicTemplate {
@@ -221,8 +232,36 @@ typedef struct PokepicManager {
     u32 flags;
 } PokepicManager; // size: 0x338
 
+// some of this is inferred from plat
+typedef struct PokemonAnim {
+    Pokepic *sprite; // 0x00
+    void *task; // 0x04
+    void *scriptData; // 0x08
+    u32 *scriptPtr; // 0x0C
+    int active; // 0x10
+    int animNum; // 0x14
+    int waitFrame; // 0x18
+    int endAnim; // 0x1C
+    int completed; // 0x20
+    int vars[8]; // 0x24-0x43
+    int commandCount; // 0x44
+    int loopMax; // 0x48
+    int loopCounter; // 0x4C
+    u32 *loopStart; // 0x50
+    int startDelay; // 0x54
+    int originalX; // 0x58
+    int originalY; // 0x5C
+} PokemonAnim;
+
+// not 100% on this one
+typedef struct XYTransformContext {
+    s16 x;
+    s16 y;
+} XYTransformContext;
+
 void LONG_CALL Pokepic_StartAnim(Pokepic *pokepic);
 BOOL LONG_CALL Pokepic_IsAnimFinished(Pokepic *pokepic);
+void LONG_CALL Pokepic_SetAttr(Pokepic *pokepic, int attr, int value);
 void LONG_CALL sub_0207294C(void *narc, void *a1, void *a2, u16 a3, int a4, int a5, int a6);
 void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);

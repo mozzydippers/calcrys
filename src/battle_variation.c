@@ -58,7 +58,6 @@ void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, P
         ManagedSprite_SetAffineOverwriteMode(managedSprite, 2);
         ManagedSprite_SetAffineScale(managedSprite, scale, scale);
         ManagedSprite_GetPositionXY(managedSprite, &x, &y);
-        // why the fuck is it + 1?
         ManagedSprite_SetPositionXY(managedSprite, x + pokepic->drawParam.xOffset + 1, y + pokepic->drawParam.yOffset + 1);
     }
 }
@@ -274,4 +273,31 @@ void LONG_CALL ClearBattleVariationInfo()
 BOOL LONG_CALL IsWildDoubleBattleWithOneOpponent(struct BattleSystem *bsys)
 {
     return (bsys->sp->battlemon[3].species == SPECIES_NONE) && (BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES);
+}
+
+void LONG_CALL sub_020174BC(PokemonAnim *monAnim)
+{
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_X_CENTER, Raid_RestoreAnimationX(monAnim->sprite, monAnim->originalX));
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_Y_CENTER, monAnim->originalY);
+
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_ROTATION_Z, 0);
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_X_PIVOT, 0);
+
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+
+    Raid_ApplyMainAppearance(monAnim->sprite);
+}
+
+void LONG_CALL ov07_022220DC(XYTransformContext *ctx, Pokepic *pokepic)
+{
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_X, Raid_AdjustAnimationScale(pokepic, ctx->x));
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_Y, Raid_AdjustAnimationScale(pokepic, ctx->y));
+}
+
+void LONG_CALL ov07_02223224(Pokepic *pokepic)
+{
+    int scale = Raid_AdjustAnimationScale(pokepic, MON_AFFINE_SCALE(1));
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_X, scale);
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_Y, scale);
 }
