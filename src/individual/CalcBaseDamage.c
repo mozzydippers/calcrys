@@ -156,7 +156,15 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
         break;
     case MOVE_HEAVY_SLAM:
     case MOVE_HEAT_CRASH:
+        if (DefendingMon.weight == 0) {
+            movepower = 120;
+            break;
+        }
         switch (AttackingMon.weight / DefendingMon.weight) {
+        case 0:
+        case 1:
+            movepower = 40;
+            break;
         case 2:
             movepower = 60;
             break;
@@ -167,11 +175,8 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
             movepower = 100;
             break;
         case 5:
-            movepower = 120;
-            break;
-        // less than 2
         default:
-            movepower = 40;
+            movepower = 120;
             break;
         }
         break;

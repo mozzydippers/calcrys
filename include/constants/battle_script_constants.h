@@ -525,17 +525,18 @@
 #define BATTLE_SUBSCRIPT_ZERO_TO_HERO                           (516)
 #define BATTLE_SUBSCRIPT_WANDERING_SPIRIT                       (517)
 #define BATTLE_SUBSCRIPT_SCREEN_CLEANER                         (518)
-#define BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT              (519)
-#define BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE                    (520)
-#define BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (521)
-#define BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES         (522)
-#define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (523)
-#define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (524)
-#define BATTLE_SUBSCRIPT_STANCE_CHANGE                          (525)
-#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (526)
-#define BATTLE_SUBSCRIPT_TERASTALLIZE                           (527)
+#define BATTLE_SUBSCRIPT_FELL_STRAIGHT_DOWN                     (519)
+#define BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT              (520)
+#define BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE                    (521)
+#define BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (522)
+#define BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES         (523)
+#define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (524)
+#define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (525)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE                          (526)
+#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (527)
+#define BATTLE_SUBSCRIPT_TERASTALLIZE                           (528)
 
-#define MAX_BASE_SUBSCRIPT_NUM 527
+#define MAX_BASE_SUBSCRIPT_NUM 528
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
