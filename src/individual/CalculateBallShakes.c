@@ -100,7 +100,7 @@ u32 __attribute__((section(".init"))) CalculateBallShakesInternal(void *bw, stru
         break;
 #endif
     case ITEM_NET_BALL:
-        if (HasType(sp, sp->defence_client, TYPE_WATER) || HasType(sp, sp->defence_client, TYPE_BUG)) {
+        if (HasType(bw, sp, sp->defence_client, TYPE_WATER) || HasType(bw, sp, sp->defence_client, TYPE_BUG)) {
 #if NET_BALL_GENERATION < 8
             ballCaptureRatio = 0x3000;
 #else

@@ -142,7 +142,7 @@ BOOL BattleController_TryConsumeDamageReductionBerry(struct BattleSystem *bsys U
 void BattleController_ResetGeneralMoveFailureFlags(struct BattleStruct *ctx, int attack_client, BOOL setsMoveConditionalFailureFlag);
 
 BOOL CanHitThroughSemiInvulnerability(struct BattleStruct *ctx, int attacker, int defender);
-BOOL CanHitThroughProtect(struct BattleStruct *ctx, int attacker, int defender);
+BOOL CanHitThroughProtect(struct BattleSystem *bsys, struct BattleStruct *ctx, int attacker, int defender);
 BOOL CheckProtectedByAlly(struct BattleStruct *ctx, int ally, u16 *protectedMoveMessage);
 BOOL CheckProtectedBySelf(struct BattleStruct *ctx, int ally, u16 *protectedMoveMessage);
 
@@ -661,9 +661,9 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
             && (ctx->battlemon[ctx->attack_client].ability == ABILITY_PROTEAN || ctx->battlemon[ctx->attack_client].ability == ABILITY_LIBERO)
             // If the type is not typeless (Struggle)
             && (type != TYPE_TYPELESS)
-            && (!IsPureType(ctx, ctx->attack_client, type))
+            && (!IsPureType(bsys, ctx, ctx->attack_client, type))
             // Protean cannot activate if the client is Terastallized
-            && (!ctx->battlemon[ctx->attack_client].is_currently_terastallized)
+            && (!IS_TERASTALLIZED(ctx, ctx->attack_client))
             // Protean should activate only once per switch-in if gen 9 behavior
             && (ctx->battlemon[ctx->attack_client].ability_activated_flag == 0 || PROTEAN_GENERATION < 9)) {
             ctx->battlemon[ctx->attack_client].type1 = type;
@@ -1900,7 +1900,7 @@ BOOL BattleController_CheckBurnUpOrDoubleShock(struct BattleSystem *bsys UNUSED,
         break;
     }
 
-    if (!HasType(ctx, ctx->attack_client, typeToCheck)) {
+    if (!HasType(bsys, ctx, ctx->attack_client, typeToCheck)) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_BUT_IT_FAILED_SPREAD);
         ctx->next_server_seq_no = CONTROLLER_COMMAND_25;
@@ -2440,7 +2440,7 @@ BOOL BattleController_CheckSemiInvulnerability(struct BattleSystem *bsys UNUSED,
         moveCanHit = FALSE;
         switch (ctx->current_move_index) {
         case MOVE_TOXIC:
-            if (HasType(ctx, ctx->attack_client, TYPE_POISON)) {
+            if (HasType(bsys, ctx, ctx->attack_client, TYPE_POISON)) {
                 moveCanHit = TRUE;
             }
             break;
@@ -2486,13 +2486,13 @@ BOOL BattleController_CheckSemiInvulnerability(struct BattleSystem *bsys UNUSED,
     return FALSE;
 }
 
-BOOL CanHitThroughProtect(struct BattleStruct *ctx, int attacker, int defender)
+BOOL CanHitThroughProtect(struct BattleSystem *bsys, struct BattleStruct *ctx, int attacker, int defender)
 {
     // u32 moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
     u32 flag = ctx->moveTbl[ctx->current_move_index].flag;
     u32 ability = GetBattlerAbility(ctx, attacker);
     if (!(flag & FLAG_PROTECT)
-        || (ctx->current_move_index == MOVE_CURSE && HasType(ctx, attacker, TYPE_GHOST))
+        || (ctx->current_move_index == MOVE_CURSE && HasType(bsys, ctx, attacker, TYPE_GHOST))
         || ((ability == ABILITY_UNSEEN_FIST
                 || ability == ABILITY_PIERCING_DRILL)
             && IsContactBeingMade(ability, HeldItemHoldEffectGet(ctx, attacker), HeldItemHoldEffectGet(ctx, defender), ctx->current_move_index, ctx->moveTbl[ctx->current_move_index].flag))) {
@@ -2593,7 +2593,7 @@ BOOL CheckProtectedBySelf(struct BattleStruct *ctx, int defender, u16 *protected
 BOOL BattleController_CheckProtect(struct BattleSystem *bsys, struct BattleStruct *ctx, int defender)
 {
     if (ctx->oneTurnFlag[defender].protectFlag
-        && !CanHitThroughProtect(ctx, ctx->attack_client, defender)) {
+        && !CanHitThroughProtect(bsys, ctx, ctx->attack_client, defender)) {
         BOOL protectedByAlly = FALSE;
         BOOL protectedBySelf = FALSE;
         u16 protectedMoveMessage = 0;
@@ -2640,7 +2640,7 @@ BOOL BattleController_CheckPsychicTerrain(struct BattleSystem *bsys UNUSED, stru
     if (ctx->terrainOverlay.type == PSYCHIC_TERRAIN
         && !ctx->futureSightHitTurn
         && ctx->terrainOverlay.numberOfTurnsLeft > 0
-        && MoldBreakerIsClientGrounded(ctx, ctx->attack_client, defender)
+        && MoldBreakerIsClientGrounded(bsys, ctx, ctx->attack_client, defender)
         && ctx->clientPriority[ctx->attack_client]
         && CurrentMoveShouldNotBeExemptedFromPriorityBlocking(ctx, ctx->attack_client, defender)) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
@@ -2888,14 +2888,14 @@ BOOL BattleController_CheckTypeBasedMoveConditionImmunities1(struct BattleSystem
     }
 
     // Dark-type Prankster immunity
-    if ((priority > 0 && GetMoveSplit(ctx, ctx->current_move_index) == SPLIT_STATUS && GetBattlerAbility(ctx, ctx->attack_client) == ABILITY_PRANKSTER && HasType(ctx, defender, TYPE_DARK) && (ctx->attack_client & 1) != (defender & 1)) // used on an enemy)
-                                                                                                                                                                                                                                           // Ghost-type immunity to trapping moves
-                                                                                                                                                                                                                                           // TODO: handle Octolock
-        || (moveEffect == MOVE_EFFECT_PREVENT_ESCAPE && HasType(ctx, defender, TYPE_GHOST))
+    if ((priority > 0 && GetMoveSplit(ctx, ctx->current_move_index) == SPLIT_STATUS && GetBattlerAbility(ctx, ctx->attack_client) == ABILITY_PRANKSTER && HasType(bsys, ctx, defender, TYPE_DARK) && (ctx->attack_client & 1) != (defender & 1)) // used on an enemy)
+                                                                                                                                                                                                                                                 // Ghost-type immunity to trapping moves
+                                                                                                                                                                                                                                                 // TODO: handle Octolock
+        || (moveEffect == MOVE_EFFECT_PREVENT_ESCAPE && HasType(bsys, ctx, defender, TYPE_GHOST))
         // Grass-type powder immunity
-        || (IsPowderMove(ctx->current_move_index) && HasType(ctx, defender, TYPE_GRASS) && ctx->attack_client != defender)
+        || (IsPowderMove(ctx->current_move_index) && HasType(bsys, ctx, defender, TYPE_GRASS) && ctx->attack_client != defender)
         // Ice-type immunity to Sheer Cold
-        || (ctx->current_move_index == MOVE_SHEER_COLD && HasType(ctx, defender, TYPE_ICE))) {
+        || (ctx->current_move_index == MOVE_SHEER_COLD && HasType(bsys, ctx, defender, TYPE_ICE))) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_NO_EFFECT;
         ctx->battlerIdTemp = defender;
@@ -2984,13 +2984,13 @@ BOOL BattleController_CheckTypeBasedMoveConditionImmunities2(struct BattleSystem
     int moveEffect = ctx->moveTbl[ctx->current_move_index].effect;
 
     // Electric-type paralysis immunity
-    if ((moveEffect == MOVE_EFFECT_STATUS_PARALYZE && HasType(ctx, defender, TYPE_ELECTRIC))
+    if ((moveEffect == MOVE_EFFECT_STATUS_PARALYZE && HasType(bsys, ctx, defender, TYPE_ELECTRIC))
         // Fire-type burn immunity
-        || (moveEffect == MOVE_EFFECT_STATUS_BURN && HasType(ctx, defender, TYPE_FIRE))
+        || (moveEffect == MOVE_EFFECT_STATUS_BURN && HasType(bsys, ctx, defender, TYPE_FIRE))
         // Grass-type Leech Seed immunity
-        || (moveEffect == MOVE_EFFECT_STATUS_LEECH_SEED && HasType(ctx, defender, TYPE_GRASS))
+        || (moveEffect == MOVE_EFFECT_STATUS_LEECH_SEED && HasType(bsys, ctx, defender, TYPE_GRASS))
         // Poison / Steel-type poison / badly poison immunity
-        || ((moveEffect == MOVE_EFFECT_STATUS_POISON || moveEffect == MOVE_EFFECT_STATUS_BADLY_POISON) && (HasType(ctx, defender, TYPE_POISON) || HasType(ctx, defender, TYPE_STEEL)) && GetBattlerAbility(ctx, ctx->attack_client) != ABILITY_CORROSION)) {
+        || ((moveEffect == MOVE_EFFECT_STATUS_POISON || moveEffect == MOVE_EFFECT_STATUS_BADLY_POISON) && (HasType(bsys, ctx, defender, TYPE_POISON) || HasType(bsys, ctx, defender, TYPE_STEEL)) && GetBattlerAbility(ctx, ctx->attack_client) != ABILITY_CORROSION)) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_NO_EFFECT;
         ctx->battlerIdTemp = defender;
@@ -3063,7 +3063,7 @@ BOOL BattleController_CheckTerrainBlock(struct BattleSystem *bsys UNUSED, struct
     if (ctx->terrainOverlay.numberOfTurnsLeft > 0) {
         switch (ctx->terrainOverlay.type) {
         case ELECTRIC_TERRAIN:
-            if ((moveEffect == MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP_NEXT_TURN) && MoldBreakerIsClientGrounded(ctx, ctx->attack_client, defender)) {
+            if ((moveEffect == MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP_NEXT_TURN) && MoldBreakerIsClientGrounded(bsys, ctx, ctx->attack_client, defender)) {
                 ctx->battlerIdTemp = defender;
                 BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, moveEffect != MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP);
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_ELECTRIC_TERRAIN_PROTECTION);
@@ -3075,7 +3075,7 @@ BOOL BattleController_CheckTerrainBlock(struct BattleSystem *bsys UNUSED, struct
             break;
 
         case MISTY_TERRAIN:
-            if ((moveEffect == MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP_NEXT_TURN || moveEffect == MOVE_EFFECT_STATUS_PARALYZE || moveEffect == MOVE_EFFECT_STATUS_POISON || moveEffect == MOVE_EFFECT_STATUS_BADLY_POISON || moveEffect == MOVE_EFFECT_STATUS_BURN || moveEffect == MOVE_EFFECT_STATUS_CONFUSE) && MoldBreakerIsClientGrounded(ctx, ctx->attack_client, defender)) {
+            if ((moveEffect == MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP || moveEffect == MOVE_EFFECT_STATUS_SLEEP_NEXT_TURN || moveEffect == MOVE_EFFECT_STATUS_PARALYZE || moveEffect == MOVE_EFFECT_STATUS_POISON || moveEffect == MOVE_EFFECT_STATUS_BADLY_POISON || moveEffect == MOVE_EFFECT_STATUS_BURN || moveEffect == MOVE_EFFECT_STATUS_CONFUSE) && MoldBreakerIsClientGrounded(bsys, ctx, ctx->attack_client, defender)) {
                 ctx->battlerIdTemp = defender;
                 BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, moveEffect != MOVE_EFFECT_RECOVER_HEALTH_AND_SLEEP);
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_MISTY_TERRAIN_PROTECTION);
@@ -3184,7 +3184,7 @@ int BattleController_CheckAbilityFailures4_StatBasedFailures(struct BattleSystem
     BOOL hasClearBodyOrFullMetalBodyOrWhiteSmoke = MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_CLEAR_BODY) || MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_FULL_METAL_BODY) || MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_WHITE_SMOKE);
 
     // If the defender is Grass-type and either the defender or the defender's ally has Flower Veil as an ability
-    BOOL hasFlowerVeil = HasType(ctx, defender, TYPE_GRASS) && (MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_FLOWER_VEIL) || MoldBreakerAbilityCheck(ctx, ctx->attack_client, BATTLER_ALLY(defender), ABILITY_FLOWER_VEIL));
+    BOOL hasFlowerVeil = HasType(bsys, ctx, defender, TYPE_GRASS) && (MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_FLOWER_VEIL) || MoldBreakerAbilityCheck(ctx, ctx->attack_client, BATTLER_ALLY(defender), ABILITY_FLOWER_VEIL));
 
     int subscriptToRun = 0;
 
@@ -3459,7 +3459,7 @@ int BattleController_CheckAbilityFailures4_StatBasedFailures(struct BattleSystem
         }
         break;
     case MOVE_EFFECT_CURSE:
-        if (!HasType(ctx, ctx->attack_client, TYPE_GHOST)
+        if (!HasType(bsys, ctx, ctx->attack_client, TYPE_GHOST)
             && ctx->battlemon[defender].states[STAT_ATTACK] == 12
             && ctx->battlemon[defender].states[STAT_DEFENSE] == 12
             && ctx->battlemon[defender].states[STAT_SPEED] == 0) {
@@ -3510,7 +3510,7 @@ BOOL BattleController_CheckAbilityFailures4_StatusBasedFailures(struct BattleSys
     BOOL doesNotAffect = FALSE;
     BOOL ShieldsDownCanActivate = (MoldBreakerAbilityCheck(ctx, attacker, defender, ABILITY_SHIELDS_DOWN) || (ctx->battlemon[defender].species == SPECIES_MINIOR && ctx->battlemon[defender].form_no == 1));
 
-    BOOL hasFlowerVeil = HasType(ctx, defender, TYPE_GRASS) && (MoldBreakerAbilityCheck(ctx, attacker, defender, ABILITY_FLOWER_VEIL) || MoldBreakerAbilityCheck(ctx, attacker, BATTLER_ALLY(defender), ABILITY_FLOWER_VEIL));
+    BOOL hasFlowerVeil = HasType(bsys, ctx, defender, TYPE_GRASS) && (MoldBreakerAbilityCheck(ctx, attacker, defender, ABILITY_FLOWER_VEIL) || MoldBreakerAbilityCheck(ctx, attacker, BATTLER_ALLY(defender), ABILITY_FLOWER_VEIL));
     BOOL hasPastelVeil = MoldBreakerAbilityCheck(ctx, attacker, defender, ABILITY_PASTEL_VEIL) || MoldBreakerAbilityCheck(ctx, attacker, BATTLER_ALLY(defender), ABILITY_PASTEL_VEIL);
     BOOL hasSweetVeil = MoldBreakerAbilityCheck(ctx, attacker, defender, ABILITY_SWEET_VEIL) || MoldBreakerAbilityCheck(ctx, attacker, BATTLER_ALLY(defender), ABILITY_SWEET_VEIL);
 
@@ -3905,27 +3905,27 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_FLOWER_SHIELD: {
-        if (HasType(ctx, ctx->attack_client, TYPE_GRASS)) {
+        if (HasType(bsys, ctx, ctx->attack_client, TYPE_GRASS)) {
             flowerShieldSuccessCount++;
         } else {
             ctx->moveStatusFlagForSpreadMoves[ctx->attack_client] = MOVE_STATUS_FAILED;
         }
         if (IsValidMoveTarget(ctx, BATTLER_ALLY(ctx->attack_client))) {
-            if (HasType(ctx, BATTLER_ALLY(ctx->attack_client), TYPE_GRASS)) {
+            if (HasType(bsys, ctx, BATTLER_ALLY(ctx->attack_client), TYPE_GRASS)) {
                 flowerShieldSuccessCount++;
             } else {
                 ctx->moveStatusFlagForSpreadMoves[BATTLER_ALLY(ctx->attack_client)] = MOVE_STATUS_FAILED;
             }
         }
         if (IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client))) {
-            if (HasType(ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client), TYPE_GRASS)) {
+            if (HasType(bsys, ctx, BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client), TYPE_GRASS)) {
                 flowerShieldSuccessCount++;
             } else {
                 ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_LEFT(ctx->attack_client)] = MOVE_STATUS_FAILED;
             }
         }
         if (IsValidMoveTarget(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client))) {
-            if (HasType(ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client), TYPE_GRASS)) {
+            if (HasType(bsys, ctx, BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client), TYPE_GRASS)) {
                 flowerShieldSuccessCount++;
             } else {
                 ctx->moveStatusFlagForSpreadMoves[BATTLER_OPPONENT_SIDE_RIGHT(ctx->attack_client)] = MOVE_STATUS_FAILED;
@@ -3978,29 +3978,29 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_CONVERSION: {
-        if (HasType(ctx, ctx->defence_client, ctx->moveTbl[ctx->battlemon[ctx->defence_client].move[0]].type)
-            || ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+        if (HasType(bsys, ctx, ctx->defence_client, ctx->moveTbl[ctx->battlemon[ctx->defence_client].move[0]].type)
+            || IS_TERASTALLIZED(ctx, ctx->defence_client)) {
             butItFailedFlag = TRUE;
         }
         break;
     }
     case MOVE_CONVERSION_2: {
         // Type-chart interaction failures are handled in TryConversion2.
-        if (ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+        if (IS_TERASTALLIZED(ctx, ctx->attack_client)) {
             butItFailedFlag = TRUE;
         }
         break;
     }
     case MOVE_REFLECT_TYPE: {
-        if (IsPureType(ctx, ctx->defence_client, TYPE_TYPELESS)
-            || ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+        if (IsPureType(bsys, ctx, ctx->defence_client, TYPE_TYPELESS)
+            || IS_TERASTALLIZED(ctx, ctx->attack_client)) {
             butItFailedFlag = TRUE;
         }
         break;
     }
     case MOVE_SOAK: {
-        if (IsPureType(ctx, ctx->defence_client, TYPE_WATER)
-            || ctx->battlemon[ctx->defence_client].is_currently_terastallized
+        if (IsPureType(bsys, ctx, ctx->defence_client, TYPE_WATER)
+            || IS_TERASTALLIZED(ctx, ctx->defence_client)
             || ctx->battlemon[ctx->defence_client].ability == ABILITY_MULTITYPE
             || ctx->battlemon[ctx->defence_client].ability == ABILITY_RKS_SYSTEM) {
             butItFailedFlag = TRUE;
@@ -4008,8 +4008,8 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_MAGIC_POWDER: {
-        if (IsPureType(ctx, ctx->defence_client, TYPE_PSYCHIC)
-            || ctx->battlemon[ctx->defence_client].is_currently_terastallized
+        if (IsPureType(bsys, ctx, ctx->defence_client, TYPE_PSYCHIC)
+            || IS_TERASTALLIZED(ctx, ctx->defence_client)
             || ctx->battlemon[ctx->defence_client].ability == ABILITY_MULTITYPE
             || ctx->battlemon[ctx->defence_client].ability == ABILITY_RKS_SYSTEM) {
             butItFailedFlag = TRUE;
@@ -4017,15 +4017,15 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_TRICK_OR_TREAT: {
-        if (HasType(ctx, ctx->defence_client, TYPE_GHOST)
-            || ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+        if (HasType(bsys, ctx, ctx->defence_client, TYPE_GHOST)
+            || IS_TERASTALLIZED(ctx, ctx->defence_client)) {
             butItFailedFlag = TRUE;
         }
         break;
     }
     case MOVE_FORESTS_CURSE: {
-        if (HasType(ctx, ctx->defence_client, TYPE_GRASS)
-            || ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+        if (HasType(bsys, ctx, ctx->defence_client, TYPE_GRASS)
+            || IS_TERASTALLIZED(ctx, ctx->defence_client)) {
             butItFailedFlag = TRUE;
         }
         break;
@@ -4043,7 +4043,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_CURSE: {
-        if (HasType(ctx, ctx->attack_client, TYPE_GHOST)
+        if (HasType(bsys, ctx, ctx->attack_client, TYPE_GHOST)
             && ctx->battlemon[ctx->defence_client].condition2 & STATUS2_CURSE) {
             butItFailedFlag = TRUE;
         }
@@ -4505,11 +4505,11 @@ BOOL BattleController_CheckMoveFailures5(struct BattleSystem *bsys UNUSED, struc
     // Psycho Shift
     case MOVE_EFFECT_TRANSFER_STATUS: {
         // Electric-type paralysis immunity
-        if ((attackerCondition & STATUS_PARALYSIS && HasType(ctx, defender, TYPE_ELECTRIC))
+        if ((attackerCondition & STATUS_PARALYSIS && HasType(bsys, ctx, defender, TYPE_ELECTRIC))
             // Fire-type burn immunity
-            || (attackerCondition & STATUS_PARALYSIS && HasType(ctx, defender, TYPE_ELECTRIC))
+            || (attackerCondition & STATUS_PARALYSIS && HasType(bsys, ctx, defender, TYPE_ELECTRIC))
             // Poison / Steel-type poison / badly poison immunity
-            || (attackerCondition & STATUS_POISON_ALL && (HasType(ctx, defender, TYPE_POISON) || HasType(ctx, defender, TYPE_STEEL)))) {
+            || (attackerCondition & STATUS_POISON_ALL && (HasType(bsys, ctx, defender, TYPE_POISON) || HasType(bsys, ctx, defender, TYPE_STEEL)))) {
             ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_NO_EFFECT;
             BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, FALSE);
             ctx->battlerIdTemp = defender;
@@ -4900,10 +4900,10 @@ BOOL BattleController_CheckStrongWindsWeaken(struct BattleSystem *bw, struct Bat
 
     while (TypeEffectivenessTable[i][0] != BATTLER_NONE) {
         if (TypeEffectivenessTable[i][0] == move_type) {
-            if (HasType(sp, defender, TypeEffectivenessTable[i][1])) {
+            if (HasType(bw, sp, defender, TypeEffectivenessTable[i][1])) {
                 if ((GetWeather(bw, sp, sp->attack_client) & FIELD_CONDITION_STRONG_WINDS)
                     && (TypeEffectivenessTable[i][2] == 20)
-                    && (HasType(sp, defender, TYPE_FLYING))) {
+                    && (HasType(bw, sp, defender, TYPE_FLYING))) {
                     LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_WEAKEN_MOVES_STRONG_WINDS);
                     sp->next_server_seq_no = sp->server_seq_no;
                     sp->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;

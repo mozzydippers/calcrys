@@ -230,7 +230,7 @@ BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
                     flag = 1;
                 } else if ((MoldBreakerAbilityCheck(sp, sp->attack_client, sp->state_client, ABILITY_FLOWER_VEIL) == TRUE
                                || MoldBreakerAbilityCheck(sp, sp->attack_client, BATTLER_ALLY(sp->state_client), ABILITY_FLOWER_VEIL) == TRUE) // any enemy has flower veil (accounting for mold breaker, otherwise would just CheckSideAbility)
-                    && HasType(sp, sp->state_client, TYPE_GRASS)) // and target has grass type
+                    && HasType(bw, sp, sp->state_client, TYPE_GRASS)) // and target has grass type
                 {
                     if (sp->addeffect_type == SIDE_EFFECT_TYPE_ABILITY) {
                         sp->mp.id = BATTLE_MSG_FLOWER_VEIL_PETALS;
@@ -346,7 +346,7 @@ BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
                     sp->mp.tag = TAG_NICKNAME;
                     sp->mp.param[0] = CreateNicknameTag(sp, sp->state_client);
                     prevented = TRUE;
-                } else if (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_FLOWER_VEIL) != 0 && HasType(sp, sp->state_client, TYPE_GRASS)) // and target has grass type
+                } else if (CheckSideAbility(bw, sp, CHECK_ABILITY_ALL_HP, 0, ABILITY_FLOWER_VEIL) != 0 && HasType(bw, sp, sp->state_client, TYPE_GRASS)) // and target has grass type
                 {
                     sp->mp.id = BATTLE_MSG_FLOWER_VEIL_PETALS;
                     sp->mp.tag = TAG_NICKNAME;

@@ -496,7 +496,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
                     if (sp->terrainOverlay.type == GRASSY_TERRAIN
                         && sp->battlemon[battlerId].hp
                         && sp->battlemon[battlerId].hp < (s32)sp->battlemon[battlerId].maxhp
-                        && IsClientGrounded(sp, battlerId)) {
+                        && IsClientGrounded(bw, sp, battlerId)) {
                         sp->battlerIdTemp = battlerId;
                         sp->hp_calc_work = BattleDamageDivide(sp->battlemon[battlerId].maxhp, 16);
                         LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HANDLE_FIELD_EFFECTS_END_OF_TURN);
@@ -1196,7 +1196,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
 
             for (int i = 0; i < client_set_max; i++) {
                 if (sp->oneTurnFlag[i].roostFlag
-                    && !sp->battlemon[i].is_currently_terastallized
+                    && !IS_TERASTALLIZED(sp, i)
                     && !sp->moveConditionsFlags[i].soakFlag
                     && !sp->moveConditionsFlags[i].magicPowderFlag) {
                     int species = PokeOtherFormMonsNoGet(sp->battlemon[i].species, sp->battlemon[i].form_no);
@@ -1845,7 +1845,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
                     if (sp->battlemon[battlerId].species == SPECIES_MORPEKO
                         && sp->battlemon[battlerId].hp
                         && GetBattlerAbility(sp, battlerId) == ABILITY_HUNGER_SWITCH
-                        && !sp->battlemon[battlerId].is_currently_terastallized
+                        && !IS_TERASTALLIZED(sp, battlerId)
                         && !(sp->battlemon[battlerId].condition2 & STATUS2_TRANSFORM)) {
                         sp->battlemon[battlerId].form_no ^= 1;
                         BattleFormChange(battlerId, sp->battlemon[battlerId].form_no, bw, sp, FALSE);

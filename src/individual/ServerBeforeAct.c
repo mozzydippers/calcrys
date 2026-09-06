@@ -17,9 +17,11 @@
 #include "mega.h"
 #include "overlay.h"
 #include "pokemon.h"
+#include "tera.h"
 #include "z_moves.h"
 
 static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleStruct *ctx);
+static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
 /********************************************************************************************************************/
 /********************************************************************************************************************/
@@ -147,13 +149,17 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                                 newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
 
-                            if (AICheckCanDynamax(sp, client_no)) {
+                            if (AICheckCanDynamax(bw, sp, client_no)) {
                                 newBS.needDynamax[client_no] = TRUE;
                                 newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
-
+                            // TODO: put this in a better place?
                             if (sp->battlemon[client_no].is_currently_dynamaxed) {
                                 newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (AICheckCanTerastallize(bw, sp, client_no)) {
+                                newBS.needTerastallize[client_no] = TRUE;
                             }
                         }
                     } else {
@@ -180,13 +186,17 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                                 newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
 
-                            if (AICheckCanDynamax(sp, client_no)) {
+                            if (AICheckCanDynamax(bw, sp, client_no)) {
                                 newBS.needDynamax[client_no] = TRUE;
                                 newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
 
                             if (sp->battlemon[client_no].is_currently_dynamaxed) {
                                 newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                            }
+
+                            if (AICheckCanTerastallize(bw, sp, client_no)) {
+                                newBS.needTerastallize[client_no] = TRUE;
                             }
                         }
                     }
@@ -372,6 +382,10 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
             // debug_printf("In SBA_TERASTALLIZING\n");
 
             // 太晶化
+            if (Terastallize(bw, sp)) {
+                return;
+            }
+
             sp->sba_seq_no++;
             break;
         }
@@ -486,6 +500,60 @@ static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleSt
             return TRUE;
         }
         newBS.needMega[client_no] = MEGA_NO_NEED;
+    }
+    return FALSE;
+}
+
+// TODO: Does not handle limiting in doubles yet
+static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx)
+{
+    int client_no, i;
+    int client_set_max;
+
+    client_set_max = BattleWorkClientSetMaxGet(bsys);
+    for (i = 0; i < client_set_max; i++) {
+        client_no = ctx->turnOrder[i];
+        if (newBS.needTerastallize[client_no] && newBS.sideTerastallize[client_no] == FALSE && ctx->battlemon[client_no].hp) {
+            if (BattleTypeGet(bsys) & BATTLE_TYPE_MULTI) {
+                if (client_no == 0 || (client_no == 2 && ctx->battlemon[client_no].id_no == ctx->battlemon[0].id_no)) {
+                    newBS.sideTerastallize[client_no] = TRUE;
+                }
+            } else if (client_no == 0 || client_no == 2) {
+                newBS.sideTerastallize[client_no] = TRUE;
+            }
+
+            ctx->isTerastallizedArray[client_no][ctx->sel_mons_no[client_no]] = TRUE;
+            newBS.needTerastallize[client_no] = FALSE;
+
+            // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9458017
+            ctx->battlemon[client_no].condition2 &= ~STATUS2_DESTINY_BOND;
+
+            ctx->battlerIdTemp = client_no;
+            ctx->attack_client = client_no;
+
+            if (ctx->battlemon[client_no].species == SPECIES_OGERPON) {
+                GetOgerponTerastallizedFormPic(GetTeraType(bsys, ctx, client_no));
+                // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9838633
+                BOOL abilityRefresh = TRUE;
+                if (AbilityFailSkillSwap(ctx->battlemon[client_no].ability)) {
+                    abilityRefresh = FALSE;
+                }
+                ctx->battlemon[client_no].form_no = GetTerastallizedState(ctx->battlemon[client_no].species, ctx->battlemon[client_no].form_no);
+                BattleFormChange(client_no, ctx->battlemon[client_no].form_no, bsys, ctx, abilityRefresh);
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERASTALLIZE);
+
+            } else if (ctx->battlemon[client_no].species == SPECIES_TERAPAGOS) {
+                ctx->battlemon[client_no].form_no = GetTerastallizedState(ctx->battlemon[client_no].species, ctx->battlemon[client_no].form_no);
+                BattleFormChange(client_no, ctx->battlemon[client_no].form_no, bsys, ctx, TRUE);
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERASTALLIZE);
+            } else {
+                LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERASTALLIZE);
+            }
+
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return TRUE;
+        }
     }
     return FALSE;
 }

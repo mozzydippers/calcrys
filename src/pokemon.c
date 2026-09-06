@@ -11,6 +11,7 @@
 #include "constants/hold_item_effects.h"
 #include "constants/item.h"
 #include "constants/moves.h"
+#include "constants/pokemon.h"
 #include "constants/sndseq.h"
 #include "constants/species.h"
 #include "constants/weather_numbers.h"
@@ -484,6 +485,52 @@ struct BoxMonSubstructs {
     PokemonDataBlockD *blockD;
 };
 
+const u8 sTeraTypeTypeMapping[] = {
+    [TERA_TYPE_UNSET] = TYPE_NONE,
+    [TERA_TYPE_NORMAL] = TYPE_NORMAL,
+    [TERA_TYPE_FIGHTING] = TYPE_FIGHTING,
+    [TERA_TYPE_FLYING] = TYPE_FLYING,
+    [TERA_TYPE_POISON] = TYPE_POISON,
+    [TERA_TYPE_GROUND] = TYPE_GROUND,
+    [TERA_TYPE_ROCK] = TYPE_ROCK,
+    [TERA_TYPE_BUG] = TYPE_BUG,
+    [TERA_TYPE_GHOST] = TYPE_GHOST,
+    [TERA_TYPE_STEEL] = TYPE_STEEL,
+    [TERA_TYPE_FIRE] = TYPE_FIRE,
+    [TERA_TYPE_WATER] = TYPE_WATER,
+    [TERA_TYPE_GRASS] = TYPE_GRASS,
+    [TERA_TYPE_ELECTRIC] = TYPE_ELECTRIC,
+    [TERA_TYPE_PSYCHIC] = TYPE_PSYCHIC,
+    [TERA_TYPE_ICE] = TYPE_ICE,
+    [TERA_TYPE_DRAGON] = TYPE_DRAGON,
+    [TERA_TYPE_DARK] = TYPE_DARK,
+    [TERA_TYPE_FAIRY] = TYPE_FAIRY,
+    [TERA_TYPE_STELLAR] = TYPE_STELLAR,
+};
+
+const u8 sTypeTeraTypeMapping[] = {
+    [TYPE_NONE] = TERA_TYPE_UNSET,
+    [TYPE_NORMAL] = TERA_TYPE_NORMAL,
+    [TYPE_FIGHTING] = TERA_TYPE_FIGHTING,
+    [TYPE_FLYING] = TERA_TYPE_FLYING,
+    [TYPE_POISON] = TERA_TYPE_POISON,
+    [TYPE_GROUND] = TERA_TYPE_GROUND,
+    [TYPE_ROCK] = TERA_TYPE_ROCK,
+    [TYPE_BUG] = TERA_TYPE_BUG,
+    [TYPE_GHOST] = TERA_TYPE_GHOST,
+    [TYPE_STEEL] = TERA_TYPE_STEEL,
+    [TYPE_FIRE] = TERA_TYPE_FIRE,
+    [TYPE_WATER] = TERA_TYPE_WATER,
+    [TYPE_GRASS] = TERA_TYPE_GRASS,
+    [TYPE_ELECTRIC] = TERA_TYPE_ELECTRIC,
+    [TYPE_PSYCHIC] = TERA_TYPE_PSYCHIC,
+    [TYPE_ICE] = TERA_TYPE_ICE,
+    [TYPE_DRAGON] = TERA_TYPE_DRAGON,
+    [TYPE_DARK] = TERA_TYPE_DARK,
+    [TYPE_FAIRY] = TERA_TYPE_FAIRY,
+    [TYPE_STELLAR] = TERA_TYPE_STELLAR,
+};
+
 /**
  *  @brief edited fields in SetBoxMonData.  can add new fields here and edit existing ones
  *
@@ -497,7 +544,7 @@ BOOL SetBoxMonData_EditedCases(struct BoxMonSubstructs *blocks, u32 field, void 
     u32 ret = FALSE;
     PokemonDataBlockA *blockA = blocks->blockA;
     PokemonDataBlockB *blockB UNUSED = blocks->blockB;
-    PokemonDataBlockC *blockC UNUSED = blocks->blockC;
+    PokemonDataBlockC *blockC = blocks->blockC;
     PokemonDataBlockD *blockD = blocks->blockD;
     switch (field) {
     case MON_DATA_ABILITY: {
@@ -528,6 +575,42 @@ BOOL SetBoxMonData_EditedCases(struct BoxMonSubstructs *blocks, u32 field, void 
         ret = TRUE;
         break;
     }
+    case MON_DATA_DYNAMAX_LEVEL: {
+        u32 dynamaxLevel = *((u32 *)data);
+        blockA->dynamaxLevel = dynamaxLevel; // 0-10
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("[SetBoxMonData] dynamaxLevel to set %d\n", blockA->dynamaxLevel);
+#endif
+        ret = TRUE;
+        break;
+    }
+    case MON_DATA_CAN_GIGANTAMAX: {
+        u32 canGigantamax = *((u32 *)data);
+        blockA->canGigantamax = canGigantamax & TRUE;
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("[SetBoxMonData] canGigantamax to set %d\n", blockA->canGigantamax);
+#endif
+        ret = TRUE;
+        break;
+    }
+    case MON_DATA_TERA_TYPE_ORIGINAL: {
+        u32 teraTypeOriginal = *((u32 *)data);
+        blockA->teraTypeOriginal = sTypeTeraTypeMapping[teraTypeOriginal];
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("[SetBoxMonData] teraTypeOriginal to set %d\n", blockA->teraTypeOriginal);
+#endif
+        ret = TRUE;
+        break;
+    }
+    case MON_DATA_TERA_TYPE_OVERRIDE: {
+        u8 teraTypeOverride = *((u8 *)data);
+        blockC->teraTypeOverride = sTypeTeraTypeMapping[teraTypeOverride];
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("[SetBoxMonData] teraTypeOverride to set %d\n", blockC->teraTypeOverride);
+#endif
+        ret = TRUE;
+        break;
+    }
     }
     return ret;
 }
@@ -547,7 +630,7 @@ u32 GetBoxMonData_EditedCases(struct BoxMonSubstructs *blocks, u32 field, void *
 
     PokemonDataBlockA *blockA = blocks->blockA;
     PokemonDataBlockB *blockB UNUSED = blocks->blockB;
-    PokemonDataBlockC *blockC UNUSED = blocks->blockC;
+    PokemonDataBlockC *blockC = blocks->blockC;
     PokemonDataBlockD *blockD = blocks->blockD;
 
     *retBool = FALSE;
@@ -575,13 +658,46 @@ u32 GetBoxMonData_EditedCases(struct BoxMonSubstructs *blocks, u32 field, void *
         debug_printf("Met level returned: %d\n", ret);
 #endif
         break;
-    case MON_DATA_LEVEL:
+    case MON_DATA_LEVEL: {
         ret = CalcLevelBySpeciesAndExp(blockA->species, blockA->exp);
         *retBool = TRUE;
 #ifdef DEBUG_BOXMONDATA_EDITED_CASES
         debug_printf("Current level returned: %d\n", ret);
 #endif
         break;
+    }
+    case MON_DATA_DYNAMAX_LEVEL: {
+        ret = blockA->dynamaxLevel;
+        *retBool = TRUE;
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("dynamaxLevel returned: %d\n", ret);
+#endif
+        break;
+    }
+    case MON_DATA_CAN_GIGANTAMAX: {
+        ret = blockA->canGigantamax;
+        *retBool = TRUE;
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("canGigantamax returned: %d\n", ret);
+#endif
+        break;
+    }
+    case MON_DATA_TERA_TYPE_ORIGINAL: {
+        ret = sTeraTypeTypeMapping[blockA->teraTypeOriginal];
+        *retBool = TRUE;
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("teraTypeOriginal returned: %d, %d\n", ret, blockA->teraTypeOriginal);
+#endif
+        break;
+    }
+    case MON_DATA_TERA_TYPE_OVERRIDE: {
+        ret = sTeraTypeTypeMapping[blockC->teraTypeOverride];
+        *retBool = TRUE;
+#ifdef DEBUG_BOXMONDATA_EDITED_CASES
+        debug_printf("teraTypeOverride returned: %d, %d\n", ret, blockC->teraTypeOverride);
+#endif
+        break;
+    }
     }
 #ifdef DEBUG_BOXMONDATA_EDITED_CASES
     // debug_printf("Modified GetBoxMonData called...\n    blocks %08X,\n    field %d,\n    data %08X,\n    retBool %08X\n", blocks, field, data, retBool);

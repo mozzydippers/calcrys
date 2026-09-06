@@ -1918,10 +1918,10 @@ int LONG_CALL Activate_Berserk_AngerShell_ColorChange(void *bsys UNUSED, struct 
             if ((ctx->battlemon[client_no].hp)
                 && (ctx->current_move_index != MOVE_STRUGGLE)
                 && (movetype != TYPE_TYPELESS) // Revelation Dance
-                && (!ctx->battlemon[client_no].is_currently_terastallized)
+                && (!IS_TERASTALLIZED(ctx, client_no))
                 && ((ctx->oneSelfFlag[client_no].physical_damage) || (ctx->oneSelfFlag[client_no].special_damage))
                 && (ctx->moveTbl[ctx->current_move_index].power)
-                && (!HasType(ctx, client_no, movetype))
+                && (!HasType(bsys, ctx, client_no, movetype))
                 && (ctx->battlemon[client_no].condition2 & STATUS2_SUBSTITUTE) == 0) // don't activate until the last hit of a multi-hit move
             {
                 ChangeToPureType(ctx, client_no, movetype);

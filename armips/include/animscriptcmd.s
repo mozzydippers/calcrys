@@ -802,9 +802,29 @@ ANIM_TARGET_DEFENDER_SIDE equ 20
 .equ STAT_CHANGE_MODE_ATTACKER ,0
 .equ STAT_CHANGE_MODE_DEFENDER ,1
 
+.macro Delay,time
+    .word 0x0, time
+.endmacro
+
+.macro WaitForAnimTasks
+    .word 0x1
+.endmacro
 
 .macro Func_Submission, numRevs, framesPerRev, battler
     callfunction 10, 3, numRevs, framesPerRev, battler, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
+.endmacro
+
+// BATTLE_ANIM_MON_SPRITE_F(N) (1 << (N))
+
+// Fades one or more Pokemon sprites to the specified alpha
+// targets: The targets to fade (any combination of BATTLE_ANIM_MON_SPRITE_F(N) where N is 0-3)
+// startAlpha: The starting alpha (0-16)
+// endAlpha: The ending alpha (0-16)
+// bgStartAlpha: The starting alpha of the background (0-16)
+// bgEndAlpha: The ending alpha of the background (0-16)
+// frames: The number of frames to fade over
+.macro Func_AlphaFadePokemonSprite, targets, startAlpha, endAlpha, bgStartAlpha, bgEndAlpha, frames
+    callfunction 38, 6, targets, startAlpha, endAlpha, bgStartAlpha, bgEndAlpha, frames, "NaN", "NaN", "NaN", "NaN"
 .endmacro
 
 .macro Func_HideBattler, target, hide
@@ -819,6 +839,27 @@ ANIM_TARGET_DEFENDER_SIDE equ 20
     callfunction 57, 4, frames, dx, dy, target, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
 .endmacro
 
+// Adds a Pokemon sprite to the pokemon sprite manager
+// battlerRole: The role of the battler whose sprite to load. See BATTLER_ROLE_*
+// trackBattler: Whether to track the battler's position. (TRUE/FALSE)
+// spriteID: The ID to assign to the sprite. See BATTLE_ANIM_MON_SPRITE_*
+// resID: The resource ID to use, must match the ID used in LoadPokemonSpriteDummyResources
+// Note: This command will fail if LoadPokemonSpriteDummyResources was not called first with the same resID.
+.macro AddPokemonSprite, battlerRole, trackBattler, spriteID, resID
+    .word 58, battlerRole, trackBattler, spriteID, resID
+.endmacro
+
+// Frees the main Pokemon sprite manager and all associated resources
+.macro FreePokemonSpriteManager
+    .word 59
+.endmacro
+
+// Removes a Pokemon sprite from the pokemon sprite manager
+// spriteID: The ID of the sprite to remove. See BATTLE_ANIM_MON_SPRITE_*
+.macro RemovePokemonSprite, spriteID
+    .word 60, spriteID
+.endmacro
+
 .macro Func_RevolveBattler, target, revs, framesPerRev
     callfunction 60, 3, target, revs, framesPerRev, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
 .endmacro
@@ -829,6 +870,24 @@ ANIM_TARGET_DEFENDER_SIDE equ 20
 
 .macro Func_MoveBattlerToDefaultPos, target
     callfunction 62, 1, target, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
+.endmacro
+
+
+// Fades a Pokemon sprite to the specified color and alpha
+// target: The sprite to fade (See BATTLE_ANIM_MON_SPRITE_*)
+// stepFrames: The number of frames between each fade step
+// stepSize: The amount to change the alpha by each step
+// startFrac: The starting fraction/alpha (0-16)
+// endFrac: The ending fraction/alpha (0-16)
+// color: The color to fade to (16-bit BGR555)
+.macro Func_FadePokemonSprite, target, stepFrames, stepSize, startFrac, endFrac, color
+    callfunction 63, 6, target, stepFrames, stepSize, startFrac, endFrac, color, "NaN", "NaN", "NaN", "NaN"
+.endmacro
+
+// Sets whether the background is displayed in grayscale
+// grayscale: TRUE to set the background to grayscale, FALSE to set it to normal color
+.macro Func_SetBgGrayscale, grayscale
+    callfunction 74, 1, grayscale, "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN"
 .endmacro
 
 .macro Func_MoveBattlerOnOrOffScreen, target, mode, frames, a3, a4

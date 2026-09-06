@@ -200,6 +200,30 @@ enum {
     PERSONAL_TM_ARRAY_4,
 };
 
+typedef enum TeraTypeInternal {
+    TERA_TYPE_UNSET = 0, // not initialized
+    TERA_TYPE_NO_OVERRIDE = 0,
+    TERA_TYPE_NORMAL,
+    TERA_TYPE_FIGHTING,
+    TERA_TYPE_FLYING,
+    TERA_TYPE_POISON,
+    TERA_TYPE_GROUND,
+    TERA_TYPE_ROCK,
+    TERA_TYPE_BUG,
+    TERA_TYPE_GHOST,
+    TERA_TYPE_STEEL,
+    TERA_TYPE_FIRE,
+    TERA_TYPE_WATER,
+    TERA_TYPE_GRASS,
+    TERA_TYPE_ELECTRIC,
+    TERA_TYPE_PSYCHIC,
+    TERA_TYPE_ICE,
+    TERA_TYPE_DRAGON,
+    TERA_TYPE_DARK,
+    TERA_TYPE_FAIRY,
+    TERA_TYPE_STELLAR,
+} TeraTypeInternal;
+
 #define MAX_IVS (31)
 
 #define RND_NO_SET (0)
@@ -229,7 +253,9 @@ typedef struct {
     /* 0x02 */ u16 heldItem;
     /* 0x04 */ u32 otID; // low 16: visible; high 16: secret
     /* 0x08 */ u32 exp : 21; // low 21 are all that is used!
-    u32 unused : 10;
+    u32 dynamaxLevel : 4;
+    u32 canGigantamax : 1;
+    u32 teraTypeOriginal : 5;
     u32 abilityMSB : 1; // msb of previous experience field is the exp
     /* 0x0C */ u8 friendship;
     /* 0x0D */ u8 ability; // taking a bit from exp
@@ -272,7 +298,8 @@ typedef struct {
 
 typedef struct {
     /* 0x00 */ u16 nickname[11];
-    /* 0x16 */ u8 Unused;
+    /* 0x16 */ u8 Unused : 3;
+    u8 teraTypeOverride : 5;
     /* 0x17 */ u8 originGame;
     // TODO: Finish SinnohRibbonSet2
     /* 0x18 */ u64 sinnohRibbons2; // cool, ...
@@ -553,8 +580,21 @@ enum {
     MON_DATA_SHINY_LEAF_D,
     MON_DATA_SHINY_LEAF_E,
     MON_DATA_SHINY_LEAF_CROWN,
-    MON_DATA_MOOD,
-    MON_DATA_END
+    MON_DATA_MOOD = 187,
+    // new entries below
+    MON_DATA_NATURE,
+    MON_DATA_ENCRYPTION_CONSTANT,
+    MON_DATA_ALTERNATE_FORM,
+    MON_DATA_DYNAMAX_LEVEL,
+    MON_DATA_CAN_GIGANTAMAX,
+    MON_DATA_TECHNICAL_RECORD_FLAGS,
+    MON_DATA_TERA_TYPE_ORIGINAL,
+    MON_DATA_TERA_TYPE_OVERRIDE,
+    MON_DATA_HEIGHT,
+    MON_DATA_WEIGHT,
+    MON_DATA_SCALE,
+    // new entries end
+    MON_DATA_END // originally 188
 };
 
 struct OVERWORLD_TAG {

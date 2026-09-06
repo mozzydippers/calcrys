@@ -114,7 +114,7 @@ int CalcBaseDamage(void *bw, struct BattleStruct *sp, int moveno, u32 side_cond 
         client.helpingHandFlag = sp->oneTurnFlag[i].helping_hand_flag;
         client.sheerForceFlag = sp->battlemon[i].sheer_force_flag;
         client.effectOfMoves = sp->battlemon[i].effect_of_moves;
-        client.isGrounded = IsClientGrounded(sp, i);
+        client.isGrounded = IsClientGrounded(bw, sp, i);
         client.item = GetBattleMonItem(sp, i);
         client.item_held_effect = BattleItemDataGet(sp, client.item, 1);
         client.item_power = BattleItemDataGet(sp, client.item, 2);
@@ -456,7 +456,7 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 #endif // DEBUG_DAMAGE_ROLLS
             damage = QMul_RoundDown(damage, UQ412__1_5);
         }
-    } else if (((sp->server_status_flag & SERVER_STATUS_FLAG_TYPE_FLAT) == 0) && HasType(sp, attacker, type)) {
+    } else if (((sp->server_status_flag & SERVER_STATUS_FLAG_TYPE_FLAT) == 0) && HasType(bw, sp, attacker, type)) {
         if (attackerAbility == ABILITY_ADAPTABILITY) {
 #ifdef DEBUG_DAMAGE_ROLLS
             for (int u = 0; u < 16; u++) {
@@ -927,10 +927,10 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
     // https://x.com/Sibuna_Switch/status/1610483831769018368
     // TODO
     if (FALSE) {
-        if (!sp->battlemon[attacker].is_currently_terastallized) {
+        if (!IS_TERASTALLIZED(sp, attacker)) {
             damage = QMul_RoundUp(damage, UQ412__0_2);
         } else {
-            if (type != sp->battlemon[attacker].tera_type) {
+            if (type != IS_TERASTALLIZED(sp, attacker)) {
                 damage = QMul_RoundUp(damage, UQ412__0_35);
             } else {
                 damage = QMul_RoundUp(damage, UQ412__0_75);

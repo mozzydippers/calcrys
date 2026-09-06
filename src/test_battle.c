@@ -808,8 +808,7 @@ void LONG_CALL TestBattle_autoSelectPlayerMoves(struct BattleSystem *bsys, struc
                 mon = &sCurrentScenario->playerParty[partySlot];
             }
 
-            ctx->battlemon[battlerId].tera_type = mon->teraType;
-            ctx->battlemon[battlerId].is_currently_terastallized = mon->isTerastallized;
+            ctx->isTerastallizedArray[battlerId][ctx->sel_mons_no[battlerId]] = mon->isTerastallized;
         }
     }
 

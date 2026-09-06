@@ -2269,14 +2269,14 @@ BOOL btl_scr_cmd_E7_ifmovepowergreaterthanzero(void *bw UNUSED, struct BattleStr
  *  @param client_no resolved battler
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
+BOOL LONG_CALL IsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 client_no)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, client_no);
 
     if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE
             && sp->battlemon[client_no].ability != ABILITY_EELEVATE
             && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
-            && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, client_no, TYPE_FLYING))
+            && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(bw, sp, client_no, TYPE_FLYING))
         || (holdeffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED // holding Iron Ball
             || (sp->battlemon[client_no].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) // is Ingrained
             || (sp->field_condition & FIELD_CONDITION_GRAVITY))) {
@@ -2296,7 +2296,7 @@ BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
  *  @param defender resolved battler defender
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleStruct *sp, u32 attacker, u32 defender)
+BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 attacker, u32 defender)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, defender);
 
@@ -2304,7 +2304,7 @@ BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleStruct *sp, u32 attacker
     BOOL hasEelevate = attacker == defender ? GetBattlerAbility(sp, defender) == ABILITY_EELEVATE : MoldBreakerAbilityCheck(sp, attacker, defender, ABILITY_EELEVATE);
 
     if ((!hasLevitate && !hasEelevate && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
-            && (sp->battlemon[defender].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, defender, TYPE_FLYING))
+            && (sp->battlemon[defender].moveeffect.magnetRiseTurns) == 0 && !HasType(bw, sp, defender, TYPE_FLYING))
         || (holdeffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED // holding Iron Ball
             || (sp->battlemon[defender].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) // is Ingrained
             || (sp->field_condition & FIELD_CONDITION_GRAVITY))) {
@@ -2331,7 +2331,7 @@ BOOL btl_scr_cmd_E8_ifgrounded(void *bw UNUSED, struct BattleStruct *sp)
     client_no = GrabClientFromBattleScriptParam(bw, sp, client_no);
     u32 address = read_battle_script_param(sp);
 
-    if (IsClientGrounded(sp, client_no)) {
+    if (IsClientGrounded(bw, sp, client_no)) {
         IncrementBattleScriptPtr(sp, address);
     }
 
@@ -3407,7 +3407,7 @@ BOOL BtlCmd_EndOfTurnWeatherEffect(struct BattleSystem *bsys, struct BattleStruc
     u32 weather = GetWeather(bsys, ctx, 0xFF);
 
     if (weather & FIELD_CONDITION_SANDSTORM_ALL) {
-        if (!HasType(ctx, battlerId, TYPE_ROCK) && !HasType(ctx, battlerId, TYPE_STEEL) && !HasType(ctx, battlerId, TYPE_GROUND)
+        if (!HasType(bsys, ctx, battlerId, TYPE_ROCK) && !HasType(bsys, ctx, battlerId, TYPE_STEEL) && !HasType(bsys, ctx, battlerId, TYPE_GROUND)
             && ctx->battlemon[battlerId].hp
             && ability != ABILITY_SAND_VEIL && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE
             && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY && !(ctx->battlemon[battlerId].effect_of_moves & 0x40080)) {
@@ -3431,7 +3431,7 @@ BOOL BtlCmd_EndOfTurnWeatherEffect(struct BattleSystem *bsys, struct BattleStruc
                 if (ctx->battlemon[battlerId].hp < (s32)ctx->battlemon[battlerId].maxhp) {
                     ctx->hp_calc_work = BattleDamageDivide(ctx->battlemon[battlerId].maxhp, 16);
                 }
-            } else if (!HasType(ctx, battlerId, TYPE_ICE) && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY) {
+            } else if (!HasType(bsys, ctx, battlerId, TYPE_ICE) && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY) {
                 ctx->waza_work = MOVE_HAIL;
                 ctx->hp_calc_work = BattleDamageDivide(ctx->battlemon[battlerId].maxhp * -1, 16);
             }
@@ -3503,7 +3503,7 @@ BOOL BtlCmd_TryFutureSight(struct BattleSystem *bsys, struct BattleStruct *ctx)
             if (ctx->futureConditionQueue[i].conditionType.futureConditionType == FUTURE_CONDITION_NONE) {
                 ctx->futureConditionQueue[i].conditionType.futureConditionType = FUTURE_CONDITION_FUTURE_SIGHT_OR_DOOM_DESIRE;
                 ctx->futureConditionQueue[i].defenderSlot = ctx->defence_client;
-                ctx->futureConditionQueue[i].futureSightSTAB = HasType(ctx, ctx->attack_client, ctx->move_type) ? 1 : 0;
+                ctx->futureConditionQueue[i].futureSightSTAB = HasType(bsys, ctx, ctx->attack_client, ctx->move_type) ? 1 : 0;
                 break;
             }
         }
@@ -4317,7 +4317,7 @@ BOOL btl_scr_cmd_10C_gotoifterastallized(void *bsys UNUSED, struct BattleStruct 
     s32 battlerID = read_battle_script_param(ctx);
     u32 address = read_battle_script_param(ctx);
 
-    if (ctx->battlemon[battlerID].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, battlerID)) {
         IncrementBattleScriptPtr(ctx, address);
     }
 
@@ -4330,7 +4330,7 @@ BOOL btl_scr_cmd_10D_HandleRoost(void *bsys UNUSED, struct BattleStruct *ctx)
 
     u32 battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
 
-    if ((ctx->battlemon[battlerId].is_currently_terastallized)
+    if (IS_TERASTALLIZED(ctx, battlerId)
         || (ctx->battlemon[battlerId].type1 == ctx->battlemon[battlerId].type2 && ctx->battlemon[battlerId].type1 != TYPE_FLYING)) {
         return FALSE;
     }
@@ -4353,7 +4353,7 @@ BOOL btl_scr_cmd_10E_HandleSoak(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4367,7 +4367,7 @@ BOOL btl_scr_cmd_10F_HandleMagicPowder(void *bsys UNUSED, struct BattleStruct *c
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4381,7 +4381,7 @@ BOOL btl_scr_cmd_110_HandleForestsCurse(void *bsys UNUSED, struct BattleStruct *
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4395,7 +4395,7 @@ BOOL btl_scr_cmd_111_HandleTrickOrTreat(void *bsys UNUSED, struct BattleStruct *
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4409,7 +4409,7 @@ BOOL btl_scr_cmd_112_HandleBurnUp(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4423,7 +4423,7 @@ BOOL btl_scr_cmd_113_HandleDoubleShock(void *bsys UNUSED, struct BattleStruct *c
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4701,7 +4701,7 @@ BOOL BtlCmd_CheckToxicSpikes(struct BattleSystem *bsys, struct BattleStruct *ctx
         ctx->calc_work = ctx->scw[fieldSide].toxicSpikesLayers;
         ctx->addeffect_type = SIDE_EFFECT_TYPE_TOXIC_SPIKES;
         ctx->state_client = battlerID;
-        if (HasType(ctx, battlerID, TYPE_POISON)) {
+        if (HasType(bsys, ctx, battlerID, TYPE_POISON)) {
             ctx->side_condition[fieldSide] &= ~SIDE_EFFECT_TYPE_TOXIC_SPIKES;
             ctx->scw[fieldSide].toxicSpikesLayers = 0;
             ctx->calc_work = 0;
@@ -5281,6 +5281,9 @@ BOOL BtlCmd_TryFaintMon(struct BattleSystem *bsys, struct BattleStruct *ctx)
         ctx->server_status_flag |= MaskOfFlagNo(battlerId) << BATTLE_STATUS_FAINTED_SHIFT;
         ctx->total_hinshi[battlerId]++;
         UpdateFriendshipFainted(bsys, ctx, battlerId);
+        // TODO: is this the best location to handle it?
+        ctx->isDynamaxedArray[battlerId][ctx->sel_mons_no[battlerId]] = FALSE;
+        ctx->isTerastallizedArray[battlerId][ctx->sel_mons_no[battlerId]] = FALSE;
     }
 
     return FALSE;

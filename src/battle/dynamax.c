@@ -14,25 +14,25 @@ BOOL LONG_CALL IsInPowerSpot()
     return TRUE;
 }
 
-BOOL LONG_CALL AICheckCanDynamax(struct BattleStruct *battle, int client)
+BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct *ctx, int client)
 {
 #ifdef DEBUG_DYNAMAX_LOGIC
     debug_printf("In AICheckCanDynamax\n");
 #endif
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int command = battle->playerActions[client][3];
+    int command = ctx->playerActions[client][3];
 
-    int moveID = GetBattlerSelectedMove(battle, client);
+    int moveID = GetBattlerSelectedMove(bsys, client);
 
-    struct BattleMove move = battle->moveTbl[moveID];
+    struct BattleMove move = ctx->moveTbl[moveID];
 
     if (newBS.SideDynamax[client]) {
         return FALSE;
     }
 
-    if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
+    if (ctx->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
         return FALSE;
     }
 
@@ -43,6 +43,16 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleStruct *battle, int client)
         }
 
         BOOL canDynamax = FALSE;
+
+        if (IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, client)) {
+            struct PartyPokemon *illusionMon = Battle_GetClientPartyMon(bsys, client, gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(ctx, client)]);
+
+            u32 illusionSpecies = GetMonData(illusionMon, MON_DATA_SPECIES, NULL);
+
+            if (illusionSpecies == SPECIES_ZACIAN || illusionSpecies == SPECIES_ZAMAZENTA || illusionSpecies == SPECIES_ETERNATUS) {
+                return FALSE;
+            }
+        }
 
         if (IsInPowerSpot() && species != SPECIES_ZACIAN && species != SPECIES_ZAMAZENTA && species != SPECIES_ETERNATUS) {
             canDynamax = TRUE;
@@ -56,21 +66,21 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleStruct *battle, int client)
     return FALSE;
 }
 
-int LONG_CALL GetMaxMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client)
+int LONG_CALL GetMaxMoveToBeUsed(struct BattleStruct *ctx, int baseMove, int client)
 {
 #ifdef DEBUG_DYNAMAX_LOGIC
     debug_printf("In GetMaxMoveToBeUsed\n");
 #endif
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int form = battle->battlemon[client].form_no;
+    int form = ctx->battlemon[client].form_no;
 
     BOOL hasGigantamaxFactor = FALSE;
 
-    u32 type = GetAdjustedMoveType(battle, client, baseMove);
+    u32 type = GetAdjustedMoveType(ctx, client, baseMove);
 
-    if (battle->moveTbl[baseMove].split == SPLIT_STATUS) {
+    if (ctx->moveTbl[baseMove].split == SPLIT_STATUS) {
         return MOVE_MAX_GUARD;
     }
 

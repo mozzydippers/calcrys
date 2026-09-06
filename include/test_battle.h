@@ -92,7 +92,9 @@ struct PACKED TestBattleScenario {
 
     u8 expectationPassCount;
     u8 knownFailing : 1;
-    u8 markAsFail : 7;
+    u8 opponentDynamax : 1;
+    u8 opponentTerastallize : 1;
+    u8 markAsFail : 5;
 };
 
 #define FULL_HP (0xFFFF)

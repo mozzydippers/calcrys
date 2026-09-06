@@ -1178,8 +1178,6 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     sp->battlemon[client].air_balloon_flag = 0;
     sp->battlemon[client].potentially_affected_by_psychic_terrain_move_used_flag = 0;
     sp->battlemon[client].ability_activated_flag = 0;
-    sp->battlemon[client].tera_type = 0;
-    sp->battlemon[client].is_currently_terastallized = 0;
     sp->battlemon[client].is_currently_dynamaxed = 0;
     sp->battlemon[client].has_dynamaxed_before = 0;
     sp->battlemon[client].type3 = TYPE_TYPELESS;
@@ -1217,12 +1215,6 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
                 sp->binding_turns[i] = 0;
             }
         }
-    }
-
-    // TODO: set forms when loading them into the party instead when sending out
-    // Xerneas should be in Active Mode when in battle
-    if (sp->battlemon[client].species == SPECIES_XERNEAS) {
-        sp->battlemon[client].form_no = 1;
     }
 
     struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
@@ -1332,7 +1324,7 @@ u32 LONG_CALL GetAdjustedMoveTypeBasics(struct BattleStruct *sp, u32 move, u32 a
 u32 LONG_CALL GetAdjustedMoveType(struct BattleStruct *sp, u32 client, u32 move)
 {
     // Tera moves ignore type adjustments if the client is Terastallized.
-    if (sp->battlemon[client].is_currently_terastallized
+    if (IS_TERASTALLIZED(sp, client)
         && (move == MOVE_TERA_BLAST || move == MOVE_TERA_STARSTORM)) {
         return GetDynamicMoveType(gBattleSystem, sp, client, move);
     }

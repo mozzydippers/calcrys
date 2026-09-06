@@ -3,9 +3,11 @@
 
 #include "types.h"
 
-BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client);
-BOOL LONG_CALL CheckCanUltraBurst(struct BattleStruct *battle, int client);
+#include "battle.h"
+
+BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *ctx, int client);
+BOOL LONG_CALL CheckCanUltraBurst(struct BattleStruct *ctx, int client);
 BOOL CheckCanDrawZMoveButton(struct BI_PARAM *bip);
-int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client);
+int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *ctx, int baseMove, int client);
 
 #endif

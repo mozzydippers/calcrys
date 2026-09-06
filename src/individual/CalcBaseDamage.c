@@ -341,7 +341,7 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
     case MOVE_TERRAIN_PULSE:
         if (sp->terrainOverlay.numberOfTurnsLeft > 0
             && sp->terrainOverlay.type
-            && IsClientGrounded(sp, attacker)) {
+            && IsClientGrounded(bw, sp, attacker)) {
             movepower *= 2;
         }
         break;
@@ -1403,11 +1403,11 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
 
     // Step 4.7. Sandstorm + Rock-type
     if ((weather & FIELD_CONDITION_SANDSTORM_ALL)
-        && HasType(sp, defender, TYPE_ROCK)) {
+        && HasType(bw, sp, defender, TYPE_ROCK)) {
         sp_defense = QMul_RoundDown(sp_defense, UQ412__1_5);
     }
     if ((weather & FIELD_CONDITION_SNOW_ALL)
-        && HasType(sp, defender, TYPE_ICE)) {
+        && HasType(bw, sp, defender, TYPE_ICE)) {
         defense = QMul_RoundDown(defense, UQ412__1_5);
     }
 
