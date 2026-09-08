@@ -806,6 +806,41 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                     }
                 }
 
+                // Embody Aspect
+                {
+                    if (sp->battlemon[client_no].hp
+                        && sp->battlemon[client_no].ability_activated_flag == FALSE
+                        && sp->battlemon[client_no].embodyAspectProteanLiberoActivated == FALSE
+                        && IS_TERASTALLIZED(sp, client_no)) {
+                        switch (GetBattlerAbility(sp, client_no)) {
+                        case ABILITY_EMBODY_ASPECT:
+                            scriptnum = BATTLE_SUBSCRIPT_EMBODY_ASPECT_TEAL;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case ABILITY_EMBODY_ASPECT_WELLSPRING:
+                            scriptnum = BATTLE_SUBSCRIPT_EMBODY_ASPECT_WELLSPRING;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case ABILITY_EMBODY_ASPECT_HEARTHFLAME:
+                            scriptnum = BATTLE_SUBSCRIPT_EMBODY_ASPECT_HEARTHFLAME;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        case ABILITY_EMBODY_ASPECT_CORNERSTONE:
+                            scriptnum = BATTLE_SUBSCRIPT_EMBODY_ASPECT_CORNERSTONE;
+                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                            break;
+                        }
+
+                        if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
+                            sp->battlerIdTemp = client_no;
+                            sp->state_client = client_no;
+                            sp->battlemon[client_no].ability_activated_flag = TRUE;
+                            sp->battlemon[client_no].embodyAspectProteanLiberoActivated = TRUE;
+                            break;
+                        }
+                    }
+                }
+
                 // Air Balloon is announced
                 // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-9227933
                 {

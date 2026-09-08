@@ -124,14 +124,20 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                 newBS.needDynamax[client_no] = FALSE;
                 flag = FALSE;
                 if (sp->playerActions[0][3] != SELECT_ESCAPE_COMMAND && sp->playerActions[2][3] != SELECT_ESCAPE_COMMAND) {
-                    if (CheckCanMega(sp, client_no)) {
-                        // player requests mega
-                        if (!(client_no & 1) && (newBS.playerWantMega & No2Bit(client_no)) != 0) {
+                    // player requests mega
+                    if (!(client_no & 1) && (newBS.playerWantMega & No2Bit(client_no)) != 0) {
+                        if (CheckCanMega(sp, client_no)) {
                             sp->battlemon[client_no].canMega = 1;
                             flag = TRUE;
-                        } else if ((client_no & 1) != 0 || (client_no == 2 && (bw->trainerId[client_no] != 0))) {
-                            // ai requests mega
-                            if (BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)) {
+                        }
+
+                        if (sp->battlemon[client_no].is_currently_dynamaxed) {
+                            newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
+                        }
+                    } else if ((client_no & 1) != 0 || (client_no == 2 && (bw->trainerId[client_no] != 0))) {
+                        // ai requests mega
+                        if (BattleTypeGet(bw) & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER)) {
+                            if (CheckCanMega(sp, client_no)) {
                                 sp->battlemon[client_no].canMega = 1;
                                 flag = TRUE;
                             }

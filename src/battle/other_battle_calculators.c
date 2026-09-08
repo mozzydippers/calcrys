@@ -2083,6 +2083,7 @@ int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int 
     atk_d = HeldItemAtkGet(sp, defence_client, ATK_CHECK_NORMAL);
 
     move_type = GetAdjustedMoveType(sp, attack_client, move_no); // new normalize checks
+    debug_printf("move_type: %d\n", move_type);
 
     if (newBS.SideZMoveBaseMove[attack_client] || newBS.SideMaxMoveBaseMove[attack_client]) {
         // It does not matter
@@ -2100,7 +2101,9 @@ int LONG_CALL ServerDoTypeCalcMod(void *bw UNUSED, struct BattleStruct *sp, int 
     u8 defender_type_1 = GetSanitisedType(BattlePokemonParamGet(sp, defence_client, BATTLE_MON_DATA_TYPE1, NULL));
     u8 defender_type_2 = GetSanitisedType(BattlePokemonParamGet(sp, defence_client, BATTLE_MON_DATA_TYPE2, NULL));
     u8 defender_type_3 = GetSanitisedType(sp->battlemon[defence_client].type3);
-    u8 defender_tera_type = GetSanitisedType(IS_TERASTALLIZED(sp, defence_client));
+    u8 defender_tera_type = GetSanitisedType(GetTeraType(bw, sp, defence_client));
+
+    debug_printf("defender_type_1: %d, defender_type_2: %d, defender_type_3: %d\n", defender_type_1, defender_type_2, defender_type_3);
 
     u32 defender_item_held_effect = BattleItemDataGet(sp, GetBattleMonItem(sp, defence_client), 1);
 
@@ -3621,21 +3624,26 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
         break;
     case MOVE_IVY_CUDGEL:
         if (species == SPECIES_OGERPON) {
+            debug_printf("form: %d\n", form);
             switch (form) {
             // SPECIES_OGERPON
             case 0:
+            case 4:
                 type = TYPE_GRASS;
                 break;
             // SPECIES_OGERPON_WELLSPRING_MASK
             case 1:
+            case 5:
                 type = TYPE_WATER;
                 break;
             // SPECIES_OGERPON_HEARTHFLAME_MASK
             case 2:
+            case 6:
                 type = TYPE_FIRE;
                 break;
             // SPECIES_OGERPON_CORNERSTONE_MASK
             case 3:
+            case 7:
                 type = TYPE_ROCK;
                 break;
 
@@ -4658,6 +4666,7 @@ void LONG_CALL HandleTransform(struct BattleStruct *sp)
 
     sp->battlemon[sp->attack_client].ability = sp->battlemon[sp->defence_client].ability; // was moved inside the struct
     sp->battlemon[sp->attack_client].ability_activated_flag = 0;
+    sp->battlemon[sp->attack_client].embodyAspectProteanLiberoActivated = 0;
     sp->battlemon[sp->attack_client].moveeffect.truantFlag = sp->total_turn & 1;
     sp->battlemon[sp->attack_client].moveeffect.slowStartTurns = sp->total_turn + 1;
     sp->battlemon[sp->attack_client].slow_start_flag = 0;

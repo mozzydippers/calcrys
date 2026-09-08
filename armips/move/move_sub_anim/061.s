@@ -8,7 +8,7 @@
 .create "build/move/move_sub_anim/1_061", 0
 
 TeraAnimScript:
-    Func_SetBgGrayscale 1
+    //Func_SetBgGrayscale 1
     loadparticlefromspa 0, 489
     loadparticlefromspa 1, SPA_MEGA
     loadparticlefromspa 2, 489
