@@ -16,9 +16,13 @@
 #include "sound.h"
 
 void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct);
+void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct);
 
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
+    [0x59 -
+        NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
+    = AnimScrCmd_SetBattlerAlpha,
 };
 
 anim_scr_cmd_func GrabAnimScriptCommand(u32 command)
@@ -48,6 +52,22 @@ void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct)
         terrain = bw->sp->original_terrain;
     }
     LoadDifferentBattleBackground(bw, bg, terrain);
+}
+
+void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct)
+{
+    animCmdStruct->animScriptPtr++;
+    u32 battler = *animCmdStruct->animScriptPtr++;
+    u32 alpha = *animCmdStruct->animScriptPtr++;
+
+    if (alpha > 31) {
+        alpha = 31;
+    }
+
+    if ((int)battler < gBattleSystem->maxBattlers) {
+        // alpha is 0-31 with 0 being transparent and 31 being opaque
+        Pokepic_SetAttr(&gBattleSystem->pokepicManager->pics[battler], POKEPIC_ALPHA, (int)alpha);
+    }
 }
 
 // if the form is nonzero, then ensure the PlayCry command just plays the cry itself and return

@@ -480,6 +480,10 @@ ANIM_TARGET_DEFENDER_SIDE equ 20
     .word 0x58, bg, terrain
 .endmacro
 
+.macro setbattleralpha,battler,alpha
+    .word 0x59, battler, alpha
+.endmacro
+
 // helpful macros
 
 .macro loadparticlefromspa,num0,file
