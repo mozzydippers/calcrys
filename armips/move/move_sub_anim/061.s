@@ -7,6 +7,8 @@
 
 .create "build/move/move_sub_anim/1_061", 0
 
+.equ BATTLER_CATEGORY_MSG_TEMP, (0xFF)
+
 TeraAnimScript:
     //Func_SetBgGrayscale 1
     loadparticlefromspa 0, 489
@@ -33,6 +35,7 @@ TeraAnimScript:
 
     transform 0
     waitstate
+    setbattleralpha BATTLER_CATEGORY_MSG_TEMP, 10
     wait 15
 
     playcry 0, -117, 127

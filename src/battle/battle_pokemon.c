@@ -231,8 +231,7 @@ BOOL LONG_CALL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq
 {
     u32 ovyId, offset;
     BOOL ret;
-    BOOL (*internalFunc)
-    (void *bw, struct BattleStruct *sp, int *seq_no);
+    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
 
     UnloadOverlayByID(6); // unload overlay 6 so this can be loaded
 

@@ -20,8 +20,7 @@ void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct);
 
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
-    [0x59 -
-        NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
+    [0x59 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
     = AnimScrCmd_SetBattlerAlpha,
 };
 
@@ -57,7 +56,21 @@ void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct)
 void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct)
 {
     animCmdStruct->animScriptPtr++;
-    u32 battler = *animCmdStruct->animScriptPtr++;
+
+    u32 battlerCategory = *animCmdStruct->animScriptPtr++;
+    u32 battler = 0;
+    switch (battlerCategory) {
+    case BATTLER_CATEGORY_ATTACKER:
+        battler = gBattleSystem->sp->attack_client;
+        break;
+    case BATTLER_CATEGORY_DEFENDER:
+        battler = gBattleSystem->sp->defence_client;
+        break;
+    case BATTLER_CATEGORY_MSG_TEMP:
+        battler = gBattleSystem->sp->battlerIdTemp;
+        break;
+    }
+
     u32 alpha = *animCmdStruct->animScriptPtr++;
 
     if (alpha > 31) {
