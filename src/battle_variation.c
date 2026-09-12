@@ -3,6 +3,7 @@
 #include "../include/battle.h"
 #include "../include/battle_variations.h"
 #include "../include/constants/file.h"
+#include "../include/io_reg.h"
 #include "../include/overlay.h"
 #include "../include/pokemon.h"
 #include "../include/pokepic.h"
@@ -14,11 +15,73 @@
 #define RAID_TINT_RED              31
 #define RAID_TINT_GREEN            16
 #define RAID_TINT_BLUE             16
+#define TERA_POKEPIC_ALPHA         10
+#define TERA_OBJ_BLEND_EVA         5
+#define TERA_OBJ_BLEND_EVB         11
+#define TERA_BLEND_CONTROL         0x2F40
 #define RAID_POKEPIC_AFFINE_SCALE  (POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100)
 
 ALIGN4 struct BattleSystem *gBattleSystem __attribute__((section(".data"))) = NULL;
 
 static struct BattleVariationInfo sBattleVariationInfo = { 0 };
+
+static int BattleVariation_GetBattlerForPokepic(const Pokepic *pokepic)
+{
+    if (pokepic == NULL || gBattleSystem == NULL || gBattleSystem->pokepicManager == NULL) {
+        return -1;
+    }
+
+    for (int battler = 0; battler < CLIENT_MAX; battler++) {
+        if (pokepic == &gBattleSystem->pokepicManager->pics[battler]) {
+            return battler;
+        }
+    }
+
+    return -1;
+}
+
+static BOOL BattleVariation_IsTerastallizedPokepic(const Pokepic *pokepic)
+{
+    int battler = BattleVariation_GetBattlerForPokepic(pokepic);
+    return battler >= 0 && gBattleSystem->sp != NULL && IS_TERASTALLIZED(gBattleSystem->sp, battler);
+}
+
+static BOOL BattleVariation_HasTerastallizedBattler(void)
+{
+    if (gBattleSystem != NULL && gBattleSystem->sp != NULL) {
+        for (int battler = 0; battler < gBattleSystem->maxBattlers; battler++) {
+            if (IS_TERASTALLIZED(gBattleSystem->sp, battler)) {
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
+}
+
+static void BattleVariation_SetTeraBlend(void)
+{
+    reg_G2_BLDCNT = TERA_BLEND_CONTROL;
+    reg_G2_BLDALPHA = TERA_OBJ_BLEND_EVA | (TERA_OBJ_BLEND_EVB << 8);
+}
+
+void LONG_CALL BattleVariation_SetDefaultAlphaBlending(void)
+{
+    if (BattleVariation_HasTerastallizedBattler()) {
+        BattleVariation_SetTeraBlend();
+    } else {
+        reg_G2_BLDCNT = 0x3F40;
+        reg_G2_BLDALPHA = 8 | (8 << 8);
+    }
+}
+
+void LONG_CALL BattleVariation_ApplyMainAppearance(Pokepic *pokepic)
+{
+    if (pokepic != NULL && pokepic->active && BattleVariation_IsTerastallizedPokepic(pokepic)) {
+        BattleVariation_SetTeraBlend();
+        pokepic->drawParam.alpha = TERA_POKEPIC_ALPHA;
+    }
+}
 
 BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic)
 {
@@ -31,8 +94,11 @@ BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic)
     return pokepic != NULL && gBattleSystem->pokepicManager != NULL && pokepic == &gBattleSystem->pokepicManager->pics[BATTLER_ENEMY];
 }
 
+// TODO: rename some of these functions since it's not all raid now
 void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
 {
+    BattleVariation_ApplyMainAppearance(pokepic);
+
     if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
         return;
     }
@@ -42,6 +108,7 @@ void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
     drawParam->affineHeight = RAID_POKEPIC_AFFINE_SCALE;
     drawParam->visible = FALSE;
     drawParam->yOffset = -15;
+    // TODO type-based tera tints
     drawParam->diffuseR = RAID_TINT_RED;
     drawParam->diffuseG = RAID_TINT_GREEN;
     drawParam->diffuseB = RAID_TINT_BLUE;
@@ -49,12 +116,18 @@ void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
 
 void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic)
 {
+    BattleVariation_ApplyMainAppearance(pokepic);
+
+    if (managedSprite != NULL && BattleVariation_IsTerastallizedPokepic(pokepic)) {
+        ManagedSprite_SetOamMode(managedSprite, GX_OAM_MODE_XLU);
+        BattleVariation_SetTeraBlend();
+    }
+
     if (managedSprite != NULL && IsRaidMonPokepic(pokepic)) {
         float scale = (float)RAID_POKEPIC_AFFINE_SCALE / POKEPIC_SCALE_NORMAL;
         s16 x;
         s16 y;
 
-        Raid_ApplyMainAppearance(pokepic);
         ManagedSprite_SetAffineOverwriteMode(managedSprite, 2);
         ManagedSprite_SetAffineScale(managedSprite, scale, scale);
         ManagedSprite_GetPositionXY(managedSprite, &x, &y);

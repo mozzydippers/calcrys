@@ -182,6 +182,7 @@ ManagedSprite_SetAffineScale = 0x0200E024 | 1;
 ManagedSprite_SetAffineOverwriteMode = 0x0200DF98 | 1;
 ManagedSprite_SetPositionXY = 0x0200DDB8 | 1;
 ManagedSprite_GetPositionXY = 0x0200DE44 | 1;
+ManagedSprite_SetOamMode = 0x0200E0FC | 1;
 
 /*BATTLE_OAM*/
 BGCallback_FightOnly = 0x2FADC + 0x022378C1;

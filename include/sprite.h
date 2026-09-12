@@ -31,6 +31,13 @@ typedef struct ManagedSprite {
     int vramTransfer;
 } ManagedSprite;
 
+typedef enum {
+    GX_OAM_MODE_NORMAL = 0,
+    GX_OAM_MODE_XLU = 1,
+    GX_OAM_MODE_OBJWND = 2,
+    GX_OAM_MODE_BITMAPOBJ = 3
+} GXOamMode;
+
 typedef struct ManagedSpriteTemplate {
     s16 x;
     s16 y;
@@ -187,6 +194,7 @@ void LONG_CALL OAM_ObjectAnimeSeqSetCap(void *, int anim_no);
 void LONG_CALL Sprite_SetDrawFlag(void *sprite, BOOL flag);
 void LONG_CALL ManagedSprite_SetAffineScale(ManagedSprite *managedSprite, float x, float y);
 void LONG_CALL ManagedSprite_SetAffineOverwriteMode(ManagedSprite *managedSprite, u8 a1);
+void LONG_CALL ManagedSprite_SetOamMode(ManagedSprite *managedSprite, GXOamMode mode);
 void LONG_CALL ManagedSprite_SetPositionXY(ManagedSprite *managedSprite, s16 x, s16 y);
 void LONG_CALL ManagedSprite_GetPositionXY(ManagedSprite *managedSprite, s16 *x, s16 *y);
 void LONG_CALL Sprite_SetPositionXYWithSubscreenOffset(void *sprite, s16 x, s16 y, fx32 yOffset);

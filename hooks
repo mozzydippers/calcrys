@@ -664,6 +664,8 @@ arm9 EncounterSlot_WildMonSlotRoll_Headbutt 022477C0 0
 0012 BattleSystem_AdjustMessageForSide 0223C558 2
 
 # Raid hooks
+0007 ov07_0221C69C_BattleVariationSetDefaultAlpha 0221C69C 2
+arm9 PokepicManager_DrawAll_BattleVariationApplyAppearance 020081B8 3
 0007 ov07_0221D874_RaidApplyAppearance 0221D97A 3
 0007 ov07_0221FB90_RaidApplyAppearance 0221FD5A 3
 0007 ov07_0221FB90_RaidTint 0221FDDC 3

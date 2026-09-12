@@ -492,6 +492,7 @@ static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx)
             }
 
             ctx->isTerastallizedArray[client_no][ctx->sel_mons_no[client_no]] = TRUE;
+            BattleVariation_ApplyMainAppearance(&bsys->pokepicManager->pics[client_no]);
             newBS.needTerastallize[client_no] = FALSE;
 
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9458017

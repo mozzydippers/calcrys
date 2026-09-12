@@ -267,6 +267,27 @@ bx   r3
 
 .pool
 
+.global ov07_0221C69C_BattleVariationSetDefaultAlpha
+ov07_0221C69C_BattleVariationSetDefaultAlpha:
+push {lr}
+bl BattleVariation_SetDefaultAlphaBlending
+pop {pc}
+
+.pool
+
+.global PokepicManager_DrawAll_BattleVariationApplyAppearance
+PokepicManager_DrawAll_BattleVariationApplyAppearance:
+add r0, r4, #0
+bl BattleVariation_ApplyMainAppearance
+mov r0, #0xB1
+lsl r0, r0, #2
+ldr r0, [r5, r0]
+cmp r0, #2
+ldr r3, =0x020081C1
+bx  r3
+
+.pool
+
 //02234868
 //08018A48
 .global hook_7_spriteOffsetSpecies

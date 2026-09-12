@@ -2678,6 +2678,8 @@ typedef void (*anim_scr_cmd_func)(ANIM_CMD_STRUCT *animCmdStruct);
 extern const anim_scr_cmd_func gAnimScrTable[NUM_VANILLA_ANIM_SCRIPT_COMMANDS];
 extern struct BattleSystem *gBattleSystem;
 
+void LONG_CALL BattleVariation_ApplyMainAppearance(Pokepic *pokepic);
+void LONG_CALL BattleVariation_SetDefaultAlphaBlending(void);
 BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic);
 void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic);
 void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic);
