@@ -3,6 +3,7 @@
 #include "types.h"
 
 #include "constants/ability.h"
+#include "constants/battle_constants.h"
 #include "constants/file.h"
 #include "constants/hold_item_effects.h"
 #include "constants/item.h"
@@ -64,6 +65,7 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
     u8 moveFlag = damageCalc->moveFlag;
     u8 multiHitCount = damageCalc->multiHitCount;
     u32 weather = GetWeather(bw, sp, attacker);
+    u32 teraType = GetTeraType(bw, sp, attacker);
 
     for (u32 i = 0; i < damageCalc->maxBattlers; i++) {
         battlerAbilities[i] = damageCalc->clients[i].ability;
@@ -964,6 +966,22 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
     // Apply the chained modifier to the starting base power. That is, multiply the starting base power by the chained base power modifiers, divide by 4096, and pokeRound the result. If the base power would now be less than 1, make it 1. Finally, if the base power is greater than 65,535, make it the the current base power modulo 65,536 (BP % 65536).
 
     movepower = QMul_RoundDown(movepower, basePowerModifier);
+
+    // Terastallization boost
+    // TODO: is this location correct?
+    if (IS_TERASTALLIZED(sp, attacker)
+        && ((teraType == movetype) || (teraType == TYPE_STELLAR && FALSE /* stellar check */)) // TODO
+        && !IsMultiHitMove(moveno) // Only 1 or fewer hits.
+        && sp->moveTbl[moveno].priority <= 0 // No priority moves.
+        && (moveno != MOVE_GRASS_KNOT && moveno != MOVE_CRUSH_GRIP && moveno != MOVE_HEAVY_SLAM
+            && moveno != MOVE_ELECTRO_BALL && moveno != MOVE_HEAT_CRASH && moveno != MOVE_DRAGON_ENERGY) // Grass Knot, Crush Grip, Heavy Slam, Electro Ball, Heat Crash, Dragon Energy
+        && (moveno != MOVE_LOW_KICK && moveno != MOVE_FLAIL && moveno != MOVE_REVERSAL) // Low Kick, Flail, Reversal
+        && (moveno != MOVE_ERUPTION && moveno != MOVE_WATER_SPOUT && moveno != MOVE_GYRO_BALL && moveno != MOVE_FLING) // Eruption, Water Spout, Gyro Ball, Fling
+        && (moveno != MOVE_HARD_PRESS)
+        && QMul_RoundDown(movepower, basePowerModifier) < 60) {
+        movepower = 60;
+    }
+
     movepower = movepower < 1 ? 1 : movepower;
     movepower = movepower % 65536;
 
