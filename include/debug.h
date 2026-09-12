@@ -78,7 +78,7 @@
 // #define DEBUG_DYNAMAX_LOGIC
 
 // DEBUG_TERASTALLIZATION_LOGIC turns on a number of debug prints related to the Terastallization logic
-#define DEBUG_TERASTALLIZATION_LOGIC
+// #define DEBUG_TERASTALLIZATION_LOGIC
 
 // DEBUG_MOVE_PERFORMANCE_LOGIC turns on a number of debug prints related to the move-performance logic
 // #define DEBUG_MOVE_PERFORMANCE_LOGIC

@@ -76,7 +76,6 @@ u32 LONG_CALL GetTerastallizedState(u32 species, u32 form)
 u32 LONG_CALL GetOgerponTerastallizedFormPic(u32 type)
 {
 start:
-    debug_printf("type: %d\n", type);
     switch (type) {
     case TYPE_GRASS:
         return 4;

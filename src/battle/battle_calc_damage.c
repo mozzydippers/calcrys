@@ -217,6 +217,69 @@ u16 LONG_CALL GetBattleMonItem(struct BattleStruct *sp, int client_no)
     return sp->battlemon[client_no].item;
 }
 
+// TODO: Handle Pledge moves
+u32 GetSTAB(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type, u32 attackerAbility)
+{
+    if (HasType(bsys, ctx, battlerId, type)) {
+        if (attackerAbility == ABILITY_ADAPTABILITY) {
+            return UQ412__2_0;
+        } else {
+            return UQ412__1_5;
+        }
+    }
+
+    return UQ412__1_0;
+}
+
+// TODO: Handle Stellar Tera
+u32 GetTeraSTAB(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, u32 type, u32 attackerAbility)
+{
+    GF_ASSERT(type <= TYPE_STELLAR);
+    if (battlerId == BATTLER_NONE) {
+        return FALSE;
+    }
+    struct BattlePokemon *client = &ctx->battlemon[battlerId];
+    BOOL originalTypeMatchesMoveType = client->type1 == type || client->type2 == type || client->type3 == type;
+    u32 teraType = GetTeraType(bsys, ctx, battlerId);
+    BOOL teraTypeMatchesOriginalType = client->type1 == teraType || client->type2 == teraType || client->type3 == teraType;
+    BOOL teraTypeDoesNotMatchOriginalType = !teraTypeMatchesOriginalType;
+
+    // debug_printf("originalTypeMatchesMoveType: %d\n", originalTypeMatchesMoveType);
+    // debug_printf("type: %d\n", type);
+    // debug_printf("teraType: %d\n", teraType);
+    // debug_printf("teraTypeMatchesOriginalType: %d\n", teraTypeMatchesOriginalType);
+    // debug_printf("teraTypeDoesNotMatchOriginalType: %d\n", teraTypeDoesNotMatchOriginalType);
+
+    // https://bulbapedia.bulbagarden.net/wiki/Damage
+
+    // However, if STAB only applies from the attacker's original type(s), not its Tera Type, STAB will always be 1.5, even if the attacker's Ability is Adaptability.
+    if (originalTypeMatchesMoveType && teraType != type) {
+        return UQ412__1_5;
+    }
+
+    if ((originalTypeMatchesMoveType || teraType == type) && teraTypeDoesNotMatchOriginalType) {
+        // 1.5 if the move's type matches either the Pokemon's original type(s) or a different Tera Type from its original types, and the attacker's Ability is not Adaptability.
+        if (attackerAbility != ABILITY_ADAPTABILITY) {
+            return UQ412__1_5;
+        } else {
+            // 2 if the situation above, and the attacker's Ability is Adaptability.
+            return UQ412__2_0;
+        }
+    }
+
+    if (teraTypeMatchesOriginalType && teraType == type) {
+        // 2 if the move's type matches the same Tera Type as one of the Pokemon's original types and the attacker's Ability is not Adaptability.
+        if (attackerAbility != ABILITY_ADAPTABILITY) {
+            return UQ412__2_0;
+        } else {
+            // 2.25 if the move's type matches the same Tera Type as one of the Pokemon's original types and the attacker's Ability is Adaptability.
+            return UQ412__2_25;
+        }
+    }
+
+    return UQ412__1_0;
+}
+
 /**
  *  @brief calculate overall damage, accounting for critical hits and me first boosts.  passed into damage roller below
  *
@@ -447,39 +510,32 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 
     // 6.6 Same-Type Attack Bonus (STAB) Modifier
     int moveEffect = sp->moveTbl[moveno].effect;
+    u32 stab = UQ412__1_0;
     if (moveEffect == MOVE_EFFECT_HIT_IN_3_TURNS && sp->futureSightNoAttacker) {
         if (sp->futureSightSTAB) {
-#ifdef DEBUG_DAMAGE_ROLLS
-            for (int u = 0; u < 16; u++) {
-                predamage[u] = QMul_RoundDown(predamage[u], UQ412__1_5);
-            }
-#endif // DEBUG_DAMAGE_ROLLS
-            damage = QMul_RoundDown(damage, UQ412__1_5);
+            stab = UQ412__1_5;
         }
-    } else if (((sp->server_status_flag & SERVER_STATUS_FLAG_TYPE_FLAT) == 0) && HasType(bw, sp, attacker, type)) {
-        if (attackerAbility == ABILITY_ADAPTABILITY) {
-#ifdef DEBUG_DAMAGE_ROLLS
-            for (int u = 0; u < 16; u++) {
-                predamage[u] = QMul_RoundDown(predamage[u], UQ412__2_0);
-                ;
-            }
-#endif // DEBUG_DAMAGE_ROLLS
-            damage = QMul_RoundDown(damage, UQ412__2_0);
+    } else if ((sp->server_status_flag & SERVER_STATUS_FLAG_TYPE_FLAT) == 0) {
+        if (IS_TERASTALLIZED(sp, attacker)) {
+            stab = GetTeraSTAB(bw, sp, attacker, type, attackerAbility);
         } else {
-#ifdef DEBUG_DAMAGE_ROLLS
-            for (int u = 0; u < 16; u++) {
-                predamage[u] = QMul_RoundDown(predamage[u], UQ412__1_5);
-                ;
-            }
-#endif // DEBUG_DAMAGE_ROLLS
-            damage = QMul_RoundDown(damage, UQ412__1_5);
+            debug_printf("No tera\n");
+            stab = GetSTAB(bw, sp, attacker, type, attackerAbility);
         }
     }
+
+#ifdef DEBUG_DAMAGE_ROLLS
+    for (int u = 0; u < 16; u++) {
+        predamage[u] = QMul_RoundDown(predamage[u], stab);
+        ;
+    }
+#endif // DEBUG_DAMAGE_ROLLS
+    damage = QMul_RoundDown(damage, stab);
 
 #ifdef DEBUG_DAMAGE_CALC
     debug_printf("\n=================\n");
     debug_printf("[CalcBaseDamage] 6.6 Same-Type Attack Bonus (STAB) Modifier\n");
-    debug_printf("[CalcBaseDamage] damage: %d\n", damage);
+    debug_printf("[CalcBaseDamage] damage: %d, modifier: %d\n", damage, stab);
 #endif
 
     // 6.7 Type Effectiveness Modifier

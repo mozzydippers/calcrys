@@ -3451,7 +3451,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
 /// @param battlerId
 /// @param type
 /// @return whether the client has the type
-BOOL LONG_CALL HasType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type);
+BOOL LONG_CALL HasType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, u32 type);
 
 BOOL LONG_CALL ChangeToPureType(struct BattleStruct *ctx, int battlerId, int type);
 

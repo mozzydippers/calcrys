@@ -1,5 +1,4 @@
 // Test: Tera - Ogerpon changes to correct form (Cornerstone Mask)
-#include "constants/moves.h"
 #include "../../battle_tests.h"
 BEGIN_TEST {
     .battleType = BATTLE_TYPE_TRAINER,
@@ -32,7 +31,7 @@ BEGIN_TEST {
             .level = 50,
             .form = 3,
             .ability = ABILITY_STURDY,
-            .item = ITEM_NONE,
+            .item = ITEM_CORNERSTONE_MASK,
             .moves = { MOVE_IVY_CUDGEL, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
@@ -75,6 +74,8 @@ BEGIN_TEST {
     },
     .expectations = {
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ogerpon used Ivy Cudgel!" },
+        // Considering Tera boost
+        { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 63, 64, 65, 66, 66, 67, 68, 69, 69, 70, 71, 72, 72, 73, 74, 75 } },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's not very effective..." },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Quaquaval used Drain Punch!" },
         // Considering stat boost
