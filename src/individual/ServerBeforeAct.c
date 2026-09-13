@@ -483,11 +483,16 @@ static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx)
     for (i = 0; i < client_set_max; i++) {
         client_no = ctx->turnOrder[i];
         if (newBS.needTerastallize[client_no] && newBS.sideTerastallize[client_no] == FALSE && ctx->battlemon[client_no].hp) {
+            // TODO: fix this faulty check
             if (BattleTypeGet(bsys) & BATTLE_TYPE_MULTI) {
                 if (client_no == 0 || (client_no == 2 && ctx->battlemon[client_no].id_no == ctx->battlemon[0].id_no)) {
-                    newBS.sideTerastallize[client_no] = TRUE;
+                    newBS.sideTerastallize[0] = TRUE;
+                    newBS.sideTerastallize[2] = TRUE;
                 }
             } else if (client_no == 0 || client_no == 2) {
+                newBS.sideTerastallize[0] = TRUE;
+                newBS.sideTerastallize[2] = TRUE;
+            } else {
                 newBS.sideTerastallize[client_no] = TRUE;
             }
 

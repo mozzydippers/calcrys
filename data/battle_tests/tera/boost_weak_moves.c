@@ -1,9 +1,7 @@
 // Test: Tera - Boost weak moves
-#include "constants/ability.h"
-#include "constants/item.h"
-#include "constants/moves.h"
-#include "../../battle_tests.h"
-BEGIN_TEST {
+#include "../battle_tests.h"
+BEGIN_TEST
+{
     .battleType = BATTLE_TYPE_TRAINER,
     .weather = FIELD_CONDITION_NONE,
     .fieldCondition = 0,
@@ -22,11 +20,6 @@ BEGIN_TEST {
             .condition2 = 0,
             .moveEffectFlags = 0,
         },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
     },
     .enemyParty = {
         {
@@ -45,33 +38,16 @@ BEGIN_TEST {
                 { MON_DATA_TERA_TYPE_OVERRIDE, TYPE_FIRE },
             },
         },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
-        { .species = SPECIES_NONE },
     },
     .playerScript = {
         {
             { ACTION_MOVE_SLOT_1, BATTLER_ENEMY_FIRST },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
         },
     },
     .enemyScript = {
         {
             { ACTION_MOVE_SLOT_1, BATTLER_PLAYER_FIRST },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
-            { ACTION_NONE, 0 },
             { ACTION_NONE, 0 },
         },
     },
@@ -82,5 +58,6 @@ BEGIN_TEST {
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's not very effective..." },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Quaquaval used Drain Punch!" },
         { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 58, 58, 60, 60, 60, 61, 61, 63, 63, 64, 64, 66, 66, 67, 67, 69 } },
-    },
-} END_TEST
+    }
+}
+END_TEST
