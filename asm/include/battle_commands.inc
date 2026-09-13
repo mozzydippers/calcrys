@@ -1603,23 +1603,45 @@
     .long \arg_0
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro TryHealingWish arg_0
     .long 294
+    .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .macro IfClientDynamaxed arg_0, arg_1
+    .macro ActivateHealingWish arg_0
     .long 295
-    .long \arg_0
-    .long (((\arg_1 - .) / 4) - 1)
+    .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .macro IfClientTerastallized arg_0, arg_1
+    .macro IsFieldCondition2On arg_0, arg_1
     .long 296
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 296
+    .macro SetFieldCondition2 arg_0, arg_1
+    .long 297
+    .long \arg_0
+    .long \arg_1
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 298
+    .endm
+
+    .macro IfClientDynamaxed arg_0, arg_1
+    .long 299
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
+    .endm
+
+    .macro IfClientTerastallized arg_0, arg_1
+    .long 300
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
+    .endm
+
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 300
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
