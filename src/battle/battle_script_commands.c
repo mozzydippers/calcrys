@@ -138,6 +138,8 @@ BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_124_GetMonByCottonDownOrder(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_125_TryActivateZeroToHero(void *bsys, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_127_IfClientDynamaxed(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_128_IfClientTerastallized(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -477,6 +479,8 @@ const u8 *BattleScrCmdNames[] = {
     "GetMonByCottonDownOrder",
     "TryActivateZeroToHero",
     "CheckTrainerGimmickMessage",
+    "IfClientDynamaxed",
+    "IfClientTerastallized",
     // "YourCustomCommand",
 };
 
@@ -484,7 +488,7 @@ u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x126
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x128
 
 // clang-format off
 const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
@@ -558,6 +562,9 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x124 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_124_GetMonByCottonDownOrder,
     [0x125 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_125_TryActivateZeroToHero,
     [0x126 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_126_CheckTrainerGimmickMessage,
+    [0x127 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_127_IfClientDynamaxed,
+    [0x128 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_128_IfClientTerastallized,
+
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
 };
 
@@ -1646,8 +1653,7 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
 BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset;
-    BOOL (*internalFunc)
-    (void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_BTL_SCR_CMD_33_STATBUFFCHANGE;
     offset = 0x023C0400 | 1;
@@ -3782,8 +3788,7 @@ BOOL BtlCmd_CheckSubstitute(void *bsys, struct BattleStruct *ctx)
 u32 CalculateBallShakes(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset, ret;
-    BOOL (*internalFunc)
-    (void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_CALCULATEBALLSHAKES;
     offset = 0x023C0400 | 1;
@@ -5283,9 +5288,6 @@ BOOL BtlCmd_TryFaintMon(struct BattleSystem *bsys, struct BattleStruct *ctx)
         ctx->server_status_flag |= MaskOfFlagNo(battlerId) << BATTLE_STATUS_FAINTED_SHIFT;
         ctx->total_hinshi[battlerId]++;
         UpdateFriendshipFainted(bsys, ctx, battlerId);
-        // TODO: is this the best location to handle it?
-        ctx->isDynamaxedArray[battlerId][ctx->sel_mons_no[battlerId]] = FALSE;
-        ctx->isTerastallizedArray[battlerId][ctx->sel_mons_no[battlerId]] = FALSE;
     }
 
     return FALSE;
@@ -5499,6 +5501,34 @@ BOOL btl_scr_cmd_126_CheckTrainerGimmickMessage(void *bsys UNUSED, struct Battle
         && ctx->battlerIdTemp == BATTLER_ENEMY && !(BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES)) {
         ctx->msg_work = TEXT_MEGA_EVOLVE;
         SkillSequenceGosub(ctx, 1, BATTLE_SUBSCRIPT_TRAINER_MESSAGE);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_127_IfClientDynamaxed(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+    int successAddress = read_battle_script_param(ctx);
+
+    if (ctx->isDynamaxedArray[battlerId][ctx->sel_mons_no[battlerId]]) {
+        IncrementBattleScriptPtr(ctx, successAddress);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_128_IfClientTerastallized(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+    int successAddress = read_battle_script_param(ctx);
+
+    if (ctx->isTerastallizedArray[battlerId][ctx->sel_mons_no[battlerId]]) {
+        IncrementBattleScriptPtr(ctx, successAddress);
     }
 
     return FALSE;

@@ -480,8 +480,8 @@ ANIM_TARGET_DEFENDER_SIDE equ 20
     .word 0x58, bg, terrain
 .endmacro
 
-.macro setbattleralpha,battler,alpha
-    .word 0x59, battler, alpha
+.macro SetBattlerTeraState,battler,state
+    .word 0x59, battler, state
 .endmacro
 
 // helpful macros

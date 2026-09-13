@@ -35,7 +35,7 @@ TeraAnimScript:
 
     transform 0
     waitstate
-    setbattleralpha BATTLER_CATEGORY_MSG_TEMP, 10
+    SetBattlerTeraState BATTLER_CATEGORY_MSG_TEMP, TRUE
     wait 15
 
     playcry 0, -117, 127

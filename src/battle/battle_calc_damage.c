@@ -519,7 +519,6 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
         if (IS_TERASTALLIZED(sp, attacker)) {
             stab = GetTeraSTAB(bw, sp, attacker, type, attackerAbility);
         } else {
-            debug_printf("No tera\n");
             stab = GetSTAB(bw, sp, attacker, type, attackerAbility);
         }
     }

@@ -496,15 +496,12 @@ static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx)
                 newBS.sideTerastallize[client_no] = TRUE;
             }
 
-            ctx->isTerastallizedArray[client_no][ctx->sel_mons_no[client_no]] = TRUE;
-            BattleVariation_ApplyMainAppearance(&bsys->pokepicManager->pics[client_no]);
             newBS.needTerastallize[client_no] = FALSE;
 
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9458017
             ctx->battlemon[client_no].condition2 &= ~STATUS2_DESTINY_BOND;
 
             ctx->battlerIdTemp = client_no;
-            ctx->attack_client = client_no;
 
             if (ctx->battlemon[client_no].species == SPECIES_OGERPON) {
                 GetOgerponTerastallizedFormPic(GetTeraType(bsys, ctx, client_no));

@@ -16,13 +16,12 @@
 #include "sound.h"
 
 void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct);
-void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct);
+void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct);
 
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
-    [0x59 -
-        NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
-    = AnimScrCmd_SetBattlerAlpha,
+    [0x59 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
+    = AnimScrCmd_SetBattlerTeraState,
 };
 
 anim_scr_cmd_func GrabAnimScriptCommand(u32 command)
@@ -54,7 +53,8 @@ void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct)
     LoadDifferentBattleBackground(bw, bg, terrain);
 }
 
-void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct)
+// Unfortunately this also handles battle logic, not just animation
+void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct)
 {
     animCmdStruct->animScriptPtr++;
 
@@ -72,15 +72,13 @@ void AnimScrCmd_SetBattlerAlpha(ANIM_CMD_STRUCT *animCmdStruct)
         break;
     }
 
-    u32 alpha = *animCmdStruct->animScriptPtr++;
-
-    if (alpha > 31) {
-        alpha = 31;
-    }
+    BOOL state = *animCmdStruct->animScriptPtr++;
 
     if ((int)battler < gBattleSystem->maxBattlers) {
-        // alpha is 0-31 with 0 being transparent and 31 being opaque
-        Pokepic_SetAttr(&gBattleSystem->pokepicManager->pics[battler], POKEPIC_ALPHA, (int)alpha);
+        // Done here so that animation is correct
+        gBattleSystem->sp->isTerastallizedArray[battler][gBattleSystem->sp->sel_mons_no[battler]] = state;
+        BattleVariation_ApplyMainAppearance(&gBattleSystem->pokepicManager->pics[battler]);
+        debug_printf("state: %d\n", state);
     }
 }
 
