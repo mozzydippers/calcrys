@@ -1858,7 +1858,7 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
                         sp->battlemon[battlerId].form_no ^= 1;
                         BattleFormChange(battlerId, sp->battlemon[battlerId].form_no, bw, sp, FALSE);
                         sp->battlerIdTemp = battlerId;
-                        LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+                        LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HUNGER_SWITCH);
                         sp->next_server_seq_no = sp->server_seq_no;
                         sp->server_seq_no = 22;
                         ret = 1;

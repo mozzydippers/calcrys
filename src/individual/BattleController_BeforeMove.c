@@ -1596,13 +1596,13 @@ void BattleController_CheckStanceChange(struct BattleSystem *bsys, struct Battle
         if (ctx->current_move_index == MOVE_KINGS_SHIELD && ctx->battlemon[ctx->attack_client].form_no == 1) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 0;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORM_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE_SHIELD_FORME);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         } else if (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS && ctx->battlemon[ctx->attack_client].form_no == 0) {
             ctx->battlemon[ctx->battlerIdTemp].form_no = 1;
             BattleFormChange(ctx->battlerIdTemp, ctx->battlemon[ctx->battlerIdTemp].form_no, bsys, ctx, 0);
-            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE);
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_STANCE_CHANGE_BLADE_FORME);
             ctx->next_server_seq_no = ctx->server_seq_no;
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
         }

@@ -47,16 +47,16 @@ BEGIN_TEST
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Wobbuffet used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_PARTY_FORM, .battlerIDOrPartySlot = 0, .expectationValue.formID = 1 },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko transformed!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko's Hunger Switch" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Wobbuffet used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_PARTY_FORM, .battlerIDOrPartySlot = 0, .expectationValue.formID = 0 },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko transformed!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko's Hunger Switch" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Wobbuffet used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_PARTY_FORM, .battlerIDOrPartySlot = 0, .expectationValue.formID = 0 },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Wobbuffet used Celebrate!" },
         { .expectationType = EXPECTATION_TYPE_PARTY_FORM, .battlerIDOrPartySlot = 0, .expectationValue.formID = 1 },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko transformed!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Morpeko's Hunger Switch" },
     }
 }
 END_TEST
