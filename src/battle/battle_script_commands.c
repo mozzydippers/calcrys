@@ -1334,7 +1334,7 @@ int Task_GetExp_HandleExpShare(struct EXP_CALCULATOR *data, struct PartyPokemon 
         && CheckScriptFlag(FLAG_EXP_SHARE_ENABLED)
 #else
 #endif
-        && GetMonData(mon, MON_DATA_HP, NULL)
+        && GetMonData(mon, MON_DATA_HP, NULL) && GetMonData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
         && !(data->sp->obtained_exp_right_flag[side] & No2Bit(slot))) {
         itemEffect = HOLD_EFFECT_EXP_SHARE;
     }
@@ -1664,7 +1664,8 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
 BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_BTL_SCR_CMD_33_STATBUFFCHANGE;
     offset = 0x023C0400 | 1;
@@ -3799,7 +3800,8 @@ BOOL BtlCmd_CheckSubstitute(void *bsys, struct BattleStruct *ctx)
 u32 CalculateBallShakes(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset, ret;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_CALCULATEBALLSHAKES;
     offset = 0x023C0400 | 1;
