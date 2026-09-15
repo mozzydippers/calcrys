@@ -1195,7 +1195,7 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     sp->moveConditionsFlags[client].moveFailureLastTurn = 0;
     sp->moveConditionsFlags[client].powderBlockingFireMove = 0;
     sp->moveConditionsFlags[client].laserFocusTimer = 0;
-    sp->moveConditionsFlags[client].glaiveRush = 0;
+    sp->moveConditionsFlags[client].wideOpen = 0;
     sp->moveConditionsFlags[client].anyStatLoweredThisTurn = 0;
     sp->moveConditionsFlags[client].throatChopTimer = 0;
     sp->moveConditionsFlags[client].dragonDartsStatus = 0;
