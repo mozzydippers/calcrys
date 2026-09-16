@@ -422,7 +422,7 @@ u16 DynamaxBannedWeightMoveList[6] = {
     MOVE_HEAT_CRASH,
 };
 
-u16 PunchingMoveTable[24] = {
+u16 PunchingMoveTable[25] = {
     MOVE_BULLET_PUNCH,
     MOVE_COMET_PUNCH,
     MOVE_DIZZY_PUNCH,
@@ -447,6 +447,7 @@ u16 PunchingMoveTable[24] = {
     MOVE_SURGING_STRIKES,
     MOVE_THUNDER_PUNCH,
     MOVE_WICKED_BLOW,
+    MOVE_DOUBLE_SHOCK,
 };
 
 u16 BitingMoveTable[10] = {
@@ -2678,7 +2679,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
 
     // 1. Check if user or target has No Guard, or if the user has sure-hit accuracy from Poison-type Toxic, or if the user has used Lock-On / Mind Reader.
 
-    if (sp->moveConditionsFlags[battlerIdTarget].glaiveRush) {
+    if (sp->moveConditionsFlags[battlerIdTarget].wideOpen) {
         return TRUE;
     }
 
