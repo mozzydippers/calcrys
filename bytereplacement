@@ -574,9 +574,12 @@ arm9 020708B0 06 E0
 arm9 0202ACB8 81 43 02 20 08 43
 
 # no info needed first option (credit to adastra)
-0053 08001870 2C 23 2D 22 2E 21
-0053 080018FE 02 28 05 D0 01 28 07 D0 00 28
-0053 080011FA E1 30 28 5C 00 21
+# 0053 08001870 2C 23 2D 22 2E 21
+# 0053 080018FE 02 28 05 D0 01 28 07 D0 00 28
+# 0053 080011FA E1 30 28 5C 00 21
+
+# skip intro guide multi choice (adastra credits again)
+0053 080017DC 2C
 
 # script weather
 arm9 020436C2 70 BD 38 B5 04 1C

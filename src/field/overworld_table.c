@@ -371,8 +371,8 @@ struct OVERWORLD_TAG gOWTagToFileNum[] = // skip down a bit to see the parts tha
         { .tag = 1049, .gfx = MON_OVERWORLD_GFX_START + SPECIES_FERALIGATR, .callback_params = OVERWORLD_SIZE_SMALL },
 
         { .tag = NEW_NPC_TAG_START, .gfx = NEW_NPC_GFX_START, .callback_params = OVERWORLD_SIZE_SMALL },
-        { .tag = NEW_NPC_TAG_START + 1, .gfx = MON_OVERWORLD_GFX_START + SPECIES_CELEBI, .callback_params = OVERWORLD_SIZE_SMALL }, // correct
-        { .tag = NEW_NPC_TAG_START + 2, .gfx = NEW_NPC_GFX_START + 1, .callback_params = OVERWORLD_SIZE_SMALL }, //
+        { .tag = NEW_NPC_TAG_START + 1, .gfx = MON_OVERWORLD_GFX_START + SPECIES_CELEBI, .callback_params = OVERWORLD_SIZE_SMALL },
+        { .tag = NEW_NPC_TAG_START + 2, .gfx = NEW_NPC_GFX_START + 1, .callback_params = OVERWORLD_SIZE_SMALL },
         { .tag = NEW_NPC_TAG_START + 3, .gfx = NEW_NPC_GFX_START + 2, .callback_params = OVERWORLD_SIZE_SMALL },
         { .tag = NEW_NPC_TAG_START + 4, .gfx = NEW_NPC_GFX_START + 3, .callback_params = OVERWORLD_SIZE_SMALL },
         { .tag = NEW_NPC_TAG_START + 5, .gfx = MON_OVERWORLD_GFX_START + SPECIES_AZUMARILL, .callback_params = OVERWORLD_SIZE_SMALL },

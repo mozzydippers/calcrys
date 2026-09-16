@@ -50,4 +50,51 @@ struct BossBattle BossBattles[] = {
             },
         },
     },
+    [1] = {
+        .battleVariationBase.mainPokemon.species = SPECIES_SUICUNE,
+        .battleVariationBase.mainPokemon.gender = 0,
+        .battleVariationBase.mainPokemon.abilitySlot = 0,
+        .battleVariationBase.mainPokemon.level = 60,
+        .battleVariationBase.mainPokemon.nature = NATURE_MODEST,
+        .battleVariationBase.mainPokemon.heldItem = ITEM_PASSHO_BERRY,
+        .battleVariationBase.mainPokemon.moves = { MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH },
+        .battleVariationBase.mainPokemon.potential = { 31, 31, 31, 31, 31, 31 },
+        .multipliers = { 1, 1, 1, 1, 1, 1 },
+        .extraActions = {
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 100,
+                .moveNumberOrAction = MOVE_CALM_MIND,
+            },
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 100,
+                .moveNumberOrAction = MOVE_TEETER_DANCE,
+            },
+            {
+                .actionType = TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 75,
+            },
+            {
+                .actionType = TERA_RAID_REMOVAL_OF_POSITIVE_EFFECTS,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 50,
+            },
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 50,
+                .moveNumberOrAction = MOVE_TEARFUL_LOOK,
+            },
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 9,
+                .moveNumberOrAction = MOVE_FLAIL,
+            },
+        },
+    },
 };
