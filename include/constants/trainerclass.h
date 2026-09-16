@@ -133,7 +133,7 @@
 // calcrys custom
 #define TRAINERCLASS_SNAIL                  129
 #define TRAINERCLASS_KURT                   130
-#define TRAINERCLASS_PKMN_TRAINER_WHITNEY   131
+// #define TRAINERCLASS_PKMN_TRAINER_WHITNEY   131
 
 #define TRAINERCLASS_TAG_START 256
 

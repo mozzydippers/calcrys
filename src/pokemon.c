@@ -2384,7 +2384,7 @@ const u8 sTrainerGenders[] = {
     // calcrys custom
     [TRAINERCLASS_SNAIL] = TRAINER_FEMALE,
     [TRAINERCLASS_KURT] = TRAINER_MALE,
-    [TRAINERCLASS_PKMN_TRAINER_WHITNEY] = TRAINER_FEMALE,
+    // [TRAINERCLASS_PKMN_TRAINER_WHITNEY] = TRAINER_FEMALE,
 };
 #else
 #define sTrainerGenders ((const u8 *)0x020FFB90)
