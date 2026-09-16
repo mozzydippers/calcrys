@@ -73,6 +73,7 @@ BEGIN_TEST {
         },
     },
     .expectations = {
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The Teal Mask worn by the opposing Ogerpon shone brilliantly, and Ogerpon's Speed rose!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ogerpon used Ivy Cudgel!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's super effective!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Quaquaval used Thunder Punch!" },

@@ -2032,3 +2032,6 @@ The Cornerstone Mask worn by\nthe opposing {STRVAR_1 1, 0, 0} shone brilliantly,
 The Wellspring Mask worn by\n{STRVAR_1 1, 0, 0} shone brilliantly,\fand {STRVAR_1 1, 0, 0}’s Sp. Def rose!
 The Wellspring Mask worn by\nthe wild {STRVAR_1 1, 0, 0} shone brilliantly,\fand {STRVAR_1 1, 0, 0}’s Sp. Def rose!
 The Wellspring Mask worn by\nthe opposing {STRVAR_1 1, 0, 0} shone brilliantly,\fand {STRVAR_1 1, 0, 0}’s Sp. Def rose!
+{STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!
+The wild {STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!
+The opposing {STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!

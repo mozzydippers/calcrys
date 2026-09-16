@@ -5041,9 +5041,18 @@ BOOL BattleController_CheckStrongWindsWeaken(struct BattleSystem *bw, struct Bat
     return FALSE;
 }
 
-// TODO: implement new mechanics
-BOOL BattleController_CheckTeraShell(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int defender UNUSED)
+BOOL BattleController_CheckTeraShell(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx, int defender)
 {
+    if (CanActivateTeraShell(ctx, defender)) {
+        ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_NOT_VERY_EFFECTIVE;
+        ctx->battlerIdTemp = defender;
+        ctx->moveContext.teraShellActive = TRUE;
+        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_TERA_SHELL);
+        ctx->next_server_seq_no = ctx->server_seq_no;
+        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+        return TRUE;
+    }
+
     return FALSE;
 }
 

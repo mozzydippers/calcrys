@@ -836,7 +836,7 @@ typedef struct MovePerformanceContext {
     u8 hitSubstituteCount : 3;
     u8 isAllyHit : 1;
     u8 currentMoveCalcDone : 1;
-    u8 padding : 1;
+    u8 teraShellActive : 1;
     int hitFoes[2];
     int hitSubstitute[3];
 } MovePerformanceContext;
@@ -3731,6 +3731,8 @@ void LONG_CALL ov12_02252D14(struct BattleSystem *bsys, struct BattleStruct *ctx
 void LONG_CALL SortRawSpeedNonRNGArray(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
 BOOL LONG_CALL CanActivateDamageReductionBerry(struct BattleStruct *ctx, int defender);
+
+BOOL LONG_CALL CanActivateTeraShell(struct BattleStruct *ctx, int defender);
 
 BOOL LONG_CALL IsPureType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type);
 

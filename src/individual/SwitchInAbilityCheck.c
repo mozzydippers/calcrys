@@ -108,6 +108,11 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                 case ABILITY_NEUTRALIZING_GAS:
                     break;
                 case ABILITY_TERA_SHIFT:
+                    sp->battlemon[client_no].form_no = 1;
+                    BattleFormChange(client_no, sp->battlemon[client_no].form_no, bw, sp, 1);
+                    sp->battlerIdTemp = client_no;
+                    scriptnum = BATTLE_SUBSCRIPT_TERA_SHIFT;
+                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                     break;
 
                 default:

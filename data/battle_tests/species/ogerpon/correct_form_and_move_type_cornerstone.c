@@ -73,6 +73,7 @@ BEGIN_TEST {
         },
     },
     .expectations = {
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The Cornerstone Mask worn by the opposing Ogerpon shone brilliantly, and Ogerpon's Defense rose!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ogerpon used Ivy Cudgel!" },
         // Considering Tera boost
         { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 63, 64, 65, 66, 66, 67, 68, 69, 69, 70, 71, 72, 72, 73, 74, 75 } },

@@ -78,7 +78,6 @@ void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct)
         // Done here so that animation is correct
         gBattleSystem->sp->isTerastallizedArray[battler][gBattleSystem->sp->sel_mons_no[battler]] = state;
         BattleVariation_ApplyMainAppearance(&gBattleSystem->pokepicManager->pics[battler]);
-        debug_printf("state: %d\n", state);
     }
 }
 

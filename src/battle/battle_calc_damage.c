@@ -542,8 +542,14 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 #endif
 
     // 6.7 Type Effectiveness Modifier
-    // TODO: need to factor in Tera Shell
     moveEffectiveness = GetTypeEffectiveness(bw, sp, attacker, defender, type, &flag);
+
+    if (sp->moveContext.teraShellActive) {
+        if (moveEffectiveness >= TYPE_MUL_NORMAL) {
+            moveEffectiveness = TYPE_MUL_NOT_EFFECTIVE;
+        }
+    }
+
     switch (moveEffectiveness) {
     case TYPE_MUL_NO_EFFECT:
         damage = 0;

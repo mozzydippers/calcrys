@@ -3982,6 +3982,27 @@ BOOL LONG_CALL CanActivateDamageReductionBerry(struct BattleStruct *ctx, int def
     return FALSE;
 }
 
+BOOL LONG_CALL CanActivateTeraShell(struct BattleStruct *ctx, int defender)
+{
+    if (!MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_TERA_SHELL) || ctx->battlemon[defender].species != SPECIES_TERAPAGOS || (u32)ctx->battlemon[defender].hp != ctx->battlemon[defender].maxhp) {
+        return FALSE;
+    }
+    if (ctx->current_move_index == MOVE_POLLEN_PUFF && defender == BATTLER_ALLY(ctx->attack_client)) {
+        return FALSE;
+    }
+
+    u32 effectiveness = ctx->moveStatusFlagForSpreadMoves[defender];
+
+    if (ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
+        && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
+        && !(ctx->server_status_flag & (BATTLE_STATUS_IGNORE_TYPE_IMMUNITY | BATTLE_STATUS_IGNORE_TYPE_EFFECTIVENESS))
+        && ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS
+        && !(effectiveness & (MOVE_STATUS_NO_EFFECT | MOVE_STATUS_NOT_VERY_EFFECTIVE))) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 BOOL LONG_CALL IsPureType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type)
 {
     GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);

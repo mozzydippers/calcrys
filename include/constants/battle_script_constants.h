@@ -543,6 +543,8 @@
 #define BATTLE_SUBSCRIPT_EMBODY_ASPECT_HEARTHFLAME              (534)
 #define BATTLE_SUBSCRIPT_EMBODY_ASPECT_CORNERSTONE              (535)
 #define BATTLE_SUBSCRIPT_TERASTALLIZATION_WEAR_OFF              (536)
+#define BATTLE_SUBSCRIPT_TERA_SHIFT                             (537)
+#define BATTLE_SUBSCRIPT_TERA_SHELL                             (538)
 
 #define MAX_BASE_SUBSCRIPT_NUM 536
 
