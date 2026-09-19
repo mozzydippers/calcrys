@@ -199,7 +199,8 @@ int LONG_CALL SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset;
     int ret;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp);
 
     u32 loadNeeded = IsOverlayLoaded(OVERLAY_BATTLECONTROLLER_MOVEEND) ? OVERLAY_BATTLECONTROLLER_MOVEEND : 0;
 
@@ -490,12 +491,13 @@ BOOL LONG_CALL MoveHitAttackerAbilityCheck(void *bw UNUSED, struct BattleStruct 
 BOOL LONG_CALL MoveHitDefenderAbilityCheck(struct BattleSystem *bw, struct BattleStruct *sp, int *seq_no)
 {
     u32 ovyId, ret, offset;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp, int *seq_no);
 
     ovyId = OVERLAY_MOVEHITDEFENDERABILITYCHECK_SPECIFIC;
     offset = 0x023C0400 | 1;
     HandleLoadOverlay(ovyId, 2);
-    internalFunc = (BOOL (*)(void *bw, struct BattleStruct *sp, int *seq_no))(offset);
+    internalFunc = (BOOL(*)(void *bw, struct BattleStruct *sp, int *seq_no))(offset);
     ret = internalFunc(bw, sp, seq_no);
     UnloadOverlayByID(ovyId);
 
