@@ -234,7 +234,7 @@ BOOL LONG_CALL CheckDefenderItemEffectOnHit(void *bw, struct BattleStruct *sp, i
 {
     u32 ovyId, offset;
     BOOL ret;
-    BOOL (*internalFunc)
+    BOOL(*internalFunc)
     (void *bw, struct BattleStruct *sp, int *seq_no);
 
     ovyId = OVERLAY_CHECKDEFENDERITEMEFFECTONHIT;

@@ -417,6 +417,8 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         pow = pow * 31 / 255;
         PokeParaSet(mons[i], species, level, pow, 1, rnd, 2, 0);
         SetMonData(mons[i], MON_DATA_FORM, &form_no);
+        u16 teraType = TYPE_ELECTRIC;
+        SetMonData(mons[i], MON_DATA_TERA_TYPE_OVERRIDE, &teraType);
 
         int genderOverride = abilityslot & 0xF;
         int abilityOverride = (abilityslot & 0xF0) >> 4;

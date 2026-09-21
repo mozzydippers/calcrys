@@ -15,6 +15,7 @@
 #define RAID_TINT_RED              31
 #define RAID_TINT_GREEN            16
 #define RAID_TINT_BLUE             16
+#define TERA_TINT_CHANNEL_MAX      31
 #define TERA_POKEPIC_ALPHA         10
 #define TERA_OBJ_BLEND_EVA         5
 #define TERA_OBJ_BLEND_EVB         11
@@ -24,6 +25,34 @@
 ALIGN4 struct BattleSystem *gBattleSystem __attribute__((section(".data"))) = NULL;
 
 static struct BattleVariationInfo sBattleVariationInfo = { 0 };
+
+typedef struct TeraTint {
+    u8 red;
+    u8 green;
+    u8 blue;
+} TeraTint;
+
+static const TeraTint sTeraTints[] = {
+    [TYPE_NORMAL] = { 31, 23, 20 },
+    [TYPE_FIGHTING] = { 31, 8, 5 },
+    [TYPE_FLYING] = { 14, 21, 31 },
+    [TYPE_POISON] = { 24, 7, 31 },
+    [TYPE_GROUND] = { 31, 21, 6 },
+    [TYPE_ROCK] = { 31, 23, 8 },
+    [TYPE_BUG] = { 19, 31, 5 },
+    [TYPE_GHOST] = { 13, 8, 31 },
+    [TYPE_STEEL] = { 18, 23, 31 },
+    [TYPE_FAIRY] = { 31, 13, 27 },
+    [TYPE_FIRE] = { 31, 8, 2 },
+    [TYPE_WATER] = { 6, 17, 31 },
+    [TYPE_GRASS] = { 8, 31, 6 },
+    [TYPE_ELECTRIC] = { 31, 29, 2 },
+    [TYPE_PSYCHIC] = { 31, 8, 20 },
+    [TYPE_ICE] = { 12, 28, 31 },
+    [TYPE_DRAGON] = { 10, 7, 31 },
+    [TYPE_DARK] = { 10, 7, 14 },
+    [TYPE_STELLAR] = { 31, 31, 31 },
+};
 
 static int BattleVariation_GetBattlerForPokepic(const Pokepic *pokepic)
 {
@@ -44,6 +73,24 @@ static BOOL BattleVariation_IsTerastallizedPokepic(const Pokepic *pokepic)
 {
     int battler = BattleVariation_GetBattlerForPokepic(pokepic);
     return battler >= 0 && gBattleSystem->sp != NULL && IS_TERASTALLIZED(gBattleSystem->sp, battler);
+}
+
+static void BattleVariation_ApplyTeraTint(Pokepic *pokepic, int battler)
+{
+    struct PartyPokemon *mon = Battle_GetClientPartyMon(gBattleSystem, battler, gBattleSystem->sp->sel_mons_no[battler]);
+    u32 teraType = GetMonData(mon, MON_DATA_TERA_TYPE_OVERRIDE, NULL);
+    TeraTint tint = { TERA_TINT_CHANNEL_MAX, TERA_TINT_CHANNEL_MAX, TERA_TINT_CHANNEL_MAX };
+
+    if (teraType == TYPE_NONE) {
+        teraType = GetMonData(mon, MON_DATA_TERA_TYPE_ORIGINAL, NULL);
+    }
+    if (teraType <= TYPE_STELLAR && teraType != TYPE_TYPELESS) {
+        tint = sTeraTints[teraType];
+    }
+
+    pokepic->drawParam.diffuseR = tint.red;
+    pokepic->drawParam.diffuseG = tint.green;
+    pokepic->drawParam.diffuseB = tint.blue;
 }
 
 static BOOL BattleVariation_HasTerastallizedBattler(void)
@@ -77,8 +124,11 @@ void LONG_CALL BattleVariation_SetDefaultAlphaBlending(void)
 
 void LONG_CALL BattleVariation_ApplyMainAppearance(Pokepic *pokepic)
 {
-    if (pokepic != NULL && pokepic->active && BattleVariation_IsTerastallizedPokepic(pokepic)) {
+    int battler = BattleVariation_GetBattlerForPokepic(pokepic);
+
+    if (pokepic != NULL && pokepic->active && battler >= 0 && gBattleSystem->sp != NULL && IS_TERASTALLIZED(gBattleSystem->sp, battler)) {
         BattleVariation_SetTeraBlend();
+        BattleVariation_ApplyTeraTint(pokepic, battler);
         pokepic->drawParam.alpha = TERA_POKEPIC_ALPHA;
     }
 }
@@ -108,10 +158,11 @@ void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
     drawParam->affineHeight = RAID_POKEPIC_AFFINE_SCALE;
     drawParam->visible = FALSE;
     drawParam->yOffset = -15;
-    // TODO type-based tera tints
-    drawParam->diffuseR = RAID_TINT_RED;
-    drawParam->diffuseG = RAID_TINT_GREEN;
-    drawParam->diffuseB = RAID_TINT_BLUE;
+    if (!BattleVariation_IsTerastallizedPokepic(pokepic)) {
+        drawParam->diffuseR = RAID_TINT_RED;
+        drawParam->diffuseG = RAID_TINT_GREEN;
+        drawParam->diffuseB = RAID_TINT_BLUE;
+    }
 }
 
 void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic)
