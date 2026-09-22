@@ -623,7 +623,7 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
 #if FAIRY_TYPE_IMPLEMENTED == 1
         // if Fairy Aura is present but not Aura Break
         if (!fairyAuraApplied
-            && (movetype == TYPE_DARK)
+            && (movetype == TYPE_FAIRY)
             && (battlerAbilities[damageCalc->rawSpeedNonRNGClientOrder[i]] == ABILITY_FAIRY_AURA)
             && (fieldHasAuraBreak == FALSE)) {
             fairyAuraApplied = TRUE;
@@ -633,7 +633,7 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
 
         // if Aura Break is present and also Fairy Aura
         if (!fairyAuraApplied
-            && (movetype == TYPE_DARK)
+            && (movetype == TYPE_FAIRY)
             && (battlerAbilities[damageCalc->rawSpeedNonRNGClientOrder[i]] == ABILITY_AURA_BREAK)
             && (fieldHasFairyAura == TRUE)) {
             fairyAuraApplied = TRUE;
@@ -744,13 +744,14 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
 
             // handle Analytic
             if (AttackingMon.ability == ABILITY_ANALYTIC) {
-                for (i = 0; i < 4; i++) {
+                int k = 0;
+                for (k = 0; k < 4; k++) {
                     // TODO: handle without bw, sp
-                    if (attacker != i && damageCalc->clients[i].hp != 0 && CalcSpeed(bw, sp, attacker, i, 0) == 0) {
+                    if (attacker != k && damageCalc->clients[k].hp != 0 && CalcSpeed(bw, sp, attacker, k, 0) == 0) {
                         break;
                     }
                 }
-                if (i == 4) {
+                if (k == 4) {
                     basePowerModifier = QMul_RoundUp(basePowerModifier, UQ412__1_3);
                     continue;
                 }
