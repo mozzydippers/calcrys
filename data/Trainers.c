@@ -2554,7 +2554,7 @@ const TrainerData sTrainerData[] = {
             .trainerClass = TRAINERCLASS_GENTLEMAN,
             .items = { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE },
             .aiFlags = F_PRIORITIZE_SUPER_EFFECTIVE | F_EVALUATE_ATTACKS | F_EXPERT_ATTACKS,
-            .battleType = SINGLE_BATTLE,
+            .battleType = NO_PARTNER_DOUBLE_BATTLE,
         },
         .party = {
             {
@@ -2565,6 +2565,16 @@ const TrainerData sTrainerData[] = {
                 .item = ITEM_LEFTOVERS,
                 .moves = { MOVE_BRAVE_BIRD, MOVE_BODY_PRESS, MOVE_BULK_UP, MOVE_ROOST },
                 .nature = NATURE_CAREFUL,
+                .ballSeal = 0,
+            },
+            {
+                .ivs = 255,
+                .abilitySlot = TRAINER_POKEMON_ABILITY_SLOT_1,
+                .level = 46,
+                .species = SPECIES_GHOLDENGO,
+                .item = ITEM_EJECT_PACK,
+                .moves = { MOVE_MAKE_IT_RAIN, MOVE_SHADOW_BALL, MOVE_DAZZLING_GLEAM, MOVE_RECOVER },
+                .nature = NATURE_TIMID,
                 .ballSeal = 0,
             },
             {
@@ -2594,16 +2604,6 @@ const TrainerData sTrainerData[] = {
                 .species = SPECIES_DURALUDON,
                 .item = ITEM_EVIOLITE,
                 .moves = { MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, MOVE_BODY_PRESS, MOVE_THUNDERBOLT },
-                .nature = NATURE_TIMID,
-                .ballSeal = 0,
-            },
-            {
-                .ivs = 255,
-                .abilitySlot = TRAINER_POKEMON_ABILITY_SLOT_1,
-                .level = 46,
-                .species = SPECIES_GHOLDENGO,
-                .item = ITEM_EJECT_PACK,
-                .moves = { MOVE_MAKE_IT_RAIN, MOVE_SHADOW_BALL, MOVE_DAZZLING_GLEAM, MOVE_RECOVER },
                 .nature = NATURE_TIMID,
                 .ballSeal = 0,
             },
@@ -4188,6 +4188,10 @@ const TrainerData sTrainerData[] = {
             {
                 .type = TRMSG_PHONE_REMATCH_INTRO,
                 .text = "I’ve been waiting!\\r",
+            },
+            {
+                .type = TRMSG_WIN,
+                .text = "It's only natural, losing to me.\\nLike I said, I'm the best in my class!\\n",
             },
         },
     },

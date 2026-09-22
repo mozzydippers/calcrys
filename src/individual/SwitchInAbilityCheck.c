@@ -75,7 +75,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case WEATHER_SYS_MIST1:
                         case WEATHER_SYS_MIST2:
-                    //        scriptnum = SUB_SEQ_OVERWORLD_FOG;
+                    //        scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_FOG;
                     //        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
@@ -92,7 +92,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 19:
-                            scriptnum = SUB_SEQ_OVERWORLD_GRAVITY_RADIO_WAVES;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_GRAVITY_RADIO_WAVES;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 20:
@@ -118,40 +118,40 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         case 24:
                             sp->current_move_index = MOVE_ELECTRIC_TERRAIN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TERRAIN_TRICK_ROOM;
                             break;
                         case 25:
                             sp->current_move_index = MOVE_PSYCHIC_TERRAIN;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            scriptnum = SUB_SEQ_OVERWORLD_TERRAIN_TRICK_ROOM;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TERRAIN_TRICK_ROOM;
                             break;
                         case 26:
                             sp->tailwindCount[1] = 255;
-                            scriptnum = SUB_SEQ_OVERWORLD_TAILWIND;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TAILWIND;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 27:
-                            scriptnum = SUB_SEQ_OVERWORLD_RADIO_WAVES;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_RADIO_WAVES;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 28:
-                            scriptnum = SUB_SEQ_OVERWORLD_RAIN_RADIO_WAVES;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_RAIN_RADIO_WAVES;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 29:
-                            scriptnum = SUB_SEQ_OVERWORLD_SUN_RADIO_WAVES;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_SUN_RADIO_WAVES;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 30:
-                            scriptnum = SUB_SEQ_OVERWORLD_TRICK_ROOM_RADIO_WAVES;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TRICK_ROOM_RADIO_WAVES;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 31:
-                            scriptnum = SUB_SEQ_OVERWORLD_WATER_SPORT;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_WATER_SPORT;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         case 32:
-                            scriptnum = SUB_SEQ_OVERWORLD_STRONG_WINDS;
+                            scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_STRONG_WINDS;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                     }
@@ -425,7 +425,7 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                         if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_WATER_VEIL)) {
                             sp->battlemon[client_no].ability_activated_flag = 1; 
                             sp->battlerIdTemp = client_no;
-                            scriptnum = SUB_SEQ_WATER_VEIL_AQUA_RING;
+                            scriptnum = BATTLE_SUBSCRIPT_WATER_VEIL_AQUA_RING;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             break;
                         }
