@@ -13,6 +13,8 @@
 
 BOOL LONG_CALL AICheckCanTerastallize(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx, int client)
 {
+
+    return TRUE;
 #ifdef DEBUG_TERASTALLIZATION_LOGIC
     debug_printf("In AICheckCanTerastallize\n");
 #endif
