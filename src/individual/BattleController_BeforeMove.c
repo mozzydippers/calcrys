@@ -233,8 +233,8 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
 
         // debug_printf("quickClawFlag: %d\n", ctx->battlemon[ctx->attack_client].moveeffect.quickClawFlag);
 
-        if (ctx->battlemon[ctx->attack_client].is_currently_dynamaxed && newBS.SideMaxMoveBaseMove[ctx->attack_client]) {
-            ctx->current_move_index = GetMaxMoveToBeUsed(ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
+        if (IS_DYNAMAXED(ctx, ctx->attack_client) && newBS.SideMaxMoveBaseMove[ctx->attack_client]) {
+            ctx->current_move_index = GetMaxMoveToBeUsed(bsys, ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
         }
 
         ctx->wb_seq_no++;
@@ -2089,8 +2089,9 @@ BOOL BattleController_CheckMoveFailures1(struct BattleSystem *bsys, struct Battl
         ctx->waza_status_flag |= MOVE_STATUS_FAILED;
         return TRUE;
     }
+    // TODO
     // Weight moves into Dynamax
-    if (IsDynamaxBannedWeightMove(currentMoveIndex) && defenceClient.is_currently_dynamaxed) {
+    if (IsDynamaxBannedWeightMove(currentMoveIndex) && IS_DYNAMAXED(ctx, ctx->defence_client)) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_CANT_USE_MOVE_DYNAMAX_TARGET);
         ctx->next_server_seq_no = CONTROLLER_COMMAND_25;
@@ -3040,7 +3041,7 @@ BOOL BattleController_CheckMoveFailures2(struct BattleSystem *bsys UNUSED, struc
         || (moveEffect == MOVE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
             && ((ctx->battlemon[ctx->attack_client].sex == ctx->battlemon[defender].sex) || ctx->battlemon[ctx->attack_client].sex == POKEMON_GENDER_UNKNOWN || MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_OBLIVIOUS)))
         // Torment into Dynamax
-        || (moveEffect == MOVE_EFFECT_TORMENT && ctx->battlemon[defender].is_currently_dynamaxed)) {
+        || (moveEffect == MOVE_EFFECT_TORMENT && IS_DYNAMAXED(ctx, defender))) {
         ctx->waza_status_flag |= MOVE_STATUS_NO_EFFECT;
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         ctx->server_seq_no = CONTROLLER_COMMAND_25;
@@ -3064,7 +3065,7 @@ BOOL BattleController_CheckWhirlwindFailures(struct BattleSystem *bsys UNUSED, s
 
     if (ctx->moveTbl[ctx->current_move_index].effect == MOVE_EFFECT_FORCE_SWITCH) {
         // 1. Handle Dynamax
-        if (ctx->battlemon[defender].is_currently_dynamaxed) {
+        if (IS_DYNAMAXED(ctx, defender)) {
             BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, FALSE);
             ctx->battlerIdTemp = defender;
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_FORCE_SWITCH_FAIL_DYNAMAX);
@@ -3912,7 +3913,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
     case MOVE_ENTRAINMENT: {
         if (AbilityNoEntrainment(GetBattlerAbility(ctx, ctx->attack_client))
             || AbilityCantSupress(GetBattlerAbility(ctx, ctx->defence_client))
-            || ctx->battlemon[ctx->defence_client].is_currently_dynamaxed
+            || IS_DYNAMAXED(ctx, ctx->defence_client)
             || GetBattlerAbility(ctx, ctx->defence_client) == ABILITY_TRUANT
             || GetBattlerAbility(ctx, ctx->attack_client) == GetBattlerAbility(ctx, ctx->defence_client)) {
             butItFailedFlag = TRUE;
@@ -3938,7 +3939,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
     case MOVE_SKILL_SWAP: {
         if (AbilityFailSkillSwap(GetBattlerAbility(ctx, ctx->attack_client))
             || AbilityFailSkillSwap(GetBattlerAbility(ctx, ctx->defence_client))
-            || ctx->battlemon[ctx->defence_client].is_currently_dynamaxed) {
+            || IS_DYNAMAXED(ctx, ctx->defence_client)) {
             butItFailedFlag = TRUE;
         }
         break;
@@ -4739,7 +4740,7 @@ BOOL BattleController_CheckMoveFailures3(struct BattleSystem *bsys UNUSED, struc
 
     // xxx is unaffected
     // OHKO moves against a target with higher level than the user / target is Dynamaxed
-    if (moveEffect == MOVE_EFFECT_ONE_HIT_KO && (ctx->battlemon[ctx->attack_client].level < ctx->battlemon[defender].level || ctx->battlemon[defender].is_currently_dynamaxed)) {
+    if (moveEffect == MOVE_EFFECT_ONE_HIT_KO && (ctx->battlemon[ctx->attack_client].level < ctx->battlemon[defender].level || IS_DYNAMAXED(ctx, defender))) {
         ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_ONE_HIT_KO_FAILED;
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
         ctx->battlerIdTemp = defender;

@@ -21,6 +21,7 @@
 #include "z_moves.h"
 
 static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleStruct *ctx);
+static BOOL Dynamax(struct BattleSystem *bsys, struct BattleStruct *ctx);
 static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx);
 
 /********************************************************************************************************************/
@@ -131,7 +132,7 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                             flag = TRUE;
                         }
 
-                        if (sp->battlemon[client_no].is_currently_dynamaxed) {
+                        if (IS_DYNAMAXED(sp, client_no)) {
                             newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                         }
                     } else if ((client_no & 1) != 0 || (client_no == 2 && (bw->trainerId[client_no] != 0))) {
@@ -140,24 +141,19 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                             if (CheckCanMega(sp, client_no)) {
                                 sp->battlemon[client_no].canMega = 1;
                                 flag = TRUE;
-                            }
-
-                            if (AICheckCanUseZMove(sp, client_no)) {
+                            } else if (AICheckCanUseZMove(sp, client_no)) {
                                 newBS.needZMove[client_no] = TRUE;
                                 newBS.SideZMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
-                            }
-
-                            if (AICheckCanDynamax(bw, sp, client_no)) {
+                            } else if (AICheckCanDynamax(bw, sp, client_no)) {
                                 newBS.needDynamax[client_no] = TRUE;
                                 newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
-                            }
-
-                            if (sp->battlemon[client_no].is_currently_dynamaxed) {
-                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
-                            }
-
-                            if (AICheckCanTerastallize(bw, sp, client_no)) {
+                            } else if (AICheckCanTerastallize(bw, sp, client_no)) {
                                 newBS.needTerastallize[client_no] = TRUE;
+                            }
+
+                            // TODO: handle changing moves properly
+                            if (IS_DYNAMAXED(sp, client_no)) {
+                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                             }
                         }
                     }
@@ -343,6 +339,9 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
             // debug_printf("In SBA_DYNAMAXING\n");
 
             // 極巨化
+            if (Dynamax(bw, sp)) {
+                return;
+            }
             sp->sba_seq_no++;
             break;
         }
@@ -469,6 +468,56 @@ static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleSt
             return TRUE;
         }
         newBS.needMega[client_no] = MEGA_NO_NEED;
+    }
+    return FALSE;
+}
+
+// TODO: Does not handle limiting in doubles yet
+static BOOL Dynamax(struct BattleSystem *bsys, struct BattleStruct *ctx)
+{
+    int client_no, i;
+    int client_set_max;
+
+    client_set_max = BattleWorkClientSetMaxGet(bsys);
+    for (i = 0; i < client_set_max; i++) {
+        client_no = ctx->turnOrder[i];
+        if (newBS.needDynamax[client_no] && newBS.SideDynamax[client_no] == FALSE && ctx->battlemon[client_no].hp) {
+            // TODO: fix this faulty check
+            if (BattleTypeGet(bsys) & BATTLE_TYPE_MULTI) {
+                if (client_no == 0 || (client_no == 2 && ctx->battlemon[client_no].id_no == ctx->battlemon[0].id_no)) {
+                    newBS.SideDynamax[0] = TRUE;
+                    newBS.SideDynamax[2] = TRUE;
+                }
+            } else if (client_no == 0 || client_no == 2) {
+                newBS.SideDynamax[0] = TRUE;
+                newBS.SideDynamax[2] = TRUE;
+            } else {
+                newBS.SideDynamax[client_no] = TRUE;
+            }
+
+            newBS.needDynamax[client_no] = FALSE;
+
+            // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9458017
+            ctx->battlemon[client_no].condition2 &= ~STATUS2_DESTINY_BOND;
+
+            ctx->battlerIdTemp = client_no;
+
+            struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client_no, ctx->sel_mons_no[client_no]);
+            BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
+
+            if (hasGigantamaxFactor) {
+                ctx->battlemon[client_no].form_no = GetDynamaxedState(ctx->battlemon[client_no].species, ctx->battlemon[client_no].form_no, hasGigantamaxFactor);
+                BattleFormChange(client_no, ctx->battlemon[client_no].form_no, bsys, ctx, FALSE);
+            }
+
+            // Might need to move this elsewhere later?
+            ctx->isDynamaxedArray[client_no][ctx->sel_mons_no[client_no]] = TRUE;
+
+            LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_DYNAMAX);
+            ctx->next_server_seq_no = ctx->server_seq_no;
+            ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+            return TRUE;
+        }
     }
     return FALSE;
 }

@@ -477,8 +477,7 @@ struct BattlePokemon {
     u32 potentially_affected_by_psychic_terrain_move_used_flag : 1;
     u32 ability_activated_flag : 1;
     u32 embodyAspectProteanLiberoActivated : 1;
-    u32 unused : 5;
-    u32 is_currently_dynamaxed : 1;
+    u32 unused : 6;
     u32 has_dynamaxed_before : 1; /**< for Cherrim and Flower Gift */
     u32 type3 : 5; // need to add to ClearBattleMonFlags when added to here as well
     /* 0x2c */ u8 pp[4]; /**< move pp left */
@@ -1173,6 +1172,7 @@ struct BattleStruct {
     BOOL isTerastallizedArray[CLIENT_MAX][6];
 };
 
+#define IS_DYNAMAXED(ctx, client)     (ctx->isDynamaxedArray[client][ctx->sel_mons_no[client]])
 #define IS_TERASTALLIZED(ctx, client) (ctx->isTerastallizedArray[client][ctx->sel_mons_no[client]])
 
 enum {

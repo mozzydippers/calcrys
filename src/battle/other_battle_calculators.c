@@ -1667,7 +1667,7 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
                 if (newBS.needZMove[client]) {
                     move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
                 } else if (newBS.SideMaxMoveBaseMove[client]) {
-                    move = GetMaxMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                    move = GetMaxMoveToBeUsed(bsys, ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
                 } else {
                     move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
                 }
@@ -2723,7 +2723,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
     }
 
     if (sp->battlemon[battlerIdTarget].effect_of_moves & MOVE_EFFECT_FLAG_MINIMIZE
-        && !sp->battlemon[battlerIdTarget].is_currently_dynamaxed
+        && !IS_DYNAMAXED(sp, battlerIdTarget)
         && IsMoveInMinimizeVulnerabilityMovesList(move)) {
         sp->waza_status_flag &= ~MOVE_STATUS_MISSED;
         return TRUE;

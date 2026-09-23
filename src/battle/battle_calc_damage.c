@@ -651,7 +651,7 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 
     // 6.9.14.1 Minimize
     if (sp->battlemon[defender].effect_of_moves & MOVE_EFFECT_FLAG_MINIMIZE
-        && !sp->battlemon[defender].is_currently_dynamaxed
+        && !IS_DYNAMAXED(sp, defender)
         && IsMoveInMinimizeVulnerabilityMovesList(moveno)) {
         finalModifier = QMul_RoundUp(finalModifier, UQ412__2_0);
     }
@@ -670,7 +670,7 @@ void CalcDamageOverall(void *bw, struct BattleStruct *sp)
 
     // 6.9.14.4 Behemoth Blade/Behemoth Bash/Dynamax Cannon
     // https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/post-8319925
-    if ((sp->battlemon[defender].is_currently_dynamaxed)
+    if (IS_DYNAMAXED(sp, defender)
         && (moveno == MOVE_BEHEMOTH_BLADE || moveno == MOVE_BEHEMOTH_BASH || moveno == MOVE_DYNAMAX_CANNON)) {
         finalModifier = QMul_RoundUp(finalModifier, UQ412__2_0);
     }

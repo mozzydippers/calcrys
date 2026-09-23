@@ -231,8 +231,7 @@ BOOL LONG_CALL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq
 {
     u32 ovyId, offset;
     BOOL ret;
-    BOOL (*internalFunc)
-    (void *bw, struct BattleStruct *sp, int *seq_no);
+    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
 
     UnloadOverlayByID(6); // unload overlay 6 so this can be loaded
 
@@ -1179,7 +1178,7 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     sp->battlemon[client].potentially_affected_by_psychic_terrain_move_used_flag = 0;
     sp->battlemon[client].ability_activated_flag = 0;
     sp->battlemon[client].embodyAspectProteanLiberoActivated = 0;
-    sp->battlemon[client].is_currently_dynamaxed = 0;
+    sp->isDynamaxedArray[client][sp->sel_mons_no[client]] = 0;
     sp->battlemon[client].has_dynamaxed_before = 0;
     sp->battlemon[client].type3 = TYPE_TYPELESS;
     sp->moveConditionsFlags[client].soakFlag = FALSE;
@@ -1222,7 +1221,7 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
 
     if (battleVariationInfo.battleVariationType == BATTLE_VARIATION_TYPE_MAX_RAID && client == 1) {
-        sp->battlemon[client].is_currently_dynamaxed = 1;
+        sp->isDynamaxedArray[client][sp->sel_mons_no[client]] = 1;
     }
 }
 

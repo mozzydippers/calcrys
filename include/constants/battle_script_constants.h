@@ -545,6 +545,9 @@
 #define BATTLE_SUBSCRIPT_TERASTALLIZATION_WEAR_OFF              (536)
 #define BATTLE_SUBSCRIPT_TERA_SHIFT                             (537)
 #define BATTLE_SUBSCRIPT_TERA_SHELL                             (538)
+#define BATTLE_SUBSCRIPT_TERAFORM_ZERO                          (539)
+#define BATTLE_SUBSCRIPT_DYNAMAX                                (540)
+#define BATTLE_SUBSCRIPT_DYNAMAX_WEAR_OFF                       (541)
 
 #define MAX_BASE_SUBSCRIPT_NUM 536
 
@@ -837,6 +840,8 @@
 #define BATTLE_ANIMATION_TERA_RAID_NULLIFY_STAT_CHANGES    60
 #define BATTLE_ANIMATION_TERASTALLIZE                      61
 #define BATTLE_ANIMATION_TERASTALLIZE_WEAR_OFF             62
+#define BATTLE_ANIMATION_DYNAMAX                           63
+#define BATTLE_ANIMATION_DYNAMAX_WEAR_OFF                  64
 
 #define MOVE_SIDE_EFFECT_BREAK_SCREENS           0x800000
 #define MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE        0x1000000
