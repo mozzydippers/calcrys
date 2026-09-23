@@ -52,13 +52,8 @@ BEGIN_TEST
         },
     },
     .expectations = {
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The Hearthflame Mask worn by the opposing Ogerpon shone brilliantly, and Ogerpon's Attack rose!" },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Ogerpon used Fire Spin!" },
-        // Considering Tera boost
-        { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_PLAYER_FIRST, .expectationValue.hpTaken = { 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 22, 23, 23, 23, 23, 24 } },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "It's not very effective..." },
-        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Quaquaval used Drain Punch!" },
-        { .expectationType = EXPECTATION_TYPE_HP_BAR, .battlerIDOrPartySlot = BATTLER_ENEMY_FIRST, .expectationValue.hpTaken = { 58, 58, 60, 60, 60, 61, 61, 63, 63, 64, 64, 66, 66, 67, 67, 69 } },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Charizard used Max Strike!" },
+        { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Quaquaval's Speed fell!" },
     }
 }
 END_TEST
