@@ -1625,23 +1625,30 @@
     .long \arg_1
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro GoToIfMoveConditionFlagSet arg_0, arg_1, arg_2
     .long 298
+    .long \arg_0
+    .long \arg_1
+    .long (((\arg_2 - .) / 4) - 1)
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 299
     .endm
 
     .macro IfClientDynamaxed arg_0, arg_1
-    .long 299
-    .long \arg_0
-    .long (((\arg_1 - .) / 4) - 1)
-    .endm
-
-    .macro IfClientTerastallized arg_0, arg_1
     .long 300
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 300
+    .macro IfClientTerastallized arg_0, arg_1
+    .long 301
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
+    .endm
+
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 301
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
