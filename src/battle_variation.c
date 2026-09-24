@@ -16,7 +16,7 @@
 #define RAID_TINT_GREEN            16
 #define RAID_TINT_BLUE             16
 #define TERA_TINT_CHANNEL_MAX      31
-#define TERA_POKEPIC_ALPHA         10
+#define TERA_POKEPIC_ALPHA         15
 #define TERA_OBJ_BLEND_EVA         5
 #define TERA_OBJ_BLEND_EVB         11
 #define TERA_BLEND_CONTROL         0x2F40
