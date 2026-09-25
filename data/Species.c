@@ -52223,12 +52223,12 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 80,
-                .attack = 85,
-                .defense = 75,
+                .hp = 105,
+                .attack = 45,
+                .defense = 85,
                 .spAttack = 110,
                 .spDefense = 100,
-                .speed = 70,
+                .speed = 75,
             },
             .types = { TYPE_ICE, TYPE_PSYCHIC },
             .catchRate = 45,
@@ -66302,8 +66302,8 @@ const SpeciesDataEntry sSpeciesData[MAX_SPECIES_INCLUDING_FORMS + 1] = {
         },
         .speciesData = {
             .baseStats = {
-                .hp = 50,
-                .attack = 65,
+                .hp = 70,
+                .attack = 45,
                 .defense = 65,
                 .spAttack = 90,
                 .spDefense = 90,

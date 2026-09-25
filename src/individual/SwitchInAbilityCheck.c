@@ -359,76 +359,76 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                 }
 
                     // Weather Ability
-                    {
-                        if (!(CanUndergoPrimalReversion(sp, client_no)) && (sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp)) {
-                            switch (GetBattlerAbility(sp, client_no)) {
-                                case ABILITY_DRIZZLE:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_RAIN_ALL) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_DRIZZLE;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_SAND_STREAM:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_SANDSTORM_ALL) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_SAND_STREAM;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_DROUGHT:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_SUN_ALL) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_DROUGHT;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_SNOW_WARNING:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_HAIL_ALL) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_SNOW_WARNING;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_DESOLATE_LAND:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_DESOLATE_LAND;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_PRIMORDIAL_SEA:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_HEAVY_RAIN) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_PRIMORDIAL_SEA;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                                case ABILITY_DELTA_STREAM:
-                                    sp->battlemon[client_no].ability_activated_flag = 1;
-                                    if ((sp->field_condition & FIELD_CONDITION_STRONG_WINDS) == 0) {
-                                        scriptnum = BATTLE_SUBSCRIPT_DELTA_STREAM;
-                                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                                    }
-                                    break;
-                            } 
-                        }
-                        if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
-                            sp->battlerIdTemp = client_no;
-                            break;
-                        }
+                {
+                    if (!(CanUndergoPrimalReversion(sp, client_no)) && (sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp)) {
+                        switch (GetBattlerAbility(sp, client_no)) {
+                            case ABILITY_DRIZZLE:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_RAIN_ALL) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_DRIZZLE;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_SAND_STREAM:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_SANDSTORM_ALL) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_SAND_STREAM;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_DROUGHT:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_SUN_ALL) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_DROUGHT;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_SNOW_WARNING:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_HAIL_ALL) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_SNOW_WARNING;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_DESOLATE_LAND:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_EXTREMELY_HARSH_SUNLIGHT) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_DESOLATE_LAND;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_PRIMORDIAL_SEA:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_HEAVY_RAIN) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_PRIMORDIAL_SEA;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                            case ABILITY_DELTA_STREAM:
+                                sp->battlemon[client_no].ability_activated_flag = 1;
+                                if ((sp->field_condition & FIELD_CONDITION_STRONG_WINDS) == 0) {
+                                    scriptnum = BATTLE_SUBSCRIPT_DELTA_STREAM;
+                                    ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                                }
+                                break;
+                        } 
                     }
+                    if (ret == SWITCH_IN_CHECK_MOVE_SCRIPT) {
+                        sp->battlerIdTemp = client_no;
+                        break;
+                    }
+                }
 
-                    // calcrys custom water veil
-                    {
-                        if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_WATER_VEIL)) {
-                            sp->battlemon[client_no].ability_activated_flag = 1; 
-                            sp->battlerIdTemp = client_no;
-                            scriptnum = BATTLE_SUBSCRIPT_WATER_VEIL_AQUA_RING;
-                            ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
-                            break;
-                        }
+                // calcrys custom water veil
+                {
+                    if ((sp->battlemon[client_no].ability_activated_flag == 0) && (sp->battlemon[client_no].hp) && (GetBattlerAbility(sp, client_no) == ABILITY_WATER_VEIL)) {
+                        sp->battlemon[client_no].ability_activated_flag = 1; 
+                        sp->battlerIdTemp = client_no;
+                        scriptnum = BATTLE_SUBSCRIPT_WATER_VEIL_AQUA_RING;
+                        ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
+                        break;
                     }
+                }
 
                 // Cloud Nine/Air Lock
                 {

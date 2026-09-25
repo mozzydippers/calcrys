@@ -97,4 +97,45 @@ struct BossBattle BossBattles[] = {
             },
         },
     },
+    [2] = {
+        .battleVariationBase.mainPokemon.species = SPECIES_GYARADOS,
+        .battleVariationBase.mainPokemon.gender = 0,
+        .battleVariationBase.mainPokemon.abilitySlot = 0,
+        .battleVariationBase.mainPokemon.level = 60,
+        .battleVariationBase.mainPokemon.nature = NATURE_ADAMANT,
+        .battleVariationBase.mainPokemon.heldItem = ITEM_GYARADOSITE,
+        .battleVariationBase.mainPokemon.moves = { MOVE_AQUA_TAIL, MOVE_LASH_OUT, MOVE_EARTHQUAKE, MOVE_POWER_WHIP},
+        .battleVariationBase.mainPokemon.potential = { 31, 31, 31, 31, 31, 31 },
+        .multipliers = { 6, 1, 1, 1, 1, 1 },
+        .extraActions = {
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 100,
+                .moveNumberOrAction = MOVE_OUTRAGE,
+            },
+            {
+                .actionType = TERA_RAID_REMOVAL_OF_NEGATIVE_EFFECTS,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 75,
+            },
+            {
+                .actionType = TERA_RAID_REMOVAL_OF_POSITIVE_EFFECTS,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 50,
+            },
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 50,
+                .moveNumberOrAction = MOVE_BRUTAL_SWING,
+            },
+            {
+                .actionType = ADDITIONAL_MOVE,
+                .thresholdType = THRESHOLD_HEALTH,
+                .threshold = 25,
+                .moveNumberOrAction = MOVE_DRAGON_DANCE,
+            },
+        },
+    },
 };

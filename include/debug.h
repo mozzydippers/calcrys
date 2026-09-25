@@ -63,22 +63,22 @@
 #define DEBUG_ALWAYS_OBEY
 
 // DEBUG_SWITCH_IN_ABILITY_CHECK turns on a number of debug prints related to the switch-in logic
-// #define DEBUG_SWITCH_IN_ABILITY_CHECK
+#define DEBUG_SWITCH_IN_ABILITY_CHECK
 
 // DEBUG_ENDTURN_LOGIC turns on a number of debug prints related to the end-turn logic
-// #define DEBUG_ENDTURN_LOGIC
+#define DEBUG_ENDTURN_LOGIC
 
 // DEBUG_BEFORE_MOVE_LOGIC turns on a number of debug prints related to the before-move logic
-// #define DEBUG_BEFORE_MOVE_LOGIC
+#define DEBUG_BEFORE_MOVE_LOGIC
 
 // DEBUG_Z_MOVE_LOGIC turns on a number of debug prints related to the Z-Move logic
-// #define DEBUG_Z_MOVE_LOGIC
+#define DEBUG_Z_MOVE_LOGIC
 
 // DEBUG_DYNAMAX_LOGIC turns on a number of debug prints related to the Z-Move logic
-// #define DEBUG_DYNAMAX_LOGIC
+#define DEBUG_DYNAMAX_LOGIC
 
 // DEBUG_MOVE_PERFORMANCE_LOGIC turns on a number of debug prints related to the move-performance logic
-// #define DEBUG_MOVE_PERFORMANCE_LOGIC
+#define DEBUG_MOVE_PERFORMANCE_LOGIC
 
 // DEBUG_PRINT_HEAP_CREATION allows for debug prints on heap creation/deletion
 // #define DEBUG_PRINT_HEAP_CREATION
@@ -90,7 +90,7 @@
 // #define DEBUG_DAMAGE_CALC
 
 // DEBUG_SPEED_CALC shows debug information related to calculating speed. It is very slow and laggy.
-//  #define DEBUG_SPEED_CALC
+// #define DEBUG_SPEED_CALC
 
 // DEBUG_ABILITY_POPUP shows debug information related to the Ability popup.
 // #define DEBUG_ABILITY_POPUP
