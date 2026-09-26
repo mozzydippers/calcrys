@@ -7,7 +7,7 @@ BEGIN_TEST
     .weather = FIELD_CONDITION_NONE,
     .fieldCondition = 0,
     .terrain = TERRAIN_NONE,
-    // .opponentTerastallize = TRUE,
+    .opponentDynamax = TRUE,
     .playerParty = {
         {
             .species = SPECIES_QUAQUAVAL,

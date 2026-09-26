@@ -8,6 +8,9 @@
 #include "../../include/pokemon.h"
 #include "../../include/sprite.h"
 #include "../../include/types.h"
+#ifdef DEBUG_BATTLE_SCENARIOS
+#include "test_battle.h"
+#endif
 
 BOOL LONG_CALL IsInPowerSpot()
 {
@@ -26,7 +29,10 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct 
 
     int moveID = GetBattlerSelectedMove(ctx, client);
 
+#ifndef DEBUG_BATTLE_SCENARIOS
     struct BattleMove move = ctx->moveTbl[moveID];
+    BOOL canDynamax = FALSE;
+#endif
 
     if (newBS.SideDynamax[client]) {
 #ifdef DEBUG_DYNAMAX_LOGIC
@@ -50,8 +56,6 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct 
         return FALSE;
     }
 
-    BOOL canDynamax = FALSE;
-
     if (IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, client)) {
         struct PartyPokemon *illusionMon = Battle_GetClientPartyMon(bsys, client, gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(ctx, client)]);
 
@@ -69,13 +73,21 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct 
 #ifdef DEBUG_DYNAMAX_LOGIC
         debug_printf("Can Dynamax\n");
 #endif
+#ifndef DEBUG_BATTLE_SCENARIOS
         canDynamax = TRUE;
+#endif
     } else {
 #ifdef DEBUG_DYNAMAX_LOGIC
         debug_printf("Not in Power Spot or species cannot Dynamax\n");
 #endif
     }
 
+#ifdef DEBUG_BATTLE_SCENARIOS
+    struct TestBattleScenario *scenario = TestBattle_GetCurrentScenario();
+    if (scenario->opponentDynamax) {
+        return TRUE;
+    }
+#else
     // For AI only
     if (move.power && canDynamax) {
         struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client, ctx->sel_mons_no[client]);
@@ -86,6 +98,7 @@ BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct 
         // return FALSE;
         return hasGigantamaxFactor;
     }
+#endif
 
     return FALSE;
 }

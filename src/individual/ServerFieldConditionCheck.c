@@ -15,6 +15,7 @@
 #include "constants/weather_numbers.h"
 
 #include "battle.h"
+#include "battle_variations.h"
 #include "pokemon.h"
 #include "save.h"
 
@@ -63,7 +64,7 @@ enum EndTurnResolutionOrder {
     ENDTURN_RESOLVE_SWITCHES_4,
     ENDTURN_FORM_CHANGE,
     ENDTURN_FOURTH_EVENT_BLOCK,
-    ENDTURN_ION_DELUGE_FADING,
+    ENDTURN_DYNAMAX_WEAR_OFF,
     ENDTURN_END,
     ENDTURN_EXTRA_ACTION,
 };
@@ -1912,15 +1913,52 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
 
             break;
         }
-        case ENDTURN_ION_DELUGE_FADING: { // Ion Deluge has no actual requirement for synchronicity as it lacks a message and all moves have been executed by this point. It's just here because it needs to be reset somewhere.
+        case ENDTURN_DYNAMAX_WEAR_OFF: {
 #ifdef DEBUG_ENDTURN_LOGIC
-            debug_printf("In ENDTURN_ION_DELUGE_FADING\n");
-
+            debug_printf("In ENDTURN_DYNAMAX_WEAR_OFF\n");
 #endif
 
-            sp->field_condition &= ~FIELD_CONDITION_ION_DELUGE;
+            struct BattleVariationInfo battleVariationInfo = *GetBattleVariationInfo();
 
-            sp->fcc_seq_no++;
+            while (sp->scc_work < client_set_max) {
+                battlerId = sp->turnOrder[sp->scc_work];
+                sp->scc_work++;
+
+                BOOL isMaxRaidBoss = battleVariationInfo.battleVariationType == BATTLE_VARIATION_TYPE_MAX_RAID && battlerId == 1;
+
+                if (IS_DYNAMAXED(sp, battlerId) && !isMaxRaidBoss) {
+                    sp->isDynamaxedArray[battlerId][sp->sel_mons_no[battlerId]]++;
+
+                    if (sp->isDynamaxedArray[battlerId][sp->sel_mons_no[battlerId]] > 3) {
+                        sp->isDynamaxedArray[battlerId][sp->sel_mons_no[battlerId]] = 0;
+                        sp->battlerIdTemp = battlerId;
+                        struct PartyPokemon *mon = BattleWorkPokemonParamGet(bw, battlerId, sp->sel_mons_no[battlerId]);
+                        BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
+                        if (hasGigantamaxFactor) {
+                            switch (sp->battlemon[battlerId].species) {
+                            case SPECIES_TOXTRICITY:
+                                sp->battlemon[battlerId].form_no = sp->battlemon[battlerId].form_no == 2 ? 0 : 1;
+                                break;
+                            case SPECIES_URSHIFU:
+                                sp->battlemon[battlerId].form_no = sp->battlemon[battlerId].form_no == 2 ? 0 : 1;
+                                break;
+                            default:
+                                sp->battlemon[battlerId].form_no = 0;
+                                break;
+                            }
+                        }
+                        BattleFormChange(battlerId, sp->battlemon[battlerId].form_no, bw, sp, FALSE);
+                        LoadBattleSubSeqScript(sp, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_DYNAMAX_WEAR_OFF);
+                        sp->next_server_seq_no = sp->server_seq_no;
+                        sp->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+                        return;
+                    }
+                }
+            }
+            if (sp->scc_work >= client_set_max) {
+                sp->scc_work = 0;
+                sp->fcc_seq_no++;
+            }
             break;
         }
         case ENDTURN_END: {
@@ -1969,6 +2007,8 @@ void ServerFieldConditionCheck(void *bw, struct BattleStruct *sp)
                 sp->moveConditionsFlags[i].mindBlownOrSteelBeam = 0;
                 sp->moveProtect[i] = 0;
             }
+
+            sp->field_condition &= ~FIELD_CONDITION_ION_DELUGE;
 
             sp->playerSideHasFaintedTeammateLastTurn = sp->playerSideHasFaintedTeammateThisTurn;
             sp->enemySideHasFaintedTeammateLastTurn = sp->enemySideHasFaintedTeammateThisTurn;

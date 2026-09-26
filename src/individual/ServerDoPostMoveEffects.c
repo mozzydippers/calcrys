@@ -2429,7 +2429,7 @@ int LONG_CALL MovePerformance_Step_10(void *bsys, struct BattleStruct *ctx, int 
             debug_printf("in MOVE_PERFORMANCE_SUB_STEP_10_12_PROTECTION_FROM_Z_MOVE %d\n", ctx->movePerformanceSubstep);
 #endif
             ctx->movePerformanceSubstep++;
-            if ((MoveIsZMove(ctx->current_move_index) || MoveIsMaxMove(ctx->current_move_index)) && ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
+            if ((MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)) && ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT);
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;

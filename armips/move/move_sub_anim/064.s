@@ -19,6 +19,7 @@ DynamaxAnimScript:
     addparticle 2, 12, 3
 
     //SetBattlerTeraState BATTLER_CATEGORY_MSG_TEMP, FALSE
+    transform 0
     wait 60
 
     unloadparticle 2
