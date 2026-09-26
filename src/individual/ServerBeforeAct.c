@@ -150,11 +150,10 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                             } else if (AICheckCanTerastallize(bw, sp, client_no)) {
                                 newBS.needTerastallize[client_no] = TRUE;
                             }
-
-                            // TODO: handle changing moves properly
-                            if (IS_DYNAMAXED(sp, client_no)) {
-                                newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
-                            }
+                        }
+                        // TODO: handle changing moves properly
+                        if (IS_DYNAMAXED(sp, client_no)) {
+                            newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                         }
                     }
 
