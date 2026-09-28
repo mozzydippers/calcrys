@@ -2948,8 +2948,8 @@ BOOL BattleController_CheckTypeImmunity(struct BattleSystem *bsys, struct Battle
     int target = ctx->moveTbl[ctx->current_move_index].target;
     int power = ctx->moveTbl[ctx->current_move_index].power;
 
-    if ((target != RANGE_USER
-            && target != RANGE_USER_SIDE
+    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
+            && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
             && (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS)
             && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
         || ctx->current_move_index == MOVE_THUNDER_WAVE) {
