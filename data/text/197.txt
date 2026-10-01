@@ -2035,3 +2035,34 @@ The Wellspring Mask worn by\nthe opposing {STRVAR_1 1, 0, 0} shone brilliantly,\
 {STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!
 The wild {STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!
 The opposing {STRVAR_1 1, 0, 0} made its shell\ngleam! It’s distorting type matchups!
+You found {STRVAR_1 8, 0, 0} in the aftermath!
+{STRVAR_1 1, 0, 0} toughed it out so you wouldn’t feel sad!
+{STRVAR_1 1, 0, 0} shook itself awake so you wouldn’t worry!
+{STRVAR_1 1, 0, 0} managed to expel the poison so you\nwouldn’t worry!
+{STRVAR_1 1, 0, 0} cured its burn through sheer determination\nso you wouldn’t worry!
+{STRVAR_1 1, 0, 0} gathered all its energy to break through\nits paralysis so you wouldn’t worry!
+{STRVAR_1 1, 0, 0} melted the ice with its fiery determination\nso you wouldn’t worry!
+{STRVAR_1 1, 0, 0} avoided the move in time via your shout!
+{STRVAR_1 1, 0, 0} landed a critical hit, wishing to be praised!
+{STRVAR_1 1, 0, 0} turned back toward you and nodded\nin understanding!
+{STRVAR_1 1, 0, 0} is looking at you with intense and\ndetermined eyes!
+{STRVAR_1 1, 0, 0} is expecting you to come up with a\ngreat strategy!
+You and {STRVAR_1 1, 0, 0} are breathing in perfect sync with\none another!
+{STRVAR_1 1, 0, 0} seems curious about your fashion.
+{STRVAR_1 1, 0, 0} is relaxed. The sight of you might have\nmade it feel more secure.
+{STRVAR_1 1, 0, 0} really wants some time to play with you.
+{STRVAR_1 1, 0, 0} seems to be interested in the other\nPokémon’s scent...
+{STRVAR_1 1, 0, 0} is reassured by your familiar scent...
+{STRVAR_1 1, 0, 0} is admiring the surrounding view.
+{STRVAR_1 1, 0, 0} is remembering the first time it met you...
+{STRVAR_1 1, 0, 0} is thinking about picnicking...
+{STRVAR_1 1, 0, 0} is dozing off... It must be sleepy.
+{STRVAR_1 1, 0, 0} seems a little bit worried about being able\nto battle well...
+{STRVAR_1 1, 0, 0} seems like it wants to be petted...
+Go on, {STRVAR_1 1, 0, 0}!\nI know you can do it!
+Come on back, {STRVAR_1 1, 0, 0}!\nYou did great out there!
+That’s it! I knew you could do it!
+{STRVAR_1 1, 0, 0} is in a bit of a pinch.\nIt looks like it might cry...
+{STRVAR_1 1, 0, 0} is thrilled to bits!
+Zzz... Zzz...
+{STRVAR_1 1, 0, 0} is awaiting your directions...

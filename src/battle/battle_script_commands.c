@@ -1361,11 +1361,11 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
     struct EXP_CALCULATOR *expcalc = work;
     int exp_client_no = 0;
     struct BattleStruct *sp = expcalc->sp;
-    #if EXP_SHARE_GENERATION == 6
+#if EXP_SHARE_GENERATION == 6
     BOOL expShareEnabled = CheckScriptFlag(FLAG_EXP_SHARE_ENABLED);
-    #else
+#else
     BOOL expShareEnabled = TRUE;
-    #endif
+#endif
 
     client_no = (sp->fainting_client >> 1) & 1;
 
