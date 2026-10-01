@@ -695,6 +695,7 @@ BOOL LONG_CALL AddWildPartyPokemon(int inTarget, EncounterInfo *encounterInfo, s
     u8 change_form = 0;
     u8 form_no;
     u16 species;
+    
     u16 level;
     u32 exp;
 
@@ -752,6 +753,7 @@ _skipLevelScale:
     if (space_for_setmondata != 0)
     {
         change_form = 1;
+        form_no = space_for_setmondata; //(species & 0xF800) >> 11;
         space_for_setmondata = 0;
     }
 
