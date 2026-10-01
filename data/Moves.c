@@ -8652,7 +8652,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .split = SPLIT_STATUS,
             .power = 0,
             .type = TYPE_GRASS,
-            .accuracy = 55,
+            .accuracy = 75, // calcrys custom 55 -> 75
             .pp = 15,
             .effectChance = 0,
         },
@@ -21451,7 +21451,7 @@ const MoveSourceEntry sMoveSource[NUM_OF_MOVES + 1] = {
             .power = 0,
             .type = TYPE_WATER,
             .accuracy = 0,
-            .pp = 10,
+            .pp = 5, // calcrys custom 10 -> 5
             .effectChance = 0,
         },
         .battle = {
