@@ -142,7 +142,9 @@ BOOL btl_scr_cmd_127_ActivateHealingWish(void *bsys UNUSED, struct BattleStruct 
 BOOL btl_scr_cmd_128_IsFieldCondition2On(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_129_SetFieldCondition2(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL btl_scr_cmd_12A_GoToIfMoveConditionFlagSet(void *bsys, struct BattleStruct *ctx);
-BOOL btl_scr_cmd_CSTM_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_12B_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_12C_IfClientDynamaxed(void *bsys UNUSED, struct BattleStruct *ctx);
+BOOL btl_scr_cmd_12D_IfClientTerastallized(void *bsys UNUSED, struct BattleStruct *ctx);
 BOOL BtlCmd_GoToMoveScript(struct BattleSystem *bsys, struct BattleStruct *ctx);
 BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp);
 BOOL BtlCmd_CalcWeatherBallParams(void *bw, struct BattleStruct *sp);
@@ -486,15 +488,17 @@ const u8 *BattleScrCmdNames[] = {
     "IsFieldCondition2On",
     "SetFieldCondition2",
     "GoToIfMoveConditionFlagSet",
-    // "YourCustomCommand",
     "CheckTrainerGimmickMessage",
+    "IfClientDynamaxed",
+    "IfClientTerastallized",
+    // "YourCustomCommand",
 };
 
 u32 cmdAddress = 0;
 #pragma GCC diagnostic pop
 #endif // DEBUG_BATTLE_SCRIPT_COMMANDS
 
-#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x126
+#define BASE_ENGINE_BTL_SCR_CMDS_MAX 0x12D
 
 // clang-format off
 const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
@@ -572,8 +576,10 @@ const btl_scr_cmd_func NewBattleScriptCmdTable[] = {
     [0x128 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_128_IsFieldCondition2On,
     [0x129 - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_129_SetFieldCondition2,
     [0x12A - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_12A_GoToIfMoveConditionFlagSet,
+    [0x12B - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_12B_CheckTrainerGimmickMessage,
+    [0x12C - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_12C_IfClientDynamaxed,
+    [0x12D - START_OF_NEW_BTL_SCR_CMDS] = btl_scr_cmd_12D_IfClientTerastallized,
     // [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_custom_01_your_custom_command,
-    [BASE_ENGINE_BTL_SCR_CMDS_MAX - START_OF_NEW_BTL_SCR_CMDS + 1] = btl_scr_cmd_CSTM_CheckTrainerGimmickMessage,
 };
 
 // clang-format on
@@ -1326,7 +1332,11 @@ int Task_GetExp_HandleExpShare(struct EXP_CALCULATOR *data, struct PartyPokemon 
 {
     int side = (data->sp->fainting_client >> 1) & 1;
 
-    if (itemEffect != HOLD_EFFECT_EXP_SHARE && CheckScriptFlag(FLAG_EXP_SHARE_ENABLED)
+    if (itemEffect != HOLD_EFFECT_EXP_SHARE
+#if EXP_SHARE_GENERATION == 6
+        && CheckScriptFlag(FLAG_EXP_SHARE_ENABLED)
+#else
+#endif
         && GetMonData(mon, MON_DATA_HP, NULL) && GetMonData(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
         && !(data->sp->obtained_exp_right_flag[side] & No2Bit(slot))) {
         itemEffect = HOLD_EFFECT_EXP_SHARE;
@@ -1351,7 +1361,11 @@ void Task_DistributeExp_Extend(void *arg0, void *work)
     struct EXP_CALCULATOR *expcalc = work;
     int exp_client_no = 0;
     struct BattleStruct *sp = expcalc->sp;
+#if EXP_SHARE_GENERATION == 6
     BOOL expShareEnabled = CheckScriptFlag(FLAG_EXP_SHARE_ENABLED);
+#else
+    BOOL expShareEnabled = TRUE;
+#endif
 
     client_no = (sp->fainting_client >> 1) & 1;
 
@@ -2280,14 +2294,14 @@ BOOL btl_scr_cmd_E7_ifmovepowergreaterthanzero(void *bw UNUSED, struct BattleStr
  *  @param client_no resolved battler
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
+BOOL LONG_CALL IsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 client_no)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, client_no);
 
     if ((sp->battlemon[client_no].ability != ABILITY_LEVITATE
             && sp->battlemon[client_no].ability != ABILITY_EELEVATE
             && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
-            && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, client_no, TYPE_FLYING))
+            && (sp->battlemon[client_no].moveeffect.magnetRiseTurns) == 0 && !HasType(bw, sp, client_no, TYPE_FLYING))
         || (holdeffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED // holding Iron Ball
             || (sp->battlemon[client_no].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) // is Ingrained
             || (sp->field_condition & FIELD_CONDITION_GRAVITY)
@@ -2308,7 +2322,7 @@ BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no)
  *  @param defender resolved battler defender
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleStruct *sp, u32 attacker, u32 defender)
+BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 attacker, u32 defender)
 {
     u8 holdeffect = HeldItemHoldEffectGet(sp, defender);
 
@@ -2316,7 +2330,7 @@ BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleStruct *sp, u32 attacker
     BOOL hasEelevate = attacker == defender ? GetBattlerAbility(sp, defender) == ABILITY_EELEVATE : MoldBreakerAbilityCheck(sp, attacker, defender, ABILITY_EELEVATE);
 
     if ((!hasLevitate && !hasEelevate && holdeffect != HOLD_EFFECT_UNGROUND_DESTROYED_ON_HIT // not holding Air Balloon
-            && (sp->battlemon[defender].moveeffect.magnetRiseTurns) == 0 && !HasType(sp, defender, TYPE_FLYING))
+            && (sp->battlemon[defender].moveeffect.magnetRiseTurns) == 0 && !HasType(bw, sp, defender, TYPE_FLYING))
         || (holdeffect == HOLD_EFFECT_SPEED_DOWN_GROUNDED // holding Iron Ball
             || (sp->battlemon[defender].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) // is Ingrained
             || (sp->field_condition & FIELD_CONDITION_GRAVITY)
@@ -2344,7 +2358,7 @@ BOOL btl_scr_cmd_E8_ifgrounded(void *bw UNUSED, struct BattleStruct *sp)
     client_no = GrabClientFromBattleScriptParam(bw, sp, client_no);
     u32 address = read_battle_script_param(sp);
 
-    if (IsClientGrounded(sp, client_no)) {
+    if (IsClientGrounded(bw, sp, client_no)) {
         IncrementBattleScriptPtr(sp, address);
     }
 
@@ -3420,7 +3434,7 @@ BOOL BtlCmd_EndOfTurnWeatherEffect(struct BattleSystem *bsys, struct BattleStruc
     u32 weather = GetWeather(bsys, ctx, 0xFF);
 
     if (weather & FIELD_CONDITION_SANDSTORM_ALL) {
-        if (!HasType(ctx, battlerId, TYPE_ROCK) && !HasType(ctx, battlerId, TYPE_STEEL) && !HasType(ctx, battlerId, TYPE_GROUND)
+        if (!HasType(bsys, ctx, battlerId, TYPE_ROCK) && !HasType(bsys, ctx, battlerId, TYPE_STEEL) && !HasType(bsys, ctx, battlerId, TYPE_GROUND)
             && ctx->battlemon[battlerId].hp
             && ability != ABILITY_SAND_VEIL && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE
             && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY && !(ctx->battlemon[battlerId].effect_of_moves & 0x40080)) {
@@ -3444,7 +3458,7 @@ BOOL BtlCmd_EndOfTurnWeatherEffect(struct BattleSystem *bsys, struct BattleStruc
                 if (ctx->battlemon[battlerId].hp < (s32)ctx->battlemon[battlerId].maxhp) {
                     ctx->hp_calc_work = BattleDamageDivide(ctx->battlemon[battlerId].maxhp, 16);
                 }
-            } else if (!HasType(ctx, battlerId, TYPE_ICE) && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY) {
+            } else if (!HasType(bsys, ctx, battlerId, TYPE_ICE) && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT && hold_effect != HOLD_EFFECT_SPORE_POWDER_IMMUNITY) {
                 ctx->waza_work = MOVE_HAIL;
                 ctx->hp_calc_work = BattleDamageDivide(ctx->battlemon[battlerId].maxhp * -1, 16);
             }
@@ -3516,7 +3530,7 @@ BOOL BtlCmd_TryFutureSight(struct BattleSystem *bsys, struct BattleStruct *ctx)
             if (ctx->futureConditionQueue[i].conditionType.futureConditionType == FUTURE_CONDITION_NONE) {
                 ctx->futureConditionQueue[i].conditionType.futureConditionType = FUTURE_CONDITION_FUTURE_SIGHT_OR_DOOM_DESIRE;
                 ctx->futureConditionQueue[i].defenderSlot = ctx->defence_client;
-                ctx->futureConditionQueue[i].futureSightSTAB = HasType(ctx, ctx->attack_client, ctx->move_type) ? 1 : 0;
+                ctx->futureConditionQueue[i].futureSightSTAB = HasType(bsys, ctx, ctx->attack_client, ctx->move_type) ? 1 : 0;
                 break;
             }
         }
@@ -4329,7 +4343,7 @@ BOOL btl_scr_cmd_10C_gotoifterastallized(void *bsys UNUSED, struct BattleStruct 
     s32 battlerID = read_battle_script_param(ctx);
     u32 address = read_battle_script_param(ctx);
 
-    if (ctx->battlemon[battlerID].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, battlerID)) {
         IncrementBattleScriptPtr(ctx, address);
     }
 
@@ -4342,7 +4356,7 @@ BOOL btl_scr_cmd_10D_HandleRoost(void *bsys UNUSED, struct BattleStruct *ctx)
 
     u32 battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
 
-    if ((ctx->battlemon[battlerId].is_currently_terastallized)
+    if (IS_TERASTALLIZED(ctx, battlerId)
         || (ctx->battlemon[battlerId].type1 == ctx->battlemon[battlerId].type2 && ctx->battlemon[battlerId].type1 != TYPE_FLYING)) {
         return FALSE;
     }
@@ -4365,7 +4379,7 @@ BOOL btl_scr_cmd_10E_HandleSoak(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4379,7 +4393,7 @@ BOOL btl_scr_cmd_10F_HandleMagicPowder(void *bsys UNUSED, struct BattleStruct *c
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4393,7 +4407,7 @@ BOOL btl_scr_cmd_110_HandleForestsCurse(void *bsys UNUSED, struct BattleStruct *
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4407,7 +4421,7 @@ BOOL btl_scr_cmd_111_HandleTrickOrTreat(void *bsys UNUSED, struct BattleStruct *
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->defence_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4421,7 +4435,7 @@ BOOL btl_scr_cmd_112_HandleBurnUp(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4435,7 +4449,7 @@ BOOL btl_scr_cmd_113_HandleDoubleShock(void *bsys UNUSED, struct BattleStruct *c
 {
     IncrementBattleScriptPtr(ctx, 1);
 
-    if (ctx->battlemon[ctx->attack_client].is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, ctx->defence_client)) {
         return FALSE;
     }
 
@@ -4713,7 +4727,7 @@ BOOL BtlCmd_CheckToxicSpikes(struct BattleSystem *bsys, struct BattleStruct *ctx
         ctx->calc_work = ctx->scw[fieldSide].toxicSpikesLayers;
         ctx->addeffect_type = SIDE_EFFECT_TYPE_TOXIC_SPIKES;
         ctx->state_client = battlerID;
-        if (HasType(ctx, battlerID, TYPE_POISON)) {
+        if (HasType(bsys, ctx, battlerID, TYPE_POISON)) {
             ctx->side_condition[fieldSide] &= ~SIDE_EFFECT_TYPE_TOXIC_SPIKES;
             ctx->scw[fieldSide].toxicSpikesLayers = 0;
             ctx->calc_work = 0;
@@ -5498,7 +5512,7 @@ BOOL btl_scr_cmd_123_SetAuraBoost(void *bsys UNUSED, struct BattleStruct *ctx)
     return FALSE;
 }
 
-BOOL btl_scr_cmd_CSTM_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
+BOOL btl_scr_cmd_12B_CheckTrainerGimmickMessage(void *bsys UNUSED, struct BattleStruct *ctx)
 {
     IncrementBattleScriptPtr(ctx, 1);
 
@@ -5506,6 +5520,34 @@ BOOL btl_scr_cmd_CSTM_CheckTrainerGimmickMessage(void *bsys UNUSED, struct Battl
         && ctx->battlerIdTemp == BATTLER_ENEMY && !(BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES)) {
         ctx->msg_work = TEXT_MEGA_EVOLVE;
         SkillSequenceGosub(ctx, 1, BATTLE_SUBSCRIPT_TRAINER_MESSAGE);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_12C_IfClientDynamaxed(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+    int successAddress = read_battle_script_param(ctx);
+
+    if (ctx->isDynamaxedArray[battlerId][ctx->sel_mons_no[battlerId]]) {
+        IncrementBattleScriptPtr(ctx, successAddress);
+    }
+
+    return FALSE;
+}
+
+BOOL btl_scr_cmd_12D_IfClientTerastallized(void *bsys UNUSED, struct BattleStruct *ctx)
+{
+    IncrementBattleScriptPtr(ctx, 1);
+
+    int battlerId = GrabClientFromBattleScriptParam(bsys, ctx, read_battle_script_param(ctx));
+    int successAddress = read_battle_script_param(ctx);
+
+    if (ctx->isTerastallizedArray[battlerId][ctx->sel_mons_no[battlerId]]) {
+        IncrementBattleScriptPtr(ctx, successAddress);
     }
 
     return FALSE;

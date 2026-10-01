@@ -1,8 +1,69 @@
-#ifndef POKEPIC_H
-#define POKEPIC_H
+#ifndef HG_ENGINE_POKEPIC_H
+#define HG_ENGINE_POKEPIC_H
 
 #define POKEPIC_SCALE_NORMAL       0x100
 #define RAID_POKEPIC_SCALE_PERCENT 160
+
+#define MON_SPRITE_X_CENTER   0
+#define MON_SPRITE_Y_CENTER   1
+#define MON_SPRITE_ROTATION_Z 9
+#define MON_SPRITE_X_PIVOT    10
+#define MON_SPRITE_SCALE_X    12
+#define MON_SPRITE_SCALE_Y    13
+
+#define MON_AFFINE_SHIFT    8
+#define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
+
+typedef enum PokepicAttr {
+    POKEPIC_X,
+    POKEPIC_Y,
+    POKEPIC_Z,
+    POKEPIC_XOFFSET,
+    POKEPIC_YOFFSET,
+    POKEPIC_ZOFFSET,
+    POKEPIC_VANISHED,
+    POKEPIC_XROT,
+    POKEPIC_YROT,
+    POKEPIC_ZROT,
+    POKEPIC_XPIVOT,
+    POKEPIC_YPIVOT,
+    POKEPIC_AFFINEW,
+    POKEPIC_AFFINEH,
+    POKEPIC_VISIBLE,
+    POKEPIC_XOFF2,
+    POKEPIC_YOFF2,
+    POKEPIC_W,
+    POKEPIC_H,
+    POKEPIC_SHADOW_X,
+    POKEPIC_SHADOW_Y,
+    POKEPIC_SHADOW_XOFFSET,
+    POKEPIC_SHADOW_YOFFSET,
+    POKEPIC_ALPHA,
+    POKEPIC_DIFFUSE_R,
+    POKEPIC_DIFFUSE_G,
+    POKEPIC_DIFFUSE_B,
+    POKEPIC_AMBIENT_R,
+    POKEPIC_AMBIENT_G,
+    POKEPIC_AMBIENT_B,
+    POKEPIC_FADE,
+    POKEPIC_FADE_COLOR,
+    POKEPIC_FADE_BLDY,
+    POKEPIC_FADE_BLDY_TARGET,
+    POKEPIC_FADE_SPEED,
+    POKEPIC_HFLIP,
+    POKEPIC_VFLIP,
+    POKEPIC_NODRAW,
+    POKEPIC_ANIM_STEP,
+    POKEPIC_39,
+    POKEPIC_MOSAIC,
+    POKEPIC_SHADOW_H,
+    POKEPIC_SHADOW_PLTT,
+    POKEPIC_SHADOW_XADJ_REQ,
+    POKEPIC_SHADOW_YADJ_REQ,
+    POKEPIC_SHADOW_AFFINE,
+    POKEPIC_SHADOW_SIZE,
+} PokepicAttr;
+
 typedef struct Pokepic Pokepic;
 
 typedef struct PokepicTemplate {
@@ -221,10 +282,38 @@ typedef struct PokepicManager {
     u32 flags;
 } PokepicManager; // size: 0x338
 
+// some of this is inferred from plat
+typedef struct PokemonAnim {
+    Pokepic *sprite; // 0x00
+    void *task; // 0x04
+    void *scriptData; // 0x08
+    u32 *scriptPtr; // 0x0C
+    int active; // 0x10
+    int animNum; // 0x14
+    int waitFrame; // 0x18
+    int endAnim; // 0x1C
+    int completed; // 0x20
+    int vars[8]; // 0x24-0x43
+    int commandCount; // 0x44
+    int loopMax; // 0x48
+    int loopCounter; // 0x4C
+    u32 *loopStart; // 0x50
+    int startDelay; // 0x54
+    int originalX; // 0x58
+    int originalY; // 0x5C
+} PokemonAnim;
+
+// not 100% on this one
+typedef struct XYTransformContext {
+    s16 x;
+    s16 y;
+} XYTransformContext;
+
 void LONG_CALL Pokepic_StartAnim(Pokepic *pokepic);
 BOOL LONG_CALL Pokepic_IsAnimFinished(Pokepic *pokepic);
+void LONG_CALL Pokepic_SetAttr(Pokepic *pokepic, int attr, int value);
 void LONG_CALL sub_0207294C(void *narc, void *a1, void *a2, u16 a3, int a4, int a5, int a6);
 void LONG_CALL PaletteData_LoadPalette(void *data, const u16 *src, u32 bufferID, u16 offset, u16 size);
 u16 *LONG_CALL PaletteData_GetUnfadedBuf(void *data, u32 bufferID);
 
-#endif // POKEPIC_H
+#endif // HG_ENGINE_POKEPIC_H

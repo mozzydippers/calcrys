@@ -2862,8 +2862,6 @@ enum ItemGeneration {
 
 #define TUIBAMU_NONE 0
 
-#ifdef ITEM_POCKET_EXPANSION
-
 #define ITEM_USE_FUNC_REVEAL_GLASS    30
 #define ITEM_USE_FUNC_DNA_SPLICER     31
 #define ITEM_USE_FUNC_ABILITY_CAPSULE 32
@@ -2871,6 +2869,8 @@ enum ItemGeneration {
 #define ITEM_USE_FUNC_NECTAR          34
 #define ITEM_USE_FUNC_ROTOM_CATALOG   35
 #define ITEM_USE_FUNC_EXP_SHARE       36
+
+#ifdef ITEM_POCKET_EXPANSION
 
 // pixie plate + megas
 #define NUM_BAG_ITEMS        165 + 32 + NUM_MEGA_STONES

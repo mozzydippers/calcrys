@@ -8,69 +8,231 @@
 #include "../../include/pokemon.h"
 #include "../../include/sprite.h"
 #include "../../include/types.h"
+#ifdef DEBUG_BATTLE_SCENARIOS
+#include "test_battle.h"
+#endif
 
 BOOL LONG_CALL IsInPowerSpot()
 {
     return TRUE;
 }
 
-BOOL LONG_CALL AICheckCanDynamax(struct BattleStruct *battle, int client)
+BOOL LONG_CALL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct *ctx, int client)
 {
 #ifdef DEBUG_DYNAMAX_LOGIC
     debug_printf("In AICheckCanDynamax\n");
 #endif
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int command = battle->playerActions[client][3];
+    int command = ctx->playerActions[client][3];
 
-    int moveID = GetBattlerSelectedMove(battle, client);
+    int moveID = GetBattlerSelectedMove(ctx, client);
 
-    struct BattleMove move = battle->moveTbl[moveID];
+#ifndef DEBUG_BATTLE_SCENARIOS
+    struct BattleMove move = ctx->moveTbl[moveID];
+    BOOL canDynamax = FALSE;
+#endif
 
     if (newBS.SideDynamax[client]) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Already Dynamaxed\n");
+#endif
         return FALSE;
     }
 
-    if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
+    if (command != SELECT_FIGHT_COMMAND) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Not attacking\n");
+#endif
         return FALSE;
     }
 
     // No known data for Gen 9+ moves
-    if (command == SELECT_FIGHT_COMMAND) {
-        if (moveID >= MOVE_TERA_BLAST) {
+    if (moveID >= MOVE_TERA_BLAST) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Gen 9+ move\n");
+#endif
+        return FALSE;
+    }
+
+    if (IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, client)) {
+        struct PartyPokemon *illusionMon = Battle_GetClientPartyMon(bsys, client, gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(ctx, client)]);
+
+        u32 illusionSpecies = GetMonData(illusionMon, MON_DATA_SPECIES, NULL);
+
+        if (illusionSpecies == SPECIES_ZACIAN || illusionSpecies == SPECIES_ZAMAZENTA || illusionSpecies == SPECIES_ETERNATUS) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+            debug_printf("Illusioned as species that cannot Dynamax\n");
+#endif
             return FALSE;
         }
-
-        BOOL canDynamax = FALSE;
-
-        if (IsInPowerSpot() && species != SPECIES_ZACIAN && species != SPECIES_ZAMAZENTA && species != SPECIES_ETERNATUS) {
-            canDynamax = TRUE;
-        }
-
-        // For AI only
-        if (move.power && canDynamax) {
-            return TRUE;
-        }
     }
+
+    if (IsInPowerSpot() && species != SPECIES_ZACIAN && species != SPECIES_ZAMAZENTA && species != SPECIES_ETERNATUS) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Can Dynamax\n");
+#endif
+#ifndef DEBUG_BATTLE_SCENARIOS
+        canDynamax = TRUE;
+#endif
+    } else {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Not in Power Spot or species cannot Dynamax\n");
+#endif
+    }
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+    struct TestBattleScenario *scenario = TestBattle_GetCurrentScenario();
+    if (scenario->opponentDynamax) {
+        return TRUE;
+    }
+#else
+    // For AI only
+    if (move.power && canDynamax) {
+        struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client, ctx->sel_mons_no[client]);
+        BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Return %d\n", hasGigantamaxFactor);
+#endif
+        // return FALSE;
+        return hasGigantamaxFactor;
+    }
+#endif
+
     return FALSE;
 }
 
-int LONG_CALL GetMaxMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client)
+u32 LONG_CALL GetDynamaxedState(u32 species, u32 form, BOOL canGigantamax)
+{
+    if (!canGigantamax) {
+        return form;
+    }
+
+    switch (species) {
+    case SPECIES_VENUSAUR:
+        return 2;
+        break;
+    case SPECIES_CHARIZARD:
+        return 3;
+        break;
+    case SPECIES_BLASTOISE:
+        return 2;
+        break;
+    case SPECIES_BUTTERFREE:
+        return 1;
+        break;
+    case SPECIES_PIKACHU:
+        return 16;
+        break;
+    case SPECIES_MEOWTH:
+        return 3;
+        break;
+    case SPECIES_GENGAR:
+        return 2;
+        break;
+    case SPECIES_KINGLER:
+        return 1;
+        break;
+    case SPECIES_LAPRAS:
+        return 1;
+        break;
+    case SPECIES_EEVEE:
+        return 2;
+        break;
+    case SPECIES_SNORLAX:
+        return 1;
+        break;
+    case SPECIES_GARBODOR:
+        return 1;
+        break;
+    case SPECIES_MELMETAL:
+        return 1;
+        break;
+    case SPECIES_RILLABOOM:
+        return 1;
+        break;
+    case SPECIES_CINDERACE:
+        return 1;
+        break;
+    case SPECIES_INTELEON:
+        return 1;
+        break;
+    case SPECIES_CORVIKNIGHT:
+        return 1;
+        break;
+    case SPECIES_ORBEETLE:
+        return 1;
+        break;
+    case SPECIES_DREDNAW:
+        return 1;
+        break;
+    case SPECIES_COALOSSAL:
+        return 1;
+        break;
+    case SPECIES_FLAPPLE:
+        return 1;
+        break;
+    case SPECIES_APPLETUN:
+        return 1;
+        break;
+    case SPECIES_SANDACONDA:
+        return 1;
+        break;
+    case SPECIES_TOXTRICITY:
+        return form == 0 ? 2 : 3;
+        break;
+    case SPECIES_CENTISKORCH:
+        return 1;
+        break;
+    case SPECIES_HATTERENE:
+        return 1;
+        break;
+    case SPECIES_GRIMMSNARL:
+        return 1;
+        break;
+    case SPECIES_ALCREMIE:
+        return 7;
+        break;
+    case SPECIES_COPPERAJAH:
+        return 1;
+        break;
+    case SPECIES_DURALUDON:
+        return 1;
+        break;
+    case SPECIES_URSHIFU:
+        return form == 0 ? 2 : 3;
+        break;
+    default:
+        return form;
+        break;
+    }
+}
+
+int LONG_CALL GetMaxMoveToBeUsed(struct BattleSystem *bsys, struct BattleStruct *ctx, int baseMove, int client)
 {
 #ifdef DEBUG_DYNAMAX_LOGIC
-    debug_printf("In GetMaxMoveToBeUsed\n");
+    // debug_printf("In GetMaxMoveToBeUsed\n");
 #endif
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int form = battle->battlemon[client].form_no;
+    int form = ctx->battlemon[client].form_no;
 
-    BOOL hasGigantamaxFactor = FALSE;
+    struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client, ctx->sel_mons_no[client]);
+    BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
 
-    u32 type = GetAdjustedMoveType(battle, client, baseMove);
+#ifdef DEBUG_DYNAMAX_LOGIC
+    // debug_printf("species: %d, baseMove: %d, hasGigantamaxFactor: %d\n", species, baseMove, hasGigantamaxFactor);
+#endif
 
-    if (battle->moveTbl[baseMove].split == SPLIT_STATUS) {
+    u32 type = GetAdjustedMoveType(ctx, client, baseMove);
+
+#ifdef DEBUG_DYNAMAX_LOGIC
+    // debug_printf("type: %d\n", type);
+#endif
+
+    if (ctx->moveTbl[baseMove].split == SPLIT_STATUS) {
         return MOVE_MAX_GUARD;
     }
 

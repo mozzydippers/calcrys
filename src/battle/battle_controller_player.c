@@ -2,6 +2,7 @@
 
 #include "battle_controller_player.h"
 
+#include "constants/battle_constants.h"
 #include "constants/battle_message_constants.h"
 #include "constants/battle_script_constants.h"
 #include "constants/file.h"
@@ -41,9 +42,16 @@ void overrideItemUsage(struct BattleSystem *bsys, struct BattleStruct *ctx)
         }
 
         if (ctx->playerActions[battlerId][0] == CONTROLLER_COMMAND_RUN_INPUT && ctx->com_seq_no[battlerId] == 11) {
-            if (battleVariation & BATTLE_SPECIAL_NO_ITEMS) {
+            if (battleVariation & BATTLE_SPECIAL_TOTEM) {
+                mp.id = BATTLE_MSG_TRIAL_ESCAPE_CANT; // empty message
+                mp.tag = TAG_NONE;
+                ov12_022639B8(bsys, battlerId, mp);
+                ctx->com_seq_no[battlerId] = SSI_STATE_15;
+                ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
+            } else if (battleVariation & BATTLE_SPECIAL_NO_ITEMS) {
                 mp.id = 779; // empty message
                 mp.tag = TAG_NONE;
+                ov12_022639B8(bsys, battlerId, mp);
                 ctx->com_seq_no[battlerId] = SSI_STATE_15;
                 ctx->ret_seq_no[battlerId] = SSI_STATE_SELECT_COMMAND_INIT;
             }

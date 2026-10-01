@@ -1232,7 +1232,7 @@ int LONG_CALL Activate_AdditionalMoveEffects(void *bsys UNUSED, struct BattleStr
         if (ctx->attack_client != BATTLER_NONE
             && ctx->battlemon[ctx->attack_client].hp > 0
             && ctx->battlemon[ctx->defence_client].hp > 0
-            && !ctx->battlemon[ctx->defence_client].is_currently_dynamaxed
+            && !IS_DYNAMAXED(ctx, ctx->defence_client)
             && (ctx->oneSelfFlag[ctx->defence_client].physical_damage
                 || ctx->oneSelfFlag[ctx->defence_client].special_damage)
             //&& ((ctx->battlemon[ctx->defence_client].effect_of_moves & MOVE_EFFECT_FLAG_INGRAIN) == 0)
@@ -1347,11 +1347,11 @@ int LONG_CALL Activate_SparklingAria(void *bsys, struct BattleStruct *ctx)
     return FALSE;
 }
 
-int LONG_CALL Activate_SmackDown(void *bsys UNUSED, struct BattleStruct *ctx)
+int LONG_CALL Activate_SmackDown(void *bsys, struct BattleStruct *ctx)
 {
     if (ctx->attack_client != BATTLER_NONE
         && (CheckSubstitute(ctx, ctx->defence_client) == FALSE)
-        && !IsClientGrounded(ctx, ctx->defence_client)) {
+        && !IsClientGrounded(bsys, ctx, ctx->defence_client)) {
 
         ctx->battlerIdTemp = ctx->defence_client;
         ctx->moveConditionsFlags[ctx->defence_client].grounded = TRUE;
@@ -1986,10 +1986,10 @@ int LONG_CALL Activate_Berserk_AngerShell_ColorChange(void *bsys UNUSED, struct 
             if ((ctx->battlemon[client_no].hp)
                 && (ctx->current_move_index != MOVE_STRUGGLE)
                 && (movetype != TYPE_TYPELESS) // Revelation Dance
-                && (!ctx->battlemon[client_no].is_currently_terastallized)
+                && (!IS_TERASTALLIZED(ctx, client_no))
                 && ((ctx->oneSelfFlag[client_no].physical_damage) || (ctx->oneSelfFlag[client_no].special_damage))
                 && (ctx->moveTbl[ctx->current_move_index].power)
-                && (!HasType(ctx, client_no, movetype))
+                && (!HasType(bsys, ctx, client_no, movetype))
                 && (ctx->battlemon[client_no].condition2 & STATUS2_SUBSTITUTE) == 0) // don't activate until the last hit of a multi-hit move
             {
                 ChangeToPureType(ctx, client_no, movetype);
@@ -2429,7 +2429,7 @@ int LONG_CALL MovePerformance_Step_10(void *bsys, struct BattleStruct *ctx, int 
             debug_printf("in MOVE_PERFORMANCE_SUB_STEP_10_12_PROTECTION_FROM_Z_MOVE %d\n", ctx->movePerformanceSubstep);
 #endif
             ctx->movePerformanceSubstep++;
-            if ((MoveIsZMove(ctx->current_move_index) || MoveIsMaxMove(ctx->current_move_index)) && ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
+            if ((MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)) && ctx->oneTurnFlag[ctx->defence_client].protectFlag) {
                 LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT);
                 ctx->next_server_seq_no = ctx->server_seq_no;
                 ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;

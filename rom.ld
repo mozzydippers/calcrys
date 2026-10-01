@@ -222,6 +222,7 @@ ManagedSprite_SetAffineScale = 0x0200E024 | 1;
 ManagedSprite_SetAffineOverwriteMode = 0x0200DF98 | 1;
 ManagedSprite_SetPositionXY = 0x0200DDB8 | 1;
 ManagedSprite_GetPositionXY = 0x0200DE44 | 1;
+ManagedSprite_SetOamMode = 0x0200E0FC | 1;
 
 /*BATTLE_OAM*/
 BGCallback_FightOnly = 0x2FADC + 0x022378C1;
@@ -1044,6 +1045,7 @@ BattleSystem_GetPokepicManager = 0x0223A8D4 | 1;
 ov12_0223B750 = 0x0223B750 | 1;
 sub_0207294C = 0x0207294C | 1;
 sub_02017068 = 0x02017068 | 1;
+Pokepic_SetAttr = 0x020087A4 | 1;
 
 
 /* calcrys custom */

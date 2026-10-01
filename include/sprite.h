@@ -31,6 +31,13 @@ typedef struct ManagedSprite {
     int vramTransfer;
 } ManagedSprite;
 
+typedef enum {
+    GX_OAM_MODE_NORMAL = 0,
+    GX_OAM_MODE_XLU = 1,
+    GX_OAM_MODE_OBJWND = 2,
+    GX_OAM_MODE_BITMAPOBJ = 3
+} GXOamMode;
+
 typedef struct ManagedSpriteTemplate {
     s16 x;
     s16 y;
@@ -187,6 +194,7 @@ void LONG_CALL OAM_ObjectAnimeSeqSetCap(void *, int anim_no);
 void LONG_CALL Sprite_SetDrawFlag(void *sprite, BOOL flag);
 void LONG_CALL ManagedSprite_SetAffineScale(ManagedSprite *managedSprite, float x, float y);
 void LONG_CALL ManagedSprite_SetAffineOverwriteMode(ManagedSprite *managedSprite, u8 a1);
+void LONG_CALL ManagedSprite_SetOamMode(ManagedSprite *managedSprite, GXOamMode mode);
 void LONG_CALL ManagedSprite_SetPositionXY(ManagedSprite *managedSprite, s16 x, s16 y);
 void LONG_CALL ManagedSprite_GetPositionXY(ManagedSprite *managedSprite, s16 *x, s16 *y);
 void LONG_CALL Sprite_SetPositionXYWithSubscreenOffset(void *sprite, s16 x, s16 y, fx32 yOffset);
@@ -195,7 +203,6 @@ u32 LONG_CALL GfGfxLoader_LoadCharData(u32 narcId, s32 memberNo, void *bgConfig,
 void LONG_CALL PaletteData_LoadNarc(void *data, u32 narcID, s32 memberNo, u32 heapID, u32 bufferID, u32 size, u16 pos);
 void LONG_CALL DrawFrameAndWindow2(void *window, BOOL dont_copy_to_vram, u16 baseTile, u8 palette_num);
 void LONG_CALL AddWindowParameterized(void *bgConfig, void *window, u8 bgId, u8 x, u8 y, u8 width, u8 height, u8 paletteNum, u16 baseTile);
-void LONG_CALL Sprite_SetDrawFlag(void *sprite, BOOL draw);
 void *LONG_CALL GfGfxLoader_GetCharData(u32 narcId, s32 memberNo, BOOL isCompressed, void **ppCharData, u32 heapId);
 BOOL LONG_CALL SpriteSystem_LoadCharResObjAtEndWithHardwareMappingType(void *spriteSystem, void *spriteManager, int narcId, int fileId, BOOL compressed, int vram, int resId);
 

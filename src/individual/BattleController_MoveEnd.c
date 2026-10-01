@@ -140,6 +140,7 @@ void LONG_CALL BattleController_MoveEndInternal(struct BattleSystem *bsys, struc
     ctx->moveContext.hitSubstituteCount = 0;
     ctx->moveContext.isAllyHit = FALSE;
     ctx->moveContext.currentMoveCalcDone = FALSE;
+    ctx->moveContext.teraShellActive = FALSE;
 
     ctx->pursuitContext.isActive = FALSE;
 

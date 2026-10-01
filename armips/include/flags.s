@@ -1829,9 +1829,9 @@ FLAG_MEGA_EVOLUTION_ENABLED                               equ 2518
 FLAG_Z_MOVE_ENABLED                                       equ 2519
 FLAG_DYNAMAX_ENABLED                                      equ 2520
 FLAG_TERASTALIZATION_ENABLED                              equ 2521
-FLAG_EXP_SHARE_ENABLED                                    equ 2522
-FLAG_UNK_9DB                                              equ 2523
-FLAG_UNK_9DC                                              equ 2524
+FLAG_TERA_ORB_RECHARGED                                   equ 2522
+FLAG_TERA_ORB_NO_LONGER_REQUIRE_CHARGING                  equ 2523
+FLAG_EXP_SHARE_ENABLED                                    equ 2524
 FLAG_UNK_9DD                                              equ 2525
 FLAG_UNK_9DE                                              equ 2526
 FLAG_UNK_9DF                                              equ 2527

@@ -10,6 +10,7 @@
 #include "constants/item.h"
 #include "constants/move_effects.h"
 #include "constants/moves.h"
+#include "constants/pokemon.h"
 #include "constants/species.h"
 
 #include "battle.h"
@@ -1684,7 +1685,7 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
                 if (newBS.needZMove[client]) {
                     move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
                 } else if (newBS.SideMaxMoveBaseMove[client]) {
-                    move = GetMaxMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                    move = GetMaxMoveToBeUsed(bsys, ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
                 } else {
                     move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
                 }
@@ -1945,7 +1946,7 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
     u8 defender_type_1 = GetSanitisedType(sp->battlemon[defence_client].type1);
     u8 defender_type_2 = GetSanitisedType(sp->battlemon[defence_client].type2);
     u8 defender_type_3 = GetSanitisedType(sp->battlemon[defence_client].type3);
-    u8 defender_tera_type = GetSanitisedType(sp->battlemon[defence_client].tera_type);
+    u8 defender_tera_type = GetSanitisedType(GetTeraType(bw, sp, defence_client));
     u32 defender_item_held_effect = BattleItemDataGet(sp, GetBattleMonItem(sp, defence_client), 1);
 
     u32 type1Effectiveness = TYPE_MUL_NORMAL;
@@ -1958,9 +1959,9 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
 
     if (GetSanitisedType(move_type) == TYPE_STELLAR) {
         // https://xcancel.com/Sibuna_Switch/status/1827463371383328877#m
-        if (!sp->battlemon[attack_client].is_currently_terastallized) {
+        if (!IS_TERASTALLIZED(sp, attack_client)) {
             return TYPE_MUL_NO_EFFECT;
-        } else if (sp->battlemon[defence_client].is_currently_terastallized) {
+        } else if (IS_TERASTALLIZED(sp, defence_client)) {
             return TYPE_MUL_SUPER_EFFECTIVE;
         }
     }
@@ -1989,7 +1990,7 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
                 continue;
             }
         } else if (TypeEffectivenessTable[typeTableEntryNo][0] == move_type) {
-            if (sp->battlemon[defence_client].is_currently_terastallized
+            if (IS_TERASTALLIZED(sp, defence_client)
                 && defender_tera_type != TYPE_STELLAR) {
                 if (TypeEffectivenessTable[typeTableEntryNo][1] == defender_tera_type) {
                     if (ShouldUseNormalTypeEffCalc(sp, attack_client, defence_client, typeTableEntryNo)
@@ -2021,7 +2022,7 @@ int LONG_CALL GetTypeEffectiveness(struct BattleSystem *bw, struct BattleStruct 
             }
         } else if (sp->current_move_index == MOVE_FLYING_PRESS
             && TypeEffectivenessTable[typeTableEntryNo][0] == TYPE_FLYING) {
-            if (sp->battlemon[defence_client].is_currently_terastallized && defender_tera_type != TYPE_STELLAR) {
+            if (IS_TERASTALLIZED(sp, defence_client) && defender_tera_type != TYPE_STELLAR) {
                 if (TypeEffectivenessTable[typeTableEntryNo][1] == defender_tera_type) {
                     if (ShouldUseNormalTypeEffCalc(sp, attack_client, defence_client, typeTableEntryNo)
                         && !StrongWindsShouldWeaken(bw, sp, typeTableEntryNo, defender_tera_type)) {
@@ -2099,7 +2100,7 @@ BOOL LONG_CALL CantEscape(void *bw, struct BattleStruct *sp, int battlerId, Batt
     item = HeldItemHoldEffectGet(sp, battlerId);
 
     // if shed shell or no experience or has run away or has ghost type then there is nothing stopping the battler from escaping
-    if (item == HOLD_EFFECT_FLEE || (battleType & BATTLE_TYPE_NO_EXPERIENCE) || GetBattlerAbility(sp, battlerId) == ABILITY_RUN_AWAY || HasType(sp, battlerId, TYPE_GHOST)) {
+    if (item == HOLD_EFFECT_FLEE || (battleType & BATTLE_TYPE_NO_EXPERIENCE) || GetBattlerAbility(sp, battlerId) == ABILITY_RUN_AWAY || HasType(bw, sp, battlerId, TYPE_GHOST)) {
         return FALSE;
     }
 
@@ -2123,7 +2124,7 @@ BOOL LONG_CALL CantEscape(void *bw, struct BattleStruct *sp, int battlerId, Batt
         if (!(sp->field_condition & FIELD_CONDITION_GRAVITY) && item != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
             if (GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE
                 && GetBattlerAbility(sp, battlerId) != ABILITY_EELEVATE
-                && !sp->battlemon[battlerId].moveeffect.magnetRiseTurns && !HasType(sp, battlerId, TYPE_FLYING)) {
+                && !sp->battlemon[battlerId].moveeffect.magnetRiseTurns && !HasType(bw, sp, battlerId, TYPE_FLYING)) {
                 if (msg == NULL) {
                     return TRUE;
                 }
@@ -2146,7 +2147,7 @@ BOOL LONG_CALL CantEscape(void *bw, struct BattleStruct *sp, int battlerId, Batt
     }
 
     battlerIdAbility = CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_MAGNET_PULL);
-    if (battlerIdAbility && HasType(sp, battlerId, TYPE_STEEL)) {
+    if (battlerIdAbility && HasType(bw, sp, battlerId, TYPE_STEEL)) {
         if (msg == NULL) {
             return TRUE;
         }
@@ -2182,7 +2183,7 @@ BOOL BattlerCantSwitch(void *bw, struct BattleStruct *sp, int battlerId)
     BOOL ret = FALSE;
 
     // ghost types can switch from anything like they had shed skin
-    if (HeldItemHoldEffectGet(sp, battlerId) == HOLD_EFFECT_SWITCH || HasType(sp, battlerId, TYPE_GHOST)) {
+    if (HeldItemHoldEffectGet(sp, battlerId) == HOLD_EFFECT_SWITCH || HasType(bw, sp, battlerId, TYPE_GHOST)) {
         return FALSE;
     }
 
@@ -2191,14 +2192,14 @@ BOOL BattlerCantSwitch(void *bw, struct BattleStruct *sp, int battlerId)
     }
 
     if ((GetBattlerAbility(sp, battlerId) != ABILITY_SHADOW_TAG && CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_SHADOW_TAG))
-        || (HasType(sp, battlerId, TYPE_STEEL) && CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_MAGNET_PULL))) {
+        || (HasType(bw, sp, battlerId, TYPE_STEEL) && CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_MAGNET_PULL))) {
         ret = TRUE;
     }
 
     if (((GetBattlerAbility(sp, battlerId) != ABILITY_LEVITATE
              && GetBattlerAbility(sp, battlerId) != ABILITY_EELEVATE
              && sp->battlemon[battlerId].moveeffect.magnetRiseTurns == 0
-             && !HasType(sp, battlerId, TYPE_FLYING))
+             && !HasType(bw, sp, battlerId, TYPE_FLYING))
             || HeldItemHoldEffectGet(sp, battlerId) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
             || (sp->field_condition & FIELD_CONDITION_GRAVITY))
         && CheckSideAbility(bw, sp, CHECK_ABILITY_OPPOSING_SIDE_HP, battlerId, ABILITY_ARENA_TRAP)) {
@@ -2231,7 +2232,7 @@ BOOL BattleTryRun(void *bw, struct BattleStruct *sp, int battlerId)
     if (item == HOLD_EFFECT_FLEE) {
         sp->oneTurnFlag[battlerId].escape_flag = 1;
         ret = TRUE;
-    } else if (battleType & BATTLE_TYPE_NO_EXPERIENCE || HasType(sp, battlerId, TYPE_GHOST)) { // ghost types can always escape regardless of speed
+    } else if (battleType & BATTLE_TYPE_NO_EXPERIENCE || HasType(bw, sp, battlerId, TYPE_GHOST)) { // ghost types can always escape regardless of speed
         ret = TRUE;
     } else if (GetBattlerAbility(sp, battlerId) == ABILITY_RUN_AWAY) {
         sp->oneTurnFlag[battlerId].escape_flag = 2;
@@ -2755,7 +2756,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
 
     // toxic when used by a poison type
     if (move == MOVE_TOXIC
-        && HasType(sp, battlerIdAttacker, TYPE_POISON)) {
+        && HasType(bw, sp, battlerIdAttacker, TYPE_POISON)) {
         sp->waza_status_flag &= ~MOVE_STATUS_MISSED;
         return TRUE;
     }
@@ -2793,7 +2794,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
     }
 
     if (sp->battlemon[battlerIdTarget].effect_of_moves & MOVE_EFFECT_FLAG_MINIMIZE
-        && !sp->battlemon[battlerIdTarget].is_currently_dynamaxed
+        && !IS_DYNAMAXED(sp, battlerIdTarget)
         && IsMoveInMinimizeVulnerabilityMovesList(move)) {
         sp->waza_status_flag &= ~MOVE_STATUS_MISSED;
         return TRUE;
@@ -2958,7 +2959,7 @@ int LONG_CALL IsMoveSpreadMove(struct BattleSystem *bsys, struct BattleStruct *c
         || (move == MOVE_EXPANDING_FORCE
             && ctx->terrainOverlay.numberOfTurnsLeft > 0
             && ctx->terrainOverlay.type == PSYCHIC_TERRAIN
-            && IsClientGrounded(ctx, ctx->attack_client))) {
+            && IsClientGrounded(bsys, ctx, ctx->attack_client))) {
         return BattleTypeGet(bsys) & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_MULTI);
     }
     return FALSE;
@@ -2985,7 +2986,7 @@ int LONG_CALL IsTargetFoes(struct BattleSystem *bsys, struct BattleStruct *ctx, 
         || (move == MOVE_EXPANDING_FORCE
             && ctx->terrainOverlay.numberOfTurnsLeft > 0
             && ctx->terrainOverlay.type == PSYCHIC_TERRAIN
-            && IsClientGrounded(ctx, ctx->attack_client))) {
+            && IsClientGrounded(bsys, ctx, ctx->attack_client))) {
         return BattleTypeGet(bsys) & (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_MULTI);
     }
     return FALSE;
@@ -3356,12 +3357,13 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
             break;
         }
         break;
-    case MOVE_REVELATION_DANCE:
-        if (ctx->battlemon[battlerId].is_currently_terastallized && ctx->battlemon[battlerId].tera_type != TYPE_STELLAR) {
+    case MOVE_REVELATION_DANCE:;
+        int teraType = GetTeraType(bsys, ctx, battlerId);
+        if (IS_TERASTALLIZED(ctx, battlerId) && teraType != TYPE_STELLAR) {
             // Assert that the Tera Type is valid
-            GF_ASSERT(TYPE_NORMAL <= ctx->battlemon[battlerId].tera_type && TYPE_STELLAR >= ctx->battlemon[battlerId].tera_type && TYPE_TYPELESS != ctx->battlemon[battlerId].tera_type);
+            GF_ASSERT(TYPE_NORMAL <= teraType && TYPE_STELLAR >= teraType && TYPE_TYPELESS != teraType);
 
-            type = ctx->battlemon[battlerId].tera_type;
+            type = teraType;
         } else if (ctx->battlemon[battlerId].type1 != TYPE_TYPELESS) {
             type = ctx->battlemon[battlerId].type1;
         } else if (ctx->battlemon[battlerId].type2 != TYPE_TYPELESS) {
@@ -3454,7 +3456,7 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
         break;
     case MOVE_TERRAIN_PULSE:
         type = TYPE_NORMAL; // TODO electrify
-        if (ctx->terrainOverlay.numberOfTurnsLeft > 0 && IsClientGrounded(ctx, battlerId)) {
+        if (ctx->terrainOverlay.numberOfTurnsLeft > 0 && IsClientGrounded(bsys, ctx, battlerId)) {
             switch (ctx->terrainOverlay.type) {
             case GRASSY_TERRAIN:
                 type = TYPE_GRASS;
@@ -3474,37 +3476,18 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
         }
         break;
     case MOVE_TERA_BLAST:
-    case MOVE_TERA_STARSTORM:
-        if (ctx->battlemon[battlerId].is_currently_terastallized) {
+        if (IS_TERASTALLIZED(ctx, battlerId)) {
             // Assert that the Tera Type is valid
-            GF_ASSERT(TYPE_NORMAL <= ctx->battlemon[battlerId].tera_type && TYPE_STELLAR >= ctx->battlemon[battlerId].tera_type && TYPE_TYPELESS != ctx->battlemon[battlerId].tera_type);
-
-            // Assert that Ogerpon has the correct Tera Type. However, the game should stall at Terastallization animation
-            if (species == SPECIES_OGERPON) {
-                switch (form) {
-                // SPECIES_OGERPON
-                case 0:
-                    GF_ASSERT(ctx->battlemon[battlerId].tera_type == TYPE_GRASS);
-                    break;
-                // SPECIES_OGERPON_WELLSPRING_MASK
-                case 1:
-                    GF_ASSERT(ctx->battlemon[battlerId].tera_type == TYPE_WATER);
-                    break;
-                // SPECIES_OGERPON_HEARTHFLAME_MASK
-                case 2:
-                    GF_ASSERT(ctx->battlemon[battlerId].tera_type == TYPE_FIRE);
-                    break;
-                // SPECIES_OGERPON_CORNERSTONE_MASK
-                case 3:
-                    GF_ASSERT(ctx->battlemon[battlerId].tera_type == TYPE_ROCK);
-                    break;
-
-                default:
-                    GF_ASSERT(form >= 0 && form <= 3);
-                    break;
-                }
-            }
-            type = ctx->battlemon[battlerId].tera_type;
+            int teraType = GetTeraType(bsys, ctx, battlerId);
+            GF_ASSERT(TYPE_NORMAL <= teraType && TYPE_STELLAR >= teraType && TYPE_TYPELESS != teraType);
+            type = teraType;
+        } else {
+            type = TYPE_NORMAL;
+        }
+        break;
+    case MOVE_TERA_STARSTORM:
+        if (ctx->battlemon[battlerId].form_no == 2) {
+            type = TYPE_STELLAR;
         } else {
             type = TYPE_NORMAL;
         }
@@ -3542,18 +3525,22 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
                 switch (form) {
                     // SPECIES_OGERPON
                     case 0:
+                    case 4:
                         type = TYPE_GRASS;
                         break;
                     // SPECIES_OGERPON_WELLSPRING_MASK
                     case 1:
+                    case 5:
                         type = TYPE_WATER;
                         break;
                     // SPECIES_OGERPON_HEARTHFLAME_MASK
                     case 2:
+                    case 6:
                         type = TYPE_FIRE;
                         break;
                     // SPECIES_OGERPON_CORNERSTONE_MASK
                     case 3:
+                    case 7:
                         type = TYPE_ROCK;
                         break;
 
@@ -3879,15 +3866,15 @@ int LONG_CALL GetClientActionPriority(struct BattleSystem *bsys UNUSED, struct B
 /// @param battlerId
 /// @param type
 /// @return whether the client has the type
-BOOL LONG_CALL HasType(struct BattleStruct *ctx, int battlerId, int type)
+BOOL LONG_CALL HasType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, u32 type)
 {
-    GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);
+    GF_ASSERT(type <= TYPE_STELLAR);
     if (battlerId == BATTLER_NONE) {
         return FALSE;
     }
     struct BattlePokemon *client = &ctx->battlemon[battlerId];
-    if (client->is_currently_terastallized) {
-        return client->tera_type == type;
+    if (IS_TERASTALLIZED(ctx, battlerId)) {
+        return GetTeraType(bsys, ctx, battlerId) == type;
     }
     return client->type1 == type || client->type2 == type || client->type3 == type;
 }
@@ -3899,7 +3886,7 @@ BOOL LONG_CALL ChangeToPureType(struct BattleStruct *ctx, int battlerId, int typ
     GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);
     struct BattlePokemon *client = &ctx->battlemon[battlerId];
 
-    if (client->is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, battlerId)) {
         return FALSE;
     }
 
@@ -3922,9 +3909,8 @@ BOOL LONG_CALL AddType(struct BattleStruct *ctx, int battlerId, int type)
     // debug_printf("In AddType\n");
 
     GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);
-    struct BattlePokemon *client = &ctx->battlemon[battlerId];
 
-    if (client->is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, battlerId)) {
         return FALSE;
     }
 
@@ -3954,9 +3940,8 @@ BOOL LONG_CALL RemoveType(struct BattleStruct *ctx, int battlerId, int type)
     // debug_printf("In RemoveType\n");
 
     GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);
-    struct BattlePokemon *client = &ctx->battlemon[battlerId];
 
-    if (client->is_currently_terastallized) {
+    if (IS_TERASTALLIZED(ctx, battlerId)) {
         return FALSE;
     }
 
@@ -4077,11 +4062,33 @@ BOOL LONG_CALL CanActivateDamageReductionBerry(struct BattleStruct *ctx, int def
     return FALSE;
 }
 
-BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type)
+BOOL LONG_CALL CanActivateTeraShell(struct BattleStruct *ctx, int defender)
+{
+    if (!MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_TERA_SHELL) || ctx->battlemon[defender].species != SPECIES_TERAPAGOS || (u32)ctx->battlemon[defender].hp != ctx->battlemon[defender].maxhp) {
+        return FALSE;
+    }
+    if (ctx->current_move_index == MOVE_POLLEN_PUFF && defender == BATTLER_ALLY(ctx->attack_client)) {
+        return FALSE;
+    }
+
+    u32 effectiveness = ctx->moveStatusFlagForSpreadMoves[defender];
+
+    if (ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
+        && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
+        && !(ctx->server_status_flag & (BATTLE_STATUS_IGNORE_TYPE_IMMUNITY | BATTLE_STATUS_IGNORE_TYPE_EFFECTIVENESS))
+        && ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS
+        && !(effectiveness & (MOVE_STATUS_NO_EFFECT | MOVE_STATUS_NOT_VERY_EFFECTIVE))) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+BOOL LONG_CALL IsPureType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type)
 {
     GF_ASSERT(TYPE_NORMAL <= type && type <= TYPE_STELLAR);
     struct BattlePokemon client = ctx->battlemon[battlerId];
-    return client.is_currently_terastallized ? client.tera_type == type : (client.type1 == type && client.type2 == type && client.type3 == TYPE_TYPELESS);
+    int teraType = GetTeraType(bsys, ctx, battlerId);
+    return IS_TERASTALLIZED(ctx, battlerId) ? teraType == type : (client.type1 == type && client.type2 == type && client.type3 == TYPE_TYPELESS);
 }
 
 /// @brief Check if ability is disabled if user is Transformed
@@ -4582,6 +4589,7 @@ void LONG_CALL HandleTransform(struct BattleStruct *sp)
 
     sp->battlemon[sp->attack_client].ability = sp->battlemon[sp->defence_client].ability; // was moved inside the struct
     sp->battlemon[sp->attack_client].ability_activated_flag = 0;
+    sp->battlemon[sp->attack_client].embodyAspectProteanLiberoActivated = 0;
     sp->battlemon[sp->attack_client].moveeffect.truantFlag = sp->total_turn & 1;
     sp->battlemon[sp->attack_client].moveeffect.slowStartTurns = sp->total_turn + 1;
     sp->battlemon[sp->attack_client].slow_start_flag = 0;
@@ -4721,6 +4729,23 @@ void LONG_CALL BattleControllerPlayer_PokemonAppear(struct BattleSystem *battleS
         ov12_0223C0C4(battleSystem);
         ctx->server_seq_no = CONTROLLER_COMMAND_SELECTION_SCREEN_INIT;
     }
+}
+
+u32 LONG_CALL GetTeraType(struct BattleSystem *bsys, struct BattleStruct *ctx, u32 client)
+{
+    struct PartyPokemon *mon = Battle_GetClientPartyMon(bsys, client, ctx->sel_mons_no[client]);
+    u32 teraTypeOverride = GetMonData(mon, MON_DATA_TERA_TYPE_OVERRIDE, NULL);
+    u32 teraTypeOriginal = GetMonData(mon, MON_DATA_TERA_TYPE_ORIGINAL, NULL);
+    if (teraTypeOverride == TYPE_NONE) {
+#ifdef DEBUG_TERASTALLIZATION_LOGIC
+        debug_printf("[GetTeraType] teraTypeOriginal: %d\n", teraTypeOriginal);
+#endif
+        return teraTypeOriginal;
+    }
+#ifdef DEBUG_TERASTALLIZATION_LOGIC
+    debug_printf("[GetTeraType] teraTypeOverride: %d\n", teraTypeOverride);
+#endif
+    return teraTypeOverride;
 }
 
 // Modifying this switch case allows you to assign any music to victory over a specific trainer class.

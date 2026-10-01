@@ -525,20 +525,33 @@
 #define BATTLE_SUBSCRIPT_ZERO_TO_HERO                           (516)
 #define BATTLE_SUBSCRIPT_WANDERING_SPIRIT                       (517)
 #define BATTLE_SUBSCRIPT_SCREEN_CLEANER                         (518)
-#define BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT              (519)
-#define BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE                    (520)
-#define BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (521)
-#define BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES         (522)
-#define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (523)
-#define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (524)
-#define BATTLE_SUBSCRIPT_STANCE_CHANGE                          (525)
-#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (526)
-#define BATTLE_SUBSCRIPT_FELL_STRAIGHT_DOWN                     (527)
-#define BATTLE_SUBSCRIPT_MAGIC_ROOM_END                         (528)
-#define BATTLE_SUBSCRIPT_HEAVY_RECOIL                           (529)
-#define BATTLE_SUBSCRIPT_PREVENT_INTIMIDATE                     (530)
+#define BATTLE_SUBSCRIPT_FELL_STRAIGHT_DOWN                     (519)
+#define BATTLE_SUBSCRIPT_MAGIC_ROOM_END                         (520)
+#define BATTLE_SUBSCRIPT_HEAVY_RECOIL                           (521)
+#define BATTLE_SUBSCRIPT_PREVENT_INTIMIDATE                     (522)
+#define BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT              (523)
+#define BATTLE_SUBSCRIPT_AURA_FLARED_TO_LIFE                    (524)
+#define BATTLE_SUBSCRIPT_TERA_RAID_REMOVE_NEGATIVE_EFFECTS      (525)
+#define BATTLE_SUBSCRIPT_TERA_RAID_NULLIFY_STAT_CHANGES         (526)
+#define BATTLE_SUBSCRIPT_OVERWORLD_THUNDERSTORM                 (527)
+#define BATTLE_SUBSCRIPT_OVERWORLD_SNOW                         (528)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE_BLADE_FORME              (529)
+#define BATTLE_SUBSCRIPT_STANCE_CHANGE_SHIELD_FORME             (530)
+#define BATTLE_SUBSCRIPT_HUNGER_SWITCH                          (531)
+#define BATTLE_SUBSCRIPT_COULDNT_FULLY_PROTECT                  (532)
+#define BATTLE_SUBSCRIPT_TERASTALLIZE                           (533)
+#define BATTLE_SUBSCRIPT_TERASTALLIZATION_WEAR_OFF              (534)
+#define BATTLE_SUBSCRIPT_EMBODY_ASPECT_TEAL                     (535)
+#define BATTLE_SUBSCRIPT_EMBODY_ASPECT_WELLSPRING               (536)
+#define BATTLE_SUBSCRIPT_EMBODY_ASPECT_HEARTHFLAME              (537)
+#define BATTLE_SUBSCRIPT_EMBODY_ASPECT_CORNERSTONE              (538)
+#define BATTLE_SUBSCRIPT_TERA_SHIFT                             (539)
+#define BATTLE_SUBSCRIPT_TERA_SHELL                             (540)
+#define BATTLE_SUBSCRIPT_TERAFORM_ZERO                          (541)
+#define BATTLE_SUBSCRIPT_DYNAMAX                                (542)
+#define BATTLE_SUBSCRIPT_DYNAMAX_WEAR_OFF                       (543)
 
-#define MAX_BASE_SUBSCRIPT_NUM 530
+#define MAX_BASE_SUBSCRIPT_NUM 543
 
 // define your custom subscripts below like this
 // #define MOVE_SUBSCRIPT_CUSTOM_1 (MAX_BASE_SUBSCRIPT_NUM + 1)
@@ -842,6 +855,10 @@
 #define BATTLE_ANIMATION_AURA_FLARED_TO_LIFE               58
 #define BATTLE_ANIMATION_TERA_RAID_REMOVE_NEGATIVE_EFFECTS 59
 #define BATTLE_ANIMATION_TERA_RAID_NULLIFY_STAT_CHANGES    60
+#define BATTLE_ANIMATION_TERASTALLIZE                      61
+#define BATTLE_ANIMATION_TERASTALLIZE_WEAR_OFF             62
+#define BATTLE_ANIMATION_DYNAMAX                           63
+#define BATTLE_ANIMATION_DYNAMAX_WEAR_OFF                  64
 
 #define MOVE_SIDE_EFFECT_BREAK_SCREENS           0x800000
 #define MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE        0x1000000

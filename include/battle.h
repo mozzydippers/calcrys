@@ -476,9 +476,8 @@ struct BattlePokemon {
     u32 air_balloon_flag : 1; /**< the held air balloon has printed its message */
     u32 potentially_affected_by_psychic_terrain_move_used_flag : 1;
     u32 ability_activated_flag : 1;
-    u32 tera_type : 5;
-    u32 is_currently_terastallized : 1;
-    u32 is_currently_dynamaxed : 1;
+    u32 embodyAspectProteanLiberoActivated : 1;
+    u32 unused : 6;
     u32 has_dynamaxed_before : 1; /**< for Cherrim and Flower Gift */
     u32 type3 : 5; // need to add to ClearBattleMonFlags when added to here as well
     /* 0x2c */ u8 pp[4]; /**< move pp left */
@@ -837,7 +836,7 @@ typedef struct MovePerformanceContext {
     u8 hitSubstituteCount : 3;
     u8 isAllyHit : 1;
     u8 currentMoveCalcDone : 1;
-    u8 padding : 1;
+    u8 teraShellActive : 1;
     int hitFoes[2];
     int hitSubstitute[3];
 } MovePerformanceContext;
@@ -892,6 +891,14 @@ typedef struct MagicBounceContext {
     u8 bounceMaxCounter;
 } MagicBounceContext;
 
+typedef struct RaidContext {
+    BOOL isExtraActionActive;
+    BOOL isAbilityNullifyActive;
+    u8 extraActionCount;
+    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
+    u32 originalHP;
+} RaidContext;
+
 typedef enum HealingConditionType {
     HEALING_CONDITION_HEALING_NONE = 0,
     HEALING_CONDITION_HEALING_WISH,
@@ -908,14 +915,6 @@ typedef struct HealingWishQueue {
     HealingConditionType queue[CLIENT_MAX][2];
     HealingWishCounter counter[CLIENT_MAX];
 } HealingWishQueue;
-
-typedef struct RaidContext {
-    BOOL isExtraActionActive;
-    BOOL isAbilityNullifyActive;
-    u8 extraActionCount;
-    ExtraAction extraActions[MAX_EXTRA_ACTIONS];
-    u32 originalHP;
-} RaidContext;
 
 #define BATTLE_SCRIPT_PUSH_DEPTH 4
 
@@ -1174,7 +1173,12 @@ struct BattleStruct {
     int field_condition2; // gen5+ field conditions
     int magicRoomCounter;
     u32 originalHP[CLIENT_MAX];
+    BOOL isDynamaxedArray[CLIENT_MAX][6];
+    BOOL isTerastallizedArray[CLIENT_MAX][6];
 };
+
+#define IS_DYNAMAXED(ctx, client)     (ctx->isDynamaxedArray[client][ctx->sel_mons_no[client]])
+#define IS_TERASTALLIZED(ctx, client) (ctx->isTerastallizedArray[client][ctx->sel_mons_no[client]])
 
 enum {
     SPREAD_MOVE_LOOP_ALLY = 0,
@@ -1439,6 +1443,11 @@ struct PACKED newBattleStruct {
     u8 needDynamax[4];
     u8 playerWantDynamax;
     u8 DynamaxIconLight;
+
+    u8 sideTerastallize[4];
+    u8 needTerastallize[4];
+    u8 playerWantTerastallize;
+    u8 TerastallizeIconLight;
 
     CATS_ACT_PTR MegaOAM;
     CATS_ACT_PTR MegaButton;
@@ -2524,7 +2533,7 @@ int LONG_CALL Battle_GetClientPartySize(void *bw, int client_no);
  *  @param mon_index party index of the PartyPokemon desired
  *  @return pointer to the mon_index position PartyPokemon of the specified battler
  */
-struct PartyPokemon *LONG_CALL Battle_GetClientPartyMon(void *bw, int client_no, int mon_index);
+struct PartyPokemon *LONG_CALL Battle_GetClientPartyMon(struct BattleSystem *bw, int client_no, int mon_index);
 
 /**
  *  @brief check if experience is being distributed
@@ -2697,6 +2706,8 @@ typedef void (*anim_scr_cmd_func)(ANIM_CMD_STRUCT *animCmdStruct);
 extern const anim_scr_cmd_func gAnimScrTable[NUM_VANILLA_ANIM_SCRIPT_COMMANDS];
 extern struct BattleSystem *gBattleSystem;
 
+void LONG_CALL BattleVariation_ApplyMainAppearance(Pokepic *pokepic);
+void LONG_CALL BattleVariation_SetDefaultAlphaBlending(void);
 BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic);
 void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic);
 void LONG_CALL Raid_InitializeMainAppearance(Pokepic *pokepic);
@@ -2925,7 +2936,7 @@ void LONG_CALL PushAndLoadBattleScript(struct BattleStruct *sp, int kind, int in
  *  @param client_no resolved battler
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no);
+BOOL LONG_CALL IsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 client_no);
 
 /**
  *  @brief function to check whether a mon is grounded or not
@@ -2934,7 +2945,7 @@ BOOL LONG_CALL IsClientGrounded(struct BattleStruct *sp, u32 client_no);
  *  @param defender resolved battler defender
  *  @return `TRUE` if grounded, `FALSE` otherwise
  */
-BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleStruct *sp, u32 attacker, u32 defender);
+BOOL LONG_CALL MoldBreakerIsClientGrounded(struct BattleSystem *bw, struct BattleStruct *sp, u32 attacker, u32 defender);
 
 /**
  *  @brief check if waitmessage battle script command should end
@@ -3455,7 +3466,7 @@ BOOL LONG_CALL BattleSystem_CheckMoveEffect(void *bw, struct BattleStruct *sp, i
 /// @param battlerId
 /// @param type
 /// @return whether the client has the type
-BOOL LONG_CALL HasType(struct BattleStruct *ctx, int battlerId, int type);
+BOOL LONG_CALL HasType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, u32 type);
 
 BOOL LONG_CALL ChangeToPureType(struct BattleStruct *ctx, int battlerId, int type);
 
@@ -3729,7 +3740,9 @@ void LONG_CALL SortRawSpeedNonRNGArray(struct BattleSystem *bsys, struct BattleS
 
 BOOL LONG_CALL CanActivateDamageReductionBerry(struct BattleStruct *ctx, int defender);
 
-BOOL LONG_CALL IsPureType(struct BattleStruct *ctx, int battlerId, int type);
+BOOL LONG_CALL CanActivateTeraShell(struct BattleStruct *ctx, int defender);
+
+BOOL LONG_CALL IsPureType(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId, int type);
 
 /// @brief Check if ability can't be suppressed by Gastro Acid or affected by Mummy. See notes for DisabledByNeutralizingGas.
 /// @param ability
@@ -3920,5 +3933,7 @@ void LONG_CALL ov12_022600F0(SysTask *task, void *data); // Task_PlayFaintingSeq
 
 u32 LONG_CALL RollMetronomeMove(struct BattleSystem *bsys);
 BOOL LONG_CALL CheckLegalMetronomeMove(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx UNUSED, int battlerId UNUSED, u16 moveNo);
+
+u32 LONG_CALL GetTeraType(struct BattleSystem *bsys, struct BattleStruct *ctx, u32 client);
 
 #endif // BATTLE_H

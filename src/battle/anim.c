@@ -16,9 +16,12 @@
 #include "sound.h"
 
 void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct);
+void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct);
 
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
+    [0x59 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
+    = AnimScrCmd_SetBattlerTeraState,
 };
 
 anim_scr_cmd_func GrabAnimScriptCommand(u32 command)
@@ -48,6 +51,34 @@ void AnimScrCmd_ChangePermanentBattleBackground(ANIM_CMD_STRUCT *animCmdStruct)
         terrain = bw->sp->original_terrain;
     }
     LoadDifferentBattleBackground(bw, bg, terrain);
+}
+
+// Unfortunately this also handles battle logic, not just animation
+void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct)
+{
+    animCmdStruct->animScriptPtr++;
+
+    u32 battlerCategory = *animCmdStruct->animScriptPtr++;
+    u32 battler = 0;
+    switch (battlerCategory) {
+    case BATTLER_CATEGORY_ATTACKER:
+        battler = gBattleSystem->sp->attack_client;
+        break;
+    case BATTLER_CATEGORY_DEFENDER:
+        battler = gBattleSystem->sp->defence_client;
+        break;
+    case BATTLER_CATEGORY_MSG_TEMP:
+        battler = gBattleSystem->sp->battlerIdTemp;
+        break;
+    }
+
+    BOOL state = *animCmdStruct->animScriptPtr++;
+
+    if ((int)battler < gBattleSystem->maxBattlers) {
+        // Done here so that animation is correct
+        gBattleSystem->sp->isTerastallizedArray[battler][gBattleSystem->sp->sel_mons_no[battler]] = state;
+        BattleVariation_ApplyMainAppearance(&gBattleSystem->pokepicManager->pics[battler]);
+    }
 }
 
 // if the form is nonzero, then ensure the PlayCry command just plays the cry itself and return

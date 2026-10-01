@@ -9,29 +9,29 @@
 #include "../../include/sprite.h"
 #include "../../include/types.h"
 
-BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client)
+BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *ctx, int client)
 {
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("In AICheckCanUseZMove\n");
 #endif
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int form = battle->battlemon[client].form_no;
+    int form = ctx->battlemon[client].form_no;
 
-    int item = battle->battlemon[client].item;
+    int item = ctx->battlemon[client].item;
 
-    int command = battle->playerActions[client][3];
+    int command = ctx->playerActions[client][3];
 
-    int moveID = GetBattlerSelectedMove(battle, client);
+    int moveID = GetBattlerSelectedMove(ctx, client);
 
-    struct BattleMove move = battle->moveTbl[moveID];
+    struct BattleMove move = ctx->moveTbl[moveID];
 
     if (newBS.SideZMove[client]) {
         return FALSE;
     }
 
-    if (battle->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
+    if (ctx->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
         return FALSE;
     }
 
@@ -95,7 +95,7 @@ BOOL LONG_CALL AICheckCanUseZMove(struct BattleStruct *battle, int client)
     return FALSE;
 }
 
-int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int client)
+int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *ctx, int baseMove, int client)
 {
 #ifdef DEBUG_Z_MOVE_LOGIC
     debug_printf("In GetZMoveToBeUsed\n");
@@ -103,11 +103,11 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
 
     int zMove = 0;
 
-    int species = battle->battlemon[client].species;
+    int species = ctx->battlemon[client].species;
 
-    int form = battle->battlemon[client].form_no;
+    int form = ctx->battlemon[client].form_no;
 
-    int item = battle->battlemon[client].item;
+    int item = ctx->battlemon[client].item;
 
     if (baseMove == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0) {
         return MOVE_CATASTROPIKA;
@@ -168,7 +168,7 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
     if (baseMove == MOVE_HIDDEN_POWER) {
         zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
     } else {
-        switch (GetAdjustedMoveType(battle, battle->attack_client, baseMove)) {
+        switch (GetAdjustedMoveType(ctx, ctx->attack_client, baseMove)) {
         case TYPE_NORMAL:
             zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
             break;
@@ -229,7 +229,7 @@ int LONG_CALL GetZMoveToBeUsed(struct BattleStruct *battle, int baseMove, int cl
             break;
         }
     }
-    if (battle->moveTbl[baseMove].split == SPLIT_SPECIAL) {
+    if (ctx->moveTbl[baseMove].split == SPLIT_SPECIAL) {
         zMove += 1;
     }
 

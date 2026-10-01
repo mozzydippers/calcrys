@@ -3,6 +3,7 @@
 #include "../include/battle.h"
 #include "../include/battle_variations.h"
 #include "../include/constants/file.h"
+#include "../include/io_reg.h"
 #include "../include/overlay.h"
 #include "../include/pokemon.h"
 #include "../include/pokepic.h"
@@ -14,11 +15,123 @@
 #define RAID_TINT_RED              31
 #define RAID_TINT_GREEN            16
 #define RAID_TINT_BLUE             16
+#define TERA_TINT_CHANNEL_MAX      31
+#define TERA_POKEPIC_ALPHA         15
+#define TERA_OBJ_BLEND_EVA         5
+#define TERA_OBJ_BLEND_EVB         11
+#define TERA_BLEND_CONTROL         0x2F40
 #define RAID_POKEPIC_AFFINE_SCALE  (POKEPIC_SCALE_NORMAL * RAID_POKEPIC_SCALE_PERCENT / 100)
 
 ALIGN4 struct BattleSystem *gBattleSystem __attribute__((section(".data"))) = NULL;
 
 static struct BattleVariationInfo sBattleVariationInfo = { 0 };
+
+typedef struct TeraTint {
+    u8 red;
+    u8 green;
+    u8 blue;
+} TeraTint;
+
+static const TeraTint sTeraTints[] = {
+    [TYPE_NORMAL] = { 31, 23, 20 },
+    [TYPE_FIGHTING] = { 31, 8, 5 },
+    [TYPE_FLYING] = { 14, 21, 31 },
+    [TYPE_POISON] = { 24, 7, 31 },
+    [TYPE_GROUND] = { 31, 21, 6 },
+    [TYPE_ROCK] = { 31, 23, 8 },
+    [TYPE_BUG] = { 19, 31, 5 },
+    [TYPE_GHOST] = { 13, 8, 31 },
+    [TYPE_STEEL] = { 18, 23, 31 },
+    [TYPE_FAIRY] = { 31, 13, 27 },
+    [TYPE_FIRE] = { 31, 8, 2 },
+    [TYPE_WATER] = { 6, 17, 31 },
+    [TYPE_GRASS] = { 8, 31, 6 },
+    [TYPE_ELECTRIC] = { 31, 29, 2 },
+    [TYPE_PSYCHIC] = { 31, 8, 20 },
+    [TYPE_ICE] = { 12, 28, 31 },
+    [TYPE_DRAGON] = { 10, 7, 31 },
+    [TYPE_DARK] = { 10, 7, 14 },
+    [TYPE_STELLAR] = { 31, 31, 31 },
+};
+
+static int BattleVariation_GetBattlerForPokepic(const Pokepic *pokepic)
+{
+    if (pokepic == NULL || gBattleSystem == NULL || gBattleSystem->pokepicManager == NULL) {
+        return -1;
+    }
+
+    for (int battler = 0; battler < CLIENT_MAX; battler++) {
+        if (pokepic == &gBattleSystem->pokepicManager->pics[battler]) {
+            return battler;
+        }
+    }
+
+    return -1;
+}
+
+static BOOL BattleVariation_IsTerastallizedPokepic(const Pokepic *pokepic)
+{
+    int battler = BattleVariation_GetBattlerForPokepic(pokepic);
+    return battler >= 0 && gBattleSystem->sp != NULL && IS_TERASTALLIZED(gBattleSystem->sp, battler);
+}
+
+static void BattleVariation_ApplyTeraTint(Pokepic *pokepic, int battler)
+{
+    struct PartyPokemon *mon = Battle_GetClientPartyMon(gBattleSystem, battler, gBattleSystem->sp->sel_mons_no[battler]);
+    u32 teraType = GetMonData(mon, MON_DATA_TERA_TYPE_OVERRIDE, NULL);
+    TeraTint tint = { TERA_TINT_CHANNEL_MAX, TERA_TINT_CHANNEL_MAX, TERA_TINT_CHANNEL_MAX };
+
+    if (teraType == TYPE_NONE) {
+        teraType = GetMonData(mon, MON_DATA_TERA_TYPE_ORIGINAL, NULL);
+    }
+    if (teraType <= TYPE_STELLAR && teraType != TYPE_TYPELESS) {
+        tint = sTeraTints[teraType];
+    }
+
+    pokepic->drawParam.diffuseR = tint.red;
+    pokepic->drawParam.diffuseG = tint.green;
+    pokepic->drawParam.diffuseB = tint.blue;
+}
+
+static BOOL BattleVariation_HasTerastallizedBattler(void)
+{
+    if (gBattleSystem != NULL && gBattleSystem->sp != NULL) {
+        for (int battler = 0; battler < gBattleSystem->maxBattlers; battler++) {
+            if (IS_TERASTALLIZED(gBattleSystem->sp, battler)) {
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
+}
+
+static void BattleVariation_SetTeraBlend(void)
+{
+    reg_G2_BLDCNT = TERA_BLEND_CONTROL;
+    reg_G2_BLDALPHA = TERA_OBJ_BLEND_EVA | (TERA_OBJ_BLEND_EVB << 8);
+}
+
+void LONG_CALL BattleVariation_SetDefaultAlphaBlending(void)
+{
+    if (BattleVariation_HasTerastallizedBattler()) {
+        BattleVariation_SetTeraBlend();
+    } else {
+        reg_G2_BLDCNT = 0x3F40;
+        reg_G2_BLDALPHA = 8 | (8 << 8);
+    }
+}
+
+void LONG_CALL BattleVariation_ApplyMainAppearance(Pokepic *pokepic)
+{
+    int battler = BattleVariation_GetBattlerForPokepic(pokepic);
+
+    if (pokepic != NULL && pokepic->active && battler >= 0 && gBattleSystem->sp != NULL && IS_TERASTALLIZED(gBattleSystem->sp, battler)) {
+        BattleVariation_SetTeraBlend();
+        BattleVariation_ApplyTeraTint(pokepic, battler);
+        pokepic->drawParam.alpha = TERA_POKEPIC_ALPHA;
+    }
+}
 
 BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic)
 {
@@ -31,8 +144,11 @@ BOOL LONG_CALL IsRaidMonPokepic(const Pokepic *pokepic)
     return pokepic != NULL && gBattleSystem->pokepicManager != NULL && pokepic == &gBattleSystem->pokepicManager->pics[BATTLER_ENEMY];
 }
 
+// TODO: rename some of these functions since it's not all raid now
 void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
 {
+    BattleVariation_ApplyMainAppearance(pokepic);
+
     if (!IsRaidMonPokepic(pokepic) || !pokepic->active) {
         return;
     }
@@ -42,23 +158,30 @@ void LONG_CALL Raid_ApplyMainAppearance(Pokepic *pokepic)
     drawParam->affineHeight = RAID_POKEPIC_AFFINE_SCALE;
     drawParam->visible = FALSE;
     drawParam->yOffset = -15;
-    drawParam->diffuseR = RAID_TINT_RED;
-    drawParam->diffuseG = RAID_TINT_GREEN;
-    drawParam->diffuseB = RAID_TINT_BLUE;
+    if (!BattleVariation_IsTerastallizedPokepic(pokepic)) {
+        drawParam->diffuseR = RAID_TINT_RED;
+        drawParam->diffuseG = RAID_TINT_GREEN;
+        drawParam->diffuseB = RAID_TINT_BLUE;
+    }
 }
 
 void LONG_CALL Raid_ApplyManagedSpriteAppearance(ManagedSprite *managedSprite, Pokepic *pokepic)
 {
+    BattleVariation_ApplyMainAppearance(pokepic);
+
+    if (managedSprite != NULL && BattleVariation_IsTerastallizedPokepic(pokepic)) {
+        ManagedSprite_SetOamMode(managedSprite, GX_OAM_MODE_XLU);
+        BattleVariation_SetTeraBlend();
+    }
+
     if (managedSprite != NULL && IsRaidMonPokepic(pokepic)) {
         float scale = (float)RAID_POKEPIC_AFFINE_SCALE / POKEPIC_SCALE_NORMAL;
         s16 x;
         s16 y;
 
-        Raid_ApplyMainAppearance(pokepic);
         ManagedSprite_SetAffineOverwriteMode(managedSprite, 2);
         ManagedSprite_SetAffineScale(managedSprite, scale, scale);
         ManagedSprite_GetPositionXY(managedSprite, &x, &y);
-        // why the fuck is it + 1?
         ManagedSprite_SetPositionXY(managedSprite, x + pokepic->drawParam.xOffset + 1, y + pokepic->drawParam.yOffset + 1);
     }
 }
@@ -296,4 +419,31 @@ void LONG_CALL ClearBattleVariationInfo()
 BOOL LONG_CALL IsWildDoubleBattleWithOneOpponent(struct BattleSystem *bsys)
 {
     return (bsys->sp->battlemon[3].species == SPECIES_NONE) && (BattleTypeGet(bsys) & BATTLE_TYPE_DOUBLES);
+}
+
+void LONG_CALL sub_020174BC(PokemonAnim *monAnim)
+{
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_X_CENTER, Raid_RestoreAnimationX(monAnim->sprite, monAnim->originalX));
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_Y_CENTER, monAnim->originalY);
+
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_ROTATION_Z, 0);
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_X_PIVOT, 0);
+
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_SCALE_X, MON_AFFINE_SCALE(1));
+    Pokepic_SetAttr(monAnim->sprite, MON_SPRITE_SCALE_Y, MON_AFFINE_SCALE(1));
+
+    Raid_ApplyMainAppearance(monAnim->sprite);
+}
+
+void LONG_CALL ov07_022220DC(XYTransformContext *ctx, Pokepic *pokepic)
+{
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_X, Raid_AdjustAnimationScale(pokepic, ctx->x));
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_Y, Raid_AdjustAnimationScale(pokepic, ctx->y));
+}
+
+void LONG_CALL ov07_02223224(Pokepic *pokepic)
+{
+    int scale = Raid_AdjustAnimationScale(pokepic, MON_AFFINE_SCALE(1));
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_X, scale);
+    Pokepic_SetAttr(pokepic, MON_SPRITE_SCALE_Y, scale);
 }
