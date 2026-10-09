@@ -680,3 +680,5 @@ arm9 sub_02017A1C_RaidApplyScaleY 02017A30 3
 0007 ov07_0221D874_RaidTint 0221D9F8 0
 
 0012 PlayerTrainerVictoryBGM_hook 0224DA9E 3
+
+arm9 FieldSystem_RestoreMapObjectsFromSave 0203B9F4 1

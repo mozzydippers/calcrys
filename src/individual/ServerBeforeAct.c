@@ -155,17 +155,15 @@ void __attribute__((section(".init"))) ServerBeforeActInternal(struct BattleSyst
                         if (IS_DYNAMAXED(sp, client_no)) {
                             newBS.SideMaxMoveBaseMove[client_no] = GetBattlerSelectedMove(sp, client_no);
                         }
-                    }
 
-                    if (flag) {
-                        // 應該沒需要在這裡處理
-                        // sp->battlemon[client_no].form_no = GrabMegaTargetForm(sp->battlemon[client_no].species, sp->battlemon[client_no].item);
-                        // BattleFormChange(client_no, sp->battlemon[client_no].form_no, bw, sp, FALSE);
-                        sp->battlemon[client_no].canMega = 1;
-                        newBS.needMega[client_no] = MEGA_NEED;
-                        if (DoesSideHave2Battlers(bw, client_no)) {
-                            int ally = BATTLER_ALLY(client_no);
-                            if (bw->trainerId[client_no] == bw->trainerId[ally]) {
+                        if (flag) {
+                            // 應該沒需要在這裡處理
+                            // sp->battlemon[client_no].form_no = GrabMegaTargetForm(sp->battlemon[client_no].species, sp->battlemon[client_no].item);
+                            // BattleFormChange(client_no, sp->battlemon[client_no].form_no, bw, sp, FALSE);
+                            sp->battlemon[client_no].canMega = 1;
+                            newBS.needMega[client_no] = MEGA_NEED;
+                            if (!DoesSideHave2Battlers(bw, client_no)) {
+                                int ally = BATTLER_ALLY(client_no);
                                 newBS.SideMega[ally] = TRUE;
                             }
                         }
@@ -428,19 +426,22 @@ static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleSt
     for (i = 0; i < client_set_max; i++) {
         client_no = ctx->turnOrder[i];
         if (newBS.needMega[client_no] == MEGA_NEED && ctx->battlemon[client_no].hp) {
-            if (BattleTypeGet(bsys) & BATTLE_TYPE_MULTI) {
-                if (client_no == 0 || (client_no == 2 && ctx->battlemon[client_no].id_no == ctx->battlemon[0].id_no)) {
+            if (client_no == 0) {
+                newBS.PlayerMegaed = TRUE;
+            }
+
+            if (!DoesSideHave2Battlers(bsys, client_no)) {
+                if (client_no == 0 || client_no == 2) {
                     newBS.PlayerMegaed = TRUE;
                 }
-            } else if (client_no == 0 || client_no == 2) {
-                newBS.PlayerMegaed = TRUE;
             }
 
             if (IS_CLIENT_IN_ILLUSION(bsys, client_no)) {
                 gIllusionStruct.dontRemoveIllusion = TRUE;
             }
 
-            ctx->battlemon[client_no].form_no = GrabMegaTargetForm(ctx->battlemon[client_no].species, ctx->battlemon[client_no].item);
+            int form = ctx->battlemon[client_no].form_no;
+            ctx->battlemon[client_no].form_no = GrabMegaTargetForm(ctx->battlemon[client_no].species, ctx->battlemon[client_no].item, form);
 
             // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/post-9458017
             ctx->battlemon[client_no].condition2 &= ~STATUS2_DESTINY_BOND;

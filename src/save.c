@@ -1,15 +1,16 @@
 #include "../include/save.h"
 
-#include "../include/config.h"
-#include "../include/constants/buttons.h"
-#include "../include/debug.h"
-#include "../include/message.h"
-#include "../include/pokemon.h"
-#include "../include/pokemon_storage_system.h"
-#include "../include/script.h"
-#include "../include/sprite.h"
-#include "../include/task.h"
-#include "../include/types.h"
+#include "constants/buttons.h"
+#include "constants/file.h"
+
+#include "map_events_internal.h"
+#include "message.h"
+#include "pokemon.h"
+#include "pokemon_storage_system.h"
+#include "save.h"
+#include "script.h"
+#include "sprite.h"
+#include "task.h"
 
 // these functions are configured to not hook from hooks directly under ALLOW_SAVE_CHANGES
 // can't get linking to work properly when i strip these
@@ -946,4 +947,28 @@ void DestroyHeap(u32 heapId UNUSED)
     parentHeaps[heapId] = 0;
     heapSizes[heapId] = 0;
 #endif
+}
+
+/**
+ * @brief Intentionally hides the follower when loading a save to force the intended follower creation logic to run
+ *
+ * @param fieldSystem
+ */
+void LONG_CALL FieldSystem_RestoreMapObjectsFromSave(FieldSystem *fieldSystem)
+{
+    struct SavedMapObjectList *unk = Save_MapObjects_Get(fieldSystem->savedata);
+    struct SavedMapObject *follower = NULL;
+
+    for (u32 i = 0; i < NELEMS(unk->subs); i++) {
+        if ((unk->subs[i].flags & MAPOBJECTFLAG_ACTIVE) != 0 && unk->subs[i].objId == obj_partner_poke) {
+            follower = &unk->subs[i];
+            break;
+        }
+    }
+
+    if (follower != NULL) {
+        follower->flags &= ~MAPOBJECTFLAG_ACTIVE;
+    }
+
+    MapObjectManager_RestoreFromSave(fieldSystem->mapObjectMan, unk->subs, 64);
 }
