@@ -2892,7 +2892,7 @@ BOOL BattleController_CheckTypeImmunity(struct BattleSystem *bsys, struct Battle
 
     if ((target != RANGE_USER
             && target != RANGE_USER_SIDE
-            && power != 0
+            && (power != 0 || (MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)))
             && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
         || ctx->current_move_index == MOVE_THUNDER_WAVE) {
         effectiveness = GetTypeEffectiveness(bsys, ctx, ctx->attack_client, defender, ctx->move_type, &flag);
@@ -2928,7 +2928,7 @@ BOOL BattleController_CheckTypeImmunity(struct BattleSystem *bsys, struct Battle
         return TRUE;
     }
 
-    if (power != 0
+    if ((power != 0 || (MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)))
         && (MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_WONDER_GUARD) == TRUE)
         && effectiveness < TYPE_MUL_SUPER_EFFECTIVE) {
         if (IsAttackerOnField(ctx)) {
