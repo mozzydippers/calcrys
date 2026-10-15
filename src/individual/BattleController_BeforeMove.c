@@ -1077,7 +1077,9 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
 #endif
 
         ctx->wb_seq_no++;
-        BattleController_CheckAbilityFailures4_OtherAromaVeilSturdy(bsys, ctx);
+        if (BattleController_CheckAbilityFailures4_OtherAromaVeilSturdy(bsys, ctx)) {
+            return;
+        }
         FALLTHROUGH;
     }
     case BEFORE_MOVE_STATE_MOVE_ACCURACY: {
@@ -2949,9 +2951,9 @@ BOOL BattleController_CheckTypeImmunity(struct BattleSystem *bsys, struct Battle
     int target = ctx->moveTbl[ctx->current_move_index].target;
     int power = ctx->moveTbl[ctx->current_move_index].power;
 
-    if ((ctx->moveTbl[ctx->current_move_index].target != RANGE_USER
-            && ctx->moveTbl[ctx->current_move_index].target != RANGE_USER_SIDE
-            && (ctx->moveTbl[ctx->current_move_index].split != SPLIT_STATUS)
+    if ((target != RANGE_USER
+            && target != RANGE_USER_SIDE
+            && (power != 0 || (MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)))
             && !(ctx->server_status_flag & BATTLE_STATUS_IGNORE_TYPE_IMMUNITY))
         || ctx->current_move_index == MOVE_THUNDER_WAVE) {
         effectiveness = GetTypeEffectiveness(bsys, ctx, ctx->attack_client, defender, ctx->move_type, &flag);
@@ -2987,7 +2989,7 @@ BOOL BattleController_CheckTypeImmunity(struct BattleSystem *bsys, struct Battle
         return TRUE;
     }
 
-    if (power != 0
+    if ((power != 0 || (MoveIsZMove(ctx->current_move_index) || (MoveIsMaxMove(ctx->current_move_index) && ctx->current_move_index != MOVE_MAX_GUARD)))
         && (MoldBreakerAbilityCheck(ctx, ctx->attack_client, defender, ABILITY_WONDER_GUARD) == TRUE)
         && effectiveness < TYPE_MUL_SUPER_EFFECTIVE) {
         if (IsAttackerOnField(ctx)) {
@@ -3877,11 +3879,14 @@ BOOL BattleController_CheckAbilityFailures4_OtherAromaVeilSturdy(struct BattleSy
 
     if (MoldBreakerAbilityCheck(ctx, ctx->attack_client, ctx->defence_client, ABILITY_STURDY) && moveEffect == MOVE_EFFECT_ONE_HIT_KO) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
-        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_FAILED;
+        ctx->moveStatusFlagForSpreadMoves[ctx->defence_client] = MOVE_STATUS_ONE_HIT_KO_FAILED;
         ctx->battlerIdTemp = ctx->defence_client;
         LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_DOESNT_AFFECT_ABILITY);
         ctx->next_server_seq_no = ctx->server_seq_no;
         ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+        ctx->waza_status_flag |= MOVE_STATUS_NO_MORE_WORK;
+        ctx->wb_seq_no = BEFORE_MOVE_START;
+
         return TRUE;
     }
     return FALSE;
@@ -3896,6 +3901,19 @@ BOOL BattleController_CheckMoveAccuracy(struct BattleSystem *bsys, struct Battle
         return FALSE;
     }
 
+    // OHKO move did not hit
+    if (ctx->waza_status_flag & MOVE_STATUS_ONE_HIT_KO_FAILED) {
+        BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
+
+        ctx->waza_status_flag = 0;
+        ctx->moveStatusFlagForSpreadMoves[defender] = MOVE_STATUS_ONE_HIT_KO_FAILED;
+        ctx->battlerIdTemp = defender;
+        LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_MOVE_FAIL_MISSED); //{} avoided the attack
+        ctx->next_server_seq_no = ctx->server_seq_no;
+        ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
+        return TRUE;
+    }
+
     // Apply accuracy / evasion modifiers
     if (!(ctx->waza_out_check_on_off & 0x20)
         && defender != BATTLER_NONE
@@ -3907,7 +3925,6 @@ BOOL BattleController_CheckMoveAccuracy(struct BattleSystem *bsys, struct Battle
     // a multi-hit move is always single target
     if (ctx->loop_flag && (ctx->waza_status_flag & MOVE_STATUS_MISSED)) {
         BattleController_ResetGeneralMoveFailureFlags(ctx, ctx->attack_client, TRUE);
-        RemoveItemOnFlingFailure(ctx);
 
         ctx->waza_status_flag &= ~MOVE_STATUS_MISSED;
         ctx->waza_status_flag |= MOVE_STATUS_MULTI_HIT_DISRUPTED;
@@ -3999,12 +4016,15 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
     u32 maxBattlers = BattleWorkClientSetMaxGet(bsys);
     u32 attackerSpecies = SPECIES_NONE;
     u32 attackerItem = ITEM_NONE;
+    u32 attackerForm = 0;
     if (IsAttackerOnField(ctx)) {
         attackerSpecies = ctx->battlemon[ctx->attack_client].species;
         attackerItem = ctx->battlemon[ctx->attack_client].item;
+        attackerForm = ctx->battlemon[ctx->attack_client].form_no;
     }
     u32 defenderSpecies = ctx->battlemon[ctx->defence_client].species;
     u32 defenderItem = ctx->battlemon[ctx->defence_client].item;
+    u32 defenderForm = ctx->battlemon[ctx->defence_client].form_no;
 
     BOOL flowerShieldSuccessCount = 0;
 
@@ -4615,13 +4635,6 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         break;
     }
     case MOVE_BESTOW: {
-        // CheckMegaData will gladly tell you that a galarian slowbro needs its slowbronite...  we make it work here
-        if (defenderItem == ITEM_NONE
-            && attackerSpecies == SPECIES_SLOWBRO
-            && attackerItem == ITEM_SLOWBRONITE
-            && ctx->battlemon[ctx->attack_client].form_no == 2) {
-            break;
-        }
         if (attackerItem == ITEM_NONE
             || defenderItem != ITEM_NONE // THIS IS A PROBLEM FOR SOME REASON
             || IS_ITEM_MAIL(attackerItem)
@@ -4629,7 +4642,7 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
             || IS_ITEM_Z_CRYSTAL(attackerItem)
             || ((attackerSpecies == SPECIES_KYOGRE || defenderSpecies == SPECIES_KYOGRE) && attackerItem == ITEM_BLUE_ORB)
             || ((attackerSpecies == SPECIES_GROUDON || defenderSpecies == SPECIES_GROUDON) && attackerItem == ITEM_RED_ORB)
-            || (CheckMegaData(attackerSpecies, attackerItem) || CheckMegaData(defenderSpecies, attackerItem))
+            || (CheckMegaData(attackerSpecies, attackerItem, attackerForm) || CheckMegaData(defenderSpecies, attackerItem, defenderForm))
             || ((attackerSpecies == SPECIES_GIRATINA || defenderSpecies == SPECIES_GIRATINA) && attackerItem == ITEM_GRISEOUS_CORE)
             || ((attackerSpecies == SPECIES_ARCEUS || defenderSpecies == SPECIES_ARCEUS) && IS_ITEM_ARCEUS_PLATE(attackerItem))
             || ((attackerSpecies == SPECIES_GENESECT || defenderSpecies == SPECIES_GENESECT) && IS_ITEM_GENESECT_DRIVE(attackerItem))
@@ -4689,7 +4702,7 @@ BOOL BattleController_CheckMoveFailures4_MultipleTargets(struct BattleSystem *bs
 #if CORROSIVE_GAS_IMPLIED_BEHAVIOUR == TRUE
             || (ctx->battlemon[defender].species == SPECIES_KYOGRE && ctx->battlemon[defender].item == ITEM_BLUE_ORB)
             || (ctx->battlemon[defender].species == SPECIES_GROUDON && ctx->battlemon[defender].item == ITEM_RED_ORB)
-            || (CheckMegaData(ctx->battlemon[defender].species, ctx->battlemon[defender].item))
+            || (CheckMegaData(ctx->battlemon[defender].species, ctx->battlemon[defender].item, ctx->battlemon[defender].form_no))
 #endif
             || (ctx->battlemon[defender].species == SPECIES_GIRATINA && ctx->battlemon[defender].item == ITEM_GRISEOUS_CORE)
             || (ctx->battlemon[defender].species == SPECIES_ARCEUS && IS_ITEM_ARCEUS_PLATE(ctx->battlemon[defender].item))

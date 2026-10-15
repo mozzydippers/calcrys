@@ -1906,6 +1906,8 @@ BOOL LONG_CALL GetTMHMCompatBySpeciesAndForm(u16 species, u16 form, u8 tmhmIdx);
 
 void LONG_CALL DeleteMonFirstMoveAndAppend(struct PartyPokemon *mon, u16 move);
 
+struct PartyPokemon LONG_CALL *GetFirstAliveMonInParty_CrashIfNone(struct Party *party);
+
 // calcrys custom
 
 void LONG_CALL ov12_02263D14(void *bsys, int battlerId, u32 a2, int slot);
