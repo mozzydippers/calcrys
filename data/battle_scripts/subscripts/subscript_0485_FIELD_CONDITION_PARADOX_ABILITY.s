@@ -4,6 +4,7 @@
 .data
 
 _Start:
+    AbilityPopup BATTLER_CATEGORY_MSG_BATTLER_TEMP
     CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_MSG_BATTLER_TEMP, ABILITY_QUARK_DRIVE, _HandleQuarkDriveMsg
     AbilityPopup BATTLER_CATEGORY_MSG_BATTLER_TEMP
     // The harsh sunlight activated {0}'s {1}!

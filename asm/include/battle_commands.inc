@@ -1632,23 +1632,36 @@
     .long (((\arg_2 - .) / 4) - 1)
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro TryActivateReceiver arg_0, arg_1
     .long 299
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .macro IfClientDynamaxed arg_0, arg_1
+    .macro TryActivateEmergencyExit arg_0, arg_1
     .long 300
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .macro IfClientTerastallized arg_0, arg_1
+    .macro CheckTrainerGimmickMessage
     .long 301
+    .endm
+
+    .macro IfClientDynamaxed arg_0, arg_1
+    .long 302
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 301
+
+    .macro IfClientTerastallized arg_0, arg_1
+    .long 303
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
+    .endm
+
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 303
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
