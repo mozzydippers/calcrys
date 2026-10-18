@@ -47,13 +47,15 @@ HamsterSkull, wolfang62, nintendoplz, Kyle-Dove, 2and2makes5, PokeGirl4Ever, Fer
 
 Kingcom - [armips](https://github.com/Kingcom/armips)
 
+[Lucidious89](https://eeveeexpo.com/members/7705/) - [Terastallization [DBK Add-On] [v21.1] v1.1.6](https://eeveeexpo.com/resources/1476/)
+
 MaMe and maple - a lot of mega sprites touched up
 
-Mikelan98 - initial graphics compilation, BDHCAM routine, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle) 
+Mikelan98 - initial graphics compilation, BDHCAM routine, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle)
 
 RH-Hideout Team - cries from gen 9, sprites for particles
 
-Senate - Prize Money, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle) 
+Senate - Prize Money, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle)
 
 Shy - platinum Battle BG Insertion tutorial
 
