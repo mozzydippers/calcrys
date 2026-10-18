@@ -5,7 +5,6 @@
 
 #include "battle.h"
 
-BOOL LONG_CALL AICheckCanTerastallize(struct BattleSystem *bsys, struct BattleStruct *ctx, int client);
 u32 LONG_CALL GetTerastallizedState(u32 species, u32 form);
 u32 LONG_CALL GetOgerponTerastallizedFormPic(u32 type);
 BOOL CheckCanDrawTerastallizeButton(struct BI_PARAM *bip);
