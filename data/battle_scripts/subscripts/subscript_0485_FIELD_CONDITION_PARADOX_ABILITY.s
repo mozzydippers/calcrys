@@ -4,8 +4,8 @@
 .data
 
 _Start:
-    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_MSG_BATTLER_TEMP, ABILITY_QUARK_DRIVE, _HandleQuarkDriveMsg
     AbilityPopup BATTLER_CATEGORY_MSG_BATTLER_TEMP
+    CheckAbility CHECK_OPCODE_HAVE, BATTLER_CATEGORY_MSG_BATTLER_TEMP, ABILITY_QUARK_DRIVE, _HandleQuarkDriveMsg
     // The harsh sunlight activated {0}'s {1}!
     PrintMessage 1683, TAG_NICKNAME_ABILITY, BATTLER_CATEGORY_MSG_BATTLER_TEMP, BATTLER_CATEGORY_MSG_BATTLER_TEMP
     Wait
@@ -13,7 +13,6 @@ _Start:
     GoTo _StatMsg
 
 _HandleQuarkDriveMsg:
-    AbilityPopup BATTLER_CATEGORY_MSG_BATTLER_TEMP
     // The Electric Terrain activated {0}'s {1}!
     PrintMessage 1686, TAG_NICKNAME_ABILITY, BATTLER_CATEGORY_MSG_BATTLER_TEMP, BATTLER_CATEGORY_MSG_BATTLER_TEMP
     Wait

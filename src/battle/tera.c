@@ -7,47 +7,6 @@
 #include "../../include/constants/moves.h"
 #include "../../include/constants/species.h"
 #include "../../include/types.h"
-#ifdef DEBUG_BATTLE_SCENARIOS
-#include "test_battle.h"
-#endif
-
-BOOL LONG_CALL AICheckCanTerastallize(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx, int client)
-{
-#ifdef DEBUG_TERASTALLIZATION_LOGIC
-    debug_printf("In AICheckCanTerastallize\n");
-#endif
-
-    int species = ctx->battlemon[client].species;
-
-    int command = ctx->playerActions[client][3];
-
-    if (newBS.sideTerastallize[client]) {
-        return FALSE;
-    }
-
-    if (ctx->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
-        return FALSE;
-    }
-
-    if (command == SELECT_FIGHT_COMMAND) {
-        if ((ctx->battlemon[client].condition2 & STATUS2_TRANSFORM) && (species == SPECIES_OGERPON || species == SPECIES_TERAPAGOS)) {
-            return FALSE;
-        }
-
-#ifdef DEBUG_BATTLE_SCENARIOS
-        struct TestBattleScenario *scenario = TestBattle_GetCurrentScenario();
-        if (scenario->opponentTerastallize) {
-            return TRUE;
-        }
-#else
-        // For AI only
-        if (species == SPECIES_OGERPON || species == SPECIES_TERAPAGOS) {
-            return TRUE;
-        }
-#endif
-    }
-    return FALSE;
-}
 
 u32 LONG_CALL GetTerastallizedState(u32 species, u32 form)
 {

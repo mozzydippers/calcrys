@@ -19,10 +19,17 @@
 #include "pokemon.h"
 #include "tera.h"
 #include "z_moves.h"
+#ifdef DEBUG_BATTLE_SCENARIOS
+#include "test_battle.h"
+#endif
 
 static BOOL MegaEvolutionOrUltraBurst(struct BattleSystem *bsys, struct BattleStruct *ctx);
 static BOOL Dynamax(struct BattleSystem *bsys, struct BattleStruct *ctx);
 static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx);
+static BOOL AICheckCanUseZMove(struct BattleStruct *ctx, int client);
+static BOOL IsInPowerSpot();
+static BOOL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct *ctx, int client);
+static BOOL AICheckCanTerastallize(struct BattleSystem *bsys, struct BattleStruct *ctx, int client);
 
 /********************************************************************************************************************/
 /********************************************************************************************************************/
@@ -575,6 +582,221 @@ static BOOL Terastallize(struct BattleSystem *bsys, struct BattleStruct *ctx)
             ctx->server_seq_no = CONTROLLER_COMMAND_RUN_SCRIPT;
             return TRUE;
         }
+    }
+    return FALSE;
+}
+
+BOOL AICheckCanUseZMove(struct BattleStruct *ctx, int client)
+{
+#ifdef DEBUG_Z_MOVE_LOGIC
+    debug_printf("In AICheckCanUseZMove\n");
+#endif
+
+    int species = ctx->battlemon[client].species;
+
+    int form = ctx->battlemon[client].form_no;
+
+    int item = ctx->battlemon[client].item;
+
+    int command = ctx->playerActions[client][3];
+
+    int moveID = GetBattlerSelectedMove(ctx, client);
+
+    struct BattleMove move = ctx->moveTbl[moveID];
+
+    if (newBS.SideZMove[client]) {
+        return FALSE;
+    }
+
+    if (ctx->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
+        return FALSE;
+    }
+
+    // No known data for Gen 8+ moves
+    if (command == SELECT_FIGHT_COMMAND) {
+        if (moveID >= MOVE_ZIPPY_ZAP) {
+            return FALSE;
+        }
+
+        if (MoveIsZMove(moveID) || moveID == MOVE_STRUGGLE) {
+            return FALSE;
+        }
+
+        BOOL canUseZMove = FALSE;
+        if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
+            || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
+            || (move.type == TYPE_FLYING && item == ITEM_FLYINIUM_Z_HELD)
+            || (move.type == TYPE_POISON && item == ITEM_POISONIUM_Z_HELD)
+            || (move.type == TYPE_GROUND && item == ITEM_GROUNDIUM_Z_HELD)
+            || (move.type == TYPE_ROCK && item == ITEM_ROCKIUM_Z_HELD)
+            || (move.type == TYPE_BUG && item == ITEM_BUGINIUM_Z_HELD)
+            || (move.type == TYPE_GHOST && item == ITEM_GHOSTIUM_Z_HELD)
+            || (move.type == TYPE_STEEL && item == ITEM_STEELIUM_Z_HELD)
+            || (move.type == TYPE_FIRE && item == ITEM_FIRIUM_Z_HELD)
+            || (move.type == TYPE_WATER && item == ITEM_WATERIUM_Z_HELD)
+            || (move.type == TYPE_GRASS && item == ITEM_GRASSIUM_Z_HELD)
+            || (move.type == TYPE_ELECTRIC && item == ITEM_ELECTRIUM_Z_HELD)
+            || (move.type == TYPE_PSYCHIC && item == ITEM_PSYCHIUM_Z_HELD)
+            || (move.type == TYPE_ICE && item == ITEM_ICIUM_Z_HELD)
+            || (move.type == TYPE_DRAGON && item == ITEM_DRAGONIUM_Z_HELD)
+            || (move.type == TYPE_DARK && item == ITEM_DARKINIUM_Z_HELD)
+            || (move.type == TYPE_FAIRY && item == ITEM_FAIRIUM_Z_HELD)
+            // Only regular Pikachu can use Catastropika
+            || (moveID == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0)
+            || (moveID == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14)
+            || (moveID == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1)
+            || (moveID == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE)
+            || (moveID == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX)
+            || (moveID == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW)
+            || (moveID == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE)
+            || (moveID == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR)
+            || (moveID == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA)
+            || (moveID == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU)
+            || (moveID == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O)
+            || (moveID == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD
+                && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI))
+            || (moveID == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM
+                && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1)))
+            || (moveID == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM
+                && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2)))
+            || (moveID == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4)))
+            || (moveID == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW)) {
+            canUseZMove = TRUE;
+        }
+
+        // For AI only
+        if (move.power && canUseZMove) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+BOOL IsInPowerSpot()
+{
+    return TRUE;
+}
+
+BOOL AICheckCanDynamax(struct BattleSystem *bsys, struct BattleStruct *ctx, int client)
+{
+#ifdef DEBUG_DYNAMAX_LOGIC
+    debug_printf("In AICheckCanDynamax\n");
+#endif
+
+    int species = ctx->battlemon[client].species;
+
+    int command = ctx->playerActions[client][3];
+
+    int moveID = GetBattlerSelectedMove(ctx, client);
+
+#ifndef DEBUG_BATTLE_SCENARIOS
+    struct BattleMove move = ctx->moveTbl[moveID];
+    BOOL canDynamax = FALSE;
+#endif
+
+    if (newBS.SideDynamax[client]) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Already Dynamaxed\n");
+#endif
+        return FALSE;
+    }
+
+    if (command != SELECT_FIGHT_COMMAND) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Not attacking\n");
+#endif
+        return FALSE;
+    }
+
+    // No known data for Gen 9+ moves
+    if (moveID >= MOVE_TERA_BLAST) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Gen 9+ move\n");
+#endif
+        return FALSE;
+    }
+
+    if (IS_CLIENT_IN_ILLUSION_NO_ABILITY(bsys, client)) {
+        struct PartyPokemon *illusionMon = Battle_GetClientPartyMon(bsys, client, gIllusionStruct.illusionPos[SanitizeClientForTeamAccess(ctx, client)]);
+
+        u32 illusionSpecies = GetMonData(illusionMon, MON_DATA_SPECIES, NULL);
+
+        if (illusionSpecies == SPECIES_ZACIAN || illusionSpecies == SPECIES_ZAMAZENTA || illusionSpecies == SPECIES_ETERNATUS) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+            debug_printf("Illusioned as species that cannot Dynamax\n");
+#endif
+            return FALSE;
+        }
+    }
+
+    if (IsInPowerSpot() && species != SPECIES_ZACIAN && species != SPECIES_ZAMAZENTA && species != SPECIES_ETERNATUS) {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Can Dynamax\n");
+#endif
+#ifndef DEBUG_BATTLE_SCENARIOS
+        canDynamax = TRUE;
+#endif
+    } else {
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Not in Power Spot or species cannot Dynamax\n");
+#endif
+    }
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+    struct TestBattleScenario *scenario = TestBattle_GetCurrentScenario();
+    if (scenario->opponentDynamax) {
+        return TRUE;
+    }
+#else
+    // For AI only
+    if (move.power && canDynamax) {
+        struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client, ctx->sel_mons_no[client]);
+        BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
+#ifdef DEBUG_DYNAMAX_LOGIC
+        debug_printf("Return %d\n", hasGigantamaxFactor);
+#endif
+        // return FALSE;
+        return hasGigantamaxFactor;
+    }
+#endif
+
+    return FALSE;
+}
+
+BOOL AICheckCanTerastallize(struct BattleSystem *bsys UNUSED, struct BattleStruct *ctx, int client)
+{
+#ifdef DEBUG_TERASTALLIZATION_LOGIC
+    debug_printf("In AICheckCanTerastallize\n");
+#endif
+
+    int species = ctx->battlemon[client].species;
+
+    int command = ctx->playerActions[client][3];
+
+    if (newBS.sideTerastallize[client]) {
+        return FALSE;
+    }
+
+    if (ctx->playerActions[client][3] != SELECT_FIGHT_COMMAND) {
+        return FALSE;
+    }
+
+    if (command == SELECT_FIGHT_COMMAND) {
+        if ((ctx->battlemon[client].condition2 & STATUS2_TRANSFORM) && (species == SPECIES_OGERPON || species == SPECIES_TERAPAGOS)) {
+            return FALSE;
+        }
+
+#ifdef DEBUG_BATTLE_SCENARIOS
+        struct TestBattleScenario *scenario = TestBattle_GetCurrentScenario();
+        if (scenario->opponentTerastallize) {
+            return TRUE;
+        }
+#else
+        // For AI only
+        if (species == SPECIES_OGERPON || species == SPECIES_TERAPAGOS) {
+            return TRUE;
+        }
+#endif
     }
     return FALSE;
 }
