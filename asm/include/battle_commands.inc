@@ -1644,24 +1644,30 @@
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro TryEatHpBerry arg_0, arg_1
     .long 301
+    .long \arg_0
+    .long (((\arg_1 - .) / 4) - 1)
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 302
     .endm
 
     .macro IfClientDynamaxed arg_0, arg_1
-    .long 302
+    .long 303
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
 
     .macro IfClientTerastallized arg_0, arg_1
-    .long 303
+    .long 304
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 303
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 304
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)
