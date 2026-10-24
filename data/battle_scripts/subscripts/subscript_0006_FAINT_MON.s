@@ -9,12 +9,12 @@ _000:
     IfClientDynamaxed BATTLER_CATEGORY_FAINTED_MON, _DynamaxWearOff
     IfClientTerastallized BATTLER_CATEGORY_FAINTED_MON, _TerastalWearOff
 _Continue:
-    PlayFaintAnimation
-    Wait
-    HealthbarSlideOut BATTLER_CATEGORY_FAINTED_MON
     // {0} fainted!
     PrintMessage 30, TAG_NICKNAME, BATTLER_CATEGORY_FAINTED_MON
     Wait
+    PlayFaintAnimation
+    Wait
+    HealthbarSlideOut BATTLER_CATEGORY_FAINTED_MON
     WaitButtonABTime 30
     Call BATTLE_SUBSCRIPT_TRY_CLEAR_PRIMAL_WEATHERS_FAINTING
     Call BATTLE_SUBSCRIPT_RECEIVER
