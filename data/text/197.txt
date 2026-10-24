@@ -919,7 +919,7 @@ What?\r
 {WAIT 3}Congratulations! Your {STRVAR_1 1, 0, 0}\nevolved into {STRVAR_1 1, 1, 0}!{WAIT 2}\r
 Huh? {STRVAR_1 1, 0, 0}\nstopped evolving!\r
 ... ...?\r
-What will {STRVAR_1 1, 0, 0} do?{YESNO 0}
+{YESNO 0}
 What will {STRVAR_1 3, 0, 0} throw?{YESNO 0}
 Communicating. Please stand by...
 FIGHT
