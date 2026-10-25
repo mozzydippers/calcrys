@@ -920,7 +920,7 @@ What?\r
 Huh? {STRVAR_1 1, 0, 0}\nstopped evolving!\r
 ... ...?\r
 {YESNO 0}
-What will {STRVAR_1 3, 0, 0} throw?{YESNO 0}
+{YESNO 0}
 Communicating. Please stand by...
 FIGHT
 BAG
