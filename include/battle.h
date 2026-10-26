@@ -831,7 +831,8 @@ typedef struct MoveConditionsFlags {
     u8 ejectPackFlag : 1;
     u8 firstTurnOut : 2;
 
-    // new var
+    u8 usedRagePowder : 1;
+    u8 padding : 7;
 } MoveConditionsFlags;
 
 typedef struct MovePerformanceContext {
@@ -922,10 +923,12 @@ typedef struct HealingWishQueue {
 typedef struct SwitchInFlags {
     u8 healingWishProcessed : 1;
     u8 hazardsProcessed : 1;
-    u8 padding : 6;
+    u8 pastelVeilProcessed : 1;
+    u8 padding : 5;
 } SwitchInFlags;
 
-#define BATTLE_SCRIPT_PUSH_DEPTH 4
+#define VANILLA_BATTLE_SCRIPT_PUSH_DEPTH 4
+#define BATTLE_SCRIPT_PUSH_DEPTH         8
 
 /**
  *  @brief the entire battle structure that we are interested in (for the most part)
@@ -982,9 +985,9 @@ struct BattleStruct {
     /*0xB0*/ int skill_arc_index;
     /*0xB4*/ int skill_seq_no;
     /*0xB8*/ int push_count;
-    /*0xBC*/ int push_skill_arc_kind[BATTLE_SCRIPT_PUSH_DEPTH];
-    /*0xCC*/ int push_skill_arc_index[BATTLE_SCRIPT_PUSH_DEPTH];
-    /*0xDC*/ int push_skill_seq_no[BATTLE_SCRIPT_PUSH_DEPTH];
+    /*0xBC*/ int push_skill_arc_kind_old[VANILLA_BATTLE_SCRIPT_PUSH_DEPTH]; // unused
+    /*0xCC*/ int push_skill_arc_index_old[VANILLA_BATTLE_SCRIPT_PUSH_DEPTH]; // unused
+    /*0xDC*/ int push_skill_seq_no_old[VANILLA_BATTLE_SCRIPT_PUSH_DEPTH]; // unused, callstack for subscripts
     /*0xEC*/ int executionIndex;
     /*0xF0*/ int wait_cnt;
     /*0xF4*/ BattleMessage mp; // buffMsg
@@ -1054,7 +1057,10 @@ struct BattleStruct {
     /*0x2200*/ u8 ServerQue[4][4][16];
     /*0x2300*/ u8 server_buffer[4][256];
     /*0x2700*/ struct ABILITY_POPUP_WORK *abilityPopupWork;
-    /*0x2704*/ int SkillSeqWorkOld[399];
+    int push_skill_arc_kind[BATTLE_SCRIPT_PUSH_DEPTH]; // new subscript callstack
+    int push_skill_arc_index[BATTLE_SCRIPT_PUSH_DEPTH]; // new subscript callstack
+    int push_skill_seq_no[BATTLE_SCRIPT_PUSH_DEPTH]; // new subscript callstack
+    int SkillSeqWorkOld[375]; // unused, we knock off bytes here to safe space
     /*0x2D40*/ struct BattlePokemon battlemon[CLIENT_MAX]; // 0xc0
     /*0x3040*/ u32 moveNoTemp;
     /*0x3044*/ u32 current_move_index;
@@ -2350,6 +2356,8 @@ void LONG_CALL SCIO_IncRecord(void *bw, int attack_client, int param1, int param
  */
 BOOL LONG_CALL CheckStatusRecoverFromAbilityOnSwitch(struct BattleStruct *sp, int ability, int condition);
 
+BOOL LONG_CALL CheckStatusRecoverFromAbilityOnSwitchWrapper(struct BattleStruct *ctx, int ability, int status);
+
 /**
  *  @brief check if pressure should further decrement power points
  *
@@ -2746,7 +2754,6 @@ enum {
     SWITCH_IN_CHECK_ENTRY_EFFECT_WHITE_HERB_FLOWER_GIFT_FORECAST_ICE_FACE_COSTAR_COMMANDER_PROTOSYNTHESIS_QUARK_DRIVE_HOSPITALITY,
     SWITCH_IN_CHECK_ENTRY_EFFECT_OPPORTUNIST,
     SWITCH_IN_CHECK_AMULET_COIN,
-    SWITCH_IN_CHECK_ABILITY_HEAL_STATUS,
     SWITCH_IN_CHECK_ENTRY_EFFECT_EJECT_PACK,
     SWITCH_IN_CHECK_END,
 };
@@ -2937,6 +2944,8 @@ s32 LONG_CALL GrabClientFromBattleScriptParam(void *bw, struct BattleStruct *sp,
  *  @param index number to load
  */
 void LONG_CALL LoadBattleSubSeqScript(struct BattleStruct *sp, int kind, int index);
+/* https://github.com/pret/pokeheartgold/blob/master/src/battle/overlay_12_0224E4FC.c#L202 */
+BOOL LONG_CALL PopBattleScript(struct BattleStruct *sp);
 
 /**
  *  @brief load battle script and queue up the current one to go after this one
@@ -3175,6 +3184,8 @@ BOOL LONG_CALL IsValidParentalBondMove(void *bw, struct BattleStruct *sp, BOOL c
  * @return TRUE if it is a Powder move
  */
 BOOL LONG_CALL IsPowderMove(u32 moveIndex);
+
+BOOL LONG_CALL CanIgnoreRedirection(struct BattleSystem *bsys, struct BattleStruct *ctx, int attacker, int side);
 
 /**
  * @brief Check if the current move is a Weight move
@@ -3869,6 +3880,8 @@ Trainer LONG_CALL *BattleSystem_GetTrainer(struct BattleSystem *bsys, int battle
 BOOL LONG_CALL TryEatOpponentBerry(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
 
 BOOL LONG_CALL TryFling(struct BattleSystem *bsys, struct BattleStruct *ctx, int battlerId);
+
+BOOL LONG_CALL TryPluckBerry(struct BattleSystem *bsys, struct BattleStruct *sp, int battlerId);
 
 void LONG_CALL BattleController_EmitPlayFaintAnimation(struct BattleSystem *bsys, struct BattleStruct *ctx, int batlterId);
 

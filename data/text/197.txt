@@ -1796,6 +1796,9 @@ Magic Room wore off, and held items’\neffects returned to normal!
 {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nwas taken over!
 The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nwas taken over!
 The opposing {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\nwas taken over!
+{STRVAR_1 1, 0, 0} is drowsing!
+The wild {STRVAR_1 1, 0, 0} is drowsing!
+The opposing {STRVAR_1 1, 0, 0} is drowsing!
 {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
 The wild {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!
 The opposing {STRVAR_1 1, 0, 0}\nunleashes its full-force Z-Move!

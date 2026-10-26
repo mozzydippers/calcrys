@@ -20,6 +20,7 @@
 #include "nitro.h"
 #include "overlay.h"
 #include "pokemon.h"
+#include "q412.h"
 #include "save.h"
 #include "system.h"
 #include "window.h"
@@ -695,6 +696,20 @@ void LONG_CALL PushAndLoadBattleScript(struct BattleStruct *sp, int kind, int in
                                                                                                                                            : "effect ",
         index);
 #endif
+}
+
+BOOL LONG_CALL PopBattleScript(struct BattleStruct *sp)
+{
+    if (sp->push_count) {
+        sp->push_count--;
+#ifdef DEBUG_BATTLE_SCRIPT_COMMANDS
+        debug_printf("\n=================\Popping script index %d...\n\n", sp->push_count);
+#endif
+        LoadBattleSubSeqScript(sp, sp->push_skill_arc_kind[sp->push_count], sp->push_skill_arc_index[sp->push_count]);
+        sp->skill_seq_no = sp->push_skill_seq_no[sp->push_count];
+        return FALSE;
+    }
+    return TRUE;
 }
 
 /**
@@ -1680,7 +1695,8 @@ BOOL Task_DistributeExp_capture_experience(void *arg0, void *work, u32 get_clien
 BOOL btl_scr_cmd_33_statbuffchange(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_BTL_SCR_CMD_33_STATBUFFCHANGE;
     offset = 0x023C0400 | 1;
@@ -1882,28 +1898,23 @@ BOOL btl_scr_cmd_87_tryknockoff(void *bw UNUSED, struct BattleStruct *sp)
 {
     IncrementBattleScriptPtr(sp, 1);
 
-    u32 adrs = read_battle_script_param(sp);
-    // u32 side = IsClientEnemy(bw, sp->defence_client);
-    u32 item = sp->battlemon[sp->defence_client].item;
+    u32 stickyHold = read_battle_script_param(sp);
 
     // sticky hold and substitute will keep the mon's held item, but the damage boost will still apply
     // If the Pokémon is knocked out by the attack, Sticky Hold does not protect the held item.
-    if (sp->battlemon[sp->defence_client].item && MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
+    if (MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
         sp->mp.id = BATTLE_MSG_ITEM_CANNOT_BE_REMOVED;
         sp->mp.tag = TAG_NICKNAME;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->defence_client);
-    } else if (CanKnockOffApply(sp, sp->attack_client, sp->defence_client)) {
+        IncrementBattleScriptPtr(sp, stickyHold);
+    } else {
         sp->mp.id = BATTLE_MSG_MON_KNOCKED_OFF_ITEM;
         sp->mp.tag = TAG_NICKNAME_NICKNAME_ITEM;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->attack_client);
         sp->mp.param[1] = CreateNicknameTag(sp, sp->defence_client);
-        sp->mp.param[2] = item;
+        sp->mp.param[2] = sp->battlemon[sp->defence_client].item;
         sp->battlemon[sp->defence_client].item = 0;
         sp->battlemon[sp->defence_client].moveeffect.knockOffFlag = TRUE;
-        // update:  no longer render further items unusable--just set the item to 0 here
-        // sp->scw[side].knockoff_item |= No2Bit(sp->sel_mons_no[sp->defence_client]);
-    } else {
-        IncrementBattleScriptPtr(sp, adrs);
     }
 
     return FALSE;
@@ -2021,27 +2032,6 @@ BOOL btl_scr_cmd_d0_checkshouldleavewith1hp(void *bw, struct BattleStruct *sp)
     return FALSE;
 }
 
-BOOL CheckStatusRecoverFromAbilityOnSwitchWrapper(struct BattleStruct *ctx, int ability, int status)
-{
-    switch (ability) {
-    case ABILITY_PASTEL_VEIL:
-        if (status & STATUS_POISON_ALL) {
-            return TRUE;
-        }
-        break;
-    case ABILITY_THERMAL_EXCHANGE:
-    case ABILITY_WATER_BUBBLE:
-        if (status & STATUS_BURN) {
-            return TRUE;
-        }
-        break;
-    default:
-        break;
-    }
-
-    return CheckStatusRecoverFromAbilityOnSwitch(ctx, ability, status);
-}
-
 /**
  *  @brief script command to handle natural cure.  expanded for meloetta/regenerator
  *
@@ -2051,7 +2041,7 @@ BOOL CheckStatusRecoverFromAbilityOnSwitchWrapper(struct BattleStruct *ctx, int 
  */
 BOOL BtlCmd_TryRestoreStatusOnSwitch(struct BattleSystem *bw, struct BattleStruct *sp)
 {
-    int side, client_no, address, ability, condition;
+    int side, client_no, address, condition;
     struct PartyPokemon *pp;
 
     IncrementBattleScriptPtr(sp, 1);
@@ -2061,7 +2051,6 @@ BOOL BtlCmd_TryRestoreStatusOnSwitch(struct BattleSystem *bw, struct BattleStruc
     client_no = GrabClientFromBattleScriptParam(bw, sp, side);
     if ((sp->battlemon[client_no].hp) && (sp->sel_mons_no[client_no] != 6)) {
         pp = BattleWorkPokemonParamGet(bw, client_no, sp->sel_mons_no[client_no]);
-        ability = GetMonData(pp, MON_DATA_ABILITY, NULL);
         condition = GetMonData(pp, MON_DATA_STATUS, NULL);
 
         // handle meloetta pirouette form changing back to normal when switched out
@@ -2069,18 +2058,20 @@ BOOL BtlCmd_TryRestoreStatusOnSwitch(struct BattleSystem *bw, struct BattleStruc
             && (sp->battlemon[client_no].form_no != 0)) {
             u32 form_no = 0;
             sp->battlemon[client_no].form_no = form_no;
-            BattleFormChange(sp->battlerIdTemp, sp->battlemon[sp->battlerIdTemp].form_no, bw, sp, 1);
+            BattleFormChange(client_no, sp->battlemon[client_no].form_no, bw, sp, 1);
             SetMonData(pp, MON_DATA_FORM, (u8 *)&form_no);
         }
 
-        // natural cure is checked for here but handled by SwitchAbilityStatusRecoverCheck/the battle scripts this command is used in
-        if ((sp->battlemon[client_no].ability != ABILITY_NATURAL_CURE)
-            && (CheckStatusRecoverFromAbilityOnSwitchWrapper(sp, ability, condition) == FALSE)) {
+        // can be suppressed
+        int battlerAbility = GetBattlerAbility(sp, client_no);
+        if ((battlerAbility != ABILITY_NATURAL_CURE)
+            && (CheckStatusRecoverFromAbilityOnSwitchWrapper(sp, battlerAbility, condition) == FALSE)) {
             IncrementBattleScriptPtr(sp, address);
         }
 
-        // handle regenerator--mon restores 1/3 hp on switch
-        if (ability == ABILITY_REGENERATOR) // switching mon ability is regenerator--not affected by gastro acid or etc
+        // https://github.com/rh-hideout/pokeemerald-expansion/blob/master/src/battle_util.c#L4923
+        //  handle regenerator--mon restores 1/3 hp on switch
+        if (battlerAbility == ABILITY_REGENERATOR) // can be suppressed
         {
             int hp = GetMonData(pp, MON_DATA_HP, NULL), hpmax = GetMonData(pp, MON_DATA_MAXHP, NULL);
 
@@ -3389,7 +3380,7 @@ BOOL btl_scr_cmd_109_checktargetispartner(void *bw UNUSED, struct BattleStruct *
 }
 
 /**
- *  @brief script command to calculate the amount of HP should a client recover by using Moonlight, Morning Sun, or Synthesis
+ *  @brief script command to calculate the amount of HP should a client recover by using Moonlight, Morning Sun, Synthesis or Shore Up
  *
  *  @param bw battle work structure
  *  @param sp global battle structure
@@ -3399,28 +3390,22 @@ BOOL BtlCmd_WeatherHPRecovery(void *bw, struct BattleStruct *sp)
 {
     IncrementBattleScriptPtr(sp, 1);
 
-    // u8 buf[64];
-    // sprintf(buf, "In BtlCmd_WeatherHPRecovery\n");
-    // debugsyscall(buf);
+    u32 weather = GetWeather(bw, sp, sp->attack_client);
+    u32 modifier = UQ412__0_5;
 
-    int attacker = sp->attack_client;
-    u32 weather = GetWeather(bw, sp, attacker);
-
-    // For Strong Winds, the moves Moonlight, Morning Sun, and Synthesis continue to recover ½ of max HP, as they do in clear weather.
     if (!(weather & FIELD_CONDITION_WEATHER) || (weather & FIELD_CONDITION_STRONG_WINDS)) {
-        // sprintf(buf, "Recover half\n");
-        // debugsyscall(buf);
-        sp->hp_calc_work = sp->battlemon[attacker].maxhp / 2;
-    } else if ((sp->current_move_index != MOVE_SHORE_UP && weather & FIELD_CONDITION_SUN_ALL)
-        || (sp->current_move_index == MOVE_SHORE_UP && weather & FIELD_CONDITION_SANDSTORM_ALL)) {
-        // sprintf(buf, "Recover 2/3\n");
-        // debugsyscall(buf);
-        sp->hp_calc_work = BattleDamageDivide(sp->battlemon[attacker].maxhp * 20, 30);
+        modifier = UQ412__0_5;
+    } else if (sp->current_move_index == MOVE_SHORE_UP) {
+        if (weather & FIELD_CONDITION_SANDSTORM_ALL) {
+            modifier = UQ412__0_6666;
+        }
     } else {
-        // sprintf(buf, "Recover 1/4\n");
-        // debugsyscall(buf);
-        sp->hp_calc_work = BattleDamageDivide(sp->battlemon[attacker].maxhp, 4);
+        if (weather & FIELD_CONDITION_SUN_ALL) {
+            modifier = UQ412__0_6666;
+        }
     }
+
+    sp->hp_calc_work = QMul_RoundDown(sp->battlemon[sp->attack_client].maxhp, modifier);
 
     return FALSE;
 }
@@ -3865,7 +3850,8 @@ BOOL BtlCmd_CheckSubstitute(void *bsys, struct BattleStruct *ctx)
 u32 CalculateBallShakes(void *bw, struct BattleStruct *sp)
 {
     u32 ovyId, offset, ret;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp);
+    BOOL (*internalFunc)
+    (void *bw, struct BattleStruct *sp);
 
     ovyId = OVERLAY_CALCULATEBALLSHAKES;
     offset = 0x023C0400 | 1;
@@ -4123,29 +4109,22 @@ BOOL btl_scr_cmd_104_tryincinerate(void *bw UNUSED, struct BattleStruct *sp)
 {
     IncrementBattleScriptPtr(sp, 1);
 
-    u32 adrs = read_battle_script_param(sp);
-    if (CanActivateDamageReductionBerry(sp, sp->defence_client)) {
-        IncrementBattleScriptPtr(sp, adrs);
-        return FALSE;
-    }
+    u32 stickyHold = read_battle_script_param(sp);
 
-    u32 item = sp->battlemon[sp->defence_client].item;
-    BOOL isItemGemOrBerry = (IS_ITEM_BERRY(item) || IS_ITEM_GEM(item));
     // sticky hold and substitute will keep the mon's held item
     // If the Pokémon is knocked out by the attack, Sticky Hold does not protect the held item.
-    if (isItemGemOrBerry && MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
+    if (MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
         sp->mp.id = BATTLE_MSG_ITEM_CANNOT_BE_REMOVED;
         sp->mp.tag = TAG_NICKNAME;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->defence_client);
-    } else if (isItemGemOrBerry) {
+        IncrementBattleScriptPtr(sp, stickyHold);
+    } else {
         sp->mp.id = BATTLE_MSG_ITEM_INCINERATED;
         sp->mp.tag = TAG_NICKNAME_ITEM;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->defence_client);
-        sp->mp.param[1] = item;
+        sp->mp.param[1] = sp->battlemon[sp->defence_client].item;
         sp->battlemon[sp->defence_client].item = 0; // no recycle
         sp->battlemon[sp->defence_client].moveeffect.knockOffFlag = TRUE;
-    } else {
-        IncrementBattleScriptPtr(sp, adrs);
     }
 
     return FALSE;
@@ -4227,19 +4206,17 @@ BOOL BtlCmd_TryPluck(void *bw, struct BattleStruct *sp)
 {
     IncrementBattleScriptPtr(sp, 1);
 
-    u32 adrs = read_battle_script_param(sp);
-    u32 adrs2 UNUSED = read_battle_script_param(sp);
+    u32 noBerry = read_battle_script_param(sp);
+    u32 stickyHold = read_battle_script_param(sp);
     u32 item = sp->battlemon[sp->defence_client].item;
 
-    BOOL isBerry = IS_ITEM_BERRY(item);
-    // sticky hold and substitute will keep the mon's held item
     // If the Pokémon is knocked out by the attack, Sticky Hold does not protect the held item.
-    if (isBerry && MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
+    if (MoldBreakerAbilityCheck(sp, sp->attack_client, sp->defence_client, ABILITY_STICKY_HOLD) == TRUE && sp->battlemon[sp->defence_client].hp) {
         sp->mp.id = BATTLE_MSG_ITEM_CANNOT_BE_REMOVED;
         sp->mp.tag = TAG_NICKNAME;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->defence_client);
-    } else if (isBerry && TryEatOpponentBerry(bw, sp, sp->defence_client)) // TODO: needs expansion/wrapper for newer berries
-    {
+        IncrementBattleScriptPtr(sp, stickyHold);
+    } else if (TryPluckBerry(bw, sp, sp->defence_client)) {
         sp->mp.id = BATTLE_MSG_STOLE_BERRY;
         sp->mp.tag = TAG_NICKNAME_ITEM;
         sp->mp.param[0] = CreateNicknameTag(sp, sp->attack_client);
@@ -4251,7 +4228,7 @@ BOOL BtlCmd_TryPluck(void *bw, struct BattleStruct *sp)
             sp->onceOnlyMoveConditionFlags[SanitizeClientForTeamAccess(bw, sp->attack_client)][sp->sel_mons_no[sp->attack_client]].berryEatenAndCanBelch = TRUE;
         }
     } else {
-        IncrementBattleScriptPtr(sp, adrs);
+        IncrementBattleScriptPtr(sp, noBerry);
     }
 
     return FALSE;
@@ -5261,6 +5238,9 @@ BOOL btl_scr_cmd_115_setMoveConditionFlag(void *bsys, struct BattleStruct *ctx)
         if (ctx->moveConditionsFlags[client_no].throatChopTimer == 0) { // Linathan tested, does not reset
             ctx->moveConditionsFlags[client_no].throatChopTimer = 2;
         }
+        break;
+    case MOVE_RAGE_POWDER:
+        ctx->moveConditionsFlags[client_no].usedRagePowder = TRUE;
         break;
     default:
         break;

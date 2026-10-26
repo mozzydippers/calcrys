@@ -3275,7 +3275,7 @@ int LONG_CALL GetDynamicMoveType(struct BattleSystem *bsys, struct BattleStruct 
             if (weather & FIELD_CONDITION_SUN_ALL) {
                 type = TYPE_FIRE;
             }
-            if (weather & FIELD_CONDITION_HAIL_ALL) {
+            if (weather & (FIELD_CONDITION_HAIL_ALL | FIELD_CONDITION_SNOW_ALL)) {
                 type = TYPE_ICE;
             }
             // BUG: If the weather is foggy, then type doesn't get set properly before being returned
@@ -4369,6 +4369,30 @@ BOOL LONG_CALL IsAttackerOnField(struct BattleStruct *ctx)
     return TRUE;
 }
 
+BOOL LONG_CALL CanIgnoreRedirection(struct BattleSystem *bsys, struct BattleStruct *ctx, int attacker, int side)
+{
+    int user = ctx->scw[side].battlerIdFollowMe;
+
+    if (!ctx->scw[side].followMeFlag || !ctx->battlemon[user].hp) {
+        return TRUE;
+    }
+
+    if (ctx->current_move_index == MOVE_SNIPE_SHOT
+        || GetBattlerAbility(ctx, attacker) == ABILITY_PROPELLER_TAIL
+        || GetBattlerAbility(ctx, attacker) == ABILITY_STALWART) {
+        return TRUE;
+    }
+
+    if (ctx->moveConditionsFlags[user].usedRagePowder
+        && (HasType(bsys, ctx, attacker, TYPE_GRASS)
+            || GetBattlerAbility(ctx, attacker) == ABILITY_OVERCOAT
+            || HeldItemHoldEffectGet(ctx, attacker) == HOLD_EFFECT_SPORE_POWDER_IMMUNITY)) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 int LONG_CALL ov12_022506D4(struct BattleSystem *bw, struct BattleStruct *ctx, int battlerIdAttacker, u16 moveNo, int a4, int range)
 {
     int battlerIdTarget = BATTLER_NONE;
@@ -4462,11 +4486,7 @@ int LONG_CALL ov12_022506D4(struct BattleSystem *bw, struct BattleStruct *ctx, i
         battlerIdOpponents[1] = ov12_0223ABB8(bw, battlerIdAttacker, 2);
 
         if (battleType & BATTLE_TYPE_DOUBLES) {
-            if (ctx->current_move_index != MOVE_SNIPE_SHOT
-                && (GetBattlerAbility(ctx, battlerIdAttacker) != ABILITY_PROPELLER_TAIL)
-                && (GetBattlerAbility(ctx, battlerIdAttacker) != ABILITY_STALWART)
-                && ctx->scw[side].followMeFlag
-                && ctx->battlemon[ctx->scw[side].battlerIdFollowMe].hp) {
+            if (!CanIgnoreRedirection(bw, ctx, battlerIdAttacker, side)) {
                 battlerIdTarget = ctx->scw[side].battlerIdFollowMe;
             } else if (ctx->battlemon[battlerIdOpponents[0]].hp && ctx->battlemon[battlerIdOpponents[1]].hp) {
                 // This looks like targeting for Outrage in double battles
@@ -4486,11 +4506,7 @@ int LONG_CALL ov12_022506D4(struct BattleSystem *bw, struct BattleStruct *ctx, i
         int battlerIdTargetTemp = ctx->playerActions[battlerIdAttacker][1]; //.unk4
         // BattleSystem_GetMaxBattlers(battleSystem);
 
-        if (ctx->current_move_index != MOVE_SNIPE_SHOT
-            && (GetBattlerAbility(ctx, battlerIdAttacker) != ABILITY_PROPELLER_TAIL)
-            && (GetBattlerAbility(ctx, battlerIdAttacker) != ABILITY_STALWART)
-            && ctx->scw[side].followMeFlag
-            && ctx->battlemon[ctx->scw[side].battlerIdFollowMe].hp) {
+        if (!CanIgnoreRedirection(bw, ctx, battlerIdAttacker, side)) {
             battlerIdTarget = ctx->scw[side].battlerIdFollowMe;
         } else if (ctx->battlemon[battlerIdTargetTemp].hp) {
             battlerIdTarget = battlerIdTargetTemp;
@@ -4866,4 +4882,25 @@ BOOL LONG_CALL EndTurn_CheckIfReplacementsCanBeSendOut(struct BattleSystem *bsys
     }
 
     return ret;
+}
+
+BOOL LONG_CALL CheckStatusRecoverFromAbilityOnSwitchWrapper(struct BattleStruct *ctx, int ability, int status)
+{
+    switch (ability) {
+    case ABILITY_PASTEL_VEIL:
+        if (status & STATUS_POISON_ALL) {
+            return TRUE;
+        }
+        break;
+    case ABILITY_THERMAL_EXCHANGE:
+    case ABILITY_WATER_BUBBLE:
+        if (status & STATUS_BURN) {
+            return TRUE;
+        }
+        break;
+    default:
+        break;
+    }
+
+    return CheckStatusRecoverFromAbilityOnSwitch(ctx, ability, status);
 }

@@ -20,7 +20,8 @@ void AnimScrCmd_SetBattlerTeraState(ANIM_CMD_STRUCT *animCmdStruct);
 
 ALIGN4 const anim_scr_cmd_func gNewAnimScrTable[] = {
     [0x58 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS] = AnimScrCmd_ChangePermanentBattleBackground,
-    [0x59 - NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
+    [0x59 -
+        NUM_VANILLA_ANIM_SCRIPT_COMMANDS]
     = AnimScrCmd_SetBattlerTeraState,
 };
 
