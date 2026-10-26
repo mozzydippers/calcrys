@@ -1664,12 +1664,16 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
             if (ctx->oneTurnFlag[client].struggle_flag) {
                 move = MOVE_STRUGGLE;
             } else {
+                move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                // simplify logic to save space
                 if (newBS.needZMove[client]) {
-                    move = GetZMoveToBeUsed(ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
+                    if (move == MOVE_LAST_RESORT && ctx->battlemon[client].item == ITEM_EEVIUM_Z_HELD && ctx->battlemon[client].species == SPECIES_EEVEE) {
+                        move = MOVE_EXTREME_EVOBOOST;
+                    }
                 } else if (newBS.SideMaxMoveBaseMove[client]) {
-                    move = GetMaxMoveToBeUsed(bsys, ctx, BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL), client);
-                } else {
-                    move = BattlePokemonParamGet(ctx, client, BATTLE_MON_DATA_MOVE_1 + move_pos, NULL);
+                    if (GetMoveSplit(ctx, move) == SPLIT_STATUS) {
+                        move = MOVE_MAX_GUARD;
+                    }
                 }
             }
         } else {
@@ -1679,7 +1683,7 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
         priority = ctx->moveTbl[move].priority;
 
         // Handle Grassy Glide
-        if (move == MOVE_GRASSY_GLIDE && ctx->terrainOverlay.type == GRASSY_TERRAIN) {
+        if (move == MOVE_GRASSY_GLIDE && ctx->terrainOverlay.type == GRASSY_TERRAIN && !newBS.needZMove[client] && !newBS.SideMaxMoveBaseMove[client]) {
             priority++;
         }
 
@@ -1695,7 +1699,7 @@ void LONG_CALL CalcPriorityAndQuickClawCustapBerry(void *bsys, struct BattleStru
         }
 
         // handle Triage
-        if (GetBattlerAbility(ctx, client) == ABILITY_TRIAGE) {
+        if (GetBattlerAbility(ctx, client) == ABILITY_TRIAGE && !newBS.needZMove[client] && !newBS.SideMaxMoveBaseMove[client]) {
             for (i = 0; i < NELEMS(TriageMovesList); i++) {
                 if (TriageMovesList[i] == move) {
                     priority = priority + 3;

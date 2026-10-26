@@ -5262,3 +5262,332 @@ void RemoveItemOnFlingFailure(struct BattleStruct *ctx)
         ctx->battlemon[ctx->attack_client].moveeffect.knockOffFlag = TRUE;
     }
 }
+
+int GetZMoveToBeUsed(struct BattleStruct *ctx, int baseMove, int client)
+{
+#ifdef DEBUG_Z_MOVE_LOGIC
+    debug_printf("In GetZMoveToBeUsed\n");
+#endif
+
+    int zMove = 0;
+
+    int species = ctx->battlemon[client].species;
+
+    int form = ctx->battlemon[client].form_no;
+
+    int item = ctx->battlemon[client].item;
+
+    if (baseMove == MOVE_VOLT_TACKLE && item == ITEM_PIKANIUM_Z_HELD && species == SPECIES_PIKACHU && form == 0) {
+        return MOVE_CATASTROPIKA;
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_PIKASHUNIUM_Z_HELD && species == SPECIES_PIKACHU && form >= 7 && form <= 14) {
+        return MOVE_10_000_000_VOLT_THUNDERBOLT;
+    }
+    if (baseMove == MOVE_THUNDERBOLT && item == ITEM_ALORAICHIUM_Z_HELD && species == SPECIES_RAICHU && form == 1) {
+        return MOVE_STOKED_SPARKSURFER;
+    }
+    if (baseMove == MOVE_LAST_RESORT && item == ITEM_EEVIUM_Z_HELD && species == SPECIES_EEVEE) {
+        return MOVE_EXTREME_EVOBOOST;
+    }
+    if (baseMove == MOVE_GIGA_IMPACT && item == ITEM_SNORLIUM_Z_HELD && species == SPECIES_SNORLAX) {
+        return MOVE_PULVERIZING_PANCAKE;
+    }
+    if (baseMove == MOVE_PSYCHIC && item == ITEM_MEWNIUM_Z_HELD && species == SPECIES_MEW) {
+        return MOVE_GENESIS_SUPERNOVA;
+    }
+    if (baseMove == MOVE_SPIRIT_SHACKLE && item == ITEM_DECIDIUM_Z_HELD && species == SPECIES_DECIDUEYE) {
+        return MOVE_SINISTER_ARROW_RAID;
+    }
+    if (baseMove == MOVE_DARKEST_LARIAT && item == ITEM_INCINIUM_Z_HELD && species == SPECIES_INCINEROAR) {
+        return MOVE_MALICIOUS_MOONSAULT;
+    }
+    if (baseMove == MOVE_SPARKLING_ARIA && item == ITEM_PRIMARIUM_Z_HELD && species == SPECIES_PRIMARINA) {
+        return MOVE_OCEANIC_OPERETTA;
+    }
+    if (baseMove == MOVE_STONE_EDGE && item == ITEM_LYCANIUM_Z_ITEM && species == SPECIES_LYCANROC) {
+        return MOVE_SPLINTERED_STORMSHARDS;
+    }
+    if (baseMove == MOVE_PLAY_ROUGH && item == ITEM_MIMIKIUM_Z_ITEM && species == SPECIES_MIMIKYU) {
+        return MOVE_LETS_SNUGGLE_FOREVER;
+    }
+    if (baseMove == MOVE_CLANGING_SCALES && item == ITEM_KOMMONIUM_Z_ITEM && species == SPECIES_KOMMO_O) {
+        return MOVE_CLANGOROUS_SOULBLAZE;
+    }
+    if (baseMove == MOVE_NATURES_MADNESS && item == ITEM_TAPUNIUM_Z_HELD && (species == SPECIES_TAPU_KOKO || species == SPECIES_TAPU_LELE || species == SPECIES_TAPU_BULU || species == SPECIES_TAPU_FINI)) {
+        return MOVE_GUARDIAN_OF_ALOLA;
+    }
+    if (baseMove == MOVE_SUNSTEEL_STRIKE && item == ITEM_SOLGANIUM_Z_ITEM && (species == SPECIES_SOLGALEO || (species == SPECIES_NECROZMA && form == 1))) {
+        return MOVE_SEARING_SUNRAZE_SMASH;
+    }
+    if (baseMove == MOVE_MOONGEIST_BEAM && item == ITEM_LUNALIUM_Z_ITEM && (species == SPECIES_LUNALA || (species == SPECIES_NECROZMA && form == 2))) {
+        return MOVE_MENACING_MOONRAZE_MAELSTROM;
+    }
+    if (baseMove == MOVE_PHOTON_GEYSER && item == ITEM_ULTRANECROZIUM_Z_ITEM && (species == SPECIES_NECROZMA && (form == 3 || form == 4))) {
+        return MOVE_LIGHT_THAT_BURNS_THE_SKY;
+    }
+    if (baseMove == MOVE_SPECTRAL_THIEF && item == ITEM_MARSHADIUM_Z_HELD && species == SPECIES_MARSHADOW) {
+        return MOVE_SOUL_STEALING_7_STAR_STRIKE;
+    }
+
+#ifdef DEBUG_Z_MOVE_LOGIC
+    debug_printf("baseMove: %d\n", baseMove);
+#endif
+
+    if (baseMove == MOVE_HIDDEN_POWER) {
+        zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
+    } else {
+        switch (GetAdjustedMoveType(ctx, ctx->attack_client, baseMove)) {
+        case TYPE_NORMAL:
+            zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
+            break;
+        case TYPE_FIGHTING:
+            zMove = MOVE_ALL_OUT_PUMMELING_PHYSICAL;
+            break;
+        case TYPE_FLYING:
+            zMove = MOVE_SUPERSONIC_SKYSTRIKE_PHYSICAL;
+            break;
+        case TYPE_POISON:
+            zMove = MOVE_ACID_DOWNPOUR_PHYSICAL;
+            break;
+        case TYPE_GROUND:
+            zMove = MOVE_TECTONIC_RAGE_PHYSICAL;
+            break;
+        case TYPE_ROCK:
+            zMove = MOVE_CONTINENTAL_CRUSH_PHYSICAL;
+            break;
+        case TYPE_BUG:
+            zMove = MOVE_SAVAGE_SPIN_OUT_PHYSICAL;
+            break;
+        case TYPE_GHOST:
+            zMove = MOVE_NEVER_ENDING_NIGHTMARE_PHYSICAL;
+            break;
+        case TYPE_STEEL:
+            zMove = MOVE_CORKSCREW_CRASH_PHYSICAL;
+            break;
+        case TYPE_FIRE:
+            zMove = MOVE_INFERNO_OVERDRIVE_PHYSICAL;
+            break;
+        case TYPE_WATER:
+            zMove = MOVE_HYDRO_VORTEX_PHYSICAL;
+            break;
+        case TYPE_GRASS:
+            zMove = MOVE_BLOOM_DOOM_PHYSICAL;
+            break;
+        case TYPE_ELECTRIC:
+            zMove = MOVE_GIGAVOLT_HAVOC_PHYSICAL;
+            break;
+        case TYPE_PSYCHIC:
+            zMove = MOVE_SHATTERED_PSYCHE_PHYSICAL;
+            break;
+        case TYPE_ICE:
+            zMove = MOVE_SUBZERO_SLAMMER_PHYSICAL;
+            break;
+        case TYPE_DRAGON:
+            zMove = MOVE_DEVASTATING_DRAKE_PHYSICAL;
+            break;
+        case TYPE_DARK:
+            zMove = MOVE_BLACK_HOLE_ECLIPSE_PHYSICAL;
+            break;
+        case TYPE_FAIRY:
+            zMove = MOVE_TWINKLE_TACKLE_PHYSICAL;
+            break;
+
+        default:
+            GF_ASSERT_INTERNAL();
+            break;
+        }
+    }
+    if (ctx->moveTbl[baseMove].split == SPLIT_SPECIAL) {
+        zMove += 1;
+    }
+
+#ifdef DEBUG_Z_MOVE_LOGIC
+    debug_printf("zMove: %d\n", zMove);
+#endif
+
+    return zMove;
+}
+
+int GetMaxMoveToBeUsed(struct BattleSystem *bsys, struct BattleStruct *ctx, int baseMove, int client)
+{
+#ifdef DEBUG_DYNAMAX_LOGIC
+    // debug_printf("In GetMaxMoveToBeUsed\n");
+#endif
+
+    int species = ctx->battlemon[client].species;
+
+    int form = ctx->battlemon[client].form_no;
+
+    struct PartyPokemon *mon = BattleWorkPokemonParamGet(bsys, client, ctx->sel_mons_no[client]);
+    BOOL hasGigantamaxFactor = GetMonData(mon, MON_DATA_CAN_GIGANTAMAX, NULL);
+
+#ifdef DEBUG_DYNAMAX_LOGIC
+    // debug_printf("species: %d, baseMove: %d, hasGigantamaxFactor: %d\n", species, baseMove, hasGigantamaxFactor);
+#endif
+
+    u32 type = GetAdjustedMoveType(ctx, client, baseMove);
+
+#ifdef DEBUG_DYNAMAX_LOGIC
+    // debug_printf("type: %d\n", type);
+#endif
+
+    if (ctx->moveTbl[baseMove].split == SPLIT_STATUS) {
+        return MOVE_MAX_GUARD;
+    }
+
+    if (hasGigantamaxFactor) {
+        if (species == SPECIES_VENUSAUR && type == TYPE_GRASS) {
+            return MOVE_G_MAX_VINE_LASH;
+        }
+        if (species == SPECIES_CHARIZARD && type == TYPE_FIRE) {
+            return MOVE_G_MAX_WILDFIRE;
+        }
+        if (species == SPECIES_BLASTOISE && type == TYPE_WATER) {
+            return MOVE_G_MAX_CANNONADE;
+        }
+        if (species == SPECIES_BUTTERFREE && type == TYPE_BUG) {
+            return MOVE_G_MAX_BEFUDDLE;
+        }
+        if (species == SPECIES_PIKACHU && type == TYPE_ELECTRIC) {
+            return MOVE_G_MAX_VOLT_CRASH;
+        }
+        if (species == SPECIES_MEOWTH && type == TYPE_NORMAL) {
+            return MOVE_G_MAX_GOLD_RUSH;
+        }
+        if (species == SPECIES_MACHAMP && type == TYPE_FIGHTING) {
+            return MOVE_G_MAX_CHI_STRIKE;
+        }
+        if (species == SPECIES_GENGAR && type == TYPE_GHOST) {
+            return MOVE_G_MAX_TERROR;
+        }
+        if (species == SPECIES_KINGLER && type == TYPE_WATER) {
+            return MOVE_G_MAX_FOAM_BURST;
+        }
+        if (species == SPECIES_LAPRAS && type == TYPE_ICE) {
+            return MOVE_G_MAX_RESONANCE;
+        }
+        if (species == SPECIES_EEVEE && type == TYPE_NORMAL) {
+            return MOVE_G_MAX_CUDDLE;
+        }
+        if (species == SPECIES_SNORLAX && type == TYPE_NORMAL) {
+            return MOVE_G_MAX_REPLENISH;
+        }
+        if (species == SPECIES_GARBODOR && type == TYPE_POISON) {
+            return MOVE_G_MAX_MALODOR;
+        }
+        if (species == SPECIES_MELMETAL && type == TYPE_STEEL) {
+            return MOVE_G_MAX_MELTDOWN;
+        }
+        if (species == SPECIES_RILLABOOM && type == TYPE_GRASS) {
+            return MOVE_G_MAX_DRUM_SOLO;
+        }
+        if (species == SPECIES_CINDERACE && type == TYPE_FIRE) {
+            return MOVE_G_MAX_FIREBALL;
+        }
+        if (species == SPECIES_INTELEON && type == TYPE_WATER) {
+            return MOVE_G_MAX_HYDROSNIPE;
+        }
+        if (species == SPECIES_CORVIKNIGHT && type == TYPE_FLYING) {
+            return MOVE_G_MAX_WIND_RAGE;
+        }
+        if (species == SPECIES_ORBEETLE && type == TYPE_PSYCHIC) {
+            return MOVE_G_MAX_GRAVITAS;
+        }
+        if (species == SPECIES_DREDNAW && type == TYPE_WATER) {
+            return MOVE_G_MAX_STONESURGE;
+        }
+        if (species == SPECIES_COALOSSAL && type == TYPE_ROCK) {
+            return MOVE_G_MAX_VOLCALITH;
+        }
+        if (species == SPECIES_FLAPPLE && type == TYPE_GRASS) {
+            return MOVE_G_MAX_TARTNESS;
+        }
+        if (species == SPECIES_APPLETUN && type == TYPE_GRASS) {
+            return MOVE_G_MAX_SWEETNESS;
+        }
+        if (species == SPECIES_SANDACONDA && type == TYPE_GROUND) {
+            return MOVE_G_MAX_SANDBLAST;
+        }
+        if (species == SPECIES_TOXTRICITY && type == TYPE_ELECTRIC) {
+            return MOVE_G_MAX_STUN_SHOCK;
+        }
+        if (species == SPECIES_CENTISKORCH && type == TYPE_FIRE) {
+            return MOVE_G_MAX_CENTIFERNO;
+        }
+        if (species == SPECIES_HATTERENE && type == TYPE_FAIRY) {
+            return MOVE_G_MAX_SMITE;
+        }
+        if (species == SPECIES_GRIMMSNARL && type == TYPE_DARK) {
+            return MOVE_G_MAX_SNOOZE;
+        }
+        if (species == SPECIES_ALCREMIE && type == TYPE_FAIRY) {
+            return MOVE_G_MAX_FINALE;
+        }
+        if (species == SPECIES_COPPERAJAH && type == TYPE_STEEL) {
+            return MOVE_G_MAX_STEELSURGE;
+        }
+        if (species == SPECIES_DURALUDON && type == TYPE_DRAGON) {
+            return MOVE_G_MAX_DEPLETION;
+        }
+        // Single Strike
+        if (species == SPECIES_URSHIFU && type == TYPE_DARK && (form == 0 || form == 2)) {
+            return MOVE_G_MAX_ONE_BLOW;
+        }
+        // Rapid Strike
+        if (species == SPECIES_URSHIFU && type == TYPE_WATER && (form == 1 || form == 3)) {
+            return MOVE_G_MAX_RAPID_FLOW;
+        }
+    }
+
+#ifdef DEBUG_DYNAMAX_LOGIC
+    debug_printf("baseMove: %d\n", baseMove);
+#endif
+
+    if (baseMove == MOVE_HIDDEN_POWER || baseMove == MOVE_JUDGMENT) {
+        return MOVE_MAX_STRIKE;
+    } else {
+        switch (type) {
+        case TYPE_NORMAL:
+            return MOVE_MAX_STRIKE;
+        case TYPE_FIGHTING:
+            return MOVE_MAX_KNUCKLE;
+        case TYPE_FLYING:
+            return MOVE_MAX_AIRSTREAM;
+        case TYPE_POISON:
+            return MOVE_MAX_OOZE;
+        case TYPE_GROUND:
+            return MOVE_MAX_QUAKE;
+        case TYPE_ROCK:
+            return MOVE_MAX_ROCKFALL;
+        case TYPE_BUG:
+            return MOVE_MAX_FLUTTERBY;
+        case TYPE_GHOST:
+            return MOVE_MAX_PHANTASM;
+        case TYPE_STEEL:
+            return MOVE_MAX_STEELSPIKE;
+        case TYPE_FIRE:
+            return MOVE_MAX_FLARE;
+        case TYPE_WATER:
+            return MOVE_MAX_GEYSER;
+        case TYPE_GRASS:
+            return MOVE_MAX_OVERGROWTH;
+        case TYPE_ELECTRIC:
+            return MOVE_MAX_LIGHTNING;
+        case TYPE_PSYCHIC:
+            return MOVE_MAX_MINDSTORM;
+        case TYPE_ICE:
+            return MOVE_MAX_HAILSTORM;
+        case TYPE_DRAGON:
+            return MOVE_MAX_WYRMWIND;
+        case TYPE_DARK:
+            return MOVE_MAX_DARKNESS;
+        case TYPE_FAIRY:
+            return MOVE_MAX_STARFALL;
+        default:
+            GF_ASSERT_INTERNAL();
+            break;
+        }
+    }
+
+    return MOVE_NONE;
+}
