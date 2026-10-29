@@ -339,6 +339,7 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
             newBS.SideZMove[ctx->attack_client] = TRUE;
             newBS.needZMove[ctx->attack_client] = FALSE;
             ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
+            ctx->moveNoTemp = ctx->current_move_index;
 
             // TODO
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT);
@@ -4342,6 +4343,13 @@ BOOL BattleController_CheckMoveFailures4_SingleTarget(struct BattleSystem *bsys 
         }
         break;
     }
+    case MOVE_ME_FIRST: {
+        // TODO
+        if (newBS.needZMove[ctx->defence_client]) {
+            butItFailedFlag = TRUE;
+        }
+        break;
+    }
     case MOVE_COPYCAT: {
         // TODO
         break;
@@ -5335,6 +5343,11 @@ int GetZMoveToBeUsed(struct BattleStruct *ctx, int baseMove, int client)
 
     if (baseMove == MOVE_HIDDEN_POWER) {
         zMove = MOVE_BREAKNECK_BLITZ_PHYSICAL;
+    }
+    if (baseMove == MOVE_NATURE_POWER) {
+        // TODO
+        // If powered up by a Normalium Z into Z-Nature Power, the selected move will become its corresponding Z-Move.
+        // Probably not here but noting it here
     } else {
         switch (GetAdjustedMoveType(ctx, ctx->attack_client, baseMove)) {
         case TYPE_NORMAL:

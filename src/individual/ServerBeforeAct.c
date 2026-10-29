@@ -622,6 +622,9 @@ BOOL AICheckCanUseZMove(struct BattleStruct *ctx, int client)
             return FALSE;
         }
 
+        // TODO
+        // Mega Evolved Pokémon and Pokémon under Primal Reversion cannot use Z-Moves, even when holding an appropriate Z-Crystal (such as after Transform).
+
         BOOL canUseZMove = FALSE;
         if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
             || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
