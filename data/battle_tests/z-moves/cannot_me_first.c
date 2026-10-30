@@ -96,5 +96,4 @@ BEGIN_TEST {
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "The opposing Audino unleashes its full-force Z-Move!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "" },
     },
-    .knownFailing = TRUE,
 } END_TEST

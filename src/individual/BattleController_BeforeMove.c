@@ -236,6 +236,13 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
             ctx->current_move_index = GetMaxMoveToBeUsed(bsys, ctx, newBS.SideMaxMoveBaseMove[ctx->attack_client], ctx->attack_client);
         }
 
+        if (newBS.needZMove[ctx->attack_client]) {
+            newBS.SideZMove[ctx->attack_client] = TRUE;
+            newBS.needZMove[ctx->attack_client] = FALSE;
+            ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
+            ctx->moveNoTemp = ctx->current_move_index;
+        }
+
         ctx->wb_seq_no++;
         return;
     }
@@ -335,13 +342,7 @@ void __attribute__((section(".init"))) BattleController_BeforeMove(struct Battle
 #endif
         ctx->wb_seq_no++;
 
-        if (newBS.needZMove[ctx->attack_client]) {
-            newBS.SideZMove[ctx->attack_client] = TRUE;
-            newBS.needZMove[ctx->attack_client] = FALSE;
-            ctx->current_move_index = GetZMoveToBeUsed(ctx, newBS.SideZMoveBaseMove[ctx->attack_client], ctx->attack_client);
-            ctx->moveNoTemp = ctx->current_move_index;
-
-            // TODO
+        if (newBS.SideZMove[ctx->attack_client]) {
             LoadBattleSubSeqScript(ctx, ARC_BATTLE_SUB_SEQ, BATTLE_SUBSCRIPT_HANDLE_Z_DANCE_AND_EFFECT);
             ctx->battlerIdTemp = ctx->attack_client;
             ctx->next_server_seq_no = ctx->server_seq_no;

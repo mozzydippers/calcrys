@@ -96,5 +96,4 @@ BEGIN_TEST {
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "Audino used Mimic!" },
         { .expectationType = EXPECTATION_TYPE_MESSAGE, .expectationValue.message = "But it failed!" },
     },
-    .knownFailing = TRUE,
 } END_TEST
