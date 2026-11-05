@@ -5,8 +5,8 @@
 
 #include "battle.h"
 
-u32 LONG_CALL GetTerastallizedState(u32 species, u32 form);
-u32 LONG_CALL GetOgerponTerastallizedFormPic(u32 type);
+u32 GetTerastallizedState(u32 species, u32 form);
+u32 GetOgerponTerastallizedFormPic(u32 type);
 BOOL CheckCanDrawTerastallizeButton(struct BI_PARAM *bip);
 
 #endif

@@ -231,7 +231,8 @@ BOOL LONG_CALL BattleFormChangeCheck(void *bw, struct BattleStruct *sp, int *seq
 {
     u32 ovyId, offset;
     BOOL ret;
-    BOOL (*internalFunc)(void *bw, struct BattleStruct *sp, int *seq_no);
+    BOOL(*internalFunc)
+    (void *bw, struct BattleStruct *sp, int *seq_no);
 
     UnloadOverlayByID(6); // unload overlay 6 so this can be loaded
 
@@ -1198,6 +1199,7 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     sp->moveConditionsFlags[client].anyStatLoweredThisTurn = 0;
     sp->moveConditionsFlags[client].ejectPackFlag = 0;
     sp->moveConditionsFlags[client].throatChopTimer = 0;
+    sp->moveConditionsFlags[client].usedRagePowder = 0;
     sp->moveConditionsFlags[client].dragonDartsStatus = 0;
     sp->moveConditionsFlags[client].endure = 0;
     sp->moveConditionsFlags[client].grounded = 0;
@@ -1205,7 +1207,11 @@ void LONG_CALL ClearBattleMonFlags(struct BattleStruct *sp, int client)
     if (sp->moveConditionsFlags[client].firstTurnOut != 2) {
         sp->moveConditionsFlags[client].firstTurnOut = 1;
     }
+    sp->switchInFlags[client].healingWishProcessed = 0;
+    sp->switchInFlags[client].hazardsProcessed = 0;
+    sp->switchInFlags[client].pastelVeilProcessed = 0;
 
+    sp->hazardQueueTracker = 0;
     sp->ejectPackActivated = FALSE;
 
     sp->log_hail_for_ice_face &= ~(1 << client); // unset log_hail_for_ice_face for client

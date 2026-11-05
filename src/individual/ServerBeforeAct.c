@@ -622,6 +622,9 @@ BOOL AICheckCanUseZMove(struct BattleStruct *ctx, int client)
             return FALSE;
         }
 
+        // TODO
+        // Mega Evolved Pokémon and Pokémon under Primal Reversion cannot use Z-Moves, even when holding an appropriate Z-Crystal (such as after Transform).
+
         BOOL canUseZMove = FALSE;
         if ((move.type == TYPE_NORMAL && item == ITEM_NORMALIUM_Z_HELD)
             || (move.type == TYPE_FIGHTING && item == ITEM_FIGHTINIUM_Z_HELD)
@@ -799,4 +802,151 @@ BOOL AICheckCanTerastallize(struct BattleSystem *bsys UNUSED, struct BattleStruc
 #endif
     }
     return FALSE;
+}
+
+u32 GetDynamaxedState(u32 species, u32 form, BOOL canGigantamax)
+{
+    if (!canGigantamax) {
+        return form;
+    }
+
+    switch (species) {
+    case SPECIES_VENUSAUR:
+        return 2;
+        break;
+    case SPECIES_CHARIZARD:
+        return 3;
+        break;
+    case SPECIES_BLASTOISE:
+        return 2;
+        break;
+    case SPECIES_BUTTERFREE:
+        return 1;
+        break;
+    case SPECIES_PIKACHU:
+        return 16;
+        break;
+    case SPECIES_MEOWTH:
+        return 3;
+        break;
+    case SPECIES_GENGAR:
+        return 2;
+        break;
+    case SPECIES_KINGLER:
+        return 1;
+        break;
+    case SPECIES_LAPRAS:
+        return 1;
+        break;
+    case SPECIES_EEVEE:
+        return 2;
+        break;
+    case SPECIES_SNORLAX:
+        return 1;
+        break;
+    case SPECIES_GARBODOR:
+        return 1;
+        break;
+    case SPECIES_MELMETAL:
+        return 1;
+        break;
+    case SPECIES_RILLABOOM:
+        return 1;
+        break;
+    case SPECIES_CINDERACE:
+        return 1;
+        break;
+    case SPECIES_INTELEON:
+        return 1;
+        break;
+    case SPECIES_CORVIKNIGHT:
+        return 1;
+        break;
+    case SPECIES_ORBEETLE:
+        return 1;
+        break;
+    case SPECIES_DREDNAW:
+        return 1;
+        break;
+    case SPECIES_COALOSSAL:
+        return 1;
+        break;
+    case SPECIES_FLAPPLE:
+        return 1;
+        break;
+    case SPECIES_APPLETUN:
+        return 1;
+        break;
+    case SPECIES_SANDACONDA:
+        return 1;
+        break;
+    case SPECIES_TOXTRICITY:
+        return form == 0 ? 2 : 3;
+        break;
+    case SPECIES_CENTISKORCH:
+        return 1;
+        break;
+    case SPECIES_HATTERENE:
+        return 1;
+        break;
+    case SPECIES_GRIMMSNARL:
+        return 1;
+        break;
+    case SPECIES_ALCREMIE:
+        return 7;
+        break;
+    case SPECIES_COPPERAJAH:
+        return 1;
+        break;
+    case SPECIES_DURALUDON:
+        return 1;
+        break;
+    case SPECIES_URSHIFU:
+        return form == 0 ? 2 : 3;
+        break;
+    default:
+        return form;
+        break;
+    }
+}
+
+u32 GetTerastallizedState(u32 species, u32 form)
+{
+    if (species == SPECIES_OGERPON) {
+        switch (form) {
+        case 0:
+        case 4:
+            return 4;
+        case 1:
+        case 5:
+            return 5;
+        case 2:
+        case 6:
+            return 6;
+        case 3:
+        case 7:
+            return 7;
+        }
+    }
+    if (species == SPECIES_TERAPAGOS && form == 1) {
+        return 2;
+    }
+    return form;
+}
+
+u32 GetOgerponTerastallizedFormPic(u32 type)
+{
+start:
+    switch (type) {
+    case TYPE_GRASS:
+        return 4;
+    case TYPE_WATER:
+        return 5;
+    case TYPE_FIRE:
+        return 6;
+    case TYPE_ROCK:
+        return 7;
+    default:
+        goto start;
+    }
 }
