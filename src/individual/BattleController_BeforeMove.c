@@ -1778,18 +1778,28 @@ BOOL BattlerController_DecrementPP(struct BattleSystem *bsys, struct BattleStruc
     int index;
     BOOL needToDecrementPP = TRUE;
 
+    u32 move = MOVE_NONE;
+
+    if (newBS.needZMove[ctx->attack_client]) {
+        move = newBS.SideZMoveBaseMove[ctx->attack_client];
+    } else if (IS_DYNAMAXED(ctx, ctx->attack_client) && newBS.SideMaxMoveBaseMove[ctx->attack_client]) {
+        move = newBS.SideMaxMoveBaseMove[ctx->attack_client];
+    } else {
+        move = ctx->moveNoTemp;
+    }
+
     if (!ctx->oneSelfFlag[ctx->attack_client].no_pressure_flag && ctx->defence_client != BATTLER_NONE) {
         // https://www.smogon.com/forums/threads/scarlet-violet-battle-mechanics-research.3709545/page-22#post-9427994
         // Pressure now only affects opponents' moves.
-        if ((ctx->moveNoTemp == MOVE_IMPRISON)
-            || (ctx->moveNoTemp == MOVE_SNATCH)
-            || (ctx->moveNoTemp == MOVE_SPIKES)
-            || (ctx->moveNoTemp == MOVE_TOXIC_SPIKES)
-            || (ctx->moveNoTemp == MOVE_STEALTH_ROCK)
-            || (ctx->moveNoTemp == MOVE_TERA_BLAST)) {
+        if ((move == MOVE_IMPRISON)
+            || (move == MOVE_SNATCH)
+            || (move == MOVE_SPIKES)
+            || (move == MOVE_TOXIC_SPIKES)
+            || (move == MOVE_STEALTH_ROCK)
+            || (move == MOVE_TERA_BLAST)) {
             decreasePP += CheckSideAbility(bsys, ctx, CHECK_ABILITY_OPPOSING_SIDE_HP, ctx->attack_client, ABILITY_PRESSURE);
         } else {
-            switch (ctx->moveTbl[ctx->moveNoTemp].target) {
+            switch (ctx->moveTbl[move].target) {
             case RANGE_ALL_ADJACENT:
             case RANGE_FIELD:
                 decreasePP += CheckSideAbility(bsys, ctx, CHECK_ABILITY_OPPOSING_SIDE_HP, ctx->attack_client, ABILITY_PRESSURE);
@@ -1814,7 +1824,7 @@ BOOL BattlerController_DecrementPP(struct BattleSystem *bsys, struct BattleStruc
         }
     }
 
-    index = BattleMon_GetMoveIndex(&ctx->battlemon[ctx->attack_client], ctx->moveNoTemp);
+    index = BattleMon_GetMoveIndex(&ctx->battlemon[ctx->attack_client], move);
 
     // fix for mirror move and really any move that uses another move.  don't decrease any move that isn't already there
     if (index >= 4) {
