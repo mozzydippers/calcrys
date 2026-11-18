@@ -195,8 +195,7 @@ typedef enum BattleBg {
 #define BATTLE_TYPE_CAN_LOSE    0x800
 #define BATTLE_TYPE_BUG_CONTEST 0x1000
 #define BATTLE_TYPE_13          0x2000
-#define BATTLE_TYPE_TOTEM       0x4000
-#define BATTLE_TYPE_DEBUG       (1 << 31)
+#define BATTLE_TYPE_DEBUG       0x4000
 
 #define BATTLE_TYPE_NO_EXPERIENCE (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_PAL_PARK)
 
@@ -1130,5 +1129,14 @@ enum ForceExecutionOrder {
 #define HAZARD_IDX_STEALTH_ROCK 3
 #define HAZARD_IDX_STICKY_WEB   4
 #define HAZARD_IDX_SHARP_STEEL  5
+
+// berries timing
+#define HELD_ITEM_USE_ANY                  0 // all
+#define HELD_ITEM_USE_CHANGE_HP            (1 << 0) // HP restoring berries
+#define HELD_ITEM_USE_CHANGE_PP            (1 << 1) // Leppa Berry
+#define HELD_ITEM_USE_REMOVE_CONDITION     (1 << 2) // status curing berries, Mental Herb
+#define HELD_ITEM_USE_RESTORE_STAT_CHANGES (1 << 3) // White Herb
+#define HELD_ITEM_USE_COPY_STAT_CHANGES    (1 << 4) // Mirror Herb
+#define HELD_ITEM_USE_PINCH_BERRY          (1 << 5) // pinch
 
 #endif // GUARD_BATTLE_CONSTANTS
