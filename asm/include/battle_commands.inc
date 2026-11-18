@@ -1547,10 +1547,11 @@
     .long (((\arg_0 - .) / 4) - 1)
     .endm
 
-    .macro TryCureStatusBerry arg_0, arg_1
+    .macro TryEatBerry arg_0, arg_1, arg_2
     .long 283
     .long \arg_0
-    .long (((\arg_1 - .) / 4) - 1)
+    .long \arg_1
+    .long (((\arg_2 - .) / 4) - 1)
     .endm
 
     .macro BatchUpdateHealthBar
@@ -1644,30 +1645,39 @@
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .macro TryEatHpBerry arg_0, arg_1
+    .macro TryClearUnnerve arg_0, arg_1
     .long 301
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .macro CheckTrainerGimmickMessage
+    .macro TryActivateSymbiosis arg_0
     .long 302
+    .long (((\arg_0 - .) / 4) - 1)
+    .endm
+
+    .macro RestoreBoosterEnergyBattler
+    .long 303
+    .endm
+
+    .macro CheckTrainerGimmickMessage
+    .long 304
     .endm
 
     .macro IfClientDynamaxed arg_0, arg_1
-    .long 303
+    .long 305
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
 
     .macro IfClientTerastallized arg_0, arg_1
-    .long 304
+    .long 306
     .long \arg_0
     .long (((\arg_1 - .) / 4) - 1)
     .endm
 
-    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 304
+    .equ BASE_ENGINE_BTL_SCR_CMDS_MAX, 306
 
     // .macro YourCustomCommand
     // .long (BASE_ENGINE_BTL_SCR_CMDS_MAX + 1)

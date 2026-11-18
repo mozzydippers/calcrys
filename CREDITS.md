@@ -10,6 +10,7 @@ Chvlkie,
 DavveDP,
 Dog-Broad,
 Drayano,
+Ebbenezer,
 FrozenMetroid,
 hzla,
 Koekenpann,
@@ -52,6 +53,8 @@ Kingcom - [armips](https://github.com/Kingcom/armips)
 MaMe and maple - a lot of mega sprites touched up
 
 Mikelan98 - initial graphics compilation, BDHCAM routine, Music tables (trainerclassbattle, maintablescombo, and pokemonbattle)
+
+RavePossum - Victory pose implementation in pokeplatinum
 
 RH-Hideout Team - cries from gen 9, sprites for particles
 
