@@ -3834,8 +3834,10 @@ RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
 .hword \arg0
 .endm
 
-.macro scrcmd_597
+.macro scrcmd_597,arg0,arg1
 .hword 597
+.byte \arg0
+.byte \arg1
 .endm
 
 .macro scrcmd_598,arg0
@@ -8932,8 +8934,10 @@ RunNewCommand NEW_COMMAND_QUEUE_NEW_REPEL, 0x800C
 .hword \arg0
 .endm
 
-.macro CMD_597
+.macro CMD_597,arg0,arg1
 .hword 597
+.byte \arg0
+.byte \arg1
 .endm
 
 .macro CMD_598,arg0

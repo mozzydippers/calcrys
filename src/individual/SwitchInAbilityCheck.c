@@ -111,31 +111,38 @@ int UNUSED SwitchInAbilityCheck(void *bw, struct BattleStruct *sp)
                             break;
                         case 20:
                             sp->current_move_index = MOVE_GRASSY_TERRAIN; // force move anim to play
+                            UpdateTerrainOverlay(sp, sp->defence_client, GRASSY_TERRAIN);
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 21:
                             sp->current_move_index = MOVE_MISTY_TERRAIN; // force move anim to play
+                            UpdateTerrainOverlay(sp, sp->defence_client, MISTY_TERRAIN);
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 22:
                             sp->current_move_index = MOVE_ELECTRIC_TERRAIN; // force move anim to play
+                            UpdateTerrainOverlay(sp, sp->defence_client, ELECTRIC_TERRAIN);
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 23:
                             sp->current_move_index = MOVE_PSYCHIC_TERRAIN; // force move anim to play
+                            UpdateTerrainOverlay(sp, sp->defence_client, PSYCHIC_TERRAIN);
+                            sp->terrainOverlay.numberOfTurnsLeft = TERRAIN_TURNS_INFINITE;
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_CREATE_TERRAIN_OVERLAY;
                             break;
                         case 24:
                             sp->current_move_index = MOVE_ELECTRIC_TERRAIN;
+                            UpdateTerrainOverlay(sp, sp->defence_client, ELECTRIC_TERRAIN);
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TERRAIN_TRICK_ROOM;
                             break;
                         case 25:
                             sp->current_move_index = MOVE_PSYCHIC_TERRAIN;
+                            UpdateTerrainOverlay(sp, sp->defence_client, PSYCHIC_TERRAIN);
                             ret = SWITCH_IN_CHECK_MOVE_SCRIPT;
                             scriptnum = BATTLE_SUBSCRIPT_OVERWORLD_TERRAIN_TRICK_ROOM;
                             break;

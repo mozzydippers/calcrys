@@ -862,7 +862,7 @@ _resetfollower:
     wait_fade
     closemsg
     scrcmd_436
-    scrcmd_150
+    returnscreen
     fade_screen 6, 1, 1, RGB_BLACK
     wait_fade
     get_party_lead_alive VAR_SPECIAL_x8009
@@ -1845,5 +1845,3 @@ scr_seq_0003_075_box_link_fail:
     closemsg
     releaseall
     end
-
-.close

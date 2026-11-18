@@ -39,8 +39,10 @@ void LONG_CALL _CreateTradeMon(struct PartyPokemon *mon, struct NPCTrade *trade_
     if (tradeno == NPC_TRADE_BILLY_VOLTORB)
     {
         trade_dat->give_species = SPECIES_ROTOM;
+        
+        trade_dat->heldItem = ITEM_ROTOM_CATALOG;
 
-        // trade_dat->heldItem = ITEM_RARE_BONE;
+        trade_dat->ask_species = MON_WITH_FORM(SPECIES_ELECTRODE, 1);
 
         // ability = ABILITY_ROCK_HEAD;
     }

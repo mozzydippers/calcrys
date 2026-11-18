@@ -69,10 +69,10 @@
 #define DEBUG_ENDTURN_LOGIC
 
 // DEBUG_BEFORE_MOVE_LOGIC turns on a number of debug prints related to the before-move logic
-#define DEBUG_BEFORE_MOVE_LOGIC
+// #define DEBUG_BEFORE_MOVE_LOGIC
 
 // DEBUG_Z_MOVE_LOGIC turns on a number of debug prints related to the Z-Move logic
-#define DEBUG_Z_MOVE_LOGIC
+// #define DEBUG_Z_MOVE_LOGIC
 
 // DEBUG_DYNAMAX_LOGIC turns on a number of debug prints related to the Dynamax logic
 // #define DEBUG_DYNAMAX_LOGIC
@@ -81,7 +81,7 @@
 // #define DEBUG_TERASTALLIZATION_LOGIC
 
 // DEBUG_MOVE_PERFORMANCE_LOGIC turns on a number of debug prints related to the move-performance logic
-#define DEBUG_MOVE_PERFORMANCE_LOGIC
+// #define DEBUG_MOVE_PERFORMANCE_LOGIC
 
 // DEBUG_PRINT_HEAP_CREATION allows for debug prints on heap creation/deletion
 // #define DEBUG_PRINT_HEAP_CREATION

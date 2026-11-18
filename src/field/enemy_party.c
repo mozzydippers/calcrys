@@ -376,9 +376,9 @@ void MakeTrainerPokemonParty(struct BATTLE_PARAM *bp, int num, int heapID)
         offset += 2;
 
         if ((DoScaling == 1) && highLevel >= level) { // always highest level on trainers
-            if (highLevel > levelCap && highLevel > level) // if highest level is > cap scale to cap
+            if (highLevel >= levelCap && highLevel > level && levelCap > level) // if highest level is > cap scale to cap
             {
-			    level = levelCap; 
+			    level = (levelCap - 1); 
             } 
             else 
             {

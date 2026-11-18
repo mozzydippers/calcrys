@@ -543,7 +543,7 @@ typedef struct PACKED HeadbuttFile_077_Olivine_City {
     u16 specialTreeCount;
     HeadbuttEncounterSlot normalSlots[12];
     HeadbuttEncounterSlot specialSlots[6];
-    HeadbuttTreeCoord treeCoords[18][6];
+    HeadbuttTreeCoord treeCoords[3][6];
 } HeadbuttFile_077_Olivine_City;
 
 typedef struct PACKED HeadbuttFile_078_Ecruteak_City {
@@ -5026,8 +5026,8 @@ const HeadbuttArchiveData __data =
     },
 
     .route31 = {
-        .normalTreeCount = 15,
-        .specialTreeCount = 0,
+        .normalTreeCount = 14,
+        .specialTreeCount = 2,
         .normalSlots =
         {
             { SPECIES_HOOTHOOT, 7, 8 },
@@ -5041,21 +5041,20 @@ const HeadbuttArchiveData __data =
             { SPECIES_LEDYBA, 7, 8 },
             { SPECIES_SPINARAK, 7, 8 },
             { SPECIES_HOOTHOOT, 7, 8  },
-            { SPECIES_ZUBAT, 7, 8 },
+            { SPECIES_HOOTHOOT, 7, 8 },
         },
         .specialSlots =
         {
-            { SPECIES_NONE, 0, 0 },
-            { SPECIES_NONE, 0, 0 },
-            { SPECIES_NONE, 0, 0 },
-            { SPECIES_NONE, 0, 0 },
-            { SPECIES_NONE, 0, 0 },
-            { SPECIES_NONE, 0, 0 },
+            { SPECIES_ZUBAT, 7, 8 },
+            { SPECIES_APPLIN, 7, 8 },
+            { SPECIES_ZUBAT, 7, 8 },
+            { SPECIES_ZUBAT, 7, 8 },
+            { SPECIES_ZUBAT, 7, 8 },
+            { SPECIES_NOIBAT, 7, 8 },
         },
         .treeCoords =
         {
             { { 566, 281 }, { 567, 281 }, { 566, 283 }, { 566, 282 }, { -1, -1 }, { -1, -1 } },
-            { { 558, 267 }, { 559, 267 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 542, 283 }, { 543, 283 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 544, 259 }, { 545, 259 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 518, 265 }, { 519, 265 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
@@ -5069,6 +5068,8 @@ const HeadbuttArchiveData __data =
             { { 528, 281 }, { 529, 281 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 528, 265 }, { 529, 265 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 536, 281 }, { 537, 281 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 558, 267 }, { 559, 267 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 568, 270 }, { 568, 271 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } }
         },
     },
 
@@ -6301,7 +6302,7 @@ const HeadbuttArchiveData __data =
     },
 
     .olivineCity = {
-        .normalTreeCount = 2,
+        .normalTreeCount = 3,
         .specialTreeCount = 0,
         .normalSlots =
         {
@@ -6331,6 +6332,7 @@ const HeadbuttArchiveData __data =
         {
             { { 285, 246 }, { 286, 246 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 287, 246 }, { 288, 246 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 304, 253 }, { 305, 253 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
         },
     },
 
@@ -6754,7 +6756,7 @@ const HeadbuttArchiveData __data =
             { SPECIES_PANSAGE, 23, 25 },
             { SPECIES_PANSEAR, 23, 25 },
             { SPECIES_PANPOUR, 23, 25 },
-            { SPECIES_VENONAT, 23, 25 },
+            { MON_WITH_FORM(SPECIES_VOLTORB, 1), 23, 25 },
             { MON_WITH_FORM(SPECIES_VOLTORB, 1), 23, 25 },
         },
         .specialSlots =
@@ -6824,6 +6826,7 @@ const HeadbuttArchiveData __data =
             { { 50, 47 }, { 51, 47 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 52, 47 }, { 53, 47 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
             { { 46, 35 }, { 47, 35 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },
+            { { 9, 32 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 }, { -1, -1 } },  
         },
     },
 

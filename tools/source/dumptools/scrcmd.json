@@ -3806,7 +3806,9 @@
         },
         {
             "name": "scrcmd_597",
-            "args": []
+            "args": [
+                2
+            ]
         },
         {
             "name": "scrcmd_598",

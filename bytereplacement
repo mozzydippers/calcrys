@@ -579,7 +579,7 @@ arm9 0202ACB8 81 43 02 20 08 43
 # 0053 080011FA E1 30 28 5C 00 21
 
 # skip intro guide multi choice (adastra credits again)
-0053 080017DC 2C
+# 0053 080017DC 2C
 
 # script weather
 arm9 020436C2 70 BD 38 B5 04 1C

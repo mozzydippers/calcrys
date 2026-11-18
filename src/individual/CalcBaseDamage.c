@@ -1593,7 +1593,7 @@ int __attribute__((section(".init"))) UNUSED CalcBaseDamageInternal(struct Battl
                 && (DefendingMon.species == SPECIES_DITTO)
                 // it’s not a Ditto/Smeargle/Mew Transformed into the species
                 /* && !(DefendingMon.condition2 & STATUS2_TRANSFORM)
-                && (defensiveSplit == SPLIT_PHYSICAL)) { */
+                && (defensiveSplit == SPLIT_PHYSICAL)*/) { 
                 defenseModifier = QMul_RoundUp(defenseModifier, UQ412__2_0);
             }
         }

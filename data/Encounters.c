@@ -615,7 +615,7 @@ const EncounterData __data[] =
         .rateSuperRod = 0,
         .landSlots = {
             .levels = {
-                12, 12, 13, 13, 14, 14, 14, 14, 15, 15, 12, 13
+                12, 13, 13, 12, 14, 14, 14, 14, 15, 15, 12, 13
             },
             .speciesMorning = {
                 MON_WITH_FORM(SPECIES_RATTATA, 1),
@@ -661,8 +661,8 @@ const EncounterData __data[] =
             },
         },
         .hoennSoundSpecies = {
-            SPECIES_ZIGZAGOON,
-            SPECIES_SPINDA,
+            SPECIES_SHUPPET,
+            SPECIES_DUSKULL,
         },
         .sinnohSoundSpecies = {
             SPECIES_CHATOT,
@@ -761,8 +761,8 @@ const EncounterData __data[] =
             },
         },
         .hoennSoundSpecies = {
-            SPECIES_ZIGZAGOON,
-            SPECIES_SPINDA,
+            SPECIES_SHUPPET,
+            SPECIES_DUSKULL,
         },
         .sinnohSoundSpecies = {
             SPECIES_CHATOT,
@@ -1415,12 +1415,12 @@ const EncounterData __data[] =
         .rateSuperRod = 75,
         .landSlots = {
             .levels = {
-                18, 19, 18, 19, 18, 19, 18, 19, 19, 19, 20, 20
+                18, 18, 19, 19, 18, 19, 18, 19, 19, 19, 20, 20
             },
             .speciesMorning = {
                 SPECIES_SANDSHREW,
-                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
+                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
                 SPECIES_GEODUDE,
                 SPECIES_GEODUDE,
@@ -1433,8 +1433,8 @@ const EncounterData __data[] =
             },
             .speciesDay = {
                 SPECIES_SANDSHREW,
-                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
+                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
                 SPECIES_GEODUDE,
                 SPECIES_GEODUDE,
@@ -1447,8 +1447,8 @@ const EncounterData __data[] =
             },
             .speciesNight = {
                 SPECIES_SANDSHREW,
-                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
+                SPECIES_SANDSHREW,
                 SPECIES_ZUBAT,
                 SPECIES_GEODUDE,
                 SPECIES_GEODUDE,
@@ -1515,12 +1515,12 @@ const EncounterData __data[] =
         .rateSuperRod = 75,
         .landSlots = {
             .levels = {
-                22, 23, 22, 23, 22, 22, 23, 23, 23, 23, 24, 24
+                22, 22, 23, 23, 22, 22, 23, 23, 23, 23, 24, 24
             },
             .speciesMorning = {
                 SPECIES_SANDSLASH,
-                SPECIES_SANDSLASH,
                 SPECIES_GOLBAT,
+                SPECIES_SANDSLASH,
                 SPECIES_GOLBAT,
                 SPECIES_GEODUDE,
                 SPECIES_ROGGENROLA,
@@ -1615,21 +1615,21 @@ const EncounterData __data[] =
         .rateSuperRod = 75,
         .landSlots = {
             .levels = {
-                22, 22, 22, 22, 22, 22, 21, 21, 20, 23, 20, 23
+                42, 42, 43, 43, 22, 22, 21, 21, 20, 23, 20, 23
             },
             .speciesMorning = {
-                SPECIES_ZUBAT,
-                SPECIES_RATICATE,
-                SPECIES_ZUBAT,
-                SPECIES_RATICATE,
+                SPECIES_QUAGSIRE,
                 SPECIES_GOLBAT,
+                SPECIES_QUAGSIRE,
                 SPECIES_GOLBAT,
-                SPECIES_GEODUDE,
-                SPECIES_GEODUDE,
-                SPECIES_RATTATA,
                 SPECIES_ONIX,
-                SPECIES_RATTATA,
-                SPECIES_ONIX,
+                SPECIES_DREDNAW,
+                SPECIES_NOIVERN,
+                SPECIES_DRUDDIGON,
+                SPECIES_EXCADRILL,
+                SPECIES_WUGTRIO,
+                SPECIES_KINGLER,
+                SPECIES_CRAWDAUNT,
             },
             .speciesDay = {
                 SPECIES_ZUBAT,
@@ -1680,11 +1680,11 @@ const EncounterData __data[] =
             { 0, 0, SPECIES_NONE },
         },
         .oldRodSlots = {
-            { 10, 10, SPECIES_MAGIKARP },
-            { 10, 10, SPECIES_MAGIKARP },
-            { 10, 10, SPECIES_MAGIKARP },
-            { 10, 10, SPECIES_KRABBY },
-            { 10, 10, SPECIES_KRABBY },
+            { 42, 44, SPECIES_KINGLER },
+            { 42, 44, SPECIES_CRAWDAUNT },
+            { 42, 44, SPECIES_CLAUNCHER },
+            { 42, 44, SPECIES_CRAWDAUNT },
+            { 42, 44, SPECIES_KINGLER },
         },
         .goodRodSlots = {
             { 20, 20, SPECIES_MAGIKARP },
@@ -7015,49 +7015,49 @@ const EncounterData __data[] =
         .rateSuperRod = 75,
         .landSlots = {
             .levels = {
-                48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48
+                46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46
             },
             .speciesMorning = {
-                SPECIES_CARBINK,
-                SPECIES_CARBINK,
-                SPECIES_NOIVERN,
-                SPECIES_NOIVERN,
+                SPECIES_SWOOBAT,
+                SPECIES_SWOOBAT,
+                SPECIES_RHYDON,
+                SPECIES_RHYDON,
                 SPECIES_DONPHAN,
                 SPECIES_CONKELDURR,
                 SPECIES_AGGRON,
                 SPECIES_DRUDDIGON,
-                SPECIES_DONPHAN,
-                SPECIES_CONKELDURR,
                 SPECIES_SABLEYE,
                 SPECIES_MAWILE,
+                SPECIES_NOIBAT,
+                SPECIES_DEINO,
             },
             .speciesDay = {
-                SPECIES_CARBINK,
-                SPECIES_CARBINK,
-                SPECIES_NOIVERN,
-                SPECIES_NOIVERN,
+                SPECIES_SWOOBAT,
+                SPECIES_SWOOBAT,
+                SPECIES_RHYDON,
+                SPECIES_RHYDON,
                 SPECIES_DONPHAN,
                 SPECIES_CONKELDURR,
                 SPECIES_AGGRON,
                 SPECIES_DRUDDIGON,
-                SPECIES_DONPHAN,
-                SPECIES_CONKELDURR,
                 SPECIES_SABLEYE,
                 SPECIES_MAWILE,
+                SPECIES_NOIBAT,
+                SPECIES_DEINO,
             },
             .speciesNight = {
-                SPECIES_CARBINK,
-                SPECIES_CARBINK,
-                SPECIES_NOIVERN,
-                SPECIES_NOIVERN,
+                SPECIES_SWOOBAT,
+                SPECIES_SWOOBAT,
+                SPECIES_RHYDON,
+                SPECIES_RHYDON,
                 SPECIES_DONPHAN,
                 SPECIES_CONKELDURR,
                 SPECIES_AGGRON,
                 SPECIES_DRUDDIGON,
-                SPECIES_DONPHAN,
-                SPECIES_CONKELDURR,
                 SPECIES_SABLEYE,
                 SPECIES_MAWILE,
+                SPECIES_NOIBAT,
+                SPECIES_DEINO,
             },
         },
         .hoennSoundSpecies = {
