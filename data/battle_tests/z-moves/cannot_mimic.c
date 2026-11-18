@@ -1,4 +1,6 @@
 // Test: Z-Move - cannot Mimic
+#include "constants/item.h"
+#include "constants/moves.h"
 #include "../battle_tests.h"
 BEGIN_TEST {
     .battleType = BATTLE_TYPE_TRAINER,
@@ -41,8 +43,8 @@ BEGIN_TEST {
             .level = 50,
             .form = 0,
             .ability = ABILITY_REGENERATOR,
-            .item = ITEM_DARKINIUM_Z_HELD,
-            .moves = { MOVE_DARKEST_LARIAT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
+            .item = ITEM_PSYCHIUM_Z_HELD,
+            .moves = { MOVE_PSYCHO_CUT, MOVE_NONE, MOVE_NONE, MOVE_NONE },
             .hp = FULL_HP,
             .status = 0,
             .condition2 = 0,

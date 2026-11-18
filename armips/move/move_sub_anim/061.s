@@ -12,7 +12,7 @@
 TeraAnimScript:
     //Func_SetBgGrayscale 1
     //loadparticlefromspa 0, 489
-    loadparticlefromspa 1, 566
+    loadparticlefromspa 1, SPA_TERA
     //loadparticlefromspa 2, 489
 
     waitparticle
